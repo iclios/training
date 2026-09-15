@@ -1,0 +1,15 @@
+BLOC — FORMATEUR · JOUR 2 · Intro & objectifs
+Durée : 15–20 min · Suivant : Typologies
+
+Idée clé
+Aujourd’hui : le QR comme canal digital software-first — typologies, architecture SI, standards, atelier.
+
+Objectifs du jour
+- Distinguer typologies QR
+- Décrire architecture SI QR
+- Modéliser génération → confirmation
+- Citer EMV QR et interop
+- Cas QR national (allégé)
+- Atelier tangible
+
+Lien J1 : acteurs, chaîne, auth/clearing/settlement restent le socle.

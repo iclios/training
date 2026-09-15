@@ -1,0 +1,110 @@
+BLOC — FORMATEUR
+Cours : Paiements digitaux & Wallets numériques
+Jour 1 · Architecture générale
+Bloc : Chaîne de valeur
+Durée indicative : 25–35 min
+Précédent : Acteurs de l’écosystème · Suivant : Composants SI
+Sources normes : à affiner (modèles scheme, ISO messages…)
+
+
+================================================================================
+1. MÉTA FORMATEUR
+================================================================================
+Objectif pédagogique
+À la fin du bloc, les participants restituent la chaîne
+Client → terminal → acquéreur → réseau → émetteur, expliquent le sens du
+message (demande / réponse), et la relient aux acteurs vus juste avant.
+
+Idée clé
+« La chaîne de valeur monétique, c’est le parcours ordonné du message
+d’opération : de l’acceptation jusqu’à l’émetteur, puis le retour. »
+
+Posture
+1) Définition de la chaîne
+2) Chaque maillon
+3) Aller (demande) / retour (réponse)
+4) Cas + pont composants SI / autorisation
+
+
+================================================================================
+2. DÉFINITION
+================================================================================
+Chaîne de valeur (paiement carte — vue message)
+Séquence des acteurs / points de passage que traverse une opération depuis
+son initiation côté acceptation jusqu’à la décision côté émetteur, puis le
+chemin de retour de la réponse.
+
+Forme canonique (syllabus)
+Client → terminal → acquéreur → réseau → émetteur
+
+Notes
+- « Client » = porteur / titulaire du moyen de paiement
+- « Terminal » = point d’acceptation (POS, mPOS, serveur marchand selon canal)
+- Acquéreur peut être représenté / enrichi par un PSP / une gateway
+- Réseau = scheme
+- Émetteur = décideur typique de l’autorisation
+
+
+================================================================================
+3. CHAQUE MAILLON
+================================================================================
+Client / porteur
+Présente le moyen de paiement ; en modèle classique, le PAN part dans la
+demande (pont J3).
+
+Terminal / acceptation
+Capture montant et données, initie la demande vers l’acquéreur / gateway.
+
+Acquéreur (+ PSP / gateway)
+Reçoit, contrôle de forme, route vers le scheme.
+
+Réseau / scheme
+Aiguille vers le bon émetteur, applique le cadre de règles.
+
+Émetteur
+Décide (autorisation) ; renvoie la réponse.
+
+
+================================================================================
+4. ALLER / RETOUR
+================================================================================
+Aller : demande d’autorisation (et données associées)
+Retour : réponse (approve / decline + codes)
+
+Sans le retour, pas d’expérience d’acceptation complète.
+Timeout sur le chemin = incident technique possible (≠ decline fonds).
+
+
+================================================================================
+5. LIEN AVEC LES AUTRES BLOCS
+================================================================================
+Acteurs → qui
+Chaîne de valeur → dans quel ordre le message passe
+Composants SI → dans quels systèmes ça s’exécute
+Autorisation → ce que l’émetteur décide sur ce message
+
+
+================================================================================
+6. CAS PRATIQUES
+================================================================================
+Cas 1 — Étiqueter la chaîne
+Donner 5 rôles ; reconstituer l’ordre sans notes.
+
+Cas 2 — PSP au milieu
+Où placer le PSP sur la chaîne ? Souvent entre terminal/commerçant et
+acquéreur / comme façade de l’acquéreur.
+
+Cas 3 — E-commerce
+« Terminal » devient serveur / checkout / gateway — la chaîne logique reste.
+
+Cas 4 — Réponse qui ne revient pas
+Sur quel maillon enquêter ? Méthode : horodatage bout en bout.
+
+
+================================================================================
+7. CHECK DE FIN
+================================================================================
+[ ] Chaîne complète restituée dans l’ordre
+[ ] Sens demande / réponse compris
+[ ] PSP / e-com placés sans casser le modèle
+[ ] Transition claire vers composants SI

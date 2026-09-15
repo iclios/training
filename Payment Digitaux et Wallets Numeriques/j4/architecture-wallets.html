@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Architecture NFC mobile & wallets — Jour 4 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="architecture-wallets">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a href="../j1/index.html">J1</a>
+          <a href="../j2/index.html">J2</a>
+          <a href="../j3/index.html">J3</a>
+          <a class="is-active" href="index.html">J4</a>
+          <a href="../j5/index.html">J5</a>
+        </nav>
+      </div>
+    </header>
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta"><span class="tag">Jour 4 · Wallets</span><span class="tag tag-accent">Bloc formateur</span><span>40–50 min</span></div>
+              <p class="day-kicker">4.3</p>
+              <h1>Architecture NFC mobile & wallets</h1>
+            </div>
+          </section>
+          <div class="wrap">
+            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>SE, HCE, TEE et wallets s’appuient sur la tokenisation pour transformer un smartphone en support de paiement gouverné et authentifié.</p></aside>
+
+            <section class="section" style="border-top:none;padding-top:0"><p class="section-label">Composants de confiance</p><h2>SE, HCE, TEE</h2><div class="split-2"><div class="panel ok"><h3>Secure Element</h3><ul><li>Support sécurisé dédié</li><li>SIM-based ou embedded</li></ul></div><div class="panel"><h3>HCE / TEE</h3><ul><li>Émulation côté host / cloud</li><li>TEE comme environnement de confiance local</li></ul></div></div><div class="callout"><h3>Message formateur</h3><p>Ce bloc n’oppose pas “bon” et “mauvais” modèle ; il compare les responsabilités de sécurité et d’orchestration.</p></div></section>
+            <section class="section"><p class="section-label">Wallets</p><h2>Apple Pay / Google Pay</h2><ul class="topic-list"><li>Stockage / gestion de tokens</li><li>Authentification biométrique</li><li>Orchestration du paiement</li></ul></section>
+            <section class="section"><p class="section-label">Architecture SI</p><h2>Wallet app → TSP → issuer</h2><ul class="topic-list"><li>Wallet app</li><li>TSP / network tokenization</li><li>Bank issuer system</li><li>Enrolment, provisioning, paiement, lifecycle du token</li></ul></section>
+            <section class="section"><p class="section-label">Distinction</p><h2>Ce que le wallet apporte</h2><div class="not-list"><div class="not-item"><strong>Ajoute</strong><p>UX, biométrie, orchestration, relation device.</p></div><div class="not-item"><strong>Ne remplace pas</strong><p>L’émetteur, le scheme, le besoin d’autorisation ou la gouvernance du token.</p></div></div></section>
+            <div class="check-end"><h3>Check</h3><ul><li>SE/HCE/TEE comparés</li><li>Wallet replacé par rapport au token</li></ul></div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 4</a> · Architecture wallets</div></footer>
+    <script src="../js/nav-j4.js"></script>
+  </body>
+</html>

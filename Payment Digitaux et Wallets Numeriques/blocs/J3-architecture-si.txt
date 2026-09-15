@@ -1,0 +1,25 @@
+JOUR 3 — Architecture SI tokenisation
+
+Objectif pédagogique
+Décrire la chaîne SI minimale de la tokenisation et montrer où le token est
+créé, gouverné puis présenté au flux d'autorisation.
+
+Idée clé
+Merchant ou wallet, TSP, tokenization réseau et issuing system forment la
+chaîne SI minimale de la tokenisation.
+
+Chaîne SI
+- merchant / wallet
+- TSP
+- network tokenization
+- bank issuer system
+
+Points à faire ressortir
+- le TSP gouverne le token
+- l'issuer reste la référence carte et le décideur d'autorisation
+- le token rejoint ensuite le flux d'autorisation à la place du PAN
+
+Cas pratiques
+- wallet mobile : demande d'usage côté wallet, gouvernance côté TSP
+- merchant tokenisé : l'identifiant substitutif est côté marchand, pas toute
+  la gouvernance

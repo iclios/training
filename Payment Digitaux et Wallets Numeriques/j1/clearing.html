@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clearing — Jour 1 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="clearing">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="is-active" href="index.html">J1</a>
+          <a href="../j2/index.html">J2</a>
+          <a href="../j3/index.html">J3</a>
+          <a href="../j4/index.html">J4</a>
+          <a href="../j5/index.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside
+        id="bloc-sidebar"
+        class="bloc-sidebar"
+        aria-label="Navigation des blocs"
+      ></aside>
+
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · Flux carte</span>
+                <span class="tag tag-accent">Bloc formateur</span>
+                <span>20–30 min</span>
+              </div>
+              <p class="day-kicker">1.4 · Flux transactionnel</p>
+              <h1>Clearing</h1>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <aside class="key-idea">
+              <p class="label">Idée clé — tableau</p>
+              <p>
+                Le clearing, c’est la compensation des opérations : on échange
+                et on rapproche ce qui a été autorisé pour préparer le
+                règlement — ce n’est pas encore le mouvement d’argent final
+                entre banques.
+              </p>
+            </aside>
+
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Définition monétique</p>
+              <h2>Qu’est-ce que le clearing&nbsp;?</h2>
+              <p class="intro">
+                Processus par lequel les opérations de paiement (typiquement
+                déjà <strong>autorisées</strong>) sont échangées, présentées et
+                <strong>compensées</strong> entre les parties (acquéreur,
+                émetteur, via le réseau / scheme), afin d’établir les
+                <strong>positions à régler</strong>.
+              </p>
+              <ul class="topic-list">
+                <li>
+                  <strong>Quand</strong> — en général après l’autorisation ;
+                  rythme souvent différé (cycles / fichiers scheme)
+                </li>
+                <li>
+                  <strong>Quoi</strong> — présentation et compensation des
+                  opérations
+                </li>
+                <li>
+                  <strong>Résultat</strong> — positions de clearing → entrée du
+                  settlement
+                </li>
+              </ul>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Distinctions</p>
+              <h2>Autorisation · Clearing · Settlement</h2>
+              <div class="phases">
+                <article class="phase">
+                  <div class="n">1</div>
+                  <h3>Autorisation</h3>
+                  <p>« L’émetteur accepte-t-il l’opération&nbsp;? » — temps réel.</p>
+                </article>
+                <article class="phase">
+                  <div class="n">2</div>
+                  <h3>Clearing</h3>
+                  <p>« Que doit-on se compenser&nbsp;? » — échange / positions.</p>
+                </article>
+                <article class="phase">
+                  <div class="n">3</div>
+                  <h3>Settlement</h3>
+                  <p>« On règle les positions. » — bloc suivant.</p>
+                </article>
+                <article class="phase">
+                  <div class="n">≠</div>
+                  <h3>Pas un decline</h3>
+                  <p>
+                    Une anomalie de clearing n’est pas un refus d’autorisation.
+                  </p>
+                </article>
+              </div>
+            </section>
+
+            <section class="section" id="schema">
+              <p class="section-label">Schéma</p>
+              <h2>Logique de compensation</h2>
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>De l’opération autorisée aux positions</h3>
+                  <p>Acquéreur · Scheme · Émetteur</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 240"
+                  role="img"
+                  aria-label="Flux de clearing monétique"
+                >
+                  <defs>
+                    <marker
+                      id="ah-cl"
+                      markerWidth="8"
+                      markerHeight="8"
+                      refX="6"
+                      refY="3"
+                      orient="auto"
+                    >
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <rect x="40" y="70" width="180" height="70" rx="4" fill="#0d9f8a" />
+                  <text
+                    x="130"
+                    y="100"
+                    text-anchor="middle"
+                    fill="#fff"
+                    font-family="Syne, sans-serif"
+                    font-size="14"
+                    font-weight="700"
+                  >
+                    Opérations auth.
+                  </text>
+                  <text
+                    x="130"
+                    y="120"
+                    text-anchor="middle"
+                    fill="#c8f0e8"
+                    font-size="11"
+                  >
+                    côté acquiring
+                  </text>
+
+                  <line
+                    class="flow-line"
+                    x1="220"
+                    y1="105"
+                    x2="290"
+                    y2="105"
+                    stroke="#0d9f8a"
+                    stroke-width="2.5"
+                    marker-end="url(#ah-cl)"
+                  />
+
+                  <rect x="290" y="70" width="200" height="70" rx="4" fill="#3d5a80" />
+                  <text
+                    x="390"
+                    y="100"
+                    text-anchor="middle"
+                    fill="#fff"
+                    font-family="Syne, sans-serif"
+                    font-size="14"
+                    font-weight="700"
+                  >
+                    Remise / scheme
+                  </text>
+                  <text
+                    x="390"
+                    y="120"
+                    text-anchor="middle"
+                    fill="#c5d3e0"
+                    font-size="11"
+                  >
+                    présentation · règles
+                  </text>
+
+                  <line
+                    class="flow-line"
+                    x1="490"
+                    y1="105"
+                    x2="560"
+                    y2="105"
+                    stroke="#0d9f8a"
+                    stroke-width="2.5"
+                    marker-end="url(#ah-cl)"
+                  />
+
+                  <rect x="560" y="70" width="180" height="70" rx="4" fill="#1e5f8a" />
+                  <text
+                    x="650"
+                    y="100"
+                    text-anchor="middle"
+                    fill="#fff"
+                    font-family="Syne, sans-serif"
+                    font-size="14"
+                    font-weight="700"
+                  >
+                    Échange issuer
+                  </text>
+                  <text
+                    x="650"
+                    y="120"
+                    text-anchor="middle"
+                    fill="#c5dceb"
+                    font-size="11"
+                  >
+                    compensation
+                  </text>
+
+                  <line
+                    class="flow-line"
+                    x1="740"
+                    y1="105"
+                    x2="810"
+                    y2="105"
+                    stroke="#0d9f8a"
+                    stroke-width="2.5"
+                    marker-end="url(#ah-cl)"
+                  />
+
+                  <rect x="810" y="70" width="150" height="70" rx="4" fill="#0c1b2a" />
+                  <text
+                    x="885"
+                    y="100"
+                    text-anchor="middle"
+                    fill="#fff"
+                    font-family="Syne, sans-serif"
+                    font-size="14"
+                    font-weight="700"
+                  >
+                    Positions
+                  </text>
+                  <text
+                    x="885"
+                    y="120"
+                    text-anchor="middle"
+                    fill="#9db0c2"
+                    font-size="11"
+                  >
+                    → settlement
+                  </text>
+
+                  <text
+                    x="500"
+                    y="200"
+                    text-anchor="middle"
+                    fill="#5a6b7c"
+                    font-size="12"
+                  >
+                    Souvent cycles différés (batch) — calendriers scheme variables
+                  </text>
+                </svg>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Ancrage</p>
+              <h2>Cas pratiques</h2>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Cas 1 — Journée marchand</h3>
+                  <ul>
+                    <li>Plusieurs autorisations OK</li>
+                    <li>Remise clearing → positions</li>
+                    <li>
+                      Le commerçant n’est pas « payé » au clearing : compensation
+                      entre établissements
+                    </li>
+                  </ul>
+                </div>
+                <div class="panel ko">
+                  <h3>Cas 2 — Anomalie clearing</h3>
+                  <ul>
+                    <li>Autorisation OK</li>
+                    <li>Problème à la présentation / compensation</li>
+                    <li>Diagnostic ≠ « carte refusée »</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="panel" style="margin-top: 1rem">
+                <h3>Cas 3 — Banque duale (issuer + acquirer)</h3>
+                <ul>
+                  <li>Deux files SI : outgoing acquiring vs incoming issuing</li>
+                  <li>Qui lit quoi dans votre organisation&nbsp;?</li>
+                </ul>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Notes formateur — questions SI</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>Où voyez-vous les fichiers / cycles de clearing&nbsp;?</li>
+                  <li>
+                    Qui traite les rejets / exceptions de clearing (pas les
+                    declines auth)&nbsp;?
+                  </li>
+                  <li>Quel est votre interlocuteur scheme / processeur&nbsp;?</li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Check de fin de bloc</h3>
+              <ul>
+                <li>Clearing défini sans le confondre avec settlement</li>
+                <li>Place après autorisation comprise</li>
+                <li>Cas anomalie clearing vs decline auth maîtrisé</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Sources normes / specs</strong> — à affiner : règles et
+              calendriers scheme, formats de présentation / compensation,
+              documentation processeur.
+            </div>
+
+            <nav
+              class="bloc-pager"
+              aria-label="Navigation précédent suivant"
+            ></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a>
+        · Support formateur · Bloc Clearing
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/nav-j1.js"></script>
+    <script src="../js/fiche.js"></script>
+  </body>
+</html>

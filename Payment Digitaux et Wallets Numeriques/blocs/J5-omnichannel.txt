@@ -1,0 +1,2 @@
+JOUR 5 — Paiement omnicanal
+Backend unique, orchestration multi-moyens, UX unifiée.

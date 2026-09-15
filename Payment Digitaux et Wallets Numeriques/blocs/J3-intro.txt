@@ -1,0 +1,2 @@
+JOUR 3 — Intro & objectifs
+Tokenisation comme socle sécurité, progression définition → lifecycle → architecture → conformité → atelier.

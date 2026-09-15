@@ -1,0 +1,13 @@
+BLOC — FORMATEUR · JOUR 2 · Principes & typologies QR
+Durée : 30–40 min
+
+Idée clé
+Le QR de paiement n’est pas un seul objet : statique/dynamique, push/pull, closed/open — chaque choix change le SI et le risque.
+
+Axes
+1. Statique vs dynamique
+2. Push vs pull
+3. Closed-loop vs open-loop
+4. Bancaire vs wallet (UX ; détail wallet = J4)
+
+Cas : sticker magasin (souvent statique pull) · caisse affichant QR (dynamique).

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Autorisation — Jour 1 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="autorisation">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="is-active" href="index.html">J1</a>
+          <a href="../j2/index.html">J2</a>
+          <a href="../j3/index.html">J3</a>
+          <a href="../j4/index.html">J4</a>
+          <a href="../j5/index.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
+      <div class="fiche-main">
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 1 · Flux carte</span>
+            <span class="tag tag-accent">Bloc formateur</span>
+            <span>25–35 min</span>
+          </div>
+          <p class="day-kicker">1.4 · Flux transactionnel</p>
+          <h1>Autorisation</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <!-- Définition -->
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition monétique</p>
+          <h2>Qu’est-ce qu’une autorisation&nbsp;?</h2>
+          <p class="definition-full">
+            Procédure par laquelle une <strong>demande d’accord</strong> est
+            transmise à l’<strong>émetteur</strong> (issuer) — ou à un système
+            agissant pour son compte — afin qu’il accepte ou refuse une
+            opération présentée sur un moyen de paiement carte, et renvoie une
+            <strong>réponse</strong> exploitable par la chaîne d’acceptation.
+          </p>
+          <ul class="topic-list">
+            <li>
+              <strong>Message de demande</strong> — montant, données du moyen
+              de paiement, commerçant, type d’opération…
+            </li>
+            <li>
+              <strong>Routage</strong> — acquéreur (éventuellement PSP /
+              gateway) puis réseau (scheme)
+            </li>
+            <li>
+              <strong>Traitement émetteur</strong> — contrôles métier, risque,
+              statut du support…
+            </li>
+            <li>
+              <strong>Message de réponse</strong> — approbation ou refus + codes
+              / références (dont code d’autorisation si accord)
+            </li>
+          </ul>
+          <div class="callout">
+            <h3>Caractéristiques</h3>
+            <p>
+              Échange <strong>online</strong> typique · décideur =
+              <strong>émetteur</strong> · objet = accord sur l’opération — pas
+              la compensation ni le règlement · support = messages normalisés
+              (famille type ISO&nbsp;8583 / formats scheme).
+            </p>
+          </div>
+        </section>
+
+        <!-- Cycle -->
+        <section class="section">
+          <p class="section-label">Cycle monétique</p>
+          <h2>Où se situe l’autorisation&nbsp;?</h2>
+          <div class="timeline-evo" aria-label="Cycle monétique simplifié">
+            <span class="step">Autorisation</span>
+            <span class="arrow" aria-hidden="true">→</span>
+            <span class="step">Authentification*</span>
+            <span class="arrow" aria-hidden="true">→</span>
+            <span class="step">Clearing</span>
+            <span class="arrow" aria-hidden="true">→</span>
+            <span class="step">Settlement</span>
+          </div>
+          <p class="diagram-hint">
+            *L’authentification du porteur est souvent liée ou préalable selon
+            le canal — bloc suivant. Ici on isole la décision d’accord.
+          </p>
+          <div class="split-2" style="margin-top: 1.25rem">
+            <div class="panel ok">
+              <h3>L’autorisation répond à</h3>
+              <ul>
+                <li>« L’émetteur accepte-t-il cette opération&nbsp;? »</li>
+              </ul>
+            </div>
+            <div class="panel ko">
+              <h3>Clearing / settlement répondent à</h3>
+              <ul>
+                <li>
+                  « Comment les banques se compensent-elles et se règlent-elles
+                  ensuite&nbsp;? »
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Schéma -->
+        <section class="section" id="schema">
+          <p class="section-label">Échange de messages</p>
+          <h2>Demande / réponse</h2>
+          <p class="intro">
+            Au sens monétique, une autorisation = un aller (demande) et un
+            retour (réponse) jusqu’à la chaîne d’acceptation.
+          </p>
+
+          <div class="diagram">
+            <div class="diagram-header">
+              <h3>Chaîne de l’autorisation</h3>
+              <p>Acceptation · Acquéreur / PSP · Réseau · Émetteur</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 260"
+              role="img"
+              aria-label="Séquence monétique demande et réponse d autorisation"
+            >
+              <defs>
+                <marker
+                  id="ah"
+                  markerWidth="8"
+                  markerHeight="8"
+                  refX="6"
+                  refY="3"
+                  orient="auto"
+                >
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+
+              <text x="100" y="28" text-anchor="middle" font-weight="700" font-size="13" fill="#c45c26">Acceptation</text>
+              <text x="340" y="28" text-anchor="middle" font-weight="700" font-size="13" fill="#0d9f8a">Acquéreur / PSP</text>
+              <text x="580" y="28" text-anchor="middle" font-weight="700" font-size="13" fill="#3d5a80">Réseau</text>
+              <text x="820" y="28" text-anchor="middle" font-weight="700" font-size="13" fill="#1e5f8a">Émetteur</text>
+
+              <line x1="100" y1="40" x2="100" y2="230" stroke="#c5d3df" />
+              <line x1="340" y1="40" x2="340" y2="230" stroke="#c5d3df" />
+              <line x1="580" y1="40" x2="580" y2="230" stroke="#c5d3df" />
+              <line x1="820" y1="40" x2="820" y2="230" stroke="#c5d3df" />
+
+              <line class="flow-line" x1="100" y1="70" x2="340" y2="70" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah)" />
+              <text x="220" y="60" text-anchor="middle" font-size="12" fill="#087a6a">1. Demande</text>
+
+              <line class="flow-line" x1="340" y1="110" x2="580" y2="110" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah)" />
+              <text x="460" y="100" text-anchor="middle" font-size="12" fill="#087a6a">2. Routage</text>
+
+              <line class="flow-line" x1="580" y1="150" x2="820" y2="150" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah)" />
+              <text x="700" y="140" text-anchor="middle" font-size="12" fill="#087a6a">3. Aiguillage</text>
+
+              <rect x="760" y="168" width="120" height="36" rx="3" fill="#1e5f8a" />
+              <text x="820" y="191" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">4. Décision</text>
+
+              <line class="flow-line" x1="820" y1="220" x2="100" y2="220" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah)" />
+              <text x="460" y="245" text-anchor="middle" font-size="12" fill="#1e5f8a">5. Réponse — accord ou refus</text>
+            </svg>
+
+            <div class="seq-steps" id="auth-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Demande d’autorisation</strong>
+                  <p>
+                    Émise par la chaîne d’acceptation : données opération +
+                    moyen de paiement (PAN en modèle carte classique).
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Routage acquéreur / gateway / PSP</strong>
+                  <p>Contrôles de forme, orientation vers le scheme.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Aiguillage réseau</strong>
+                  <p>Le scheme oriente vers le centre d’autorisation émetteur.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="4">
+                <span class="n">4</span>
+                <span>
+                  <strong>Décision émetteur</strong>
+                  <p>Statut du support, capacité, règles risque / fraude…</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="5">
+                <span class="n">5</span>
+                <span>
+                  <strong>Réponse d’autorisation</strong>
+                  <p>
+                    Accord (+ code) ou refus (+ codes). Timeout = piste
+                    technique, pas forcément « fonds ».
+                  </p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              Pont J3 : en modèle classique le PAN est dans la demande ; la
+              tokenisation le remplacera sans changer cette logique monétique.
+            </p>
+          </div>
+        </section>
+
+        <!-- Décision -->
+        <section class="section">
+          <p class="section-label">Émetteur</p>
+          <h2>Que décide le centre d’autorisation&nbsp;?</h2>
+          <ul class="topic-list">
+            <li>Statut du moyen de paiement (actif, opposé, expiré…)</li>
+            <li>Capacité à réaliser l’opération (plafonds, disponible…)</li>
+            <li>Cohérence de l’opération (montant, MCC, canal, géographie…)</li>
+            <li>Règles de risque / fraude</li>
+            <li>
+              Exigences d’authentification du porteur selon le contexte → bloc
+              Authentification
+            </li>
+          </ul>
+          <div class="callout">
+            <h3>Vocabulaire à figer</h3>
+            <p>
+              <strong>Approve</strong> = autorisation accordée ·
+              <strong>Decline</strong> = autorisation refusée ·
+              <strong>Code d’autorisation</strong> = référence d’accord côté
+              émetteur (quand accord).
+            </p>
+          </div>
+        </section>
+
+        <!-- Cas pratiques -->
+        <section class="section">
+          <p class="section-label">Ancrage</p>
+          <h2>Cas pratiques</h2>
+          <p class="intro">
+            Après la définition — pour faire parler la salle, pas pour remplacer
+            le cadre monétique.
+          </p>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Cas 1 — Accord</h3>
+              <ul>
+                <li>Demande acheminée jusqu’à l’émetteur</li>
+                <li>Contrôles OK</li>
+                <li>Réponse d’approbation + code d’autorisation</li>
+              </ul>
+              <p style="margin: 0.75rem 0 0; font-size: 0.88rem; color: var(--muted)">
+                Faire dire : la décision est chez l’émetteur.
+              </p>
+            </div>
+            <div class="panel ko">
+              <h3>Cas 2 — Refus métier</h3>
+              <ul>
+                <li>Même chemin message</li>
+                <li>L’émetteur refuse (disponible, opposition, risque…)</li>
+                <li>C’est une réponse d’autorisation, pas un « bug »</li>
+              </ul>
+            </div>
+          </div>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Cas 3 — Échec technique</h3>
+              <ul>
+                <li>Timeout, indispo réseau ou host émetteur</li>
+                <li>Pas de décision métier claire dans les délais</li>
+                <li>Diagnostic ≠ decline « fonds insuffisants »</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Cas 4 — Pré-autorisation (optionnel)</h3>
+              <ul>
+                <li>Accord sur un montant estimé / à compléter</li>
+                <li>Toujours une autorisation au sens monétique</li>
+                <li>Cycle métier différent (complétion / capture)</li>
+              </ul>
+              <p style="margin: 0.75rem 0 0; font-size: 0.88rem; color: var(--muted)">
+                À ouvrir si le public acquiring / PSP le demande.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Ce que ce n'est pas -->
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que l’autorisation n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>≠ Clearing</strong>
+              <p>
+                Pas encore la compensation des opérations entre établissements
+                via le réseau.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Settlement</strong>
+              <p>
+                Pas encore le règlement des positions financières entre banques.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Authentification</strong>
+              <p>
+                AuthN = légitimité du porteur · AuthZ monétique = accord de
+                l’émetteur sur l’opération. Souvent liées, toujours distinctes.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <details class="trainer-notes">
+          <summary>Notes formateur — questions SI</summary>
+          <div class="notes-body">
+            <ul>
+              <li>Quel composant est votre centre d’autorisation / host issuing&nbsp;?</li>
+              <li>Où tracez-vous demande vs réponse (codes, délais, timeouts)&nbsp;?</li>
+              <li>Qui porte le diagnostic decline métier vs incident technique&nbsp;?</li>
+            </ul>
+            <p class="intro" style="margin: 1rem 0 0">
+              Livrable mental : reformuler la définition monétique sans anecdote
+              magasin, puis illustrer avec un cas.
+            </p>
+          </div>
+        </details>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>Définition monétique restituée (demande + réponse + émetteur)</li>
+            <li>Auth ≠ clearing ≠ settlement</li>
+            <li>Au moins un cas (accord / refus métier / technique) maîtrisé</li>
+            <li>Pont PAN dans le flux d’auth évoqué sans dériver sur le token</li>
+          </ul>
+        </div>
+
+        <div class="sources-box">
+          <strong>Sources normes / specs</strong> — à affiner :
+          messages d’autorisation (ISO&nbsp;8583 / formats scheme), règles
+          réseau, EMV online, PCI sur les données du flux d’auth.
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a>
+        · Support formateur · Bloc Autorisation
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/nav-j1.js"></script>
+    <script src="../js/fiche.js"></script>
+  </body>
+</html>

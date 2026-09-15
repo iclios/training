@@ -1,0 +1,182 @@
+BLOC PILOTE — FORMATEUR
+Cours : Paiements digitaux & Wallets numériques
+Jour 1 · Flux transactionnel carte
+Bloc : Autorisation
+Durée indicative : 25–35 min
+Précédent : Chaîne de valeur · Suivant : Authentification
+Sources normes : à affiner (ISO 8583 / messages scheme, EMV online, règles réseau…)
+
+
+================================================================================
+1. MÉTA FORMATEUR
+================================================================================
+Objectif pédagogique
+À la fin du bloc, les participants savent définir l’autorisation au sens
+monétique (échange de messages, décideur émetteur, résultat approve/decline),
+la distinguer du clearing et du settlement, et illustrer avec un cas simple.
+
+Idée clé (à écrire au tableau)
+« En monétique, l’autorisation est la demande d’accord adressée à l’émetteur
+(via acquéreur et réseau) et sa réponse : acceptation ou refus de l’opération. »
+
+Posture pédagogique
+1) Définir comme la monétique
+2) Schéma message (demande / réponse)
+3) Cas pratiques seulement pour ancrer — pas comme point de départ « magasin »
+
+
+================================================================================
+2. DÉFINITION MONÉTIQUE
+================================================================================
+Autorisation (paiement par carte)
+Procédure par laquelle une demande d’accord est transmise à l’émetteur
+(issuer) — ou à un système agissant pour son compte — afin qu’il accepte ou
+refuse une opération présentée sur un moyen de paiement carte, et renvoie
+une réponse exploitable par la chaîne d’acceptation.
+
+En pratique opérationnelle, cela se traduit par :
+- un message de demande d’autorisation
+- un routage via l’acquéreur (et éventuellement un PSP / une gateway) puis
+  le réseau (scheme)
+- un traitement côté émetteur (contrôles métier, risque, statut du support…)
+- un message de réponse : approbation ou refus, avec codes / références
+  associés (dont, en cas d’accord, un code d’autorisation)
+
+Caractéristiques monétiques
+- Nature : échange online typique (temps réel ou quasi temps réel)
+- Décideur : l’émetteur
+- Objet : accord sur l’opération — pas la compensation ni le règlement
+- Support informationnel : messages normalisés (famille type ISO 8583 /
+  formats scheme — détail specs plus tard)
+
+
+================================================================================
+3. PLACE DANS LE CYCLE MONÉTIQUE
+================================================================================
+Cycle simplifié (à situer sans tout dérouler)
+1. Autorisation     ← ce bloc
+2. (Authentification du porteur — bloc voisin, souvent liée)
+3. Clearing         — compensation des opérations
+4. Settlement       — règlement des positions
+
+Formulation formateur
+L’autorisation répond à : « L’émetteur accepte-t-il cette opération ? »
+Le clearing / settlement répondent à : « Comment les banques se
+compensent-elles et se règlent-elles ensuite ? »
+
+
+================================================================================
+4. SCHÉMA À PROJETER — DEMANDE / RÉPONSE
+================================================================================
+Demande d’autorisation
+Acceptation (terminal, serveur marchand, etc.)
+  → Acquéreur / gateway / PSP
+    → Réseau carte (scheme)
+      → Émetteur (centre d’autorisation / host issuing)
+
+Réponse d’autorisation
+Émetteur
+  → Réseau
+    → Acquéreur / PSP
+      → Acceptation
+
+Points à commenter
+- Aller + retour = une autorisation au sens monétique
+- Le contenu de la demande (montant, données carte / jeton, commerçant,
+  type d’opération…) conditionne les contrôles
+- En modèle carte classique : présence du PAN dans le flux d’auth
+  (pont J3 tokenisation)
+- Absence de réponse dans les délais = incident / refus technique possible
+  (≠ « fonds insuffisants »)
+
+
+================================================================================
+5. QUE DÉCIDE L’ÉMETTEUR ?
+================================================================================
+Contrôles typiques (niveau monétique / SI banque)
+- Statut du moyen de paiement (actif, opposé, expiré…)
+- Capacité à réaliser l’opération (plafonds, disponible, règles produit)
+- Cohérence de l’opération (montant, MCC, canal, géographie…)
+- Règles de risque / fraude
+- Exigences d’authentification du porteur selon le contexte
+  (renvoi au bloc Authentification — ne pas fusionner Auth et AuthN)
+
+Vocabulaire à figer
+- Approve / autorisation accordée
+- Decline / autorisation refusée
+- Code d’autorisation : référence d’accord côté émetteur (quand accord)
+
+
+================================================================================
+6. CAS PRATIQUES (après la définition — ancrage)
+================================================================================
+Cas 1 — Accord
+Demande d’autorisation transmise jusqu’à l’émetteur ; contrôles OK ;
+réponse d’approbation + code d’autorisation renvoyé à la chaîne
+d’acceptation.
+À faire dire en salle : « Où est la décision ? » → émetteur.
+
+Cas 2 — Refus métier
+Même chemin ; l’émetteur refuse (ex. disponible insuffisant, carte opposée,
+règle risque).
+À faire dire : le refus est une réponse d’autorisation, pas un « bug »
+systématique.
+
+Cas 3 — Refus / échec technique
+Timeout, indisponibilité réseau ou host émetteur : pas de décision métier
+claire dans les délais.
+À faire dire : diagnostiquer autrement qu’un decline fonds.
+
+Cas 4 (optionnel) — Pré-autorisation
+Demande d’accord pour un montant estimé / à confirmer plus tard
+(ex. hôtel, location) : toujours une autorisation au sens monétique, avec
+un cycle de vie métier un peu différent (complétion / capture).
+À n’ouvrir que si le public acquiring / PSP le demande.
+
+
+================================================================================
+7. CE QUE L’AUTORISATION N’EST PAS
+================================================================================
+≠ Clearing
+Pas encore la compensation des opérations entre établissements via le réseau.
+
+≠ Settlement
+Pas encore le règlement des positions financières entre banques.
+
+≠ Authentification
+L’authentification vise à établir la légitimité du porteur ; l’autorisation
+vise l’accord de l’émetteur sur l’opération. Les deux se combinent souvent,
+mais restent des notions distinctes.
+
+
+================================================================================
+8. LIEN SI BANQUE
+================================================================================
+Questions
+- Quel composant est votre « centre d’autorisation » / host issuing ?
+- Où tracez-vous demande vs réponse (codes, délais, timeouts) ?
+- Qui porte le diagnostic decline métier vs incident technique ?
+
+Livrable mental
+Savoir reformuler la définition monétique sans passer par l’anecdote magasin,
+puis illustrer avec un cas.
+
+
+================================================================================
+9. TRANSITION
+================================================================================
+Vers Authentification
+« L’émetteur décide sur l’opération. Reste la preuve que c’est le bon
+porteur — autre brique, souvent préalable ou liée. »
+
+Vers Clearing
+« Accord obtenu : la monétique enchaîne ensuite sur la compensation. »
+
+
+================================================================================
+10. CHECK DE FIN
+================================================================================
+[ ] Définition monétique restituée (demande + réponse + décideur émetteur)
+[ ] Auth ≠ clearing ≠ settlement
+[ ] Au moins un cas pratique (accord / refus métier / technique) maîtrisé
+[ ] Pont PAN dans le flux d’auth évoqué sans dériver sur le token

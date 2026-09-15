@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Évolution des paiements — Jour 1 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="evolution">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="is-active" href="index.html">J1</a>
+          <a href="../j2/index.html">J2</a>
+          <a href="../j3/index.html">J3</a>
+          <a href="../j4/index.html">J4</a>
+          <a href="../j5/index.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside
+        id="bloc-sidebar"
+        class="bloc-sidebar"
+        aria-label="Navigation des blocs"
+      ></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · 1.1</span>
+                <span class="tag tag-accent">Bloc formateur</span>
+                <span>25–30 min</span>
+              </div>
+              <p class="day-kicker">Évolution</p>
+              <h1>Évolution des paiements</h1>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <aside class="key-idea">
+              <p class="label">Idée clé — tableau</p>
+              <p>
+                Chaque étape n’efface pas la précédente : elle s’ajoute dessus —
+                et avec elle, de nouveaux intermédiaires et messages pour le SI.
+              </p>
+            </aside>
+
+            <!-- 1. Définitions -->
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">1 · Définir</p>
+              <h2>Quatre notions</h2>
+              <p class="intro">
+                On fixe le vocabulaire avant les dates. Pour chaque notion :
+                définition + ce qui change pour le SI.
+              </p>
+
+              <div class="notion-grid">
+                <article class="notion-card">
+                  <img
+                    src="../img/evolution/evo-cash.png"
+                    alt="Illustration paiement cash"
+                    width="88"
+                    height="88"
+                  />
+                  <div>
+                    <h3>Cash</h3>
+                    <p>
+                      Échange de valeur physique (pièce / billet) entre deux
+                      parties, sans intermédiaire technique de paiement.
+                    </p>
+                    <p class="si">
+                      <strong>SI :</strong> pas de message monétique temps réel
+                    </p>
+                  </div>
+                </article>
+
+                <article class="notion-card">
+                  <img
+                    src="../img/evolution/evo-carte.png"
+                    alt="Illustration paiement carte"
+                    width="88"
+                    height="88"
+                  />
+                  <div>
+                    <h3>Carte</h3>
+                    <p>
+                      Instrument émis qui s’appuie sur un
+                      <strong>réseau</strong> pour faire autoriser puis régler
+                      une opération.
+                    </p>
+                    <p class="si">
+                      <strong>SI :</strong> chaîne auth / clearing / settlement
+                    </p>
+                    <p class="creator">
+                      France : Carte Bleue (1967) · puce Moreno (1974) · proto
+                      B0 (Bull) avant EMV
+                    </p>
+                  </div>
+                </article>
+
+                <article class="notion-card">
+                  <img
+                    src="../img/evolution/evo-mobile.png"
+                    alt="Illustration paiement mobile"
+                    width="88"
+                    height="88"
+                  />
+                  <div>
+                    <h3>Mobile</h3>
+                    <p>
+                      Le <strong>téléphone</strong> devient canal
+                      d’initiation du paiement (app, SMS, mPOS…).
+                    </p>
+                    <p class="si">
+                      <strong>SI :</strong> device + app ; rail souvent encore
+                      carte (parfois mobile money / A2A)
+                    </p>
+                  </div>
+                </article>
+
+                <article class="notion-card">
+                  <img
+                    src="../img/evolution/evo-wallet.png"
+                    alt="Illustration wallet numérique"
+                    width="88"
+                    height="88"
+                  />
+                  <div>
+                    <h3>Wallet</h3>
+                    <p>
+                      Application qui <strong>orchestre</strong> un ou plusieurs
+                      moyens de paiement (souvent tokenisés) sur un device.
+                    </p>
+                    <p class="si">
+                      <strong>SI :</strong> token + device binding + UX — détail
+                      J3 / J4
+                    </p>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <!-- 2. Fresque -->
+            <section class="section">
+              <p class="section-label">2 · Relier dans le temps</p>
+              <h2>Fresque schématique</h2>
+              <p class="intro">
+                Une seule lecture : ce qui s’ajoute à chaque étape. Les dates
+                sont des ancres, pas un catalogue.
+              </p>
+
+              <div class="fresco" aria-label="Fresque cash carte mobile wallet">
+                <svg
+                  viewBox="0 0 960 280"
+                  role="img"
+                  aria-labelledby="fresco-title"
+                >
+                  <title id="fresco-title">
+                    Fresque : cash puis carte puis mobile puis wallet
+                  </title>
+
+                  <!-- Boxes -->
+                  <rect x="20" y="70" width="160" height="100" rx="4" fill="#2f4858" />
+                  <text x="100" y="112" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="18" font-weight="700">Cash</text>
+                  <text x="100" y="138" text-anchor="middle" fill="#c5d3df" font-size="12">monnaies → billets</text>
+
+                  <rect x="270" y="70" width="160" height="100" rx="4" fill="#1e5f8a" />
+                  <text x="350" y="108" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="18" font-weight="700">Carte</text>
+                  <text x="350" y="132" text-anchor="middle" fill="#c5dceb" font-size="12">1967 · Carte Bleue</text>
+                  <text x="350" y="150" text-anchor="middle" fill="#c5dceb" font-size="11">puce · B0 → EMV</text>
+
+                  <rect x="520" y="70" width="160" height="100" rx="4" fill="#0d9f8a" />
+                  <text x="600" y="108" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="18" font-weight="700">Mobile</text>
+                  <text x="600" y="132" text-anchor="middle" fill="#c8f0e8" font-size="12">~1997 SMS</text>
+                  <text x="600" y="150" text-anchor="middle" fill="#c8f0e8" font-size="11">~2007 M-Pesa</text>
+
+                  <rect x="770" y="70" width="170" height="100" rx="4" fill="#087a6a" />
+                  <text x="855" y="108" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="18" font-weight="700">Wallet</text>
+                  <text x="855" y="132" text-anchor="middle" fill="#c8f0e8" font-size="12">~2011–2014</text>
+                  <text x="855" y="150" text-anchor="middle" fill="#c8f0e8" font-size="11">token · NFC</text>
+
+                  <!-- Arrows + labels -->
+                  <path d="M185 120 H255" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#evo-arrow)" fill="none" />
+                  <path d="M435 120 H505" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#evo-arrow)" fill="none" />
+                  <path d="M685 120 H755" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#evo-arrow)" fill="none" />
+
+                  <defs>
+                    <marker id="evo-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <text x="220" y="48" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">+ réseau</text>
+                  <text x="220" y="64" text-anchor="middle" fill="#5a6b7c" font-size="11">+ messages</text>
+
+                  <text x="470" y="48" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">+ device</text>
+                  <text x="470" y="64" text-anchor="middle" fill="#5a6b7c" font-size="11">canal téléphone</text>
+
+                  <text x="720" y="48" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">+ orchestration</text>
+                  <text x="720" y="64" text-anchor="middle" fill="#5a6b7c" font-size="11">token / biométrie</text>
+
+                  <!-- Bottom SI strip -->
+                  <rect x="20" y="200" width="920" height="56" rx="4" fill="#0c1b2a" />
+                  <text x="480" y="234" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">
+                    Cash = pas de SI monétique · Carte = naissance du SI · Mobile = canal · Wallet = couche
+                  </text>
+                </svg>
+                <p class="fresco-legend">
+                  Chaque étape n’efface pas la précédente : elle s’ajoute
+                  dessus.
+                </p>
+              </div>
+
+              <div class="callout" style="margin-top: 1.25rem">
+                <h3>Question salle</h3>
+                <p class="q">
+                  Où commence vraiment votre métier SI banque dans cette
+                  fresque&nbsp;?
+                </p>
+                <p style="margin: 0.65rem 0 0">
+                  Réponse attendue : <strong>à la carte</strong> — quand
+                  apparaissent réseau, messages et chaîne auth / clearing /
+                  settlement.
+                </p>
+              </div>
+
+              <div class="callout warn" style="margin-top: 1rem">
+                <h3>Repères carte — fil français + international</h3>
+                <p>
+                  <strong>France</strong> —
+                  <strong>Carte Bleue</strong> (1967), consortium bancaire
+                  (BNP, Société générale, Crédit lyonnais, CCF, CIC, Crédit du
+                  Nord…) ·
+                  <strong>Roland Moreno</strong> (1974), invention de la carte à
+                  puce · protocole <strong>B0</strong> (Bull CP), standard
+                  français d’authentification à la puce avant le passage à
+                  <strong>EMV</strong>.
+                </p>
+                <p style="margin: 0.65rem 0 0">
+                  <strong>International (contexte)</strong> —
+                  Diners Club / Frank McNamara (1950), BankAmericard (1958) →
+                  Visa : la carte multi-commerçants existe déjà aux USA ; la
+                  France structure ensuite un modèle national (CB) puis une
+                  avance forte sur la <em>puce</em>.
+                </p>
+              </div>
+            </section>
+
+            <!-- 3. Distinctions courtes -->
+            <section class="section">
+              <p class="section-label">3 · Distinctions utiles</p>
+              <h2>Vocabulaire court</h2>
+              <div class="split-2">
+                <div class="panel">
+                  <h3>Électronique vs digital</h3>
+                  <ul>
+                    <li>Électronique : dématérialisation (carte, virement…)</li>
+                    <li>Digital : canaux numériques (app, QR, wallet…)</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Temps</h3>
+                  <ul>
+                    <li>Temps réel : autorisation online</li>
+                    <li>Différé : clearing / settlement</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Ancrage</p>
+              <h2>Cas</h2>
+              <div class="panel ok">
+                <h3>« Paiement mobile » = toujours un rail carte&nbsp;?</h3>
+                <ul>
+                  <li>Souvent oui (wallet NFC / app sur rails carte)</li>
+                  <li>Parfois non (mobile money, A2A)</li>
+                  <li>Faire dire : mobile = canal ; le rail peut différer</li>
+                </ul>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Notes formateur</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>Ordre strict : définir → fresque → question SI</li>
+                  <li>Ne pas noyer sous les dates ; 1 ancre par âge suffit</li>
+                  <li>
+                    Ancrer le fil FR : Carte Bleue (1967) puis Moreno / B0 /
+                    EMV — ne pas confondre B0 (protocole puce) avec la naissance
+                    de la carte elle-même
+                  </li>
+                  <li>
+                    Diners Club / BankAmericard = contexte international, pas le
+                    cœur du récit FR
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Check de fin de bloc</h3>
+              <ul>
+                <li>Les 4 notions définies sans les confondre</li>
+                <li>Fresque restituée avec « ce qui s’ajoute »</li>
+                <li>Métier SI situé à partir de la carte</li>
+              </ul>
+            </div>
+
+            <nav
+              class="bloc-pager"
+              aria-label="Navigation précédent suivant"
+            ></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a> · Évolution
+      </div>
+    </footer>
+    <script src="../js/nav-j1.js"></script>
+  </body>
+</html>

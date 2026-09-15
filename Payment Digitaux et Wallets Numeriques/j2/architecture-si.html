@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Architecture SI QR — Jour 2 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="architecture-si">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a href="../j1/index.html">J1</a>
+          <a class="is-active" href="index.html">J2</a>
+          <a href="../j3/index.html">J3</a>
+          <a href="../j4/index.html">J4</a>
+          <a href="../j5/index.html">J5</a>
+        </nav>
+      </div>
+    </header>
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Architecture</span>
+                <span class="tag tag-accent">Bloc formateur</span>
+                <span>30–40 min</span>
+              </div>
+              <p class="day-kicker">2.2</p>
+              <h1>Architecture SI QR</h1>
+            </div>
+          </section>
+          <div class="wrap">
+            <aside class="key-idea">
+              <p class="label">Idée clé — tableau</p>
+              <p>Un paiement QR, c’est une chaîne SI : app client, moteur QR, backend marchand, PSP/switch, banque ou wallet — pas seulement “un flashcode”.</p>
+            </aside>
+
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Composants</p>
+              <h2>Briques SI</h2>
+              <ul class="topic-list">
+                <li><strong>Application client</strong> — scan / affichage, authentification utilisateur</li>
+                <li><strong>QR engine</strong> — génération / parsing / validation du payload</li>
+                <li><strong>Backend marchand</strong> — création d’ordre, statut, notification</li>
+                <li><strong>PSP / switch</strong> — routage, agrégation, lien acquiring</li>
+                <li><strong>Banque ou wallet</strong> — compte, autorisation, débit / crédit</li>
+              </ul>
+            </section>
+            <section class="section">
+              <p class="section-label">Schéma</p>
+              <h2>Vue d’ensemble</h2>
+              <div class="diagram">
+                <div class="diagram-header"><h3>Chaîne logicielle</h3><p>Du QR au compte</p></div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Architecture SI paiement QR">
+                  <defs><marker id="ahq" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a"/></marker></defs>
+                  <rect x="20" y="60" width="150" height="70" rx="4" fill="#c45c26"/><text x="95" y="100" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="13" font-weight="700">App client</text>
+                  <line class="flow-line" x1="170" y1="95" x2="210" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ahq)"/>
+                  <rect x="210" y="60" width="150" height="70" rx="4" fill="#2f4858"/><text x="285" y="100" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="13" font-weight="700">QR engine</text>
+                  <line class="flow-line" x1="360" y1="95" x2="400" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ahq)"/>
+                  <rect x="400" y="60" width="160" height="70" rx="4" fill="#3d5a80"/><text x="480" y="100" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="13" font-weight="700">Backend marchand</text>
+                  <line class="flow-line" x1="560" y1="95" x2="600" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ahq)"/>
+                  <rect x="600" y="60" width="150" height="70" rx="4" fill="#0d9f8a"/><text x="675" y="100" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="13" font-weight="700">PSP / switch</text>
+                  <line class="flow-line" x1="750" y1="95" x2="790" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ahq)"/>
+                  <rect x="790" y="60" width="180" height="70" rx="4" fill="#1e5f8a"/><text x="880" y="100" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="13" font-weight="700">Banque / wallet</text>
+                </svg>
+              </div>
+              <div class="callout"><h3>Lien J1</h3><p>L’autorisation / clearing / settlement restent valides : le QR change surtout l’initiation et l’orchestration digitale.</p></div>
+            </section>
+            <section class="section">
+              <p class="section-label">Ancrage</p>
+              <h2>Cas</h2>
+              <div class="split-2">
+                <div class="panel ok"><h3>Cas 1 — QR marchand via PSP</h3><ul><li>Où vit le QR engine&nbsp;?</li><li>Qui porte le backend ordre&nbsp;?</li></ul></div>
+                <div class="panel"><h3>Cas 2 — QR in-app banque</h3><ul><li>App = client + parfois engine</li><li>Switch interne vs scheme</li></ul></div>
+              </div>
+            </section>
+            <div class="check-end"><h3>Check</h3><ul><li>5 composants cités</li><li>Lien avec flux J1</li></ul></div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+    <footer class="site-foot">
+      <div class="wrap"><a href="index.html">Sommaire Jour 2</a> · Architecture SI</div>
+    </footer>
+    <script src="../js/nav-j2.js"></script>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+BLOC — FORMATEUR
+Cours : Paiements digitaux & Wallets numériques
+Jour 1 · Flux transactionnel carte
+Bloc : Settlement
+Durée indicative : 20–30 min
+Précédent : Clearing · Suivant : Online / offline & rejets
+Sources normes : à affiner (règles scheme, systèmes de règlement, calendriers…)
+
+
+================================================================================
+1. MÉTA FORMATEUR
+================================================================================
+Objectif pédagogique
+À la fin du bloc, les participants définissent le settlement au sens
+monétique, le distinguent du clearing et de l’autorisation, et situent
+qui règle quoi entre établissements.
+
+Idée clé
+« Le settlement, c’est le règlement des positions issues du clearing :
+l’argent (ou les écritures de règlement) circule entre institutions —
+pas la simple compensation des opérations. »
+
+Posture
+1) Définition monétique
+2) Suite logique du clearing
+3) Acteurs (banques, scheme, agents de règlement)
+4) Cas pratiques
+
+
+================================================================================
+2. DÉFINITION MONÉTIQUE
+================================================================================
+Settlement (règlement)
+Processus par lequel les positions établies lors du clearing sont réglées
+entre les parties (typiquement via des comptes de règlement / agents de
+règlement / mécanismes prévus par le scheme ou l’arrangement interbancaire),
+de sorte que les obligations financières correspondantes sont éteintes.
+
+En pédagogie monétique carte :
+- Clearing = que doit-on se devoir / se compenser ?
+- Settlement = on exécute le règlement de ces positions
+
+
+================================================================================
+3. DISTINCTIONS
+================================================================================
+≠ Autorisation
+Le OK émetteur n’est pas un virement définitif vers le commerçant.
+
+≠ Clearing
+Le clearing calcule / présente / compense les opérations.
+Le settlement règle les soldes / positions qui en résultent.
+
+≠ Crédit marchand « vécu »
+Le moment où le commerçant voit les fonds sur son compte dépend du contrat
+acquéreur / PSP (délais, gross settlement vs net, holds…) — à distinguer
+du settlement interbancaire / scheme, même s’ils sont liés.
+
+
+================================================================================
+4. SCHÉMA / LOGIQUE
+================================================================================
+Positions de clearing
+  → Instructions / fichiers de règlement
+    → Comptes de settlement (banques / agents)
+      → Positions soldées
+
+Points formateur
+- Souvent netting (compensation nette) avant règlement
+- Calendriers scheme (jours ouvrés, cut-offs)
+- Risque de settlement (contrepartie, liquidité) — niveau sensibilisation,
+  sans cours finance de marché
+
+
+================================================================================
+5. LIEN AVEC LE SI BANQUE
+================================================================================
+Côté acquiring
+Réconciliation : auth ↔ clearing ↔ settlement ↔ crédit marchand
+
+Côté issuing
+Imputation porteur / écritures vs positions scheme
+
+Question salle
+« Chez vous, qui “possède” le settlement : trésorerie, monétique, back-office
+cartes, les trois ? »
+
+
+================================================================================
+6. CAS PRATIQUES
+================================================================================
+Cas 1 — Fil rouge J1
+Auth OK → clearing OK → settlement exécuté → (puis) crédit marchand selon
+contrat. Faire reposer toute la chronologie.
+
+Cas 2 — Clearing OK, settlement en retard / incident
+Positions connues mais règlement non abouti (cut-off, liquidité, incident).
+Symptômes différents d’un decline d’autorisation.
+
+Cas 3 — Écart de réconciliation
+Montant autorisé ≠ présenté clearing ≠ réglé / crédité.
+Exercice mental de placement de l’écart sur la chaîne.
+
+
+================================================================================
+7. CHECK DE FIN
+================================================================================
+[ ] Settlement = règlement des positions (pas la compensation seule)
+[ ] Suite clearing → settlement restituée
+[ ] Distinction settlement interbancaire vs crédit marchand « vécu »
+[ ] Chronologie Auth → Clearing → Settlement maîtrisée

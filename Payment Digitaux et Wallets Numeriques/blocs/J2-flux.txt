@@ -1,0 +1,6 @@
+BLOC — FORMATEUR · JOUR 2 · Flux transactionnels QR
+Durée : 25–35 min
+
+Séquence : génération → scan & validation → autorisation → confirmation.
+
+Cas : QR expiré (échec validation) · auth OK sans confirmation (réconciliation).

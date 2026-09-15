@@ -1,0 +1,26 @@
+JOUR 3 — Network tokenization & lifecycle
+
+Objectif pédagogique
+Expliquer qu'un token a un cycle de vie propre, distinct de la seule carte
+source, et montrer comment provisioning, activation, suspension et suppression
+servent la gouvernance du risque et du device.
+
+Idée clé
+Provisionner un token ne suffit pas : il vit, sert en transaction, se
+suspend, se réactive et se supprime selon le contexte d'usage.
+
+Étapes
+- provisioning
+- activation / utilisation
+- suspension / reprise
+- suppression
+
+Points de fond
+- la carte source et le token n'ont pas exactement le même cycle de vie
+- la gouvernance peut agir sur un device ou un canal précis
+- les cryptogrammes dynamiques renforcent l'usage transactionnel
+
+Cas pratiques
+- device perdu : suspendre le token sans résilier toute la carte
+- nouveau device : nouveau provisioning
+- suspicion fraude : geler un contexte précis

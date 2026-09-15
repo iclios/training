@@ -1,0 +1,142 @@
+BLOC — FORMATEUR
+Cours : Paiements digitaux & Wallets numériques
+Jour 1 · Architecture générale
+Bloc : Composants SI
+Durée indicative : 25–35 min
+Précédent : Chaîne de valeur · Suivant : Autorisation
+Sources normes : à affiner (architecture de référence scheme / PCI DSS scope, etc.)
+
+
+================================================================================
+1. MÉTA FORMATEUR
+================================================================================
+Objectif pédagogique
+À la fin du bloc, les participants savent nommer les composants SI
+principaux d’un système de paiement carte (vue métier), dire ce que chacun
+fait, et les situer par rapport à la chaîne d’acceptation / émission —
+sans confondre avec la plateforme omnicanale complète (J5).
+
+Idée clé
+« La chaîne de valeur décrit qui parle à qui. Les composants SI décrivent
+où ça tourne dans le système d’information. »
+
+Posture
+1) Définition : vue composants SI (métier monétique)
+2) Cartographie des 5 briques
+3) Lien avec la chaîne de valeur
+4) Cas pratiques de placement
+
+
+================================================================================
+2. DÉFINITION
+================================================================================
+Composants SI d’un système de paiement (vue métier)
+Ensemble des briques applicatives et techniques qui portent les fonctions
+monétiques d’acceptation, d’acquisition, d’émission et de post-transaction
+(clearing / settlement), telles qu’elles apparaissent dans le SI des acteurs
+(banque, PSP, scheme…).
+
+Ce bloc = cartographie fonctionnelle.
+Ce n’est pas encore :
+- une architecture cible omnicanale (QR + NFC + wallet) → J5
+- un catalogue produit fintech
+- un détail d’infra (datacenter, cloud) sauf si question
+
+
+================================================================================
+3. LES CINQ COMPOSANTS (SYLLABUS)
+================================================================================
+1. POS / terminal mobile (mPOS)
+Point d’acceptation : capture de l’opération, interaction avec le moyen de
+paiement, construction / envoi de la demande vers la chaîne d’acquisition.
+
+2. Payment gateway
+Passerelle d’acceptation : exposition d’interfaces (API, protocoles),
+routage vers l’acquéreur / PSP, contrôles de forme, journalisation,
+souvent front-door du marchand ou du canal digital.
+
+3. Acquiring system
+Système d’acquisition : traitement côté banque acquéreuse / PSP acquéreur —
+réception des opérations marchandes, routage réseau, gestion marchand,
+lien vers clearing.
+
+4. Issuing system
+Système d’émission : host / centre d’autorisation et SI porteur — décision
+d’autorisation, gestion du moyen de paiement, plafonds, opposition, lien
+fraude / AuthN selon organisation.
+
+5. Clearing & settlement
+Briques (souvent distinctes) de compensation des opérations et de règlement
+des positions entre établissements — typiquement après l’autorisation,
+via le scheme / les mécanismes interbancaires.
+
+
+================================================================================
+4. LECTURE PAR COUCHES
+================================================================================
+Acceptation
+POS / mPOS + (souvent) payment gateway
+
+Processing
+Acquiring system ↔ réseau ↔ Issuing system
+
+Post-transaction
+Clearing & settlement
+
+Temporalité
+- T+0 (online) : acceptation + processing d’autorisation
+- Différé (souvent batch) : clearing puis settlement
+
+
+================================================================================
+5. LIEN CHAÎNE DE VALEUR ↔ COMPOSANTS
+================================================================================
+Client / porteur          → (hors SI, ou app wallet — J4)
+Terminal / acceptation    → POS / mPOS (+ gateway)
+Acquéreur                 → Acquiring system (+ souvent gateway / PSP)
+Réseau                    → scheme (externe au SI banque, mais interface SI)
+Émetteur                  → Issuing system
+Post-transaction          → Clearing & settlement
+
+Message formateur
+Un même acteur juridique (une banque) peut opérer plusieurs composants
+(ex. banque à la fois émettrice et acquéreuse).
+
+
+================================================================================
+6. CAS PRATIQUES
+================================================================================
+Cas 1 — Banque émettrice pure
+Quels composants sont « chez elle » ? Issuing (+ évent. AuthN/ACS).
+Lesquels sont hors SI ? POS marchand, acquiring d’un autre établissement.
+
+Cas 2 — Banque acquéreuse / PSP
+Gateway + acquiring au cœur ; issuing chez d’autres ; clearing/settlement
+via scheme / partenaires.
+
+Cas 3 — Parcours e-commerce
+Où est la gateway ? Où commence l’acquiring ? Où l’issuing décide ?
+Faire placer les briques sur le schéma.
+
+Cas 4 (optionnel) — Timeout d’autorisation
+Quel composant suspecter en premier (gateway, acquiring, réseau, issuing) ?
+Renvoi aux blocs Autorisation / online-offline.
+
+
+================================================================================
+7. FRONTIÈRES & PIÈGES
+================================================================================
+- Gateway ≠ toujours = acquiring (souvent distinct, parfois intégré PSP)
+- Clearing ≠ settlement (compensation vs règlement)
+- « Le SI monétique » d’une banque est rarement un seul monolithe nommé
+  ainsi — parler par fonctions
+- Ne pas empiler fraude, tokenisation, wallet manager ici → J3/J4/J5
+
+
+================================================================================
+8. CHECK DE FIN
+================================================================================
+[ ] Les 5 composants cités avec leur rôle
+[ ] Distinction acceptation / processing / post-transaction
+[ ] Au moins un cas « chez nous en banque » placé sur la carte
+[ ] Conscience que J5 enrichira (omnicanal), sans surcharger J1

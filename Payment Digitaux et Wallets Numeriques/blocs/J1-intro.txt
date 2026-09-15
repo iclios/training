@@ -1,0 +1,69 @@
+BLOC — FORMATEUR
+Cours : Paiements digitaux & Wallets numériques
+Jour 1 · Ouverture
+Bloc : Intro & objectifs
+Durée indicative : 15–20 min
+Précédent : — · Suivant : Évolution des paiements
+
+
+================================================================================
+1. MÉTA FORMATEUR
+================================================================================
+Objectif pédagogique
+Positionner le Jour 1 comme socle monétique (écosystème + flux carte) avant
+les canaux digitaux (QR, NFC, wallets), et aligner les participants sur le
+fil de la journée.
+
+Idée clé
+« Aujourd’hui : qui fait quoi, où ça tourne dans le SI, et comment une
+opération passe d’une demande d’autorisation au règlement. »
+
+
+================================================================================
+2. CONTEXTE DU COURS
+================================================================================
+Public : professionnels de la banque
+Cursus : 5 jours — paiements digitaux & wallets
+Jour 1 : écosystème & flux carte (socle)
+Jours suivants : QR → tokenisation → NFC/wallets → omnicanal SI
+
+
+================================================================================
+3. OBJECTIFS DU JOUR 1
+================================================================================
+À l’issue de la journée, les participants seront capables de :
+- Situer l’évolution cash → carte → mobile → wallet
+- Identifier les acteurs de l’écosystème
+- Restituer la chaîne de valeur et les composants SI
+- Distinguer autorisation, authentification, clearing, settlement
+- Qualifier online / offline et les types de rejets
+- Relier une manip sandbox à la chaîne monétique (atelier)
+
+
+================================================================================
+4. OBJECTIFS GÉNÉRAUX DU MODULE (rappel)
+================================================================================
+- Architectures des systèmes de paiement digitaux
+- QR, NFC, tokenisation
+- Wallets numériques
+- Flux carte et wallet
+- Standards (EMV, ISO…)
+- Architecture SI omnicanale
+- Sécurité, conformité, gouvernance
+
+
+================================================================================
+5. RÈGLES DE LA JOURNÉE
+================================================================================
+- Vocabulaire monétique d’abord, cas ensuite
+- Pas de données de production dans les démos
+- Une page = un bloc ; navigation latérale libre
+- Questions SI « chez vous » bienvenues
+
+
+================================================================================
+6. CHECK DE FIN
+================================================================================
+[ ] Objectif du jour compris
+[ ] Fil des blocs annoncé
+[ ] Transition vers Évolution

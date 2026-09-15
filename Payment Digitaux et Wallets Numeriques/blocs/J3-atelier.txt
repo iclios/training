@@ -1,0 +1,2 @@
+JOUR 3 — Atelier
+Avant/après tokenisation, simulateur PAN ↔ token, lifecycle, scope PCI.

@@ -1,0 +1,2 @@
+JOUR 4 — Intro & objectifs
+Application du socle tokenisation au NFC et aux wallets.

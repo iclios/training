@@ -1,0 +1,2 @@
+JOUR 4 — Architecture wallets
+SE, HCE, TEE, Apple Pay / Google Pay, wallet app → TSP → issuer.

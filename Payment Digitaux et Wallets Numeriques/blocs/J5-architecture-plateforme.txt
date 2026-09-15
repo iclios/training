@@ -1,0 +1,2 @@
+JOUR 5 — Architecture plateforme
+Gateway, wallet manager, token service, fraude, reconciliation & settlement.

@@ -1,0 +1,61 @@
+BLOC — FORMATEUR
+Cours : Paiements digitaux & Wallets numériques
+Jour 1 · Clôture
+Bloc : Atelier palpable
+Durée indicative : 45–60 min
+Précédent : Online / offline · Suivant : (fin J1 / ouverture J2)
+
+
+================================================================================
+1. MÉTA FORMATEUR
+================================================================================
+Objectif pédagogique
+Ancrer le Jour 1 : provoquer une autorisation (approve + decline) en
+environnement de test, lire les champs utiles, et les replacer sur la chaîne
+émeteur / acquéreur / réseau / PSP.
+
+Idée clé
+« Ce qui sort du sandbox doit pouvoir se coller sur la chaîne de valeur et
+les composants SI vus ce matin. »
+
+
+================================================================================
+2. MATÉRIEL
+================================================================================
+Physique
+- 1 carte contact + 1 carte sans contact (démo / perso masquée)
+- Ticket de caisse ou capture ticket marchand (anonymisé)
+
+Logiciel
+- Sandbox PSP (Stripe / Adyen / Checkout — mode test)
+- Collection Postman : auth approve / decline
+
+Règle absolue
+Cartes et données de test uniquement — jamais de production.
+
+
+================================================================================
+3. DÉROULÉ SUGGÉRÉ
+================================================================================
+1. (5 min) Rappeler la chaîne + composants sur le mur / schéma
+2. (15 min) Paiement test APPROVE — noter auth code / status / ids
+3. (15 min) Paiement test DECLINE — noter motif / code
+4. (15 min) Placement en groupe : chaque champ → quel acteur / composant
+5. (5–10 min) Débrief : métier vs technique ; pont J2 QR
+
+
+================================================================================
+4. LIVRABLES GROUPE
+================================================================================
+- Schéma annoté (photographie OK)
+- Tableau : champ réponse → maillon responsable
+- 3 phrases : auth / clearing / settlement en une chrono
+
+
+================================================================================
+5. CHECK DE FIN DE JOURNÉE
+================================================================================
+[ ] Approve et decline réalisés en test
+[ ] Au moins un champ placé correctement sur la chaîne
+[ ] Participants formulent Auth ≠ Clearing ≠ Settlement
+[ ] Teaser J2 : canal QR

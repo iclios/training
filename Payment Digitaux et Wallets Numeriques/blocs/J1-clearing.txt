@@ -1,0 +1,118 @@
+BLOC — FORMATEUR
+Cours : Paiements digitaux & Wallets numériques
+Jour 1 · Flux transactionnel carte
+Bloc : Clearing
+Durée indicative : 20–30 min
+Précédent : Authentification · Suivant : Settlement
+Sources normes : à affiner (règles scheme, formats de compensation, calendriers…)
+
+
+================================================================================
+1. MÉTA FORMATEUR
+================================================================================
+Objectif pédagogique
+À la fin du bloc, les participants définissent le clearing au sens monétique,
+le distinguent de l’autorisation et du settlement, et décrivent son rôle
+dans la chaîne post-transaction.
+
+Idée clé
+« Le clearing, c’est la compensation des opérations : on échange et on
+rapproche ce qui a été autorisé pour préparer le règlement — ce n’est pas
+encore le mouvement d’argent final entre banques. »
+
+Posture
+1) Définition monétique
+2) Place après l’autorisation
+3) Acteurs et flux
+4) Cas pratiques
+
+
+================================================================================
+2. DÉFINITION MONÉTIQUE
+================================================================================
+Clearing (compensation)
+Processus par lequel les opérations de paiement (typiquement déjà
+autorisées) sont échangées, présentées et compensées entre les parties
+concernées (acquéreur, émetteur, via le réseau / scheme), afin d’établir
+les positions à régler.
+
+En monétique carte, le clearing intervient en général après l’autorisation
+(chemin online), sur un rythme souvent différé (fichiers / cycles scheme),
+même si des mécanismes plus fréquents existent selon les environnements.
+
+Ce que le clearing produit
+- Présentation / échange des opérations entre établissements
+- Calcul / établissement de positions nettes ou brutes à régler
+- Base informationnelle pour le settlement
+
+
+================================================================================
+3. DISTINCTIONS
+================================================================================
+≠ Autorisation
+L’autorisation = accord temps réel de l’émetteur sur une opération.
+Le clearing = traitement de compensation des opérations dans le cycle
+interbancaire / scheme.
+
+≠ Settlement
+Le settlement = règlement effectif des positions (l’argent bouge entre
+institutions). Le clearing prépare / calcule ; le settlement exécute le
+règlement.
+
+Formulation tableau
+Autorisation → « Est-ce accepté ? »
+Clearing → « Que doit-on se compenser ? »
+Settlement → « On règle les positions. »
+
+
+================================================================================
+4. SCHÉMA / LOGIQUE
+================================================================================
+Opérations autorisées (acquiring)
+  → Remise / présentation au scheme (ou mécanisme de compensation)
+    → Échange avec les émetteurs concernés
+      → Résultat : positions de clearing
+        → Entrée du settlement
+
+Points formateur
+- Souvent batch / cycles (T+1 typique en pédagogie, calendriers réels variables)
+- Le scheme joue un rôle central de règles et de formats
+- Acquéreur et émetteur ont chacun une vue SI (fichiers reçus / émis, rejets
+  de clearing)
+
+
+================================================================================
+5. REJETS & QUALITÉ DE DONNÉES
+================================================================================
+Une opération autorisée peut encore poser problème au clearing
+(données, délais, règles de présentation…).
+Distinguer :
+- decline d’autorisation (temps réel)
+- rejet / exception de clearing (post-transaction)
+
+Cas utile pour les profils back-office monétique.
+
+
+================================================================================
+6. CAS PRATIQUES
+================================================================================
+Cas 1 — Journée marchand
+Plusieurs autorisations OK en journée → remise clearing → positions.
+Faire dire : le commerçant n’est pas « payé » au clearing, la compensation
+est entre établissements.
+
+Cas 2 — Autorisé puis anomalie clearing
+Auth OK ; problème à la présentation / compensation.
+Diagnostic ≠ « la carte a été refusée ».
+
+Cas 3 — Banque duale (issuer + acquirer)
+Deux SI / deux files : outgoing acquiring vs incoming issuing.
+Qui lit quoi dans votre organisation ?
+
+
+================================================================================
+7. CHECK DE FIN
+================================================================================
+[ ] Clearing défini sans le confondre avec settlement
+[ ] Place après autorisation comprise
+[ ] Un cas anomalie clearing vs decline auth maîtrisé

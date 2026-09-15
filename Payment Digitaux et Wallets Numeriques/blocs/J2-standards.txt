@@ -1,0 +1,6 @@
+BLOC — FORMATEUR · JOUR 2 · Standards & interopérabilité
+Durée : 30–40 min
+
+EMV QR Code (EMVCo) · QR national vs international · interop multi-wallet.
+
+Sources à affiner : EMVCo QR Code Specification ; specs nationales.

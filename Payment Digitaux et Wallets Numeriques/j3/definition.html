@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Définition & objectifs — Jour 3 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="definition">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a href="../j1/index.html">J1</a>
+          <a href="../j2/index.html">J2</a>
+          <a class="is-active" href="index.html">J3</a>
+          <a href="../j4/index.html">J4</a>
+          <a href="../j5/index.html">J5</a>
+        </nav>
+      </div>
+    </header>
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta"><span class="tag">Jour 3 · Tokenisation</span><span class="tag tag-accent">Bloc formateur</span><span>30–40 min</span></div>
+              <p class="day-kicker">3.1</p>
+              <h1>Définition & objectifs</h1>
+            </div>
+          </section>
+          <div class="wrap">
+            <aside class="key-idea">
+              <p class="label">Idée clé — tableau</p>
+              <p>
+                Tokeniser, c’est remplacer l’exposition directe du PAN par un
+                identifiant substitutif gouverné et utilisable dans un domaine
+                donné, sans casser la logique monétique du paiement.
+              </p>
+            </aside>
+
+            <section class="section" style="border-top:none;padding-top:0">
+              <p class="section-label">Définition monétique</p>
+              <h2>Qu’est-ce que la tokenisation&nbsp;?</h2>
+              <p class="intro">
+                En paiement, la tokenisation consiste à substituer au
+                <strong>PAN</strong> un <strong>token</strong> utilisable dans
+                un contexte précis, géré par une infrastructure de gouvernance
+                dédiée. L’objectif n’est pas de changer le paiement lui-même,
+                mais de réduire l’exposition de la donnée carte tout au long du
+                cycle transactionnel.
+              </p>
+              <div class="callout">
+                <h3>Formulation formateur</h3>
+                <p>
+                  Le token ne remplace pas la logique
+                  <strong>autorisation → clearing → settlement</strong>. Il
+                  remplace l’identifiant sensible présenté dans ce flux.
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Vocabulaire</p>
+              <h2>PAN, token, vault, TSP</h2>
+              <ul class="topic-list">
+                <li>
+                  <strong>PAN</strong> — identifiant carte d’origine, sensible,
+                  historiquement exposé dans plusieurs chaînes de traitement
+                </li>
+                <li>
+                  <strong>Token</strong> — substitut du PAN, exploitable dans
+                  un domaine d’usage défini
+                </li>
+                <li>
+                  <strong>Token vault</strong> — référentiel sécurisé de
+                  correspondance et de gouvernance des liens PAN ↔ token
+                </li>
+                <li>
+                  <strong>TSP</strong> — Token Service Provider, qui émet,
+                  active, suspend et gouverne le cycle de vie du token
+                </li>
+              </ul>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Distinction</p>
+              <h2>Ce que la tokenisation n’est pas</h2>
+              <div class="not-list">
+                <div class="not-item">
+                  <strong>≠ Chiffrement simple</strong>
+                  <p>
+                    Le token n’est pas juste un PAN chiffré affiché autrement.
+                    Il relève d’une gouvernance et d’un domaine d’usage.
+                  </p>
+                </div>
+                <div class="not-item">
+                  <strong>≠ Nouveau rail</strong>
+                  <p>
+                    Le paiement continue de s’appuyer sur les mêmes
+                    mécanismes monétiques. On sécurise l’identifiant exposé.
+                  </p>
+                </div>
+                <div class="not-item">
+                  <strong>≠ Suppression totale du risque</strong>
+                  <p>
+                    On réduit l’exposition du PAN, mais il reste de la
+                    gouvernance, du risque fraude et des obligations de
+                    conformité.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Usages</p>
+              <h2>Où on tokenise</h2>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>In-store</h3>
+                  <ul>
+                    <li>Wallets / mobile</li>
+                    <li>Présentation d’un identifiant substitutif au POS</li>
+                    <li>Réduction de l’exposition PAN en proximité</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>In-app / e-commerce</h3>
+                  <ul>
+                    <li>Card-on-file, checkout, paiements récurrents</li>
+                    <li>Moins d’exposition directe côté marchand</li>
+                    <li>Meilleur cadrage du risque et du scope conformité</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Objectifs</p>
+              <h2>Pourquoi tokeniser</h2>
+              <ul class="topic-list">
+                <li>Réduction de la fraude liée à l’exposition du PAN</li>
+                <li>Limitation de l’exposition des données carte</li>
+                <li>Aide à la conformité PCI-DSS</li>
+                <li>
+                  Dissociation plus fine entre carte source, device, canal et
+                  domaine d’usage
+                </li>
+              </ul>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Ancrage</p>
+              <h2>Cas pratiques</h2>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Cas 1 — Wallet mobile</h3>
+                  <ul>
+                    <li>Le smartphone ne présente pas directement le PAN</li>
+                    <li>Le token devient l’identifiant visible dans le flux</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Cas 2 — E-commerce tokenisé</h3>
+                  <ul>
+                    <li>Le marchand conserve un token plutôt qu’un PAN</li>
+                    <li>Impact direct sur exposition et gouvernance</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="callout warn" style="margin-top: 1rem">
+                <h3>Question salle</h3>
+                <p>
+                  Si le token circule à la place du PAN, où reste la
+                  connaissance du PAN d’origine&nbsp;? Réponse attendue :
+                  gouvernance TSP / vault / issuer selon l’architecture.
+                </p>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Notes formateur — points à faire verbaliser</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>Le token protège l’exposition, pas la logique métier</li>
+                  <li>
+                    Le PAN reste la racine de référence, même s’il n’est plus
+                    présenté partout
+                  </li>
+                  <li>
+                    Wallet, tokenisation réseau et conformité sont liés, mais ne
+                    sont pas la même notion
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Check de fin de bloc</h3>
+              <ul>
+                <li>PAN vs token expliqué proprement</li>
+                <li>Vault et TSP situés</li>
+                <li>La différence avec chiffrement simple est comprise</li>
+                <li>Le pont vers J4 est préparé</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Sources normes / specs</strong> — à affiner :
+              tokenisation réseau, PCI-DSS, documentation scheme / TSP.
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 3</a> · Définition</div></footer>
+    <script src="../js/nav-j3.js"></script>
+  </body>
+</html>

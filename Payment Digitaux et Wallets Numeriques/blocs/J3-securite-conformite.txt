@@ -1,0 +1,2 @@
+JOUR 3 — Sécurité & conformité
+Device binding, authentification forte, cryptogrammes, PCI-DSS, gouvernance, pont vers wallets/NFC.

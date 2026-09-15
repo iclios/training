@@ -1,0 +1,380 @@
+PRE-SYLLABUS PROPOSE — Paiements digitaux & Wallets numériques
+M2 SIB — 5 jours × 4h (20h)
+Organisation revue : tokenisation avant NFC / wallets
+Public cible : professionnels de la banque (dimension palpable recommandée en fin de chaque jour)
+
+
+Objectifs généraux (inchangés)
+À l’issue du cours, les étudiants seront capables de :
+- Comprendre les architectures des systèmes de paiement digitaux
+- Analyser les technologies QR Code, NFC et tokenisation
+- Expliquer le fonctionnement des wallets numériques
+- Modéliser les flux transactionnels carte et wallet
+- Comprendre les standards internationaux (EMV, ISO)
+- Concevoir une architecture SI de paiement omnicanale
+- Identifier les enjeux de sécurité, conformité et gouvernance
+
+
+================================================================================
+JOUR 1 — Écosystème & flux carte (4h)
+================================================================================
+Objectif du jour : poser le socle métier et transactionnel avant les canaux digitaux.
+
+1.1 Évolution des systèmes de paiement
+- Paiement cash → carte → mobile → wallet
+- Paiements électroniques vs paiements digitaux
+- Paiements en ligne, de proximité et in-app
+- Paiements temps réel vs différés
+
+1.2 Écosystème des paiements digitaux
+Acteurs clés :
+- Banques émettrices & acquéreuses
+- Réseaux cartes (Visa, Mastercard)
+- Schemes de paiement
+- Fintechs & PSP
+- Constructeurs de devices
+- Wallet providers (mention acteur uniquement, sans détail interne)
+
+Introduction aux grands standards pilotés par EMVCo
+
+1.3 Architecture générale d’un système de paiement
+Chaîne de valeur :
+- Client → terminal → acquéreur → réseau → émetteur
+
+Composants SI (vue métier, pas plateforme complète) :
+- POS / terminal mobile
+- Payment gateway
+- Acquiring system
+- Issuing system
+- Clearing & settlement
+
+1.4 Flux transactionnel carte
+Analyse détaillée :
+- Autorisation
+- Authentification
+- Clearing
+- Settlement
+
+Notions :
+- Online vs offline transaction
+- Latence & disponibilité
+- Gestion des rejets
+- Rappel : le PAN circule dans le modèle carte classique (pont vers J3 tokenisation)
+
+--- Proposition élément palpable (physique / logiciel) ---
+- Physique : 1 carte contact + 1 carte sans contact ; ticket de caisse ou capture ticket marchand
+- Logiciel : sandbox PSP (Stripe / Adyen / Checkout — mode test) + collection Postman (auth approve / decline)
+- Atelier suggéré (~45–60 min) : payer en sandbox, lire auth code / decline, placer chaque info sur le schéma émetteur / acquéreur / réseau / PSP
+- Règle : cartes et données de test uniquement, jamais de production
+
+
+================================================================================
+JOUR 2 — Paiements par QR Code (4h)
+================================================================================
+Objectif du jour : maîtriser un canal digital « software-first », sans prérequis token/SE.
+
+2.1 QR Code : principes et typologies
+- QR statique vs QR dynamique
+- QR push vs QR pull
+- QR closed-loop vs open-loop
+- QR bancaire vs QR wallet (wallet = canal côté UX ; détail technique reporté J4)
+
+2.2 Architecture SI du paiement QR
+Composants :
+- Application client
+- QR engine
+- Backend marchand
+- PSP / switch
+- Banque ou wallet
+
+Modélisation des flux :
+- génération du QR
+- scan & validation
+- autorisation
+- confirmation
+
+2.3 Standards QR et interopérabilité
+- EMV QR Code
+- QR national vs QR international
+- Interopérabilité multi-wallet
+Cas d’usage :
+- commerce de proximité
+- transport
+- paiements P2P
+
+2.4 Cas pratique (allégré)
+Étude de cas : conception d’un système de paiement QR national interopérable
+Livrables étudiants :
+- schéma d’architecture
+- flux transactionnels
+- acteurs & responsabilités
+Note : la plateforme omnicanale complète (QR + NFC + wallet) est réservée au J5.
+
+--- Proposition élément palpable (physique / logiciel) ---
+- Physique : stickers / présentoir QR « marchand » ; 1 téléphone caisse + 1 téléphone client
+- Logiciel : générateur QR statique vs dynamique ; optionnel parseur payload type EMV QR
+- Atelier suggéré (~60 min) : groupe marchand génère les 2 QR, groupe client scanne, comparer le payload, tracer le flux jusqu’à confirmation
+- Débat terrain : closed-loop vs open-loop, push vs pull — avec l’objet en main
+
+
+================================================================================
+JOUR 3 — Tokenisation & sécurité des paiements (4h)
+================================================================================
+Objectif du jour : poser le modèle de sécurité réutilisé par NFC et wallets.
+
+3.1 Tokenisation des paiements
+Définition :
+- PAN vs Token
+- Token vault
+- Token service provider (TSP)
+
+Domaines d’usage :
+- in-store
+- in-app
+- e-commerce
+
+Objectifs :
+- réduction de la fraude
+- conformité PCI-DSS
+- limitation de l’exposition du PAN
+
+3.2 Network tokenization & lifecycle
+- Enrolment / provisioning (vue conceptuelle)
+- Utilisation du token en transaction
+- Lifecycle du token (activation, suspension, suppression)
+- Cryptogrammes dynamiques (introduction)
+
+3.3 Architecture SI liée à la tokenisation
+Composants :
+- merchant / wallet
+- TSP
+- network tokenization
+- bank issuer system
+
+Flux simplifié :
+- demande de token
+- stockage sécurisé
+- présentation du token à l’autorisation
+
+3.4 Sécurité et conformité (socle)
+Mécanismes :
+- device binding
+- authentification forte (lien DSP2 / SCA)
+- cryptogrammes
+
+Réglementation :
+- PCI-DSS
+- DSP2 / SCA
+- protection des données
+
+Lien pédagogique explicite : ce modèle sera appliqué au paiement NFC mobile (J4).
+
+--- Proposition élément palpable (physique / logiciel) ---
+- Physique / visuel : carte plastique + capture wallet (Apple Pay / Google Pay) côte à côte (PAN masqué vs token / Device Account Number)
+- Logiciel : sandbox VTS / MDES si accessible banque ; sinon simulateur maison PAN ↔ token ↔ cryptogramme + revoke/suspend
+- Atelier suggéré (~60 min) : partir du message d’auth J1, le passer en tokenisé, jouer provision → pay → suspend → delete
+- Lien conformité : ce qui sort du scope PCI marchand vs ce qui reste émetteur / TSP
+
+
+================================================================================
+JOUR 4 — NFC, sans contact & wallets numériques (4h)
+================================================================================
+Objectif du jour : appliquer tokenisation + environnements sécurisés au canal de proximité et aux wallets.
+
+4.1 Technologie NFC
+- Principes physiques
+Modes NFC :
+- Card emulation
+- Reader / writer
+- Peer-to-peer
+- NFC vs QR : avantages et limites
+
+4.2 Paiement sans contact EMV
+Fonctionnement :
+- carte sans contact (plastique)
+- mobile NFC
+- seuils de paiement
+- offline transactions
+
+Standards :
+- EMV Contactless
+- ISO 14443
+
+4.3 Architecture NFC mobile & wallets
+Composants de confiance :
+- Secure Element (SE)
+- Host Card Emulation (HCE)
+- TEE (Trusted Execution Environment)
+
+Comparaison :
+- SIM-based SE
+- Embedded SE
+- Cloud-based HCE
+
+Wallets majeurs :
+- Apple Pay
+- Google Pay
+
+Fonctions wallet :
+- stockage des tokens
+- authentification biométrique
+- orchestration du paiement
+
+Architecture SI d’un wallet :
+- wallet app
+- TSP / network tokenization
+- bank issuer system
+
+Flux :
+- enrolment carte
+- provisioning
+- paiement
+- lifecycle du token (mise en pratique J3)
+
+4.4 Cas pratique (1h)
+Analyse d’un paiement NFC : smartphone → POS
+Les étudiants identifient :
+- composants impliqués (SE/HCE, token, TSP, POS, acquéreur, émetteur)
+- messages échangés
+- points de sécurité critiques
+Prérequis mobilisés : J1 (flux carte) + J3 (tokenisation) + J4 (NFC/wallet)
+
+--- Proposition élément palpable (physique / logiciel) ---
+- À acheter / apporter : module PN532 (antenne visible), lecteur USB NFC type ACR122U, tags NFC (NTAG), carte sans contact, smartphones Apple Pay / Google Pay
+- Logiciel : app NFC Tools ; optionnel démo HCE Android (non bancaire)
+- Atelier suggéré (~75 min) : montrer l’antenne → lire tag/carte (UID, ISO 14443) → tester la distance → relier au paiement smartphone→POS (SE / HCE / token J3)
+- Attention : lecture UID / présence puce uniquement, pas d’extraction de données sensibles
+
+
+================================================================================
+JOUR 5 — Paiements omnicanaux & conception SI (4h)
+================================================================================
+Objectif du jour : synthétiser QR + token + NFC/wallet dans une plateforme SI.
+
+5.1 Paiement omnicanal
+Cas :
+- in-store
+- e-commerce
+- mobile
+- in-app
+
+Concepts :
+- single payment backend
+- orchestration multi-moyens
+- expérience utilisateur unifiée
+
+5.2 Architecture d’une plateforme de paiement digitale
+Composants :
+- payment gateway
+- wallet manager
+- tokenization service
+- fraud engine
+- reconciliation & settlement
+
+Exigences transverses :
+- architecture scalable & sécurisée
+- interopérabilité
+- gouvernance
+
+5.3 Contrôle continu
+Concevoir une plateforme de paiement digital nationale
+Exigences :
+- QR + NFC + wallet
+- interopérabilité
+- sécurité
+- gouvernance
+
+Livrables :
+- schéma d’architecture
+- flux détaillés
+- justification des choix techniques
+
+--- Proposition élément palpable (physique / logiciel) ---
+- Logiciel : mini lab Postman / mock gateway avec 3 moyens (carte, QR, token wallet) + journal unique des transactions
+- Physique : « mur d’architecture » (post-its / aimants : gateway, TSP, fraud, settlement…)
+- Atelier / contrôle (~2h) : brancher les 3 canaux, jouer 1 paiement chacun, livrer schéma + flux + justification, pitch type comité SI banque
+
+
+================================================================================
+Logique pédagogique (rappel)
+================================================================================
+J1  Socle métier & flux carte (PAN)
+J2  Canal QR (accessible sans token)
+J3  Tokenisation & conformité (socle sécurité)
+J4  NFC + wallets (application du socle J3)
+J5  Omnicanal & conception SI (synthèse)
+
+
+Écarts vs pré-syllabus initial
+- Tokenisation avancée avant NFC (au lieu de J4 après le cas smartphone→POS)
+- Wallets regroupés avec NFC (J4), plus seulement évoqués en acteurs (J1)
+- Architecture SI « plateforme » concentrée en J5 (J1 reste chaîne de valeur / flux carte)
+- Cas QR J2 allégé ; cas intégrateur national en J5
+- En fin de chaque jour : proposition d’élément physique ou logiciel pour ancrer le cours (public banque)
+
+
+================================================================================
+LISTE DE COURSES — matériel & logiciels (5 jours)
+================================================================================
+Public cible atelier : ~12–15 personnes
+Budget matériel indicatif (achats) : ~80–150 €
+
+
+--------------------------------------------------------------------------------
+À ACHETER (priorité)
+--------------------------------------------------------------------------------
+- Lecteur USB NFC ACR122U                          → J4 · qté 1–2
+- Module PN532 (antenne visible)                   → J4 · qté 1
+- Pack tags NFC NTAG213/215                        → J4 · qté 1 pack (10–20)
+- Stickers QR + présentoirs / supports             → J2 · qté 10–20 stickers + 2–3 supports
+- Papier A3 / tableau + post-its + marqueurs       → J1–J5 · 1 kit salle
+- Aimants / étiquettes composants SI               → J5 · 1 set
+  (gateway, TSP, fraud, settlement, wallet manager…)
+
+
+--------------------------------------------------------------------------------
+À APPORTER (pas d’achat obligatoire)
+--------------------------------------------------------------------------------
+- 1 carte contact + 1 carte sans contact           → J1, J3, J4
+  (perso / démo — jamais de données production projetées)
+- Ticket de caisse anonymisé ou capture ticket     → J1
+- 1–2 smartphones (idéalement Android + iPhone)    → J2, J4
+  (QR scan + Apple Pay / Google Pay si possible)
+- PC formateur + vidéoprojecteur                   → tous les jours
+
+
+--------------------------------------------------------------------------------
+LOGICIEL / COMPTES (gratuits ou sandbox)
+--------------------------------------------------------------------------------
+- Compte sandbox PSP (Stripe / Adyen / Checkout)   → J1, J5
+- Postman + collection auth approve / decline      → J1, J5
+- Générateur QR (statique / dynamique)             → J2
+- App NFC Tools (mobile)                           → J4
+- Sandbox VTS / MDES si accès banque               → J3
+  (sinon simulateur maison PAN ↔ token ↔ cryptogramme)
+- Mock gateway 3 canaux (carte / QR / token)       → J5
+
+
+--------------------------------------------------------------------------------
+PAR JOUR (rappel atelier)
+--------------------------------------------------------------------------------
+J1  Cartes + ticket + sandbox PSP + Postman
+J2  Stickers QR + 2 téléphones + générateur QR
+J3  Carte + capture wallet + sandbox token / simulateur
+J4  Achats principaux : PN532, ACR122U, tags + wallets sur téléphone
+J5  Postman multi-canaux + mur post-its (réutilise le reste)
+
+
+--------------------------------------------------------------------------------
+OPTIONNEL (si budget / effet démo)
+--------------------------------------------------------------------------------
+- 2e lecteur NFC (binômes)
+- Imprimante étiquettes pour QR de séance
+- Tablette « caisse » dédiée
+
+
+--------------------------------------------------------------------------------
+RÈGLE SALLE
+--------------------------------------------------------------------------------
+Sandbox / lecture UID / captures anonymisées uniquement.
+Pas de PAN clients, pas de données de production.

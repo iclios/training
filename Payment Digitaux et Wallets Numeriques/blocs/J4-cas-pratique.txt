@@ -1,0 +1,2 @@
+JOUR 4 — Cas pratique
+Flux smartphone → POS avec composants, messages et points critiques.

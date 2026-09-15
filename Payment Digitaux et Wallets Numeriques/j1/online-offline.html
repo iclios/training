@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Online / offline &amp; rejets — Jour 1 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="online-offline">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="is-active" href="index.html">J1</a>
+          <a href="../j2/index.html">J2</a>
+          <a href="../j3/index.html">J3</a>
+          <a href="../j4/index.html">J4</a>
+          <a href="../j5/index.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · 1.4</span>
+                <span class="tag tag-accent">Bloc formateur</span>
+                <span>20–30 min</span>
+              </div>
+              <p class="day-kicker">Flux transactionnel</p>
+              <h1>Online / offline &amp; rejets</h1>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <aside class="key-idea">
+              <p class="label">Idée clé — tableau</p>
+              <p>
+                Online = on interroge la chaîne jusqu’à une décision. Offline =
+                acceptation sous règles locales / différées — autre profil de
+                risque. Un rejet n’est pas toujours un « pas d’argent ».
+              </p>
+            </aside>
+
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Modes</p>
+              <h2>Online vs offline</h2>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Online</h3>
+                  <ul>
+                    <li>Demande + attente de réponse</li>
+                    <li>Via acquéreur / réseau / émetteur</li>
+                    <li>Enjeux : latence, dispo, timeouts</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Offline</h3>
+                  <ul>
+                    <li>Acceptation sans décision online immédiate</li>
+                    <li>Seuils, mode dégradé, règles produit / scheme</li>
+                    <li>Contrôles locaux et/ou présentation différée</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="callout" style="margin-top: 1rem">
+                <h3>Message formateur</h3>
+                <p>
+                  Poser le concept et le risque — pas un cours offline
+                  exhaustif. Détail = règles scheme / produit.
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Diagnostic</p>
+              <h2>Typologie des « refus »</h2>
+              <div class="phases">
+                <article class="phase">
+                  <div class="n">1</div>
+                  <h3>Métier (AuthZ)</h3>
+                  <p>Fonds, opposition, risque…</p>
+                </article>
+                <article class="phase">
+                  <div class="n">2</div>
+                  <h3>Authentification</h3>
+                  <p>PIN, 3DS, abandon challenge…</p>
+                </article>
+                <article class="phase">
+                  <div class="n">3</div>
+                  <h3>Technique</h3>
+                  <p>Timeout, indispo gateway / réseau / host</p>
+                </article>
+                <article class="phase">
+                  <div class="n">4</div>
+                  <h3>Clearing</h3>
+                  <p>Anomalie post-transaction (rappel)</p>
+                </article>
+              </div>
+              <div class="callout warn" style="margin-top: 1rem">
+                <h3>Vigilance</h3>
+                <p>
+                  Même symptôme porteur (« refusé ») ≠ même cause SI.
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Pont J3</p>
+              <h2>Le PAN dans le flux</h2>
+              <p class="intro">
+                En modèle carte classique, le <strong>PAN</strong> circule dans
+                la demande d’autorisation. La <strong>tokenisation</strong>
+                (Jour 3) réduit cette exposition sans supprimer la logique Auth
+                → Clearing → Settlement.
+              </p>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Ancrage</p>
+              <h2>Cas pratiques</h2>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Cas 1 — Timeout vs decline fonds</h3>
+                  <ul>
+                    <li>Deux runbooks, deux responsables</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Cas 2 — Contactless sous seuil</h3>
+                  <ul>
+                    <li>Online ou offline selon contexte&nbsp;?</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="panel" style="margin-top: 1rem">
+                <h3>Cas 3 — Code sandbox</h3>
+                <ul>
+                  <li>Classer : métier / AuthN / technique</li>
+                  <li>Prépare l’atelier</li>
+                </ul>
+              </div>
+            </section>
+
+            <div class="check-end">
+              <h3>Check de fin de bloc</h3>
+              <ul>
+                <li>Online vs offline verbalisé</li>
+                <li>Familles de refus distinguées</li>
+                <li>Pont PAN → token annoncé</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Sources normes / specs</strong> — à affiner : règles
+              online/offline scheme &amp; EMV, codes réponse, politiques timeout
+              processeur.
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a> · Online / offline &amp; rejets
+      </div>
+    </footer>
+    <script src="../js/nav-j1.js"></script>
+  </body>
+</html>

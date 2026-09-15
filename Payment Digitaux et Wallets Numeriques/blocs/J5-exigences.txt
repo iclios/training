@@ -1,0 +1,2 @@
+JOUR 5 — Exigences transverses
+Interopérabilité, sécurité, gouvernance, scalabilité.

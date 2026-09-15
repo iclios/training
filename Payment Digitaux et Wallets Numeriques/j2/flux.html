@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flux transactionnels QR — Jour 2 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="flux">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a href="../j1/index.html">J1</a>
+          <a class="is-active" href="index.html">J2</a>
+          <a href="../j3/index.html">J3</a>
+          <a href="../j4/index.html">J4</a>
+          <a href="../j5/index.html">J5</a>
+        </nav>
+      </div>
+    </header>
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Flux</span>
+                <span class="tag tag-accent">Bloc formateur</span>
+                <span>25–35 min</span>
+              </div>
+              <p class="day-kicker">2.2</p>
+              <h1>Flux transactionnels QR</h1>
+            </div>
+          </section>
+          <div class="wrap">
+            <aside class="key-idea">
+              <p class="label">Idée clé — tableau</p>
+              <p>Quatre temps : génération du QR, scan &amp; validation, autorisation, confirmation — dans cet ordre logique.</p>
+            </aside>
+
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Séquence</p>
+              <h2>Du QR à la confirmation</h2>
+              <div class="phases">
+                <article class="phase"><div class="n">1</div><h3>Génération</h3><p>Création du payload (statique préparé ou dynamique à l’acte).</p></article>
+                <article class="phase"><div class="n">2</div><h3>Scan &amp; validation</h3><p>Lecture optique, parse, contrôles de forme / signature / TTL.</p></article>
+                <article class="phase"><div class="n">3</div><h3>Autorisation</h3><p>Demande d’accord au système de paiement (banque / wallet / switch).</p></article>
+                <article class="phase"><div class="n">4</div><h3>Confirmation</h3><p>Statut renvoyé aux deux parties (payeur / marchand).</p></article>
+              </div>
+            </section>
+            <section class="section">
+              <p class="section-label">Schéma</p>
+              <h2>Pull marchand (exemple dominant)</h2>
+              <div class="diagram">
+                <svg viewBox="0 0 1000 240" role="img">
+                  <defs><marker id="ahf" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a"/></marker></defs>
+                  <text x="120" y="30" text-anchor="middle" font-weight="700" font-size="12" fill="#c45c26">Marchand</text>
+                  <text x="400" y="30" text-anchor="middle" font-weight="700" font-size="12" fill="#2f4858">App payeur</text>
+                  <text x="680" y="30" text-anchor="middle" font-weight="700" font-size="12" fill="#0d9f8a">PSP / banque</text>
+                  <line x1="120" y1="40" x2="120" y2="210" stroke="#c5d3df"/>
+                  <line x1="400" y1="40" x2="400" y2="210" stroke="#c5d3df"/>
+                  <line x1="680" y1="40" x2="680" y2="210" stroke="#c5d3df"/>
+                  <line class="flow-line" x1="120" y1="70" x2="400" y2="70" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ahf)"/>
+                  <text x="260" y="62" text-anchor="middle" font-size="12" fill="#087a6a">1. Affiche / fournit QR</text>
+                  <line class="flow-line" x1="400" y1="110" x2="680" y2="110" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ahf)"/>
+                  <text x="540" y="102" text-anchor="middle" font-size="12" fill="#087a6a">2. Scan + demande paiement</text>
+                  <line class="flow-line" x1="680" y1="150" x2="400" y2="150" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ahf)"/>
+                  <text x="540" y="142" text-anchor="middle" font-size="12" fill="#1e5f8a">3. Autorisation / résultat</text>
+                  <line class="flow-line" x1="680" y1="190" x2="120" y2="190" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ahf)"/>
+                  <text x="400" y="182" text-anchor="middle" font-size="12" fill="#1e5f8a">4. Confirmation marchand</text>
+                </svg>
+              </div>
+            </section>
+            <section class="section">
+              <p class="section-label">Ancrage</p>
+              <h2>Cas</h2>
+              <div class="split-2">
+                <div class="panel ok"><h3>Cas 1 — QR expiré</h3><ul><li>Échec à la validation (étape 2)</li><li>≠ decline fonds</li></ul></div>
+                <div class="panel ko"><h3>Cas 2 — Auth OK, conf. manquante</h3><ul><li>Réconciliation ordre / notification</li></ul></div>
+              </div>
+            </section>
+            <div class="check-end"><h3>Check</h3><ul><li>4 étapes restituées</li><li>Pull vs push évoqué</li></ul></div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+    <footer class="site-foot">
+      <div class="wrap"><a href="index.html">Sommaire Jour 2</a> · Flux</div>
+    </footer>
+    <script src="../js/nav-j2.js"></script>
+  </body>
+</html>

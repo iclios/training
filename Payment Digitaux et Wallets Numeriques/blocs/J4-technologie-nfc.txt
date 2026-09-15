@@ -1,0 +1,2 @@
+JOUR 4 — Technologie NFC
+Principes physiques, 3 modes, comparaison NFC vs QR.

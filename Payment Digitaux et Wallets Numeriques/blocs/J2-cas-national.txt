@@ -1,0 +1,5 @@
+BLOC — FORMATEUR · JOUR 2 · Cas QR national interopérable
+Durée : 40–50 min
+
+Livrables : schéma d’architecture · flux · acteurs & responsabilités.
+Périmètre allégé — omnicanal QR+NFC+wallet = J5.

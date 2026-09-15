@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Architecture d’une plateforme de paiement — Jour 5 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="architecture-plateforme">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a href="../j1/index.html">J1</a>
+          <a href="../j2/index.html">J2</a>
+          <a href="../j3/index.html">J3</a>
+          <a href="../j4/index.html">J4</a>
+          <a class="is-active" href="index.html">J5</a>
+        </nav>
+      </div>
+    </header>
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta"><span class="tag">Jour 5 · Architecture</span><span class="tag tag-accent">Bloc formateur</span><span>40–50 min</span></div>
+              <p class="day-kicker">5.2</p>
+              <h1>Architecture d’une plateforme de paiement</h1>
+            </div>
+          </section>
+          <div class="wrap">
+            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>Gateway, wallet manager, tokenization, fraude et settlement forment un tout : la plateforme orchestre, supervise et réconcilie.</p></aside>
+
+            <section class="section" style="border-top:none;padding-top:0"><p class="section-label">Composants</p><h2>Briques principales</h2><ul class="topic-list"><li>Payment gateway</li><li>Wallet manager</li><li>Tokenization service</li><li>Fraud engine</li><li>Reconciliation & settlement</li></ul></section>
+            <section class="section"><p class="section-label">Lecture</p><h2>Pourquoi ces briques ensemble</h2><div class="split-2"><div class="panel ok"><h3>Front door</h3><ul><li>Gateway / orchestration</li><li>Connexion aux canaux</li></ul></div><div class="panel"><h3>Cœur de confiance</h3><ul><li>Wallet manager</li><li>Token service</li><li>Fraud</li></ul></div></div><div class="panel" style="margin-top:1rem"><h3>Clôture financière</h3><ul><li>Réconciliation</li><li>Settlement</li><li>Journal unique de vérité</li></ul></div></section>
+            <section class="section"><p class="section-label">Pont</p><h2>Tout ce qu’on a vu revient ici</h2><p class="intro">J1 fournit la logique monétique, J2 apporte le QR, J3 la tokenisation, J4 les wallets et le NFC. J5 assemble ces briques dans une cible SI cohérente.</p></section>
+            <div class="check-end"><h3>Check</h3><ul><li>Briques principales citées</li><li>Rôle de l’orchestration compris</li></ul></div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 5</a> · Architecture plateforme</div></footer>
+    <script src="../js/nav-j5.js"></script>
+  </body>
+</html>

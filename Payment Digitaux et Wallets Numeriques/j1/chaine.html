@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chaîne de valeur — Jour 1 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="chaine">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="is-active" href="index.html">J1</a>
+          <a href="../j2/index.html">J2</a>
+          <a href="../j3/index.html">J3</a>
+          <a href="../j4/index.html">J4</a>
+          <a href="../j5/index.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside
+        id="bloc-sidebar"
+        class="bloc-sidebar"
+        aria-label="Navigation des blocs"
+      ></aside>
+
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · Architecture</span>
+                <span class="tag tag-accent">Bloc formateur</span>
+                <span>25–35 min</span>
+              </div>
+              <p class="day-kicker">1.3 · Architecture générale</p>
+              <h1>Chaîne de valeur</h1>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <aside class="key-idea">
+              <p class="label">Idée clé — tableau</p>
+              <p>
+                La chaîne de valeur monétique, c’est le parcours ordonné du
+                message d’opération : de l’acceptation jusqu’à l’émetteur, puis
+                le retour.
+              </p>
+            </aside>
+
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Définition</p>
+              <h2>Chaîne de valeur (vue message)</h2>
+              <p class="intro">
+                Séquence des acteurs / points de passage que traverse une
+                opération depuis son initiation côté acceptation jusqu’à la
+                décision côté émetteur, puis le chemin de retour de la réponse.
+              </p>
+              <div class="timeline-evo" aria-label="Chaîne canonique">
+                <span class="step">Client</span>
+                <span class="arrow" aria-hidden="true">→</span>
+                <span class="step">Terminal</span>
+                <span class="arrow" aria-hidden="true">→</span>
+                <span class="step">Acquéreur</span>
+                <span class="arrow" aria-hidden="true">→</span>
+                <span class="step">Réseau</span>
+                <span class="arrow" aria-hidden="true">→</span>
+                <span class="step">Émetteur</span>
+              </div>
+            </section>
+
+            <section class="section" id="schema">
+              <p class="section-label">Schéma</p>
+              <h2>Aller et retour</h2>
+              <p class="intro">
+                Cliquez un maillon. Sans le retour de réponse, pas d’expérience
+                d’acceptation complète.
+              </p>
+
+              <div class="diagram" id="diagram-chain">
+                <div class="diagram-header">
+                  <h3>Client → … → Émetteur</h3>
+                  <p>Demande d’autorisation · réponse approve / decline</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 220"
+                  role="img"
+                  aria-label="Chaîne de valeur du paiement carte"
+                >
+                  <defs>
+                    <marker
+                      id="ah-ch"
+                      markerWidth="8"
+                      markerHeight="8"
+                      refX="6"
+                      refY="3"
+                      orient="auto"
+                    >
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <g
+                    class="node-hit"
+                    data-chain="client"
+                    tabindex="0"
+                    role="button"
+                  >
+                    <rect
+                      x="20"
+                      y="50"
+                      width="140"
+                      height="80"
+                      rx="4"
+                      fill="#2f4858"
+                    />
+                    <text
+                      x="90"
+                      y="85"
+                      text-anchor="middle"
+                      fill="#fff"
+                      font-family="Syne, sans-serif"
+                      font-size="15"
+                      font-weight="700"
+                    >
+                      Client
+                    </text>
+                    <text
+                      x="90"
+                      y="105"
+                      text-anchor="middle"
+                      fill="#c5d3df"
+                      font-size="11"
+                    >
+                      Porteur
+                    </text>
+                  </g>
+
+                  <line
+                    class="flow-line"
+                    x1="160"
+                    y1="90"
+                    x2="200"
+                    y2="90"
+                    stroke="#0d9f8a"
+                    stroke-width="2.5"
+                    marker-end="url(#ah-ch)"
+                  />
+
+                  <g
+                    class="node-hit"
+                    data-chain="terminal"
+                    tabindex="0"
+                    role="button"
+                  >
+                    <rect
+                      x="210"
+                      y="50"
+                      width="140"
+                      height="80"
+                      rx="4"
+                      fill="#c45c26"
+                    />
+                    <text
+                      x="280"
+                      y="85"
+                      text-anchor="middle"
+                      fill="#fff"
+                      font-family="Syne, sans-serif"
+                      font-size="15"
+                      font-weight="700"
+                    >
+                      Terminal
+                    </text>
+                    <text
+                      x="280"
+                      y="105"
+                      text-anchor="middle"
+                      fill="#f5d9c8"
+                      font-size="11"
+                    >
+                      Acceptation
+                    </text>
+                  </g>
+
+                  <line
+                    class="flow-line"
+                    x1="350"
+                    y1="90"
+                    x2="390"
+                    y2="90"
+                    stroke="#0d9f8a"
+                    stroke-width="2.5"
+                    marker-end="url(#ah-ch)"
+                  />
+
+                  <g
+                    class="node-hit"
+                    data-chain="acquereur"
+                    tabindex="0"
+                    role="button"
+                  >
+                    <rect
+                      x="400"
+                      y="50"
+                      width="150"
+                      height="80"
+                      rx="4"
+                      fill="#0d9f8a"
+                    />
+                    <text
+                      x="475"
+                      y="80"
+                      text-anchor="middle"
+                      fill="#fff"
+                      font-family="Syne, sans-serif"
+                      font-size="14"
+                      font-weight="700"
+                    >
+                      Acquéreur
+                    </text>
+                    <text
+                      x="475"
+                      y="100"
+                      text-anchor="middle"
+                      fill="#c8f0e8"
+                      font-size="11"
+                    >
+                      + PSP / gateway
+                    </text>
+                  </g>
+
+                  <line
+                    class="flow-line"
+                    x1="550"
+                    y1="90"
+                    x2="590"
+                    y2="90"
+                    stroke="#0d9f8a"
+                    stroke-width="2.5"
+                    marker-end="url(#ah-ch)"
+                  />
+
+                  <g
+                    class="node-hit"
+                    data-chain="reseau"
+                    tabindex="0"
+                    role="button"
+                  >
+                    <rect
+                      x="600"
+                      y="50"
+                      width="140"
+                      height="80"
+                      rx="4"
+                      fill="#3d5a80"
+                    />
+                    <text
+                      x="670"
+                      y="85"
+                      text-anchor="middle"
+                      fill="#fff"
+                      font-family="Syne, sans-serif"
+                      font-size="15"
+                      font-weight="700"
+                    >
+                      Réseau
+                    </text>
+                    <text
+                      x="670"
+                      y="105"
+                      text-anchor="middle"
+                      fill="#c5d3e0"
+                      font-size="11"
+                    >
+                      Scheme
+                    </text>
+                  </g>
+
+                  <line
+                    class="flow-line"
+                    x1="740"
+                    y1="90"
+                    x2="780"
+                    y2="90"
+                    stroke="#0d9f8a"
+                    stroke-width="2.5"
+                    marker-end="url(#ah-ch)"
+                  />
+
+                  <g
+                    class="node-hit"
+                    data-chain="emetteur"
+                    tabindex="0"
+                    role="button"
+                  >
+                    <rect
+                      x="790"
+                      y="50"
+                      width="170"
+                      height="80"
+                      rx="4"
+                      fill="#1e5f8a"
+                    />
+                    <text
+                      x="875"
+                      y="85"
+                      text-anchor="middle"
+                      fill="#fff"
+                      font-family="Syne, sans-serif"
+                      font-size="15"
+                      font-weight="700"
+                    >
+                      Émetteur
+                    </text>
+                    <text
+                      x="875"
+                      y="105"
+                      text-anchor="middle"
+                      fill="#c5dceb"
+                      font-size="11"
+                    >
+                      Décision
+                    </text>
+                  </g>
+
+                  <path
+                    d="M875 140 C875 180, 90 180, 90 130"
+                    fill="none"
+                    stroke="#5a6b7c"
+                    stroke-width="1.5"
+                    stroke-dasharray="5 5"
+                    marker-end="url(#ah-ch)"
+                  />
+                  <text
+                    x="500"
+                    y="205"
+                    text-anchor="middle"
+                    fill="#5a6b7c"
+                    font-size="12"
+                  >
+                    Retour de la réponse d’autorisation
+                  </text>
+                </svg>
+                <div class="detail-panel" id="chain-detail">
+                  <h4>Parcours du message</h4>
+                  <p>
+                    Cliquez un maillon. En modèle carte classique, le PAN
+                    circule dans cette chaîne — pont vers la tokenisation (J3).
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Maillons</p>
+              <h2>Rôle de chaque étape</h2>
+              <ul class="topic-list">
+                <li>
+                  <strong>Client</strong> — présente le moyen de paiement
+                </li>
+                <li>
+                  <strong>Terminal</strong> — capture, initie la demande
+                  (POS, mPOS, checkout / serveur selon canal)
+                </li>
+                <li>
+                  <strong>Acquéreur</strong> — reçoit, contrôle de forme, route
+                  (+ PSP / gateway)
+                </li>
+                <li>
+                  <strong>Réseau</strong> — aiguillage vers le bon émetteur
+                </li>
+                <li>
+                  <strong>Émetteur</strong> — décision d’autorisation + réponse
+                </li>
+              </ul>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Liens</p>
+              <h2>Avec les blocs voisins</h2>
+              <div class="not-list">
+                <div class="not-item">
+                  <strong>Acteurs</strong>
+                  <p>Qui joue · la chaîne dit dans quel ordre le message passe</p>
+                </div>
+                <div class="not-item">
+                  <strong>Composants SI</strong>
+                  <p>Dans quels systèmes chaque maillon s’exécute</p>
+                </div>
+                <div class="not-item">
+                  <strong>Autorisation</strong>
+                  <p>Ce que l’émetteur décide sur ce message</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Ancrage</p>
+              <h2>Cas pratiques</h2>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Cas 1 — Reconstituer l’ordre</h3>
+                  <ul>
+                    <li>5 étiquettes, sans notes</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Cas 2 — PSP au milieu</h3>
+                  <ul>
+                    <li>
+                      Souvent entre commerçant / terminal et acquéreur, ou
+                      façade de l’acquéreur
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="split-2">
+                <div class="panel">
+                  <h3>Cas 3 — E-commerce</h3>
+                  <ul>
+                    <li>
+                      « Terminal » = checkout / gateway — la chaîne logique
+                      reste
+                    </li>
+                  </ul>
+                </div>
+                <div class="panel ko">
+                  <h3>Cas 4 — Réponse absente</h3>
+                  <ul>
+                    <li>Enquêter maillon par maillon (horodatages)</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Notes formateur</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>
+                    Faire redessiner la chaîne au tableau avant le schéma
+                    projeté
+                  </li>
+                  <li>
+                    Insister sur le retour : beaucoup s’arrêtent mentalement à
+                    l’émetteur
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Check de fin de bloc</h3>
+              <ul>
+                <li>Chaîne complète restituée dans l’ordre</li>
+                <li>Sens demande / réponse compris</li>
+                <li>PSP / e-com placés sans casser le modèle</li>
+                <li>Transition claire vers composants SI</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Sources normes / specs</strong> — à affiner : modèles
+              opérationnels scheme, familles de messages d’autorisation.
+            </div>
+
+            <nav
+              class="bloc-pager"
+              aria-label="Navigation précédent suivant"
+            ></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a>
+        · Support formateur · Bloc Chaîne de valeur
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/nav-j1.js"></script>
+    <script src="../js/fiche.js"></script>
+  </body>
+</html>

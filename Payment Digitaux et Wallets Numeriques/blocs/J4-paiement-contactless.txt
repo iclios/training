@@ -1,0 +1,2 @@
+JOUR 4 — Paiement sans contact EMV
+Carte vs mobile, seuils, offline, EMV Contactless, ISO 14443.
