@@ -479,6 +479,11 @@ svg {
   transition: filter 0.2s, opacity 0.2s;
 }
 
+.node-hit image,
+.node-hit text {
+  pointer-events: none;
+}
+
 .node-hit:hover,
 .node-hit.is-active {
   filter: drop-shadow(0 6px 14px rgba(30, 60, 90, 0.16));
@@ -493,17 +498,18 @@ svg {
   outline-offset: 3px;
 }
 
-.node-hit image {
-  pointer-events: none;
-}
-
 .detail-panel {
-  margin-top: 1rem;
+  margin-top: 0.85rem;
   padding: 1rem 1.1rem;
   background: var(--paper);
   border-left: 3px solid var(--accent);
   min-height: 4.5rem;
   animation: fade 0.25s ease;
+}
+
+.detail-panel.is-filled {
+  border-left-color: var(--accent-deep);
+  background: #f3faf8;
 }
 
 .detail-panel h4 {
@@ -516,6 +522,72 @@ svg {
   margin: 0;
   font-size: 0.95rem;
   color: var(--ink-soft);
+}
+
+.detail-placeholder {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.detail-not {
+  margin-top: 0.55rem !important;
+  padding-top: 0.55rem;
+  border-top: 1px dashed var(--line);
+  color: var(--muted) !important;
+  font-size: 0.9rem !important;
+}
+
+.detail-not::before {
+  content: "Ce qu’il ne fait pas — ";
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.schema-define {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+}
+
+.schema-define-label {
+  margin: 0 0 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.schema-keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.15rem;
+}
+
+.schema-key {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.schema-key:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.schema-key.is-active {
+  border-color: var(--accent-deep);
+  background: #e7f6f3;
+  color: var(--accent-deep);
 }
 
 .legend {

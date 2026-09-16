@@ -66,9 +66,8 @@ Satellites (traits pointillés)
 - Device → commerçant : point d’entrée physique
 - PSP → acquéreur / façade d’acceptation : gateway, APIs ; acquiring selon montage
 
-Pour chaque acteur au clic : rôle + ce qu’il ne fait pas
-(ex. scheme ne décide pas l’autorisation).
-
+Pour chaque acteur : clic sur le nœud (ou bouton sous le schéma) →
+définition en bas (rôle + ce qu’il ne fait pas).
 Oral : après la vue abstraite, figer le modèle carte (socle SI), puis montrer
 que mobile / wallet / PSP s’y branchent sans changer qui décide.
 

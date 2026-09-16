@@ -1,39 +1,47 @@
-const actorCopy = {
+window.actorCopy = {
   porteur: {
     title: "Porteur (client)",
-    text: "Détient le moyen de paiement et initie l’opération. Ne décide pas de l’autorisation : c’est l’émetteur.",
+    role: "Détient le moyen de paiement et initie l’opération.",
+    not: "Ne décide pas de l’autorisation : c’est l’émetteur.",
   },
   emetteur: {
     title: "Banque émettrice (Issuer)",
-    text: "Émet le moyen, gère le produit / compte porteur, décide en général approve / decline, porte le risque crédit et une grande part de la fraude côté porteur. Ne contracte pas le commerçant.",
+    role: "Émet le moyen, gère le produit / compte porteur, décide en général approve / decline, porte le risque crédit et une grande part de la fraude côté porteur.",
+    not: "Ne contracte pas le commerçant.",
   },
   commercant: {
     title: "Commerçant",
-    text: "Accepte le paiement (magasin, site, app). Contractualise l’acceptation avec un acquéreur (ou via un PSP). Ne route pas vers l’émetteur et ne décide pas l’autorisation.",
+    role: "Accepte le paiement (magasin, site, app). Contractualise l’acceptation avec un acquéreur (ou via un PSP).",
+    not: "Ne route pas vers l’émetteur et ne décide pas l’autorisation.",
   },
   acquereur: {
     title: "Banque acquéreuse (Acquirer)",
-    text: "Contractualise le commerçant (directement ou via intermédiaires), reçoit les opérations d’acceptation, route vers le scheme, crédite le marchand selon contrat. Ne décide pas à la place de l’émetteur.",
+    role: "Contractualise le commerçant (directement ou via intermédiaires), reçoit les opérations d’acceptation, route vers le scheme, crédite le marchand selon contrat.",
+    not: "Ne décide pas à la place de l’émetteur.",
   },
   reseau: {
     title: "Scheme / réseau (Visa, Mastercard…)",
-    text: "Règles du jeu, marque, routage des messages, clearing entre participants. Ni la banque du client, ni celle du commerçant — et ce n’est en général pas lui qui « autorise ».",
+    role: "Règles du jeu, marque, routage des messages, clearing entre participants.",
+    not: "Ni la banque du client, ni celle du commerçant — et ce n’est en général pas lui qui « autorise ».",
   },
   psp: {
     title: "PSP / Fintech",
-    text: "Façade d’acceptation : gateway, APIs, agrégation. Peut porter tout ou partie de l’acquiring selon licence et montage — souvent confondu avec l’acquéreur, ce n’est pas toujours exact en droit.",
+    role: "Façade d’acceptation : gateway, APIs, agrégation. Peut porter tout ou partie de l’acquiring selon licence et montage.",
+    not: "Souvent confondu avec l’acquéreur — ce n’est pas toujours exact en droit.",
   },
   device: {
     title: "Device / POS",
-    text: "Point d’entrée physique (POS, pinpad, mPOS) chez le commerçant. Capture et initie ; ne remplace ni l’acquéreur ni l’émetteur.",
+    role: "Point d’entrée physique (POS, pinpad, mPOS) chez le commerçant. Capture et initie.",
+    not: "Ne remplace ni l’acquéreur ni l’émetteur.",
   },
   wallet: {
     title: "Wallet provider",
-    text: "Canal côté porteur (Apple Pay, Google Pay…). S’ajoute à l’écosystème ; ne remplace pas l’émetteur. Mécanique token / SE = Jour 4.",
+    role: "Canal côté porteur (Apple Pay, Google Pay…). S’ajoute à l’écosystème.",
+    not: "Ne remplace pas l’émetteur. Mécanique token / SE = Jour 4.",
   },
 };
 
-const chainCopy = {
+window.chainCopy = {
   client: {
     title: "Client / porteur",
     text: "Présente la carte (ou le mobile). En modèle classique, c’est son PAN qui part dans la demande d’autorisation.",
@@ -61,37 +69,79 @@ function bindPanel(selector, map, panelId, attr) {
   const panel = document.getElementById(panelId);
   if (!root || !panel) return;
 
-  const titleEl = panel.querySelector("h4");
-  const textEl = panel.querySelector("p");
-
-  function show(key) {
-    const data = map[key];
-    if (!data) return;
-    panel.hidden = false;
-    titleEl.textContent = data.title;
-    textEl.textContent = data.text;
-    root.querySelectorAll(".node-hit").forEach((n) => {
+  function setActive(key) {
+    root.querySelectorAll(".node-hit, .schema-key").forEach((n) => {
       n.classList.toggle("is-active", n.getAttribute(attr) === key);
     });
   }
 
-  root.querySelectorAll(".node-hit").forEach((node) => {
-    const key = node.getAttribute(attr);
-    const activate = () => show(key);
-    node.addEventListener("click", activate);
-    node.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        activate();
+  function show(key) {
+    const data = map[key];
+    if (!data) return;
+
+    const placeholder = panel.querySelector(".detail-placeholder");
+    const body = panel.querySelector(".detail-body");
+    const titleEl = panel.querySelector("h4");
+    const roleEl = panel.querySelector("[data-detail-role]");
+    const notEl = panel.querySelector("[data-detail-not]");
+    const textEl =
+      panel.querySelector("[data-detail-text]") ||
+      (!roleEl ? panel.querySelector("p") : null);
+
+    if (placeholder) placeholder.hidden = true;
+    if (body) body.removeAttribute("hidden");
+    panel.hidden = false;
+    panel.classList.add("is-filled");
+
+    if (titleEl) titleEl.textContent = data.title || "";
+
+    if (roleEl && (data.role || data.not)) {
+      roleEl.textContent = data.role || "";
+      roleEl.hidden = !data.role;
+      if (notEl) {
+        notEl.textContent = data.not || "";
+        notEl.hidden = !data.not;
       }
-    });
+      if (textEl) textEl.hidden = true;
+    } else if (textEl) {
+      textEl.hidden = false;
+      textEl.textContent = data.text || "";
+      if (roleEl) roleEl.hidden = true;
+      if (notEl) notEl.hidden = true;
+    }
+
+    setActive(key);
+  }
+
+  // Délégation : fiable pour SVG (<g>) et boutons HTML
+  root.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!target || !target.closest) return;
+    const node = target.closest(".node-hit, .schema-key");
+    if (!node || !root.contains(node)) return;
+    const key = node.getAttribute(attr);
+    if (!key) return;
+    event.preventDefault();
+    show(key);
+  });
+
+  root.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const target = event.target;
+    if (!target || !target.closest) return;
+    const node = target.closest(".node-hit, .schema-key");
+    if (!node || !root.contains(node)) return;
+    const key = node.getAttribute(attr);
+    if (!key) return;
+    event.preventDefault();
+    show(key);
   });
 }
 
-bindPanel("#diagram-issuer", actorCopy, "actor-detail-issuer", "data-node");
-bindPanel("#diagram-acquirer", actorCopy, "actor-detail-acquirer", "data-node");
-bindPanel("#diagram-scheme", actorCopy, "actor-detail-scheme", "data-node");
-bindPanel("#diagram-global", actorCopy, "actor-detail-global", "data-node");
-bindPanel("#diagram-card", actorCopy, "actor-detail-card", "data-node");
-bindPanel("#diagram-satellites", actorCopy, "actor-detail-satellites", "data-node");
-bindPanel("#diagram-chain", chainCopy, "chain-detail", "data-chain");
+bindPanel("#diagram-issuer", window.actorCopy, "actor-detail-issuer", "data-node");
+bindPanel("#diagram-acquirer", window.actorCopy, "actor-detail-acquirer", "data-node");
+bindPanel("#diagram-scheme", window.actorCopy, "actor-detail-scheme", "data-node");
+bindPanel("#diagram-global", window.actorCopy, "actor-detail-global", "data-node");
+bindPanel("#diagram-card", window.actorCopy, "actor-detail-card", "data-node");
+bindPanel("#diagram-satellites", window.actorCopy, "actor-detail-satellites", "data-node");
+bindPanel("#diagram-chain", window.chainCopy, "chain-detail", "data-chain");
