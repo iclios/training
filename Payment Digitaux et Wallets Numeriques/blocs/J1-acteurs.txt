@@ -11,19 +11,22 @@ Sources normes : à affiner (EMVCo, règles scheme, cadres locaux…)
 1. MÉTA FORMATEUR
 ================================================================================
 Objectif pédagogique
-À la fin du bloc, les participants savent nommer les acteurs clés de
-l’écosystème monétique / paiements digitaux, préciser le rôle de chacun,
-et éviter les confusions issuer / acquirer / scheme / PSP.
+À la fin du bloc, les participants savent expliquer le modèle 4 parties
+(porteur, issuer, commerçant, acquirer + scheme), situer les satellites
+(device, PSP, wallet), et éviter les confusions issuer / acquirer / scheme / PSP.
 
 Idée clé
-« Un paiement carte n’est jamais “une banque seule” : c’est un écosystème
-d’acteurs avec des rôles distincts et des interfaces obligatoires. »
+« Une opération, puis les acteurs : qui contracte, qui route, qui décide. »
 
 Posture
-1) Carte des acteurs (définition de rôle)
-2) Qui porte quoi (risque, SI, relation client)
-3) Standards (EMVCo en introduction)
-4) Cas pratiques de placement
+1) Définition + accroche opération
+2) Schéma progressif — un bloc = une relation :
+   (1) Porteur / émetteur · (2) Commerçant / acquéreur
+   (3) Banques + scheme · (4) Vue globale · (5) Modèle carte
+   (6) + Satellites (device, PSP, wallet)
+3) Pièges de vocabulaire
+4) Cas pratiques (mini-scénarios)
+5) Pont léger EMVCo (sans digression)
 
 
 ================================================================================
@@ -34,43 +37,40 @@ Ensemble des parties prenantes qui rendent possible l’émission, l’acceptati
 le routage, la compensation et le règlement des opérations de paiement
 électronique / digital — cartes, et au-delà (PSP, wallets, devices).
 
-Ce bloc pose les acteurs.
-La chaîne de valeur (bloc suivant) pose l’ordre du message.
-Les composants SI détaillent où ça tourne dans le SI.
+Accroche
+« Un porteur paie chez un commerçant : qui intervient, et qui décide ? »
+
+Ce bloc = qui / rôles / contrats / risque.
+La chaîne de valeur (bloc suivant) = ordre du message d’autorisation.
+Les composants SI = où ça tourne dans le SI.
 
 
 ================================================================================
-3. ACTEURS CLÉS
+3. MODÈLE 4 PARTIES — PROGRESSION (1 BLOC = 1 SCHÉMA)
 ================================================================================
-Banque émettrice (Issuer)
-Émet le moyen de paiement, gère le compte / produit porteur, décide en
-général de l’autorisation, porte une part majeure du risque crédit / fraude
-côté porteur.
+1) Porteur ↔ émetteur (contrat produit)
+2) Commerçant ↔ acquéreur (contrat d’acceptation)
+3) Émetteur ↔ scheme ↔ acquéreur (règles / routage / clearing)
+4) Vue globale — modèle 4 parties
+5) Ancrage carte — mêmes rôles, instruments concrets (carte + TPE)
+   → écho évolution cash → carte ; préparer le parallèle mobile / wallet
+6) + Satellites — device, PSP, wallet
 
-Banque acquéreuse (Acquirer)
-Contractualise le commerçant (ou via intermédiaires), reçoit les opérations
-d’acceptation, route vers le réseau, crédite le marchand selon contrat.
+Cœur (traits pleins)
+- Porteur ↔ Issuer : contrat produit (carte / compte)
+- Commerçant ↔ Acquirer : contrat d’acceptation
+- Issuer ↔ Scheme ↔ Acquirer : règles, routage, clearing
 
-Réseaux / schemes (Visa, Mastercard…)
-Règles du jeu, marques, routage, clearing entre participants, standards
-opérationnels. Ni « la banque du client » ni « la banque du commerçant ».
+Satellites (traits pointillés)
+- Wallet → porteur : canal (détail technique J4)
+- Device → commerçant : point d’entrée physique
+- PSP → acquéreur / façade d’acceptation : gateway, APIs ; acquiring selon montage
 
-Fintechs & PSP (Payment Service Providers)
-Agrègent l’acceptation, exposent des APIs / gateways, peuvent porter tout ou
-partie de l’acquiring selon licence et montage.
+Pour chaque acteur au clic : rôle + ce qu’il ne fait pas
+(ex. scheme ne décide pas l’autorisation).
 
-Constructeurs de devices
-Terminaux POS, pinpads, mPOS — certification, hardware sécurisé, point
-d’entrée physique du flux.
-
-Wallet providers
-Apple Pay, Google Pay… acteurs de l’écosystème dès J1 ; mécanique interne
-(token, SE/HCE) = J4. Ici : rôle d’acteur seulement.
-
-EMVCo (introduction)
-Organisation qui pilote des spécifications structurantes (dont EMV) pour
-l’interopérabilité et la sécurité des paiements basés carte / contactless —
-à citer comme repère de standards, sans cours EMV complet.
+Oral : après la vue abstraite, figer le modèle carte (socle SI), puis montrer
+que mobile / wallet / PSP s’y branchent sans changer qui décide.
 
 
 ================================================================================
@@ -84,25 +84,35 @@ l’interopérabilité et la sécurité des paiements basés carte / contactless
 
 
 ================================================================================
-5. CAS PRATIQUES
+5. CAS PRATIQUES (MINI-SCÉNARIOS)
 ================================================================================
-Cas 1 — Paiement carte magasin
-Qui est issuer, acquirer, scheme, device ? Faire placer 4 étiquettes.
+Cas 1 — Proximité magasin
+Situation : paiement carte en magasin, sans PSP.
+Consigne : placer issuer, acquirer, scheme, device.
 
-Cas 2 — Paiement e-com via PSP
-Où s’insère le PSP par rapport à l’acquéreur et au commerçant ?
+Cas 2 — E-com via PSP
+Situation : checkout fourni par un PSP.
+Consigne : situer PSP vs commerçant vs acquéreur.
 
 Cas 3 — Banque universelle
-Lister les casquettes possibles (issuer, acquirer, éventuellement PSP interne).
+Situation : même enseigne issuer + acquirer.
+Consigne : deux casquettes, deux logiques de risque / SI.
 
 Cas 4 — Wallet (teaser)
-Le wallet provider remplace-t-il l’émetteur ? Non — il s’ajoute ; détail J4.
+Situation : Apple Pay / Google Pay au magasin.
+Consigne : le wallet s’ajoute ; l’émetteur reste décideur (token = J4).
 
 
 ================================================================================
-6. CHECK DE FIN
+6. PONT EMVCo
 ================================================================================
-[ ] Issuer / acquirer / scheme distingués
-[ ] PSP et device situés
-[ ] Wallet cité comme acteur sans dériver technique
-[ ] EMVCo nommé comme pilote de standards
+Une ligne en fin de bloc : specs communes (EMVCo…) pour l’interopérabilité —
+sans cours EMV ; on y revient via canaux / standards.
+
+
+================================================================================
+7. CHECK DE FIN
+================================================================================
+[ ] Distinguer qui décide / qui route / qui contracte le commerçant
+[ ] Placer un PSP sans le confondre avec l’acquéreur
+[ ] Citer le wallet sans le substituer à l’émetteur

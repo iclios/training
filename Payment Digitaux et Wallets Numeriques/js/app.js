@@ -1,27 +1,35 @@
 const actorCopy = {
+  porteur: {
+    title: "Porteur (client)",
+    text: "Détient le moyen de paiement et initie l’opération. Ne décide pas de l’autorisation : c’est l’émetteur.",
+  },
   emetteur: {
     title: "Banque émettrice (Issuer)",
-    text: "Gère le compte du porteur, décide approve/decline, porte le risque crédit et une grande partie de la fraude côté carte.",
+    text: "Émet le moyen, gère le produit / compte porteur, décide en général approve / decline, porte le risque crédit et une grande part de la fraude côté porteur. Ne contracte pas le commerçant.",
+  },
+  commercant: {
+    title: "Commerçant",
+    text: "Accepte le paiement (magasin, site, app). Contractualise l’acceptation avec un acquéreur (ou via un PSP). Ne route pas vers l’émetteur et ne décide pas l’autorisation.",
   },
   acquereur: {
     title: "Banque acquéreuse (Acquirer)",
-    text: "Agrège les marchands, reçoit les demandes depuis le terminal / PSP, crédite le commerçant après settlement.",
+    text: "Contractualise le commerçant (directement ou via intermédiaires), reçoit les opérations d’acceptation, route vers le scheme, crédite le marchand selon contrat. Ne décide pas à la place de l’émetteur.",
   },
   reseau: {
-    title: "Réseau / Scheme",
-    text: "Visa, Mastercard… Routage des messages, règles du jeu, clearing entre banques, standards (dont cadre EMVCo).",
+    title: "Scheme / réseau (Visa, Mastercard…)",
+    text: "Règles du jeu, marque, routage des messages, clearing entre participants. Ni la banque du client, ni celle du commerçant — et ce n’est en général pas lui qui « autorise ».",
   },
   psp: {
-    title: "PSP & Fintechs",
-    text: "Payment Service Provider : gateway, acceptation multi-acquéreurs, APIs marchandes. Souvent le premier SI vu par le commerçant.",
+    title: "PSP / Fintech",
+    text: "Façade d’acceptation : gateway, APIs, agrégation. Peut porter tout ou partie de l’acquiring selon licence et montage — souvent confondu avec l’acquéreur, ce n’est pas toujours exact en droit.",
   },
   device: {
-    title: "Devices / POS",
-    text: "Terminaux de paiement, pinpads, mPOS. Point d’entrée physique du flux — certification et sécurité du hardware comptent.",
+    title: "Device / POS",
+    text: "Point d’entrée physique (POS, pinpad, mPOS) chez le commerçant. Capture et initie ; ne remplace ni l’acquéreur ni l’émetteur.",
   },
   wallet: {
-    title: "Wallet providers",
-    text: "Apple Pay, Google Pay… Acteurs de l’écosystème dès J1 ; leur mécanique interne (token, SE/HCE) est traitée en J4.",
+    title: "Wallet provider",
+    text: "Canal côté porteur (Apple Pay, Google Pay…). S’ajoute à l’écosystème ; ne remplace pas l’émetteur. Mécanique token / SE = Jour 4.",
   },
 };
 
@@ -80,5 +88,10 @@ function bindPanel(selector, map, panelId, attr) {
   });
 }
 
-bindPanel("#diagram-ecosystem", actorCopy, "actor-detail", "data-node");
+bindPanel("#diagram-issuer", actorCopy, "actor-detail-issuer", "data-node");
+bindPanel("#diagram-acquirer", actorCopy, "actor-detail-acquirer", "data-node");
+bindPanel("#diagram-scheme", actorCopy, "actor-detail-scheme", "data-node");
+bindPanel("#diagram-global", actorCopy, "actor-detail-global", "data-node");
+bindPanel("#diagram-card", actorCopy, "actor-detail-card", "data-node");
+bindPanel("#diagram-satellites", actorCopy, "actor-detail-satellites", "data-node");
 bindPanel("#diagram-chain", chainCopy, "chain-detail", "data-chain");

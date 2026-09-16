@@ -35,8 +35,6 @@
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 1 · Écosystème</span>
-                <span class="tag tag-accent">Bloc formateur</span>
-                <span>25–35 min</span>
               </div>
               <p class="day-kicker">1.2 · Écosystème</p>
               <h1>Acteurs de l’écosystème</h1>
@@ -44,97 +42,432 @@
           </section>
 
           <div class="wrap">
-            <aside class="key-idea">
-              <p class="label">Idée clé — tableau</p>
-              <p>
-                Un paiement carte n’est jamais « une banque seule » : c’est un
-                écosystème d’acteurs avec des rôles distincts et des interfaces
-                obligatoires.
-              </p>
-            </aside>
-
             <section class="section" style="border-top: none; padding-top: 0">
               <p class="section-label">Définition</p>
               <h2>Écosystème des paiements digitaux</h2>
-              <p class="intro">
+              <p class="definition-full">
                 Ensemble des parties prenantes qui rendent possible
                 l’émission, l’acceptation, le routage, la compensation et le
                 règlement des opérations — cartes, et au-delà (PSP, wallets,
                 devices).
               </p>
-              <div class="callout">
-                <h3>Ce bloc / les suivants</h3>
-                <p>
-                  Ici = <strong>qui</strong> · Chaîne de valeur =
-                  <strong>dans quel ordre</strong> · Composants SI =
-                  <strong>où ça tourne</strong>.
-                </p>
+              <p class="intro" style="margin-top: 1rem">
+                Un porteur paie chez un commerçant : qui intervient, et qui
+                décide&nbsp;?
+              </p>
+            </section>
+
+            <section class="section" id="schema-issuer">
+              <p class="section-label">1 · Relation</p>
+              <h2>Porteur ↔ banque émettrice</h2>
+              <p class="intro">
+                Premier maillon : le contrat produit (carte / compte). Cliquez
+                un acteur pour le détail. Le wallet viendra plus tard comme
+                canal, pas comme remplacement de l’émetteur.
+              </p>
+              <div class="diagram" id="diagram-issuer">
+                <div class="diagram-header">
+                  <h3>Contrat produit</h3>
+                  <p>Côté porteur — qui détient, qui décide</p>
+                </div>
+                <svg viewBox="0 0 1000 240" role="img" aria-label="Porteur et banque émettrice">
+                  <line x1="280" y1="120" x2="720" y2="120" stroke="#5a6b7c" stroke-width="2.5"/>
+                  <text x="500" y="100" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="600">contrat produit (carte / compte)</text>
+                  <g class="node-hit" data-node="porteur" tabindex="0" role="button" aria-label="Porteur">
+                    <rect x="60" y="75" width="220" height="90" rx="4" fill="#2f4858"/>
+                    <text x="170" y="112" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Porteur</text>
+                    <text x="170" y="136" text-anchor="middle" fill="#c5d3df" font-size="12">détient le moyen (carte)</text>
+                  </g>
+                  <g class="node-hit" data-node="emetteur" tabindex="0" role="button" aria-label="Banque émettrice">
+                    <rect x="720" y="75" width="220" height="90" rx="4" fill="#1e5f8a"/>
+                    <text x="830" y="112" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Banque émettrice</text>
+                    <text x="830" y="136" text-anchor="middle" fill="#c5dceb" font-size="12">Issuer · décide</text>
+                  </g>
+                </svg>
+                <div class="detail-panel" id="actor-detail-issuer" hidden>
+                  <h4></h4>
+                  <p></p>
+                </div>
               </div>
             </section>
 
-            <section class="section" id="schema">
-              <p class="section-label">Carte</p>
-              <h2>Acteurs clés</h2>
+            <section class="section" id="schema-acquirer">
+              <p class="section-label">2 · Relation</p>
+              <h2>Commerçant ↔ banque acquéreuse</h2>
               <p class="intro">
-                Cliquez un acteur pour afficher son rôle.
+                Deuxième maillon : le contrat d’acceptation. Cliquez un acteur
+                pour le détail.
               </p>
-
-              <div class="diagram" id="diagram-ecosystem">
+              <div class="diagram" id="diagram-acquirer">
                 <div class="diagram-header">
-                  <h3>Autour de la transaction</h3>
-                  <p>Standards structurants pilotés notamment via EMVCo</p>
+                  <h3>Contrat d’acceptation</h3>
+                  <p>Côté marchand — qui accepte, qui agrège</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 420"
+                  viewBox="0 0 1000 240"
                   role="img"
-                  aria-label="Acteurs de l écosystème de paiement"
+                  aria-label="Commerçant et banque acquéreuse"
                 >
-                  <rect
-                    x="380"
-                    y="170"
-                    width="240"
-                    height="80"
-                    rx="4"
-                    fill="#0c1b2a"
+                  <line
+                    x1="280"
+                    y1="120"
+                    x2="720"
+                    y2="120"
+                    stroke="#5a6b7c"
+                    stroke-width="2.5"
                   />
                   <text
                     x="500"
-                    y="205"
+                    y="100"
                     text-anchor="middle"
-                    fill="#fff"
-                    font-family="Syne, sans-serif"
-                    font-size="18"
-                    font-weight="700"
+                    fill="#5a6b7c"
+                    font-size="13"
+                    font-weight="600"
                   >
-                    Transaction
+                    contrat d’acceptation
                   </text>
+                  <g
+                    class="node-hit"
+                    data-node="commercant"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Commerçant"
+                  >
+                    <rect
+                      x="60"
+                      y="75"
+                      width="220"
+                      height="90"
+                      rx="4"
+                      fill="#c45c26"
+                    />
+                    <text
+                      x="170"
+                      y="112"
+                      text-anchor="middle"
+                      fill="#fff"
+                      font-family="Syne, sans-serif"
+                      font-size="16"
+                      font-weight="700"
+                    >
+                      Commerçant
+                    </text>
+                    <text
+                      x="170"
+                      y="136"
+                      text-anchor="middle"
+                      fill="#f5d9c8"
+                      font-size="12"
+                    >
+                      magasin / site
+                    </text>
+                  </g>
+                  <g
+                    class="node-hit"
+                    data-node="acquereur"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Banque acquéreuse"
+                  >
+                    <rect
+                      x="720"
+                      y="75"
+                      width="220"
+                      height="90"
+                      rx="4"
+                      fill="#0d9f8a"
+                    />
+                    <text
+                      x="830"
+                      y="112"
+                      text-anchor="middle"
+                      fill="#fff"
+                      font-family="Syne, sans-serif"
+                      font-size="16"
+                      font-weight="700"
+                    >
+                      Banque acquéreuse
+                    </text>
+                    <text
+                      x="830"
+                      y="136"
+                      text-anchor="middle"
+                      fill="#c8f0e8"
+                      font-size="12"
+                    >
+                      Acquirer · marchand
+                    </text>
+                  </g>
+                </svg>
+                <div class="detail-panel" id="actor-detail-acquirer" hidden>
+                  <h4></h4>
+                  <p></p>
+                </div>
+              </div>
+            </section>
+
+            <section class="section" id="schema-scheme">
+              <p class="section-label">3 · Relation</p>
+              <h2>Émetteur ↔ scheme ↔ acquéreur</h2>
+              <p class="intro">
+                Le pont entre les deux banques : règles, routage, clearing. Le
+                scheme ne décide pas l’autorisation.
+              </p>
+              <div class="diagram" id="diagram-scheme">
+                <div class="diagram-header">
+                  <h3>Réseau / scheme</h3>
+                  <p>Qui relie les banques — sans décider à leur place</p>
+                </div>
+                <svg viewBox="0 0 1000 260" role="img" aria-label="Émetteur scheme acquéreur">
+                  <line x1="260" y1="130" x2="390" y2="130" stroke="#3d5a80" stroke-width="2.5"/>
+                  <line x1="610" y1="130" x2="740" y2="130" stroke="#3d5a80" stroke-width="2.5"/>
+                  <text x="500" y="95" text-anchor="middle" fill="#3d5a80" font-size="13" font-weight="600">règles · routage · clearing</text>
+                  <g class="node-hit" data-node="emetteur" tabindex="0" role="button" aria-label="Banque émettrice">
+                    <rect x="40" y="85" width="220" height="90" rx="4" fill="#1e5f8a"/>
+                    <text x="150" y="122" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Banque émettrice</text>
+                    <text x="150" y="146" text-anchor="middle" fill="#c5dceb" font-size="12">Issuer · décide</text>
+                  </g>
+                  <g class="node-hit" data-node="reseau" tabindex="0" role="button" aria-label="Scheme">
+                    <rect x="390" y="85" width="220" height="90" rx="4" fill="#3d5a80"/>
+                    <text x="500" y="122" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Scheme / réseau</text>
+                    <text x="500" y="146" text-anchor="middle" fill="#c5d3e0" font-size="12">Visa, Mastercard…</text>
+                  </g>
+                  <g class="node-hit" data-node="acquereur" tabindex="0" role="button" aria-label="Banque acquéreuse">
+                    <rect x="740" y="85" width="220" height="90" rx="4" fill="#0d9f8a"/>
+                    <text x="850" y="122" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Banque acquéreuse</text>
+                    <text x="850" y="146" text-anchor="middle" fill="#c8f0e8" font-size="12">Acquirer</text>
+                  </g>
+                  <text x="500" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Le scheme relie les deux banques — il ne décide pas l’autorisation</text>
+                </svg>
+                <div class="detail-panel" id="actor-detail-scheme" hidden>
+                  <h4></h4>
+                  <p></p>
+                </div>
+              </div>
+            </section>
+
+            <section class="section" id="schema-global">
+              <p class="section-label">4 · Synthèse</p>
+              <h2>Vue globale — modèle 4 parties</h2>
+              <p class="intro">
+                Les trois relations réunies : qui contracte, qui route, qui
+                décide.
+              </p>
+              <div class="diagram" id="diagram-global">
+                <div class="diagram-header">
+                  <h3>Modèle 4 parties</h3>
+                  <p>Porteur · issuer · commerçant · acquirer · scheme</p>
+                </div>
+                <svg viewBox="0 40 1000 400" role="img" aria-label="Vue globale 4 parties">
+                  <line x1="240" y1="115" x2="760" y2="115" stroke="#5a6b7c" stroke-width="2"/>
+                  <text x="500" y="100" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="600">contrat produit (carte / compte)</text>
+                  <line x1="240" y1="355" x2="760" y2="355" stroke="#5a6b7c" stroke-width="2"/>
+                  <text x="500" y="340" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="600">contrat d’acceptation</text>
+                  <line x1="860" y1="150" x2="580" y2="230" stroke="#3d5a80" stroke-width="2"/>
+                  <line x1="860" y1="320" x2="580" y2="270" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="720" y="200" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="600">règles · routage · clearing</text>
+                  <g class="node-hit" data-node="porteur" tabindex="0" role="button" aria-label="Porteur">
+                    <rect x="40" y="80" width="200" height="70" rx="4" fill="#2f4858"/>
+                    <text x="140" y="110" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="700">Porteur</text>
+                    <text x="140" y="130" text-anchor="middle" fill="#c5d3df" font-size="11">Client · détient le moyen</text>
+                  </g>
+                  <g class="node-hit" data-node="emetteur" tabindex="0" role="button" aria-label="Banque émettrice">
+                    <rect x="760" y="80" width="200" height="70" rx="4" fill="#1e5f8a"/>
+                    <text x="860" y="110" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="700">Banque émettrice</text>
+                    <text x="860" y="130" text-anchor="middle" fill="#c5dceb" font-size="11">Issuer · décide</text>
+                  </g>
+                  <g class="node-hit" data-node="reseau" tabindex="0" role="button" aria-label="Scheme">
+                    <rect x="380" y="210" width="240" height="80" rx="4" fill="#3d5a80"/>
+                    <text x="500" y="242" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Scheme / réseau</text>
+                    <text x="500" y="264" text-anchor="middle" fill="#c5d3e0" font-size="11">Visa, Mastercard… · route</text>
+                  </g>
+                  <g class="node-hit" data-node="commercant" tabindex="0" role="button" aria-label="Commerçant">
+                    <rect x="40" y="320" width="200" height="70" rx="4" fill="#c45c26"/>
+                    <text x="140" y="350" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="700">Commerçant</text>
+                    <text x="140" y="370" text-anchor="middle" fill="#f5d9c8" font-size="11">Acceptation · magasin / site</text>
+                  </g>
+                  <g class="node-hit" data-node="acquereur" tabindex="0" role="button" aria-label="Banque acquéreuse">
+                    <rect x="760" y="320" width="200" height="70" rx="4" fill="#0d9f8a"/>
+                    <text x="860" y="350" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="700">Banque acquéreuse</text>
+                    <text x="860" y="370" text-anchor="middle" fill="#c8f0e8" font-size="11">Acquirer · marchand</text>
+                  </g>
+                </svg>
+                <div class="detail-panel" id="actor-detail-global" hidden>
+                  <h4></h4>
+                  <p></p>
+                </div>
+              </div>
+            </section>
+
+            <section class="section" id="schema-card">
+              <p class="section-label">5 · Ancrage</p>
+              <h2>Le même modèle — avec la carte</h2>
+              <p class="intro">
+                Écho à l’évolution vue avant : le métier SI monétique commence
+                vraiment à la <strong>carte</strong>. Même 4 parties, instruments
+                concrets — ensuite on pourra faire le parallèle mobile / wallet.
+              </p>
+              <div
+                class="hub-evo"
+                style="margin: 0 0 1.25rem; max-width: 28rem"
+                aria-label="Rappel évolution : cash, carte, puis suite"
+              >
+                <figure class="hub-evo-item" style="opacity: 0.45">
+                  <img
+                    src="../img/evolution/evo-cash.png"
+                    alt=""
+                    width="64"
+                    height="64"
+                  />
+                  <figcaption>Cash</figcaption>
+                </figure>
+                <span class="hub-evo-arrow" aria-hidden="true">→</span>
+                <figure class="hub-evo-item">
+                  <img
+                    src="../img/evolution/evo-carte.png"
+                    alt="Étape carte"
+                    width="64"
+                    height="64"
+                  />
+                  <figcaption>Carte</figcaption>
+                </figure>
+                <span class="hub-evo-arrow" aria-hidden="true">→</span>
+                <figure class="hub-evo-item" style="opacity: 0.45">
+                  <img
+                    src="../img/evolution/evo-mobile.png"
+                    alt=""
+                    width="64"
+                    height="64"
+                  />
+                  <figcaption>…suite</figcaption>
+                </figure>
+              </div>
+              <div class="diagram" id="diagram-card">
+                <div class="diagram-header">
+                  <h3>Modèle carte classique</h3>
+                  <p>Carte plastique · TPE / POS · mêmes rôles 4 parties</p>
+                </div>
+                <svg
+                  viewBox="0 40 1000 420"
+                  role="img"
+                  aria-label="Modèle 4 parties avec carte et TPE"
+                >
+                  <line
+                    x1="240"
+                    y1="115"
+                    x2="760"
+                    y2="115"
+                    stroke="#5a6b7c"
+                    stroke-width="2"
+                  />
                   <text
                     x="500"
-                    y="228"
+                    y="100"
                     text-anchor="middle"
-                    fill="#9db0c2"
+                    fill="#5a6b7c"
                     font-size="12"
+                    font-weight="600"
                   >
-                    paiement digital / carte
+                    contrat produit — carte / compte
                   </text>
-
+                  <line
+                    x1="240"
+                    y1="355"
+                    x2="760"
+                    y2="355"
+                    stroke="#5a6b7c"
+                    stroke-width="2"
+                  />
+                  <text
+                    x="500"
+                    y="340"
+                    text-anchor="middle"
+                    fill="#5a6b7c"
+                    font-size="12"
+                    font-weight="600"
+                  >
+                    contrat d’acceptation — TPE / POS
+                  </text>
+                  <line
+                    x1="860"
+                    y1="150"
+                    x2="580"
+                    y2="230"
+                    stroke="#3d5a80"
+                    stroke-width="2"
+                  />
+                  <line
+                    x1="860"
+                    y1="320"
+                    x2="580"
+                    y2="270"
+                    stroke="#3d5a80"
+                    stroke-width="2"
+                  />
+                  <text
+                    x="720"
+                    y="200"
+                    text-anchor="middle"
+                    fill="#3d5a80"
+                    font-size="11"
+                    font-weight="600"
+                  >
+                    règles · routage · clearing
+                  </text>
+                  <g
+                    class="node-hit"
+                    data-node="porteur"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Porteur"
+                  >
+                    <rect
+                      x="40"
+                      y="80"
+                      width="200"
+                      height="70"
+                      rx="4"
+                      fill="#2f4858"
+                    />
+                    <text
+                      x="140"
+                      y="108"
+                      text-anchor="middle"
+                      fill="#fff"
+                      font-family="Syne, sans-serif"
+                      font-size="15"
+                      font-weight="700"
+                    >
+                      Porteur
+                    </text>
+                    <text
+                      x="140"
+                      y="130"
+                      text-anchor="middle"
+                      fill="#c5d3df"
+                      font-size="11"
+                    >
+                      détient la carte plastique
+                    </text>
+                  </g>
                   <g
                     class="node-hit"
                     data-node="emetteur"
                     tabindex="0"
                     role="button"
+                    aria-label="Banque émettrice"
                   >
                     <rect
-                      x="40"
-                      y="40"
+                      x="760"
+                      y="80"
                       width="200"
                       height="70"
                       rx="4"
                       fill="#1e5f8a"
                     />
                     <text
-                      x="140"
-                      y="72"
+                      x="860"
+                      y="108"
                       text-anchor="middle"
                       fill="#fff"
                       font-family="Syne, sans-serif"
@@ -144,61 +477,97 @@
                       Banque émettrice
                     </text>
                     <text
-                      x="140"
-                      y="92"
+                      x="860"
+                      y="130"
                       text-anchor="middle"
                       fill="#c5dceb"
                       font-size="11"
                     >
-                      Issuer
+                      émet la carte · décide
                     </text>
                   </g>
-
                   <g
                     class="node-hit"
                     data-node="reseau"
                     tabindex="0"
                     role="button"
+                    aria-label="Scheme"
                   >
                     <rect
-                      x="400"
-                      y="40"
-                      width="200"
-                      height="70"
+                      x="380"
+                      y="210"
+                      width="240"
+                      height="80"
                       rx="4"
                       fill="#3d5a80"
                     />
                     <text
                       x="500"
-                      y="72"
+                      y="242"
+                      text-anchor="middle"
+                      fill="#fff"
+                      font-family="Syne, sans-serif"
+                      font-size="16"
+                      font-weight="700"
+                    >
+                      Scheme / réseau
+                    </text>
+                    <text
+                      x="500"
+                      y="264"
+                      text-anchor="middle"
+                      fill="#c5d3e0"
+                      font-size="11"
+                    >
+                      Visa, Mastercard… · rail carte
+                    </text>
+                  </g>
+                  <g
+                    class="node-hit"
+                    data-node="commercant"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Commerçant"
+                  >
+                    <rect
+                      x="40"
+                      y="320"
+                      width="200"
+                      height="70"
+                      rx="4"
+                      fill="#c45c26"
+                    />
+                    <text
+                      x="140"
+                      y="350"
                       text-anchor="middle"
                       fill="#fff"
                       font-family="Syne, sans-serif"
                       font-size="15"
                       font-weight="700"
                     >
-                      Réseau / Scheme
+                      Commerçant
                     </text>
                     <text
-                      x="500"
-                      y="92"
+                      x="140"
+                      y="370"
                       text-anchor="middle"
-                      fill="#c5d3e0"
+                      fill="#f5d9c8"
                       font-size="11"
                     >
-                      Visa, Mastercard…
+                      accepte via TPE / POS
                     </text>
                   </g>
-
                   <g
                     class="node-hit"
                     data-node="acquereur"
                     tabindex="0"
                     role="button"
+                    aria-label="Banque acquéreuse"
                   >
                     <rect
                       x="760"
-                      y="40"
+                      y="320"
                       width="200"
                       height="70"
                       rx="4"
@@ -206,7 +575,7 @@
                     />
                     <text
                       x="860"
-                      y="72"
+                      y="350"
                       text-anchor="middle"
                       fill="#fff"
                       font-family="Syne, sans-serif"
@@ -217,249 +586,100 @@
                     </text>
                     <text
                       x="860"
-                      y="92"
+                      y="370"
                       text-anchor="middle"
                       fill="#c8f0e8"
                       font-size="11"
                     >
-                      Acquirer
+                      contrat marchand · route
                     </text>
                   </g>
-
-                  <g
-                    class="node-hit"
-                    data-node="psp"
-                    tabindex="0"
-                    role="button"
+                  <text
+                    x="500"
+                    y="410"
+                    text-anchor="middle"
+                    fill="#5a6b7c"
+                    font-size="12"
                   >
-                    <rect
-                      x="40"
-                      y="310"
-                      width="200"
-                      height="70"
-                      rx="4"
-                      fill="#2f4858"
-                    />
-                    <text
-                      x="140"
-                      y="342"
-                      text-anchor="middle"
-                      fill="#fff"
-                      font-family="Syne, sans-serif"
-                      font-size="15"
-                      font-weight="700"
-                    >
-                      PSP &amp; Fintechs
-                    </text>
-                    <text
-                      x="140"
-                      y="362"
-                      text-anchor="middle"
-                      fill="#c5d3df"
-                      font-size="11"
-                    >
-                      Gateway / agrégation
-                    </text>
-                  </g>
-
-                  <g
-                    class="node-hit"
-                    data-node="device"
-                    tabindex="0"
-                    role="button"
-                  >
-                    <rect
-                      x="400"
-                      y="310"
-                      width="200"
-                      height="70"
-                      rx="4"
-                      fill="#c45c26"
-                    />
-                    <text
-                      x="500"
-                      y="342"
-                      text-anchor="middle"
-                      fill="#fff"
-                      font-family="Syne, sans-serif"
-                      font-size="15"
-                      font-weight="700"
-                    >
-                      Devices / POS
-                    </text>
-                    <text
-                      x="500"
-                      y="362"
-                      text-anchor="middle"
-                      fill="#f5d9c8"
-                      font-size="11"
-                    >
-                      Constructeurs
-                    </text>
-                  </g>
-
-                  <g
-                    class="node-hit"
-                    data-node="wallet"
-                    tabindex="0"
-                    role="button"
-                  >
-                    <rect
-                      x="760"
-                      y="310"
-                      width="200"
-                      height="70"
-                      rx="4"
-                      fill="#087a6a"
-                    />
-                    <text
-                      x="860"
-                      y="342"
-                      text-anchor="middle"
-                      fill="#fff"
-                      font-family="Syne, sans-serif"
-                      font-size="15"
-                      font-weight="700"
-                    >
-                      Wallet providers
-                    </text>
-                    <text
-                      x="860"
-                      y="362"
-                      text-anchor="middle"
-                      fill="#c8f0e8"
-                      font-size="11"
-                    >
-                      Rôle acteur (détail J4)
-                    </text>
-                  </g>
-
-                  <line
-                    x1="500"
-                    y1="110"
-                    x2="500"
-                    y2="170"
-                    stroke="#5a6b7c"
-                    stroke-width="1.5"
-                  />
-                  <line
-                    x1="240"
-                    y1="75"
-                    x2="400"
-                    y2="75"
-                    stroke="#5a6b7c"
-                    stroke-width="1.5"
-                  />
-                  <line
-                    x1="600"
-                    y1="75"
-                    x2="760"
-                    y2="75"
-                    stroke="#5a6b7c"
-                    stroke-width="1.5"
-                  />
-                  <line
-                    x1="140"
-                    y1="310"
-                    x2="420"
-                    y2="250"
-                    stroke="#5a6b7c"
-                    stroke-width="1.5"
-                    stroke-dasharray="4 4"
-                  />
-                  <line
-                    x1="500"
-                    y1="310"
-                    x2="500"
-                    y2="250"
-                    stroke="#5a6b7c"
-                    stroke-width="1.5"
-                    stroke-dasharray="4 4"
-                  />
-                  <line
-                    x1="860"
-                    y1="310"
-                    x2="580"
-                    y2="250"
-                    stroke="#5a6b7c"
-                    stroke-width="1.5"
-                    stroke-dasharray="4 4"
-                  />
+                    Socle carte — mobile et wallet s’y branchent ensuite (même
+                    rôles)
+                  </text>
                 </svg>
-                <div class="detail-panel" id="actor-detail" hidden>
+                <div class="detail-panel" id="actor-detail-card" hidden>
                   <h4></h4>
                   <p></p>
                 </div>
               </div>
             </section>
 
-            <section class="section">
-              <p class="section-label">Rôles</p>
-              <h2>Ce que chacun porte</h2>
-              <ul class="topic-list">
-                <li>
-                  <strong>Issuer</strong> — moyen de paiement, compte porteur,
-                  décision d’autorisation, risque côté porteur
-                </li>
-                <li>
-                  <strong>Acquirer</strong> — relation commerçant, réception des
-                  opérations, crédit marchand selon contrat
-                </li>
-                <li>
-                  <strong>Scheme</strong> — règles, marque, routage, clearing
-                  entre participants
-                </li>
-                <li>
-                  <strong>PSP / fintech</strong> — acceptation agrégée, APIs ;
-                  acquiring selon montage / licence
-                </li>
-                <li>
-                  <strong>Devices</strong> — POS / mPOS, certification hardware
-                </li>
-                <li>
-                  <strong>Wallet providers</strong> — acteur de l’écosystème ;
-                  mécanique token / SE = J4
-                </li>
-              </ul>
-              <div class="callout">
-                <h3>EMVCo</h3>
-                <p>
-                  Repère de spécifications structurantes (dont EMV) pour
-                  l’interopérabilité et la sécurité — introduction, pas un
-                  cours EMV complet.
-                </p>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Ancrage</p>
-              <h2>Cas pratiques</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>Cas 1 — Paiement proximité</h3>
-                  <ul>
-                    <li>Placer issuer, acquirer, scheme, device</li>
-                  </ul>
+            <section class="section" id="schema-satellites">
+              <p class="section-label">6 · Satellites</p>
+              <h2>Device, PSP, wallet</h2>
+              <p class="intro">
+                L’évolution continue : ces acteurs s’ajoutent au modèle carte —
+                ils ne remplacent pas issuer / acquirer / scheme.
+              </p>
+              <div class="diagram" id="diagram-satellites">
+                <div class="diagram-header">
+                  <h3>Vue globale + satellites</h3>
+                  <p>Pointillés = ajouts (canal, point d’entrée, façade)</p>
                 </div>
-                <div class="panel">
-                  <h3>Cas 2 — E-com via PSP</h3>
-                  <ul>
-                    <li>Où s’insère le PSP vs acquéreur / commerçant&nbsp;?</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="split-2">
-                <div class="panel">
-                  <h3>Cas 3 — Banque universelle</h3>
-                  <ul>
-                    <li>Casquettes issuer et/ou acquirer possibles</li>
-                  </ul>
-                </div>
-                <div class="panel ko">
-                  <h3>Cas 4 — Wallet (teaser)</h3>
-                  <ul>
-                    <li>Le wallet ne remplace pas l’émetteur — il s’ajoute</li>
-                  </ul>
+                <svg viewBox="0 0 1000 560" role="img" aria-label="Vue globale avec satellites">
+                  <line x1="240" y1="115" x2="760" y2="115" stroke="#5a6b7c" stroke-width="2"/>
+                  <text x="500" y="100" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="600">contrat produit (carte / compte)</text>
+                  <line x1="240" y1="355" x2="760" y2="355" stroke="#5a6b7c" stroke-width="2"/>
+                  <text x="500" y="340" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="600">contrat d’acceptation</text>
+                  <line x1="860" y1="150" x2="580" y2="230" stroke="#3d5a80" stroke-width="2"/>
+                  <line x1="860" y1="320" x2="580" y2="270" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="720" y="200" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="600">règles · routage · clearing</text>
+                  <line x1="140" y1="70" x2="140" y2="40" stroke="#087a6a" stroke-width="1.5" stroke-dasharray="4 4"/>
+                  <line x1="140" y1="390" x2="140" y2="450" stroke="#c45c26" stroke-width="1.5" stroke-dasharray="4 4"/>
+                  <line x1="860" y1="390" x2="860" y2="450" stroke="#2f4858" stroke-width="1.5" stroke-dasharray="4 4"/>
+                  <g class="node-hit" data-node="wallet" tabindex="0" role="button" aria-label="Wallet">
+                    <rect x="40" y="10" width="200" height="55" rx="4" fill="#087a6a"/>
+                    <text x="140" y="35" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Wallet provider</text>
+                    <text x="140" y="52" text-anchor="middle" fill="#c8f0e8" font-size="11">canal porteur · détail J4</text>
+                  </g>
+                  <g class="node-hit" data-node="porteur" tabindex="0" role="button" aria-label="Porteur">
+                    <rect x="40" y="80" width="200" height="70" rx="4" fill="#2f4858"/>
+                    <text x="140" y="110" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="700">Porteur</text>
+                    <text x="140" y="130" text-anchor="middle" fill="#c5d3df" font-size="11">Client · détient le moyen</text>
+                  </g>
+                  <g class="node-hit" data-node="emetteur" tabindex="0" role="button" aria-label="Banque émettrice">
+                    <rect x="760" y="80" width="200" height="70" rx="4" fill="#1e5f8a"/>
+                    <text x="860" y="110" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="700">Banque émettrice</text>
+                    <text x="860" y="130" text-anchor="middle" fill="#c5dceb" font-size="11">Issuer · décide</text>
+                  </g>
+                  <g class="node-hit" data-node="reseau" tabindex="0" role="button" aria-label="Scheme">
+                    <rect x="380" y="210" width="240" height="80" rx="4" fill="#3d5a80"/>
+                    <text x="500" y="242" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Scheme / réseau</text>
+                    <text x="500" y="264" text-anchor="middle" fill="#c5d3e0" font-size="11">Visa, Mastercard… · route</text>
+                  </g>
+                  <g class="node-hit" data-node="commercant" tabindex="0" role="button" aria-label="Commerçant">
+                    <rect x="40" y="320" width="200" height="70" rx="4" fill="#c45c26"/>
+                    <text x="140" y="350" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="700">Commerçant</text>
+                    <text x="140" y="370" text-anchor="middle" fill="#f5d9c8" font-size="11">Acceptation · magasin / site</text>
+                  </g>
+                  <g class="node-hit" data-node="acquereur" tabindex="0" role="button" aria-label="Banque acquéreuse">
+                    <rect x="760" y="320" width="200" height="70" rx="4" fill="#0d9f8a"/>
+                    <text x="860" y="350" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="700">Banque acquéreuse</text>
+                    <text x="860" y="370" text-anchor="middle" fill="#c8f0e8" font-size="11">Acquirer · marchand</text>
+                  </g>
+                  <g class="node-hit" data-node="device" tabindex="0" role="button" aria-label="Device">
+                    <rect x="40" y="455" width="200" height="55" rx="4" fill="#2f4858"/>
+                    <text x="140" y="480" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Device / POS</text>
+                    <text x="140" y="497" text-anchor="middle" fill="#c5d3df" font-size="11">point d’entrée physique</text>
+                  </g>
+                  <g class="node-hit" data-node="psp" tabindex="0" role="button" aria-label="PSP">
+                    <rect x="760" y="455" width="200" height="55" rx="4" fill="#2f4858"/>
+                    <text x="860" y="480" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">PSP / Fintech</text>
+                    <text x="860" y="497" text-anchor="middle" fill="#c5d3df" font-size="11">façade d’acceptation</text>
+                  </g>
+                  <text x="500" y="545" text-anchor="middle" fill="#5a6b7c" font-size="11">Satellites : s’ajoutent au modèle, ne remplacent pas issuer / acquirer / scheme</text>
+                </svg>
+                <div class="detail-panel" id="actor-detail-satellites" hidden>
+                  <h4></h4>
+                  <p></p>
                 </div>
               </div>
             </section>
@@ -472,17 +692,88 @@
               </p>
             </div>
 
+            <section class="section">
+              <p class="section-label">Ancrage</p>
+              <h2>Cas pratiques</h2>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Cas 1 — Proximité magasin</h3>
+                  <p>
+                    Un client paie en magasin avec sa carte bancaire. Pas de
+                    PSP dans le montage.
+                  </p>
+                  <ul>
+                    <li>
+                      Placez issuer, acquirer, scheme et device sur le schéma
+                    </li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Cas 2 — E-com via PSP</h3>
+                  <p>
+                    Un site marchand envoie le client vers un checkout fourni
+                    par un PSP (Stripe, Adyen…).
+                  </p>
+                  <ul>
+                    <li>
+                      Où se place le PSP par rapport au commerçant et à
+                      l’acquéreur&nbsp;?
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="split-2">
+                <div class="panel">
+                  <h3>Cas 3 — Banque universelle</h3>
+                  <p>
+                    La même enseigne bancaire émet la carte du client et
+                    acquiert le commerçant.
+                  </p>
+                  <ul>
+                    <li>
+                      Deux casquettes, deux logiques de risque / SI — à
+                      distinguer
+                    </li>
+                  </ul>
+                </div>
+                <div class="panel ko">
+                  <h3>Cas 4 — Wallet (teaser)</h3>
+                  <p>
+                    Le porteur paie avec Apple Pay / Google Pay au même
+                    magasin.
+                  </p>
+                  <ul>
+                    <li>
+                      Le wallet s’ajoute : l’émetteur reste le décideur
+                      (mécanique token = J4)
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <p class="intro">
+              Ces acteurs s’appuient sur des spécifications communes (dont
+              celles pilotées via <strong>EMVCo</strong>) pour
+              l’interopérabilité — on y reviendra via les canaux et les
+              standards.
+            </p>
+
             <details class="trainer-notes">
               <summary>Notes formateur</summary>
               <div class="notes-body">
                 <ul>
                   <li>
-                    Faire coller des post-its « issuer / acquirer / scheme /
-                    PSP » sur un cas réel de la salle
+                    Faire coller des post-its issuer / acquirer / scheme / PSP
+                    sur un cas réel de la salle
                   </li>
                   <li>
                     Demander qui, dans leur organigramme, parle au scheme vs au
                     PSP
+                  </li>
+                  <li>
+                    Insister sur le schéma 4 parties avant d’ajouter les
+                    satellites
                   </li>
                 </ul>
               </div>
@@ -491,10 +782,13 @@
             <div class="check-end">
               <h3>Check de fin de bloc</h3>
               <ul>
-                <li>Issuer / acquirer / scheme distingués</li>
-                <li>PSP et device situés</li>
-                <li>Wallet cité sans dériver technique</li>
-                <li>EMVCo nommé comme pilote de standards</li>
+                <li>
+                  Distinguer qui décide, qui route, qui contracte le commerçant
+                </li>
+                <li>Placer un PSP sans le confondre avec l’acquéreur</li>
+                <li>
+                  Citer le wallet sans le substituer à l’émetteur
+                </li>
               </ul>
             </div>
 
