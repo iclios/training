@@ -476,17 +476,25 @@ svg {
 
 .node-hit {
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: filter 0.2s, opacity 0.2s;
 }
 
 .node-hit:hover,
 .node-hit.is-active {
-  filter: brightness(1.05);
+  filter: drop-shadow(0 6px 14px rgba(30, 60, 90, 0.16));
+}
+
+.node-hit.is-active rect:first-of-type {
+  stroke-width: 3;
 }
 
 .node-hit:focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline-offset: 3px;
+}
+
+.node-hit image {
+  pointer-events: none;
 }
 
 .detail-panel {
