@@ -2,117 +2,79 @@ BLOC — FORMATEUR
 Cours : Paiements digitaux & Wallets numériques
 Jour 1 · Flux transactionnel carte
 Bloc : Clearing
-Durée indicative : 20–30 min
+Durée indicative : 25–35 min
 Précédent : Authentification · Suivant : Settlement
-Sources normes : à affiner (règles scheme, formats de compensation, calendriers…)
+Sources : règles scheme · STET / CORE(FR) · single vs dual message
 
 
 ================================================================================
 1. MÉTA FORMATEUR
 ================================================================================
-Objectif pédagogique
-À la fin du bloc, les participants définissent le clearing au sens monétique,
-le distinguent de l’autorisation et du settlement, et décrivent son rôle
-dans la chaîne post-transaction.
+Objectif
+Définir le clearing, situer Auth → Clearing → Settlement, distinguer single /
+dual message, expliquer « qui doit qui » et le rôle d’une chambre (ex. STET).
 
 Idée clé
-« Le clearing, c’est la compensation des opérations : on échange et on
-rapproche ce qui a été autorisé pour préparer le règlement — ce n’est pas
-encore le mouvement d’argent final entre banques. »
+« Le clearing, c’est la compensation entre banques : qui doit qui — pas le
+paiement du commerçant, pas encore le settlement. »
 
 Posture
-1) Définition monétique
-2) Place après l’autorisation
-3) Acteurs et flux
-4) Cas pratiques
+1) Définition + intention
+2) Situer (bandeau)
+3) Single vs dual message
+4) Schéma acteurs + créance + chambre (STET)
+5) Rôle + cas
 
 
 ================================================================================
-2. DÉFINITION MONÉTIQUE
+2. DÉFINITION
 ================================================================================
-Clearing (compensation)
-Processus par lequel les opérations de paiement (typiquement déjà
-autorisées) sont échangées, présentées et compensées entre les parties
-concernées (acquéreur, émetteur, via le réseau / scheme), afin d’établir
-les positions à régler.
-
-En monétique carte, le clearing intervient en général après l’autorisation
-(chemin online), sur un rythme souvent différé (fichiers / cycles scheme),
-même si des mécanismes plus fréquents existent selon les environnements.
-
-Ce que le clearing produit
-- Présentation / échange des opérations entre établissements
-- Calcul / établissement de positions nettes ou brutes à régler
-- Base informationnelle pour le settlement
+Compensation des opérations (souvent déjà autorisées) entre acquéreur et
+émetteur via scheme / chambre → positions à régler.
 
 
 ================================================================================
-3. DISTINCTIONS
+3. SINGLE vs DUAL MESSAGE (2 schémas + seq-steps)
 ================================================================================
-≠ Autorisation
-L’autorisation = accord temps réel de l’émetteur sur une opération.
-Le clearing = traitement de compensation des opérations dans le cycle
-interbancaire / scheme.
+Dual message
+Message 1 = autorisation (demande/réponse) — pas encore de clearing
+… délai (capture / batch) …
+Message 2 = présentation / compensation
 
-≠ Settlement
-Le settlement = règlement effectif des positions (l’argent bouge entre
-institutions). Le clearing prépare / calcule ; le settlement exécute le
-règlement.
+Single message
+Un message = autorisation + demande de compensation
+Décision engendre déjà l’effet clearing (selon règles)
+Ex. : certains DAB / flux financial
 
-Formulation tableau
-Autorisation → « Est-ce accepté ? »
-Clearing → « Que doit-on se compenser ? »
-Settlement → « On règle les positions. »
+Point clé : dual → auth OK sans capture peut ne jamais clear ; single →
+l’auth fait déjà l’objet d’une demande en compensation.
 
 
 ================================================================================
-4. SCHÉMA / LOGIQUE
+4. CRÉANCES INTERBANCAIRES + CHAMBRE
 ================================================================================
-Opérations autorisées (acquiring)
-  → Remise / présentation au scheme (ou mécanisme de compensation)
-    → Échange avec les émetteurs concernés
-      → Résultat : positions de clearing
-        → Entrée du settlement
+Schéma 1 — « Créances interbancaires »
+Porteur / commerçant → émetteur doit à acquéreur → chambre
 
-Points formateur
-- Souvent batch / cycles (T+1 typique en pédagogie, calendriers réels variables)
-- Le scheme joue un rôle central de règles et de formats
-- Acquéreur et émetteur ont chacun une vue SI (fichiers reçus / émis, rejets
-  de clearing)
+Schéma 2 — Intérieur chambre (banques illustrées)
+Banques A–D → hub STET/CORE → Réception → Netting → Positions
 
+Schéma 3 — Cas domestique (chambre locale, ex. STET)
+Schéma 4 — Cas international (scheme Visa / Mastercard…)
 
-================================================================================
-5. REJETS & QUALITÉ DE DONNÉES
-================================================================================
-Une opération autorisée peut encore poser problème au clearing
-(données, délais, règles de présentation…).
-Distinguer :
-- decline d’autorisation (temps réel)
-- rejet / exception de clearing (post-transaction)
-
-Cas utile pour les profils back-office monétique.
+Tableau — exemples Afrique / Europe / Amériques (STET, GIM-UEMOA,
+GIMAC, BankservAfrica, NIBSS, PAPSS, EBA, FedACH, TCH…)
+Note : ACH ≠ toujours carte — contextualiser.
 
 
 ================================================================================
-6. CAS PRATIQUES
+5. CAS + CHECK
 ================================================================================
-Cas 1 — Journée marchand
-Plusieurs autorisations OK en journée → remise clearing → positions.
-Faire dire : le commerçant n’est pas « payé » au clearing, la compensation
-est entre établissements.
+Cas 1 — Journée marchand (pas « payé » au clearing)
+Cas 2 — Anomalie clearing ≠ carte refusée
+Cas 3 — Banque duale
 
-Cas 2 — Autorisé puis anomalie clearing
-Auth OK ; problème à la présentation / compensation.
-Diagnostic ≠ « la carte a été refusée ».
-
-Cas 3 — Banque duale (issuer + acquirer)
-Deux SI / deux files : outgoing acquiring vs incoming issuing.
-Qui lit quoi dans votre organisation ?
-
-
-================================================================================
-7. CHECK DE FIN
-================================================================================
-[ ] Clearing défini sans le confondre avec settlement
-[ ] Place après autorisation comprise
-[ ] Un cas anomalie clearing vs decline auth maîtrisé
+[ ] Clearing ≠ settlement
+[ ] Single vs dual
+[ ] Qui doit qui + STET
+[ ] Anomalie ≠ decline

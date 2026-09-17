@@ -23,333 +23,298 @@
     </header>
 
     <div class="fiche-shell">
-      <aside
-        id="bloc-sidebar"
-        class="bloc-sidebar"
-        aria-label="Navigation des blocs"
-      ></aside>
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
 
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta">
-                <span class="tag">Jour 1 · Flux carte</span>
-              </div>
-              <p class="day-kicker">1.4 · Flux transactionnel</p>
-              <h1>Settlement</h1>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 1 · Flux carte</span>
+          </div>
+          <p class="day-kicker">1.4 · Flux transactionnel</p>
+          <h1>Settlement</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <!-- Définition -->
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition monétique</p>
+          <h2>Qu’est-ce que le settlement&nbsp;?</h2>
+          <p class="definition-full">
+            Processus par lequel les <strong>positions</strong> établies lors
+            du clearing sont <strong>réglées</strong> entre les parties
+            (comptes de règlement, agents de règlement, mécanismes scheme /
+            interbancaires), de sorte que les obligations financières
+            correspondantes sont éteintes.
+          </p>
+          <p class="intro" style="margin-top: 1.1rem">
+            Après le clearing&nbsp;: on <strong>exécute le règlement</strong>
+            des positions.
+          </p>
+        </section>
+
+        <!-- Situation chaîne post-transaction -->
+        <section class="section">
+          <p class="section-label">Chaîne post-transaction</p>
+          <h2>Où se situe le settlement&nbsp;?</h2>
+          <p class="intro">
+            Trois temps distincts — le settlement est l’étape mise en évidence.
+          </p>
+
+          <div class="diagram" id="diagram-post-tx">
+            <div class="diagram-header">
+              <h3>Autorisation → Clearing → Settlement</h3>
+              <p>Simplifié · étape 3 = ce bloc</p>
             </div>
-          </section>
+            <svg
+              viewBox="0 0 1000 200"
+              role="img"
+              aria-label="Chaîne post-transaction avec settlement mis en évidence"
+            >
+              <line x1="248" y1="80" x2="292" y2="80" stroke="#5a6b7c" stroke-width="2"/>
+              <line x1="540" y1="80" x2="584" y2="80" stroke="#5a6b7c" stroke-width="2"/>
+              <g>
+                <rect x="40" y="32" width="208" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <text x="144" y="72" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">1 · Autorisation</text>
+                <text x="144" y="96" text-anchor="middle" fill="#5a6b7c" font-size="12">accord émetteur</text>
+              </g>
+              <g>
+                <rect x="292" y="32" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <text x="416" y="72" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">2 · Clearing</text>
+                <text x="416" y="96" text-anchor="middle" fill="#5a6b7c" font-size="12">compensation · précédent</text>
+              </g>
+              <g>
+                <rect x="584" y="28" width="248" height="104" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <text x="708" y="72" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">3 · Settlement</text>
+                <text x="708" y="98" text-anchor="middle" fill="#0d9f8a" font-size="12" font-weight="700">règlement · ce bloc</text>
+              </g>
+              <text x="500" y="175" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Le clearing a calculé les positions — ici on les règle
+              </text>
+            </svg>
+          </div>
+        </section>
 
-          <div class="wrap">
+        <!-- Schéma -->
+        <section class="section" id="schema">
+          <p class="section-label">Règlement</p>
+          <h2>Des positions au soldé</h2>
+          <p class="intro">
+            Positions → instructions → comptes de settlement → soldé. Le crédit
+            marchand suit le contrat acquéreur / PSP (hors hop interbancaire).
+          </p>
 
-            <section class="section" style="border-top: none; padding-top: 0">
-              <p class="section-label">Définition monétique</p>
-              <h2>Qu’est-ce que le settlement&nbsp;?</h2>
-              <p class="intro">
-                Processus par lequel les <strong>positions</strong> établies
-                lors du clearing sont <strong>réglées</strong> entre les
-                parties (comptes de règlement, agents de règlement, mécanismes
-                scheme / interbancaires), de sorte que les obligations
-                financières correspondantes sont éteintes.
-              </p>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>Clearing</h3>
-                  <ul>
-                    <li>« Que doit-on se compenser&nbsp;? »</li>
-                    <li>Échange / présentation / positions</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Settlement</h3>
-                  <ul>
-                    <li>« On exécute le règlement. »</li>
-                    <li>Positions soldées entre institutions</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
+          <div class="diagram">
+            <div class="diagram-header">
+              <h3>Chaîne de settlement</h3>
+              <p>Positions · Instructions · Comptes · Soldé</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 240"
+              role="img"
+              aria-label="Flux de settlement monétique"
+            >
+              <defs>
+                <marker id="ah-st" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <rect x="40" y="60" width="180" height="70" rx="4" fill="#3d5a80" />
+              <text x="130" y="90" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Positions clearing</text>
+              <text x="130" y="110" text-anchor="middle" fill="#c5d3e0" font-size="11">netting fréquent</text>
 
-            <section class="section">
-              <p class="section-label">Distinctions</p>
-              <h2>Ce que le settlement n’est pas</h2>
-              <div class="not-list">
-                <div class="not-item">
-                  <strong>≠ Autorisation</strong>
+              <line class="flow-line" x1="220" y1="95" x2="300" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-st)" />
+
+              <rect x="300" y="60" width="200" height="70" rx="4" fill="#1e5f8a" />
+              <text x="400" y="90" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Instructions règlement</text>
+              <text x="400" y="110" text-anchor="middle" fill="#c5dceb" font-size="11">cut-offs · calendriers</text>
+
+              <line class="flow-line" x1="500" y1="95" x2="580" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-st)" />
+
+              <rect x="580" y="60" width="180" height="70" rx="4" fill="#0d9f8a" />
+              <text x="670" y="90" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Comptes settlement</text>
+              <text x="670" y="110" text-anchor="middle" fill="#c8f0e8" font-size="11">banques / agents</text>
+
+              <line class="flow-line" x1="760" y1="95" x2="830" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-st)" />
+
+              <rect x="830" y="60" width="130" height="70" rx="4" fill="#0c1b2a" />
+              <text x="895" y="100" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Soldé</text>
+
+              <text x="500" y="180" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Puis crédit marchand selon contrat acquéreur / PSP (délais propres)
+              </text>
+            </svg>
+
+            <div class="seq-steps" id="settlement-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Positions clearing</strong>
                   <p>
-                    Le OK émetteur n’est pas un virement définitif vers le
-                    commerçant.
+                    Entrée du bloc : soldes issus de la compensation (souvent
+                    netting).
                   </p>
-                </div>
-                <div class="not-item">
-                  <strong>≠ Clearing</strong>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Instructions de règlement</strong>
                   <p>
-                    Le clearing calcule / compense ; le settlement règle les
-                    soldes qui en résultent.
+                    Fichiers / ordres selon cut-offs et calendriers scheme.
                   </p>
-                </div>
-                <div class="not-item">
-                  <strong>≠ Crédit marchand « vécu »</strong>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Comptes de settlement</strong>
                   <p>
-                    Le moment où le commerçant voit les fonds dépend du contrat
-                    acquéreur / PSP — lié au settlement, mais pas identique.
+                    Banques / agents de règlement — l’argent (ou les écritures)
+                    circule entre institutions.
                   </p>
-                </div>
-              </div>
-            </section>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="4">
+                <span class="n">4</span>
+                <span>
+                  <strong>Soldé (+ crédit marchand)</strong>
+                  <p>
+                    Positions éteintes. Crédit commerçant = contrat acquéreur /
+                    PSP, hors hop interbancaire.
+                  </p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              Cut-offs, jours ouvrés, liquidité : incidents propres au
+              settlement — distincts d’un decline d’autorisation.
+            </p>
+          </div>
+        </section>
 
-            <section class="section" id="schema">
-              <p class="section-label">Schéma</p>
-              <h2>Des positions au règlement</h2>
-              <div class="diagram">
-                <div class="diagram-header">
-                  <h3>Chaîne post-transaction</h3>
-                  <p>Clearing → settlement → (crédit marchand selon contrat)</p>
-                </div>
-                <svg
-                  viewBox="0 0 1000 220"
-                  role="img"
-                  aria-label="Flux de settlement monétique"
-                >
-                  <defs>
-                    <marker
-                      id="ah-st"
-                      markerWidth="8"
-                      markerHeight="8"
-                      refX="6"
-                      refY="3"
-                      orient="auto"
-                    >
-                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
-                    </marker>
-                  </defs>
-                  <rect x="40" y="60" width="180" height="70" rx="4" fill="#3d5a80" />
-                  <text
-                    x="130"
-                    y="90"
-                    text-anchor="middle"
-                    fill="#fff"
-                    font-family="Syne, sans-serif"
-                    font-size="14"
-                    font-weight="700"
-                  >
-                    Positions clearing
-                  </text>
-                  <text
-                    x="130"
-                    y="110"
-                    text-anchor="middle"
-                    fill="#c5d3e0"
-                    font-size="11"
-                  >
-                    netting fréquent
-                  </text>
-
-                  <line
-                    class="flow-line"
-                    x1="220"
-                    y1="95"
-                    x2="300"
-                    y2="95"
-                    stroke="#0d9f8a"
-                    stroke-width="2.5"
-                    marker-end="url(#ah-st)"
-                  />
-
-                  <rect x="300" y="60" width="200" height="70" rx="4" fill="#1e5f8a" />
-                  <text
-                    x="400"
-                    y="90"
-                    text-anchor="middle"
-                    fill="#fff"
-                    font-family="Syne, sans-serif"
-                    font-size="14"
-                    font-weight="700"
-                  >
-                    Instructions règlement
-                  </text>
-                  <text
-                    x="400"
-                    y="110"
-                    text-anchor="middle"
-                    fill="#c5dceb"
-                    font-size="11"
-                  >
-                    cut-offs · calendriers
-                  </text>
-
-                  <line
-                    class="flow-line"
-                    x1="500"
-                    y1="95"
-                    x2="580"
-                    y2="95"
-                    stroke="#0d9f8a"
-                    stroke-width="2.5"
-                    marker-end="url(#ah-st)"
-                  />
-
-                  <rect x="580" y="60" width="180" height="70" rx="4" fill="#0d9f8a" />
-                  <text
-                    x="670"
-                    y="90"
-                    text-anchor="middle"
-                    fill="#fff"
-                    font-family="Syne, sans-serif"
-                    font-size="14"
-                    font-weight="700"
-                  >
-                    Comptes settlement
-                  </text>
-                  <text
-                    x="670"
-                    y="110"
-                    text-anchor="middle"
-                    fill="#c8f0e8"
-                    font-size="11"
-                  >
-                    banques / agents
-                  </text>
-
-                  <line
-                    class="flow-line"
-                    x1="760"
-                    y1="95"
-                    x2="830"
-                    y2="95"
-                    stroke="#0d9f8a"
-                    stroke-width="2.5"
-                    marker-end="url(#ah-st)"
-                  />
-
-                  <rect x="830" y="60" width="130" height="70" rx="4" fill="#0c1b2a" />
-                  <text
-                    x="895"
-                    y="100"
-                    text-anchor="middle"
-                    fill="#fff"
-                    font-family="Syne, sans-serif"
-                    font-size="14"
-                    font-weight="700"
-                  >
-                    Soldé
-                  </text>
-
-                  <text
-                    x="500"
-                    y="180"
-                    text-anchor="middle"
-                    fill="#5a6b7c"
-                    font-size="12"
-                  >
-                    Puis crédit marchand selon contrat acquéreur / PSP (délais
-                    propres)
-                  </text>
-                </svg>
-              </div>
-              <div class="callout">
-                <h3>Sensibilisation risque</h3>
-                <p>
-                  Cut-offs, jours ouvrés, liquidité / contrepartie : le
-                  settlement a ses propres incidents — distincts d’un decline
-                  d’autorisation.
-                </p>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">SI banque</p>
-              <h2>Où ça vit chez vous</h2>
-              <div class="split-2">
-                <div class="panel">
-                  <h3>Côté acquiring</h3>
-                  <ul>
-                    <li>Réconciliation auth ↔ clearing ↔ settlement</li>
-                    <li>Lien avec le crédit marchand</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Côté issuing</h3>
-                  <ul>
-                    <li>Imputation porteur / écritures</li>
-                    <li>Positions scheme vs SI interne</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Ancrage</p>
-              <h2>Cas pratiques</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>Cas 1 — Fil rouge J1</h3>
-                  <ul>
-                    <li>Auth OK → clearing OK → settlement</li>
-                    <li>Puis crédit marchand selon contrat</li>
-                    <li>Reposer toute la chronologie</li>
-                  </ul>
-                </div>
-                <div class="panel ko">
-                  <h3>Cas 2 — Settlement en retard</h3>
-                  <ul>
-                    <li>Positions clearing connues</li>
-                    <li>Règlement non abouti (cut-off, incident…)</li>
-                    <li>≠ decline d’autorisation</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="panel" style="margin-top: 1rem">
-                <h3>Cas 3 — Écart de réconciliation</h3>
-                <ul>
-                  <li>Montant autorisé ≠ présenté clearing ≠ réglé / crédité</li>
-                  <li>Placer l’écart sur la chaîne</li>
-                </ul>
-              </div>
-            </section>
-
-            <details class="trainer-notes">
-              <summary>Notes formateur — questions SI</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>
-                    Qui « possède » le settlement : trésorerie, monétique,
-                    back-office cartes&nbsp;?
-                  </li>
-                  <li>Quels cut-offs scheme suivez-vous au quotidien&nbsp;?</li>
-                  <li>
-                    Comment traitez-vous un écart auth / clearing /
-                    settlement&nbsp;?
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Check de fin de bloc</h3>
+        <!-- SI banque -->
+        <section class="section">
+          <p class="section-label">SI banque</p>
+          <h2>Où ça vit chez vous</h2>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Côté acquiring</h3>
               <ul>
-                <li>Settlement = règlement des positions</li>
-                <li>Suite clearing → settlement restituée</li>
-                <li>
-                  Distinction settlement interbancaire vs crédit marchand vécu
-                </li>
-                <li>Chronologie Auth → Clearing → Settlement maîtrisée</li>
+                <li>Réconciliation autorisation ↔ clearing ↔ settlement</li>
+                <li>Lien avec le crédit marchand</li>
               </ul>
             </div>
-
-            <div class="sources-box">
-              <strong>Sources normes / specs</strong> — à affiner : règles de
-              settlement scheme, agents de règlement, calendriers et
-              documentation processeur / banque centrale selon contexte.
+            <div class="panel">
+              <h3>Côté issuing</h3>
+              <ul>
+                <li>Imputation porteur / écritures</li>
+                <li>Positions scheme vs SI interne</li>
+              </ul>
             </div>
-
-            <nav
-              class="bloc-pager"
-              aria-label="Navigation précédent suivant"
-            ></nav>
           </div>
-        </main>
+        </section>
+
+        <!-- Cas pratiques -->
+        <section class="section">
+          <p class="section-label">Ancrage</p>
+          <h2>Cas pratiques</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Cas 1 — Fil rouge J1</h3>
+              <ul>
+                <li>Autorisation OK → clearing OK → settlement</li>
+                <li>Puis crédit marchand selon contrat</li>
+                <li>Reposer toute la chronologie</li>
+              </ul>
+            </div>
+            <div class="panel ko">
+              <h3>Cas 2 — Settlement en retard</h3>
+              <ul>
+                <li>Positions clearing connues</li>
+                <li>Règlement non abouti (cut-off, incident…)</li>
+                <li>≠ decline d’autorisation</li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel" style="margin-top: 1rem">
+            <h3>Cas 3 — Écart de réconciliation</h3>
+            <ul>
+              <li>Montant autorisé ≠ présenté clearing ≠ réglé / crédité</li>
+              <li>Placer l’écart sur la chaîne</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Clarification -->
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que le settlement n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>≠ Autorisation OK</strong>
+              <p>
+                Le OK émetteur n’est pas un virement définitif vers le
+                commerçant.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Clearing</strong>
+              <p>
+                Le clearing calcule / compense ; le settlement règle les soldes
+                qui en résultent.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Crédit marchand « vécu »</strong>
+              <p>
+                Le moment où le commerçant voit les fonds dépend du contrat
+                acquéreur / PSP — lié au settlement, mais pas identique.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <details class="trainer-notes">
+          <summary>Notes formateur — questions SI</summary>
+          <div class="notes-body">
+            <ul>
+              <li>
+                Qui « possède » le settlement : trésorerie, monétique,
+                back-office cartes&nbsp;?
+              </li>
+              <li>Quels cut-offs scheme suivez-vous au quotidien&nbsp;?</li>
+              <li>
+                Comment traitez-vous un écart autorisation / clearing /
+                settlement&nbsp;?
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>Settlement = règlement des positions</li>
+            <li>Suite clearing → settlement restituée</li>
+            <li>
+              Distinction settlement interbancaire vs crédit marchand vécu
+            </li>
+            <li>Chronologie Autorisation → Clearing → Settlement maîtrisée</li>
+          </ul>
+        </div>
+
+        <div class="sources-box">
+          <strong>Sources normes / specs</strong> — à affiner : règles de
+          settlement scheme, agents de règlement, calendriers et
+          documentation processeur / banque centrale selon contexte.
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
 

@@ -12,142 +12,84 @@ Sources normes : à affiner (EMV, 3-D Secure / EMV 3DS, SCA / DSP2…)
 ================================================================================
 Objectif pédagogique
 À la fin du bloc, les participants définissent l’authentification au sens
-monétique / paiement, la distinguent de l’autorisation, et illustrent par
-canal (proximité vs e-commerce) avec des cas simples.
+monétique, la localisent dans le cycle EMV (CVM · étape 4), la distinguent
+de l’autorisation, et illustrent proximité vs e-commerce.
 
 Idée clé
-« Authentification = vérifier que le porteur (ou le dispositif légitime) est
-bien à l’origine de l’opération. Autorisation = accord de l’émetteur sur
-l’opération. »
+« Authentification = légitimité du porteur / device / parcours.
+Autorisation = accord de l’émetteur sur l’opération. »
 
 Posture
-1) Définition monétique
-2) Lien / distinction avec l’autorisation
-3) Mécanismes par canal
-4) Cas pratiques pour ancrer
+1) Définition monétique + intention (légitimité, pas accord financier)
+2) Localiser AuthN dans le cycle EMV (étape 4 · CVM)
+3) AuthN ≠ autorisation (panneaux)
+4) Schéma canaux + seq-steps → cas
 
 
 ================================================================================
 2. DÉFINITION MONÉTIQUE
 ================================================================================
 Authentification (paiement par carte / monétique)
-Ensemble des procédures et mécanismes permettant de s’assurer, avec un niveau
-de confiance adapté au canal et aux règles applicables, que l’opération est
-initiée par le porteur légitime du moyen de paiement (ou via un dispositif /
-parcours reconnu comme tel).
+Ensemble des procédures permettant de s’assurer, avec un niveau de confiance
+adapté au canal, que l’opération est initiée par le porteur légitime du
+moyen de paiement — ou via un dispositif / parcours reconnu comme tel.
 
-Elle porte sur la légitimité du porteur (ou du device / parcours), pas sur
-l’accord financier de l’émetteur — ce dernier relève de l’autorisation.
-
-En pratique, l’authentification peut :
-- précéder la demande d’autorisation
-- l’accompagner (preuves / résultats intégrés au flux)
-- conditionner la poursuite du parcours (échec AuthN → souvent arrêt)
+Intention
+Objet = légitimité du porteur / device / parcours — pas l’accord financier
+de l’émetteur.
 
 
 ================================================================================
-3. DISTINCTION FONDAMENTALE
+3. PLACE DANS LE CYCLE DE VIE EMV
 ================================================================================
-Authentification (AuthN)
-Question : « Est-ce le bon porteur / le bon dispositif ? »
+Schéma illustré — localiser l’étape 4 (ce bloc)
+1. Sélection d’application
+2. Lecture des données
+3. Authentification des données (offline)
+4. Vérification du porteur (CVM · AuthN) ← CE BLOC
+5. Analyse de risque
+6. Autorisation online (AuthZ)
+7. Fin de transaction
 
-Autorisation (AuthZ monétique)
-Question : « L’émetteur accepte-t-il l’opération ? »
-
-Erreurs de vocabulaire à corriger
-- Dire « auth » pour les deux
-- Croire que le PIN « autorise » les fonds (il authentifie ; l’émetteur décide)
-- Fusionner dans les logs SI : échec PIN ≠ decline fonds
-
-
-================================================================================
-4. MÉCANISMES PAR CANAL
-================================================================================
-Proximité (contact / sans contact)
-- Facteur possession : présence du support (carte, mobile wallet)
-- Facteur connaissance : PIN
-- Selon seuils et règles scheme / locales : sans contact sans PIN possible
-- Côté wallet : biométrie device (détail J4)
-
-E-commerce / in-app
-- Parcours d’authentification forte type 3-D Secure (EMV 3DS)
-- Modes challenge (friction) vs frictionless (selon évaluation de risque)
-- Facteurs : savoir / posséder / être
-- Cadre réglementaire (ex. SCA) : teaser — approfondissement conformité plus tard
-
-Message formateur
-Le canal change le comment, pas le pourquoi : établir la confiance sur
-l’origine de l’opération avant ou pendant l’engagement du moyen de paiement.
+Contraste utile : AuthN (étape 4) ≠ autorisation (étape 6).
 
 
 ================================================================================
-5. SCHÉMA À PROJETER
+4. DISTINCTION + CANAUX
 ================================================================================
-Colonne A — Proximité
-Support (+ PIN éventuel) → puis / avec demande d’autorisation
+AuthN : « Est-ce le bon porteur / dispositif ? »
+Autorisation : « L’émetteur accepte-t-il l’opération ? »
 
-Colonne B — E-commerce
-Checkout → parcours d’authentification (ex. 3DS, ACS) → autorisation
+Proximité : possession, PIN, seuils sans contact, biométrie device (J4)
+E-com : 3DS, challenge / frictionless, SCA teaser
 
-Convergence
-Émetteur : décision d’autorisation (bloc précédent)
-
-Acteurs supplémentaires e-com (à nommer sans tout détailler)
-Acquéreur / PSP, directory server, ACS (Access Control Server) côté émetteur
-ou prestataire.
+Schéma : deux parcours → convergence autorisation → accord / refus
+(+ seq-steps)
 
 
 ================================================================================
-6. CAS PRATIQUES
+5. CAS PRATIQUES
 ================================================================================
-Cas 1 — AuthN réussie puis autorisation accordée
-Porteur authentifié ; demande d’autorisation ; émetteur approuve.
-À faire dire : deux étapes, deux résultats.
-
-Cas 2 — Échec d’authentification
-PIN erroné / abandon challenge 3DS / timeout AuthN.
-Parcours stoppé ou refusé ; cause racine = couche authentification.
-
-Cas 3 — AuthN OK, autorisation refusée
-Porteur bien authentifié ; l’émetteur decline (fonds, risque, statut…).
-À faire dire : AuthN ≠ AuthZ.
-
-Cas 4 (optionnel) — Frictionless 3DS
-Authentification réussie sans challenge visible porteur (évaluation risque).
-Toujours une authentification au sens du protocole — pas « pas d’AuthN ».
+Cas 1 — AuthN OK + autorisation accordée (deux étapes, deux résultats)
+Cas 2 — Échec AuthN (PIN / 3DS / timeout) — cause = couche authentification
+Cas 3 — AuthN OK, autorisation refusée — preuve AuthN ≠ autorisation
+Cas 4 (optionnel) — Frictionless 3DS ≠ « pas d’AuthN »
 
 
 ================================================================================
-7. SUCCÈS / ÉCHEC — LECTURE SI
+6. LECTURE SI + CLARIFICATION
 ================================================================================
-Succès
-- Poursuite vers / avec l’autorisation
-- Preuves ou résultats d’AuthN peuvent enrichir le message (niveau specs plus tard)
+Succès AuthN → poursuite vers / avec autorisation
+Échec AuthN → logs authentification, pas seulement codes d’autorisation
+Incident « refusés » : (1) AuthN (2) declines autorisation (3) technique
 
-Échec
-- Expérience = refus / abandon
-- Diagnostic = logs authentification, pas seulement codes d’autorisation
-
-Vigilance incident « paiements refusés »
-Séparer : (1) échecs AuthN (2) declines AuthZ métier (3) incidents techniques
+≠ Autorisation — ne pas dire « auth » pour les deux.
 
 
 ================================================================================
-8. LIEN SI BANQUE
-================================================================================
-Questions
-- Où sont gérés essais PIN / blocages chez vous ?
-- Qui opère l’ACS / le parcours 3DS ?
-- Comment corrélez-vous un refus avec un log AuthN vs une réponse d’autorisation ?
-
-Pont J3 / J4
-SCA, biométrie wallet, device binding — vocabulaire posé ici, détail plus loin.
-
-
-================================================================================
-9. CHECK DE FIN
+7. CHECK DE FIN
 ================================================================================
 [ ] Définition AuthN monétique restituée
-[ ] AuthN ≠ AuthZ verbalisé
+[ ] AuthN localisée EMV (≠ autorisation)
 [ ] Un mécanisme proximité + un e-com cités
-[ ] Au moins un cas (échec AuthN vs decline AuthZ) maîtrisé
+[ ] Cas échec AuthN vs decline d’autorisation maîtrisé

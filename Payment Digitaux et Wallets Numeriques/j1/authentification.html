@@ -23,448 +23,391 @@
     </header>
 
     <div class="fiche-shell">
-      <aside
-        id="bloc-sidebar"
-        class="bloc-sidebar"
-        aria-label="Navigation des blocs"
-      ></aside>
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
 
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta">
-                <span class="tag">Jour 1 · Flux carte</span>
-              </div>
-              <p class="day-kicker">1.4 · Flux transactionnel</p>
-              <h1>Authentification</h1>
-            </div>
-          </section>
-
-          <div class="wrap">
-
-            <section class="section" style="border-top: none; padding-top: 0">
-              <p class="section-label">Définition monétique</p>
-              <h2>Qu’est-ce que l’authentification&nbsp;?</h2>
-              <p class="intro">
-                Ensemble des procédures et mécanismes permettant de s’assurer,
-                avec un niveau de confiance adapté au canal et aux règles
-                applicables, que l’opération est initiée par le
-                <strong>porteur légitime</strong> du moyen de paiement (ou via
-                un dispositif / parcours reconnu comme tel).
-              </p>
-              <ul class="topic-list">
-                <li>
-                  <strong>Objet</strong> — légitimité du porteur / du device /
-                  du parcours — pas l’accord financier de l’émetteur
-                </li>
-                <li>
-                  <strong>Place dans le flux</strong> — peut précéder,
-                  accompagner ou conditionner l’autorisation
-                </li>
-                <li>
-                  <strong>Échec</strong> — entraîne souvent l’arrêt du parcours
-                  (sans se confondre avec un decline « fonds »)
-                </li>
-                <li>
-                  <strong>Niveau de confiance</strong> — dépend du canal, du
-                  risque et du cadre applicable (scheme, régulation…)
-                </li>
-              </ul>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Distinction</p>
-              <h2>Authentification ≠ autorisation</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>Authentification (AuthN)</h3>
-                  <ul>
-                    <li>« Est-ce le bon porteur / le bon dispositif&nbsp;? »</li>
-                    <li>PIN, 3-D Secure, biométrie device…</li>
-                  </ul>
-                </div>
-                <div class="panel ko">
-                  <h3>Autorisation (AuthZ monétique)</h3>
-                  <ul>
-                    <li>« L’émetteur accepte-t-il l’opération&nbsp;? »</li>
-                    <li>Demande / réponse d’autorisation (bloc précédent)</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="callout warn">
-                <h3>Vocabulaire à corriger en salle</h3>
-                <p>
-                  Ne pas dire « auth » pour les deux · le PIN n’« autorise »
-                  pas les fonds · échec PIN ≠ decline disponible insuffisant
-                  dans les logs SI.
-                </p>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Canaux</p>
-              <h2>Mécanismes selon le canal</h2>
-              <div class="split-2">
-                <div class="panel">
-                  <h3>Proximité</h3>
-                  <ul>
-                    <li>Possession : carte ou mobile wallet</li>
-                    <li>Connaissance : PIN</li>
-                    <li>
-                      Sans contact sans PIN possible selon seuils / règles
-                    </li>
-                    <li>Biométrie device (wallets) — détail J4</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>E-commerce / in-app</h3>
-                  <ul>
-                    <li>Parcours type 3-D Secure (EMV 3DS)</li>
-                    <li>Challenge vs frictionless (selon risque)</li>
-                    <li>Facteurs : savoir / posséder / être</li>
-                    <li>Cadre SCA : teaser — détail conformité plus tard</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="callout">
-                <h3>Message formateur</h3>
-                <p>
-                  Le canal change le <strong>comment</strong>, pas le
-                  <strong>pourquoi</strong> : établir la confiance sur l’origine
-                  de l’opération.
-                </p>
-              </div>
-            </section>
-
-            <section class="section" id="schema">
-              <p class="section-label">Schéma</p>
-              <h2>Deux parcours, une convergence</h2>
-              <p class="intro">
-                L’authentification varie selon le canal ; la décision
-                d’autorisation reste chez l’émetteur.
-              </p>
-
-              <div class="diagram">
-                <div class="diagram-header">
-                  <h3>Proximité vs e-commerce</h3>
-                  <p>AuthN d’abord / autour — puis AuthZ</p>
-                </div>
-                <svg
-                  viewBox="0 0 1000 320"
-                  role="img"
-                  aria-label="Parcours authentification proximité et e-commerce"
-                >
-                  <defs>
-                    <marker
-                      id="ah-authn"
-                      markerWidth="8"
-                      markerHeight="8"
-                      refX="6"
-                      refY="3"
-                      orient="auto"
-                    >
-                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
-                    </marker>
-                  </defs>
-
-                  <!-- Proximité -->
-                  <text
-                    x="40"
-                    y="36"
-                    fill="#5a6b7c"
-                    font-size="12"
-                    font-weight="700"
-                    letter-spacing="1"
-                  >
-                    PROXIMITÉ
-                  </text>
-                  <rect x="40" y="50" width="160" height="56" rx="4" fill="#c45c26" />
-                  <text
-                    x="120"
-                    y="84"
-                    text-anchor="middle"
-                    fill="#fff"
-                    font-family="Syne, sans-serif"
-                    font-size="14"
-                    font-weight="700"
-                  >
-                    Support ± PIN
-                  </text>
-                  <line
-                    class="flow-line"
-                    x1="200"
-                    y1="78"
-                    x2="260"
-                    y2="78"
-                    stroke="#0d9f8a"
-                    stroke-width="2.5"
-                    marker-end="url(#ah-authn)"
-                  />
-                  <rect x="260" y="50" width="180" height="56" rx="4" fill="#2f4858" />
-                  <text
-                    x="350"
-                    y="84"
-                    text-anchor="middle"
-                    fill="#fff"
-                    font-family="Syne, sans-serif"
-                    font-size="14"
-                    font-weight="700"
-                  >
-                    AuthN proximité
-                  </text>
-
-                  <!-- E-com -->
-                  <text
-                    x="40"
-                    y="156"
-                    fill="#5a6b7c"
-                    font-size="12"
-                    font-weight="700"
-                    letter-spacing="1"
-                  >
-                    E-COMMERCE / IN-APP
-                  </text>
-                  <rect x="40" y="170" width="120" height="56" rx="4" fill="#3d5a80" />
-                  <text
-                    x="100"
-                    y="204"
-                    text-anchor="middle"
-                    fill="#fff"
-                    font-family="Syne, sans-serif"
-                    font-size="14"
-                    font-weight="700"
-                  >
-                    Checkout
-                  </text>
-                  <line
-                    class="flow-line"
-                    x1="160"
-                    y1="198"
-                    x2="210"
-                    y2="198"
-                    stroke="#0d9f8a"
-                    stroke-width="2.5"
-                    marker-end="url(#ah-authn)"
-                  />
-                  <rect x="210" y="170" width="230" height="56" rx="4" fill="#087a6a" />
-                  <text
-                    x="325"
-                    y="196"
-                    text-anchor="middle"
-                    fill="#fff"
-                    font-family="Syne, sans-serif"
-                    font-size="13"
-                    font-weight="700"
-                  >
-                    AuthN (ex. 3DS / ACS)
-                  </text>
-                  <text
-                    x="325"
-                    y="214"
-                    text-anchor="middle"
-                    fill="#c8f0e8"
-                    font-size="11"
-                  >
-                    challenge ou frictionless
-                  </text>
-
-                  <!-- Convergence -->
-                  <line
-                    x1="440"
-                    y1="78"
-                    x2="560"
-                    y2="160"
-                    stroke="#5a6b7c"
-                    stroke-width="1.5"
-                    stroke-dasharray="5 4"
-                  />
-                  <line
-                    x1="440"
-                    y1="198"
-                    x2="560"
-                    y2="160"
-                    stroke="#5a6b7c"
-                    stroke-width="1.5"
-                    stroke-dasharray="5 4"
-                  />
-                  <rect x="560" y="130" width="200" height="60" rx="4" fill="#1e5f8a" />
-                  <text
-                    x="660"
-                    y="156"
-                    text-anchor="middle"
-                    fill="#fff"
-                    font-family="Syne, sans-serif"
-                    font-size="14"
-                    font-weight="700"
-                  >
-                    Autorisation
-                  </text>
-                  <text
-                    x="660"
-                    y="176"
-                    text-anchor="middle"
-                    fill="#c5dceb"
-                    font-size="11"
-                  >
-                    décision émetteur
-                  </text>
-
-                  <line
-                    class="flow-line"
-                    x1="760"
-                    y1="160"
-                    x2="840"
-                    y2="160"
-                    stroke="#0d9f8a"
-                    stroke-width="2.5"
-                    marker-end="url(#ah-authn)"
-                  />
-                  <rect x="840" y="130" width="120" height="60" rx="4" fill="#0c1b2a" />
-                  <text
-                    x="900"
-                    y="166"
-                    text-anchor="middle"
-                    fill="#fff"
-                    font-family="Syne, sans-serif"
-                    font-size="13"
-                    font-weight="700"
-                  >
-                    Accord / refus
-                  </text>
-
-                  <text
-                    x="500"
-                    y="280"
-                    text-anchor="middle"
-                    fill="#5a6b7c"
-                    font-size="12"
-                  >
-                    E-com : acteurs additionnels possibles (PSP, directory, ACS)
-                    — sans fusionner AuthN et AuthZ
-                  </text>
-                </svg>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Ancrage</p>
-              <h2>Cas pratiques</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>Cas 1 — AuthN OK + autorisation accordée</h3>
-                  <ul>
-                    <li>Porteur authentifié</li>
-                    <li>Demande d’autorisation</li>
-                    <li>Émetteur approuve</li>
-                  </ul>
-                  <p
-                    style="
-                      margin: 0.75rem 0 0;
-                      font-size: 0.88rem;
-                      color: var(--muted);
-                    "
-                  >
-                    Faire dire : deux étapes, deux résultats.
-                  </p>
-                </div>
-                <div class="panel ko">
-                  <h3>Cas 2 — Échec d’authentification</h3>
-                  <ul>
-                    <li>PIN erroné / abandon 3DS / timeout AuthN</li>
-                    <li>Parcours stoppé ou refusé</li>
-                    <li>Cause racine = couche authentification</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="split-2">
-                <div class="panel">
-                  <h3>Cas 3 — AuthN OK, autorisation refusée</h3>
-                  <ul>
-                    <li>Porteur bien authentifié</li>
-                    <li>Émetteur decline (fonds, risque, statut…)</li>
-                    <li>Preuve que AuthN ≠ AuthZ</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Cas 4 — Frictionless 3DS (optionnel)</h3>
-                  <ul>
-                    <li>Pas de challenge visible porteur</li>
-                    <li>Évaluation de risque côté protocole</li>
-                    <li>Ce n’est pas « pas d’authentification »</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Lecture SI</p>
-              <h2>Succès, échec, incidents</h2>
-              <div class="not-list">
-                <div class="not-item">
-                  <strong>Succès AuthN</strong>
-                  <p>
-                    Poursuite vers / avec l’autorisation ; des preuves ou
-                    résultats peuvent enrichir le message (détail specs plus
-                    tard).
-                  </p>
-                </div>
-                <div class="not-item">
-                  <strong>Échec AuthN</strong>
-                  <p>
-                    Expérience = refus / abandon ; diagnostic = logs
-                    authentification, pas seulement codes d’autorisation.
-                  </p>
-                </div>
-                <div class="not-item">
-                  <strong>Incident « refusés »</strong>
-                  <p>
-                    Séparer : (1) échecs AuthN · (2) declines AuthZ métier · (3)
-                    incidents techniques réseau / timeout.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <details class="trainer-notes">
-              <summary>Notes formateur — questions SI</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>Où sont gérés essais PIN / blocages chez vous&nbsp;?</li>
-                  <li>Qui opère l’ACS / le parcours 3DS&nbsp;?</li>
-                  <li>
-                    Comment corrélez-vous un refus avec un log AuthN vs une
-                    réponse d’autorisation&nbsp;?
-                  </li>
-                </ul>
-                <p class="intro" style="margin: 1rem 0 0">
-                  Pont J3 / J4 : SCA, biométrie wallet, device binding —
-                  vocabulaire posé ici.
-                </p>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Check de fin de bloc</h3>
-              <ul>
-                <li>Définition AuthN monétique restituée</li>
-                <li>AuthN ≠ AuthZ verbalisé</li>
-                <li>Un mécanisme proximité + un e-com cités</li>
-                <li>Cas échec AuthN vs decline AuthZ maîtrisé</li>
-              </ul>
-            </div>
-
-            <div class="sources-box">
-              <strong>Sources normes / specs</strong> — à affiner : EMV (PIN /
-              CVM), EMV 3-D Secure, cadre SCA / DSP2, règles scheme.
-            </div>
-
-            <nav
-              class="bloc-pager"
-              aria-label="Navigation précédent suivant"
-            ></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 1 · Flux carte</span>
           </div>
-        </main>
+          <p class="day-kicker">1.4 · Flux transactionnel</p>
+          <h1>Authentification</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <!-- Définition -->
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition monétique</p>
+          <h2>Qu’est-ce que l’authentification&nbsp;?</h2>
+          <p class="definition-full">
+            Ensemble des procédures permettant de s’assurer, avec un niveau de
+            confiance adapté au canal, que l’opération est initiée par le
+            <strong>porteur légitime</strong> du moyen de paiement — ou via un
+            <strong>dispositif / parcours</strong> reconnu comme tel.
+          </p>
+          <p class="intro" style="margin-top: 1.1rem">
+            Objet&nbsp;: la <strong>légitimité</strong> du porteur / device /
+            parcours — pas l’accord financier de l’émetteur.
+          </p>
+        </section>
+
+        <!-- Cycle EMV -->
+        <section class="section">
+          <p class="section-label">Cycle de vie EMV</p>
+          <h2>Où se situe l’authentification&nbsp;?</h2>
+          <p class="intro">
+            Traitement carte à puce (EMV) — la vérification porteur (CVM) est
+            l’étape AuthN mise en évidence.
+          </p>
+
+          <div class="diagram" id="diagram-emv-lifecycle">
+            <div class="diagram-header">
+              <h3>Cycle de vie transaction EMV</h3>
+              <p>Simplifié · étape 4 = ce bloc</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 520"
+              role="img"
+              aria-label="Cycle de vie EMV avec authentification porteur CVM mise en évidence"
+            >
+              <!-- rangée 1 -->
+              <line x1="248" y1="78" x2="292" y2="78" stroke="#5a6b7c" stroke-width="2"/>
+              <line x1="540" y1="78" x2="584" y2="78" stroke="#5a6b7c" stroke-width="2"/>
+              <g>
+                <rect x="40" y="30" width="208" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <image href="../img/emv/emv-select.jpg" x="52" y="46" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="130" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">1 · Sélection</text>
+                <text x="130" y="92" fill="#5a6b7c" font-size="11">application</text>
+              </g>
+              <g>
+                <rect x="292" y="30" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <image href="../img/emv/emv-read.jpg" x="304" y="46" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="384" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">2 · Lecture</text>
+                <text x="384" y="92" fill="#5a6b7c" font-size="11">données carte</text>
+              </g>
+              <g>
+                <rect x="584" y="30" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <image href="../img/emv/emv-oda.jpg" x="596" y="46" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="676" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">3 · Auth. données</text>
+                <text x="676" y="92" fill="#5a6b7c" font-size="11">offline</text>
+              </g>
+
+              <line x1="708" y1="126" x2="708" y2="158" stroke="#5a6b7c" stroke-width="2"/>
+              <line x1="164" y1="158" x2="708" y2="158" stroke="#5a6b7c" stroke-width="2"/>
+              <line x1="164" y1="158" x2="164" y2="190" stroke="#5a6b7c" stroke-width="2"/>
+
+              <!-- rangée 2 — étape 4 mise en évidence -->
+              <line x1="248" y1="238" x2="292" y2="238" stroke="#5a6b7c" stroke-width="2"/>
+              <line x1="540" y1="238" x2="584" y2="238" stroke="#5a6b7c" stroke-width="2"/>
+              <g>
+                <rect x="40" y="186" width="208" height="104" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/emv/emv-cvm.jpg" x="52" y="206" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="130" y="228" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">4 · Porteur</text>
+                <text x="130" y="250" fill="#0d9f8a" font-size="11" font-weight="700">CVM · AuthN · ce bloc</text>
+              </g>
+              <g>
+                <rect x="292" y="190" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <image href="../img/emv/emv-risk.jpg" x="304" y="206" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="384" y="232" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">5 · Risque</text>
+                <text x="384" y="252" fill="#5a6b7c" font-size="11">terminal + carte</text>
+              </g>
+              <g>
+                <rect x="584" y="190" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <image href="../img/emv/emv-auth.jpg" x="596" y="206" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="676" y="232" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">6 · Autorisation</text>
+                <text x="676" y="252" fill="#5a6b7c" font-size="11">online · AuthZ</text>
+              </g>
+
+              <line x1="708" y1="290" x2="708" y2="330" stroke="#5a6b7c" stroke-width="2"/>
+              <line x1="376" y1="330" x2="708" y2="330" stroke="#5a6b7c" stroke-width="2"/>
+              <line x1="376" y1="330" x2="376" y2="360" stroke="#5a6b7c" stroke-width="2"/>
+
+              <!-- rangée 3 -->
+              <g>
+                <rect x="252" y="360" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <image href="../img/emv/emv-complete.jpg" x="264" y="376" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="344" y="402" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">7 · Fin</text>
+                <text x="344" y="422" fill="#5a6b7c" font-size="11">completion / scripts</text>
+              </g>
+
+              <text x="500" y="500" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                L’étape 4 = AuthN (porteur) · l’étape 6 = autorisation (accord émetteur)
+              </text>
+            </svg>
+          </div>
+        </section>
+
+        <!-- Distinction -->
+        <section class="section">
+          <p class="section-label">Distinction</p>
+          <h2>Authentification ≠ autorisation</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Authentification (AuthN)</h3>
+              <ul>
+                <li>« Est-ce le bon porteur / le bon dispositif&nbsp;? »</li>
+                <li>PIN, 3-D Secure, biométrie device…</li>
+              </ul>
+            </div>
+            <div class="panel ko">
+              <h3>Autorisation (AuthZ monétique)</h3>
+              <ul>
+                <li>« L’émetteur accepte-t-il l’opération&nbsp;? »</li>
+                <li>Demande / réponse d’autorisation (bloc précédent)</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Schéma -->
+        <section class="section" id="schema">
+          <p class="section-label">Parcours</p>
+          <h2>Deux canaux, une convergence</h2>
+          <p class="intro">
+            Le canal change le <strong>comment</strong>&nbsp;; la décision
+            d’autorisation reste chez l’émetteur.
+          </p>
+
+          <div class="diagram">
+            <div class="diagram-header">
+              <h3>Proximité vs e-commerce</h3>
+              <p>AuthN d’abord / autour — puis autorisation</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 320"
+              role="img"
+              aria-label="Parcours authentification proximité et e-commerce convergeant vers l autorisation"
+            >
+              <defs>
+                <marker id="ah-authn" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+
+              <text x="40" y="36" fill="#5a6b7c" font-size="12" font-weight="700" letter-spacing="1">PROXIMITÉ</text>
+              <rect x="40" y="50" width="160" height="56" rx="4" fill="#c45c26" />
+              <text x="120" y="84" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Support ± PIN</text>
+              <line class="flow-line" x1="200" y1="78" x2="260" y2="78" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-authn)" />
+              <rect x="260" y="50" width="180" height="56" rx="4" fill="#0d9f8a" />
+              <text x="350" y="84" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">AuthN proximité</text>
+
+              <text x="40" y="156" fill="#5a6b7c" font-size="12" font-weight="700" letter-spacing="1">E-COMMERCE / IN-APP</text>
+              <rect x="40" y="170" width="120" height="56" rx="4" fill="#3d5a80" />
+              <text x="100" y="204" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Checkout</text>
+              <line class="flow-line" x1="160" y1="198" x2="210" y2="198" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-authn)" />
+              <rect x="210" y="170" width="230" height="56" rx="4" fill="#087a6a" />
+              <text x="325" y="196" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="13" font-weight="700">AuthN (ex. 3DS / ACS)</text>
+              <text x="325" y="214" text-anchor="middle" fill="#c8f0e8" font-size="11">challenge ou frictionless</text>
+
+              <line x1="440" y1="78" x2="560" y2="160" stroke="#5a6b7c" stroke-width="1.5" stroke-dasharray="5 4" />
+              <line x1="440" y1="198" x2="560" y2="160" stroke="#5a6b7c" stroke-width="1.5" stroke-dasharray="5 4" />
+              <rect x="560" y="130" width="200" height="60" rx="4" fill="#1e5f8a" />
+              <text x="660" y="156" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Autorisation</text>
+              <text x="660" y="176" text-anchor="middle" fill="#c5dceb" font-size="11">décision émetteur</text>
+
+              <line class="flow-line" x1="760" y1="160" x2="840" y2="160" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-authn)" />
+              <rect x="840" y="130" width="120" height="60" rx="4" fill="#0c1b2a" />
+              <text x="900" y="166" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="13" font-weight="700">Accord / refus</text>
+
+              <text x="500" y="280" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                E-com : acteurs additionnels possibles (PSP, directory, ACS) — sans fusionner AuthN et autorisation
+              </text>
+            </svg>
+
+            <div class="seq-steps" id="authn-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Canal</strong>
+                  <p>
+                    Proximité (support ± PIN / CVM) ou e-com (checkout puis
+                    parcours AuthN, ex. 3DS).
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Authentification</strong>
+                  <p>
+                    Établir la confiance sur l’origine — porteur, device ou
+                    parcours reconnu.
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Convergence → autorisation</strong>
+                  <p>
+                    Demande d’autorisation vers l’émetteur ; réponse accord /
+                    refus.
+                  </p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              Échec AuthN → souvent arrêt du parcours (≠ decline « fonds »).
+            </p>
+          </div>
+        </section>
+
+        <!-- Canaux -->
+        <section class="section">
+          <p class="section-label">Canaux</p>
+          <h2>Comment ça se joue</h2>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Proximité</h3>
+              <ul>
+                <li>Possession : carte ou mobile wallet</li>
+                <li>Connaissance : PIN</li>
+                <li>Sans contact sans PIN selon seuils / règles</li>
+                <li>Biométrie device (wallets) — détail J4</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>E-commerce / in-app</h3>
+              <ul>
+                <li>Parcours type 3-D Secure (EMV 3DS)</li>
+                <li>Challenge vs frictionless (selon risque)</li>
+                <li>Facteurs : savoir / posséder / être</li>
+                <li>Cadre SCA : teaser — détail plus tard</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Cas pratiques -->
+        <section class="section">
+          <p class="section-label">Ancrage</p>
+          <h2>Cas pratiques</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Cas 1 — AuthN OK + autorisation accordée</h3>
+              <ul>
+                <li>Porteur authentifié</li>
+                <li>Demande d’autorisation</li>
+                <li>Émetteur approuve</li>
+              </ul>
+              <p style="margin: 0.75rem 0 0; font-size: 0.88rem; color: var(--muted)">
+                Faire dire : deux étapes, deux résultats.
+              </p>
+            </div>
+            <div class="panel ko">
+              <h3>Cas 2 — Échec d’authentification</h3>
+              <ul>
+                <li>PIN erroné / abandon 3DS / timeout AuthN</li>
+                <li>Parcours stoppé ou refusé</li>
+                <li>Cause racine = couche authentification</li>
+              </ul>
+            </div>
+          </div>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Cas 3 — AuthN OK, autorisation refusée</h3>
+              <ul>
+                <li>Porteur bien authentifié</li>
+                <li>Émetteur refuse (fonds, risque, statut…)</li>
+                <li>Preuve que AuthN ≠ autorisation</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Cas 4 — Frictionless 3DS (optionnel)</h3>
+              <ul>
+                <li>Pas de challenge visible porteur</li>
+                <li>Évaluation de risque côté protocole</li>
+                <li>Ce n’est pas « pas d’authentification »</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Lecture SI -->
+        <section class="section">
+          <p class="section-label">Lecture SI</p>
+          <h2>Succès, échec, incidents</h2>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Succès AuthN</h3>
+              <ul>
+                <li>Poursuite vers / avec l’autorisation</li>
+                <li>Preuves possibles dans le message (détail specs plus tard)</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Échec AuthN</h3>
+              <ul>
+                <li>Expérience = refus / abandon</li>
+                <li>Diagnostic = logs authentification, pas seulement codes d’autorisation</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout" style="margin-top: 1.25rem">
+            <h3>Incident « refusés »</h3>
+            <p>
+              Séparer&nbsp;: (1) échecs AuthN · (2) declines d’autorisation
+              métier · (3) incidents techniques réseau / timeout.
+            </p>
+          </div>
+        </section>
+
+        <!-- Clarification -->
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que l’authentification n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>≠ Autorisation (AuthZ monétique)</strong>
+              <p>
+                AuthN = légitimité du porteur · autorisation = accord de
+                l’émetteur sur l’opération. Souvent liées (étape&nbsp;4
+                vs&nbsp;6), toujours distinctes. Ne pas dire « auth » pour les
+                deux.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <details class="trainer-notes">
+          <summary>Notes formateur — questions SI</summary>
+          <div class="notes-body">
+            <ul>
+              <li>Où sont gérés essais PIN / blocages chez vous&nbsp;?</li>
+              <li>Qui opère l’ACS / le parcours 3DS&nbsp;?</li>
+              <li>
+                Comment corrélez-vous un refus avec un log AuthN vs une
+                réponse d’autorisation&nbsp;?
+              </li>
+            </ul>
+            <p class="intro" style="margin: 1rem 0 0">
+              Pont J3 / J4 : SCA, biométrie wallet, device binding —
+              vocabulaire posé ici.
+            </p>
+          </div>
+        </details>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>Définition AuthN monétique restituée</li>
+            <li>AuthN localisée dans le cycle EMV (≠ autorisation)</li>
+            <li>Un mécanisme proximité + un e-com cités</li>
+            <li>Cas échec AuthN vs decline d’autorisation maîtrisé</li>
+          </ul>
+        </div>
+
+        <div class="sources-box">
+          <strong>Sources normes / specs</strong> — à affiner : EMV (PIN /
+          CVM), EMV 3-D Secure, cadre SCA / DSP2, règles scheme.
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
 

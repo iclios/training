@@ -11,20 +11,20 @@ Sources normes : à affiner (règles scheme, systèmes de règlement, calendrier
 1. MÉTA FORMATEUR
 ================================================================================
 Objectif pédagogique
-À la fin du bloc, les participants définissent le settlement au sens
-monétique, le distinguent du clearing et de l’autorisation, et situent
-qui règle quoi entre établissements.
+À la fin du bloc, les participants définissent le settlement, le situent
+après le clearing, et distinguent règlement interbancaire vs crédit marchand
+vécu.
 
 Idée clé
 « Le settlement, c’est le règlement des positions issues du clearing :
-l’argent (ou les écritures de règlement) circule entre institutions —
-pas la simple compensation des opérations. »
+l’argent circule entre institutions — pas la compensation seule, pas le
+OK d’autorisation, pas le crédit marchand vécu. »
 
 Posture
-1) Définition monétique
-2) Suite logique du clearing
-3) Acteurs (banques, scheme, agents de règlement)
-4) Cas pratiques
+1) Définition + intention (exécuter le règlement)
+2) Situer (bandeau Auth → Clearing → Settlement, settlement en teal)
+3) Schéma + seq-steps (positions → soldé ; crédit marchand hors hop)
+4) Panneaux SI + cas
 
 
 ================================================================================
@@ -32,80 +32,45 @@ Posture
 ================================================================================
 Settlement (règlement)
 Processus par lequel les positions établies lors du clearing sont réglées
-entre les parties (typiquement via des comptes de règlement / agents de
-règlement / mécanismes prévus par le scheme ou l’arrangement interbancaire),
-de sorte que les obligations financières correspondantes sont éteintes.
+entre les parties (comptes / agents / mécanismes scheme), de sorte que les
+obligations financières sont éteintes.
 
-En pédagogie monétique carte :
-- Clearing = que doit-on se devoir / se compenser ?
-- Settlement = on exécute le règlement de ces positions
+Intention
+Après le clearing : on exécute le règlement des positions.
 
 
 ================================================================================
-3. DISTINCTIONS
+3. PLACE DANS LA CHAÎNE
 ================================================================================
-≠ Autorisation
-Le OK émetteur n’est pas un virement définitif vers le commerçant.
-
-≠ Clearing
-Le clearing calcule / présente / compense les opérations.
-Le settlement règle les soldes / positions qui en résultent.
-
-≠ Crédit marchand « vécu »
-Le moment où le commerçant voit les fonds sur son compte dépend du contrat
-acquéreur / PSP (délais, gross settlement vs net, holds…) — à distinguer
-du settlement interbancaire / scheme, même s’ils sont liés.
+1. Autorisation — accord émetteur
+2. Clearing — compensation (précédent)
+3. Settlement ← CE BLOC — règlement
 
 
 ================================================================================
-4. SCHÉMA / LOGIQUE
+4. SCHÉMA + SI
 ================================================================================
-Positions de clearing
-  → Instructions / fichiers de règlement
-    → Comptes de settlement (banques / agents)
-      → Positions soldées
+Positions clearing → Instructions → Comptes settlement → Soldé
+(+ seq-steps ; crédit marchand selon contrat, hors hop interbancaire)
 
-Points formateur
-- Souvent netting (compensation nette) avant règlement
-- Calendriers scheme (jours ouvrés, cut-offs)
-- Risque de settlement (contrepartie, liquidité) — niveau sensibilisation,
-  sans cours finance de marché
+Acquiring : réconciliation autorisation ↔ clearing ↔ settlement ↔ crédit
+Issuing : imputation porteur / positions scheme
 
 
 ================================================================================
-5. LIEN AVEC LE SI BANQUE
+5. CAS + CLARIFICATION
 ================================================================================
-Côté acquiring
-Réconciliation : auth ↔ clearing ↔ settlement ↔ crédit marchand
+Cas 1 — Fil rouge Autorisation → Clearing → Settlement → crédit contrat
+Cas 2 — Settlement en retard ≠ decline d’autorisation
+Cas 3 — Écart de réconciliation sur la chaîne
 
-Côté issuing
-Imputation porteur / écritures vs positions scheme
-
-Question salle
-« Chez vous, qui “possède” le settlement : trésorerie, monétique, back-office
-cartes, les trois ? »
+≠ Autorisation OK · ≠ Clearing · ≠ Crédit marchand « vécu »
 
 
 ================================================================================
-6. CAS PRATIQUES
+6. CHECK DE FIN
 ================================================================================
-Cas 1 — Fil rouge J1
-Auth OK → clearing OK → settlement exécuté → (puis) crédit marchand selon
-contrat. Faire reposer toute la chronologie.
-
-Cas 2 — Clearing OK, settlement en retard / incident
-Positions connues mais règlement non abouti (cut-off, liquidité, incident).
-Symptômes différents d’un decline d’autorisation.
-
-Cas 3 — Écart de réconciliation
-Montant autorisé ≠ présenté clearing ≠ réglé / crédité.
-Exercice mental de placement de l’écart sur la chaîne.
-
-
-================================================================================
-7. CHECK DE FIN
-================================================================================
-[ ] Settlement = règlement des positions (pas la compensation seule)
+[ ] Settlement = règlement des positions
 [ ] Suite clearing → settlement restituée
-[ ] Distinction settlement interbancaire vs crédit marchand « vécu »
-[ ] Chronologie Auth → Clearing → Settlement maîtrisée
+[ ] Distinction settlement interbancaire vs crédit marchand vécu
+[ ] Chronologie Autorisation → Clearing → Settlement maîtrisée
