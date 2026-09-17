@@ -9,7 +9,9 @@
   <body data-bloc="omnichannel">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a href="../j2/index.html">J2</a>
@@ -19,31 +21,332 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta"><span class="tag">Jour 5 · Omnicanal</span><span class="tag tag-accent">Bloc formateur</span><span>30–40 min</span></div>
-              <p class="day-kicker">5.1</p>
-              <h1>Paiement omnicanal</h1>
-            </div>
-          </section>
-          <div class="wrap">
-            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>L’omnicanal, ce n’est pas plusieurs moyens juxtaposés : c’est une expérience, un backend et une gouvernance cohérents à travers les canaux.</p></aside>
-
-            <section class="section" style="border-top:none;padding-top:0"><p class="section-label">Cas</p><h2>Les quatre terrains</h2><ul class="topic-list"><li>In-store</li><li>E-commerce</li><li>Mobile</li><li>In-app</li></ul></section>
-            <section class="section"><p class="section-label">Concepts</p><h2>Ce qui fait vraiment l’omnicanal</h2><div class="split-2"><div class="panel ok"><h3>Single payment backend</h3><ul><li>Vision unifiée des transactions</li><li>Réconciliation commune</li></ul></div><div class="panel"><h3>Orchestration multi-moyens</h3><ul><li>Choix du canal / moyen selon contexte</li><li>Expérience utilisateur unifiée</li></ul></div></div></section>
-            <section class="section"><p class="section-label">Piège</p><h2>Ce que l’omnicanal n’est pas</h2><div class="not-list"><div class="not-item"><strong>≠ Multi-produits juxtaposés</strong><p>Avoir plusieurs canaux n’est pas suffisant si les flux, la donnée et la gouvernance restent en silos.</p></div><div class="not-item"><strong>≠ UX seule</strong><p>L’omnicanal est aussi un sujet back-end, risque, réconciliation et supervision.</p></div></div></section>
-            <div class="check-end"><h3>Check</h3><ul><li>Omnicanal défini proprement</li><li>4 canaux reliés à un backend unique</li></ul></div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 5 · Omnicanal</span>
           </div>
-        </main>
+          <p class="day-kicker">5.1 · Canaux</p>
+          <h1>Paiement omnicanal</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition monétique</p>
+          <h2>Qu’est-ce que l’omnicanal&nbsp;?</h2>
+          <p class="definition-full">
+            Capacité à accepter et traiter un paiement
+            <strong>quel que soit le canal</strong> (magasin, web, mobile,
+            in-app) via un <strong>backend de paiement unique</strong>, une
+            <strong>orchestration multi-moyens</strong> et une
+            <strong>expérience / donnée cohérentes</strong> — sans silos
+            produit juxtaposés.
+          </p>
+          <p class="intro" style="margin-top: 1.1rem">
+            Plusieurs moyens ≠ omnicanal si les flux, le journal et la
+            gouvernance restent séparés.
+          </p>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Synthèse J1–J4</p>
+          <h2>Quatre canaux, une logique monétique</h2>
+          <p class="intro">
+            Auth → Clearing → Settlement (J1) reste vrai&nbsp;; seuls le
+            point d’entrée et le moyen changent (QR, token, NFC/wallet).
+          </p>
+
+          <div class="diagram" id="diagram-canaux">
+            <div class="diagram-header">
+              <h3>In-store · E-com · Mobile · In-app</h3>
+              <p>Quatre terrains · un même cœur SI</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 280"
+              role="img"
+              aria-label="Quatre canaux vers un backend unique"
+            >
+              <defs>
+                <marker id="ah-omni" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="30" y="30" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-commercant.jpg" x="42" y="44" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="112" y="68" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">In-store</text>
+                <text x="112" y="88" fill="#5a6b7c" font-size="11">POS · NFC · QR</text>
+              </g>
+              <g>
+                <rect x="270" y="30" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="282" y="44" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="352" y="68" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">E-commerce</text>
+                <text x="352" y="88" fill="#5a6b7c" font-size="11">web · 3DS · token</text>
+              </g>
+              <g>
+                <rect x="510" y="30" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-porteur.jpg" x="522" y="44" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="592" y="68" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Mobile</text>
+                <text x="592" y="88" fill="#5a6b7c" font-size="11">app · QR · HCE</text>
+              </g>
+              <g>
+                <rect x="750" y="30" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-wallet.jpg" x="762" y="44" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="832" y="68" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">In-app</text>
+                <text x="832" y="88" fill="#5a6b7c" font-size="11">wallet embarqué</text>
+              </g>
+              <line class="flow-line" x1="130" y1="120" x2="500" y2="175" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-omni)"/>
+              <line class="flow-line" x1="370" y1="120" x2="500" y2="175" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-omni)"/>
+              <line class="flow-line" x1="610" y1="120" x2="500" y2="175" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-omni)"/>
+              <line class="flow-line" x1="850" y1="120" x2="500" y2="175" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-omni)"/>
+              <g>
+                <rect x="280" y="175" width="440" height="70" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-psp.jpg" x="300" y="183" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                <text x="370" y="208" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Single payment backend</text>
+                <text x="370" y="228" fill="#0d9f8a" font-size="12">journal · orchestration · réconciliation</text>
+              </g>
+            </svg>
+            <div class="seq-steps" id="canaux-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>In-store</strong>
+                  <p>POS, NFC (J4), QR magasin (J2) — même demande d’auth.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>E-com / mobile / in-app</strong>
+                  <p>Card-not-present, token (J3), wallet — autre UX, même chaîne.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Backend unique</strong>
+                  <p>Un journal, une orchestration, une clôture financière.</p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="schema-orchestration">
+          <p class="section-label">Orchestration</p>
+          <h2>Multi-moyens, une décision</h2>
+          <p class="intro">
+            Le canal choisit le <strong>rail d’entrée</strong>&nbsp;; le backend
+            choisit le <strong>moyen / processeur</strong> et renvoie un
+            statut unifié.
+          </p>
+
+          <div class="diagram" id="diagram-orch">
+            <div class="diagram-header">
+              <h3>Orchestration multi-moyens</h3>
+              <p>Canal → gateway → moyen → Auth → statut unique</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 320"
+              role="img"
+              aria-label="Orchestration multi-moyens vers autorisation"
+            >
+              <defs>
+                <marker id="ah-orch" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="40" y="80" width="180" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="52" y="96" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="120" y="120" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Canal</text>
+                <text x="120" y="140" fill="#5a6b7c" font-size="11">UX locale</text>
+              </g>
+              <line class="flow-line" x1="230" y1="130" x2="300" y2="130" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-orch)"/>
+              <g>
+                <rect x="300" y="60" width="220" height="140" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-psp.jpg" x="318" y="88" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="400" y="110" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Orchestrateur</text>
+                <text x="400" y="134" fill="#0d9f8a" font-size="12">routing · règles</text>
+                <text x="400" y="156" fill="#5a6b7c" font-size="11">fraude · retry</text>
+              </g>
+              <line class="flow-line" x1="530" y1="100" x2="600" y2="70" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-orch)"/>
+              <line class="flow-line" x1="530" y1="130" x2="600" y2="130" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-orch)"/>
+              <line class="flow-line" x1="530" y1="160" x2="600" y2="190" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-orch)"/>
+              <g>
+                <rect x="600" y="30" width="160" height="55" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <text x="680" y="55" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Carte / token</text>
+                <text x="680" y="72" text-anchor="middle" fill="#5a6b7c" font-size="10">J1 · J3 · J4</text>
+              </g>
+              <g>
+                <rect x="600" y="100" width="160" height="55" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <text x="680" y="125" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">QR</text>
+                <text x="680" y="142" text-anchor="middle" fill="#5a6b7c" font-size="10">J2</text>
+              </g>
+              <g>
+                <rect x="600" y="170" width="160" height="55" rx="8" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <text x="680" y="195" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Wallet NFC</text>
+                <text x="680" y="212" text-anchor="middle" fill="#5a6b7c" font-size="10">J4</text>
+              </g>
+              <line class="flow-line" x1="770" y1="130" x2="840" y2="130" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-orch)"/>
+              <g>
+                <rect x="840" y="80" width="130" height="100" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="862" y="96" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                <text x="905" y="160" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">AuthZ</text>
+                <text x="905" y="178" text-anchor="middle" fill="#5a6b7c" font-size="10">OK / decline</text>
+              </g>
+              <text x="500" y="280" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Statut unifié remonte au canal — UX cohérente, runbooks partagés
+              </text>
+            </svg>
+            <div class="seq-steps" id="orch-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Entrée canal</strong>
+                  <p>Le front capture montant, moyen, contexte (magasin / web…).</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Routing</strong>
+                  <p>Règles&nbsp;: rail QR, token wallet, carte — + fraude / retry.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Auth &amp; retour</strong>
+                  <p>Décision émetteur / scheme → statut normalisé vers le canal.</p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              UX unifiée ≠ même écran&nbsp;: mêmes codes, même journal, mêmes
+              familles de rejet (J1).
+            </p>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Rôle</p>
+          <h2>Que retient le SI&nbsp;?</h2>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Backend unique</h3>
+              <ul>
+                <li>Journal / ID transaction transverses</li>
+                <li>Réconciliation et settlement communs</li>
+                <li>Supervision multi-canaux</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Orchestration &amp; UX</h3>
+              <ul>
+                <li>Choix du rail selon contexte</li>
+                <li>Statuts normalisés (OK / decline / technique)</li>
+                <li>Parcours porteur cohérent</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Ancrage</p>
+          <h2>Cas pratiques</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Cas 1 — Même panier, 3 canaux</h3>
+              <ul>
+                <li>Magasin NFC, site web token, app QR</li>
+                <li>Trois entrées, un journal</li>
+              </ul>
+            </div>
+            <div class="panel ko">
+              <h3>Cas 2 — Silos « multi-produits »</h3>
+              <ul>
+                <li>Trois PSP, trois réconciliations</li>
+                <li>≠ omnicanal SI</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que l’omnicanal n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>≠ Multi-moyens juxtaposés</strong>
+              <p>
+                Avoir carte + QR + wallet sans backend / gouvernance communs.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ UX seule</strong>
+              <p>
+                L’omnicanal est aussi journal, risque, réconciliation,
+                supervision.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Nouvelle monétique</strong>
+              <p>
+                Auth / Clearing / Settlement et familles de rejet restent ceux
+                de J1.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <details class="trainer-notes">
+          <summary>Notes formateur — questions SI</summary>
+          <div class="notes-body">
+            <ul>
+              <li>Avez-vous un ID transaction unique multi-canaux&nbsp;?</li>
+              <li>Qui possède l’orchestration (PSP, banque, switch)&nbsp;?</li>
+              <li>Comment un timeout QR apparaît-il vs un decline carte&nbsp;?</li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>Omnicanal = backend + orchestration + UX cohérente</li>
+            <li>4 canaux reliés à un cœur unique</li>
+            <li>Lien J1–J4 explicite</li>
+          </ul>
+        </div>
+
+        <div class="sources-box">
+          <strong>Sources normes / specs</strong> — à affiner&nbsp;: guides PSP
+          omnicanal, EMV QR, VTS/MDES, règles scheme contactless.
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
-    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 5</a> · Paiement omnicanal</div></footer>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 5</a>
+        · Support formateur · Bloc Paiement omnicanal
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j5.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

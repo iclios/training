@@ -3,4 +3,5 @@ Durée : 30–40 min
 
 EMV QR Code (EMVCo) · QR national vs international · interop multi-wallet.
 
+Fiche : schéma couches (EMV / national / international) + schéma multi-wallet + panels repères.
 Sources à affiner : EMVCo QR Code Specification ; specs nationales.

@@ -1,2 +1,5 @@
 JOUR 4 — Technologie NFC
-Principes physiques, 3 modes, comparaison NFC vs QR.
+Principes physiques (proximité, induction, session courte).
+Trois modes : card emulation, reader/writer, peer-to-peer.
+Comparaison NFC vs QR (canal radio vs optique).
+Schémas SVG + seq-steps · ponts J1 online/offline et J3 token.

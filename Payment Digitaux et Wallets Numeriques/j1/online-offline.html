@@ -24,146 +24,577 @@
 
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta">
-                <span class="tag">Jour 1 · 1.4</span>
-              </div>
-              <p class="day-kicker">Flux transactionnel</p>
-              <h1>Online / offline &amp; rejets</h1>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 1 · Flux carte</span>
+          </div>
+          <p class="day-kicker">1.4 · Flux transactionnel</p>
+          <h1>Online / offline &amp; rejets</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <!-- Définition -->
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition monétique</p>
+          <h2>Qu’est-ce qu’online / offline&nbsp;?</h2>
+          <p class="definition-full">
+            <strong>Online</strong>&nbsp;: le point d’acceptation envoie une
+            demande et <strong>attend une réponse</strong> via la chaîne
+            (acquéreur / réseau / émetteur) avant de finaliser.
+            <strong>Offline</strong>&nbsp;: l’opération peut être
+            <strong>acceptée sans décision online immédiate</strong> de
+            l’émetteur, sous contrôles locaux et présentation différée.
+          </p>
+          <p class="intro" style="margin-top: 1.1rem">
+            Même symptôme porteur («&nbsp;refusé&nbsp;») ≠ même cause SI.
+          </p>
+        </section>
+
+        <!-- Situation -->
+        <section class="section">
+          <p class="section-label">Chaîne transactionnelle</p>
+          <h2>Où se joue la décision&nbsp;?</h2>
+          <p class="intro">
+            Trois profils — online, offline normal, offline dégradé.
+          </p>
+
+          <div class="diagram" id="diagram-decision-modes">
+            <div class="diagram-header">
+              <h3>Online · Offline normal · Offline dégradé</h3>
+              <p>Simplifié · où la décision est prise</p>
             </div>
-          </section>
+            <svg
+              viewBox="0 0 1000 220"
+              role="img"
+              aria-label="Trois modes de décision online et offline"
+            >
+              <g>
+                <rect x="40" y="40" width="280" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <text x="180" y="85" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Online</text>
+                <text x="180" y="112" text-anchor="middle" fill="#0d9f8a" font-size="12">décision émetteur (ou stand-in)</text>
+                <text x="180" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">via la chaîne d’auth</text>
+              </g>
+              <g>
+                <rect x="360" y="40" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <text x="500" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Offline normal</text>
+                <text x="500" y="112" text-anchor="middle" fill="#1e5f8a" font-size="12">règles produit / scheme</text>
+                <text x="500" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">seuils, CVM, floor limit…</text>
+              </g>
+              <g>
+                <rect x="680" y="40" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                <text x="820" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Offline dégradé</text>
+                <text x="820" y="112" text-anchor="middle" fill="#c45c26" font-size="12">chaîne online indispo</text>
+                <text x="820" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">fallback / timeout / host down</text>
+              </g>
+              <text x="500" y="195" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Offline normal = prévu · Offline dégradé = mode de secours
+              </text>
+            </svg>
+          </div>
+        </section>
 
-          <div class="wrap">
+        <!-- Online -->
+        <section class="section">
+          <p class="section-label">Modes monétiques</p>
+          <h2>Online</h2>
+          <p class="intro">
+            Demande → chaîne → réponse. Enjeux&nbsp;: latence, disponibilité,
+            timeouts.
+          </p>
 
-            <section class="section" style="border-top: none; padding-top: 0">
-              <p class="section-label">Modes</p>
-              <h2>Online vs offline</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>Online</h3>
-                  <ul>
-                    <li>Demande + attente de réponse</li>
-                    <li>Via acquéreur / réseau / émetteur</li>
-                    <li>Enjeux : latence, dispo, timeouts</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Offline</h3>
-                  <ul>
-                    <li>Acceptation sans décision online immédiate</li>
-                    <li>Seuils, mode dégradé, règles produit / scheme</li>
-                    <li>Contrôles locaux et/ou présentation différée</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="callout" style="margin-top: 1rem">
-                <h3>Message formateur</h3>
-                <p>
-                  Poser le concept et le risque — pas un cours offline
-                  exhaustif. Détail = règles scheme / produit.
-                </p>
-              </div>
-            </section>
+          <div class="diagram" id="diagram-online">
+            <div class="diagram-header">
+              <h3>Parcours online</h3>
+              <p>Terminal → acquéreur → réseau → émetteur → retour</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 280"
+              role="img"
+              aria-label="Flux d autorisation online hop par hop"
+            >
+              <defs>
+                <marker id="ah-on" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="20" y="70" width="160" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="32" y="86" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="100" y="112" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Terminal</text>
+                <text x="100" y="132" fill="#5a6b7c" font-size="11">demande</text>
+              </g>
+              <line class="flow-line" x1="190" y1="120" x2="250" y2="120" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-on)"/>
+              <g>
+                <rect x="250" y="70" width="160" height="100" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="262" y="86" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="330" y="112" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Acquéreur</text>
+                <text x="330" y="132" fill="#5a6b7c" font-size="11">gateway</text>
+              </g>
+              <line class="flow-line" x1="420" y1="120" x2="480" y2="120" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-on)"/>
+              <g>
+                <rect x="480" y="70" width="160" height="100" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="492" y="86" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="560" y="112" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Réseau</text>
+                <text x="560" y="132" fill="#5a6b7c" font-size="11">scheme</text>
+              </g>
+              <line class="flow-line" x1="650" y1="120" x2="710" y2="120" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-on)"/>
+              <g>
+                <rect x="710" y="60" width="250" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="728" y="82" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="808" y="108" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Émetteur</text>
+                <text x="808" y="132" fill="#0d9f8a" font-size="12">décision AuthZ</text>
+                <text x="808" y="152" fill="#5a6b7c" font-size="11">OK / decline</text>
+              </g>
+              <path d="M835 180 L835 210 L100 210 L100 170" fill="none" stroke="#3d5a80" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ah-on)"/>
+              <text x="470" y="250" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Réponse hop-by-hop jusqu’au terminal — latence = somme des maillons
+              </text>
+            </svg>
+            <div class="seq-steps" id="online-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Demande</strong>
+                  <p>Le terminal (ou serveur) envoie et attend une réponse.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Chaîne</strong>
+                  <p>Acquéreur → réseau / scheme → émetteur (ou processeur).</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Décision</strong>
+                  <p>AuthZ (fonds, risque, statut) — ou stand-in si prévu.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="4">
+                <span class="n">4</span>
+                <span>
+                  <strong>Retour</strong>
+                  <p>Code OK / decline remonte. Timeout = autre famille de rejet.</p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              SI&nbsp;: mesurer latence bout en bout, disponibilité de chaque
+              hop, politiques retry / abort.
+            </p>
+          </div>
+        </section>
 
-            <section class="section">
-              <p class="section-label">Diagnostic</p>
-              <h2>Typologie des « refus »</h2>
-              <div class="phases">
-                <article class="phase">
-                  <div class="n">1</div>
-                  <h3>Métier (AuthZ)</h3>
-                  <p>Fonds, opposition, risque…</p>
-                </article>
-                <article class="phase">
-                  <div class="n">2</div>
-                  <h3>Authentification</h3>
-                  <p>PIN, 3DS, abandon challenge…</p>
-                </article>
-                <article class="phase">
-                  <div class="n">3</div>
-                  <h3>Technique</h3>
-                  <p>Timeout, indispo gateway / réseau / host</p>
-                </article>
-                <article class="phase">
-                  <div class="n">4</div>
-                  <h3>Clearing</h3>
-                  <p>Anomalie post-transaction (rappel)</p>
-                </article>
-              </div>
-              <div class="callout warn" style="margin-top: 1rem">
-                <h3>Vigilance</h3>
-                <p>
-                  Même symptôme porteur (« refusé ») ≠ même cause SI.
-                </p>
-              </div>
-            </section>
+        <!-- Offline -->
+        <section class="section" id="schema-offline">
+          <p class="section-label">Modes monétiques</p>
+          <h2>Offline</h2>
+          <p class="intro">
+            Deux familles à ne pas confondre&nbsp;:
+            <strong>offline normal</strong> (prévu par les règles) et
+            <strong>offline dégradé</strong> (secours quand l’online échoue).
+          </p>
 
-            <section class="section">
-              <p class="section-label">Pont J3</p>
-              <h2>Le PAN dans le flux</h2>
-              <p class="intro">
-                En modèle carte classique, le <strong>PAN</strong> circule dans
-                la demande d’autorisation. La <strong>tokenisation</strong>
-                (Jour 3) réduit cette exposition sans supprimer la logique Auth
-                → Clearing → Settlement.
-              </p>
-            </section>
+          <!-- Offline normal -->
+          <div class="diagram" id="diagram-offline-normal">
+            <div class="diagram-header">
+              <h3>Offline normal</h3>
+              <p>Décision locale volontaire — seuils, produit, scheme</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 340"
+              role="img"
+              aria-label="Offline normal sous règles produit et scheme"
+            >
+              <defs>
+                <marker id="ah-ofn" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="40" y="40" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-porteur.jpg" x="52" y="56" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="122" y="80" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Porteur</text>
+                <text x="122" y="100" fill="#5a6b7c" font-size="11">ex. contactless</text>
+              </g>
+              <line class="flow-line" x1="250" y1="90" x2="320" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ofn)"/>
+              <g>
+                <rect x="320" y="30" width="360" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="340" y="52" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="420" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Terminal + carte</text>
+                <text x="420" y="96" fill="#0d9f8a" font-size="12">contrôles locaux EMV</text>
+                <text x="420" y="118" fill="#5a6b7c" font-size="11">floor limit · CVM · risque local</text>
+              </g>
+              <line class="flow-line" x1="690" y1="90" x2="760" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ofn)"/>
+              <g>
+                <rect x="760" y="40" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-commercant.jpg" x="772" y="56" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="842" y="80" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Accepté</text>
+                <text x="842" y="100" fill="#5a6b7c" font-size="11">sans host online</text>
+              </g>
 
-            <section class="section">
-              <p class="section-label">Ancrage</p>
-              <h2>Cas pratiques</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>Cas 1 — Timeout vs decline fonds</h3>
-                  <ul>
-                    <li>Deux runbooks, deux responsables</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Cas 2 — Contactless sous seuil</h3>
-                  <ul>
-                    <li>Online ou offline selon contexte&nbsp;?</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="panel" style="margin-top: 1rem">
-                <h3>Cas 3 — Code sandbox</h3>
-                <ul>
-                  <li>Classer : métier / AuthN / technique</li>
-                  <li>Prépare l’atelier</li>
-                </ul>
-              </div>
-            </section>
+              <g>
+                <rect x="200" y="200" width="600" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="220" y="213" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="290" y="235" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Règles produit / scheme</text>
+                <text x="290" y="258" fill="#5a6b7c" font-size="12">seuils sans contact · plafonds offline · paramètres carte</text>
+              </g>
+              <line x1="500" y1="150" x2="500" y2="200" stroke="#1e5f8a" stroke-width="2" stroke-dasharray="4 3"/>
+              <text x="500" y="320" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Présentation / clearing plus tard — l’émetteur n’a pas décidé en temps réel
+              </text>
+            </svg>
+            <div class="seq-steps" id="offline-normal-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Contexte prévu</strong>
+                  <p>
+                    Sous seuil, paramètres carte / terminal autorisent un offline
+                    «&nbsp;by design&nbsp;».
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Contrôles locaux</strong>
+                  <p>
+                    Authentification données, plafonds, CVM — pas d’aller-retour
+                    host.
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Acceptation locale</strong>
+                  <p>
+                    Ticket OK côté terrain. Présentation différée → clearing /
+                    settlement ensuite.
+                  </p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              Autre profil de risque que l’online — pas un «&nbsp;moins
+              sécurisé&nbsp;» simpliste&nbsp;: règles scheme / produit.
+            </p>
+          </div>
 
-            <div class="check-end">
-              <h3>Check de fin de bloc</h3>
+          <!-- Offline dégradé -->
+          <div class="diagram" id="diagram-offline-degrade" style="margin-top: 1.5rem">
+            <div class="diagram-header">
+              <h3>Offline dégradé</h3>
+              <p>Secours — la chaîne online est indisponible ou timeout</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 360"
+              role="img"
+              aria-label="Offline dégradé quand la chaîne online échoue"
+            >
+              <defs>
+                <marker id="ah-ofd" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#c45c26" />
+                </marker>
+                <marker id="ah-ofd2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="40" y="40" width="180" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="52" y="54" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="120" y="78" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Terminal</text>
+                <text x="120" y="98" fill="#5a6b7c" font-size="11">tente online</text>
+              </g>
+              <line class="flow-line" x1="230" y1="85" x2="300" y2="85" stroke="#c45c26" stroke-width="2.5" marker-end="url(#ah-ofd)"/>
+              <g>
+                <rect x="300" y="30" width="400" height="110" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="320" y="48" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="400" y="70" fill="#c45c26" font-family="Syne, sans-serif" font-size="15" font-weight="700">Chaîne online coupée</text>
+                <text x="400" y="94" fill="#5a6b7c" font-size="12">timeout · gateway · réseau · host</text>
+                <text x="400" y="116" fill="#c45c26" font-size="11" font-weight="700">pas de réponse AuthZ</text>
+              </g>
+              <line x1="500" y1="140" x2="500" y2="185" stroke="#c45c26" stroke-width="2"/>
+              <g>
+                <rect x="200" y="185" width="600" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="220" y="203" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="290" y="225" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Politique de secours</text>
+                <text x="290" y="248" fill="#0d9f8a" font-size="12">fallback offline · store &amp; forward · ou refus technique</text>
+              </g>
+              <text x="500" y="330" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                ≠ offline normal&nbsp;: ici on voulait du online — on dégrade faute de réponse
+              </text>
+            </svg>
+            <div class="seq-steps" id="offline-degrade-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Tentative online</strong>
+                  <p>Le parcours prévu était online (montant, règles…).</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Indispo / timeout</strong>
+                  <p>
+                    Gateway, réseau, host émetteur — pas de décision AuthZ à
+                    temps.
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Secours</strong>
+                  <p>
+                    Selon politique&nbsp;: acceptation dégradée, stand-in, store
+                    &amp; forward, ou refus technique.
+                  </p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              Runbook SI différent de l’offline normal&nbsp;: incident
+              disponibilité, pas «&nbsp;sous seuil contactless&nbsp;».
+            </p>
+          </div>
+        </section>
+
+        <!-- Rôle -->
+        <section class="section">
+          <p class="section-label">Rôle</p>
+          <h2>Que retient le SI&nbsp;?</h2>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Online</h3>
               <ul>
-                <li>Online vs offline verbalisé</li>
-                <li>Familles de refus distinguées</li>
-                <li>Pont PAN → token annoncé</li>
+                <li>Latence bout en bout</li>
+                <li>Disponibilité de chaque maillon</li>
+                <li>Timeouts, retry, abort</li>
               </ul>
             </div>
-
-            <div class="sources-box">
-              <strong>Sources normes / specs</strong> — à affiner : règles
-              online/offline scheme &amp; EMV, codes réponse, politiques timeout
-              processeur.
+            <div class="panel">
+              <h3>Offline</h3>
+              <ul>
+                <li>Normal&nbsp;: paramètres produit / scheme</li>
+                <li>Dégradé&nbsp;: politiques de fallback</li>
+                <li>Présentation différée → clearing</li>
+              </ul>
             </div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
           </div>
-        </main>
+        </section>
+
+        <!-- Rejets -->
+        <section class="section">
+          <p class="section-label">Diagnostic</p>
+          <h2>Typologie des « refus »</h2>
+          <p class="intro">
+            Quatre familles — même message porteur, causes et runbooks
+            différents.
+          </p>
+
+          <div class="diagram" id="diagram-rejets">
+            <div class="diagram-header">
+              <h3>Quatre familles</h3>
+              <p>Métier · AuthN · Technique · Clearing</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 280"
+              role="img"
+              aria-label="Typologie des rejets monétiques"
+            >
+              <g>
+                <rect x="30" y="40" width="220" height="160" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <text x="140" y="85" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">1 · Métier</text>
+                <text x="140" y="115" text-anchor="middle" fill="#5a6b7c" font-size="12">AuthZ</text>
+                <text x="140" y="145" text-anchor="middle" fill="#5a6b7c" font-size="11">fonds · opposition</text>
+                <text x="140" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">risque · plafonds</text>
+              </g>
+              <g>
+                <rect x="270" y="40" width="220" height="160" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <text x="380" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">2 · AuthN</text>
+                <text x="380" y="115" text-anchor="middle" fill="#5a6b7c" font-size="12">identité</text>
+                <text x="380" y="145" text-anchor="middle" fill="#5a6b7c" font-size="11">PIN · 3DS</text>
+                <text x="380" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">abandon challenge</text>
+              </g>
+              <g>
+                <rect x="510" y="40" width="220" height="160" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                <text x="620" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">3 · Technique</text>
+                <text x="620" y="115" text-anchor="middle" fill="#c45c26" font-size="12">dispo / latence</text>
+                <text x="620" y="145" text-anchor="middle" fill="#5a6b7c" font-size="11">timeout · gateway</text>
+                <text x="620" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">réseau · host</text>
+              </g>
+              <g>
+                <rect x="750" y="40" width="220" height="160" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <text x="860" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">4 · Clearing</text>
+                <text x="860" y="115" text-anchor="middle" fill="#5a6b7c" font-size="12">post-transaction</text>
+                <text x="860" y="145" text-anchor="middle" fill="#5a6b7c" font-size="11">anomalie présentation</text>
+                <text x="860" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">≠ decline temps réel</text>
+              </g>
+              <text x="500" y="245" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                « Refusé » côté caisse peut être 1, 2 ou 3 — diagnostiquer avant d’agir
+              </text>
+            </svg>
+            <div class="seq-steps" id="rejets-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Métier (AuthZ)</strong>
+                  <p>Fonds, opposition, scoring — décision émetteur explicite.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Authentification</strong>
+                  <p>PIN, 3DS, abandon — l’identité / le challenge a échoué.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Technique</strong>
+                  <p>Timeout, indispo — souvent lié à l’offline dégradé.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="4">
+                <span class="n">4</span>
+                <span>
+                  <strong>Clearing</strong>
+                  <p>Anomalie après coup — rappel bloc Clearing, pas un decline.</p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Pont J3 -->
+        <section class="section">
+          <p class="section-label">Pont J3</p>
+          <h2>Le PAN dans le flux</h2>
+          <p class="intro">
+            En modèle carte classique, le <strong>PAN</strong> circule dans la
+            demande d’autorisation (surtout online). La
+            <strong>tokenisation</strong> (Jour 3) réduit cette exposition sans
+            supprimer la logique Auth → Clearing → Settlement, ni les modes
+            online / offline.
+          </p>
+        </section>
+
+        <!-- Cas -->
+        <section class="section">
+          <p class="section-label">Ancrage</p>
+          <h2>Cas pratiques</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Cas 1 — Timeout vs decline fonds</h3>
+              <ul>
+                <li>Technique (3) vs métier (1)</li>
+                <li>Deux runbooks, deux responsables</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Cas 2 — Contactless sous seuil</h3>
+              <ul>
+                <li>Offline normal ou online forcé&nbsp;?</li>
+                <li>Selon règles produit / scheme</li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel" style="margin-top: 1rem">
+            <h3>Cas 3 — Code sandbox</h3>
+            <ul>
+              <li>Classer&nbsp;: métier / AuthN / technique</li>
+              <li>Prépare l’atelier</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Clarification -->
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que ce n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>Offline normal ≠ dégradé</strong>
+              <p>
+                Le premier est prévu par les règles&nbsp;; le second est un
+                secours quand l’online échoue.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>« Refusé » ≠ « pas d’argent »</strong>
+              <p>
+                Peut être AuthN, technique, ou métier — classer avant d’agir.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Cours offline exhaustif</strong>
+              <p>
+                Ici&nbsp;: concepts et diagnostic. Détail = règles scheme /
+                produit / EMV.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <details class="trainer-notes">
+          <summary>Notes formateur — questions SI</summary>
+          <div class="notes-body">
+            <ul>
+              <li>Quels timeouts voyez-vous en prod, et qui les possède&nbsp;?</li>
+              <li>
+                Avez-vous une politique de fallback explicite (offline dégradé)
+                ou un simple refus technique&nbsp;?
+              </li>
+              <li>
+                Comment distinguez-vous dans les logs un decline métier d’un
+                timeout&nbsp;?
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>Online vs offline verbalisé</li>
+            <li>Offline normal ≠ offline dégradé</li>
+            <li>Familles de refus distinguées</li>
+            <li>Pont PAN → token annoncé</li>
+          </ul>
+        </div>
+
+        <div class="sources-box">
+          <strong>Sources normes / specs</strong> — à affiner : règles
+          online/offline scheme &amp; EMV, codes réponse, politiques timeout
+          processeur.
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
 
     <footer class="site-foot">
       <div class="wrap">
-        <a href="index.html">Sommaire Jour 1</a> · Online / offline &amp; rejets
+        <a href="index.html">Sommaire Jour 1</a>
+        · Support formateur · Bloc Online / offline &amp; rejets
       </div>
     </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j1.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

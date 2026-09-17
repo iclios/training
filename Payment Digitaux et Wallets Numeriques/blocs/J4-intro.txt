@@ -1,2 +1,5 @@
 JOUR 4 — Intro & objectifs
-Application du socle tokenisation au NFC et aux wallets.
+Après J3 tokenisation : appliquer le socle au NFC et aux wallets.
+Objectifs : modes NFC, carte vs mobile, SE/HCE/TEE, wallets, flux POS.
+Fil : NFC → Contactless → Wallets → Cas → Atelier.
+Ponts J1 online/offline et J3 architecture token.

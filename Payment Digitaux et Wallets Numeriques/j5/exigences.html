@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Exigences transverses — Jour 5 | Paiements digitaux</title>
+    <title>Exigences SI — Jour 5 | Paiements digitaux</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body data-bloc="exigences">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a href="../j2/index.html">J2</a>
@@ -19,31 +21,272 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta"><span class="tag">Jour 5 · Exigences</span><span class="tag tag-accent">Bloc formateur</span><span>30–40 min</span></div>
-              <p class="day-kicker">5.2</p>
-              <h1>Exigences transverses</h1>
-            </div>
-          </section>
-          <div class="wrap">
-            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>Interopérabilité, sécurité, gouvernance et scalabilité sont des exigences de conception, pas des ajouts tardifs.</p></aside>
-
-            <section class="section" style="border-top:none;padding-top:0"><p class="section-label">Exigences</p><h2>À intégrer dès la conception</h2><ul class="topic-list"><li>Architecture scalable & sécurisée</li><li>Interopérabilité</li><li>Gouvernance</li></ul></section>
-            <section class="section"><p class="section-label">Lecture SI</p><h2>Questions d’architecture</h2><div class="split-2"><div class="panel ok"><h3>Interop</h3><ul><li>Standards communs</li><li>Interfaces, contrats, certification</li></ul></div><div class="panel"><h3>Gouvernance</h3><ul><li>Qui certifie ?</li><li>Qui arbitre ?</li><li>Qui supervise ?</li></ul></div></div></section>
-            <section class="section"><p class="section-label">Risque</p><h2>Pourquoi on les traite tôt</h2><div class="not-list"><div class="not-item"><strong>Sinon</strong><p>Les canaux s’empilent, les données divergent, la supervision se fragmente.</p></div><div class="not-item"><strong>Avec elles</strong><p>La plateforme reste extensible, gouvernable et compatible avec de nouveaux moyens.</p></div></div></section>
-            <div class="check-end"><h3>Check</h3><ul><li>3 exigences verbalisées</li><li>Leur rôle dès la conception compris</li></ul></div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 5 · Omnicanal</span>
           </div>
-        </main>
+          <p class="day-kicker">5.2 · Exigences</p>
+          <h1>Exigences SI transverses</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition monétique</p>
+          <h2>Qu’est-ce qu’une exigence SI de plateforme&nbsp;?</h2>
+          <p class="definition-full">
+            Contrainte de <strong>conception et d’exploitation</strong> que la
+            plateforme doit tenir quel que soit le canal&nbsp;:
+            <strong>disponibilité</strong>, <strong>latence</strong>,
+            <strong>réconciliation</strong>, <strong>sécurité</strong>,
+            <strong>auditabilité</strong>, interopérabilité et gouvernance —
+            dès l’architecture, pas en patch.
+          </p>
+          <p class="intro" style="margin-top: 1.1rem">
+            Sans elles, les canaux s’empilent et la supervision se fragmente.
+          </p>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Cartographie</p>
+          <h2>Familles d’exigences</h2>
+          <p class="intro">
+            Six axes à arbitrer en comité SI — liés aux rejets / timeouts de
+            J1.
+          </p>
+
+          <div class="diagram" id="diagram-exigences">
+            <div class="diagram-header">
+              <h3>Dispo · Latence · Réconciliation · Sécurité · Audit · Interop</h3>
+              <p>Exigences transverses · plateforme omnicanale</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 320"
+              role="img"
+              aria-label="Six familles d exigences SI"
+            >
+              <g>
+                <rect x="30" y="40" width="300" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-psp.jpg" x="48" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="120" y="80" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Disponibilité</text>
+                <text x="120" y="105" fill="#5a6b7c" font-size="12">SLA · redondance · fallback</text>
+              </g>
+              <g>
+                <rect x="350" y="40" width="300" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="368" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="440" y="80" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Latence</text>
+                <text x="440" y="105" fill="#5a6b7c" font-size="12">p95 / timeouts · hop-by-hop</text>
+              </g>
+              <g>
+                <rect x="670" y="40" width="300" height="100" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="688" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="760" y="80" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Réconciliation</text>
+                <text x="760" y="105" fill="#5a6b7c" font-size="12">journal · écarts · settlement</text>
+              </g>
+              <g>
+                <rect x="30" y="170" width="300" height="100" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="48" y="188" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="120" y="210" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Sécurité</text>
+                <text x="120" y="235" fill="#5a6b7c" font-size="12">PCI · token · crypto · accès</text>
+              </g>
+              <g>
+                <rect x="350" y="170" width="300" height="100" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-commercant.jpg" x="368" y="188" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="440" y="210" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Auditabilité</text>
+                <text x="440" y="235" fill="#5a6b7c" font-size="12">traces · non-répudiation</text>
+              </g>
+              <g>
+                <rect x="670" y="170" width="300" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-wallet.jpg" x="688" y="188" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="760" y="210" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Interop / scale</text>
+                <text x="760" y="235" fill="#5a6b7c" font-size="12">standards · capacité</text>
+              </g>
+            </svg>
+            <div class="seq-steps" id="exi-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Runtime</strong>
+                  <p>Dispo + latence — sinon rejets techniques (J1 famille 3).</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Intégrité financière</strong>
+                  <p>Réconciliation &amp; audit — écarts post-transaction.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Confiance &amp; ouverture</strong>
+                  <p>Sécurité, interop, scalabilité pour de nouveaux moyens.</p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Panels</p>
+          <h2>Ce que le SI doit pouvoir dire</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Disponibilité &amp; latence</h3>
+              <ul>
+                <li>SLA par hop (gateway, scheme, host)</li>
+                <li>Politique timeout / retry / abort</li>
+                <li>Mode dégradé explicite (J1 offline dégradé)</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Réconciliation</h3>
+              <ul>
+                <li>Auth ↔ présentation ↔ settlement</li>
+                <li>Écarts multi-canaux sur un journal</li>
+                <li>Cut-offs et calendriers connus</li>
+              </ul>
+            </div>
+          </div>
+          <div class="split-2" style="margin-top: 1rem">
+            <div class="panel">
+              <h3>Sécurité</h3>
+              <ul>
+                <li>Token / cryptogrammes (J3–J4)</li>
+                <li>PCI, clés, segmentation</li>
+                <li>Fraude en ligne de traitement</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Auditabilité &amp; interop</h3>
+              <ul>
+                <li>Traces bout en bout (ID unique)</li>
+                <li>Standards QR / EMV / scheme</li>
+                <li>Contrats d’interface &amp; certification</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Rôle</p>
+          <h2>Pourquoi les traiter tôt&nbsp;?</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Avec exigences</h3>
+              <ul>
+                <li>Plateforme extensible</li>
+                <li>Runbooks alignés sur les familles de rejet</li>
+                <li>Comité SI défendable</li>
+              </ul>
+            </div>
+            <div class="panel ko">
+              <h3>Sans elles</h3>
+              <ul>
+                <li>Silos de données et de supervision</li>
+                <li>Timeouts « flous »</li>
+                <li>Réconciliation impossible multi-canaux</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Ancrage</p>
+          <h2>Cas pratiques</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Cas 1 — Pic Black Friday</h3>
+              <ul>
+                <li>Latence gateway vs scheme</li>
+                <li>Capacité et file d’attente</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Cas 2 — Écart QR vs carte</h3>
+              <ul>
+                <li>Même montant, deux rails</li>
+                <li>Réconciliation sur ID unique</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que ce n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>≠ Checklist compliance seule</strong>
+              <p>
+                Les exigences sont aussi d’exploitation (dispo, latence,
+                réconciliation).
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ « On verra en prod »</strong>
+              <p>
+                Timeouts et modes dégradés se conçoivent avec l’architecture.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Remplacer la gouvernance</strong>
+              <p>
+                Qui certifie / arbitre / supervise = bloc Contrôle.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <details class="trainer-notes">
+          <summary>Notes formateur — questions SI</summary>
+          <div class="notes-body">
+            <ul>
+              <li>Quels SLA mesurez-vous réellement bout en bout&nbsp;?</li>
+              <li>Qui possède la réconciliation multi-canaux&nbsp;?</li>
+              <li>Où sont stockées les preuves d’audit (durée, accès)&nbsp;?</li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>Exigences dispo / latence / réconciliation / sécurité / audit citées</li>
+            <li>Lien avec rejets techniques J1</li>
+            <li>Exigences = conception, pas patch</li>
+          </ul>
+        </div>
+
+        <div class="sources-box">
+          <strong>Sources normes / specs</strong> — à affiner&nbsp;: PCI DSS,
+          politiques timeout processeur, guides réconciliation scheme, ISO
+          20022 / EMV selon rail.
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
-    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 5</a> · Exigences transverses</div></footer>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 5</a>
+        · Support formateur · Bloc Exigences SI
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j5.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

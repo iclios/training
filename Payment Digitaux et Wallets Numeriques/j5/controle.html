@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Contrôle continu / design national — Jour 5 | Paiements digitaux</title>
+    <title>Contrôle &amp; gouvernance — Jour 5 | Paiements digitaux</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body data-bloc="controle">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a href="../j2/index.html">J2</a>
@@ -19,31 +21,322 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta"><span class="tag">Jour 5 · Contrôle</span><span class="tag tag-accent">Bloc formateur</span><span>45–60 min</span></div>
-              <p class="day-kicker">5.3</p>
-              <h1>Contrôle continu / design national</h1>
-            </div>
-          </section>
-          <div class="wrap">
-            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>Le livrable attendu n’est pas une liste d’idées : c’est une architecture argumentée de plateforme nationale avec responsabilités explicites.</p></aside>
-
-            <section class="section" style="border-top:none;padding-top:0"><p class="section-label">Sujet</p><h2>Concevoir une plateforme de paiement digital nationale</h2><ul class="topic-list"><li>QR + NFC + wallet</li><li>Interopérabilité</li><li>Sécurité</li><li>Gouvernance</li></ul></section>
-            <section class="section"><p class="section-label">Livrables</p><h2>Ce que le groupe doit produire</h2><ul class="topic-list"><li>Schéma d’architecture</li><li>Flux détaillés</li><li>Justification des choix techniques</li></ul></section>
-            <section class="section"><p class="section-label">Questions guides</p><h2>À faire arbitrer</h2><div class="split-2"><div class="panel ok"><h3>Technique</h3><ul><li>Où est le backend unique ?</li><li>Comment connecter QR, NFC et wallet ?</li></ul></div><div class="panel"><h3>Gouvernance</h3><ul><li>Qui opère le switch ?</li><li>Qui certifie les participants ?</li></ul></div></div></section>
-            <div class="check-end"><h3>Check</h3><ul><li>Le cadrage du contrôle est clair</li><li>Les livrables sont concrets</li></ul></div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 5 · Omnicanal</span>
           </div>
-        </main>
+          <p class="day-kicker">5.3 · Contrôle</p>
+          <h1>Contrôle, gouvernance &amp; KPIs</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition monétique</p>
+          <h2>Qu’est-ce que le contrôle continu&nbsp;?</h2>
+          <p class="definition-full">
+            Capacité à <strong>superviser</strong>, <strong>mesurer</strong> et
+            <strong>réagir</strong> sur la plateforme omnicanale&nbsp;:
+            gouvernance (qui décide / certifie), <strong>KPIs</strong>
+            opérationnels, et <strong>runbooks</strong> alignés sur les
+            <strong>familles de rejet J1</strong> (métier, AuthN, technique,
+            clearing).
+          </p>
+          <p class="intro" style="margin-top: 1.1rem">
+            Sans typologie de rejet, le «&nbsp;refusé&nbsp;» reste un symptôme
+            sans propriétaire.
+          </p>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Gouvernance</p>
+          <h2>Qui fait quoi&nbsp;?</h2>
+          <p class="intro">
+            Trois rôles à expliciter — surtout pour une plateforme nationale
+            ou multi-partenaires.
+          </p>
+
+          <div class="diagram" id="diagram-gouv">
+            <div class="diagram-header">
+              <h3>Opérer · Certifier · Superviser</h3>
+              <p>Gouvernance SI paiement</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 240"
+              role="img"
+              aria-label="Trois rôles de gouvernance"
+            >
+              <g>
+                <rect x="40" y="40" width="280" height="140" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-psp.jpg" x="60" y="70" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="140" y="95" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Opérer</text>
+                <text x="140" y="120" fill="#5a6b7c" font-size="12">gateway · journal</text>
+                <text x="140" y="142" fill="#5a6b7c" font-size="11">runbooks prod</text>
+              </g>
+              <g>
+                <rect x="360" y="40" width="280" height="140" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="380" y="70" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="460" y="95" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Certifier</text>
+                <text x="460" y="120" fill="#5a6b7c" font-size="12">participants · terminaux</text>
+                <text x="460" y="142" fill="#5a6b7c" font-size="11">règles d’accès</text>
+              </g>
+              <g>
+                <rect x="680" y="40" width="280" height="140" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="700" y="70" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="780" y="95" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Superviser</text>
+                <text x="780" y="120" fill="#5a6b7c" font-size="12">risque · conformité</text>
+                <text x="780" y="142" fill="#5a6b7c" font-size="11">KPIs · audit</text>
+              </g>
+              <text x="500" y="215" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Souvent trois entités différentes — à écrire dans le dossier d’architecture
+              </text>
+            </svg>
+            <div class="seq-steps" id="gouv-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Opérer</strong>
+                  <p>Qui tient la plateforme et les incidents de production&nbsp;?</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Certifier</strong>
+                  <p>Qui autorise un commerçant / un wallet / un terminal&nbsp;?</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Superviser</strong>
+                  <p>Qui lit les KPIs et arbitre les écarts de gouvernance&nbsp;?</p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">KPIs</p>
+          <h2>Indicateurs utiles</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Temps réel</h3>
+              <ul>
+                <li>Taux d’approbation / decline (par famille)</li>
+                <li>Latence p95 gateway → réponse</li>
+                <li>Disponibilité par hop</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Post-transaction</h3>
+              <ul>
+                <li>Écarts réconciliation Auth / clearing / sett.</li>
+                <li>Chargebacks / litiges</li>
+                <li>Volume par canal (QR, NFC, carte…)</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="schema-runbooks">
+          <p class="section-label">Runbooks</p>
+          <h2>Relier aux familles de rejet J1</h2>
+          <p class="intro">
+            Même message porteur («&nbsp;refusé&nbsp;») — quatre runbooks.
+          </p>
+
+          <div class="diagram" id="diagram-runbooks">
+            <div class="diagram-header">
+              <h3>Métier · AuthN · Technique · Clearing</h3>
+              <p>Typologie J1 → action SI</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 300"
+              role="img"
+              aria-label="Runbooks alignés sur les familles de rejet"
+            >
+              <g>
+                <rect x="30" y="40" width="220" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <text x="140" y="85" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">1 · Métier</text>
+                <text x="140" y="120" text-anchor="middle" fill="#5a6b7c" font-size="12">AuthZ émetteur</text>
+                <text x="140" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">→ risque / produit</text>
+                <text x="140" y="175" text-anchor="middle" fill="#0d9f8a" font-size="11" font-weight="700">pas un incident SI</text>
+              </g>
+              <g>
+                <rect x="270" y="40" width="220" height="180" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <text x="380" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">2 · AuthN</text>
+                <text x="380" y="120" text-anchor="middle" fill="#5a6b7c" font-size="12">PIN · 3DS · abandon</text>
+                <text x="380" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">→ UX / ACS / wallet</text>
+                <text x="380" y="175" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">parcours challenge</text>
+              </g>
+              <g>
+                <rect x="510" y="40" width="220" height="180" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                <text x="620" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">3 · Technique</text>
+                <text x="620" y="120" text-anchor="middle" fill="#c45c26" font-size="12">timeout · indispo</text>
+                <text x="620" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">→ NOC / gateway</text>
+                <text x="620" y="175" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">runbook incident</text>
+              </g>
+              <g>
+                <rect x="750" y="40" width="220" height="180" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <text x="860" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">4 · Clearing</text>
+                <text x="860" y="120" text-anchor="middle" fill="#5a6b7c" font-size="12">post-tx · écart</text>
+                <text x="860" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">→ back-office</text>
+                <text x="860" y="175" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700">≠ decline temps réel</text>
+              </g>
+              <text x="500" y="265" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Classer d’abord — puis déclencher le bon propriétaire
+              </text>
+            </svg>
+            <div class="seq-steps" id="runbook-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Classer</strong>
+                  <p>Code / log → famille 1, 2, 3 ou 4 (rappel J1).</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Router</strong>
+                  <p>Risque, ACS/UX, NOC, ou back-office clearing.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Mesurer</strong>
+                  <p>KPI par famille — pas un seul «&nbsp;taux de refus&nbsp;».</p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              Un spike « technique » et un spike « métier » n’ont pas le même
+              comité d’escalade.
+            </p>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Rôle</p>
+          <h2>Que retient le SI&nbsp;?</h2>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Gouvernance</h3>
+              <ul>
+                <li>Opérer / certifier / superviser</li>
+                <li>Responsables nommés</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Exploitation</h3>
+              <ul>
+                <li>KPIs par famille de rejet</li>
+                <li>Runbooks écrits et testés</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Ancrage</p>
+          <h2>Cas pratiques</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Cas 1 — Timeout gateway</h3>
+              <ul>
+                <li>Famille 3 → NOC</li>
+                <li>≠ appel au scoring fraude</li>
+              </ul>
+            </div>
+            <div class="panel ko">
+              <h3>Cas 2 — Tout en « refus » global</h3>
+              <ul>
+                <li>KPI unique trompeur</li>
+                <li>Masque un incident technique</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que ce n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>≠ L’atelier de conception</strong>
+              <p>
+                Ici&nbsp;: contrôle / KPIs / runbooks. La conception plateforme
+                = atelier suivant.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Un dashboard marketing</strong>
+              <p>
+                Les KPIs utiles distinguent les causes (J1), pas seulement le
+                volume.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Remplacer le fraud engine</strong>
+              <p>
+                La fraude est une brique&nbsp;; le contrôle orchestre aussi
+                dispo, clearing, gouvernance.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <details class="trainer-notes">
+          <summary>Notes formateur — questions SI</summary>
+          <div class="notes-body">
+            <ul>
+              <li>Qui reçoit l’alerte timeout vs decline fonds&nbsp;?</li>
+              <li>Avez-vous un runbook écrit par famille de rejet&nbsp;?</li>
+              <li>Qui certifie un nouveau canal avant mise en prod&nbsp;?</li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>Gouvernance opérer / certifier / superviser</li>
+            <li>KPIs liés aux familles de rejet J1</li>
+            <li>Runbooks différenciés verbalisés</li>
+          </ul>
+        </div>
+
+        <div class="sources-box">
+          <strong>Sources normes / specs</strong> — à affiner&nbsp;: codes
+          réponse scheme, politiques incident processeur, cadres de gouvernance
+          switch nationaux.
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
-    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 5</a> · Contrôle continu</div></footer>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 5</a>
+        · Support formateur · Bloc Contrôle &amp; gouvernance
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j5.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

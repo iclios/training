@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Intro & objectifs — Jour 5 | Paiements digitaux</title>
+    <title>Intro &amp; objectifs — Jour 5 | Paiements digitaux</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body data-bloc="intro">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a href="../j2/index.html">J2</a>
@@ -19,30 +21,86 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta"><span class="tag">Jour 5 · Ouverture</span><span class="tag tag-accent">Bloc formateur</span><span>15–20 min</span></div>
-              <p class="day-kicker">Accueil</p>
-              <h1>Intro & objectifs</h1>
-            </div>
-          </section>
-          <div class="wrap">
-            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>Le Jour 5 rassemble tous les canaux vus jusque-là dans une architecture SI cohérente, gouvernée et défendable en comité banque.</p></aside>
-
-            <section class="section" style="border-top:none;padding-top:0"><p class="section-label">Contexte</p><h2>Le moment de la synthèse</h2><p class="intro">Flux carte, QR, tokenisation, NFC et wallets ne sont plus des blocs séparés : ils deviennent les composants d’une plateforme de paiement digitale.</p></section>
-            <section class="section"><p class="section-label">Objectifs</p><h2>Ce que les participants sauront faire</h2><ul class="topic-list"><li>Définir l’omnicanal</li><li>Identifier les briques d’une plateforme cible</li><li>Exprimer les exigences d’interop, sécurité, gouvernance</li><li>Défendre une architecture nationale argumentée</li></ul></section>
-            <div class="check-end"><h3>Check</h3><ul><li>Objectif de synthèse compris</li></ul></div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 5 · Omnicanal</span>
           </div>
-        </main>
+          <p class="day-kicker">Accueil</p>
+          <h1>Intro &amp; objectifs</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Fil de séance</p>
+          <h2>Blocs du Jour 5</h2>
+          <nav
+            class="block-map"
+            id="block-map"
+            aria-label="Blocs du jour 5"
+          ></nav>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Synthèse</p>
+          <h2>Pourquoi J5 maintenant</h2>
+          <p class="intro">
+            Auth / Clearing / Settlement (J1), QR (J2), token (J3), NFC /
+            wallet (J4) deviennent les briques d’une
+            <strong>plateforme SI omnicanale</strong> — défendable en comité
+            banque.
+          </p>
+          <div class="timeline-evo">
+            <span class="step">J1 Flux</span><span class="arrow">→</span>
+            <span class="step">J2 QR</span><span class="arrow">→</span>
+            <span class="step">J3 Token</span><span class="arrow">→</span>
+            <span class="step">J4 NFC</span><span class="arrow">→</span>
+            <span class="step">J5 Omnicanal</span>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Objectifs</p>
+          <h2>Ce que les participants sauront faire</h2>
+          <ul class="topic-list">
+            <li>Définir l’omnicanal (backend unique, orchestration, UX)</li>
+            <li>Situer les briques d’une plateforme cible</li>
+            <li>Exprimer les exigences SI (dispo, latence, réconciliation…)</li>
+            <li>Relier gouvernance / KPIs / runbooks aux rejets J1</li>
+            <li>Concevoir et pitcher une architecture argumentée</li>
+          </ul>
+        </section>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>Objectif de synthèse compris</li>
+            <li>Fil J1→J5 rappelé</li>
+          </ul>
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
-    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 5</a> · Intro</div></footer>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 5</a>
+        · Support formateur · Intro
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j5.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

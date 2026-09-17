@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Architecture d’une plateforme de paiement — Jour 5 | Paiements digitaux</title>
+    <title>Architecture plateforme — Jour 5 | Paiements digitaux</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body data-bloc="architecture-plateforme">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a href="../j2/index.html">J2</a>
@@ -19,31 +21,389 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta"><span class="tag">Jour 5 · Architecture</span><span class="tag tag-accent">Bloc formateur</span><span>40–50 min</span></div>
-              <p class="day-kicker">5.2</p>
-              <h1>Architecture d’une plateforme de paiement</h1>
-            </div>
-          </section>
-          <div class="wrap">
-            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>Gateway, wallet manager, tokenization, fraude et settlement forment un tout : la plateforme orchestre, supervise et réconcilie.</p></aside>
-
-            <section class="section" style="border-top:none;padding-top:0"><p class="section-label">Composants</p><h2>Briques principales</h2><ul class="topic-list"><li>Payment gateway</li><li>Wallet manager</li><li>Tokenization service</li><li>Fraud engine</li><li>Reconciliation & settlement</li></ul></section>
-            <section class="section"><p class="section-label">Lecture</p><h2>Pourquoi ces briques ensemble</h2><div class="split-2"><div class="panel ok"><h3>Front door</h3><ul><li>Gateway / orchestration</li><li>Connexion aux canaux</li></ul></div><div class="panel"><h3>Cœur de confiance</h3><ul><li>Wallet manager</li><li>Token service</li><li>Fraud</li></ul></div></div><div class="panel" style="margin-top:1rem"><h3>Clôture financière</h3><ul><li>Réconciliation</li><li>Settlement</li><li>Journal unique de vérité</li></ul></div></section>
-            <section class="section"><p class="section-label">Pont</p><h2>Tout ce qu’on a vu revient ici</h2><p class="intro">J1 fournit la logique monétique, J2 apporte le QR, J3 la tokenisation, J4 les wallets et le NFC. J5 assemble ces briques dans une cible SI cohérente.</p></section>
-            <div class="check-end"><h3>Check</h3><ul><li>Briques principales citées</li><li>Rôle de l’orchestration compris</li></ul></div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 5 · Omnicanal</span>
           </div>
-        </main>
+          <p class="day-kicker">5.2 · Plateforme</p>
+          <h1>Architecture d’une plateforme de paiement</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition monétique</p>
+          <h2>Qu’est-ce qu’une plateforme de paiement digitale&nbsp;?</h2>
+          <p class="definition-full">
+            Ensemble de <strong>composants SI</strong> qui orchestrent
+            l’acceptation multi-canaux, la <strong>tokenisation</strong>, les
+            rails <strong>QR / NFC / wallet</strong>, le lien
+            <strong>émetteur / acquéreur</strong>, la fraude, puis la
+            <strong>réconciliation &amp; settlement</strong> — avec un journal
+            de vérité unique.
+          </p>
+          <p class="intro" style="margin-top: 1.1rem">
+            J1 = logique monétique · J2–J4 = rails · J5 = assemblage cible.
+          </p>
+        </section>
+
+        <section class="section" id="schema-archi">
+          <p class="section-label">Vue d’ensemble</p>
+          <h2>Schéma d’architecture cible</h2>
+          <p class="intro">
+            Gateway en façade&nbsp;; cœur (wallet, token, QR, fraude)&nbsp;;
+            rails vers émetteur / acquéreur&nbsp;; clôture financière.
+          </p>
+
+          <div class="diagram" id="diagram-plateforme">
+            <div class="diagram-header">
+              <h3>Plateforme omnicanale</h3>
+              <p>Canaux · Cœur SI · Rails · Clôture</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 560"
+              role="img"
+              aria-label="Architecture plateforme paiement digitale"
+            >
+              <defs>
+                <marker id="ah-pl" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+
+              <!-- Canaux -->
+              <text x="500" y="28" text-anchor="middle" fill="#5a6b7c" font-size="12" font-family="Syne, sans-serif" font-weight="700">CANAUX</text>
+              <g>
+                <rect x="40" y="40" width="150" height="70" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-commercant.jpg" x="52" y="50" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                <text x="105" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">In-store</text>
+              </g>
+              <g>
+                <rect x="210" y="40" width="150" height="70" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="222" y="50" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                <text x="275" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">E-com</text>
+              </g>
+              <g>
+                <rect x="380" y="40" width="150" height="70" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-porteur.jpg" x="392" y="50" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                <text x="445" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Mobile</text>
+              </g>
+              <g>
+                <rect x="550" y="40" width="150" height="70" rx="8" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-wallet.jpg" x="562" y="50" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                <text x="615" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">In-app</text>
+              </g>
+              <g>
+                <rect x="720" y="40" width="240" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-psp.jpg" x="736" y="50" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                <text x="790" y="68" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Payment gateway</text>
+                <text x="790" y="88" fill="#0d9f8a" font-size="11">façade / API</text>
+              </g>
+
+              <line x1="115" y1="110" x2="840" y2="140" stroke="#0d9f8a" stroke-width="1.5" opacity="0.5"/>
+              <line x1="285" y1="110" x2="840" y2="140" stroke="#0d9f8a" stroke-width="1.5" opacity="0.5"/>
+              <line x1="455" y1="110" x2="840" y2="140" stroke="#0d9f8a" stroke-width="1.5" opacity="0.5"/>
+              <line x1="625" y1="110" x2="840" y2="140" stroke="#0d9f8a" stroke-width="1.5" opacity="0.5"/>
+              <line x1="840" y1="110" x2="840" y2="140" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-pl)"/>
+
+              <!-- Cœur -->
+              <text x="500" y="165" text-anchor="middle" fill="#5a6b7c" font-size="12" font-family="Syne, sans-serif" font-weight="700">CŒUR SI</text>
+              <g>
+                <rect x="40" y="175" width="220" height="100" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-wallet.jpg" x="56" y="195" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                <text x="124" y="215" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Wallet manager</text>
+                <text x="124" y="238" fill="#5a6b7c" font-size="11">provisioning · cycle</text>
+              </g>
+              <g>
+                <rect x="280" y="175" width="220" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="296" y="195" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                <text x="364" y="215" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Tokenization</text>
+                <text x="364" y="238" fill="#0d9f8a" font-size="11">TSP · J3</text>
+              </g>
+              <g>
+                <rect x="520" y="175" width="220" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="536" y="195" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                <text x="604" y="215" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">QR engine</text>
+                <text x="604" y="238" fill="#5a6b7c" font-size="11">statique / dyn · J2</text>
+              </g>
+              <g>
+                <rect x="760" y="175" width="200" height="100" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                <text x="860" y="220" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Fraud engine</text>
+                <text x="860" y="245" text-anchor="middle" fill="#c45c26" font-size="11">scoring · règles</text>
+              </g>
+
+              <!-- Rails -->
+              <text x="500" y="310" text-anchor="middle" fill="#5a6b7c" font-size="12" font-family="Syne, sans-serif" font-weight="700">RAILS · LIENS</text>
+              <g>
+                <rect x="80" y="320" width="280" height="90" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="96" y="338" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                <text x="160" y="360" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Rails NFC / wallet</text>
+                <text x="160" y="382" fill="#5a6b7c" font-size="11">HCE · SE · contactless · J4</text>
+              </g>
+              <g>
+                <rect x="400" y="320" width="240" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="416" y="338" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                <text x="480" y="360" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Acquéreur</text>
+                <text x="480" y="382" fill="#5a6b7c" font-size="11">acceptation · J1</text>
+              </g>
+              <g>
+                <rect x="680" y="320" width="240" height="90" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="696" y="338" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                <text x="760" y="360" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Émetteur</text>
+                <text x="760" y="382" fill="#5a6b7c" font-size="11">AuthZ · scheme</text>
+              </g>
+
+              <line x1="150" y1="275" x2="220" y2="320" stroke="#0d9f8a" stroke-width="1.5" marker-end="url(#ah-pl)"/>
+              <line x1="390" y1="275" x2="520" y2="320" stroke="#0d9f8a" stroke-width="1.5" marker-end="url(#ah-pl)"/>
+              <line x1="630" y1="275" x2="800" y2="320" stroke="#0d9f8a" stroke-width="1.5" marker-end="url(#ah-pl)"/>
+
+              <!-- Clôture -->
+              <g>
+                <rect x="200" y="450" width="600" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="230" y="464" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                <text x="300" y="485" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Réconciliation &amp; settlement</text>
+                <text x="300" y="508" fill="#0d9f8a" font-size="12">journal unique · positions · règlement (J1)</text>
+              </g>
+              <line x1="220" y1="410" x2="350" y2="450" stroke="#0d9f8a" stroke-width="1.5"/>
+              <line x1="520" y1="410" x2="500" y2="450" stroke="#0d9f8a" stroke-width="1.5"/>
+              <line x1="800" y1="410" x2="650" y2="450" stroke="#0d9f8a" stroke-width="1.5"/>
+            </svg>
+
+            <div class="seq-steps" id="archi-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Gateway</strong>
+                  <p>Point d’entrée API / terminaux — normalise les demandes.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Cœur</strong>
+                  <p>Wallet manager, tokenization, QR engine, fraud.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Rails</strong>
+                  <p>NFC/wallet + liens acquéreur / émetteur / scheme.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="4">
+                <span class="n">4</span>
+                <span>
+                  <strong>Clôture</strong>
+                  <p>Réconciliation et settlement — même vérité que l’auth.</p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              Chaque brique = responsabilité SI claire (qui opère, qui certifie,
+              qui supervise).
+            </p>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Flux</p>
+          <h2>Un paiement traverse la plateforme</h2>
+          <p class="intro">
+            Exemple&nbsp;: wallet NFC in-store — du terminal au settlement.
+          </p>
+
+          <div class="diagram" id="diagram-flux-pl">
+            <div class="diagram-header">
+              <h3>Parcours type (wallet NFC)</h3>
+              <p>Terminal → gateway → token → scheme → émetteur → journal</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 240"
+              role="img"
+              aria-label="Flux wallet NFC à travers la plateforme"
+            >
+              <defs>
+                <marker id="ah-fx" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="20" y="60" width="140" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-commercant.jpg" x="32" y="74" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                <text x="90" y="100" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">POS</text>
+              </g>
+              <line class="flow-line" x1="170" y1="105" x2="210" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fx)"/>
+              <g>
+                <rect x="210" y="60" width="140" height="90" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-psp.jpg" x="222" y="74" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                <text x="280" y="100" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Gateway</text>
+              </g>
+              <line class="flow-line" x1="360" y1="105" x2="400" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fx)"/>
+              <g>
+                <rect x="400" y="60" width="140" height="90" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="412" y="74" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                <text x="470" y="100" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Token</text>
+              </g>
+              <line class="flow-line" x1="550" y1="105" x2="590" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fx)"/>
+              <g>
+                <rect x="590" y="60" width="140" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="602" y="74" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                <text x="660" y="100" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">AuthZ</text>
+              </g>
+              <line class="flow-line" x1="740" y1="105" x2="780" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fx)"/>
+              <g>
+                <rect x="780" y="60" width="180" height="90" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <text x="870" y="95" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Journal</text>
+                <text x="870" y="115" text-anchor="middle" fill="#5a6b7c" font-size="11">→ clearing / sett.</text>
+              </g>
+              <text x="500" y="200" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Même chaîne pour un QR ou une carte — seuls gateway / moteur d’entrée changent
+              </text>
+            </svg>
+            <div class="seq-steps" id="flux-pl-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Acceptation</strong>
+                  <p>POS / app envoie la demande via la gateway.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Confiance</strong>
+                  <p>Token / cryptogramme (J3–J4), contrôles fraude.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Décision &amp; clôture</strong>
+                  <p>AuthZ puis journal → clearing / settlement (J1).</p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Rôle</p>
+          <h2>Que fait chaque brique&nbsp;?</h2>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Façade &amp; confiance</h3>
+              <ul>
+                <li>Gateway&nbsp;: entrée, normalisation</li>
+                <li>Wallet manager&nbsp;: cycle de vie</li>
+                <li>Tokenization&nbsp;: PAN → token</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Rails &amp; clôture</h3>
+              <ul>
+                <li>QR engine · NFC / wallet</li>
+                <li>Liens émetteur / acquéreur</li>
+                <li>Réconciliation &amp; settlement</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Ancrage</p>
+          <h2>Cas pratiques</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Cas 1 — Brancher un nouveau canal</h3>
+              <ul>
+                <li>Nouveau front → même gateway</li>
+                <li>Pas de nouveau silo settlement</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Cas 2 — TSP hors périmètre</h3>
+              <ul>
+                <li>Token chez scheme / TSP externe</li>
+                <li>Gateway reste le point d’orchestration</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que ce n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>≠ Un seul éditeur « magique »</strong>
+              <p>
+                La plateforme peut être assemblée (PSP + TSP + switch + banque).
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Remplacer Auth / Clearing / Settlement</strong>
+              <p>
+                Elle les orchestre — elle ne les invente pas.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Architecture figée</strong>
+              <p>
+                Les frontières gateway / TSP / fraude varient selon le pays et
+                le modèle opératoire.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <details class="trainer-notes">
+          <summary>Notes formateur — questions SI</summary>
+          <div class="notes-body">
+            <ul>
+              <li>Qui opère la gateway aujourd’hui chez vous&nbsp;?</li>
+              <li>Le journal unique existe-t-il réellement, ou par canal&nbsp;?</li>
+              <li>Où placez-vous le fraud engine (avant / après routing)&nbsp;?</li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>Briques gateway → cœur → rails → clôture situées</li>
+            <li>Liens émetteur / acquéreur rappelés</li>
+            <li>Synthèse J1–J4 visible sur le schéma</li>
+          </ul>
+        </div>
+
+        <div class="sources-box">
+          <strong>Sources normes / specs</strong> — à affiner&nbsp;: architectures
+          référence PSP / switch nationaux, EMVCo, PCI, règles scheme.
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
-    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 5</a> · Architecture plateforme</div></footer>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 5</a>
+        · Support formateur · Bloc Architecture plateforme
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j5.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

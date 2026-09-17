@@ -9,7 +9,9 @@
   <body data-bloc="atelier">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a href="../j2/index.html">J2</a>
@@ -19,30 +21,161 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta"><span class="tag">Jour 4 · Atelier</span><span class="tag tag-accent">Bloc formateur</span><span>60–75 min</span></div>
-              <p class="day-kicker">Clôture</p>
-              <h1>Atelier palpable</h1>
-            </div>
-          </section>
-          <div class="wrap">
-            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>Montrer l’antenne, lire un tag, mesurer la distance, puis relier le geste physique au flux monétique mobile.</p></aside>
-
-            <section class="section" style="border-top:none;padding-top:0"><div class="atelier"><p class="section-label" style="color:#0d9f8a">Kit</p><h2>Matériel & logiciel</h2><div class="atelier-grid"><div><h3>À apporter</h3><ul><li>PN532</li><li>Lecteur ACR122U</li><li>Tags NFC</li><li>Carte sans contact</li><li>Smartphones wallet</li></ul></div><div><h3>Logiciel</h3><ul><li>NFC Tools</li><li>Démo HCE Android optionnelle</li></ul></div><div><h3>Attention</h3><ul><li>Lecture UID / présence puce uniquement</li><li>Jamais de données sensibles</li></ul></div></div></div></section>
-            <section class="section"><p class="section-label">Déroulé</p><h2>Atelier guidé</h2><ul class="topic-list"><li>Montrer physiquement l’antenne</li><li>Lire tag / carte</li><li>Tester la distance utile</li><li>Relier au flux smartphone → POS</li><li>Comparer geste NFC et geste QR</li></ul></section>
-            <div class="check-end"><h3>Check fin J4</h3><ul><li>Canal physique compris</li><li>Wallet replacé dans le flux</li></ul></div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 4 · NFC / Wallets</span>
           </div>
-        </main>
+          <p class="day-kicker">Clôture</p>
+          <h1>Atelier palpable</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition</p>
+          <h2>Ancrer le geste dans le flux</h2>
+          <p class="definition-full">
+            Atelier matériel&nbsp;: montrer l’antenne, lire un tag / une carte,
+            mesurer la distance utile, puis
+            <strong>relier le geste physique</strong> au flux monétique mobile
+            (wallet → POS → AuthZ) — sans manipuler de données sensibles.
+          </p>
+        </section>
+
+        <section class="section">
+          <div class="atelier">
+            <p class="section-label" style="color: #0d9f8a">Kit</p>
+            <h2>Matériel &amp; logiciel</h2>
+            <div class="atelier-grid">
+              <div>
+                <h3>À apporter</h3>
+                <ul>
+                  <li>PN532</li>
+                  <li>Lecteur ACR122U</li>
+                  <li>Tags NFC</li>
+                  <li>Carte sans contact</li>
+                  <li>Smartphones wallet</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Logiciel</h3>
+                <ul>
+                  <li>NFC Tools</li>
+                  <li>Démo HCE Android (optionnelle)</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Limites</h3>
+                <ul>
+                  <li>Lecture UID / présence puce uniquement</li>
+                  <li>Jamais de données sensibles</li>
+                  <li>Tag ≠ paiement EMV</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Déroulé</p>
+          <h2>Atelier guidé</h2>
+          <div class="diagram" id="diagram-atelier">
+            <div class="diagram-header">
+              <h3>Cinq temps</h3>
+              <p>Du physique au flux SI</p>
+            </div>
+            <div class="seq-steps" id="atelier-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Antenne</strong>
+                  <p>Montrer physiquement où se situe le couple RF.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Lecture</strong>
+                  <p>Lire tag / carte (UID) — mode reader/writer.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Distance</strong>
+                  <p>Tester la distance utile — ancrer la physique NFC.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="4">
+                <span class="n">4</span>
+                <span>
+                  <strong>Flux mobile</strong>
+                  <p>
+                    Relier au schéma
+                    <a href="cas-pratique.html">smartphone → POS</a>.
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="5">
+                <span class="n">5</span>
+                <span>
+                  <strong>NFC vs QR</strong>
+                  <p>
+                    Comparer le geste — rappel
+                    <a href="technologie-nfc.html">technologie NFC</a>.
+                  </p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que l’atelier n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>≠ Paiement réel</strong>
+              <p>Lecture UID / démo — pas d’autorisation live avec données prod.</p>
+            </div>
+            <div class="not-item">
+              <strong>Tag ≠ wallet</strong>
+              <p>Reader/writer ≠ card emulation de paiement.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="check-end">
+          <h3>Check fin J4</h3>
+          <ul>
+            <li>Canal physique compris</li>
+            <li>Wallet replacé dans le flux</li>
+            <li>Distinction NFC / QR / token ancrée</li>
+          </ul>
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
-    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 4</a> · Atelier</div></footer>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 4</a>
+        · Support formateur · Bloc Atelier
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j4.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

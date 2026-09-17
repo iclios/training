@@ -1,8 +1,8 @@
 BLOC — FORMATEUR
 Cours : Paiements digitaux & Wallets numériques
-Jour 1 · 1.4
+Jour 1 · Flux transactionnel carte
 Bloc : Online / offline & rejets
-Durée indicative : 20–30 min
+Durée indicative : 25–35 min
 Précédent : Settlement · Suivant : Atelier
 Pont : PAN dans le flux d’auth → J3 tokenisation
 
@@ -10,72 +10,65 @@ Pont : PAN dans le flux d’auth → J3 tokenisation
 ================================================================================
 1. MÉTA FORMATEUR
 ================================================================================
-Objectif pédagogique
-Distinguer transaction online vs offline, relier latence / disponibilité à
-l’expérience d’autorisation, et classer les rejets (métier vs technique)
-pour le diagnostic SI.
+Objectif
+Distinguer online, offline normal et offline dégradé ; classer les rejets
+(métier / AuthN / technique / clearing) pour le diagnostic SI.
 
 Idée clé
-« Online = on interroge la chaîne jusqu’à une décision (souvent l’émetteur).
-Offline = acceptation sous règles locales / différées — autre profil de
-risque. Un rejet n’est pas toujours un “pas d’argent”. »
+« Online = on interroge la chaîne jusqu’à une décision.
+Offline normal = acceptation locale prévue par les règles.
+Offline dégradé = secours quand l’online échoue.
+Un rejet n’est pas toujours un “pas d’argent”. »
 
 
 ================================================================================
-2. ONLINE
+2. DÉFINITION + SITUATION
 ================================================================================
-Le point d’acceptation (ou le serveur) envoie une demande et attend une
-réponse via acquéreur / réseau / émetteur (chemin typique d’autorisation).
-
-Enjeux SI
-- Latence bout en bout
-- Disponibilité de chaque maillon
-- Timeouts et politiques de retry / abort
+Online / Offline définis.
+Trois profils sur le bandeau : Online · Offline normal · Offline dégradé.
 
 
 ================================================================================
-3. OFFLINE
+3. ONLINE (schéma + seq-steps)
 ================================================================================
-Dans certains contextes (seuils sans contact, mode dégradé, règles produit /
-scheme), une opération peut être acceptée sans décision online immédiate de
-l’émetteur, avec contrôles locaux et/ou présentation différée.
-
-Message formateur
-Ne pas faire du Jour 1 un cours offline exhaustif : poser le concept, le
-risque, et renvoyer aux règles scheme / produit.
+Terminal → acquéreur → réseau → émetteur → retour
+Enjeux SI : latence, dispo, timeouts / retry / abort
 
 
 ================================================================================
-4. REJETS — TYPOLOGIE
+4. OFFLINE — DEUX SCHÉMAS
 ================================================================================
-1) Refus métier d’autorisation (fonds, opposition, risque…)
-2) Échec d’authentification (PIN, 3DS…)
-3) Incident technique (timeout, indispo gateway / réseau / host)
-4) Anomalie post-transaction (clearing) — déjà vue, à rappeler
+Offline normal
+Décision locale volontaire (seuils, CVM, floor limit, paramètres carte)
+Présentation différée → clearing
 
-Vigilance
-Même symptôme porteur (« refusé ») ≠ même cause SI.
-
-
-================================================================================
-5. PAN — PONT J3
-================================================================================
-En modèle carte classique, le PAN circule dans le flux d’autorisation.
-La tokenisation (J3) remplace cette exposition sans supprimer la logique
-Auth → Clearing → Settlement.
+Offline dégradé
+Tentative online → indispo / timeout → politique de secours
+(fallback, store & forward, stand-in, ou refus technique)
+≠ offline normal : on voulait du online
 
 
 ================================================================================
-6. CAS PRATIQUES
+5. REJETS (schéma + seq-steps)
 ================================================================================
-Cas 1 — Timeout à 3 s vs decline fonds : deux runbooks
-Cas 2 — Contactless sous seuil : online ou offline selon contexte ?
-Cas 3 — Lire un code sandbox et le classer (métier / AuthN / technique)
+1) Métier (AuthZ) — fonds, opposition, risque
+2) Authentification — PIN, 3DS, abandon
+3) Technique — timeout, gateway, réseau, host
+4) Clearing — anomalie post-transaction (rappel)
+
+Même symptôme porteur ≠ même cause SI
 
 
 ================================================================================
-7. CHECK DE FIN
+6. PONT J3 + CAS + CHECK
 ================================================================================
-[ ] Online vs offline verbalisé
-[ ] 3 familles de « refus » distinguées
-[ ] Pont PAN → token annoncé
+PAN dans le flux online → tokenisation J3
+
+Cas 1 — Timeout vs decline fonds
+Cas 2 — Contactless sous seuil (normal vs online forcé)
+Cas 3 — Code sandbox à classer
+
+[ ] Online vs offline
+[ ] Offline normal ≠ dégradé
+[ ] Familles de refus
+[ ] Pont PAN → token

@@ -1,2 +1,2 @@
 JOUR 5 — Paiement omnicanal
-Backend unique, orchestration multi-moyens, UX unifiée.
+In-store / e-com / mobile / in-app · single payment backend · orchestration multi-moyens · UX unifiée · schémas + seq-steps.

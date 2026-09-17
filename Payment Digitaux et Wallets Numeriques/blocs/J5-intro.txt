@@ -1,2 +1,2 @@
 JOUR 5 — Intro & objectifs
-Synthèse en plateforme SI cohérente et défendable.
+Synthèse J1–J4 → plateforme SI omnicanale. Objectifs : omnicanal, briques, exigences, contrôle, atelier conception.

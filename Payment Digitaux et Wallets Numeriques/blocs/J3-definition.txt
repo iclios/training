@@ -3,38 +3,33 @@ JOUR 3 — Définition & objectifs
 Objectif pédagogique
 Définir la tokenisation au sens paiement, distinguer PAN, token, vault et TSP,
 et expliquer pourquoi la tokenisation réduit l'exposition sans modifier la
-logique monétique de fond.
-
-Idée clé
-La tokenisation remplace l'exposition directe du PAN par un identifiant
-substitutif gouverné pour un domaine d'usage donné.
+logique monétique Auth → Clearing → Settlement.
 
 Définition monétique
-La tokenisation consiste à substituer au PAN un token exploitable dans un
-contexte précis, gouverné par une infrastructure dédiée, afin de réduire
-l'exposition des données carte dans le flux de paiement.
+Substitution du PAN par un token utilisable dans un domaine d'usage défini,
+gouverné (vault / TSP), afin de réduire l'exposition des données carte.
 
 Vocabulaire
-- PAN : identifiant carte d'origine
-- Token : substitut du PAN
+- PAN : identifiant carte d'origine (sensible)
+- Token : substitut gouverné, domaine / device / canal
 - Token vault : référentiel de correspondance PAN ↔ token
-- TSP : Token Service Provider, qui émet et gouverne le token
+- TSP : Token Service Provider (émission et cycle de vie)
 
-Ce que la tokenisation n'est pas
-- pas un simple chiffrement
-- pas un nouveau rail de paiement
-- pas une suppression totale du risque
-
-Usages
-- in-store
+Domaines
+- in-store (wallet / NFC / POS)
 - in-app
-- e-commerce
+- e-commerce (card-on-file, récurrent)
 
 Objectifs
-- réduction de la fraude
-- limitation de l'exposition PAN
+- réduction de la fraude liée à l'exposition du PAN
+- limitation de l'exposition des données carte
 - aide à la conformité PCI-DSS
 
-Cas pratiques
-- wallet mobile : le smartphone présente un token et non le PAN
-- e-commerce tokenisé : le marchand conserve un token plutôt qu'un PAN
+Clarification
+- ≠ chiffrement simple
+- ≠ nouveau rail (Auth → Clearing → Settlement inchangé)
+- ≠ risque zéro
+
+Cas
+- wallet mobile : présentation d'un token, pas du PAN
+- e-commerce tokenisé : marchand conserve un token

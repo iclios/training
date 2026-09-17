@@ -9,7 +9,9 @@
   <body data-bloc="paiement-contactless">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a href="../j2/index.html">J2</a>
@@ -19,31 +21,464 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta"><span class="tag">Jour 4 · Contactless</span><span class="tag tag-accent">Bloc formateur</span><span>30–40 min</span></div>
-              <p class="day-kicker">4.2</p>
-              <h1>Paiement sans contact EMV</h1>
-            </div>
-          </section>
-          <div class="wrap">
-            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>Le sans contact n’est pas seulement un geste plus rapide : c’est un cadre EMV avec ses règles de risque, ses seuils et ses décisions online ou offline.</p></aside>
-
-            <section class="section" style="border-top:none;padding-top:0"><p class="section-label">Fonctionnement</p><h2>Carte sans contact vs mobile NFC</h2><ul class="topic-list"><li>Carte sans contact (plastique)</li><li>Mobile NFC</li><li>Seuils de paiement</li><li>Transactions offline selon contexte</li></ul></section>
-            <section class="section"><p class="section-label">Standards</p><h2>Repères techniques</h2><div class="split-2"><div class="panel ok"><h3>EMV Contactless</h3><ul><li>Cadre fonctionnel et sécurité</li><li>Logique d’acceptation / risque</li></ul></div><div class="panel"><h3>ISO 14443</h3><ul><li>Interface sans contact de proximité</li><li>Repère physique / protocolaire</li></ul></div></div></section>
-            <section class="section"><p class="section-label">Pont J1</p><h2>Online / offline réapparaissent</h2><p class="intro">Les notions du Jour 1 reviennent ici : seuils, décisions locales, mode dégradé, responsabilité et latence.</p><div class="callout warn"><h3>Point à corriger en salle</h3><p>“Sans contact” ne veut pas dire “sans sécurité” ni “sans autorisation”. Cela change le geste et parfois le parcours, pas le besoin de contrôle.</p></div></section>
-            <div class="check-end"><h3>Check</h3><ul><li>Carte vs mobile distingués</li><li>EMV Contactless et ISO 14443 cités</li></ul></div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 4 · NFC / Wallets</span>
           </div>
-        </main>
+          <p class="day-kicker">4.2 · Acceptation sans contact</p>
+          <h1>Paiement sans contact EMV</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <!-- Définition -->
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition monétique</p>
+          <h2>Qu’est-ce que le sans contact EMV&nbsp;?</h2>
+          <p class="definition-full">
+            Paiement carte (ou équivalent mobile) via
+            <strong>interface de proximité</strong> (ISO&nbsp;14443), sous le
+            cadre <strong>EMV Contactless</strong>&nbsp;: mêmes familles de
+            contrôles (authentification données, CVM, risque, online/offline),
+            avec un geste «&nbsp;tap&nbsp;» et des
+            <strong>seuils / paramètres</strong> spécifiques au canal sans
+            contact.
+          </p>
+          <p class="intro" style="margin-top: 1.1rem">
+            Sans contact ≠ «&nbsp;sans sécurité&nbsp;» — ça change le geste et
+            parfois le parcours, pas le besoin de contrôle.
+          </p>
+        </section>
+
+        <!-- Carte vs mobile -->
+        <section class="section">
+          <p class="section-label">Supports</p>
+          <h2>Carte plastique vs mobile NFC</h2>
+          <p class="intro">
+            Même interface de proximité face au POS — supports et modèles de
+            confiance différents.
+          </p>
+
+          <div class="diagram" id="diagram-carte-vs-mobile">
+            <div class="diagram-header">
+              <h3>Deux supports, un terminal</h3>
+              <p>Plastique contactless · Wallet NFC (card emulation)</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 320"
+              role="img"
+              aria-label="Carte plastique vs mobile NFC face au POS"
+            >
+              <defs>
+                <marker id="ah-cl" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="40" y="40" width="260" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-porteur.jpg" x="52" y="56" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="122" y="80" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Carte plastique</text>
+                <text x="122" y="102" fill="#5a6b7c" font-size="12">puce + antenne</text>
+                <text x="122" y="122" fill="#5a6b7c" font-size="11">PAN / données carte</text>
+              </g>
+              <g>
+                <rect x="40" y="170" width="260" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-wallet.jpg" x="52" y="186" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="122" y="210" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Mobile NFC</text>
+                <text x="122" y="232" fill="#0d9f8a" font-size="12">wallet · token</text>
+                <text x="122" y="252" fill="#5a6b7c" font-size="11">SE / HCE / TEE</text>
+              </g>
+              <line class="flow-line" x1="320" y1="95" x2="420" y2="160" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cl)"/>
+              <line class="flow-line" x1="320" y1="225" x2="420" y2="180" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cl)"/>
+              <g>
+                <rect x="420" y="100" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="440" y="122" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="520" y="148" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">POS / terminal</text>
+                <text x="520" y="172" fill="#5a6b7c" font-size="12">ISO 14443 · EMV CL</text>
+                <text x="520" y="194" fill="#5a6b7c" font-size="11">même interface RF</text>
+              </g>
+              <line class="flow-line" x1="720" y1="160" x2="800" y2="160" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cl)"/>
+              <g>
+                <rect x="800" y="100" width="160" height="120" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="848" y="118" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="880" y="200" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Chaîne</text>
+                <text x="880" y="218" text-anchor="middle" fill="#5a6b7c" font-size="11">AuthZ</text>
+              </g>
+            </svg>
+            <div class="seq-steps" id="supports-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Carte plastique</strong>
+                  <p>
+                    Puce contactless + antenne — données carte, règles produit
+                    classiques.
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Mobile NFC</strong>
+                  <p>
+                    Card emulation via wallet — souvent
+                    <a href="../j3/definition.html">token</a> + device binding.
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Même POS</strong>
+                  <p>
+                    Interface RF commune — ensuite la chaîne AuthZ (J1) reprend.
+                  </p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Seuils -->
+        <section class="section">
+          <p class="section-label">Règles produit</p>
+          <h2>Seuils &amp; CVM</h2>
+          <p class="intro">
+            Montants, plafonds, demande de PIN / CDCVM — paramètres scheme /
+            émetteur / terminal.
+          </p>
+
+          <div class="diagram" id="diagram-seuils">
+            <div class="diagram-header">
+              <h3>Sous seuil · Au-dessus · Forçage</h3>
+              <p>Simplifié · le montant change le parcours</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 220"
+              role="img"
+              aria-label="Seuils sans contact"
+            >
+              <g>
+                <rect x="40" y="40" width="280" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <text x="180" y="85" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Sous seuil</text>
+                <text x="180" y="112" text-anchor="middle" fill="#0d9f8a" font-size="12">tap fluide possible</text>
+                <text x="180" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">CVM allégé selon règles</text>
+              </g>
+              <g>
+                <rect x="360" y="40" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <text x="500" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Au-dessus</text>
+                <text x="500" y="112" text-anchor="middle" fill="#1e5f8a" font-size="12">PIN / CDCVM / online</text>
+                <text x="500" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">selon produit &amp; scheme</text>
+              </g>
+              <g>
+                <rect x="680" y="40" width="280" height="120" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                <text x="820" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Forçage</text>
+                <text x="820" y="112" text-anchor="middle" fill="#c45c26" font-size="12">online forcé · refus CL</text>
+                <text x="820" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">risque / paramètres</text>
+              </g>
+              <text x="500" y="195" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Les seuils ne «&nbsp;désactivent&nbsp;» pas la sécurité — ils orientent le parcours
+              </text>
+            </svg>
+            <div class="seq-steps" id="seuils-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Sous seuil</strong>
+                  <p>Parcours contactless allégé possible — selon règles locales.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Au-dessus</strong>
+                  <p>PIN, CDCVM (mobile), ou online plus systématique.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Exceptions</strong>
+                  <p>Risque, plafond cumulé, paramètres carte → forçage.</p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Online / offline rappel J1 -->
+        <section class="section" id="schema-online-offline">
+          <p class="section-label">Pont J1</p>
+          <h2>Online / offline au tap</h2>
+          <p class="intro">
+            Les trois profils de
+            <a href="../j1/online-offline.html">J1 online / offline</a>
+            réapparaissent au sans contact.
+          </p>
+
+          <div class="diagram" id="diagram-cl-online-offline">
+            <div class="diagram-header">
+              <h3>Normal vs dégradé</h3>
+              <p>Rappel J1 appliqué au canal contactless</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 240"
+              role="img"
+              aria-label="Online offline normal et dégradé en contactless"
+            >
+              <g>
+                <rect x="40" y="40" width="280" height="130" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <text x="180" y="85" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Online</text>
+                <text x="180" y="112" text-anchor="middle" fill="#0d9f8a" font-size="12">décision émetteur</text>
+                <text x="180" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">souvent au-dessus seuil</text>
+              </g>
+              <g>
+                <rect x="360" y="40" width="280" height="130" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <text x="500" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Offline normal</text>
+                <text x="500" y="112" text-anchor="middle" fill="#1e5f8a" font-size="12">sous seuil · by design</text>
+                <text x="500" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">règles produit / scheme</text>
+              </g>
+              <g>
+                <rect x="680" y="40" width="280" height="130" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                <text x="820" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Offline dégradé</text>
+                <text x="820" y="112" text-anchor="middle" fill="#c45c26" font-size="12">online voulu, échoué</text>
+                <text x="820" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">timeout · host · fallback</text>
+              </g>
+              <text x="500" y="210" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Offline normal ≠ dégradé — même distinction qu’en J1
+              </text>
+            </svg>
+            <div class="seq-steps" id="cl-oo-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Online</strong>
+                  <p>Le tap attend une AuthZ via la chaîne — latence, dispo.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Offline normal</strong>
+                  <p>Acceptation locale prévue (seuils, paramètres carte).</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Offline dégradé</strong>
+                  <p>On voulait du online — secours ou refus technique.</p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              Relire
+              <a href="../j1/online-offline.html">J1 · Online / offline &amp; rejets</a>
+              si la distinction flotte encore.
+            </p>
+          </div>
+        </section>
+
+        <!-- Standards -->
+        <section class="section">
+          <p class="section-label">Standards</p>
+          <h2>EMV Contactless · ISO 14443</h2>
+          <p class="intro">
+            Couche physique / protocolaire vs cadre fonctionnel monétique.
+          </p>
+
+          <div class="diagram" id="diagram-standards">
+            <div class="diagram-header">
+              <h3>Deux couches</h3>
+              <p>ISO 14443 (interface) · EMV CL (logique paiement)</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 260"
+              role="img"
+              aria-label="ISO 14443 et EMV Contactless"
+            >
+              <defs>
+                <marker id="ah-std" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="80" y="40" width="360" height="120" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="100" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="172" y="82" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">ISO 14443</text>
+                <text x="172" y="106" fill="#1e5f8a" font-size="12">interface proximité</text>
+                <text x="172" y="128" fill="#5a6b7c" font-size="11">RF · anticollision · APDU</text>
+              </g>
+              <line class="flow-line" x1="460" y1="100" x2="540" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-std)"/>
+              <g>
+                <rect x="540" y="40" width="380" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="560" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="632" y="82" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">EMV Contactless</text>
+                <text x="632" y="106" fill="#0d9f8a" font-size="12">logique paiement</text>
+                <text x="632" y="128" fill="#5a6b7c" font-size="11">risque · CVM · cryptogrammes</text>
+              </g>
+              <text x="500" y="210" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                L’ISO porte le «&nbsp;comment parler en RF&nbsp;» — EMV porte le «&nbsp;comment payer en sécurité&nbsp;»
+              </text>
+            </svg>
+            <div class="seq-steps" id="standards-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>ISO 14443</strong>
+                  <p>Couche proximité — antenne, protocole, échanges APDU.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>EMV Contactless</strong>
+                  <p>Cadre fonctionnel — authentification, risque, CVM, online.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Chaîne AuthZ</strong>
+                  <p>Ensuite&nbsp;: acquéreur → réseau → émetteur (J1).</p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Rôle -->
+        <section class="section">
+          <p class="section-label">Rôle</p>
+          <h2>Que retient le SI&nbsp;?</h2>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Acceptation</h3>
+              <ul>
+                <li>Carte plastique ≠ mobile (token / CDCVM)</li>
+                <li>Seuils = paramètres, pas «&nbsp;sans contrôle&nbsp;»</li>
+                <li>ISO 14443 ≠ EMV Contactless</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Décision</h3>
+              <ul>
+                <li>Online / offline / dégradé (J1)</li>
+                <li>Émetteur décide encore l’AuthZ</li>
+                <li>Incidents RF ≠ declines métier</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Ancrage -->
+        <section class="section">
+          <p class="section-label">Ancrage</p>
+          <h2>Cas pratiques</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Cas 1 — Sous seuil OK, au-dessus PIN</h3>
+              <ul>
+                <li>Règles produit / scheme</li>
+                <li>Pas un «&nbsp;bug&nbsp;» terminal</li>
+              </ul>
+            </div>
+            <div class="panel ko">
+              <h3>Cas 2 — Tap timeout</h3>
+              <ul>
+                <li>Technique / dégradé (J1 famille 3)</li>
+                <li>≠ decline fonds</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Clarification -->
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que le sans contact n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>≠ « Sans autorisation »</strong>
+              <p>
+                Sous seuil = parcours allégé possible — pas l’absence de règles.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>Offline normal ≠ dégradé</strong>
+              <p>
+                Même rappel que
+                <a href="../j1/online-offline.html">J1</a>&nbsp;: prévu vs
+                secours.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>Carte ≠ wallet</strong>
+              <p>
+                Le mobile ajoute token, biométrie, lifecycle — voir architecture
+                wallets.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <details class="trainer-notes">
+          <summary>Notes formateur — questions SI</summary>
+          <div class="notes-body">
+            <ul>
+              <li>
+                Quels seuils contactless appliquez-vous en prod (pays /
+                produit)&nbsp;?
+              </li>
+              <li>
+                Comment distinguez-vous un échec RF d’un decline AuthZ dans les
+                logs&nbsp;?
+              </li>
+              <li>
+                Mobile CDCVM&nbsp;: qui possède le parcours (wallet vs
+                émetteur)&nbsp;?
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>Carte plastique vs mobile NFC distingués</li>
+            <li>Seuils / CVM situés</li>
+            <li>Online · offline normal · dégradé rappelés (J1)</li>
+            <li>EMV Contactless et ISO 14443 cités</li>
+          </ul>
+        </div>
+
+        <div class="sources-box">
+          <strong>Sources normes / specs</strong> — à affiner : EMV Contactless
+          Book / Kernel, ISO/IEC 14443, règles scheme seuils &amp; CVM.
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
-    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 4</a> · Paiement sans contact EMV</div></footer>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 4</a>
+        · Support formateur · Bloc Paiement sans contact EMV
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j4.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

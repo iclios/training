@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Atelier & pitch — Jour 5 | Paiements digitaux</title>
+    <title>Atelier conception plateforme — Jour 5 | Paiements digitaux</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body data-bloc="atelier">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a href="../j2/index.html">J2</a>
@@ -19,31 +21,167 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta"><span class="tag">Jour 5 · Atelier</span><span class="tag tag-accent">Bloc formateur</span><span>90–120 min</span></div>
-              <p class="day-kicker">Clôture</p>
-              <h1>Atelier & pitch</h1>
-            </div>
-          </section>
-          <div class="wrap">
-            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>Brancher les trois canaux sur un même backend de démonstration, puis défendre ses choix comme en comité SI banque.</p></aside>
-
-            <section class="section" style="border-top:none;padding-top:0"><div class="atelier"><p class="section-label" style="color:#0d9f8a">Kit</p><h2>Mini lab</h2><div class="atelier-grid"><div><h3>Logiciel</h3><ul><li>Postman / mock gateway</li><li>Carte, QR, token wallet</li><li>Journal unique des transactions</li></ul></div><div><h3>Physique</h3><ul><li>Mur d’architecture</li><li>Post-its / aimants des composants</li></ul></div><div><h3>But</h3><ul><li>Un backend, plusieurs canaux</li><li>Pitch 5 min / groupe</li></ul></div></div></div></section>
-            <section class="section"><p class="section-label">Déroulé</p><h2>Contrôle / pitch</h2><ul class="topic-list"><li>Brancher les 3 canaux</li><li>Jouer un paiement par canal</li><li>Présenter schéma + flux + justification</li><li>Pitch type comité SI banque</li></ul></section>
-            <section class="section"><p class="section-label">Ce qu’on évalue</p><h2>Critères</h2><div class="split-2"><div class="panel ok"><h3>Fond</h3><ul><li>Cohérence de l’architecture</li><li>Interop et sécurité</li></ul></div><div class="panel"><h3>Forme</h3><ul><li>Clarté du schéma</li><li>Capacité à défendre les choix</li></ul></div></div></section>
-            <div class="check-end"><h3>Check fin J5</h3><ul><li>Vision plateforme consolidée</li><li>Les 5 jours se rejoignent</li></ul></div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 5 · Omnicanal</span>
           </div>
-        </main>
+          <p class="day-kicker">Clôture · Conception</p>
+          <h1>Atelier — conception plateforme</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Sujet</p>
+          <h2>Concevoir une plateforme de paiement digitale</h2>
+          <p class="definition-full">
+            Produire une <strong>architecture argumentée</strong> (QR + NFC +
+            wallet, interop, sécurité, gouvernance)&nbsp;: schéma, flux, choix
+            techniques — puis <strong>pitch type comité SI</strong>.
+          </p>
+        </section>
+
+        <section class="section">
+          <div class="atelier">
+            <p class="section-label" style="color: #0d9f8a">Kit</p>
+            <h2>Mini lab &amp; mur d’architecture</h2>
+            <div class="atelier-grid">
+              <div>
+                <h3>Logiciel</h3>
+                <ul>
+                  <li>Postman / mock gateway</li>
+                  <li>3 moyens&nbsp;: carte, QR, token wallet</li>
+                  <li>Journal unique des transactions</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Physique</h3>
+                <ul>
+                  <li>Mur post-its / aimants</li>
+                  <li>Gateway, TSP, fraud, settlement…</li>
+                </ul>
+              </div>
+              <div>
+                <h3>But</h3>
+                <ul>
+                  <li>Un backend, plusieurs canaux</li>
+                  <li>Pitch 5 min / groupe</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Déroulé</p>
+          <h2>Étapes</h2>
+          <div class="diagram" id="diagram-atelier">
+            <div class="diagram-header">
+              <h3>Brancher · Jouer · Livrer · Pitcher</h3>
+              <p>Contrôle de conception</p>
+            </div>
+            <div class="seq-steps" id="atelier-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Brancher</strong>
+                  <p>3 canaux sur le même backend / mock gateway.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Jouer</strong>
+                  <p>Un paiement par canal — journal unique.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Livrer</strong>
+                  <p>Schéma + flux + justification des choix.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="4">
+                <span class="n">4</span>
+                <span>
+                  <strong>Pitcher</strong>
+                  <p>Comité SI banque — 5 min, questions ouvertes.</p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Livrables</p>
+          <h2>Ce que le groupe doit produire</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Fond</h3>
+              <ul>
+                <li>Schéma d’architecture</li>
+                <li>Flux détaillés (au moins 2 canaux)</li>
+                <li>Interop, sécurité, gouvernance</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Forme</h3>
+              <ul>
+                <li>Clarté du schéma</li>
+                <li>Lien J1–J4 explicite</li>
+                <li>Capacité à défendre les choix</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que l’atelier n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>≠ Liste d’idées</strong>
+              <p>Architecture argumentée avec responsabilités explicites.</p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Demo gadget seule</strong>
+              <p>Le lab Postman sert le schéma — pas l’inverse.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="check-end">
+          <h3>Check fin J5</h3>
+          <ul>
+            <li>Vision plateforme consolidée</li>
+            <li>Les 5 jours se rejoignent</li>
+            <li>Pitch défendable en comité SI</li>
+          </ul>
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
-    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 5</a> · Atelier & pitch</div></footer>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 5</a>
+        · Support formateur · Atelier conception
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j5.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

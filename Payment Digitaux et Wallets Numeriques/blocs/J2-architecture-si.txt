@@ -5,3 +5,5 @@ Idée clé
 App client · QR engine · backend marchand · PSP/switch · banque ou wallet.
 
 Lien J1 : auth/clearing/settlement restent ; le QR change l’initiation et l’orchestration.
+
+Fiche : schéma chaîne SI illustré (acteurs) + seq-steps hop par hop ; cas propriétaire QR engine.

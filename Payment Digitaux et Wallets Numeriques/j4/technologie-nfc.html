@@ -9,7 +9,9 @@
   <body data-bloc="technologie-nfc">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a href="../j2/index.html">J2</a>
@@ -19,31 +21,391 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta"><span class="tag">Jour 4 · NFC</span><span class="tag tag-accent">Bloc formateur</span><span>30–40 min</span></div>
-              <p class="day-kicker">4.1</p>
-              <h1>Technologie NFC</h1>
-            </div>
-          </section>
-          <div class="wrap">
-            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>Le NFC est un canal radio de proximité : sa physique simple explique une grande partie de l’expérience utilisateur et des contraintes de terrain.</p></aside>
-
-            <section class="section" style="border-top:none;padding-top:0"><p class="section-label">Principes</p><h2>NFC en bref</h2><p class="intro">Communication à très courte distance, rapide, pensée pour des interactions de proximité. Ce caractère physique distingue fortement le NFC du QR.</p><ul class="topic-list"><li>Distance courte</li><li>Geste “tap”</li><li>Canal radio, pas optique</li></ul></section>
-            <section class="section"><p class="section-label">Modes</p><h2>Trois modes à connaître</h2><div class="split-2"><div class="panel ok"><h3>Card emulation</h3><ul><li>Le téléphone ou la carte se comporte comme un support de paiement</li><li>Mode central pour le paiement NFC</li></ul></div><div class="panel"><h3>Reader / writer</h3><ul><li>Lecture / écriture de tags</li><li>Très utile pour la démo formateur</li></ul></div></div><div class="panel" style="margin-top:1rem"><h3>Peer-to-peer</h3><ul><li>Échange direct entre deux devices</li><li>Moins central pour le paiement carte</li></ul></div></section>
-            <section class="section"><p class="section-label">Comparaison</p><h2>NFC vs QR</h2><div class="split-2"><div class="panel ok"><h3>NFC</h3><ul><li>Très fluide en proximité</li><li>Nécessite hardware compatible</li><li>Expérience gestuelle courte</li></ul></div><div class="panel"><h3>QR</h3><ul><li>Moins d’exigence hardware</li><li>Canal optique</li><li>Très bon pour démocratiser l’acceptation</li></ul></div></div></section>
-            <div class="check-end"><h3>Check</h3><ul><li>3 modes restitués</li><li>Différence physique avec QR comprise</li></ul></div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 4 · NFC / Wallets</span>
           </div>
-        </main>
+          <p class="day-kicker">4.1 · Canal de proximité</p>
+          <h1>Technologie NFC</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <!-- Définition -->
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition monétique</p>
+          <h2>Qu’est-ce que le NFC&nbsp;?</h2>
+          <p class="definition-full">
+            <strong>NFC</strong> (Near Field Communication)&nbsp;: communication
+            radio à <strong>très courte distance</strong> (centimètres),
+            bidirectionnelle, pensée pour des interactions de proximité
+            («&nbsp;tap&nbsp;»). En paiement, c’est le
+            <strong>canal physique</strong> entre le support (carte / mobile)
+            et le terminal — distinct du QR (canal optique).
+          </p>
+          <p class="intro" style="margin-top: 1.1rem">
+            La physique du NFC explique une grande part de l’UX et des
+            contraintes terrain.
+          </p>
+        </section>
+
+        <!-- Principes physiques -->
+        <section class="section">
+          <p class="section-label">Principes physiques</p>
+          <h2>Ce qui compte sur le terrain</h2>
+          <p class="intro">
+            Distance courte, induction, antenne — le geste «&nbsp;tap&nbsp;»
+            n’est pas cosmétique.
+          </p>
+
+          <div class="diagram" id="diagram-nfc-physique">
+            <div class="diagram-header">
+              <h3>Proximité radio</h3>
+              <p>Antenne · champ · couple support / lecteur</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 260"
+              role="img"
+              aria-label="Principes physiques NFC proximité"
+            >
+              <defs>
+                <marker id="ah-nfc0" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="40" y="50" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-porteur.jpg" x="52" y="66" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="122" y="90" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Support</text>
+                <text x="122" y="112" fill="#5a6b7c" font-size="12">carte / téléphone</text>
+                <text x="122" y="134" fill="#5a6b7c" font-size="11">antenne NFC</text>
+              </g>
+              <line class="flow-line" x1="340" y1="110" x2="420" y2="110" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-nfc0)"/>
+              <g>
+                <rect x="420" y="40" width="160" height="140" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <text x="500" y="90" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Champ</text>
+                <text x="500" y="118" text-anchor="middle" fill="#0d9f8a" font-size="12">~cm</text>
+                <text x="500" y="142" text-anchor="middle" fill="#5a6b7c" font-size="11">induction</text>
+              </g>
+              <line class="flow-line" x1="600" y1="110" x2="680" y2="110" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-nfc0)"/>
+              <g>
+                <rect x="680" y="50" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="692" y="66" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="762" y="90" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Lecteur / POS</text>
+                <text x="762" y="112" fill="#5a6b7c" font-size="12">antenne terminal</text>
+                <text x="762" y="134" fill="#5a6b7c" font-size="11">session courte</text>
+              </g>
+              <text x="500" y="230" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Pas de ligne de vue optique — mais une distance utile très limitée
+              </text>
+            </svg>
+            <div class="seq-steps" id="physique-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Proximité</strong>
+                  <p>Quelques centimètres — le geste «&nbsp;tap&nbsp;» est physique.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Induction</strong>
+                  <p>Le lecteur alimente / couple le support via le champ RF.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Session courte</strong>
+                  <p>Échange rapide — adapté au paiement, pas à un transfert long.</p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Trois modes -->
+        <section class="section">
+          <p class="section-label">Modes NFC</p>
+          <h2>Trois modes à connaître</h2>
+          <p class="intro">
+            Card emulation (paiement), reader/writer (tags), peer-to-peer
+            (échange device).
+          </p>
+
+          <div class="diagram" id="diagram-nfc-modes">
+            <div class="diagram-header">
+              <h3>Card emulation · Reader/writer · P2P</h3>
+              <p>Rôles du device NFC — un seul chipset, trois usages</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 280"
+              role="img"
+              aria-label="Trois modes NFC"
+            >
+              <g>
+                <rect x="30" y="40" width="290" height="170" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-wallet.jpg" x="48" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="120" y="82" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Card emulation</text>
+                <text x="120" y="106" fill="#0d9f8a" font-size="12">le device = carte</text>
+                <text x="48" y="150" fill="#5a6b7c" font-size="12">Paiement NFC mobile</text>
+                <text x="48" y="172" fill="#5a6b7c" font-size="11">mode central J4</text>
+              </g>
+              <g>
+                <rect x="355" y="40" width="290" height="170" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="373" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="445" y="82" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Reader / writer</text>
+                <text x="445" y="106" fill="#1e5f8a" font-size="12">lit / écrit un tag</text>
+                <text x="373" y="150" fill="#5a6b7c" font-size="12">Démos atelier</text>
+                <text x="373" y="172" fill="#5a6b7c" font-size="11">UID, NDEF…</text>
+              </g>
+              <g>
+                <rect x="680" y="40" width="290" height="170" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-porteur.jpg" x="698" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="770" y="82" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Peer-to-peer</text>
+                <text x="770" y="106" fill="#3d5a80" font-size="12">device ↔ device</text>
+                <text x="698" y="150" fill="#5a6b7c" font-size="12">Échange direct</text>
+                <text x="698" y="172" fill="#5a6b7c" font-size="11">peu central carte</text>
+              </g>
+              <text x="500" y="250" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                En paiement sans contact&nbsp;: le téléphone (ou la carte) est en card emulation face au POS
+              </text>
+            </svg>
+            <div class="seq-steps" id="modes-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Card emulation</strong>
+                  <p>
+                    Le support se comporte comme une carte face au lecteur POS
+                    — cœur du paiement NFC.
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Reader / writer</strong>
+                  <p>
+                    Le device lit ou écrit un tag NFC — utile en atelier (UID,
+                    présence puce).
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Peer-to-peer</strong>
+                  <p>
+                    Échange entre deux devices — hors parcours carte classique.
+                  </p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              SI&nbsp;: savoir quel mode est actif évite de confondre démo tag et
+              flux paiement wallet.
+            </p>
+          </div>
+        </section>
+
+        <!-- NFC vs QR -->
+        <section class="section">
+          <p class="section-label">Comparaison</p>
+          <h2>NFC vs QR</h2>
+          <p class="intro">
+            Même intention (payer en proximité) — canaux et contraintes
+            différents.
+          </p>
+
+          <div class="diagram" id="diagram-nfc-vs-qr">
+            <div class="diagram-header">
+              <h3>Deux canaux de proximité</h3>
+              <p>Radio vs optique — hardware, geste, déploiement</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 300"
+              role="img"
+              aria-label="Comparaison NFC et QR"
+            >
+              <g>
+                <rect x="40" y="40" width="420" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-wallet.jpg" x="60" y="60" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="140" y="85" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="700">NFC</text>
+                <text x="140" y="110" fill="#0d9f8a" font-size="13">canal radio</text>
+                <text x="60" y="155" fill="#5a6b7c" font-size="13">Geste tap · hardware NFC requis</text>
+                <text x="60" y="180" fill="#5a6b7c" font-size="12">Session courte · très fluide en caisse</text>
+              </g>
+              <g>
+                <rect x="540" y="40" width="420" height="180" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="560" y="60" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="640" y="85" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="18" font-weight="700">QR</text>
+                <text x="640" y="110" fill="#1e5f8a" font-size="13">canal optique</text>
+                <text x="560" y="155" fill="#5a6b7c" font-size="13">Caméra / scan · peu d’exigence HW</text>
+                <text x="560" y="180" fill="#5a6b7c" font-size="12">Démocratise l’acceptation (J2)</text>
+              </g>
+              <text x="500" y="270" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                NFC ≠ QR&nbsp;: même «&nbsp;payer près du commerçant&nbsp;», physique et SI d’acceptation distincts
+              </text>
+            </svg>
+            <div class="seq-steps" id="nfc-qr-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Canal</strong>
+                  <p>NFC = radio de proximité · QR = image / caméra.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Hardware</strong>
+                  <p>NFC exige chipset + antenne côté device et lecteur.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Déploiement</strong>
+                  <p>QR abaisse la barre d’acceptation ; NFC maximise la fluidité.</p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Rôle -->
+        <section class="section">
+          <p class="section-label">Rôle</p>
+          <h2>Que retient le SI&nbsp;?</h2>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Canal</h3>
+              <ul>
+                <li>NFC = couche de proximité, pas l’AuthZ</li>
+                <li>Card emulation = mode paiement</li>
+                <li>Distance / antenne = incidents terrain</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Distinction</h3>
+              <ul>
+                <li>NFC ≠ QR (J2)</li>
+                <li>Tag UID ≠ paiement EMV</li>
+                <li>P2P hors parcours carte</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Ancrage -->
+        <section class="section">
+          <p class="section-label">Ancrage</p>
+          <h2>Cas pratiques</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Cas 1 — Tap qui « ne prend pas »</h3>
+              <ul>
+                <li>Distance, antenne, boîtier métallique</li>
+                <li>Avant de suspecter l’émetteur</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Cas 2 — Lire un tag ≠ payer</h3>
+              <ul>
+                <li>Mode reader/writer (atelier)</li>
+                <li>Pas de cryptogramme EMV</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Clarification -->
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que le NFC n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>≠ Autorisation</strong>
+              <p>
+                Le NFC transporte la session de proximité — la décision reste
+                online / offline (voir
+                <a href="../j1/online-offline.html">J1 online / offline</a>).
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Tokenisation</strong>
+              <p>
+                Le canal NFC n’émet pas le token — c’est le modèle wallet /
+                <a href="../j3/definition.html">tokenisation J3</a>.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Bluetooth / Wi-Fi</strong>
+              <p>
+                Portée et usage différents — ici&nbsp;: centimètres et session
+                courte.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <details class="trainer-notes">
+          <summary>Notes formateur — questions SI</summary>
+          <div class="notes-body">
+            <ul>
+              <li>
+                Où voyez-vous des échecs «&nbsp;tap&nbsp;» purement physiques
+                (antenne, distance)&nbsp;?
+              </li>
+              <li>
+                Comment expliquez-vous NFC vs QR à un métier sans jargon RF&nbsp;?
+              </li>
+              <li>
+                Dans vos démos, êtes-vous en card emulation ou en
+                reader/writer&nbsp;?
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>Principes physiques NFC verbalisés</li>
+            <li>3 modes distingués (dont card emulation)</li>
+            <li>NFC vs QR clarifié</li>
+          </ul>
+        </div>
+
+        <div class="sources-box">
+          <strong>Sources normes / specs</strong> — à affiner : NFC Forum,
+          ISO/IEC 14443 (proximité), docs constructeurs lecteurs / chipsets.
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
-    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 4</a> · Technologie NFC</div></footer>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 4</a>
+        · Support formateur · Bloc Technologie NFC
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j4.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

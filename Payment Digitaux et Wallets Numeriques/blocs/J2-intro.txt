@@ -13,3 +13,5 @@ Objectifs du jour
 - Atelier tangible
 
 Lien J1 : acteurs, chaîne, auth/clearing/settlement restent le socle.
+
+Fiche HTML : bandeau journée + block-map ; pas de « Bloc formateur ».

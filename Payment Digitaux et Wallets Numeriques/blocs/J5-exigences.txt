@@ -1,2 +1,2 @@
-JOUR 5 — Exigences transverses
-Interopérabilité, sécurité, gouvernance, scalabilité.
+JOUR 5 — Exigences SI
+Disponibilité · latence · réconciliation · sécurité · auditabilité · interop / scale · panels + schéma.

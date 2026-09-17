@@ -3,3 +3,5 @@ Durée : 20–25 min
 
 Proximité · transport · P2P.
 Pour chaque usage : statique/dynamique, push/pull, closed/open + contraintes SI.
+
+Fiche : un mini-schéma + seq-steps par usage (acteurs).

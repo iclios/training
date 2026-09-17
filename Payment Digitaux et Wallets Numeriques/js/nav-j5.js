@@ -2,9 +2,9 @@ window.J5_BLOCS = [
   { id: "intro", title: "Intro & objectifs", href: "intro.html" },
   { id: "omnichannel", title: "Paiement omnicanal", href: "omnichannel.html" },
   { id: "architecture-plateforme", title: "Architecture plateforme", href: "architecture-plateforme.html" },
-  { id: "exigences", title: "Exigences transverses", href: "exigences.html" },
-  { id: "controle", title: "Contrôle continu / design national", href: "controle.html" },
-  { id: "atelier", title: "Atelier & pitch", href: "atelier.html" },
+  { id: "exigences", title: "Exigences SI", href: "exigences.html" },
+  { id: "controle", title: "Contrôle & gouvernance", href: "controle.html" },
+  { id: "atelier", title: "Atelier conception", href: "atelier.html" },
 ];
 
 (function initJ5Nav() {

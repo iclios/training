@@ -3,3 +3,5 @@ Durée : 40–50 min
 
 Livrables : schéma d’architecture · flux · acteurs & responsabilités.
 Périmètre allégé — omnicanal QR+NFC+wallet = J5.
+
+Fiche : schémas architecture open-loop + flux QR→settlement + panels RACI ; seq-steps.

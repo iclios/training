@@ -1,2 +1,2 @@
-JOUR 5 — Atelier & pitch
-Mini lab omnicanal et soutenance comité SI banque.
+JOUR 5 — Atelier conception plateforme
+Mock gateway 3 canaux · mur d’architecture · livrables schéma + flux + justification · pitch comité SI.

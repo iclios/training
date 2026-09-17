@@ -1,2 +1,5 @@
 JOUR 4 — Paiement sans contact EMV
-Carte vs mobile, seuils, offline, EMV Contactless, ISO 14443.
+Carte plastique vs mobile NFC face au même POS.
+Seuils / CVM · online · offline normal · offline dégradé (rappel J1).
+EMV Contactless (logique) vs ISO 14443 (interface RF).
+Schémas + steps · liens j1/online-offline et j3/definition.

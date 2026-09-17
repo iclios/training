@@ -1,2 +1,6 @@
 JOUR 4 — Architecture wallets
-SE, HCE, TEE, Apple Pay / Google Pay, wallet app → TSP → issuer.
+SE / HCE / TEE · SIM vs eSE vs HCE cloud.
+Apple Pay / Google Pay : fonctions wallet (UX, biométrie, NFC).
+Chaîne SI wallet → TSP → network → issuer.
+Flux enrolment → provision → pay → lifecycle token.
+Schémas + steps · ponts architecture/lifecycle J3.

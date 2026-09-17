@@ -1,2 +1,2 @@
 JOUR 5 — Architecture plateforme
-Gateway, wallet manager, token service, fraude, reconciliation & settlement.
+Gateway · wallet manager · tokenization · QR engine · NFC/wallet · liens émetteur/acquéreur · réconciliation & settlement · grand schéma + flux.

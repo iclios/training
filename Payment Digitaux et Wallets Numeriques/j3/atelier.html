@@ -9,7 +9,9 @@
   <body data-bloc="atelier">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a href="../j2/index.html">J2</a>
@@ -19,31 +21,172 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta"><span class="tag">Jour 3 · Atelier</span><span class="tag tag-accent">Bloc formateur</span><span>45–60 min</span></div>
-              <p class="day-kicker">Clôture</p>
-              <h1>Atelier palpable</h1>
-            </div>
-          </section>
-          <div class="wrap">
-            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>Partir d’un message d’autorisation classique et le transformer en scénario tokenisé pour rendre la sécurité visible et opérationnelle.</p></aside>
-
-            <section class="section" style="border-top:none;padding-top:0"><div class="atelier"><p class="section-label" style="color:#0d9f8a">Kit</p><h2>Visuel & logiciel</h2><div class="atelier-grid"><div><h3>Visuel</h3><ul><li>Carte plastique + capture wallet</li><li>PAN masqué vs token / Device Account Number</li></ul></div><div><h3>Logiciel</h3><ul><li>Sandbox VTS / MDES si disponible</li><li>Sinon simulateur PAN ↔ token ↔ cryptogramme</li></ul></div><div><h3>Objectif</h3><ul><li>Provision → pay → suspend → delete</li><li>Relier au scope PCI</li></ul></div></div></div></section>
-            <section class="section"><p class="section-label">Déroulé</p><h2>Atelier guidé</h2><ul class="topic-list"><li>Reprendre un message d’autorisation vu en J1</li><li>Identifier où le PAN était exposé</li><li>Le remplacer par un scénario tokenisé</li><li>Jouer un incident device perdu puis suspension</li><li>Dire ce qui change pour le marchand, l’issuer et le TSP</li></ul></section>
-            <section class="section"><p class="section-label">Livrables</p><h2>Par groupe</h2><div class="split-2"><div class="panel ok"><h3>À produire</h3><ul><li>Schéma avant / après tokenisation</li><li>Tableau PAN vs token vs gouvernance</li></ul></div><div class="panel"><h3>Questions guide</h3><ul><li>Qui voit encore le PAN ?</li><li>Qui peut suspendre le token ?</li><li>Qu’est-ce qui change dans l’autorisation ?</li></ul></div></div></section>
-            <div class="check-end"><h3>Check fin J3</h3><ul><li>PAN vs token vécu concrètement</li><li>Lien avec J4 prêt</li></ul></div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 3 · Tokenisation</span>
           </div>
-        </main>
+          <p class="day-kicker">3.5 · Atelier</p>
+          <h1>Atelier palpable</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition monétique</p>
+          <h2>Objectif de l’atelier</h2>
+          <p class="definition-full">
+            Partir d’un message d’autorisation classique (J1) et le
+            transformer en scénario <strong>tokenisé</strong>&nbsp;:
+            visualiser PAN vs token, jouer le lifecycle
+            (provision → pay → suspend → delete), et relier au
+            <strong>scope PCI</strong>.
+          </p>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Kit</p>
+          <h2>Visuel &amp; logiciel</h2>
+          <div class="atelier">
+            <div class="atelier-grid">
+              <div>
+                <h3>Visuel</h3>
+                <ul>
+                  <li>Carte plastique + capture wallet</li>
+                  <li>PAN masqué vs token / DAN</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Logiciel</h3>
+                <ul>
+                  <li>Sandbox VTS / MDES si dispo</li>
+                  <li>Sinon simulateur PAN ↔ token ↔ crypto</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Objectif</h3>
+                <ul>
+                  <li>Provision → pay → suspend → delete</li>
+                  <li>Relier au scope PCI</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Déroulé</p>
+          <h2>Atelier guidé</h2>
+          <div class="diagram" id="diagram-atelier">
+            <div class="diagram-header">
+              <h3>Cinq temps</h3>
+              <p>Avant / après · lifecycle · responsabilités</p>
+            </div>
+            <div class="seq-steps" id="atelier-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Message J1</strong>
+                  <p>Reprendre une auth classique — où le PAN était exposé.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Scénario tokenisé</strong>
+                  <p>Remplacer par token (+ crypto) dans le même flux.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Device perdu</strong>
+                  <p>Jouer suspend — carte source intacte.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="4">
+                <span class="n">4</span>
+                <span>
+                  <strong>Responsabilités</strong>
+                  <p>Marchand · TSP · issuer — qui voit / qui gouverne.</p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Ancrage</p>
+          <h2>Livrables par groupe</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>À produire</h3>
+              <ul>
+                <li>Schéma avant / après tokenisation</li>
+                <li>Tableau PAN vs token vs gouvernance</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Questions guide</h3>
+              <ul>
+                <li>Qui voit encore le PAN&nbsp;?</li>
+                <li>Qui peut suspendre le token&nbsp;?</li>
+                <li>Qu’est-ce qui change dans l’auth&nbsp;?</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que l’atelier n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>≠ Labo production</strong>
+              <p>Sandbox / simulateur uniquement — pas de données réelles.</p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Cours J4</strong>
+              <p>On prépare wallets / NFC — on ne les déroule pas ici.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="check-end">
+          <h3>Check fin J3</h3>
+          <ul>
+            <li>PAN vs token vécu concrètement</li>
+            <li>Lifecycle joué (suspend au minimum)</li>
+            <li>Lien avec J4 prêt</li>
+          </ul>
+        </div>
+
+        <div class="sources-box">
+          <strong>Sources / outils</strong> — sandbox VTS / MDES ou
+          simulateur interne&nbsp;; captures wallet anonymisées.
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
-    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 3</a> · Atelier</div></footer>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 3</a>
+        · Support formateur · Atelier
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j3.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

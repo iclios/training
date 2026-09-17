@@ -1,2 +1,5 @@
-JOUR 4 — Cas pratique
-Flux smartphone → POS avec composants, messages et points critiques.
+JOUR 4 — Cas pratique smartphone → POS
+Schéma end-to-end : porteur · wallet · POS · acquéreur · réseau/TSP · issuer.
+Composants, messages (présentation / AuthZ / réponse), points sécurité.
+Questions salle : quel identifiant ? qui décide ? online/offline ?
+Mobilise J1 online-offline et J3 tokenisation.

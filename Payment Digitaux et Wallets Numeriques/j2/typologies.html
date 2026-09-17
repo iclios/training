@@ -9,7 +9,9 @@
   <body data-bloc="typologies">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a class="is-active" href="index.html">J2</a>
@@ -19,75 +21,499 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
         <main>
           <section class="day-hero" style="padding-bottom: 1.5rem">
             <div class="wrap">
               <div class="fiche-meta">
-                <span class="tag">Jour 2 · Typologies</span>
-                <span class="tag tag-accent">Bloc formateur</span>
-                <span>30–40 min</span>
+                <span class="tag">Jour 2 · QR</span>
               </div>
-              <p class="day-kicker">2.1</p>
+              <p class="day-kicker">2.1 · Principes &amp; typologies</p>
               <h1>Principes &amp; typologies QR</h1>
             </div>
           </section>
-          <div class="wrap">
-            <aside class="key-idea">
-              <p class="label">Idée clé — tableau</p>
-              <p>Le QR de paiement n’est pas un seul objet : statique ou dynamique, push ou pull, closed ou open-loop — chaque choix change le SI et le risque.</p>
-            </aside>
 
+          <div class="wrap">
+            <!-- Définition -->
             <section class="section" style="border-top: none; padding-top: 0">
-              <p class="section-label">Définition</p>
-              <h2>QR Code de paiement</h2>
-              <p class="intro">Support optique encodant des données permettant d’initier ou de recevoir une opération de paiement via une application (bancaire, wallet, marchand).</p>
+              <p class="section-label">Définition monétique</p>
+              <h2>Qu’est-ce qu’un QR de paiement&nbsp;?</h2>
+              <p class="definition-full">
+                Support optique encodant des données permettant
+                d’<strong>initier</strong> ou de <strong>recevoir</strong> une
+                opération de paiement via une application (bancaire, wallet,
+                marchand). Ce n’est pas «&nbsp;un seul objet&nbsp;»&nbsp;:
+                plusieurs axes changent le SI et le risque.
+              </p>
+              <p class="intro" style="margin-top: 1.1rem">
+                Quatre axes à maîtriser — chaque couple a son schéma.
+              </p>
             </section>
+
+            <!-- Axe A : Statique vs Dynamique -->
             <section class="section">
-              <p class="section-label">Typologies</p>
-              <h2>Quatre axes à maîtriser</h2>
-              <div class="split-2">
-                <div class="panel ok"><h3>Statique vs dynamique</h3><ul>
-                  <li><strong>Statique</strong> — contenu fixe (ex. ID marchand) ; montant souvent saisi après scan</li>
-                  <li><strong>Dynamique</strong> — payload généré pour une opération (montant, référence, durée de vie)</li>
-                </ul></div>
-                <div class="panel"><h3>Push vs pull</h3><ul>
-                  <li><strong>Pull</strong> — le payeur scanne le QR du bénéficiaire / marchand</li>
-                  <li><strong>Push</strong> — le payeur présente un QR scanné par le marchand / agent</li>
-                </ul></div>
-              </div>
-              <div class="split-2" style="margin-top:1rem">
-                <div class="panel"><h3>Closed-loop vs open-loop</h3><ul>
-                  <li><strong>Closed</strong> — limité à un écosystème (une enseigne, un wallet)</li>
-                  <li><strong>Open</strong> — interopérable entre banques / wallets / schemes</li>
-                </ul></div>
-                <div class="panel ko"><h3>Bancaire vs wallet</h3><ul>
-                  <li>QR bancaire — app / rails banque</li>
-                  <li>QR wallet — UX wallet ; détail technique wallet = J4</li>
-                </ul></div>
+              <p class="section-label">Modes monétiques</p>
+              <h2>Statique vs dynamique</h2>
+              <p class="intro">
+                <strong>Statique</strong>&nbsp;: contenu fixe (souvent ID
+                marchand). <strong>Dynamique</strong>&nbsp;: payload généré pour
+                une opération (montant, référence, TTL).
+              </p>
+
+              <div class="diagram" id="diagram-statique-dynamique">
+                <div class="diagram-header">
+                  <h3>Statique · Dynamique</h3>
+                  <p>Qui porte le montant et la référence&nbsp;?</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 320"
+                  role="img"
+                  aria-label="QR statique versus QR dynamique"
+                >
+                  <defs>
+                    <marker id="ah-sd" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <!-- Statique -->
+                  <g>
+                    <rect x="30" y="30" width="440" height="220" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="250" y="60" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Statique</text>
+                    <g>
+                      <rect x="60" y="80" width="160" height="90" rx="8" fill="#fff" stroke="#2f4858" stroke-width="2"/>
+                      <image href="../img/acteurs/acteur-commercant.jpg" x="72" y="94" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                      <text x="130" y="115" fill="#1a2b3c" font-size="12" font-weight="700">Sticker</text>
+                      <text x="130" y="135" fill="#5a6b7c" font-size="11">ID marchand</text>
+                    </g>
+                    <line class="flow-line" x1="230" y1="125" x2="280" y2="125" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-sd)"/>
+                    <g>
+                      <rect x="280" y="80" width="160" height="90" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                      <image href="../img/acteurs/acteur-porteur.jpg" x="292" y="94" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                      <text x="350" y="115" fill="#087a6a" font-size="12" font-weight="700">Payeur</text>
+                      <text x="350" y="135" fill="#5a6b7c" font-size="11">saisit montant</text>
+                    </g>
+                    <text x="250" y="210" text-anchor="middle" fill="#5a6b7c" font-size="12">Payload fixe · montant après scan</text>
+                  </g>
+                  <!-- Dynamique -->
+                  <g>
+                    <rect x="530" y="30" width="440" height="220" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="750" y="60" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Dynamique</text>
+                    <g>
+                      <rect x="560" y="80" width="160" height="90" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                      <image href="../img/acteurs/acteur-device.jpg" x="572" y="94" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                      <text x="630" y="115" fill="#087a6a" font-size="12" font-weight="700">Caisse</text>
+                      <text x="630" y="135" fill="#5a6b7c" font-size="11">génère QR</text>
+                    </g>
+                    <line class="flow-line" x1="730" y1="125" x2="780" y2="125" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-sd)"/>
+                    <g>
+                      <rect x="780" y="80" width="160" height="90" rx="8" fill="#fff" stroke="#2f4858" stroke-width="2"/>
+                      <image href="../img/acteurs/acteur-porteur.jpg" x="792" y="94" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                      <text x="850" y="115" fill="#1a2b3c" font-size="12" font-weight="700">Payeur</text>
+                      <text x="850" y="135" fill="#5a6b7c" font-size="11">scanne OK</text>
+                    </g>
+                    <text x="750" y="210" text-anchor="middle" fill="#0d9f8a" font-size="12">Montant + réf. + TTL dans le QR</text>
+                  </g>
+                  <text x="500" y="290" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Statique = réutilisable · Dynamique = lié à une opération
+                  </text>
+                </svg>
+                <div class="seq-steps" id="statique-dynamique-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Statique</strong>
+                      <p>QR fixe affiché (sticker). Le payeur complète le montant.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Dynamique</strong>
+                      <p>La caisse / backend génère un payload unique (montant, réf., TTL).</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Impact SI</strong>
+                      <p>Dynamique exige un QR engine + contrôle d’expiration / unicité.</p>
+                    </span>
+                  </button>
+                </div>
               </div>
             </section>
+
+            <!-- Axe B : Push vs Pull -->
+            <section class="section">
+              <p class="section-label">Modes monétiques</p>
+              <h2>Push vs pull</h2>
+              <p class="intro">
+                Qui présente le QR&nbsp;?
+                <strong>Pull</strong>&nbsp;: le payeur scanne le QR du
+                bénéficiaire. <strong>Push</strong>&nbsp;: le payeur présente un
+                QR scanné par le marchand / agent.
+              </p>
+
+              <div class="diagram" id="diagram-push-pull">
+                <div class="diagram-header">
+                  <h3>Pull · Push</h3>
+                  <p>Sens du scan — qui lit le code</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 300"
+                  role="img"
+                  aria-label="QR pull versus QR push"
+                >
+                  <defs>
+                    <marker id="ah-pp" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="30" y="30" width="440" height="200" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="250" y="60" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Pull</text>
+                    <g>
+                      <rect x="60" y="85" width="150" height="85" rx="8" fill="#fff" stroke="#2f4858" stroke-width="2"/>
+                      <image href="../img/acteurs/acteur-commercant.jpg" x="72" y="100" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                      <text x="125" y="120" fill="#1a2b3c" font-size="12" font-weight="700">Marchand</text>
+                      <text x="125" y="140" fill="#5a6b7c" font-size="11">affiche QR</text>
+                    </g>
+                    <line class="flow-line" x1="220" y1="127" x2="270" y2="127" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pp)"/>
+                    <g>
+                      <rect x="270" y="85" width="170" height="85" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                      <image href="../img/acteurs/acteur-porteur.jpg" x="282" y="100" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                      <text x="335" y="120" fill="#087a6a" font-size="12" font-weight="700">Payeur</text>
+                      <text x="335" y="140" fill="#5a6b7c" font-size="11">scanne (pull)</text>
+                    </g>
+                  </g>
+                  <g>
+                    <rect x="530" y="30" width="440" height="200" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="750" y="60" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Push</text>
+                    <g>
+                      <rect x="560" y="85" width="160" height="85" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                      <image href="../img/acteurs/acteur-porteur.jpg" x="572" y="100" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                      <text x="625" y="120" fill="#087a6a" font-size="12" font-weight="700">Payeur</text>
+                      <text x="625" y="140" fill="#5a6b7c" font-size="11">présente QR</text>
+                    </g>
+                    <line class="flow-line" x1="730" y1="127" x2="780" y2="127" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pp)"/>
+                    <g>
+                      <rect x="780" y="85" width="160" height="85" rx="8" fill="#fff" stroke="#2f4858" stroke-width="2"/>
+                      <image href="../img/acteurs/acteur-device.jpg" x="792" y="100" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                      <text x="845" y="120" fill="#1a2b3c" font-size="12" font-weight="700">Caisse</text>
+                      <text x="845" y="140" fill="#5a6b7c" font-size="11">scanne (push)</text>
+                    </g>
+                  </g>
+                  <text x="500" y="270" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Pull = le plus courant en magasin · Push = caisse / agent lit le payeur
+                  </text>
+                </svg>
+                <div class="seq-steps" id="push-pull-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Pull</strong>
+                      <p>Le payeur scanne le QR du marchand / bénéficiaire.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Push</strong>
+                      <p>Le marchand / agent scanne le QR présenté par le payeur.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Impact SI</strong>
+                      <p>Qui génère le QR, qui valide le scan, qui porte le risque d’usurpation.</p>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- Axe C : Closed vs Open -->
+            <section class="section">
+              <p class="section-label">Modes monétiques</p>
+              <h2>Closed-loop vs open-loop</h2>
+              <p class="intro">
+                <strong>Closed</strong>&nbsp;: un écosystème (enseigne, un
+                wallet). <strong>Open</strong>&nbsp;: interopérable entre
+                banques / wallets / schemes.
+              </p>
+
+              <div class="diagram" id="diagram-closed-open">
+                <div class="diagram-header">
+                  <h3>Closed · Open</h3>
+                  <p>Périmètre d’acceptation</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 300"
+                  role="img"
+                  aria-label="QR closed-loop versus open-loop"
+                >
+                  <defs>
+                    <marker id="ah-co" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="40" y="40" width="420" height="180" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="250" y="75" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Closed-loop</text>
+                    <g>
+                      <rect x="100" y="100" width="280" height="80" rx="8" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                      <image href="../img/acteurs/acteur-wallet.jpg" x="120" y="112" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                      <text x="185" y="135" fill="#1a2b3c" font-size="13" font-weight="700">Un écosystème</text>
+                      <text x="185" y="155" fill="#5a6b7c" font-size="11">enseigne · un wallet · un rail</text>
+                    </g>
+                  </g>
+                  <g>
+                    <rect x="540" y="40" width="420" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="750" y="75" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Open-loop</text>
+                    <g>
+                      <rect x="560" y="100" width="110" height="70" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                      <image href="../img/acteurs/acteur-banque.jpg" x="568" y="110" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                      <text x="615" y="155" text-anchor="middle" fill="#5a6b7c" font-size="10">Banque A</text>
+                    </g>
+                    <g>
+                      <rect x="695" y="100" width="110" height="70" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                      <image href="../img/acteurs/acteur-wallet.jpg" x="703" y="110" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                      <text x="750" y="155" text-anchor="middle" fill="#5a6b7c" font-size="10">Wallet B</text>
+                    </g>
+                    <g>
+                      <rect x="830" y="100" width="110" height="70" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                      <image href="../img/acteurs/acteur-scheme.jpg" x="838" y="110" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                      <text x="885" y="155" text-anchor="middle" fill="#5a6b7c" font-size="10">Scheme</text>
+                    </g>
+                  </g>
+                  <text x="500" y="265" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Open exige standards / switch communs — closed reste simple mais isolé
+                  </text>
+                </svg>
+                <div class="seq-steps" id="closed-open-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Closed</strong>
+                      <p>Acceptation limitée à un réseau propriétaire.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Open</strong>
+                      <p>Plusieurs banques / wallets / schemes sur un même QR.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Impact SI</strong>
+                      <p>Open = interop, gouvernance, specs nationales / EMV.</p>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- Axe D : Bancaire vs wallet -->
+            <section class="section">
+              <p class="section-label">Modes monétiques</p>
+              <h2>Bancaire vs wallet</h2>
+              <p class="intro">
+                Vue <strong>UX / canal</strong>&nbsp;: app banque vs app wallet.
+                Le détail technique wallet est reporté au Jour 4.
+              </p>
+
+              <div class="diagram" id="diagram-bancaire-wallet">
+                <div class="diagram-header">
+                  <h3>Bancaire · Wallet</h3>
+                  <p>Même logique d’auth — canal UX différent</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 280"
+                  role="img"
+                  aria-label="QR bancaire versus QR wallet"
+                >
+                  <defs>
+                    <marker id="ah-bw" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="40" y="40" width="400" height="160" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="240" y="75" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">QR bancaire</text>
+                    <image href="../img/acteurs/acteur-banque.jpg" x="100" y="100" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="175" y="125" fill="#1a2b3c" font-size="13" font-weight="700">App banque</text>
+                    <text x="175" y="145" fill="#5a6b7c" font-size="12">rails banque / PSP</text>
+                    <line class="flow-line" x1="340" y1="125" x2="400" y2="125" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-bw)"/>
+                  </g>
+                  <g>
+                    <rect x="480" y="40" width="120" height="160" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="540" y="100" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Auth</text>
+                    <text x="540" y="125" text-anchor="middle" fill="#0d9f8a" font-size="11">Clearing</text>
+                    <text x="540" y="145" text-anchor="middle" fill="#5a6b7c" font-size="11">Settlement</text>
+                    <text x="540" y="170" text-anchor="middle" fill="#5a6b7c" font-size="10">(socle J1)</text>
+                  </g>
+                  <g>
+                    <rect x="640" y="40" width="320" height="160" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="800" y="75" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">QR wallet</text>
+                    <image href="../img/acteurs/acteur-wallet.jpg" x="690" y="100" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="765" y="125" fill="#1a2b3c" font-size="13" font-weight="700">App wallet</text>
+                    <text x="765" y="145" fill="#5a6b7c" font-size="12">UX · détail = J4</text>
+                  </g>
+                  <text x="500" y="245" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Le canal change l’expérience — pas la chronologie Auth → Clearing → Settlement
+                  </text>
+                </svg>
+                <div class="seq-steps" id="bancaire-wallet-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Bancaire</strong>
+                      <p>Initiation via app / rails banque (souvent PSP).</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Wallet</strong>
+                      <p>Même initiation vue utilisateur via wallet — technique J4.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Socle J1</strong>
+                      <p>Auth / clearing / settlement restent le fil conducteur.</p>
+                    </span>
+                  </button>
+                </div>
+                <p class="diagram-hint">
+                  Ne pas confondre «&nbsp;wallet UX&nbsp;» (J2) et architecture
+                  wallet / token / SE (J3–J4).
+                </p>
+              </div>
+            </section>
+
+            <!-- Rôle -->
+            <section class="section">
+              <p class="section-label">Rôle</p>
+              <h2>Que retient le SI&nbsp;?</h2>
+              <div class="split-2">
+                <div class="panel">
+                  <h3>Choix produit</h3>
+                  <ul>
+                    <li>Statique / dynamique → QR engine ou non</li>
+                    <li>Push / pull → qui génère, qui scanne</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Choix écosystème</h3>
+                  <ul>
+                    <li>Closed / open → interop &amp; gouvernance</li>
+                    <li>Bancaire / wallet → canal UX, rails derrière</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- Ancrage -->
             <section class="section">
               <p class="section-label">Ancrage</p>
-              <h2>Cas</h2>
+              <h2>Cas pratiques</h2>
               <div class="split-2">
-                <div class="panel ok"><h3>Cas 1 — Sticker magasin</h3><ul><li>Souvent statique + pull</li><li>Quel contrôle anti-fraude côté montant&nbsp;?</li></ul></div>
-                <div class="panel"><h3>Cas 2 — Caisse qui affiche un QR</h3><ul><li>Souvent dynamique</li><li>TTL / unicité de la référence</li></ul></div>
+                <div class="panel ok">
+                  <h3>Cas 1 — Sticker magasin</h3>
+                  <ul>
+                    <li>Souvent <strong>statique + pull</strong></li>
+                    <li>Contrôle anti-fraude côté montant&nbsp;?</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Cas 2 — Caisse qui affiche</h3>
+                  <ul>
+                    <li>Souvent <strong>dynamique</strong></li>
+                    <li>TTL / unicité de la référence</li>
+                  </ul>
+                </div>
               </div>
             </section>
-            <div class="check-end"><h3>Check</h3><ul><li>4 axes cités</li><li>Exemple statique et dynamique</li></ul></div>
-            <div class="sources-box"><strong>Sources</strong> — à affiner : EMVCo QR Code Specification, specs nationales QR.</div>
+
+            <!-- Clarification -->
+            <section class="section">
+              <p class="section-label">Clarification</p>
+              <h2>Ce que ce n’est pas</h2>
+              <div class="not-list">
+                <div class="not-item">
+                  <strong>Statique ≠ « moins sécurisé » simpliste</strong>
+                  <p>
+                    Risque différent (montant saisi, QR clonable) — règles
+                    produit, pas un verdict binaire.
+                  </p>
+                </div>
+                <div class="not-item">
+                  <strong>Push ≠ Pull</strong>
+                  <p>
+                    Qui présente le code change le parcours caisse et le
+                    contrôle d’identité.
+                  </p>
+                </div>
+                <div class="not-item">
+                  <strong>Wallet ≠ détail technique J2</strong>
+                  <p>
+                    Ici = canal UX. Token / SE / NFC = J3–J4.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Notes formateur — questions SI</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>Chez vous&nbsp;: stickers statiques ou QR dynamiques en caisse&nbsp;?</li>
+                  <li>Quel TTL et quelle unicité sur les QR dynamiques&nbsp;?</li>
+                  <li>Closed ou open dans votre périmètre national&nbsp;?</li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Check de fin de bloc</h3>
+              <ul>
+                <li>4 axes verbalisés</li>
+                <li>Exemple statique et dynamique</li>
+                <li>Push ≠ pull</li>
+                <li>Closed / open et bancaire / wallet situés</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Sources normes / specs</strong> — à affiner : EMVCo QR
+              Code Specification ; guides nationaux ; règles produit PSP.
+            </div>
 
             <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
           </div>
         </main>
       </div>
     </div>
+
     <footer class="site-foot">
-      <div class="wrap"><a href="index.html">Sommaire Jour 2</a> · Typologies</div>
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 2</a>
+        · Support formateur · Bloc Typologies QR
+      </div>
     </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j2.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

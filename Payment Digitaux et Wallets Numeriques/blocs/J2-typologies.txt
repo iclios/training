@@ -4,10 +4,11 @@ Durée : 30–40 min
 Idée clé
 Le QR de paiement n’est pas un seul objet : statique/dynamique, push/pull, closed/open — chaque choix change le SI et le risque.
 
-Axes
-1. Statique vs dynamique
-2. Push vs pull
-3. Closed-loop vs open-loop
+Axes (chaque axe = schéma SVG + seq-steps sur la fiche)
+1. Statique vs dynamique — sticker vs caisse
+2. Push vs pull — qui présente / qui scanne
+3. Closed-loop vs open-loop — périmètre d’acceptation
 4. Bancaire vs wallet (UX ; détail wallet = J4)
 
 Cas : sticker magasin (souvent statique pull) · caisse affichant QR (dynamique).
+Schémas : acteurs ../img/acteurs (porteur, commerçant, device, banque, wallet, scheme).

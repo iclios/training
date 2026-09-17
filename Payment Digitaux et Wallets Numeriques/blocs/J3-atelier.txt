@@ -1,2 +1,7 @@
-JOUR 3 — Atelier
-Avant/après tokenisation, simulateur PAN ↔ token, lifecycle, scope PCI.
+JOUR 3 — Atelier palpable
+
+Avant / après tokenisation à partir d'un message d'auth J1.
+Simulateur ou sandbox PAN ↔ token ↔ cryptogramme.
+Lifecycle joué : provision → pay → suspend → delete.
+Livrables : schéma avant/après + tableau PAN / token / gouvernance.
+Lien scope PCI et pont J4.

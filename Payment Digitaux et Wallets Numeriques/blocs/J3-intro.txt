@@ -1,2 +1,6 @@
 JOUR 3 — Intro & objectifs
-Tokenisation comme socle sécurité, progression définition → lifecycle → architecture → conformité → atelier.
+
+Tokenisation comme socle sécurité structurelle après flux carte / QR.
+Progression : définition → lifecycle → architecture → sécurité → atelier.
+Pont annoncé vers wallets / NFC (J4).
+Sans casser Auth → Clearing → Settlement.

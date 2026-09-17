@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Intro & objectifs — Jour 3 | Paiements digitaux</title>
+    <title>Intro &amp; objectifs — Jour 3 | Paiements digitaux</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body data-bloc="intro">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a href="../j2/index.html">J2</a>
@@ -19,31 +21,117 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta"><span class="tag">Jour 3 · Ouverture</span><span class="tag tag-accent">Bloc formateur</span><span>15–20 min</span></div>
-              <p class="day-kicker">Accueil</p>
-              <h1>Intro & objectifs</h1>
-            </div>
-          </section>
-          <div class="wrap">
-            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>Aujourd’hui : remplacer l’exposition du PAN par un modèle plus sûr, sans casser la logique du paiement ni la lecture du SI banque.</p></aside>
-
-            <section class="section" style="border-top:none;padding-top:0"><p class="section-label">Contexte</p><h2>Pourquoi le Jour 3 est central</h2><p class="intro">Après les flux carte et le QR, il faut maintenant comprendre la sécurité structurelle qui rend lisibles les wallets, le NFC mobile et la réduction d’exposition des données carte.</p><div class="callout"><h3>Message formateur</h3><p>On n’étudie pas seulement un mécanisme de sécurité ; on prépare la lecture complète des paiements mobiles et omnicanaux.</p></div></section>
-            <section class="section"><p class="section-label">Objectifs</p><h2>Ce que les participants sauront faire</h2><ul class="topic-list"><li>Distinguer PAN, token, token vault et TSP</li><li>Expliquer le lifecycle d’un token</li><li>Décrire la chaîne SI de tokenisation</li><li>Relier tokenisation, cryptogrammes et autorisation</li><li>Comprendre l’impact sur conformité et gouvernance</li></ul></section>
-            <section class="section"><p class="section-label">Fil de journée</p><h2>Progression</h2><div class="timeline-evo"><span class="step">Définition</span><span class="arrow">→</span><span class="step">Lifecycle</span><span class="arrow">→</span><span class="step">Architecture</span><span class="arrow">→</span><span class="step">Sécurité</span><span class="arrow">→</span><span class="step">Atelier</span></div></section>
-            <div class="check-end"><h3>Check</h3><ul><li>Rôle du J3 compris</li><li>Pont vers J4 annoncé</li></ul></div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 3 · Tokenisation</span>
           </div>
-        </main>
+          <p class="day-kicker">Accueil</p>
+          <h1>Intro &amp; objectifs</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Fil de séance</p>
+          <h2>Blocs du Jour 3</h2>
+          <nav
+            class="block-map"
+            id="block-map"
+            aria-label="Blocs du jour 3"
+          ></nav>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Jour 3</p>
+          <h2>Pourquoi aujourd’hui</h2>
+          <p class="intro">
+            Après les flux carte et le QR&nbsp;: sécuriser l’identifiant
+            exposé. La tokenisation rend lisibles les wallets, le NFC
+            mobile et la réduction d’exposition des données carte — sans
+            casser Auth → Clearing → Settlement.
+          </p>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Objectifs</p>
+          <h2>Ce que les participants sauront faire</h2>
+          <ul class="topic-list">
+            <li>Distinguer PAN, token, vault et TSP</li>
+            <li>Restituer le lifecycle d’un token</li>
+            <li>Décrire la chaîne SI de tokenisation</li>
+            <li>Relier token, cryptogrammes et autorisation</li>
+            <li>Situer PCI, SCA et le pont vers J4</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Progression</p>
+          <h2>Fil de journée</h2>
+          <div class="timeline-evo">
+            <span class="step">Définition</span>
+            <span class="arrow">→</span>
+            <span class="step">Lifecycle</span>
+            <span class="arrow">→</span>
+            <span class="step">Architecture</span>
+            <span class="arrow">→</span>
+            <span class="step">Sécurité</span>
+            <span class="arrow">→</span>
+            <span class="step">Atelier</span>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Contrat de séance</p>
+          <h2>Règles du jour</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>On fait</h3>
+              <ul>
+                <li>Vocabulaire monétique d’abord</li>
+                <li>Schémas + cas SI</li>
+                <li>Pont explicite vers wallets (J4)</li>
+              </ul>
+            </div>
+            <div class="panel ko">
+              <h3>On ne fait pas</h3>
+              <ul>
+                <li>Détail SE / HCE / TEE dès J3</li>
+                <li>Données de production dans les démos</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>Rôle du J3 compris</li>
+            <li>Fil des blocs annoncé</li>
+            <li>Pont vers J4 annoncé</li>
+          </ul>
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
-    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 3</a> · Intro</div></footer>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 3</a> · Intro &amp; objectifs
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j3.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

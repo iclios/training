@@ -3,4 +3,5 @@ Durée : 25–35 min
 
 Séquence : génération → scan & validation → autorisation → confirmation.
 
+Schéma : 4 étapes QR + bandeau pont J1 (Auth → Clearing → Settlement).
 Cas : QR expiré (échec validation) · auth OK sans confirmation (réconciliation).

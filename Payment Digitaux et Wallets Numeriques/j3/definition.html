@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Définition & objectifs — Jour 3 | Paiements digitaux</title>
+    <title>Définition &amp; objectifs — Jour 3 | Paiements digitaux</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body data-bloc="definition">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a href="../j2/index.html">J2</a>
@@ -19,204 +21,367 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta"><span class="tag">Jour 3 · Tokenisation</span><span class="tag tag-accent">Bloc formateur</span><span>30–40 min</span></div>
-              <p class="day-kicker">3.1</p>
-              <h1>Définition & objectifs</h1>
-            </div>
-          </section>
-          <div class="wrap">
-            <aside class="key-idea">
-              <p class="label">Idée clé — tableau</p>
-              <p>
-                Tokeniser, c’est remplacer l’exposition directe du PAN par un
-                identifiant substitutif gouverné et utilisable dans un domaine
-                donné, sans casser la logique monétique du paiement.
-              </p>
-            </aside>
-
-            <section class="section" style="border-top:none;padding-top:0">
-              <p class="section-label">Définition monétique</p>
-              <h2>Qu’est-ce que la tokenisation&nbsp;?</h2>
-              <p class="intro">
-                En paiement, la tokenisation consiste à substituer au
-                <strong>PAN</strong> un <strong>token</strong> utilisable dans
-                un contexte précis, géré par une infrastructure de gouvernance
-                dédiée. L’objectif n’est pas de changer le paiement lui-même,
-                mais de réduire l’exposition de la donnée carte tout au long du
-                cycle transactionnel.
-              </p>
-              <div class="callout">
-                <h3>Formulation formateur</h3>
-                <p>
-                  Le token ne remplace pas la logique
-                  <strong>autorisation → clearing → settlement</strong>. Il
-                  remplace l’identifiant sensible présenté dans ce flux.
-                </p>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Vocabulaire</p>
-              <h2>PAN, token, vault, TSP</h2>
-              <ul class="topic-list">
-                <li>
-                  <strong>PAN</strong> — identifiant carte d’origine, sensible,
-                  historiquement exposé dans plusieurs chaînes de traitement
-                </li>
-                <li>
-                  <strong>Token</strong> — substitut du PAN, exploitable dans
-                  un domaine d’usage défini
-                </li>
-                <li>
-                  <strong>Token vault</strong> — référentiel sécurisé de
-                  correspondance et de gouvernance des liens PAN ↔ token
-                </li>
-                <li>
-                  <strong>TSP</strong> — Token Service Provider, qui émet,
-                  active, suspend et gouverne le cycle de vie du token
-                </li>
-              </ul>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Distinction</p>
-              <h2>Ce que la tokenisation n’est pas</h2>
-              <div class="not-list">
-                <div class="not-item">
-                  <strong>≠ Chiffrement simple</strong>
-                  <p>
-                    Le token n’est pas juste un PAN chiffré affiché autrement.
-                    Il relève d’une gouvernance et d’un domaine d’usage.
-                  </p>
-                </div>
-                <div class="not-item">
-                  <strong>≠ Nouveau rail</strong>
-                  <p>
-                    Le paiement continue de s’appuyer sur les mêmes
-                    mécanismes monétiques. On sécurise l’identifiant exposé.
-                  </p>
-                </div>
-                <div class="not-item">
-                  <strong>≠ Suppression totale du risque</strong>
-                  <p>
-                    On réduit l’exposition du PAN, mais il reste de la
-                    gouvernance, du risque fraude et des obligations de
-                    conformité.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Usages</p>
-              <h2>Où on tokenise</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>In-store</h3>
-                  <ul>
-                    <li>Wallets / mobile</li>
-                    <li>Présentation d’un identifiant substitutif au POS</li>
-                    <li>Réduction de l’exposition PAN en proximité</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>In-app / e-commerce</h3>
-                  <ul>
-                    <li>Card-on-file, checkout, paiements récurrents</li>
-                    <li>Moins d’exposition directe côté marchand</li>
-                    <li>Meilleur cadrage du risque et du scope conformité</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Objectifs</p>
-              <h2>Pourquoi tokeniser</h2>
-              <ul class="topic-list">
-                <li>Réduction de la fraude liée à l’exposition du PAN</li>
-                <li>Limitation de l’exposition des données carte</li>
-                <li>Aide à la conformité PCI-DSS</li>
-                <li>
-                  Dissociation plus fine entre carte source, device, canal et
-                  domaine d’usage
-                </li>
-              </ul>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Ancrage</p>
-              <h2>Cas pratiques</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>Cas 1 — Wallet mobile</h3>
-                  <ul>
-                    <li>Le smartphone ne présente pas directement le PAN</li>
-                    <li>Le token devient l’identifiant visible dans le flux</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Cas 2 — E-commerce tokenisé</h3>
-                  <ul>
-                    <li>Le marchand conserve un token plutôt qu’un PAN</li>
-                    <li>Impact direct sur exposition et gouvernance</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="callout warn" style="margin-top: 1rem">
-                <h3>Question salle</h3>
-                <p>
-                  Si le token circule à la place du PAN, où reste la
-                  connaissance du PAN d’origine&nbsp;? Réponse attendue :
-                  gouvernance TSP / vault / issuer selon l’architecture.
-                </p>
-              </div>
-            </section>
-
-            <details class="trainer-notes">
-              <summary>Notes formateur — points à faire verbaliser</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>Le token protège l’exposition, pas la logique métier</li>
-                  <li>
-                    Le PAN reste la racine de référence, même s’il n’est plus
-                    présenté partout
-                  </li>
-                  <li>
-                    Wallet, tokenisation réseau et conformité sont liés, mais ne
-                    sont pas la même notion
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Check de fin de bloc</h3>
-              <ul>
-                <li>PAN vs token expliqué proprement</li>
-                <li>Vault et TSP situés</li>
-                <li>La différence avec chiffrement simple est comprise</li>
-                <li>Le pont vers J4 est préparé</li>
-              </ul>
-            </div>
-
-            <div class="sources-box">
-              <strong>Sources normes / specs</strong> — à affiner :
-              tokenisation réseau, PCI-DSS, documentation scheme / TSP.
-            </div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 3 · Tokenisation</span>
           </div>
-        </main>
+          <p class="day-kicker">3.1 · Fondamentaux</p>
+          <h1>Définition &amp; objectifs</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <!-- Définition -->
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition monétique</p>
+          <h2>Qu’est-ce que la tokenisation&nbsp;?</h2>
+          <p class="definition-full">
+            Substitution du <strong>PAN</strong> par un
+            <strong>token</strong> utilisable dans un
+            <strong>domaine d’usage</strong> défini, gouverné par une
+            infrastructure dédiée (vault / TSP), afin de
+            <strong>réduire l’exposition</strong> des données carte sans
+            changer la logique monétique
+            <strong>Auth → Clearing → Settlement</strong>.
+          </p>
+          <p class="intro" style="margin-top: 1.1rem">
+            On sécurise l’identifiant présenté — pas le rail de paiement.
+          </p>
+        </section>
+
+        <!-- PAN vs Token -->
+        <section class="section">
+          <p class="section-label">Vocabulaire</p>
+          <h2>PAN vs Token</h2>
+          <p class="intro">
+            Le PAN reste la racine de référence&nbsp;; le token est le
+            substitut exposé dans un contexte donné.
+          </p>
+
+          <div class="diagram" id="diagram-pan-token">
+            <div class="diagram-header">
+              <h3>Substitution illustrée</h3>
+              <p>PAN sensible · Token gouverné · Domaine d’usage</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 280"
+              role="img"
+              aria-label="PAN remplacé par un token dans le flux"
+            >
+              <defs>
+                <marker id="ah-pt" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="40" y="50" width="240" height="120" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-porteur.jpg" x="56" y="70" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="130" y="95" fill="#c45c26" font-family="Syne, sans-serif" font-size="15" font-weight="700">PAN</text>
+                <text x="130" y="118" fill="#5a6b7c" font-size="12">identifiant carte</text>
+                <text x="130" y="140" fill="#c45c26" font-size="11" font-weight="700">sensible · à protéger</text>
+              </g>
+              <line class="flow-line" x1="300" y1="110" x2="380" y2="110" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pt)"/>
+              <text x="340" y="95" text-anchor="middle" fill="#0d9f8a" font-size="11" font-weight="700">tokenise</text>
+              <g>
+                <rect x="380" y="40" width="280" height="140" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-wallet.jpg" x="400" y="68" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="484" y="90" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Token</text>
+                <text x="484" y="114" fill="#0d9f8a" font-size="12">substitut gouverné</text>
+                <text x="484" y="138" fill="#5a6b7c" font-size="11">domaine · device · canal</text>
+              </g>
+              <line class="flow-line" x1="680" y1="110" x2="750" y2="110" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pt)"/>
+              <g>
+                <rect x="750" y="50" width="210" height="120" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-commercant.jpg" x="766" y="70" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="840" y="95" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Présenté</text>
+                <text x="840" y="118" fill="#5a6b7c" font-size="12">dans le flux Auth</text>
+                <text x="840" y="140" fill="#5a6b7c" font-size="11">≠ PAN exposé</text>
+              </g>
+              <text x="500" y="230" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Le PAN reste la racine — le token est ce que le canal voit
+              </text>
+            </svg>
+            <div class="seq-steps" id="pan-token-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>PAN</strong>
+                  <p>Identifiant carte d’origine — donnée sensible.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Token</strong>
+                  <p>Substitut lié à un domaine, un device ou un canal.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Présentation</strong>
+                  <p>Le flux d’autorisation reçoit le token, pas le PAN.</p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Vault / TSP -->
+        <section class="section">
+          <p class="section-label">Vocabulaire</p>
+          <h2>Vault &amp; TSP</h2>
+          <p class="intro">
+            Qui garde le lien PAN ↔ token, et qui gouverne le cycle de vie.
+          </p>
+
+          <div class="diagram" id="diagram-vault-tsp">
+            <div class="diagram-header">
+              <h3>Gouvernance du lien</h3>
+              <p>Vault = référentiel · TSP = service de gouvernance</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 300"
+              role="img"
+              aria-label="Token vault et TSP"
+            >
+              <defs>
+                <marker id="ah-vt" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="40" y="80" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="56" y="98" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="128" y="122" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">PAN</text>
+                <text x="128" y="144" fill="#5a6b7c" font-size="11">référence carte</text>
+              </g>
+              <line class="flow-line" x1="250" y1="130" x2="320" y2="130" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-vt)"/>
+              <g>
+                <rect x="320" y="50" width="360" height="160" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="344" y="78" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="428" y="100" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Token vault</text>
+                <text x="428" y="124" fill="#0d9f8a" font-size="12">correspondance PAN ↔ token</text>
+                <text x="428" y="148" fill="#5a6b7c" font-size="11">référentiel sécurisé</text>
+                <text x="428" y="178" fill="#087a6a" font-size="12" font-weight="700">TSP · émission · états · règles</text>
+              </g>
+              <line class="flow-line" x1="700" y1="130" x2="770" y2="130" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-vt)"/>
+              <g>
+                <rect x="770" y="80" width="190" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-wallet.jpg" x="786" y="98" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="858" y="122" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Token</text>
+                <text x="858" y="144" fill="#5a6b7c" font-size="11">émis / gouverné</text>
+              </g>
+              <text x="500" y="270" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Vault = où vit le lien · TSP = qui gouverne le token
+              </text>
+            </svg>
+            <div class="seq-steps" id="vault-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>PAN de référence</strong>
+                  <p>Reste chez l’émetteur / dans le vault — pas partout.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Vault</strong>
+                  <p>Stocke et protège la correspondance PAN ↔ token.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>TSP</strong>
+                  <p>Émet, active, suspend, supprime — gouvernance du cycle.</p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              TSP peut être scheme, émetteur ou acteur dédié selon le montage.
+            </p>
+          </div>
+        </section>
+
+        <!-- Domaines -->
+        <section class="section">
+          <p class="section-label">Modes / domaines</p>
+          <h2>Où on tokenise</h2>
+          <p class="intro">
+            Trois domaines d’usage courants — même logique, canaux différents.
+          </p>
+
+          <div class="diagram" id="diagram-domaines">
+            <div class="diagram-header">
+              <h3>In-store · In-app · E-commerce</h3>
+              <p>Domaines d’usage du token</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 220"
+              role="img"
+              aria-label="Trois domaines de tokenisation"
+            >
+              <g>
+                <rect x="40" y="40" width="280" height="130" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="60" y="62" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="136" y="85" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">In-store</text>
+                <text x="136" y="110" fill="#0d9f8a" font-size="12">wallet / NFC / POS</text>
+                <text x="136" y="132" fill="#5a6b7c" font-size="11">proximité · device</text>
+              </g>
+              <g>
+                <rect x="360" y="40" width="280" height="130" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-wallet.jpg" x="380" y="62" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="456" y="85" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">In-app</text>
+                <text x="456" y="110" fill="#1e5f8a" font-size="12">app marchande</text>
+                <text x="456" y="132" fill="#5a6b7c" font-size="11">checkout intégré</text>
+              </g>
+              <g>
+                <rect x="680" y="40" width="280" height="130" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-commercant.jpg" x="700" y="62" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="776" y="85" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">E-commerce</text>
+                <text x="776" y="110" fill="#3d5a80" font-size="12">card-on-file · récurrent</text>
+                <text x="776" y="132" fill="#5a6b7c" font-size="11">moins de PAN marchand</text>
+              </g>
+            </svg>
+          </div>
+        </section>
+
+        <!-- Objectifs -->
+        <section class="section">
+          <p class="section-label">Rôle</p>
+          <h2>Pourquoi tokeniser</h2>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Fraude &amp; exposition</h3>
+              <ul>
+                <li>Moins de PAN en circulation</li>
+                <li>Réutilisation frauduleuse plus difficile</li>
+                <li>Lien device / domaine plus fin</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>PCI &amp; gouvernance</h3>
+              <ul>
+                <li>Aide à réduire le scope PCI-DSS</li>
+                <li>Gouvernance centralisée (TSP)</li>
+                <li>Actions ciblées (suspend device ≠ carte)</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Ancrage -->
+        <section class="section">
+          <p class="section-label">Ancrage</p>
+          <h2>Cas pratiques</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Cas 1 — Wallet mobile</h3>
+              <ul>
+                <li>Le smartphone présente un token</li>
+                <li>Le PAN n’est pas exposé au POS</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Cas 2 — E-commerce tokenisé</h3>
+              <ul>
+                <li>Le marchand stocke un token</li>
+                <li>Impact direct sur exposition / PCI</li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel" style="margin-top: 1rem">
+            <h3>Cas 3 — Question salle</h3>
+            <ul>
+              <li>Où reste la connaissance du PAN d’origine&nbsp;?</li>
+              <li>Réponse&nbsp;: vault / TSP / issuer selon architecture</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Clarification -->
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Ce que ce n’est pas</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>≠ Chiffrement simple</strong>
+              <p>
+                Un token n’est pas un PAN chiffré affiché autrement&nbsp;: il a
+                un domaine et une gouvernance.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Nouveau rail</strong>
+              <p>
+                Auth → Clearing → Settlement reste intact. On change
+                l’identifiant exposé, pas la logique monétique.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>≠ Risque zéro</strong>
+              <p>
+                Exposition réduite — fraude, device et conformité restent
+                des sujets SI.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <details class="trainer-notes">
+          <summary>Notes formateur — questions SI</summary>
+          <div class="notes-body">
+            <ul>
+              <li>Chez vous, qui porte le rôle TSP&nbsp;?</li>
+              <li>Quels domaines d’usage tokenisez-vous déjà&nbsp;?</li>
+              <li>
+                Comment expliquez-vous à un métier que le token ne
+                «&nbsp;remplace&nbsp;» pas l’émetteur&nbsp;?
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>PAN vs token verbalisé</li>
+            <li>Vault et TSP situés</li>
+            <li>Domaines in-store / in-app / e-com cités</li>
+            <li>Token ≠ changement Auth → Clearing → Settlement</li>
+          </ul>
+        </div>
+
+        <div class="sources-box">
+          <strong>Sources normes / specs</strong> — à affiner :
+          tokenisation réseau (VTS / MDES…), PCI-DSS, documentation scheme /
+          TSP.
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
-    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 3</a> · Définition</div></footer>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 3</a>
+        · Support formateur · Bloc Définition
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j3.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

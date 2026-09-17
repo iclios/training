@@ -9,7 +9,9 @@
   <body data-bloc="cas-pratique">
     <header class="site-bar">
       <div class="wrap site-bar-inner">
-        <a class="brand-mark" href="../index.html">Paiements digitaux <span>&amp; Wallets</span></a>
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
         <nav class="day-nav" aria-label="Jours du cours">
           <a href="../j1/index.html">J1</a>
           <a href="../j2/index.html">J2</a>
@@ -19,31 +21,434 @@
         </nav>
       </div>
     </header>
+
     <div class="fiche-shell">
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
       <div class="fiche-main">
-        <main>
-          <section class="day-hero" style="padding-bottom: 1.5rem">
-            <div class="wrap">
-              <div class="fiche-meta"><span class="tag">Jour 4 · Cas</span><span class="tag tag-accent">Bloc formateur</span><span>35–45 min</span></div>
-              <p class="day-kicker">4.4</p>
-              <h1>Cas pratique smartphone → POS</h1>
-            </div>
-          </section>
-          <div class="wrap">
-            <aside class="key-idea"><p class="label">Idée clé — tableau</p><p>Analyser un paiement NFC mobile, c’est relier le geste physique, le device, le token et la décision monétique.</p></aside>
-
-            <section class="section" style="border-top:none;padding-top:0"><p class="section-label">Lecture du flux</p><h2>De la main du client au SI banque</h2><ul class="topic-list"><li>Composants : smartphone, SE/HCE, token, TSP, POS, acquéreur, issuer</li><li>Messages : présentation, autorisation, réponse</li><li>Points critiques : biométrie, cryptogramme, latence, disponibilité</li></ul></section>
-            <section class="section"><p class="section-label">Méthode</p><h2>Ce qu’on doit faire dire</h2><div class="split-2"><div class="panel ok"><h3>Question 1</h3><ul><li>Quel identifiant part réellement ?</li><li>Réponse attendue : token, pas PAN direct</li></ul></div><div class="panel"><h3>Question 2</h3><ul><li>Qui décide vraiment de l’autorisation ?</li><li>Réponse : l’issuer, comme en J1</li></ul></div></div></section>
-            <section class="section"><p class="section-label">Prérequis</p><h2>Mobiliser J1 + J3</h2><div class="not-list"><div class="not-item"><strong>J1</strong><p>Flux carte, online/offline, autorisation</p></div><div class="not-item"><strong>J3</strong><p>Tokenisation, lifecycle, cryptogrammes, device binding</p></div></div></section>
-            <div class="check-end"><h3>Check</h3><ul><li>Flux smartphone → POS redessiné</li><li>Rôle du token explicité</li></ul></div>
-
-            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+    <main>
+      <section class="day-hero" style="padding-bottom: 1.5rem">
+        <div class="wrap">
+          <div class="fiche-meta">
+            <span class="tag">Jour 4 · NFC / Wallets</span>
           </div>
-        </main>
+          <p class="day-kicker">4.4 · Synthèse terrain</p>
+          <h1>Cas pratique smartphone → POS</h1>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <!-- Définition -->
+        <section class="section" style="border-top: none; padding-top: 0">
+          <p class="section-label">Définition monétique</p>
+          <h2>Analyser un paiement NFC mobile</h2>
+          <p class="definition-full">
+            Relier le <strong>geste physique</strong> (tap), le
+            <strong>device / wallet</strong> (SE·HCE·TEE, CDCVM), le
+            <strong>token</strong> et le cryptogramme, puis la
+            <strong>chaîne AuthZ</strong> (POS → acquéreur → réseau →
+            émetteur) — sans confondre canal NFC et décision métier.
+          </p>
+          <p class="intro" style="margin-top: 1.1rem">
+            Mobilise
+            <a href="../j1/online-offline.html">J1 online / offline</a>
+            et
+            <a href="../j3/definition.html">J3 tokenisation</a>.
+          </p>
+        </section>
+
+        <!-- Schéma end-to-end -->
+        <section class="section">
+          <p class="section-label">Flux bout en bout</p>
+          <h2>De la main au SI banque</h2>
+          <p class="intro">
+            Un parcours — composants visibles et maillons SI.
+          </p>
+
+          <div class="diagram" id="diagram-e2e">
+            <div class="diagram-header">
+              <h3>Smartphone → POS → chaîne → issuer</h3>
+              <p>Schéma de synthèse J4</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 420"
+              role="img"
+              aria-label="Flux NFC smartphone vers POS bout en bout"
+            >
+              <defs>
+                <marker id="ah-e2e" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+
+              <!-- Ligne 1 : device -->
+              <g>
+                <rect x="40" y="30" width="200" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-porteur.jpg" x="52" y="46" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="122" y="70" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Porteur</text>
+                <text x="122" y="92" fill="#5a6b7c" font-size="11">biométrie CDCVM</text>
+              </g>
+              <line class="flow-line" x1="250" y1="80" x2="300" y2="80" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-e2e)"/>
+              <g>
+                <rect x="300" y="30" width="220" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-wallet.jpg" x="312" y="46" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="382" y="70" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Smartphone</text>
+                <text x="382" y="92" fill="#5a6b7c" font-size="11">wallet · token · SE/HCE</text>
+              </g>
+              <line class="flow-line" x1="530" y1="80" x2="580" y2="80" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-e2e)"/>
+              <g>
+                <rect x="580" y="30" width="180" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="592" y="46" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="662" y="70" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">POS</text>
+                <text x="662" y="92" fill="#5a6b7c" font-size="11">NFC · EMV CL</text>
+              </g>
+              <line class="flow-line" x1="770" y1="80" x2="820" y2="80" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-e2e)"/>
+              <g>
+                <rect x="820" y="30" width="140" height="100" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-commercant.jpg" x="852" y="42" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="890" y="115" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Caisse</text>
+              </g>
+
+              <!-- Ligne 2 : chaîne -->
+              <line x1="670" y1="140" x2="670" y2="190" stroke="#0d9f8a" stroke-width="2"/>
+              <g>
+                <rect x="40" y="190" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="52" y="206" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="122" y="230" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Acquéreur</text>
+                <text x="122" y="252" fill="#5a6b7c" font-size="11">gateway</text>
+              </g>
+              <line class="flow-line" x1="250" y1="240" x2="320" y2="240" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-e2e)"/>
+              <g>
+                <rect x="320" y="190" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="332" y="206" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="402" y="230" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Réseau</text>
+                <text x="402" y="252" fill="#5a6b7c" font-size="11">scheme · TSP</text>
+              </g>
+              <line class="flow-line" x1="530" y1="240" x2="600" y2="240" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-e2e)"/>
+              <g>
+                <rect x="600" y="180" width="360" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="620" y="206" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="700" y="230" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Émetteur</text>
+                <text x="700" y="254" fill="#0d9f8a" font-size="12">AuthZ · detokenize</text>
+                <text x="700" y="276" fill="#5a6b7c" font-size="11">OK / decline</text>
+              </g>
+
+              <path d="M780 300 L780 340 L140 340 L140 290" fill="none" stroke="#3d5a80" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ah-e2e)"/>
+              <text x="500" y="390" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Réponse remonte jusqu’au POS — le porteur voit OK / refusé
+              </text>
+            </svg>
+            <div class="seq-steps" id="e2e-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>CDCVM + tap</strong>
+                  <p>Biométrie / unlock wallet, puis session NFC face au POS.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Présentation</strong>
+                  <p>Token + cryptogramme EMV Contactless — pas le PAN nu.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Chaîne AuthZ</strong>
+                  <p>Acquéreur → réseau / TSP → émetteur (détokenisation).</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="4">
+                <span class="n">4</span>
+                <span>
+                  <strong>Réponse</strong>
+                  <p>OK / decline remonte — familles de rejet J1 inchangées.</p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              Le wallet ajoute des hops device — la décision AuthZ reste
+              émetteur.
+            </p>
+          </div>
+        </section>
+
+        <!-- Composants -->
+        <section class="section">
+          <p class="section-label">Composants</p>
+          <h2>Qui intervient&nbsp;?</h2>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Côté porteur / device</h3>
+              <ul>
+                <li>Smartphone + wallet</li>
+                <li>SE / HCE / TEE</li>
+                <li>Token device-bound</li>
+                <li>CDCVM (biométrie)</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Côté acceptation / SI</h3>
+              <ul>
+                <li>POS NFC (ISO 14443 / EMV CL)</li>
+                <li>Acquéreur / gateway</li>
+                <li>Scheme · TSP</li>
+                <li>Issuer (AuthZ)</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Messages -->
+        <section class="section">
+          <p class="section-label">Messages</p>
+          <h2>Que circule&nbsp;?</h2>
+          <p class="intro">
+            Trois familles de messages — RF, autorisation, réponse.
+          </p>
+
+          <div class="diagram" id="diagram-messages">
+            <div class="diagram-header">
+              <h3>Présentation · Autorisation · Réponse</h3>
+              <p>Simplifié · couches distinctes</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 220"
+              role="img"
+              aria-label="Messages du flux NFC mobile"
+            >
+              <g>
+                <rect x="40" y="40" width="280" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <text x="180" y="85" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">1 · Présentation</text>
+                <text x="180" y="112" text-anchor="middle" fill="#0d9f8a" font-size="12">APDU / EMV CL</text>
+                <text x="180" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">token · crypto</text>
+              </g>
+              <g>
+                <rect x="360" y="40" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <text x="500" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">2 · Autorisation</text>
+                <text x="500" y="112" text-anchor="middle" fill="#1e5f8a" font-size="12">demande AuthZ</text>
+                <text x="500" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">montant · merchant · crypto</text>
+              </g>
+              <g>
+                <rect x="680" y="40" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <text x="820" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">3 · Réponse</text>
+                <text x="820" y="112" text-anchor="middle" fill="#3d5a80" font-size="12">code OK / decline</text>
+                <text x="820" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">hop-by-hop → POS</text>
+              </g>
+              <text x="500" y="195" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Identifiant présenté = token (souvent) — PAN résolu côté issuer / TSP
+              </text>
+            </svg>
+            <div class="seq-steps" id="msg-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Présentation RF</strong>
+                  <p>Échanges EMV Contactless entre wallet et POS.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Demande AuthZ</strong>
+                  <p>Montant, commerçant, cryptogramme, token — vers la chaîne.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Réponse</strong>
+                  <p>Décision émetteur — classes de rejet J1.</p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Points sécurité -->
+        <section class="section">
+          <p class="section-label">Sécurité</p>
+          <h2>Points critiques</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Contrôles</h3>
+              <ul>
+                <li>CDCVM / biométrie avant tap</li>
+                <li>Cryptogramme dynamique</li>
+                <li>Token + domain controls (J3)</li>
+                <li>Device binding</li>
+              </ul>
+            </div>
+            <div class="panel ko">
+              <h3>Vigilances</h3>
+              <ul>
+                <li>Latence / timeout (dégradé J1)</li>
+                <li>Échec RF ≠ decline fonds</li>
+                <li>Device perdu → lifecycle token</li>
+                <li>Logs&nbsp;: quel identifiant&nbsp;?</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Méthode salle -->
+        <section class="section">
+          <p class="section-label">Méthode</p>
+          <h2>Questions à faire dire</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Quel identifiant part&nbsp;?</h3>
+              <ul>
+                <li>Attendu&nbsp;: token, pas PAN direct</li>
+                <li>Relier à <a href="../j3/definition.html">J3</a></li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Qui décide&nbsp;?</h3>
+              <ul>
+                <li>Attendu&nbsp;: l’émetteur</li>
+                <li>Wallet ≠ AuthZ</li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel" style="margin-top: 1rem">
+            <h3>Online ou offline&nbsp;?</h3>
+            <ul>
+              <li>
+                Selon montant / règles — rappeler
+                <a href="../j1/online-offline.html">J1</a>
+              </li>
+              <li>Normal vs dégradé si timeout</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Rôle -->
+        <section class="section">
+          <p class="section-label">Rôle</p>
+          <h2>Que retient le SI&nbsp;?</h2>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Lecture</h3>
+              <ul>
+                <li>Découper geste / device / token / AuthZ</li>
+                <li>Tracer l’identifiant dans les logs</li>
+                <li>Classer les échecs (RF, AuthN, métier)</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Action</h3>
+              <ul>
+                <li>Runbooks distincts par famille</li>
+                <li>Lifecycle token si device perdu</li>
+                <li>Mesurer latence bout en bout</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Ancrage -->
+        <section class="section">
+          <p class="section-label">Ancrage</p>
+          <h2>Cas pratiques</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Cas 1 — OK sous seuil</h3>
+              <ul>
+                <li>CDCVM + tap + AuthZ (souvent online)</li>
+                <li>Token visible côté réseau</li>
+              </ul>
+            </div>
+            <div class="panel ko">
+              <h3>Cas 2 — Refusé à la caisse</h3>
+              <ul>
+                <li>Classer&nbsp;: biométrie / crypto / métier / timeout</li>
+                <li>Ne pas tout mettre sur «&nbsp;le wallet&nbsp;»</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Clarification -->
+        <section class="section">
+          <p class="section-label">Clarification</p>
+          <h2>Pièges fréquents</h2>
+          <div class="not-list">
+            <div class="not-item">
+              <strong>« Le wallet a autorisé »</strong>
+              <p>
+                Non&nbsp;: le wallet authentifie le porteur et présente — l’émetteur
+                autorise.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>« C’est du PAN »</strong>
+              <p>
+                En modèle tokenisé, l’identifiant présenté est un token — voir
+                J3.
+              </p>
+            </div>
+            <div class="not-item">
+              <strong>« Tap = offline »</strong>
+              <p>
+                Faux systématiquement — seuils et règles décident (J1).
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <details class="trainer-notes">
+          <summary>Notes formateur — questions SI</summary>
+          <div class="notes-body">
+            <ul>
+              <li>
+                Dans vos traces, voyez-vous le token ou un PAN détokenisé, et
+                où&nbsp;?
+              </li>
+              <li>
+                Comment un agent support classe un «&nbsp;Apple Pay refusé&nbsp;»
+                en 60 secondes&nbsp;?
+              </li>
+              <li>
+                Qui possède le runbook device perdu (wallet vs issuer)&nbsp;?
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="check-end">
+          <h3>Check de fin de bloc</h3>
+          <ul>
+            <li>Schéma smartphone → POS redessiné</li>
+            <li>Composants et messages cités</li>
+            <li>Rôle du token et de l’émetteur explicites</li>
+            <li>Ponts J1 + J3 mobilisés</li>
+          </ul>
+        </div>
+
+        <div class="sources-box">
+          <strong>Sources normes / specs</strong> — à affiner : EMV Contactless,
+          Payment Tokenisation, docs issuer Apple Pay / Google Pay, codes
+          réponse processeur.
+        </div>
+
+        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+      </div>
+    </main>
       </div>
     </div>
-    <footer class="site-foot"><div class="wrap"><a href="index.html">Sommaire Jour 4</a> · Cas pratique</div></footer>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 4</a>
+        · Support formateur · Bloc Cas pratique
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
     <script src="../js/nav-j4.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

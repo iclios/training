@@ -1,2 +1,2 @@
-JOUR 5 — Contrôle continu
-Design national QR + NFC + wallet, livrables et arbitrages.
+JOUR 5 — Contrôle & gouvernance
+Opérer / certifier / superviser · KPIs · runbooks alignés familles de rejet J1 (métier, AuthN, technique, clearing).

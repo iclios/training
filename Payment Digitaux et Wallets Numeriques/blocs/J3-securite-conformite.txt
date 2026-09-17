@@ -1,2 +1,22 @@
 JOUR 3 — Sécurité & conformité
-Device binding, authentification forte, cryptogrammes, PCI-DSS, gouvernance, pont vers wallets/NFC.
+
+Objectif pédagogique
+Situer device binding, SCA/DSP2, cryptogrammes, impact PCI-DSS et protection
+des données ; préparer le pont vers wallets / NFC (J4).
+
+Socle
+- device binding : token ↔ device / contexte
+- SCA / DSP2 : authentification forte du porteur (≠ token)
+- cryptogrammes : preuve dynamique anti-réutilisation
+
+Conformité
+- PCI-DSS : réduction d'exposition / scope possible — pas « tokenisé = conforme »
+- protection des données : traçabilité, audit, responsabilités TSP / issuer
+
+Risque
+- réduit : exposition PAN
+- conservé : fraude, device, intégration, audit
+- déplacé : vers TSP, issuer, wallet
+
+Pont J4
+Carte source · token · cryptogramme · device → SE / HCE / TEE / wallets
