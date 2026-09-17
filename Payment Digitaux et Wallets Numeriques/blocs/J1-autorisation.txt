@@ -20,9 +20,10 @@ Idée clé (à écrire au tableau)
 (via acquéreur et réseau) et sa réponse : acceptation ou refus de l’opération. »
 
 Posture pédagogique
-1) Définir comme la monétique
-2) Schéma message (demande / réponse)
-3) Cas pratiques seulement pour ancrer — pas comme point de départ « magasin »
+1) Définition + « pour son compte » + intention dialogue
+2) Localiser Auth dans le cycle EMV (étape online)
+3) Schéma message (demande / réponse)
+4) Cas pratiques pour ancrer
 
 
 ================================================================================
@@ -34,77 +35,65 @@ Procédure par laquelle une demande d’accord est transmise à l’émetteur
 refuse une opération présentée sur un moyen de paiement carte, et renvoie
 une réponse exploitable par la chaîne d’acceptation.
 
-En pratique opérationnelle, cela se traduit par :
-- un message de demande d’autorisation
-- un routage via l’acquéreur (et éventuellement un PSP / une gateway) puis
-  le réseau (scheme)
-- un traitement côté émetteur (contrôles métier, risque, statut du support…)
-- un message de réponse : approbation ou refus, avec codes / références
-  associés (dont, en cas d’accord, un code d’autorisation)
+« Agissant pour son compte » — expliquer juste après la définition
+- Processeur d’émission (issuer processor) qui traite pour la banque
+- Stand-in (réseau / processeur) si l’émetteur est injoignable (règles contrat)
+- Centre d’autorisation délégué
+→ La décision reste « au nom de l’émetteur » ; ce n’est ni le commerçant ni
+  le scheme qui décide à sa place.
+
+Intention (option B — pas la liste technique sous la définition)
+« Une autorisation, c’est un dialogue : une demande part, une réponse revient. »
+Le détail (demande / routage / traitement / réponse) = schéma suivant.
 
 Caractéristiques monétiques
-- Nature : échange online typique (temps réel ou quasi temps réel)
+- Nature : échange online typique
 - Décideur : l’émetteur
-- Objet : accord sur l’opération — pas la compensation ni le règlement
-- Support informationnel : messages normalisés (famille type ISO 8583 /
-  formats scheme — détail specs plus tard)
+- Objet : accord sur l’opération — pas clearing / settlement
+- Support : ISO 8583 / formats scheme · cadre EMV online
 
 
 ================================================================================
-3. PLACE DANS LE CYCLE MONÉTIQUE
+3. PLACE DANS LE CYCLE DE VIE EMV
 ================================================================================
-Cycle simplifié (à situer sans tout dérouler)
-1. Autorisation     ← ce bloc
-2. (Authentification du porteur — bloc voisin, souvent liée)
-3. Clearing         — compensation des opérations
-4. Settlement       — règlement des positions
+Schéma illustré (cases + images) — localiser l’étape 6, sans clearing/settlement
+1. Sélection d’application
+2. Lecture des données
+3. Authentification des données (offline)
+4. Vérification du porteur (CVM · AuthN)
+5. Analyse de risque (terminal + carte)
+6. Autorisation online ← CE BLOC
+7. Fin de transaction (completion / scripts)
 
-Formulation formateur
-L’autorisation répond à : « L’émetteur accepte-t-il cette opération ? »
-Le clearing / settlement répondent à : « Comment les banques se
-compensent-elles et se règlent-elles ensuite ? »
+Ne pas mélanger clearing / settlement sur cette page — blocs dédiés plus loin.
+Seul contraste utile ici : AuthN (étape 4) ≠ Auth (étape 6).
 
 
 ================================================================================
 4. SCHÉMA À PROJETER — DEMANDE / RÉPONSE
 ================================================================================
-Demande d’autorisation
-Acceptation (terminal, serveur marchand, etc.)
-  → Acquéreur / gateway / PSP
-    → Réseau carte (scheme)
-      → Émetteur (centre d’autorisation / host issuing)
+Chaîne complète (aller + retour hop par hop)
+Porteur → Acceptation → Acquéreur / PSP → Réseau → Émetteur
+Émetteur → Réseau → Acquéreur / PSP → Acceptation → Porteur
 
-Réponse d’autorisation
-Émetteur
-  → Réseau
-    → Acquéreur / PSP
-      → Acceptation
+Pas de raccourci : la réponse ne « saute » pas de l’émetteur à l’acceptation.
 
-Points à commenter
-- Aller + retour = une autorisation au sens monétique
-- Le contenu de la demande (montant, données carte / jeton, commerçant,
-  type d’opération…) conditionne les contrôles
-- En modèle carte classique : présence du PAN dans le flux d’auth
-  (pont J3 tokenisation)
-- Absence de réponse dans les délais = incident / refus technique possible
-  (≠ « fonds insuffisants »)
+Cas stand-in
+Même chaîne ; tentative émetteur échoue → stand-in décide (réseau) →
+retour hop par hop jusqu’au porteur.
 
 
 ================================================================================
 5. QUE DÉCIDE L’ÉMETTEUR ?
 ================================================================================
-Contrôles typiques (niveau monétique / SI banque)
-- Statut du moyen de paiement (actif, opposé, expiré…)
-- Capacité à réaliser l’opération (plafonds, disponible, règles produit)
-- Cohérence de l’opération (montant, MCC, canal, géographie…)
-- Règles de risque / fraude
-- Exigences d’authentification du porteur selon le contexte
-  (renvoi au bloc Authentification — ne pas fusionner Auth et AuthN)
+Quatre familles de contrôles (à projeter en panneaux)
+1) Moyen de paiement — statut, produit, validité
+2) Capacité & plafonds — disponible, plafonds, règles produit
+3) Cohérence opération — montant, MCC, canal, géographie
+4) Risque & fraude — scoring, signaux, éventuelle AuthN (renvoi bloc AuthN)
 
-Vocabulaire à figer
-- Approve / autorisation accordée
-- Decline / autorisation refusée
-- Code d’autorisation : référence d’accord côté émetteur (quand accord)
+Résultat : Approve (+ code d’auth) / Decline (+ motifs)
+Stand-in : mêmes types de réponse, règles souvent plus restrictives.
 
 
 ================================================================================
@@ -135,18 +124,12 @@ un cycle de vie métier un peu différent (complétion / capture).
 
 
 ================================================================================
-7. CE QUE L’AUTORISATION N’EST PAS
+7. CE QUE L’AUTORISATION N’EST PAS (sur cette page)
 ================================================================================
-≠ Clearing
-Pas encore la compensation des opérations entre établissements via le réseau.
+≠ Authentification (CVM / AuthN)
+Légitimité du porteur ≠ accord de l’émetteur sur l’opération.
 
-≠ Settlement
-Pas encore le règlement des positions financières entre banques.
-
-≠ Authentification
-L’authentification vise à établir la légitimité du porteur ; l’autorisation
-vise l’accord de l’émetteur sur l’opération. Les deux se combinent souvent,
-mais restent des notions distinctes.
+Clearing / settlement : hors page — blocs dédiés.
 
 
 ================================================================================
@@ -177,6 +160,6 @@ Vers Clearing
 10. CHECK DE FIN
 ================================================================================
 [ ] Définition monétique restituée (demande + réponse + décideur émetteur)
-[ ] Auth ≠ clearing ≠ settlement
+[ ] Auth localisée dans le cycle EMV (≠ AuthN)
 [ ] Au moins un cas pratique (accord / refus métier / technique) maîtrisé
 [ ] Pont PAN dans le flux d’auth évoqué sans dériver sur le token

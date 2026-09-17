@@ -49,68 +49,107 @@
             opération présentée sur un moyen de paiement carte, et renvoie une
             <strong>réponse</strong> exploitable par la chaîne d’acceptation.
           </p>
-          <ul class="topic-list">
-            <li>
-              <strong>Message de demande</strong> — montant, données du moyen
-              de paiement, commerçant, type d’opération…
-            </li>
-            <li>
-              <strong>Routage</strong> — acquéreur (éventuellement PSP /
-              gateway) puis réseau (scheme)
-            </li>
-            <li>
-              <strong>Traitement émetteur</strong> — contrôles métier, risque,
-              statut du support…
-            </li>
-            <li>
-              <strong>Message de réponse</strong> — approbation ou refus + codes
-              / références (dont code d’autorisation si accord)
-            </li>
-          </ul>
           <div class="callout">
-            <h3>Caractéristiques</h3>
+            <h3>« Agissant pour son compte »</h3>
             <p>
-              Échange <strong>online</strong> typique · décideur =
-              <strong>émetteur</strong> · objet = accord sur l’opération — pas
-              la compensation ni le règlement · support = messages normalisés
-              (famille type ISO&nbsp;8583 / formats scheme).
+              La <strong>décision</strong> reste celle de l’émetteur. En face,
+              ce peut être son host, un
+              <strong>processeur d’émission</strong>, un
+              <strong>stand-in</strong> (émetteur injoignable), ou un
+              <strong>centre délégué</strong> — toujours
+              <em>au nom de</em> l’émetteur, pas du commerçant ni du scheme.
             </p>
           </div>
+          <p class="intro" style="margin-top: 1.1rem">
+            Une autorisation, c’est un <strong>dialogue</strong>&nbsp;: une
+            demande part, une réponse revient.
+          </p>
         </section>
 
-        <!-- Cycle -->
+        <!-- Cycle EMV -->
         <section class="section">
-          <p class="section-label">Cycle monétique</p>
+          <p class="section-label">Cycle de vie EMV</p>
           <h2>Où se situe l’autorisation&nbsp;?</h2>
-          <div class="timeline-evo" aria-label="Cycle monétique simplifié">
-            <span class="step">Autorisation</span>
-            <span class="arrow" aria-hidden="true">→</span>
-            <span class="step">Authentification*</span>
-            <span class="arrow" aria-hidden="true">→</span>
-            <span class="step">Clearing</span>
-            <span class="arrow" aria-hidden="true">→</span>
-            <span class="step">Settlement</span>
-          </div>
-          <p class="diagram-hint">
-            *L’authentification du porteur est souvent liée ou préalable selon
-            le canal — bloc suivant. Ici on isole la décision d’accord.
+          <p class="intro">
+            Traitement carte à puce (EMV) — l’autorisation online est l’étape
+            mise en évidence.
           </p>
-          <div class="split-2" style="margin-top: 1.25rem">
-            <div class="panel ok">
-              <h3>L’autorisation répond à</h3>
-              <ul>
-                <li>« L’émetteur accepte-t-il cette opération&nbsp;? »</li>
-              </ul>
+
+          <div class="diagram" id="diagram-emv-lifecycle">
+            <div class="diagram-header">
+              <h3>Cycle de vie transaction EMV</h3>
+              <p>Simplifié · étape 6 = ce bloc</p>
             </div>
-            <div class="panel ko">
-              <h3>Clearing / settlement répondent à</h3>
-              <ul>
-                <li>
-                  « Comment les banques se compensent-elles et se règlent-elles
-                  ensuite&nbsp;? »
-                </li>
-              </ul>
-            </div>
+            <svg
+              viewBox="0 0 1000 520"
+              role="img"
+              aria-label="Cycle de vie EMV avec autorisation online mise en évidence"
+            >
+              <!-- rangée 1 -->
+              <line x1="248" y1="78" x2="292" y2="78" stroke="#5a6b7c" stroke-width="2"/>
+              <line x1="540" y1="78" x2="584" y2="78" stroke="#5a6b7c" stroke-width="2"/>
+              <g>
+                <rect x="40" y="30" width="208" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <image href="../img/emv/emv-select.jpg" x="52" y="46" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="130" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">1 · Sélection</text>
+                <text x="130" y="92" fill="#5a6b7c" font-size="11">application</text>
+              </g>
+              <g>
+                <rect x="292" y="30" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <image href="../img/emv/emv-read.jpg" x="304" y="46" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="384" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">2 · Lecture</text>
+                <text x="384" y="92" fill="#5a6b7c" font-size="11">données carte</text>
+              </g>
+              <g>
+                <rect x="584" y="30" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <image href="../img/emv/emv-oda.jpg" x="596" y="46" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="676" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">3 · Auth. données</text>
+                <text x="676" y="92" fill="#5a6b7c" font-size="11">offline</text>
+              </g>
+
+              <!-- connecteur 1→2 rangée -->
+              <line x1="708" y1="126" x2="708" y2="158" stroke="#5a6b7c" stroke-width="2"/>
+              <line x1="164" y1="158" x2="708" y2="158" stroke="#5a6b7c" stroke-width="2"/>
+              <line x1="164" y1="158" x2="164" y2="190" stroke="#5a6b7c" stroke-width="2"/>
+
+              <!-- rangée 2 -->
+              <line x1="248" y1="238" x2="292" y2="238" stroke="#5a6b7c" stroke-width="2"/>
+              <line x1="540" y1="238" x2="584" y2="238" stroke="#5a6b7c" stroke-width="2"/>
+              <g>
+                <rect x="40" y="190" width="208" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <image href="../img/emv/emv-cvm.jpg" x="52" y="206" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="130" y="232" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">4 · Porteur</text>
+                <text x="130" y="252" fill="#5a6b7c" font-size="11">CVM · AuthN</text>
+              </g>
+              <g>
+                <rect x="292" y="190" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <image href="../img/emv/emv-risk.jpg" x="304" y="206" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="384" y="232" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">5 · Risque</text>
+                <text x="384" y="252" fill="#5a6b7c" font-size="11">terminal + carte</text>
+              </g>
+              <g>
+                <rect x="584" y="186" width="248" height="104" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/emv/emv-auth.jpg" x="596" y="206" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="676" y="228" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">6 · Autorisation</text>
+                <text x="676" y="250" fill="#0d9f8a" font-size="11" font-weight="700">online · ce bloc</text>
+              </g>
+
+              <line x1="708" y1="290" x2="708" y2="330" stroke="#5a6b7c" stroke-width="2"/>
+              <line x1="376" y1="330" x2="708" y2="330" stroke="#5a6b7c" stroke-width="2"/>
+              <line x1="376" y1="330" x2="376" y2="360" stroke="#5a6b7c" stroke-width="2"/>
+
+              <!-- rangée 3 -->
+              <g>
+                <rect x="252" y="360" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <image href="../img/emv/emv-complete.jpg" x="264" y="376" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="344" y="402" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">7 · Fin</text>
+                <text x="344" y="422" fill="#5a6b7c" font-size="11">completion / scripts</text>
+              </g>
+
+              <text x="500" y="500" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                L’étape 4 = AuthN (porteur) · l’étape 6 = Auth (accord émetteur)
+              </text>
+            </svg>
           </div>
         </section>
 
@@ -120,97 +159,103 @@
           <h2>Demande / réponse</h2>
           <p class="intro">
             Au sens monétique, une autorisation = un aller (demande) et un
-            retour (réponse) jusqu’à la chaîne d’acceptation.
+            retour (réponse) sur la <strong>même chaîne</strong> — du porteur
+            jusqu’à l’émetteur, puis le chemin inverse.
           </p>
 
           <div class="diagram">
             <div class="diagram-header">
               <h3>Chaîne de l’autorisation</h3>
-              <p>Acceptation · Acquéreur / PSP · Réseau · Émetteur</p>
+              <p>Porteur · Acceptation · Acquéreur / PSP · Réseau · Émetteur</p>
             </div>
             <svg
-              viewBox="0 0 1000 260"
+              viewBox="0 0 1000 340"
               role="img"
-              aria-label="Séquence monétique demande et réponse d autorisation"
+              aria-label="Demande et réponse d autorisation sur toute la chaîne jusqu au porteur"
             >
               <defs>
-                <marker
-                  id="ah"
-                  markerWidth="8"
-                  markerHeight="8"
-                  refX="6"
-                  refY="3"
-                  orient="auto"
-                >
+                <marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                   <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+                <marker id="ah-back" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
                 </marker>
               </defs>
 
-              <text x="100" y="28" text-anchor="middle" font-weight="700" font-size="13" fill="#c45c26">Acceptation</text>
-              <text x="340" y="28" text-anchor="middle" font-weight="700" font-size="13" fill="#0d9f8a">Acquéreur / PSP</text>
-              <text x="580" y="28" text-anchor="middle" font-weight="700" font-size="13" fill="#3d5a80">Réseau</text>
-              <text x="820" y="28" text-anchor="middle" font-weight="700" font-size="13" fill="#1e5f8a">Émetteur</text>
+              <text x="80" y="24" text-anchor="middle" font-weight="700" font-size="12" fill="#2f4858">Porteur</text>
+              <text x="260" y="24" text-anchor="middle" font-weight="700" font-size="12" fill="#c45c26">Acceptation</text>
+              <text x="440" y="24" text-anchor="middle" font-weight="700" font-size="12" fill="#0d9f8a">Acquéreur / PSP</text>
+              <text x="620" y="24" text-anchor="middle" font-weight="700" font-size="12" fill="#3d5a80">Réseau</text>
+              <text x="820" y="24" text-anchor="middle" font-weight="700" font-size="12" fill="#1e5f8a">Émetteur</text>
 
-              <line x1="100" y1="40" x2="100" y2="230" stroke="#c5d3df" />
-              <line x1="340" y1="40" x2="340" y2="230" stroke="#c5d3df" />
-              <line x1="580" y1="40" x2="580" y2="230" stroke="#c5d3df" />
-              <line x1="820" y1="40" x2="820" y2="230" stroke="#c5d3df" />
+              <line x1="80" y1="36" x2="80" y2="320" stroke="#c5d3df" />
+              <line x1="260" y1="36" x2="260" y2="320" stroke="#c5d3df" />
+              <line x1="440" y1="36" x2="440" y2="320" stroke="#c5d3df" />
+              <line x1="620" y1="36" x2="620" y2="320" stroke="#c5d3df" />
+              <line x1="820" y1="36" x2="820" y2="320" stroke="#c5d3df" />
 
-              <line class="flow-line" x1="100" y1="70" x2="340" y2="70" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah)" />
-              <text x="220" y="60" text-anchor="middle" font-size="12" fill="#087a6a">1. Demande</text>
+              <!-- Aller -->
+              <line class="flow-line" x1="80" y1="60" x2="260" y2="60" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah)" />
+              <text x="170" y="52" text-anchor="middle" font-size="11" fill="#087a6a">1. Présente le moyen</text>
 
-              <line class="flow-line" x1="340" y1="110" x2="580" y2="110" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah)" />
-              <text x="460" y="100" text-anchor="middle" font-size="12" fill="#087a6a">2. Routage</text>
+              <line class="flow-line" x1="260" y1="95" x2="440" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah)" />
+              <text x="350" y="87" text-anchor="middle" font-size="11" fill="#087a6a">2. Demande</text>
 
-              <line class="flow-line" x1="580" y1="150" x2="820" y2="150" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah)" />
-              <text x="700" y="140" text-anchor="middle" font-size="12" fill="#087a6a">3. Aiguillage</text>
+              <line class="flow-line" x1="440" y1="130" x2="620" y2="130" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah)" />
+              <text x="530" y="122" text-anchor="middle" font-size="11" fill="#087a6a">3. Routage</text>
 
-              <rect x="760" y="168" width="120" height="36" rx="3" fill="#1e5f8a" />
-              <text x="820" y="191" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">4. Décision</text>
+              <line class="flow-line" x1="620" y1="165" x2="820" y2="165" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah)" />
+              <text x="720" y="157" text-anchor="middle" font-size="11" fill="#087a6a">4. Aiguillage</text>
 
-              <line class="flow-line" x1="820" y1="220" x2="100" y2="220" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah)" />
-              <text x="460" y="245" text-anchor="middle" font-size="12" fill="#1e5f8a">5. Réponse — accord ou refus</text>
+              <rect x="760" y="185" width="120" height="32" rx="3" fill="#1e5f8a" />
+              <text x="820" y="206" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">5. Décision</text>
+
+              <!-- Retour hop par hop -->
+              <line class="flow-line" x1="820" y1="240" x2="620" y2="240" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-back)" />
+              <text x="720" y="232" text-anchor="middle" font-size="11" fill="#1e5f8a">6. Réponse</text>
+
+              <line class="flow-line" x1="620" y1="270" x2="440" y2="270" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-back)" />
+              <text x="530" y="262" text-anchor="middle" font-size="11" fill="#1e5f8a">7. Retour</text>
+
+              <line class="flow-line" x1="440" y1="300" x2="260" y2="300" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-back)" />
+              <text x="350" y="292" text-anchor="middle" font-size="11" fill="#1e5f8a">8. Retour</text>
+
+              <line class="flow-line" x1="260" y1="320" x2="80" y2="320" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-back)" />
+              <text x="170" y="312" text-anchor="middle" font-size="11" fill="#1e5f8a">9. Résultat</text>
             </svg>
 
             <div class="seq-steps" id="auth-steps">
               <button type="button" class="seq-step is-active" data-step="1">
                 <span class="n">1</span>
                 <span>
-                  <strong>Demande d’autorisation</strong>
-                  <p>
-                    Émise par la chaîne d’acceptation : données opération +
-                    moyen de paiement (PAN en modèle carte classique).
-                  </p>
+                  <strong>Porteur</strong>
+                  <p>Présente le moyen (carte / mobile) à l’acceptation.</p>
                 </span>
               </button>
               <button type="button" class="seq-step" data-step="2">
-                <span class="n">2</span>
+                <span class="n">2–4</span>
                 <span>
-                  <strong>Routage acquéreur / gateway / PSP</strong>
-                  <p>Contrôles de forme, orientation vers le scheme.</p>
+                  <strong>Demande jusqu’à l’émetteur</strong>
+                  <p>
+                    Acceptation → acquéreur / PSP → réseau → émetteur (PAN en
+                    modèle carte classique).
+                  </p>
                 </span>
               </button>
               <button type="button" class="seq-step" data-step="3">
-                <span class="n">3</span>
-                <span>
-                  <strong>Aiguillage réseau</strong>
-                  <p>Le scheme oriente vers le centre d’autorisation émetteur.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="4">
-                <span class="n">4</span>
+                <span class="n">5</span>
                 <span>
                   <strong>Décision émetteur</strong>
                   <p>Statut du support, capacité, règles risque / fraude…</p>
                 </span>
               </button>
-              <button type="button" class="seq-step" data-step="5">
-                <span class="n">5</span>
+              <button type="button" class="seq-step" data-step="4">
+                <span class="n">6–9</span>
                 <span>
-                  <strong>Réponse d’autorisation</strong>
+                  <strong>Réponse sur le chemin inverse</strong>
                   <p>
-                    Accord (+ code) ou refus (+ codes). Timeout = piste
-                    technique, pas forcément « fonds ».
+                    Émetteur → réseau → acquéreur → acceptation → porteur
+                    (affichage accord / refus). Pas de raccourci.
                   </p>
                 </span>
               </button>
@@ -220,29 +265,183 @@
               tokenisation le remplacera sans changer cette logique monétique.
             </p>
           </div>
+
+          <div class="diagram" id="diagram-standin" style="margin-top: 1.5rem">
+            <div class="diagram-header">
+              <h3>Cas stand-in</h3>
+              <p>Émetteur injoignable — même chaîne, décision déléguée</p>
+            </div>
+            <p class="intro" style="margin: 0 0 1rem; padding: 0 0.25rem">
+              Même parcours. Si l’émetteur est injoignable, un
+              <strong>stand-in</strong> décide au niveau réseau / processeur —
+              la réponse redescend ensuite hop par hop jusqu’au porteur.
+            </p>
+            <svg
+              viewBox="0 0 1000 340"
+              role="img"
+              aria-label="Stand-in puis retour de la réponse jusqu au porteur"
+            >
+              <defs>
+                <marker id="ah-si" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+                <marker id="ah-si-back" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#3d5a80" />
+                </marker>
+                <marker id="ah-si-muted" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#9aa8b5" />
+                </marker>
+              </defs>
+
+              <text x="80" y="24" text-anchor="middle" font-weight="700" font-size="12" fill="#2f4858">Porteur</text>
+              <text x="260" y="24" text-anchor="middle" font-weight="700" font-size="12" fill="#c45c26">Acceptation</text>
+              <text x="440" y="24" text-anchor="middle" font-weight="700" font-size="12" fill="#0d9f8a">Acquéreur / PSP</text>
+              <text x="620" y="24" text-anchor="middle" font-weight="700" font-size="12" fill="#3d5a80">Réseau</text>
+              <text x="820" y="24" text-anchor="middle" font-weight="700" font-size="12" fill="#9aa8b5">Émetteur</text>
+
+              <line x1="80" y1="36" x2="80" y2="320" stroke="#c5d3df" />
+              <line x1="260" y1="36" x2="260" y2="320" stroke="#c5d3df" />
+              <line x1="440" y1="36" x2="440" y2="320" stroke="#c5d3df" />
+              <line x1="620" y1="36" x2="620" y2="320" stroke="#c5d3df" />
+              <line x1="820" y1="36" x2="820" y2="320" stroke="#c5d3df" stroke-dasharray="4 4" />
+
+              <line class="flow-line" x1="80" y1="60" x2="260" y2="60" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-si)" />
+              <text x="170" y="52" text-anchor="middle" font-size="11" fill="#087a6a">1. Présente le moyen</text>
+
+              <line class="flow-line" x1="260" y1="95" x2="440" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-si)" />
+              <text x="350" y="87" text-anchor="middle" font-size="11" fill="#087a6a">2. Demande</text>
+
+              <line class="flow-line" x1="440" y1="130" x2="620" y2="130" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-si)" />
+              <text x="530" y="122" text-anchor="middle" font-size="11" fill="#087a6a">3. Routage</text>
+
+              <line x1="620" y1="165" x2="760" y2="165" stroke="#9aa8b5" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#ah-si-muted)" />
+              <text x="690" y="157" text-anchor="middle" font-size="11" fill="#9aa8b5">4. Tentative</text>
+              <circle cx="780" cy="165" r="12" fill="#f4f1ea" stroke="#c45c26" stroke-width="2"/>
+              <line x1="774" y1="159" x2="786" y2="171" stroke="#c45c26" stroke-width="2"/>
+              <line x1="786" y1="159" x2="774" y2="171" stroke="#c45c26" stroke-width="2"/>
+              <text x="820" y="170" text-anchor="middle" font-size="10" fill="#9aa8b5">injoignable</text>
+
+              <rect x="510" y="190" width="220" height="36" rx="6" fill="#3d5a80"/>
+              <text x="620" y="213" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">5. Stand-in décide</text>
+
+              <line class="flow-line" x1="620" y1="250" x2="440" y2="250" stroke="#3d5a80" stroke-width="2.5" marker-end="url(#ah-si-back)" />
+              <text x="530" y="242" text-anchor="middle" font-size="11" fill="#3d5a80">6. Réponse</text>
+
+              <line class="flow-line" x1="440" y1="280" x2="260" y2="280" stroke="#3d5a80" stroke-width="2.5" marker-end="url(#ah-si-back)" />
+              <text x="350" y="272" text-anchor="middle" font-size="11" fill="#3d5a80">7. Retour</text>
+
+              <line class="flow-line" x1="260" y1="310" x2="80" y2="310" stroke="#3d5a80" stroke-width="2.5" marker-end="url(#ah-si-back)" />
+              <text x="170" y="302" text-anchor="middle" font-size="11" fill="#3d5a80">8. Résultat porteur</text>
+            </svg>
+
+            <div class="seq-steps" id="standin-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Porteur</strong>
+                  <p>Présente le moyen — même départ que le flux nominal.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2–3</span>
+                <span>
+                  <strong>Demande jusqu’au réseau</strong>
+                  <p>Acceptation → acquéreur / PSP → réseau (scheme).</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">4</span>
+                <span>
+                  <strong>Émetteur injoignable</strong>
+                  <p>
+                    La tentative vers le host émetteur échoue (timeout /
+                    indisponibilité).
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="4">
+                <span class="n">5</span>
+                <span>
+                  <strong>Stand-in décide</strong>
+                  <p>
+                    Décision déléguée (réseau / processeur) selon règles
+                    contractuelles — pour le compte de l’émetteur.
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="5">
+                <span class="n">6–8</span>
+                <span>
+                  <strong>Réponse sur le chemin inverse</strong>
+                  <p>
+                    Réseau → acquéreur → acceptation → porteur. Même logique
+                    de retour, sans raccourci.
+                  </p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              Le stand-in agit <em>pour</em> l’émetteur ; le message redescend
+              toute la chaîne jusqu’au porteur.
+            </p>
+          </div>
         </section>
 
         <!-- Décision -->
         <section class="section">
           <p class="section-label">Émetteur</p>
           <h2>Que décide le centre d’autorisation&nbsp;?</h2>
-          <ul class="topic-list">
-            <li>Statut du moyen de paiement (actif, opposé, expiré…)</li>
-            <li>Capacité à réaliser l’opération (plafonds, disponible…)</li>
-            <li>Cohérence de l’opération (montant, MCC, canal, géographie…)</li>
-            <li>Règles de risque / fraude</li>
-            <li>
-              Exigences d’authentification du porteur selon le contexte → bloc
-              Authentification
-            </li>
-          </ul>
-          <div class="callout">
-            <h3>Vocabulaire à figer</h3>
+          <p class="intro">
+            C’est le cœur métier de l’autorisation&nbsp;: l’émetteur (ou son
+            système) dit oui ou non à <em>cette</em> opération.
+          </p>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Moyen de paiement</h3>
+              <ul>
+                <li>Statut&nbsp;: actif, opposé, expiré, bloqué…</li>
+                <li>Produit / compte associé (débit, crédit…)</li>
+                <li>Validité du support et données de la demande</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Capacité &amp; plafonds</h3>
+              <ul>
+                <li>Disponible / autorisation de découvert</li>
+                <li>Plafonds (jour, opération, canal…)</li>
+                <li>Règles produit (pays, MCC, type d’opération)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="split-2">
+            <div class="panel">
+              <h3>Cohérence de l’opération</h3>
+              <ul>
+                <li>Montant, devise, commerçant / MCC</li>
+                <li>Canal (proximité, e-com, récurrent…)</li>
+                <li>Géographie, horodatage, séquence</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Risque &amp; fraude</h3>
+              <ul>
+                <li>Scoring / règles anti-fraude</li>
+                <li>Signaux device / comportement</li>
+                <li>
+                  Exigence d’AuthN porteur selon le contexte → bloc
+                  Authentification
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout" style="margin-top: 1.25rem">
+            <h3>Résultat renvoyé</h3>
             <p>
-              <strong>Approve</strong> = autorisation accordée ·
-              <strong>Decline</strong> = autorisation refusée ·
-              <strong>Code d’autorisation</strong> = référence d’accord côté
-              émetteur (quand accord).
+              <strong>Approve</strong> = accord (+
+              <strong>code d’autorisation</strong>) ·
+              <strong>Decline</strong> = refus (+ codes motif). En stand-in,
+              mêmes types de réponse, avec un jeu de règles souvent plus
+              restrictif.
             </p>
           </div>
         </section>
@@ -305,23 +504,11 @@
           <h2>Ce que l’autorisation n’est pas</h2>
           <div class="not-list">
             <div class="not-item">
-              <strong>≠ Clearing</strong>
+              <strong>≠ Authentification (CVM / AuthN)</strong>
               <p>
-                Pas encore la compensation des opérations entre établissements
-                via le réseau.
-              </p>
-            </div>
-            <div class="not-item">
-              <strong>≠ Settlement</strong>
-              <p>
-                Pas encore le règlement des positions financières entre banques.
-              </p>
-            </div>
-            <div class="not-item">
-              <strong>≠ Authentification</strong>
-              <p>
-                AuthN = légitimité du porteur · AuthZ monétique = accord de
-                l’émetteur sur l’opération. Souvent liées, toujours distinctes.
+                AuthN = légitimité du porteur · Auth = accord de l’émetteur sur
+                l’opération. Souvent liées (étape&nbsp;4 vs&nbsp;6), toujours
+                distinctes.
               </p>
             </div>
           </div>
@@ -346,7 +533,7 @@
           <h3>Check de fin de bloc</h3>
           <ul>
             <li>Définition monétique restituée (demande + réponse + émetteur)</li>
-            <li>Auth ≠ clearing ≠ settlement</li>
+            <li>Auth localisée dans le cycle EMV (≠ AuthN / CVM)</li>
             <li>Au moins un cas (accord / refus métier / technique) maîtrisé</li>
             <li>Pont PAN dans le flux d’auth évoqué sans dériver sur le token</li>
           </ul>
@@ -373,6 +560,6 @@
 
     <script src="../js/app.js"></script>
     <script src="../js/nav-j1.js"></script>
-    <script src="../js/fiche.js"></script>
+    <script src="../js/fiche.js?v=20260917"></script>
   </body>
 </html>
