@@ -2,75 +2,77 @@ BLOC — FORMATEUR
 Cours : Paiements digitaux & Wallets numériques
 Jour 1 · Flux transactionnel carte
 Bloc : Settlement
-Durée indicative : 20–30 min
+Durée indicative : 25–35 min
 Précédent : Clearing · Suivant : Online / offline & rejets
-Sources normes : à affiner (règles scheme, systèmes de règlement, calendriers…)
+Sources : TARGET / RTGS · règles scheme · cut-offs
 
 
 ================================================================================
 1. MÉTA FORMATEUR
 ================================================================================
-Objectif pédagogique
-À la fin du bloc, les participants définissent le settlement, le situent
-après le clearing, et distinguent règlement interbancaire vs crédit marchand
-vécu.
+Objectif
+Définir le settlement, situer Auth → Clearing → Settlement, distinguer net /
+gross (RTGS), expliquer le mécanisme (cut-off → comptes → soldé) et
+domestique vs international.
 
 Idée clé
-« Le settlement, c’est le règlement des positions issues du clearing :
-l’argent circule entre institutions — pas la compensation seule, pas le
-OK d’autorisation, pas le crédit marchand vécu. »
+« Le settlement, c’est le règlement des positions : l’argent circule entre
+institutions — pas la compensation seule, pas le OK d’autorisation, pas le
+crédit marchand vécu. »
 
 Posture
-1) Définition + intention (exécuter le règlement)
-2) Situer (bandeau Auth → Clearing → Settlement, settlement en teal)
-3) Schéma + seq-steps (positions → soldé ; crédit marchand hors hop)
-4) Panneaux SI + cas
+1) Définition + intention
+2) Situer (bandeau)
+3) Net vs Gross / RTGS
+4) Chaîne positions → soldé + mécanisme + domestique / international
+5) Tableau mécanismes + rôle + cas
 
 
 ================================================================================
-2. DÉFINITION MONÉTIQUE
+2. DÉFINITION
 ================================================================================
-Settlement (règlement)
-Processus par lequel les positions établies lors du clearing sont réglées
-entre les parties (comptes / agents / mécanismes scheme), de sorte que les
-obligations financières sont éteintes.
-
-Intention
-Après le clearing : on exécute le règlement des positions.
+Règlement des positions issues du clearing via comptes / agents / mécanismes
+scheme → obligations éteintes.
 
 
 ================================================================================
-3. PLACE DANS LA CHAÎNE
+3. NET vs GROSS / RTGS (2 schémas + seq-steps)
 ================================================================================
-1. Autorisation — accord émetteur
-2. Clearing — compensation (précédent)
-3. Settlement ← CE BLOC — règlement
+Net settlement
+Positions nettes après chambre → un règlement par cycle
+Ex. : TARGET après STET / CORE
+
+Gross / RTGS
+Obligation unitaire, souvent temps réel, liquidité plus exigeante
 
 
 ================================================================================
-4. SCHÉMA + SI
+4. CHAÎNE + MÉCANISME
 ================================================================================
-Positions clearing → Instructions → Comptes settlement → Soldé
-(+ seq-steps ; crédit marchand selon contrat, hors hop interbancaire)
+Schéma 1 — « Des positions au soldé »
+Positions → Instructions → Comptes → Soldé (+ crédit marchand hors hop)
 
-Acquiring : réconciliation autorisation ↔ clearing ↔ settlement ↔ crédit
-Issuing : imputation porteur / positions scheme
+Schéma 2 — Intérieur règlement (banques illustrées)
+Banques A–D → hub TARGET / agent → Cut-off → Comptes → Soldé
+
+Schéma 3 — Cas domestique (TARGET après chambre locale)
+Schéma 4 — Cas international (settlement scheme Visa / Mastercard…)
+
+Tableau — Afrique / Europe / Amériques
+(SICA-SYGMA, SAMOS, NIBSS, PAPSS, TARGET2, EURO1, Fedwire, CHIPS, Lynx…)
+Note : RTGS ≠ toujours carte — contextualiser.
 
 
 ================================================================================
-5. CAS + CLARIFICATION
+5. CAS + CHECK
 ================================================================================
-Cas 1 — Fil rouge Autorisation → Clearing → Settlement → crédit contrat
+Cas 1 — Fil rouge Auth → Clearing → Settlement → crédit contrat
 Cas 2 — Settlement en retard ≠ decline d’autorisation
 Cas 3 — Écart de réconciliation sur la chaîne
 
 ≠ Autorisation OK · ≠ Clearing · ≠ Crédit marchand « vécu »
 
-
-================================================================================
-6. CHECK DE FIN
-================================================================================
 [ ] Settlement = règlement des positions
-[ ] Suite clearing → settlement restituée
-[ ] Distinction settlement interbancaire vs crédit marchand vécu
-[ ] Chronologie Autorisation → Clearing → Settlement maîtrisée
+[ ] Net vs Gross / RTGS
+[ ] Domestique TARGET vs international scheme
+[ ] Settlement interbancaire ≠ crédit marchand vécu

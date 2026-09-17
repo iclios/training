@@ -62,8 +62,8 @@ Banques A–D → hub STET/CORE → Réception → Netting → Positions
 Schéma 3 — Cas domestique (chambre locale, ex. STET)
 Schéma 4 — Cas international (scheme Visa / Mastercard…)
 
-Tableau — exemples Afrique / Europe / Amériques (STET, GIM-UEMOA,
-GIMAC, BankservAfrica, NIBSS, PAPSS, EBA, FedACH, TCH…)
+Tableau — Afrique d’abord, puis Europe / Amériques
+(GIM-UEMOA, GIMAC, BankservAfrica, NIBSS, PAPSS, STET, EBA, FedACH, TCH…)
 Note : ACH ≠ toujours carte — contextualiser.
 
 

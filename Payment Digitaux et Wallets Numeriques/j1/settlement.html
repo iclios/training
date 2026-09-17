@@ -97,13 +97,168 @@
           </div>
         </section>
 
-        <!-- Schéma -->
+        <!-- Net vs Gross / RTGS -->
+        <section class="section">
+          <p class="section-label">Modes monétiques</p>
+          <h2>Net settlement · Gross / RTGS</h2>
+          <p class="intro">
+            Selon le rail, on règle des <strong>soldes nets</strong> après
+            compensation, ou chaque obligation <strong>en brut</strong>
+            (souvent RTGS).
+          </p>
+
+          <div class="diagram" id="diagram-net-settlement">
+            <div class="diagram-header">
+              <h3>Net settlement</h3>
+              <p>Positions nettes issues du clearing → un règlement par cycle</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 300"
+              role="img"
+              aria-label="Settlement net après netting"
+            >
+              <defs>
+                <marker id="ah-net" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="40" y="40" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="52" y="54" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="122" y="78" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Banque A</text>
+                <text x="122" y="98" fill="#5a6b7c" font-size="11">créances &amp; dettes</text>
+              </g>
+              <g>
+                <rect x="280" y="40" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="292" y="54" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="362" y="78" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Banque B</text>
+                <text x="362" y="98" fill="#5a6b7c" font-size="11">idem</text>
+              </g>
+              <g>
+                <rect x="520" y="40" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="532" y="54" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="602" y="78" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Banque C</text>
+                <text x="602" y="98" fill="#5a6b7c" font-size="11">idem</text>
+              </g>
+              <line class="flow-line clearing-pulse" x1="140" y1="130" x2="400" y2="175" stroke="#3d5a80" stroke-width="2" marker-end="url(#ah-net)"/>
+              <line class="flow-line clearing-pulse" x1="380" y1="130" x2="400" y2="175" stroke="#3d5a80" stroke-width="2" marker-end="url(#ah-net)"/>
+              <line class="flow-line clearing-pulse" x1="620" y1="130" x2="400" y2="175" stroke="#3d5a80" stroke-width="2" marker-end="url(#ah-net)"/>
+              <g>
+                <rect class="clearing-hub" x="250" y="170" width="300" height="80" rx="10" fill="#3d5a80"/>
+                <image href="../img/clearing/clearing-positions.jpg" x="268" y="178" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="340" y="205" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Positions nettes</text>
+                <text x="340" y="228" fill="#c5d3e0" font-size="11">1 solde par participant</text>
+              </g>
+              <line class="flow-line" x1="560" y1="210" x2="680" y2="210" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-net)"/>
+              <g>
+                <rect x="680" y="170" width="280" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <text x="820" y="205" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Règlement net</text>
+                <text x="820" y="228" text-anchor="middle" fill="#0d9f8a" font-size="11">ex. TARGET après CORE</text>
+              </g>
+            </svg>
+            <div class="seq-steps" id="net-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Plusieurs banques</strong>
+                  <p>Chacune a des créances et dettes croisées sur le cycle.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Positions nettes</strong>
+                  <p>Le clearing a déjà netté — un solde par participant.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Règlement net</strong>
+                  <p>On ne règle que ces soldes (ex. TARGET après STET/CORE).</p>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div class="diagram" id="diagram-gross-settlement" style="margin-top: 1.5rem">
+            <div class="diagram-header">
+              <h3>Gross / RTGS</h3>
+              <p>Règlement brut, souvent en temps réel — moins de netting</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 240"
+              role="img"
+              aria-label="Settlement brut ou RTGS"
+            >
+              <defs>
+                <marker id="ah-gr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="40" y="60" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="52" y="74" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="122" y="98" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Banque A</text>
+                <text x="122" y="118" fill="#5a6b7c" font-size="11">obligation 1</text>
+              </g>
+              <line class="flow-line" x1="250" y1="105" x2="340" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gr)"/>
+              <g>
+                <rect x="340" y="50" width="320" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="360" y="72" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="440" y="95" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">RTGS / agent</text>
+                <text x="440" y="118" fill="#0d9f8a" font-size="12">règlement brut</text>
+                <text x="440" y="138" fill="#5a6b7c" font-size="11">souvent temps réel</text>
+              </g>
+              <line class="flow-line" x1="670" y1="105" x2="760" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gr)"/>
+              <g>
+                <rect x="760" y="60" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="772" y="74" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="842" y="98" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Banque B</text>
+                <text x="842" y="118" fill="#5a6b7c" font-size="11">crédit immédiat</text>
+              </g>
+              <text x="500" y="210" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Chaque obligation peut être réglée une à une — liquidité plus exigeante
+              </text>
+            </svg>
+            <div class="seq-steps" id="gross-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Obligation unitaire</strong>
+                  <p>Pas (ou peu) de compensation multilatérale avant paiement.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>RTGS / agent</strong>
+                  <p>Règlement brut, souvent temps réel sur comptes banque centrale.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Contrepartie crédité</strong>
+                  <p>Obligation éteinte immédiatement — coût liquidité plus élevé.</p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              Cartes retail&nbsp;: souvent net après chambre. Gros montants /
+              urgents&nbsp;: plutôt RTGS.
+            </p>
+          </div>
+        </section>
+
+        <!-- Des positions au soldé -->
         <section class="section" id="schema">
           <p class="section-label">Règlement</p>
           <h2>Des positions au soldé</h2>
           <p class="intro">
-            Positions → instructions → comptes de settlement → soldé. Le crédit
-            marchand suit le contrat acquéreur / PSP (hors hop interbancaire).
+            Le settlement ne « paie » pas le commerçant directement&nbsp;: il
+            <strong>éteint les positions</strong> entre établissements. Le crédit
+            marchand suit le contrat acquéreur / PSP.
           </p>
 
           <div class="diagram">
@@ -112,39 +267,54 @@
               <p>Positions · Instructions · Comptes · Soldé</p>
             </div>
             <svg
-              viewBox="0 0 1000 240"
+              viewBox="0 0 1000 420"
               role="img"
-              aria-label="Flux de settlement monétique"
+              aria-label="Des positions clearing au soldé interbancaire"
             >
               <defs>
                 <marker id="ah-st" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                   <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
                 </marker>
               </defs>
-              <rect x="40" y="60" width="180" height="70" rx="4" fill="#3d5a80" />
-              <text x="130" y="90" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Positions clearing</text>
-              <text x="130" y="110" text-anchor="middle" fill="#c5d3e0" font-size="11">netting fréquent</text>
 
-              <line class="flow-line" x1="220" y1="95" x2="300" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-st)" />
+              <g>
+                <rect x="40" y="40" width="220" height="96" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/clearing/clearing-positions.jpg" x="52" y="56" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="132" y="78" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Positions</text>
+                <text x="132" y="98" fill="#5a6b7c" font-size="11">issues du clearing</text>
+              </g>
+              <g>
+                <rect x="390" y="40" width="220" height="96" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <image href="../img/clearing/clearing-reception.jpg" x="402" y="56" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="482" y="78" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Instructions</text>
+                <text x="482" y="98" fill="#5a6b7c" font-size="11">cut-offs · calendriers</text>
+              </g>
+              <g>
+                <rect x="740" y="40" width="220" height="96" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="752" y="56" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="832" y="78" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Comptes</text>
+                <text x="832" y="98" fill="#5a6b7c" font-size="11">BC / agents</text>
+              </g>
 
-              <rect x="300" y="60" width="200" height="70" rx="4" fill="#1e5f8a" />
-              <text x="400" y="90" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Instructions règlement</text>
-              <text x="400" y="110" text-anchor="middle" fill="#c5dceb" font-size="11">cut-offs · calendriers</text>
+              <line class="flow-line" x1="270" y1="88" x2="380" y2="88" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-st)"/>
+              <line class="flow-line" x1="620" y1="88" x2="730" y2="88" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-st)"/>
 
-              <line class="flow-line" x1="500" y1="95" x2="580" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-st)" />
+              <g>
+                <rect x="300" y="200" width="400" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="320" y="218" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="400" y="240" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Soldé interbancaire</text>
+                <text x="400" y="262" fill="#0d9f8a" font-size="12">positions éteintes</text>
+                <text x="400" y="282" fill="#5a6b7c" font-size="11">ex. Europe : TARGET2 / T2</text>
+              </g>
 
-              <rect x="580" y="60" width="180" height="70" rx="4" fill="#0d9f8a" />
-              <text x="670" y="90" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Comptes settlement</text>
-              <text x="670" y="110" text-anchor="middle" fill="#c8f0e8" font-size="11">banques / agents</text>
+              <line x1="500" y1="136" x2="500" y2="200" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-st)"/>
 
-              <line class="flow-line" x1="760" y1="95" x2="830" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-st)" />
-
-              <rect x="830" y="60" width="130" height="70" rx="4" fill="#0c1b2a" />
-              <text x="895" y="100" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Soldé</text>
-
-              <text x="500" y="180" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                Puis crédit marchand selon contrat acquéreur / PSP (délais propres)
-              </text>
+              <g>
+                <rect x="300" y="330" width="400" height="60" rx="8" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <image href="../img/acteurs/acteur-commercant.jpg" x="320" y="338" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                <text x="380" y="358" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Crédit marchand</text>
+                <text x="380" y="378" fill="#5a6b7c" font-size="11">contrat acquéreur / PSP — hors hop interbancaire</text>
+              </g>
             </svg>
 
             <div class="seq-steps" id="settlement-steps">
@@ -153,7 +323,7 @@
                 <span>
                   <strong>Positions clearing</strong>
                   <p>
-                    Entrée du bloc : soldes issus de la compensation (souvent
+                    Entrée du bloc&nbsp;: soldes issus de la compensation (souvent
                     netting).
                   </p>
                 </span>
@@ -172,8 +342,8 @@
                 <span>
                   <strong>Comptes de settlement</strong>
                   <p>
-                    Banques / agents de règlement — l’argent (ou les écritures)
-                    circule entre institutions.
+                    Banques centrales / agents — l’argent circule entre
+                    institutions.
                   </p>
                 </span>
               </button>
@@ -189,31 +359,353 @@
               </button>
             </div>
             <p class="diagram-hint">
-              Cut-offs, jours ouvrés, liquidité : incidents propres au
+              Cut-offs, jours ouvrés, liquidité&nbsp;: incidents propres au
               settlement — distincts d’un decline d’autorisation.
             </p>
           </div>
         </section>
 
-        <!-- SI banque -->
+        <!-- Mécanisme intérieur + domestique / international -->
+        <section class="section" id="schema-mecanisme">
+          <p class="section-label">Mécanisme de règlement</p>
+          <h2>Que se passe-t-il concrètement&nbsp;?</h2>
+          <p class="intro">
+            Le mécanisme (ex. TARGET, agent scheme) ne « crédite » pas le
+            commerçant&nbsp;: il <strong>exécute</strong> les instructions sur
+            les <strong>comptes de règlement</strong>.
+          </p>
+
+          <div class="diagram" id="diagram-settlement-inner">
+            <div class="diagram-header">
+              <h3>Dans le règlement</h3>
+              <p>Cut-off → comptes → soldé · ex. TARGET après CORE</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 460"
+              role="img"
+              aria-label="Étapes internes du settlement avec banques"
+            >
+              <defs>
+                <marker id="ah-sm" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+
+              <g>
+                <rect x="28" y="24" width="200" height="96" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="40" y="40" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="118" y="62" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Banque A</text>
+                <text x="118" y="84" fill="#5a6b7c" font-size="11">position nette</text>
+              </g>
+              <g>
+                <rect x="276" y="24" width="200" height="96" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="288" y="40" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="366" y="62" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Banque B</text>
+                <text x="366" y="84" fill="#5a6b7c" font-size="11">position nette</text>
+              </g>
+              <g>
+                <rect x="524" y="24" width="200" height="96" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="536" y="40" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="614" y="62" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Banque C</text>
+                <text x="614" y="84" fill="#5a6b7c" font-size="11">position nette</text>
+              </g>
+              <g>
+                <rect x="772" y="24" width="200" height="96" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="784" y="40" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="862" y="62" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Banque D</text>
+                <text x="862" y="84" fill="#5a6b7c" font-size="11">position nette</text>
+              </g>
+
+              <line class="flow-line clearing-pulse" x1="128" y1="120" x2="500" y2="175" stroke="#3d5a80" stroke-width="2" marker-end="url(#ah-sm)"/>
+              <line class="flow-line clearing-pulse" x1="376" y1="120" x2="500" y2="175" stroke="#3d5a80" stroke-width="2" marker-end="url(#ah-sm)"/>
+              <line class="flow-line clearing-pulse" x1="624" y1="120" x2="500" y2="175" stroke="#3d5a80" stroke-width="2" marker-end="url(#ah-sm)"/>
+              <line class="flow-line clearing-pulse" x1="872" y1="120" x2="500" y2="175" stroke="#3d5a80" stroke-width="2" marker-end="url(#ah-sm)"/>
+
+              <g>
+                <rect class="clearing-hub" x="300" y="170" width="400" height="88" rx="10" fill="#0d9f8a"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="320" y="182" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="400" y="208" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Système de règlement</text>
+                <text x="400" y="232" fill="#c8f0e8" font-size="12">ex. TARGET2 / T2 · agent scheme</text>
+              </g>
+
+              <line x1="500" y1="258" x2="500" y2="285" stroke="#0d9f8a" stroke-width="2"/>
+              <line x1="180" y1="285" x2="820" y2="285" stroke="#0d9f8a" stroke-width="2"/>
+              <line x1="180" y1="285" x2="180" y2="310" stroke="#0d9f8a" stroke-width="2"/>
+              <line x1="500" y1="285" x2="500" y2="310" stroke="#0d9f8a" stroke-width="2"/>
+              <line x1="820" y1="285" x2="820" y2="310" stroke="#0d9f8a" stroke-width="2"/>
+
+              <g>
+                <rect x="60" y="310" width="240" height="100" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/clearing/clearing-reception.jpg" x="76" y="328" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="156" y="350" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">1 · Cut-off</text>
+                <text x="156" y="372" fill="#5a6b7c" font-size="11">instructions figées</text>
+              </g>
+              <g>
+                <rect x="380" y="310" width="240" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="396" y="328" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="476" y="350" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">2 · Comptes</text>
+                <text x="476" y="372" fill="#0d9f8a" font-size="11">débit / crédit BC</text>
+              </g>
+              <g>
+                <rect x="700" y="310" width="240" height="100" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/clearing/clearing-netting.jpg" x="716" y="328" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="796" y="350" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">3 · Soldé</text>
+                <text x="796" y="372" fill="#5a6b7c" font-size="11">obligations éteintes</text>
+              </g>
+            </svg>
+
+            <div class="seq-steps" id="mecanisme-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Cut-off</strong>
+                  <p>
+                    Les positions du cycle sont figées&nbsp;: plus de
+                    présentation clearing pour ce run.
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Comptes de règlement</strong>
+                  <p>
+                    Débits / crédits sur comptes banque centrale ou agent de
+                    settlement.
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Soldé</strong>
+                  <p>
+                    Positions éteintes. Crédit marchand = contrat — hors ce hop.
+                  </p>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Domestique vs international -->
+          <div class="diagram" id="diagram-settlement-domestic" style="margin-top: 1.5rem">
+            <div class="diagram-header">
+              <h3>Cas domestique</h3>
+              <p>Même communauté — règlement via banque centrale / CSM local</p>
+            </div>
+            <svg viewBox="0 0 1000 220" role="img" aria-label="Settlement domestique via TARGET">
+              <defs>
+                <marker id="ah-sdom" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="40" y="60" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="52" y="74" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="122" y="98" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Acquéreur</text>
+                <text x="122" y="118" fill="#5a6b7c" font-size="11">banque FR</text>
+              </g>
+              <line class="flow-line" x1="250" y1="105" x2="340" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-sdom)"/>
+              <g>
+                <rect x="340" y="50" width="320" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="360" y="72" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="440" y="95" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Règlement local</text>
+                <text x="440" y="118" fill="#0d9f8a" font-size="12">ex. TARGET2 / T2</text>
+                <text x="440" y="138" fill="#5a6b7c" font-size="11">après chambre STET</text>
+              </g>
+              <line class="flow-line" x1="670" y1="105" x2="760" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-sdom)"/>
+              <g>
+                <rect x="760" y="60" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="772" y="74" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="842" y="98" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Émetteur</text>
+                <text x="842" y="118" fill="#5a6b7c" font-size="11">banque FR</text>
+              </g>
+              <text x="500" y="195" text-anchor="middle" fill="#5a6b7c" font-size="12">Même communauté monétaire — settlement via la banque centrale</text>
+            </svg>
+            <div class="seq-steps" id="settlement-domestic-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Acquéreur local</strong>
+                  <p>Position nette après chambre locale (ex. STET).</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Règlement local</strong>
+                  <p>Exécution sur RTGS / comptes BC (ex. TARGET).</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Émetteur local</strong>
+                  <p>Soldé dans le même périmètre national / zone.</p>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div class="diagram" id="diagram-settlement-intl" style="margin-top: 1.5rem">
+            <div class="diagram-header">
+              <h3>Cas international</h3>
+              <p>Frontière / scheme — règlement selon règles Visa / Mastercard…</p>
+            </div>
+            <svg viewBox="0 0 1000 240" role="img" aria-label="Settlement international via scheme">
+              <defs>
+                <marker id="ah-sintl" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="30" y="70" width="170" height="90" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="42" y="84" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="112" y="108" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Acquéreur</text>
+                <text x="112" y="128" fill="#5a6b7c" font-size="11">pays A</text>
+              </g>
+              <line class="flow-line" x1="210" y1="115" x2="280" y2="115" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-sintl)"/>
+              <g>
+                <rect x="280" y="55" width="200" height="120" rx="10" fill="#e7f6f3" stroke="#3d5a80" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="298" y="78" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                <text x="378" y="100" fill="#3d5a80" font-family="Syne, sans-serif" font-size="14" font-weight="700">Scheme</text>
+                <text x="378" y="122" fill="#5a6b7c" font-size="11">Visa / Mastercard…</text>
+                <text x="378" y="142" fill="#5a6b7c" font-size="11">settlement scheme</text>
+              </g>
+              <line class="flow-line" x1="490" y1="115" x2="560" y2="115" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-sintl)"/>
+              <g>
+                <rect x="560" y="70" width="170" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="572" y="84" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                <text x="642" y="108" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Émetteur</text>
+                <text x="642" y="128" fill="#5a6b7c" font-size="11">pays B</text>
+              </g>
+              <line x1="740" y1="115" x2="800" y2="115" stroke="#5a6b7c" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <g>
+                <rect x="800" y="70" width="170" height="90" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
+                <text x="885" y="108" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Devise / FX</text>
+                <text x="885" y="130" text-anchor="middle" fill="#5a6b7c" font-size="11">calendriers scheme</text>
+              </g>
+              <text x="500" y="210" text-anchor="middle" fill="#5a6b7c" font-size="12">Le scheme porte souvent clearing + settlement entre participants de pays différents</text>
+            </svg>
+            <div class="seq-steps" id="settlement-intl-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Acquéreur (pays A)</strong>
+                  <p>Position / créance présentée via le rail scheme.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Scheme</strong>
+                  <p>
+                    Visa / Mastercard… appliquent leurs règles de settlement
+                    (agents, devises, cut-offs).
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Émetteur (pays B)</strong>
+                  <p>Règlement selon le mécanisme scheme — hors purement national.</p>
+                </span>
+              </button>
+            </div>
+            <p class="diagram-hint">
+              Une carte internationale peut clear / settle via scheme alors que
+              le clearing STET + TARGET reste le cas domestique euro.
+            </p>
+          </div>
+        </section>
+
+        <!-- Tableau mécanismes -->
         <section class="section">
-          <p class="section-label">SI banque</p>
-          <h2>Où ça vit chez vous</h2>
+          <p class="section-label">Repères mondiaux</p>
+          <h2>Mécanismes de règlement connus</h2>
+          <p class="intro">
+            Exemples pédagogiques — RTGS, agents scheme, rails associés au
+            clearing du tableau précédent.
+          </p>
+          <div class="csm-table-wrap">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Région</th>
+                  <th scope="col">Exemples</th>
+                  <th scope="col">Rôle typique</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Afrique</th>
+                  <td>
+                    <strong>SICA / SYGMA</strong> (UEMOA) ·
+                    <strong>SYGMA CEMAC</strong> ·
+                    <strong>SAMOS</strong> (ZA) ·
+                    <strong>NIBSS / NIP</strong> (NG) ·
+                    <strong>PAPSS</strong>
+                  </td>
+                  <td>RTGS / settlement régional ou national</td>
+                </tr>
+                <tr>
+                  <th scope="row">Europe</th>
+                  <td>
+                    <strong>TARGET2 / T2</strong> ·
+                    <strong>EURO1</strong> (EBA) ·
+                    agents <strong>Visa / Mastercard</strong>
+                  </td>
+                  <td>RTGS zone euro ; settlement carte / SEPA</td>
+                </tr>
+                <tr>
+                  <th scope="row">Amériques</th>
+                  <td>
+                    <strong>Fedwire</strong> ·
+                    <strong>CHIPS</strong> ·
+                    <strong>Lynx</strong> (CA) ·
+                    agents <strong>Visa / Mastercard</strong>
+                  </td>
+                  <td>RTGS / wholesale &amp; settlement carte</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="diagram-hint">
+            RTGS ≠ toujours carte&nbsp;: le tableau mélange systèmes de
+            règlement utiles au cours — à relier au rail (carte, ACH, SEPA…).
+          </p>
+        </section>
+
+        <!-- Ce que fait le settlement -->
+        <section class="section">
+          <p class="section-label">Rôle</p>
+          <h2>Que fait le settlement&nbsp;?</h2>
           <div class="split-2">
             <div class="panel">
-              <h3>Côté acquiring</h3>
+              <h3>Exécution</h3>
               <ul>
-                <li>Réconciliation autorisation ↔ clearing ↔ settlement</li>
-                <li>Lien avec le crédit marchand</li>
+                <li>Règle les positions issues du clearing</li>
+                <li>Net&nbsp;: soldes après compensation</li>
+                <li>Gross / RTGS&nbsp;: obligations unitaires</li>
               </ul>
             </div>
             <div class="panel">
-              <h3>Côté issuing</h3>
+              <h3>Infrastructure</h3>
               <ul>
-                <li>Imputation porteur / écritures</li>
-                <li>Positions scheme vs SI interne</li>
+                <li>Comptes BC / agents, cut-offs</li>
+                <li>Europe&nbsp;: TARGET après chambre (STET…)</li>
+                <li>International&nbsp;: mécanismes Visa / Mastercard…</li>
               </ul>
             </div>
+          </div>
+          <div class="panel" style="margin-top: 1rem">
+            <h3>Soldé (« qui a payé qui »)</h3>
+            <ul>
+              <li>Obligations interbancaires éteintes</li>
+              <li>Pas encore le crédit marchand « vécu » (contrat acquéreur)</li>
+              <li>Incidents = liquidité / calendrier — ≠ decline d’auth</li>
+            </ul>
           </div>
         </section>
 
@@ -282,7 +774,7 @@
           <div class="notes-body">
             <ul>
               <li>
-                Qui « possède » le settlement : trésorerie, monétique,
+                Qui « possède » le settlement&nbsp;: trésorerie, monétique,
                 back-office cartes&nbsp;?
               </li>
               <li>Quels cut-offs scheme suivez-vous au quotidien&nbsp;?</li>
@@ -298,11 +790,9 @@
           <h3>Check de fin de bloc</h3>
           <ul>
             <li>Settlement = règlement des positions</li>
-            <li>Suite clearing → settlement restituée</li>
-            <li>
-              Distinction settlement interbancaire vs crédit marchand vécu
-            </li>
-            <li>Chronologie Autorisation → Clearing → Settlement maîtrisée</li>
+            <li>Net vs Gross / RTGS distingués</li>
+            <li>Domestique (TARGET…) vs international (scheme) situés</li>
+            <li>Distinction settlement interbancaire vs crédit marchand vécu</li>
           </ul>
         </div>
 
