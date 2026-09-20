@@ -16,10 +16,11 @@ Objectif pédagogique
 (device, PSP, wallet), et éviter les confusions issuer / acquirer / scheme / PSP.
 
 Idée clé
-« Une opération, puis les acteurs : qui contracte, qui route, qui décide. »
+« Une opération, puis les acteurs : qui contracte, qui route, qui décide.
+Ce bloc = qui — uniquement. »
 
 Posture
-1) Définition + accroche opération
+1) Définition acteur + question « qui ? »
 2) Schéma progressif — un bloc = une relation :
    (1) Porteur / émetteur · (2) Commerçant / acquéreur
    (3) Banques + scheme · (4) Vue globale · (5) Modèle carte

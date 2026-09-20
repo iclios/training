@@ -33,9 +33,9 @@
           <section class="day-hero" style="padding-bottom: 1.5rem">
             <div class="wrap">
               <div class="fiche-meta">
-                <span class="tag">Jour 1 · 1.1</span>
+                <span class="tag">Jour 1 · Évolution</span>
               </div>
-              <p class="day-kicker">Évolution</p>
+              <p class="day-kicker">1.1 · Systèmes de paiement</p>
               <h1>Évolution des paiements</h1>
             </div>
           </section>
@@ -243,38 +243,199 @@
               </div>
             </section>
 
-            <!-- 3. Distinctions courtes -->
+            <!-- 3. Distinctions syllabus -->
             <section class="section">
               <p class="section-label">3 · Distinctions utiles</p>
-              <h2>Vocabulaire court</h2>
-              <div class="split-2">
-                <div class="panel">
+              <h2>Électronique · Canaux · Temporalité</h2>
+              <p class="intro">
+                Trois grilles du syllabus — à ne pas fusionner avec cash →
+                carte → mobile → wallet.
+              </p>
+
+              <!-- Électronique vs digital -->
+              <div class="diagram" id="diagram-elec-digital">
+                <div class="diagram-header">
                   <h3>Électronique vs digital</h3>
-                  <ul>
-                    <li>Électronique : dématérialisation (carte, virement…)</li>
-                    <li>Digital : canaux numériques (app, QR, wallet…)</li>
-                  </ul>
+                  <p>Dématérialisation ≠ canal numérique</p>
                 </div>
-                <div class="panel">
-                  <h3>Temps</h3>
-                  <ul>
-                    <li>Temps réel : autorisation online</li>
-                    <li>Différé : clearing / settlement</li>
-                  </ul>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Paiements électroniques versus digitaux">
+                  <g>
+                    <rect x="40" y="40" width="420" height="110" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="250" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Électronique</text>
+                    <text x="250" y="112" text-anchor="middle" fill="#5a6b7c" font-size="12">valeur / message dématérialisés</text>
+                    <text x="250" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">carte, virement, prélèvement…</text>
+                  </g>
+                  <g>
+                    <rect x="540" y="40" width="420" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="750" y="85" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Digital</text>
+                    <text x="750" y="112" text-anchor="middle" fill="#0d9f8a" font-size="12">canaux numériques d’initiation</text>
+                    <text x="750" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">app, QR, wallet, in-app…</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="elec-digital-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Électronique</strong>
+                      <p>Plus de cash physique — mais pas forcément une app.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Digital</strong>
+                      <p>Le parcours passe par un canal numérique (souvent mobile / web).</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Piège</strong>
+                      <p>Une carte plastique est déjà électronique — pas « digitale » au sens canal.</p>
+                    </span>
+                  </button>
                 </div>
+                <p class="montage-example">
+                  <strong>Exemple</strong>
+                  Paiement carte au POS = électronique. Apple Pay / QR =
+                  digital (souvent encore sur rails carte).
+                </p>
+              </div>
+
+              <!-- Canaux -->
+              <div class="diagram" id="diagram-canaux" style="margin-top: 1.5rem">
+                <div class="diagram-header">
+                  <h3>En ligne · Proximité · In-app</h3>
+                  <p>Où s’initie le paiement — pas quel rail monétique</p>
+                </div>
+                <svg viewBox="0 0 1000 220" role="img" aria-label="Trois canaux de paiement">
+                  <g>
+                    <rect x="40" y="40" width="280" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="60" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="140" y="82" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">En ligne</text>
+                    <text x="140" y="108" fill="#0d9f8a" font-size="12">e-commerce / web</text>
+                    <text x="140" y="132" fill="#5a6b7c" font-size="11">checkout distant</text>
+                  </g>
+                  <g>
+                    <rect x="360" y="40" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="380" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="460" y="82" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Proximité</text>
+                    <text x="460" y="108" fill="#c45c26" font-size="12">magasin · POS · NFC · QR</text>
+                    <text x="460" y="132" fill="#5a6b7c" font-size="11">face au commerçant</text>
+                  </g>
+                  <g>
+                    <rect x="680" y="40" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-wallet.jpg" x="700" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="780" y="82" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">In-app</text>
+                    <text x="780" y="108" fill="#1e5f8a" font-size="12">dans l’app marchand</text>
+                    <text x="780" y="132" fill="#5a6b7c" font-size="11">sans quitter l’app</text>
+                  </g>
+                  <text x="500" y="195" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Canal ≠ rail : in-app peut être carte tokenisée, A2A, wallet…
+                  </text>
+                </svg>
+                <div class="seq-steps" id="canaux-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>En ligne</strong>
+                      <p>Paiement distant via navigateur / site marchand.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Proximité</strong>
+                      <p>Présence physique : carte, sans contact, QR magasin…</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>In-app</strong>
+                      <p>Paiement intégré à l’application (ride, food, banque…).</p>
+                    </span>
+                  </button>
+                </div>
+                <p class="montage-example">
+                  <strong>Exemple</strong>
+                  Commander un trajet dans une app = in-app. Payer le même
+                  trajet au terminal du chauffeur = proximité.
+                </p>
+              </div>
+
+              <!-- Temps réel vs différé -->
+              <div class="diagram" id="diagram-temps" style="margin-top: 1.5rem">
+                <div class="diagram-header">
+                  <h3>Temps réel vs différé</h3>
+                  <p>Décision / expérience ≠ règlement interbancaire</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Paiements temps réel versus différés">
+                  <g>
+                    <rect x="40" y="40" width="420" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="250" y="85" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Temps réel</text>
+                    <text x="250" y="112" text-anchor="middle" fill="#0d9f8a" font-size="12">autorisation online · instantané</text>
+                    <text x="250" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">réponse tout de suite (T+0)</text>
+                  </g>
+                  <g>
+                    <rect x="540" y="40" width="420" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="750" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Différé</text>
+                    <text x="750" y="112" text-anchor="middle" fill="#5a6b7c" font-size="12">clearing · settlement · batch</text>
+                    <text x="750" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">après coup, calendriers / cut-offs</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="temps-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Temps réel</strong>
+                      <p>Auth online, Instant Payment, certains A2A — décision / crédit immédiat selon le rail.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Différé</strong>
+                      <p>Clearing / settlement carte, remises batch — l’OK caisse ≠ argent déjà réglé.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Pont J1</strong>
+                      <p>Même idée que vue message vs vue argent (Chaîne) et T+0 vs post-tx (Composants SI).</p>
+                    </span>
+                  </button>
+                </div>
+                <p class="montage-example">
+                  <strong>Exemple</strong>
+                  Carte au magasin&nbsp;: autorisation temps réel, règlement
+                  souvent différé. Un Instant Payment = rail pensé pour le
+                  temps réel bout en bout.
+                </p>
               </div>
             </section>
 
             <section class="section">
               <p class="section-label">Ancrage</p>
               <h2>Cas</h2>
-              <div class="panel ok">
-                <h3>« Paiement mobile » = toujours un rail carte&nbsp;?</h3>
-                <ul>
-                  <li>Souvent oui (wallet NFC / app sur rails carte)</li>
-                  <li>Parfois non (mobile money, A2A)</li>
-                  <li>Faire dire : mobile = canal ; le rail peut différer</li>
-                </ul>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>« Paiement mobile » = rail carte&nbsp;?</h3>
+                  <ul>
+                    <li>Souvent oui (wallet NFC / app sur rails carte)</li>
+                    <li>Parfois non (mobile money, A2A)</li>
+                    <li>Mobile = canal ; le rail peut différer</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Classer en 10 secondes</h3>
+                  <ul>
+                    <li>Électronique ou digital&nbsp;?</li>
+                    <li>En ligne / proximité / in-app&nbsp;?</li>
+                    <li>Temps réel ou différé (ou les deux)&nbsp;?</li>
+                  </ul>
+                </div>
               </div>
             </section>
 
@@ -282,16 +443,15 @@
               <summary>Notes formateur</summary>
               <div class="notes-body">
                 <ul>
-                  <li>Ordre strict : définir → fresque → question SI</li>
+                  <li>Ordre : 4 notions → fresque → 3 distinctions syllabus</li>
                   <li>Ne pas noyer sous les dates ; 1 ancre par âge suffit</li>
                   <li>
                     Ancrer le fil FR : Carte Bleue (1967) puis Moreno / B0 /
-                    EMV — ne pas confondre B0 (protocole puce) avec la naissance
-                    de la carte elle-même
+                    EMV
                   </li>
                   <li>
-                    Diners Club / BankAmericard = contexte international, pas le
-                    cœur du récit FR
+                    Insister : canal ≠ rail · électronique ≠ digital · OK caisse
+                    ≠ settlement
                   </li>
                 </ul>
               </div>
@@ -300,8 +460,10 @@
             <div class="check-end">
               <h3>Check de fin de bloc</h3>
               <ul>
-                <li>Les 4 notions définies sans les confondre</li>
-                <li>Fresque restituée avec « ce qui s’ajoute »</li>
+                <li>Cash → carte → mobile → wallet (ce qui s’ajoute)</li>
+                <li>Électronique ≠ digital</li>
+                <li>En ligne / proximité / in-app distingués</li>
+                <li>Temps réel ≠ différé (auth vs règlement)</li>
                 <li>Métier SI situé à partir de la carte</li>
               </ul>
             </div>
@@ -321,5 +483,6 @@
       </div>
     </footer>
     <script src="../js/nav-j1.js"></script>
+    <script src="../js/fiche.js"></script>
   </body>
 </html>

@@ -2,7 +2,7 @@ BLOC — FORMATEUR
 Cours : Paiements digitaux & Wallets numériques
 Jour 1 · 1.1
 Bloc : Évolution des paiements
-Durée indicative : 25–30 min
+Durée indicative : 30–35 min
 Précédent : Intro · Suivant : Acteurs
 
 
@@ -10,61 +10,44 @@ Précédent : Intro · Suivant : Acteurs
 1. MÉTA
 ================================================================================
 Idée clé
-Chaque étape n’efface pas la précédente : elle s’ajoute dessus — et avec
-elle, de nouveaux intermédiaires et messages pour le SI.
+Chaque étape n’efface pas la précédente : elle s’ajoute — et avec elle de
+nouveaux intermédiaires / messages pour le SI.
 
 Ordre de séance
-1) Définir les 4 notions
-2) Fresque schématique (ce qui s’ajoute)
-3) Question SI + distinctions courtes
+1) Cash → carte → mobile → wallet (définir + fresque)
+2) Électronique vs digital
+3) En ligne / proximité / in-app
+4) Temps réel vs différé
 
 
 ================================================================================
-2. DÉFINITIONS
+2. CASH → CARTE → MOBILE → WALLET
 ================================================================================
-Cash
-Échange de valeur physique entre deux parties.
-SI : pas de message monétique temps réel.
-
-Carte
-Instrument émis s’appuyant sur un réseau pour autoriser puis régler.
-SI : auth / clearing / settlement.
-
-Fil français (à privilégier en salle)
-- 1967 : Carte Bleue (consortium bancaire FR)
-- 1974 : Roland Moreno — carte à puce
-- B0 (Bull CP) : protocole FR d’auth. à la puce, avant EMV
-Ne pas confondre : B0 = standard puce, pas « la première carte ».
-
-Contexte international
-- 1950 : Diners Club (Frank McNamara)
-- 1958 : BankAmericard → Visa
-
-Mobile
-Le téléphone devient canal d’initiation.
-SI : device + app ; rail souvent carte (parfois mobile money / A2A).
-
-Wallet
-Application qui orchestre un ou plusieurs moyens (souvent tokenisés).
-SI : token + device binding — détail J3/J4.
+(définitions + fresque « ce qui s’ajoute » — inchangé)
 
 
 ================================================================================
-3. FRESQUE
+3. DISTINCTIONS SYLLABUS
 ================================================================================
-Cash  --(+ réseau + messages)-->  Carte
-      --(+ device canal)------->  Mobile
-      --(+ orchestration/token)-> Wallet
+Électronique vs digital
+Électronique = dématérialisation (carte, virement…)
+Digital = canaux numériques (app, QR, wallet…)
+Piège : carte plastique = déjà électronique, pas « digitale »
 
-Ancres : cash (monnaies→billets) · carte 1967 Carte Bleue (+ B0/puce) · mobile ~1997/2007 · wallet ~2011–2014
+En ligne · Proximité · In-app
+Où s’initie le paiement — canal ≠ rail
 
-Question salle
-Où commence le métier SI banque ? → à la carte.
+Temps réel vs différé
+Temps réel : auth online, Instant Payment…
+Différé : clearing / settlement, batch
+Pont : vue message / argent · T+0 / post-tx
 
 
 ================================================================================
 4. CHECK
 ================================================================================
-[ ] 4 notions distinctes
-[ ] Fresque « s’ajoute » restituée
+[ ] Cash → carte → mobile → wallet
+[ ] Électronique ≠ digital
+[ ] En ligne / proximité / in-app
+[ ] Temps réel ≠ différé
 [ ] SI situé à partir de la carte

@@ -42,19 +42,24 @@
           </section>
 
           <div class="wrap">
-
+            <!-- Définition -->
             <section class="section" style="border-top: none; padding-top: 0">
-              <p class="section-label">Définition</p>
-              <h2>Vue composants SI (métier monétique)</h2>
-              <p class="intro">
-                Ensemble des briques applicatives et techniques qui portent les
-                fonctions monétiques d’<strong>acceptation</strong>,
-                d’<strong>acquisition</strong>, d’<strong>émission</strong> et
-                de <strong>post-transaction</strong> (clearing / settlement),
-                telles qu’elles apparaissent dans le SI des acteurs.
+              <p class="section-label">Définition monétique</p>
+              <h2>Qu’est-ce qu’un composant SI&nbsp;?</h2>
+              <p class="definition-full">
+                Brique applicative ou technique qui porte une fonction
+                monétique dans le système d’information&nbsp;:
+                <strong>acceptation</strong>, <strong>acquisition</strong>,
+                <strong>émission</strong>, <strong>post-transaction</strong>
+                (clearing / settlement) — chez un acteur ou un prestataire.
+              </p>
+              <p class="intro" style="margin-top: 1.1rem">
+                Ce bloc répond à une seule question&nbsp;:
+                <strong>dans quels SI&nbsp;?</strong> — pas les rôles (acteurs),
+                pas l’ordre du message (chaîne).
               </p>
               <div class="callout">
-                <h3>Périmètre de ce bloc</h3>
+                <h3>Périmètre</h3>
                 <p>
                   Cartographie fonctionnelle · pas l’architecture omnicanale
                   complète (J5) · pas le détail d’infra sauf question.
@@ -62,11 +67,44 @@
               </div>
             </section>
 
+            <!-- Deux temps -->
+            <section class="section">
+              <p class="section-label">Deux temps</p>
+              <h2>T+0 · Différé</h2>
+              <p class="intro">
+                Même carte de composants, deux temporalités — comme message /
+                argent sur la chaîne.
+              </p>
+              <div class="diagram" id="diagram-si-temps">
+                <div class="diagram-header">
+                  <h3>Quand les briques travaillent</h3>
+                  <p>Online vs post-transaction</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="T+0 autorisation et différé clearing settlement">
+                  <g>
+                    <rect x="40" y="40" width="420" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="250" y="82" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">T+0 · Autorisation</text>
+                    <text x="250" y="110" text-anchor="middle" fill="#0d9f8a" font-size="12">POS · gateway · acquiring · issuing</text>
+                  </g>
+                  <line x1="480" y1="90" x2="540" y2="90" stroke="#5a6b7c" stroke-width="2"/>
+                  <g>
+                    <rect x="540" y="40" width="420" height="100" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="750" y="82" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Différé · Post-tx</text>
+                    <text x="750" y="110" text-anchor="middle" fill="#5a6b7c" font-size="12">Clearing · Settlement</text>
+                  </g>
+                  <text x="500" y="175" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Le scheme est externe — le SI s’y interface, ce n’est pas « une brique banque » au même titre
+                  </text>
+                </svg>
+              </div>
+            </section>
+
+            <!-- Cartographie -->
             <section class="section" id="schema">
               <p class="section-label">Cartographie</p>
               <h2>Les cinq composants</h2>
               <p class="intro">
-                Cliquez un composant pour le commenter en salle.
+                Cliquez une brique. Puis parcourez ce que chacune fait.
               </p>
 
               <div class="diagram">
@@ -75,275 +113,52 @@
                   <p>Vue métier — pas la plateforme J5</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 360"
+                  viewBox="0 0 1000 420"
                   role="img"
-                  aria-label="Composants SI d un système de paiement carte"
+                  aria-label="Composants SI illustrés d un système de paiement carte"
                 >
-                  <text
-                    x="40"
-                    y="28"
-                    fill="#5a6b7c"
-                    font-size="11"
-                    font-weight="700"
-                    letter-spacing="1"
-                  >
-                    ACCEPTATION
-                  </text>
-                  <g
-                    class="node-hit"
-                    data-si="pos"
-                    tabindex="0"
-                    role="button"
-                    aria-label="POS terminal mobile"
-                  >
-                    <rect
-                      x="40"
-                      y="42"
-                      width="200"
-                      height="70"
-                      rx="4"
-                      fill="#c45c26"
-                    />
-                    <text
-                      x="140"
-                      y="72"
-                      text-anchor="middle"
-                      fill="#fff"
-                      font-family="Syne, sans-serif"
-                      font-size="15"
-                      font-weight="700"
-                    >
-                      POS / mPOS
-                    </text>
-                    <text
-                      x="140"
-                      y="94"
-                      text-anchor="middle"
-                      fill="#f5d9c8"
-                      font-size="11"
-                    >
-                      Point d’acceptation
-                    </text>
+                  <text x="40" y="28" fill="#5a6b7c" font-size="11" font-weight="700" letter-spacing="1">ACCEPTATION</text>
+                  <g class="node-hit" data-si="pos" tabindex="0" role="button" aria-label="POS terminal mobile">
+                    <rect x="40" y="42" width="220" height="96" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="52" y="58" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="130" y="82" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">POS / mPOS</text>
+                    <text x="130" y="104" fill="#5a6b7c" font-size="11">point d’acceptation</text>
                   </g>
-                  <g
-                    class="node-hit"
-                    data-si="gateway"
-                    tabindex="0"
-                    role="button"
-                    aria-label="Payment gateway"
-                  >
-                    <rect
-                      x="260"
-                      y="42"
-                      width="200"
-                      height="70"
-                      rx="4"
-                      fill="#2f4858"
-                    />
-                    <text
-                      x="360"
-                      y="72"
-                      text-anchor="middle"
-                      fill="#fff"
-                      font-family="Syne, sans-serif"
-                      font-size="15"
-                      font-weight="700"
-                    >
-                      Payment gateway
-                    </text>
-                    <text
-                      x="360"
-                      y="94"
-                      text-anchor="middle"
-                      fill="#c5d3df"
-                      font-size="11"
-                    >
-                      Passerelle d’acceptation
-                    </text>
+                  <g class="node-hit" data-si="gateway" tabindex="0" role="button" aria-label="Payment gateway">
+                    <rect x="280" y="42" width="220" height="96" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-psp.jpg" x="292" y="58" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="370" y="82" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Gateway</text>
+                    <text x="370" y="104" fill="#5a6b7c" font-size="11">passerelle d’acceptation</text>
                   </g>
 
-                  <text
-                    x="520"
-                    y="28"
-                    fill="#5a6b7c"
-                    font-size="11"
-                    font-weight="700"
-                    letter-spacing="1"
-                  >
-                    PROCESSING
-                  </text>
-                  <g
-                    class="node-hit"
-                    data-si="acquiring"
-                    tabindex="0"
-                    role="button"
-                    aria-label="Acquiring system"
-                  >
-                    <rect
-                      x="520"
-                      y="42"
-                      width="200"
-                      height="70"
-                      rx="4"
-                      fill="#0d9f8a"
-                    />
-                    <text
-                      x="620"
-                      y="72"
-                      text-anchor="middle"
-                      fill="#fff"
-                      font-family="Syne, sans-serif"
-                      font-size="15"
-                      font-weight="700"
-                    >
-                      Acquiring system
-                    </text>
-                    <text
-                      x="620"
-                      y="94"
-                      text-anchor="middle"
-                      fill="#c8f0e8"
-                      font-size="11"
-                    >
-                      Acquisition
-                    </text>
+                  <text x="540" y="28" fill="#5a6b7c" font-size="11" font-weight="700" letter-spacing="1">PROCESSING</text>
+                  <g class="node-hit" data-si="acquiring" tabindex="0" role="button" aria-label="Acquiring system">
+                    <rect x="540" y="42" width="200" height="96" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-banque.jpg" x="552" y="58" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="630" y="82" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Acquiring</text>
+                    <text x="630" y="104" fill="#0d9f8a" font-size="11">SI acquisition</text>
                   </g>
-                  <g
-                    class="node-hit"
-                    data-si="issuing"
-                    tabindex="0"
-                    role="button"
-                    aria-label="Issuing system"
-                  >
-                    <rect
-                      x="740"
-                      y="42"
-                      width="220"
-                      height="70"
-                      rx="4"
-                      fill="#1e5f8a"
-                    />
-                    <text
-                      x="850"
-                      y="72"
-                      text-anchor="middle"
-                      fill="#fff"
-                      font-family="Syne, sans-serif"
-                      font-size="15"
-                      font-weight="700"
-                    >
-                      Issuing system
-                    </text>
-                    <text
-                      x="850"
-                      y="94"
-                      text-anchor="middle"
-                      fill="#c5dceb"
-                      font-size="11"
-                    >
-                      Émission / auth host
-                    </text>
+                  <g class="node-hit" data-si="issuing" tabindex="0" role="button" aria-label="Issuing system">
+                    <rect x="760" y="42" width="200" height="96" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-banque.jpg" x="772" y="58" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="850" y="82" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Issuing</text>
+                    <text x="850" y="104" fill="#5a6b7c" font-size="11">host / auth</text>
                   </g>
 
-                  <line
-                    x1="460"
-                    y1="77"
-                    x2="520"
-                    y2="77"
-                    stroke="#0d9f8a"
-                    stroke-width="2"
-                  />
-                  <text
-                    x="500"
-                    y="160"
-                    text-anchor="middle"
-                    fill="#5a6b7c"
-                    font-size="12"
-                  >
-                    Réseau / scheme (externe) — interface SI, pas « un composant
-                    banque » au même titre
+                  <line x1="500" y1="90" x2="540" y2="90" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="500" y="175" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Entre acquiring et issuing : réseau / scheme (externe) — interface SI
                   </text>
-                  <line
-                    x1="620"
-                    y1="112"
-                    x2="620"
-                    y2="150"
-                    stroke="#c5d3df"
-                    stroke-dasharray="4 4"
-                  />
-                  <line
-                    x1="850"
-                    y1="112"
-                    x2="850"
-                    y2="150"
-                    stroke="#c5d3df"
-                    stroke-dasharray="4 4"
-                  />
-                  <line
-                    x1="620"
-                    y1="150"
-                    x2="850"
-                    y2="150"
-                    stroke="#c5d3df"
-                    stroke-dasharray="4 4"
-                  />
+                  <image href="../img/acteurs/acteur-scheme.jpg" x="468" y="188" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                  <text x="520" y="214" fill="#3d5a80" font-size="12" font-weight="700">Scheme</text>
 
-                  <text
-                    x="40"
-                    y="210"
-                    fill="#5a6b7c"
-                    font-size="11"
-                    font-weight="700"
-                    letter-spacing="1"
-                  >
-                    POST-TRANSACTION
-                  </text>
-                  <g
-                    class="node-hit"
-                    data-si="clearing"
-                    tabindex="0"
-                    role="button"
-                    aria-label="Clearing et settlement"
-                  >
-                    <rect
-                      x="40"
-                      y="224"
-                      width="920"
-                      height="70"
-                      rx="4"
-                      fill="#3d5a80"
-                    />
-                    <text
-                      x="500"
-                      y="254"
-                      text-anchor="middle"
-                      fill="#fff"
-                      font-family="Syne, sans-serif"
-                      font-size="16"
-                      font-weight="700"
-                    >
-                      Clearing &amp; Settlement
-                    </text>
-                    <text
-                      x="500"
-                      y="276"
-                      text-anchor="middle"
-                      fill="#c5d3e0"
-                      font-size="12"
-                    >
-                      Compensation des opérations · règlement des positions
-                    </text>
+                  <text x="40" y="270" fill="#5a6b7c" font-size="11" font-weight="700" letter-spacing="1">POST-TRANSACTION</text>
+                  <g class="node-hit" data-si="clearing" tabindex="0" role="button" aria-label="Clearing et settlement">
+                    <rect x="40" y="284" width="920" height="96" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <image href="../img/clearing/clearing-positions.jpg" x="60" y="300" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="140" y="328" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Clearing &amp; Settlement</text>
+                    <text x="140" y="352" fill="#5a6b7c" font-size="12">Compensation · règlement des positions — deux notions</text>
                   </g>
-
-                  <text x="40" y="330" fill="#087a6a" font-size="12" font-weight="700">
-                    T+0 — autorisation online
-                  </text>
-                  <text x="280" y="330" fill="#5a6b7c" font-size="12">
-                    via POS / gateway / acquiring / réseau / issuing
-                  </text>
-                  <text x="40" y="350" fill="#c45c26" font-size="12" font-weight="700">
-                    Différé — clearing puis settlement
-                  </text>
                 </svg>
                 <div class="detail-panel" id="si-detail">
                   <h4>Sélectionnez un composant</h4>
@@ -352,71 +167,232 @@
                     faut pas confondre.
                   </p>
                 </div>
+
+                <div class="seq-steps" id="si-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>POS / mPOS</strong>
+                      <p>Capture, interaction moyen de paiement, envoi vers l’acquisition.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Gateway</strong>
+                      <p>API / protocoles, contrôles de forme, journalisation — souvent front-door.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Acquiring</strong>
+                      <p>SI côté acceptation / rôle acquéreur : marchand, routage réseau.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="4">
+                    <span class="n">4</span>
+                    <span>
+                      <strong>Issuing</strong>
+                      <p>Host d’autorisation : décision, plafonds, opposition.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="5">
+                    <span class="n">5</span>
+                    <span>
+                      <strong>Clearing &amp; settlement</strong>
+                      <p>Compensation puis règlement — souvent différé (blocs Clearing / Settlement).</p>
+                    </span>
+                  </button>
+                </div>
               </div>
             </section>
 
+            <!-- Gateway vs acquiring = parallèle PSP -->
             <section class="section">
-              <p class="section-label">Détail</p>
-              <h2>Rôle de chaque brique</h2>
-              <ul class="topic-list">
-                <li>
-                  <strong>POS / mPOS</strong> — capture de l’opération,
-                  interaction moyen de paiement, envoi vers la chaîne
-                  d’acquisition
-                </li>
-                <li>
-                  <strong>Payment gateway</strong> — interfaces (API /
-                  protocoles), routage, contrôles de forme, journalisation ;
-                  souvent porte d’entrée marchand / canal digital
-                </li>
-                <li>
-                  <strong>Acquiring system</strong> — traitement côté acquéreur
-                  / PSP : opérations marchandes, routage réseau, lien clearing
-                </li>
-                <li>
-                  <strong>Issuing system</strong> — host d’autorisation, SI
-                  porteur : décision, plafonds, opposition, lien fraude /
-                  AuthN selon organisation
-                </li>
-                <li>
-                  <strong>Clearing &amp; settlement</strong> — compensation
-                  puis règlement des positions (souvent différé, via scheme /
-                  mécanismes interbancaires)
-                </li>
-              </ul>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Correspondance</p>
-              <h2>Chaîne de valeur ↔ composants</h2>
-              <div class="not-list">
-                <div class="not-item">
-                  <strong>Terminal</strong>
-                  <p>POS / mPOS (+ souvent payment gateway)</p>
-                </div>
-                <div class="not-item">
-                  <strong>Acquéreur</strong>
-                  <p>Acquiring system (+ gateway / PSP selon le montage)</p>
-                </div>
-                <div class="not-item">
-                  <strong>Émetteur</strong>
-                  <p>Issuing system (centre d’autorisation / host)</p>
-                </div>
-                <div class="not-item">
-                  <strong>Post-transaction</strong>
-                  <p>Clearing &amp; settlement</p>
-                </div>
-              </div>
-              <div class="callout">
-                <h3>Message formateur</h3>
+              <p class="section-label">Frontière critique</p>
+              <h2>Gateway ≠ Acquiring (pas toujours)</h2>
+              <p class="intro">
+                Même logique que <strong>PSP ≠ acquéreur</strong> sur la chaîne&nbsp;:
+                la gateway est souvent la <strong>brique technique</strong>&nbsp;;
+                l’acquiring est le <strong>SI du rôle</strong> face au scheme.
+              </p>
+              <div class="callout warn">
+                <h3>Anti-confusion</h3>
                 <p>
-                  Une même banque peut opérer plusieurs composants (émettrice
-                  et acquéreuse). Le scheme reste externe, mais le SI
-                  s’interface avec lui.
+                  Ne pas dessiner gateway + acquiring séparés par défaut — ni
+                  les fusionner par défaut. Regarder le montage (comme en
+                  Chaîne).
+                </p>
+              </div>
+
+              <div class="diagram" id="diagram-si-m1" style="margin-top: 1.25rem">
+                <div class="diagram-header">
+                  <h3>1 · Acquiring « maison »</h3>
+                  <p>Banque acquéreuse — gateway évent. interne / peu visible</p>
+                </div>
+                <svg viewBox="0 0 1000 180" role="img" aria-label="SI montage acquiring banque">
+                  <g>
+                    <rect x="80" y="40" width="180" height="90" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="96" y="54" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="168" y="80" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">POS</text>
+                  </g>
+                  <line x1="270" y1="85" x2="340" y2="85" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <g>
+                    <rect x="340" y="30" width="320" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-banque.jpg" x="360" y="48" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="440" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Acquiring bank</text>
+                    <text x="440" y="98" fill="#0d9f8a" font-size="12">(+ gateway interne évent.)</text>
+                    <text x="440" y="118" fill="#5a6b7c" font-size="11">une logique SI côté acceptation</text>
+                  </g>
+                  <line x1="670" y1="85" x2="740" y2="85" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <g>
+                    <rect x="740" y="40" width="180" height="90" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-scheme.jpg" x="756" y="54" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="828" y="85" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Scheme</text>
+                  </g>
+                </svg>
+                <p class="montage-example">
+                  <strong>Exemple</strong>
+                  POS banque «&nbsp;maison&nbsp;» branché sur le SI acquiring de
+                  la banque — pas de marque gateway PSP au milieu. Typique&nbsp;;
+                  le contrat exact peut varier.
+                </p>
+              </div>
+
+              <div class="diagram" id="diagram-si-m2" style="margin-top: 1.5rem">
+                <div class="diagram-header">
+                  <h3>2 · Gateway devant l’acquiring</h3>
+                  <p>Deux briques — technique puis SI rôle scheme</p>
+                </div>
+                <svg viewBox="0 0 1000 180" role="img" aria-label="SI montage gateway puis acquiring">
+                  <g>
+                    <rect x="40" y="40" width="150" height="90" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="56" y="54" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="120" y="85" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">POS / web</text>
+                  </g>
+                  <line x1="200" y1="85" x2="260" y2="85" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <g>
+                    <rect x="260" y="30" width="220" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-psp.jpg" x="278" y="48" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="358" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Gateway</text>
+                    <text x="358" y="96" fill="#0d9f8a" font-size="12">brique technique</text>
+                    <text x="358" y="116" fill="#5a6b7c" font-size="11">≠ rôle scheme</text>
+                  </g>
+                  <line x1="490" y1="85" x2="550" y2="85" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <g>
+                    <rect x="550" y="30" width="220" height="110" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-banque.jpg" x="568" y="48" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="648" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Acquiring</text>
+                    <text x="648" y="96" fill="#5a6b7c" font-size="12">SI banque / rôle</text>
+                    <text x="648" y="116" fill="#5a6b7c" font-size="11">entité distincte</text>
+                  </g>
+                  <line x1="780" y1="85" x2="830" y2="85" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <g>
+                    <rect x="830" y="40" width="130" height="90" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="895" y="90" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Scheme</text>
+                  </g>
+                </svg>
+                <p class="montage-example">
+                  <strong>Exemple</strong>
+                  Gateway / checkout d’un PSP technique qui envoie vers le SI
+                  <em>acquiring</em> d’une banque partenaire. Deux briques
+                  visibles. Typique&nbsp;; le contrat exact peut varier.
+                </p>
+              </div>
+
+              <div class="diagram" id="diagram-si-m3" style="margin-top: 1.5rem">
+                <div class="diagram-header">
+                  <h3>3 · Gateway + acquiring chez le même PSP</h3>
+                  <p>Une logique SI côté acceptation — double étiquette</p>
+                </div>
+                <svg viewBox="0 0 1000 180" role="img" aria-label="SI montage PSP gateway et acquiring">
+                  <g>
+                    <rect x="60" y="40" width="160" height="90" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="76" y="54" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="140" y="85" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Checkout</text>
+                  </g>
+                  <line x1="230" y1="85" x2="300" y2="85" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <g>
+                    <rect x="300" y="25" width="380" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-psp.jpg" x="320" y="45" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="400" y="70" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Gateway + Acquiring</text>
+                    <text x="400" y="96" fill="#0d9f8a" font-size="12">même SI / même prestataire</text>
+                    <text x="400" y="118" fill="#5a6b7c" font-size="11">PSP-acquéreur côté briques</text>
+                  </g>
+                  <line x1="690" y1="85" x2="760" y2="85" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <g>
+                    <rect x="760" y="40" width="180" height="90" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-scheme.jpg" x="776" y="54" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="848" y="85" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Scheme</text>
+                  </g>
+                </svg>
+                <p class="montage-example">
+                  <strong>Exemple</strong>
+                  <em>Paybox</em> (écosystème Verifone) — ou Adyen / Stripe selon
+                  contrat&nbsp;: gateway et acquiring portés dans la même offre
+                  SI côté acceptation. Typique&nbsp;; le contrat exact peut
+                  varier.
+                </p>
+                <p class="diagram-hint">
+                  En salle&nbsp;: « chez vous, gateway et acquiring sont-ils
+                  séparés&nbsp;? » — même question que montage PSP 1 / 2 / 3.
                 </p>
               </div>
             </section>
 
+            <!-- Correspondance chaîne -->
+            <section class="section">
+              <p class="section-label">Correspondance</p>
+              <h2>Maillon de chaîne → brique SI</h2>
+              <p class="intro">
+                La chaîne dit <em>l’ordre</em>&nbsp;; ici on dit
+                <em>dans quel système</em> ça s’exécute.
+              </p>
+              <div class="diagram" id="diagram-si-map">
+                <div class="diagram-header">
+                  <h3>Pont Chaîne → Composants</h3>
+                  <p>Un maillon peut s’appuyer sur plusieurs briques</p>
+                </div>
+                <svg viewBox="0 0 1000 280" role="img" aria-label="Correspondance maillons et composants SI">
+                  <text x="40" y="36" fill="#5a6b7c" font-size="12" font-weight="700">CHAÎNE</text>
+                  <text x="520" y="36" fill="#5a6b7c" font-size="12" font-weight="700">COMPOSANTS SI</text>
+                  <rect x="40" y="50" width="200" height="44" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="1.5"/>
+                  <text x="140" y="78" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Terminal</text>
+                  <line x1="250" y1="72" x2="320" y2="72" stroke="#0d9f8a" stroke-width="2"/>
+                  <rect x="320" y="50" width="280" height="44" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="460" y="78" text-anchor="middle" fill="#087a6a" font-size="13">POS / mPOS (+ checkout)</text>
+
+                  <rect x="40" y="110" width="200" height="44" rx="8" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <text x="140" y="138" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Acquéreur / PSP</text>
+                  <line x1="250" y1="132" x2="320" y2="132" stroke="#0d9f8a" stroke-width="2"/>
+                  <rect x="320" y="110" width="400" height="44" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="520" y="138" text-anchor="middle" fill="#087a6a" font-size="13">Gateway et/ou Acquiring (montages 1–3)</text>
+
+                  <rect x="40" y="170" width="200" height="44" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="1.5"/>
+                  <text x="140" y="198" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Réseau</text>
+                  <line x1="250" y1="192" x2="320" y2="192" stroke="#5a6b7c" stroke-width="2" stroke-dasharray="4 3"/>
+                  <rect x="320" y="170" width="280" height="44" rx="8" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="1.5"/>
+                  <text x="460" y="198" text-anchor="middle" fill="#5a6b7c" font-size="13">Scheme (externe) + interfaces SI</text>
+
+                  <rect x="40" y="230" width="200" height="44" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="1.5"/>
+                  <text x="140" y="258" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Émetteur</text>
+                  <line x1="250" y1="252" x2="320" y2="252" stroke="#0d9f8a" stroke-width="2"/>
+                  <rect x="320" y="230" width="280" height="44" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="460" y="258" text-anchor="middle" fill="#087a6a" font-size="13">Issuing system (host)</text>
+                </svg>
+                <div class="callout" style="margin-top: 1rem">
+                  <h3>Message formateur</h3>
+                  <p>
+                    Une même banque peut opérer <strong>plusieurs</strong>
+                    composants (émettrice + acquéreuse). Clearing / settlement
+                    = post-tx, souvent hors du hop d’autorisation.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Cas -->
             <section class="section">
               <p class="section-label">Ancrage</p>
               <h2>Cas pratiques</h2>
@@ -426,53 +402,83 @@
                   <ul>
                     <li>Chez elle : issuing (+ évent. AuthN / ACS)</li>
                     <li>Hors SI : POS marchand, acquiring tiers</li>
-                    <li>Faire lister « ce qui est à nous »</li>
+                    <li>Lister « ce qui est à nous »</li>
                   </ul>
                 </div>
                 <div class="panel">
-                  <h3>Cas 2 — Banque acquéreuse / PSP</h3>
+                  <h3>Cas 2 — Banque / PSP acceptation</h3>
                   <ul>
-                    <li>Cœur : gateway + acquiring</li>
-                    <li>Issuing chez d’autres établissements</li>
-                    <li>Clearing / settlement via scheme / partenaires</li>
+                    <li>Montage SI 1, 2 ou 3&nbsp;?</li>
+                    <li>Gateway séparée ou intégrée&nbsp;?</li>
+                    <li>Issuing ailleurs</li>
                   </ul>
                 </div>
               </div>
               <div class="split-2">
                 <div class="panel">
-                  <h3>Cas 3 — Parcours e-commerce</h3>
+                  <h3>Cas 3 — E-com Paybox</h3>
                   <ul>
                     <li>Où est la gateway&nbsp;?</li>
                     <li>Où commence l’acquiring&nbsp;?</li>
                     <li>Où l’issuing décide&nbsp;?</li>
                   </ul>
+                  <p class="montage-example" style="margin-top: 0.75rem">
+                    <strong>Exemple</strong>
+                    Checkout Paybox = gateway (souvent) ; acquiring selon que
+                    Paybox porte le rôle ou s’appuie sur une banque.
+                  </p>
                 </div>
                 <div class="panel ko">
                   <h3>Cas 4 — Timeout d’autorisation</h3>
                   <ul>
                     <li>Quel composant suspecter en premier&nbsp;?</li>
                     <li>Gateway · acquiring · réseau · issuing</li>
-                    <li>Renvoi blocs Autorisation / online-offline</li>
+                    <li>≠ decline fonds — blocs Auth / Online-offline</li>
                   </ul>
                 </div>
               </div>
             </section>
 
+            <!-- Clarification -->
             <section class="section">
-              <p class="section-label">Pièges</p>
-              <h2>Frontières à ne pas brouiller</h2>
-              <ul class="topic-list">
-                <li>Gateway ≠ toujours acquiring (souvent distincts)</li>
-                <li>Clearing ≠ settlement</li>
-                <li>
-                  Le « SI monétique » n’est rarement qu’un seul monolithe —
-                  parler par fonctions
-                </li>
-                <li>
-                  Ne pas empiler ici fraude, tokenisation, wallet manager →
-                  J3 / J4 / J5
-                </li>
-              </ul>
+              <p class="section-label">Clarification</p>
+              <h2>Ce que les composants SI ne sont pas</h2>
+              <div class="not-list">
+                <div class="not-item">
+                  <strong>≠ Acteurs</strong>
+                  <p>
+                    L’acteur est l’organisation / le rôle ; le composant est la
+                    brique <em>dans</em> son SI (ou chez un prestataire).
+                  </p>
+                </div>
+                <div class="not-item">
+                  <strong>≠ Chaîne de valeur</strong>
+                  <p>
+                    La chaîne ordonne le message ; un maillon peut s’appuyer sur
+                    plusieurs composants.
+                  </p>
+                </div>
+                <div class="not-item">
+                  <strong>Gateway ≠ always acquiring</strong>
+                  <p>
+                    Comme PSP ≠ toujours acquéreur — trois montages SI possibles.
+                  </p>
+                </div>
+                <div class="not-item">
+                  <strong>Clearing ≠ settlement</strong>
+                  <p>
+                    Compensation vs règlement — développés dans les blocs
+                    suivants.
+                  </p>
+                </div>
+                <div class="not-item">
+                  <strong>≠ Plateforme J5</strong>
+                  <p>
+                    Ici&nbsp;: cartographie fonctionnelle carte. Omnicanal =
+                    Jour 5.
+                  </p>
+                </div>
+              </div>
             </section>
 
             <details class="trainer-notes">
@@ -484,8 +490,7 @@
                     externalisés (PSP, scheme, processeur)&nbsp;?
                   </li>
                   <li>
-                    La gateway est-elle un produit séparé ou intégrée à
-                    l’acquiring&nbsp;?
+                    Gateway et acquiring&nbsp;: montage 1, 2 ou 3&nbsp;?
                   </li>
                   <li>
                     Qui opère réellement clearing et settlement dans votre
@@ -499,11 +504,10 @@
               <h3>Check de fin de bloc</h3>
               <ul>
                 <li>Les 5 composants cités avec leur rôle</li>
-                <li>
-                  Distinction acceptation / processing / post-transaction
-                </li>
-                <li>Au moins un cas « chez nous » placé sur la carte</li>
-                <li>Conscience que J5 enrichira sans surcharger J1</li>
+                <li>T+0 vs différé situé</li>
+                <li>Gateway / acquiring : 3 montages + exemple</li>
+                <li>Correspondance maillon → brique restituée</li>
+                <li>Au moins un cas « chez nous » placé</li>
               </ul>
             </div>
 
@@ -529,7 +533,7 @@
       </div>
     </footer>
 
-    <script src="../js/app.js"></script>
+    <script src="../js/app.js?v=20260920"></script>
     <script src="../js/nav-j1.js"></script>
     <script src="../js/fiche.js"></script>
     <script>
@@ -540,19 +544,19 @@
         },
         gateway: {
           title: "Payment gateway",
-          text: "Passerelle d’acceptation : API / protocoles, routage vers l’acquéreur ou le PSP, contrôles de forme, journalisation. Souvent distincte de l’acquiring.",
+          text: "Passerelle d’acceptation : API / protocoles, contrôles de forme, journalisation. Souvent distincte de l’acquiring — voir les 3 montages SI.",
         },
         acquiring: {
           title: "Acquiring system",
-          text: "Système d’acquisition : traitement des opérations marchandes, routage vers le réseau, gestion marchand, lien vers le clearing.",
+          text: "SI d’acquisition côté rôle acquéreur : opérations marchandes, routage réseau, lien clearing. Peut être chez la banque ou chez un PSP-acquéreur.",
         },
         issuing: {
           title: "Issuing system",
-          text: "Système d’émission : host / centre d’autorisation, gestion du moyen de paiement, plafonds, opposition, lien fraude et AuthN selon l’organisation.",
+          text: "Système d’émission : host / centre d’autorisation, plafonds, opposition, lien fraude et AuthN selon l’organisation.",
         },
         clearing: {
           title: "Clearing & settlement",
-          text: "Compensation des opérations puis règlement des positions entre établissements — typiquement différé, via le scheme et les mécanismes interbancaires. Deux notions à ne pas fusionner.",
+          text: "Compensation puis règlement des positions — typiquement différé. Deux notions à ne pas fusionner (blocs Clearing / Settlement).",
         },
       };
 

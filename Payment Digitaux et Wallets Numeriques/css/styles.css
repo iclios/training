@@ -589,6 +589,27 @@ svg {
   padding: 0 0.25rem;
 }
 
+.montage-example {
+  margin: 0.85rem 0 0;
+  padding: 0.75rem 1rem;
+  background: #f7f9fb;
+  border-left: 3px solid #0d9f8a;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.montage-example strong {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
 .eco-view-toggle {
   display: flex;
   flex-wrap: wrap;
@@ -1131,6 +1152,71 @@ svg {
   color: var(--ink-soft);
 }
 
+/* Triptyque Acteurs / Chaîne / Composants SI */
+.lens-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  margin: 1rem 0 0;
+}
+
+@media (max-width: 860px) {
+  .lens-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lens {
+  padding: 1rem 1.05rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.lens.is-current {
+  background: #e7f6f3;
+  border-color: #0d9f8a;
+  border-width: 2px;
+}
+
+.lens-q {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lens.is-current .lens-q {
+  color: #0d9f8a;
+}
+
+.lens h3 {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.lens p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.lens-formula {
+  margin: 0.85rem 0 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.lens-formula strong {
+  color: var(--ink);
+}
+
 .trainer-notes {
   margin: 1.5rem 0;
   border: 1px solid var(--line);
@@ -1617,4 +1703,103 @@ a.bloc-sidebar-item:hover {
   font-size: 0.9rem;
   color: var(--ink-soft);
   text-align: center;
+}
+
+.qr-hero {
+  margin: 1.25rem 0 0;
+  padding: 1.25rem 1.25rem 1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-align: center;
+  max-width: 28rem;
+}
+
+.qr-hero img {
+  display: block;
+  margin: 0 auto;
+  width: 220px;
+  height: auto;
+  image-rendering: pixelated;
+  border-radius: 4px;
+}
+
+.qr-hero figcaption {
+  margin: 0.85rem 0 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+  text-align: left;
+}
+
+.payload-raw {
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem;
+  background: #1a2b3c;
+  color: #e7f6f3;
+  border-radius: calc(var(--radius) - 2px);
+  font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.payload-fields {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .payload-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.payload-field {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 0.75rem;
+  row-gap: 0.15rem;
+  padding: 0.75rem 0.85rem;
+  background: #f7f9fb;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 2px);
+  align-items: baseline;
+}
+
+.payload-field code {
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.35rem 0.5rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--accent-deep);
+  white-space: nowrap;
+}
+
+.payload-field strong {
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.payload-field p {
+  margin: 0;
+  grid-column: 2;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+.payload-field p code {
+  display: inline;
+  grid-row: auto;
+  padding: 0.05rem 0.3rem;
+  font-size: 0.8em;
 }

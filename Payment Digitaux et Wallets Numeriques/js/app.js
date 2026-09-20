@@ -16,8 +16,8 @@ window.actorCopy = {
   },
   acquereur: {
     title: "Banque acquéreuse (Acquirer)",
-    role: "Contractualise le commerçant (directement ou via intermédiaires), reçoit les opérations d’acceptation, route vers le scheme, crédite le marchand selon contrat.",
-    not: "Ne décide pas à la place de l’émetteur.",
+    role: "Rôle monétique côté marchand : contractualise l’acceptation (souvent), présente les opérations au scheme, porte le risque d’acceptation, crédite le commerçant selon contrat.",
+    not: "Ne décide pas à la place de l’émetteur. ≠ PSP : le PSP peut être distinct, façade, ou la même entité.",
   },
   reseau: {
     title: "Scheme / réseau (Visa, Mastercard…)",
@@ -26,8 +26,8 @@ window.actorCopy = {
   },
   psp: {
     title: "PSP / Fintech",
-    role: "Façade d’acceptation : gateway, APIs, agrégation. Peut porter tout ou partie de l’acquiring selon licence et montage.",
-    not: "Souvent confondu avec l’acquéreur — ce n’est pas toujours exact en droit.",
+    role: "Prestataire d’acceptation : gateway, APIs, agrégation, souvent le lien terminal / checkout. Peut seulement router vers un acquéreur, ou être lui-même acquéreur (licence / statut scheme).",
+    not: "PSP ≠ toujours distinct de l’acquéreur — regarder le contrat et le statut scheme.",
   },
   device: {
     title: "Device / POS",
@@ -51,8 +51,8 @@ window.chainCopy = {
     text: "Capture le montant, lit la carte, construit le message d’auth, affiche le résultat. Première brique SI côté acceptation.",
   },
   acquereur: {
-    title: "Acquéreur (+ gateway / PSP)",
-    text: "Reçoit le flux marchand, contrôle de forme, route vers le bon réseau. Souvent derrière une payment gateway.",
+    title: "Acquéreur",
+    text: "Maillon côté acceptation face au scheme. Derrière lui (ou confondu avec lui) : gateway / PSP selon le montage — voir les 3 variantes.",
   },
   reseau: {
     title: "Réseau carte",

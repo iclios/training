@@ -2,7 +2,7 @@ BLOC — FORMATEUR
 Cours : Paiements digitaux & Wallets numériques
 Jour 1 · Architecture générale
 Bloc : Chaîne de valeur
-Durée indicative : 25–35 min
+Durée indicative : 30–40 min
 Précédent : Acteurs de l’écosystème · Suivant : Composants SI
 Sources normes : à affiner (modèles scheme, ISO messages…)
 
@@ -10,101 +10,57 @@ Sources normes : à affiner (modèles scheme, ISO messages…)
 ================================================================================
 1. MÉTA FORMATEUR
 ================================================================================
-Objectif pédagogique
-À la fin du bloc, les participants restituent la chaîne
-Client → terminal → acquéreur → réseau → émetteur, expliquent le sens du
-message (demande / réponse), et la relient aux acteurs vus juste avant.
+Objectif
+Restituer l’ordre Client → terminal → acquéreur → réseau → émetteur (+ retour),
+distinguer vue message / vue argent, placer PSP et e-com sans casser le modèle.
 
 Idée clé
-« La chaîne de valeur monétique, c’est le parcours ordonné du message
-d’opération : de l’acceptation jusqu’à l’émetteur, puis le retour. »
+« Chaîne de valeur = dans quel ordre le message passe — pas qui (acteurs),
+pas dans quels SI (composants). »
 
 Posture
-1) Définition de la chaîne
-2) Chaque maillon
-3) Aller (demande) / retour (réponse)
-4) Cas + pont composants SI / autorisation
+1) Définition : question « dans quel ordre ? »
+2) Deux lectures : message (ce bloc) vs argent (clearing/settlement)
+3) Schéma aller / retour + ce qui circule à chaque maillon
+4) Variantes : PSP · e-commerce
+5) Clarification ≠ acteurs ≠ composants SI ≠ autorisation seule
 
 
 ================================================================================
 2. DÉFINITION
 ================================================================================
-Chaîne de valeur (paiement carte — vue message)
-Séquence des acteurs / points de passage que traverse une opération depuis
-son initiation côté acceptation jusqu’à la décision côté émetteur, puis le
-chemin de retour de la réponse.
-
-Forme canonique (syllabus)
-Client → terminal → acquéreur → réseau → émetteur
-
-Notes
-- « Client » = porteur / titulaire du moyen de paiement
-- « Terminal » = point d’acceptation (POS, mPOS, serveur marchand selon canal)
-- Acquéreur peut être représenté / enrichi par un PSP / une gateway
-- Réseau = scheme
-- Émetteur = décideur typique de l’autorisation
+Séquence ordonnée des maillons + chemin de retour de la réponse.
+Canonique : Client → Terminal → Acquéreur → Réseau → Émetteur
 
 
 ================================================================================
-3. CHAQUE MAILLON
+3. DEUX LECTURES
 ================================================================================
-Client / porteur
-Présente le moyen de paiement ; en modèle classique, le PAN part dans la
-demande (pont J3).
-
-Terminal / acceptation
-Capture montant et données, initie la demande vers l’acquéreur / gateway.
-
-Acquéreur (+ PSP / gateway)
-Reçoit, contrôle de forme, route vers le scheme.
-
-Réseau / scheme
-Aiguille vers le bon émetteur, applique le cadre de règles.
-
-Émetteur
-Décide (autorisation) ; renvoie la réponse.
+Vue message — demande / décision / réponse (ce bloc)
+Vue argent — clearing → settlement → crédit marchand (blocs suivants)
+L’OK émetteur ≠ règlement ≠ crédit marchand vécu
 
 
 ================================================================================
-4. ALLER / RETOUR
+4. MAILLONS + VARIANTES PSP / ACQUÉREUR
 ================================================================================
-Aller : demande d’autorisation (et données associées)
-Retour : réponse (approve / decline + codes)
+Chaque hop = action (capture, route, aiguillage, décision…)
 
-Sans le retour, pas d’expérience d’acceptation complète.
-Timeout sur le chemin = incident technique possible (≠ decline fonds).
+Trois montages (obligatoire en salle) + 1 exemple sous chacun
+1) Banque acquéreuse seule — ex. POS banque « maison »
+2) PSP devant l’acquéreur — ex. gateway PSP → banque partenaire
+3) PSP-acquéreur — ex. Paybox (souvent) ; Adyen / Stripe selon contrat
 
-
-================================================================================
-5. LIEN AVEC LES AUTRES BLOCS
-================================================================================
-Acteurs → qui
-Chaîne de valeur → dans quel ordre le message passe
-Composants SI → dans quels systèmes ça s’exécute
-Autorisation → ce que l’émetteur décide sur ce message
+Anti-confusion : PSP ≠ toujours distinct — contrat + statut scheme.
+E-com : checkout Paybox = terminal, puis 2 ou 3.
 
 
 ================================================================================
-6. CAS PRATIQUES
+5. CAS + CHECK
 ================================================================================
-Cas 1 — Étiqueter la chaîne
-Donner 5 rôles ; reconstituer l’ordre sans notes.
+Cas : ordre · quel montage PSP chez vous · e-com · réponse absente
 
-Cas 2 — PSP au milieu
-Où placer le PSP sur la chaîne ? Souvent entre terminal/commerçant et
-acquéreur / comme façade de l’acquéreur.
-
-Cas 3 — E-commerce
-« Terminal » devient serveur / checkout / gateway — la chaîne logique reste.
-
-Cas 4 — Réponse qui ne revient pas
-Sur quel maillon enquêter ? Méthode : horodatage bout en bout.
-
-
-================================================================================
-7. CHECK DE FIN
-================================================================================
-[ ] Chaîne complète restituée dans l’ordre
-[ ] Sens demande / réponse compris
-[ ] PSP / e-com placés sans casser le modèle
-[ ] Transition claire vers composants SI
+[ ] Ordre + retour
+[ ] Message ≠ argent
+[ ] 3 montages PSP / acquéreur
+[ ] Pont composants SI

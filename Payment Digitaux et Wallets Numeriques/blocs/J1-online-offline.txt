@@ -11,13 +11,14 @@ Pont : PAN dans le flux d’auth → J3 tokenisation
 1. MÉTA FORMATEUR
 ================================================================================
 Objectif
-Distinguer online, offline normal et offline dégradé ; classer les rejets
-(métier / AuthN / technique / clearing) pour le diagnostic SI.
+Distinguer online, offline normal et offline dégradé ; expliquer latence et
+disponibilité sur la chaîne online ; classer les rejets (métier / AuthN /
+technique / clearing).
 
 Idée clé
 « Online = on interroge la chaîne jusqu’à une décision.
-Offline normal = acceptation locale prévue par les règles.
-Offline dégradé = secours quand l’online échoue.
+Latence = somme des hops · Dispo = maillon le plus faible.
+Offline normal = prévu · Offline dégradé = secours quand l’online casse.
 Un rejet n’est pas toujours un “pas d’argent”. »
 
 
@@ -29,10 +30,19 @@ Trois profils sur le bandeau : Online · Offline normal · Offline dégradé.
 
 
 ================================================================================
-3. ONLINE (schéma + seq-steps)
+3. ONLINE + LATENCE / DISPONIBILITÉ
 ================================================================================
 Terminal → acquéreur → réseau → émetteur → retour
-Enjeux SI : latence, dispo, timeouts / retry / abort
+
+Latence
+Temps bout en bout = somme des hops ; trop long → timeout / abandon
+
+Disponibilité
+Chaque maillon doit répondre ; un seul KO casse l’online
+→ rejet technique ou offline dégradé
+
+Politiques : seuils timeout, retry, abort
+Exemple : timeout gateway ≠ decline fonds
 
 
 ================================================================================
@@ -70,5 +80,7 @@ Cas 3 — Code sandbox à classer
 
 [ ] Online vs offline
 [ ] Offline normal ≠ dégradé
+[ ] Latence / disponibilité situées
+[ ] Timeout ≠ decline métier
 [ ] Familles de refus
 [ ] Pont PAN → token

@@ -186,8 +186,156 @@
               </button>
             </div>
             <p class="diagram-hint">
-              SI&nbsp;: mesurer latence bout en bout, disponibilité de chaque
-              hop, politiques retry / abort.
+              Suite&nbsp;: latence et disponibilité — les deux leviers SI du
+              parcours online.
+            </p>
+          </div>
+        </section>
+
+        <!-- Latence & disponibilité -->
+        <section class="section">
+          <p class="section-label">Enjeux SI</p>
+          <h2>Latence · Disponibilité</h2>
+          <p class="intro">
+            En online, l’expérience d’autorisation dépend de
+            <strong>combien de temps</strong> ça met et de
+            <strong>si chaque maillon répond</strong>.
+          </p>
+
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Latence</h3>
+              <ul>
+                <li>Temps bout en bout demande → réponse au terminal</li>
+                <li>Somme des hops (gateway, réseau, host…)</li>
+                <li>Trop long → timeout / abandon caisse</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Disponibilité</h3>
+              <ul>
+                <li>Chaque maillon doit être joignable</li>
+                <li>Le plus faible coupe la chaîne online</li>
+                <li>Indispo → rejet technique ou offline dégradé</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="diagram" id="diagram-latence-dispo" style="margin-top: 1.25rem">
+            <div class="diagram-header">
+              <h3>Chaîne online sous contrainte</h3>
+              <p>Latence = somme · Dispo = maillon le plus faible</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 320"
+              role="img"
+              aria-label="Latence cumulative et disponibilité par maillon"
+            >
+              <defs>
+                <marker id="ah-ld" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <!-- Latence row -->
+              <text x="40" y="32" fill="#0d9f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">LATENCE</text>
+              <g>
+                <rect x="40" y="48" width="140" height="70" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                <text x="110" y="78" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Terminal</text>
+                <text x="110" y="98" text-anchor="middle" fill="#5a6b7c" font-size="11">+ t₁</text>
+              </g>
+              <line class="flow-line" x1="190" y1="83" x2="230" y2="83" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-ld)"/>
+              <g>
+                <rect x="230" y="48" width="140" height="70" rx="8" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <text x="300" y="78" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Gateway</text>
+                <text x="300" y="98" text-anchor="middle" fill="#5a6b7c" font-size="11">+ t₂</text>
+              </g>
+              <line class="flow-line" x1="380" y1="83" x2="420" y2="83" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-ld)"/>
+              <g>
+                <rect x="420" y="48" width="140" height="70" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <text x="490" y="78" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Réseau</text>
+                <text x="490" y="98" text-anchor="middle" fill="#5a6b7c" font-size="11">+ t₃</text>
+              </g>
+              <line class="flow-line" x1="570" y1="83" x2="610" y2="83" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-ld)"/>
+              <g>
+                <rect x="610" y="48" width="140" height="70" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <text x="680" y="78" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Host</text>
+                <text x="680" y="98" text-anchor="middle" fill="#5a6b7c" font-size="11">+ t₄</text>
+              </g>
+              <line class="flow-line" x1="760" y1="83" x2="800" y2="83" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-ld)"/>
+              <g>
+                <rect x="800" y="40" width="160" height="86" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <text x="880" y="78" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Σ latence</text>
+                <text x="880" y="100" text-anchor="middle" fill="#0d9f8a" font-size="11">bout en bout</text>
+              </g>
+
+              <!-- Dispo row -->
+              <text x="40" y="175" fill="#c45c26" font-family="Syne, sans-serif" font-size="13" font-weight="700">DISPONIBILITÉ</text>
+              <g>
+                <rect x="40" y="190" width="200" height="70" rx="8" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <text x="140" y="222" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Hop OK</text>
+                <text x="140" y="242" text-anchor="middle" fill="#0d9f8a" font-size="11">répond</text>
+              </g>
+              <g>
+                <rect x="280" y="190" width="200" height="70" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+                <text x="380" y="222" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="12" font-weight="700">Hop KO</text>
+                <text x="380" y="242" text-anchor="middle" fill="#5a6b7c" font-size="11">timeout / down</text>
+              </g>
+              <line x1="490" y1="225" x2="560" y2="225" stroke="#c45c26" stroke-width="2.5" marker-end="url(#ah-ld)"/>
+              <g>
+                <rect x="560" y="180" width="400" height="90" rx="8" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                <text x="760" y="220" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Chaîne online cassée</text>
+                <text x="760" y="244" text-anchor="middle" fill="#5a6b7c" font-size="11">rejet technique · ou offline dégradé</text>
+              </g>
+              <text x="500" y="300" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Timeout = latence dépassée ou indispo — ≠ decline métier (fonds)
+              </text>
+            </svg>
+            <div class="seq-steps" id="latence-dispo-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Mesurer la latence</strong>
+                  <p>
+                    Bout en bout et par hop — où se perd le temps (gateway,
+                    réseau, host)&nbsp;?
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Surveiller la dispo</strong>
+                  <p>
+                    Chaque maillon a son SLA / statut — un seul KO suffit.
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Politique timeout</strong>
+                  <p>
+                    Seuils, retry, abort — avant de basculer en offline dégradé
+                    ou refus technique.
+                  </p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="4">
+                <span class="n">4</span>
+                <span>
+                  <strong>Diagnostiquer</strong>
+                  <p>
+                    Timeout / indispo ≠ «&nbsp;pas d’argent&nbsp;» — famille
+                    technique des rejets.
+                  </p>
+                </span>
+              </button>
+            </div>
+            <p class="montage-example">
+              <strong>Exemple</strong>
+              Caisse qui «&nbsp;plante&nbsp;» à 8&nbsp;s&nbsp;: souvent timeout
+              gateway / host, pas un decline fonds. Runbook dispo / latence —
+              pas runbook opposition carte.
             </p>
           </div>
         </section>
@@ -377,7 +525,7 @@
             <div class="panel">
               <h3>Online</h3>
               <ul>
-                <li>Latence bout en bout</li>
+                <li>Latence bout en bout (+ par hop)</li>
                 <li>Disponibilité de chaque maillon</li>
                 <li>Timeouts, retry, abort</li>
               </ul>
@@ -386,7 +534,7 @@
               <h3>Offline</h3>
               <ul>
                 <li>Normal&nbsp;: paramètres produit / scheme</li>
-                <li>Dégradé&nbsp;: politiques de fallback</li>
+                <li>Dégradé&nbsp;: fallback quand dispo / latence cassent l’online</li>
                 <li>Présentation différée → clearing</li>
               </ul>
             </div>
@@ -498,9 +646,14 @@
             <div class="panel ok">
               <h3>Cas 1 — Timeout vs decline fonds</h3>
               <ul>
-                <li>Technique (3) vs métier (1)</li>
+                <li>Technique (latence / dispo) vs métier</li>
                 <li>Deux runbooks, deux responsables</li>
               </ul>
+              <p class="montage-example" style="margin-top: 0.75rem">
+                <strong>Exemple</strong>
+                Timeout à 3&nbsp;s sur la gateway ≠ decline «&nbsp;fonds
+                insuffisants&nbsp;» — même message caisse, causes opposées.
+              </p>
             </div>
             <div class="panel">
               <h3>Cas 2 — Contactless sous seuil</h3>
@@ -538,6 +691,13 @@
               </p>
             </div>
             <div class="not-item">
+              <strong>Timeout ≠ decline métier</strong>
+              <p>
+                Latence / indispo d’un hop ≠ décision fonds ou opposition —
+                runbooks différents.
+              </p>
+            </div>
+            <div class="not-item">
               <strong>≠ Cours offline exhaustif</strong>
               <p>
                 Ici&nbsp;: concepts et diagnostic. Détail = règles scheme /
@@ -569,6 +729,8 @@
           <ul>
             <li>Online vs offline verbalisé</li>
             <li>Offline normal ≠ offline dégradé</li>
+            <li>Latence (somme des hops) et disponibilité (maillon faible)</li>
+            <li>Timeout / indispo ≠ decline métier</li>
             <li>Familles de refus distinguées</li>
             <li>Pont PAN → token annoncé</li>
           </ul>

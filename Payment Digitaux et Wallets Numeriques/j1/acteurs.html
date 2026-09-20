@@ -43,17 +43,19 @@
 
           <div class="wrap">
             <section class="section" style="border-top: none; padding-top: 0">
-              <p class="section-label">Définition</p>
-              <h2>Écosystème des paiements digitaux</h2>
+              <p class="section-label">Définition monétique</p>
+              <h2>Qu’est-ce qu’un acteur&nbsp;?</h2>
               <p class="definition-full">
-                Ensemble des parties prenantes qui rendent possible
-                l’émission, l’acceptation, le routage, la compensation et le
-                règlement des opérations — cartes, et au-delà (PSP, wallets,
-                devices).
+                Partie prenante de l’écosystème de paiement&nbsp;: organisation
+                ou rôle qui <strong>contracte</strong>, <strong>décide</strong>,
+                <strong>route</strong> ou <strong>accepte</strong> une opération
+                (porteur, émetteur, commerçant, acquéreur, scheme, et
+                satellites&nbsp;: device, PSP, wallet…).
               </p>
-              <p class="intro" style="margin-top: 1rem">
-                Un porteur paie chez un commerçant : qui intervient, et qui
-                décide&nbsp;?
+              <p class="intro" style="margin-top: 1.1rem">
+                Ce bloc répond à une seule question&nbsp;:
+                <strong>qui&nbsp;?</strong> — pas l’ordre du message, pas les
+                briques SI.
               </p>
             </section>
 
@@ -532,6 +534,44 @@
 </div>
             </section>
 
+            <section class="section">
+              <p class="section-label">Clarification</p>
+              <h2>Acquéreur ≠ PSP (pas toujours)</h2>
+              <p class="intro">
+                L’<strong>acquéreur</strong> est le <strong>rôle</strong> côté
+                acceptation face au scheme. Le <strong>PSP</strong> est souvent
+                <strong>qui réalise</strong> ce rôle en service / en SI —
+                parfois la même entité, parfois non.
+              </p>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Acquéreur</h3>
+                  <ul>
+                    <li>Rôle monétique / contractuel marchand</li>
+                    <li>Présente au scheme (ou est représenté)</li>
+                    <li>Porte le risque d’acceptation</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>PSP</h3>
+                  <ul>
+                    <li>Prestataire technique / commercial</li>
+                    <li>Gateway, agrégation, checkout, APIs</li>
+                    <li>Peut être façade, ou acquéreur lui-même</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="callout" style="margin-top: 1rem">
+                <h3>Trois montages (détail + exemples en Chaîne de valeur)</h3>
+                <p>
+                  1) Banque seule · 2) PSP devant une banque · 3) PSP-acquéreur
+                  (ex. Paybox). Message&nbsp;:
+                  <em>PSP ≠ toujours distinct de l’acquéreur — contrat + statut
+                  scheme.</em>
+                </p>
+              </div>
+            </section>
+
             <div class="callout warn">
               <h3>Pièges de vocabulaire</h3>
               <p>
@@ -662,7 +702,7 @@
       </div>
     </footer>
 
-    <script src="../js/app.js?v=20260916"></script>
+    <script src="../js/app.js?v=20260920"></script>
     <script src="../js/nav-j1.js"></script>
     <script src="../js/fiche.js"></script>
   </body>
