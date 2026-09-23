@@ -419,55 +419,86 @@
 
             <section class="section">
               <p class="section-label">Ancrage</p>
-              <h2>Cas</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>« Paiement mobile » = rail carte&nbsp;?</h3>
-                  <ul>
-                    <li>Souvent oui (wallet NFC / app sur rails carte)</li>
-                    <li>Parfois non (mobile money, A2A)</li>
-                    <li>Mobile = canal ; le rail peut différer</li>
-                  </ul>
+              <h2>Trois situations à classer</h2>
+              <p class="intro">
+                Même grilles qu’au-dessus — appliquées à des cas concrets.
+              </p>
+
+              <div class="diagram" id="diagram-cas">
+                <div class="diagram-header">
+                  <h3>Magasin · Web · Téléphone</h3>
+                  <p>Électronique / digital · canal · temporalité</p>
                 </div>
-                <div class="panel">
-                  <h3>Classer en 10 secondes</h3>
-                  <ul>
-                    <li>Électronique ou digital&nbsp;?</li>
-                    <li>En ligne / proximité / in-app&nbsp;?</li>
-                    <li>Temps réel ou différé (ou les deux)&nbsp;?</li>
-                  </ul>
+                <svg
+                  viewBox="0 0 1000 280"
+                  role="img"
+                  aria-label="Trois situations de paiement à classer"
+                >
+                  <!-- Cas 1 -->
+                  <g>
+                    <rect x="30" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/evolution/evo-carte.png" x="48" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="140" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Au magasin</text>
+                    <text x="140" y="94" fill="#5a6b7c" font-size="12">carte plastique · POS</text>
+                    <rect x="48" y="140" width="110" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                    <text x="103" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Électronique</text>
+                    <rect x="168" y="140" width="140" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                    <text x="238" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Proximité</text>
+                    <text x="180" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Auth temps réel</text>
+                    <text x="180" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Règlement souvent différé</text>
+                  </g>
+                  <!-- Cas 2 -->
+                  <g>
+                    <rect x="350" y="28" width="300" height="220" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="368" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="460" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Sur le web</text>
+                    <text x="460" y="94" fill="#5a6b7c" font-size="12">checkout navigateur</text>
+                    <rect x="368" y="140" width="90" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                    <text x="413" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Digital</text>
+                    <rect x="468" y="140" width="160" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                    <text x="548" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">En ligne</text>
+                    <text x="500" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Rail souvent carte</text>
+                    <text x="500" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Auth online · clearing ensuite</text>
+                  </g>
+                  <!-- Cas 3 -->
+                  <g>
+                    <rect x="670" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <image href="../img/evolution/evo-wallet.png" x="688" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="780" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Au téléphone</text>
+                    <text x="780" y="94" fill="#5a6b7c" font-size="12">wallet ou mobile money</text>
+                    <rect x="688" y="140" width="90" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                    <text x="733" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Digital</text>
+                    <rect x="788" y="140" width="160" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                    <text x="868" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Proximité</text>
+                    <text x="820" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Rail ? carte tokenisée</text>
+                    <text x="820" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">… ou mobile money / A2A</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="cas-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Magasin</strong>
+                      <p>Carte plastique = électronique + proximité. Pas « digital » au sens canal app.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Web</strong>
+                      <p>Canal digital en ligne — le rail monétique reste souvent la carte.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Téléphone</strong>
+                      <p>Digital + proximité. Mobile = canal ; le rail peut être carte tokenisée ou autre.</p>
+                    </span>
+                  </button>
                 </div>
               </div>
             </section>
-
-            <details class="trainer-notes">
-              <summary>Notes formateur</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>Ordre : 4 notions → fresque → 3 distinctions syllabus</li>
-                  <li>Ne pas noyer sous les dates ; 1 ancre par âge suffit</li>
-                  <li>
-                    Ancrer le fil FR : Carte Bleue (1967) puis Moreno / B0 /
-                    EMV
-                  </li>
-                  <li>
-                    Insister : canal ≠ rail · électronique ≠ digital · OK caisse
-                    ≠ settlement
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Check de fin de bloc</h3>
-              <ul>
-                <li>Cash → carte → mobile → wallet (ce qui s’ajoute)</li>
-                <li>Électronique ≠ digital</li>
-                <li>En ligne / proximité / in-app distingués</li>
-                <li>Temps réel ≠ différé (auth vs règlement)</li>
-                <li>Métier SI situé à partir de la carte</li>
-              </ul>
-            </div>
 
             <nav
               class="bloc-pager"
