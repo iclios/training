@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Paiements digitaux &amp; Wallets numériques | Formation</title>
-    <link rel="stylesheet" href="css/styles.css?v=hub2" />
+    <link rel="stylesheet" href="css/styles.css?v=hub3" />
   </head>
   <body>
     <header class="site-bar">
@@ -13,6 +13,7 @@
           >Paiements digitaux <span>&amp; Wallets</span></a
         >
         <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home is-active" href="index.html" title="Index principal">Accueil</a>
           <a href="j1/intro.html">J1</a>
           <a href="j2/intro.html">J2</a>
           <a href="j3/intro.html">J3</a>
@@ -31,8 +32,7 @@
             M2 SIB · 5 jours × 4 h · Professionnels de la banque
           </p>
           <p class="lead">
-            Poser le socle carte, puis enchaîner QR → tokenisation → NFC /
-            wallets → architecture SI omnicanale.
+            Socle carte → QR → token → NFC / wallets → SI omnicanal.
           </p>
 
           <div class="hub-evo" aria-label="Évolution des moyens de paiement">
@@ -83,91 +83,188 @@
         <div class="wrap">
           <p class="section-label">Parcours</p>
           <h2>Les 5 modules</h2>
-          <nav class="block-map module-map" aria-label="Modules de la formation">
-            <a href="j1/intro.html">
-              <span class="bm-main">
-                <span class="bm-num">J1</span>
-                <span class="bm-text">
-                  <span class="bm-title">Écosystème &amp; flux carte</span>
-                  <span class="bm-sub">Socle métier et transactionnel</span>
-                </span>
-              </span>
-              <span class="bm-aside">
-                <span class="bm-dur">4 h</span>
-                <span class="bm-status">Ouvrir</span>
-              </span>
-            </a>
-            <a href="j2/intro.html">
-              <span class="bm-main">
-                <span class="bm-num">J2</span>
-                <span class="bm-text">
-                  <span class="bm-title">Paiements par QR Code</span>
-                  <span class="bm-sub">Canal digital software-first</span>
-                </span>
-              </span>
-              <span class="bm-aside">
-                <span class="bm-dur">4 h</span>
-                <span class="bm-status">Ouvrir</span>
-              </span>
-            </a>
-            <a href="j3/intro.html">
-              <span class="bm-main">
-                <span class="bm-num">J3</span>
-                <span class="bm-text">
-                  <span class="bm-title">Tokenisation &amp; sécurité</span>
-                  <span class="bm-sub">PAN → token, TSP, risques</span>
-                </span>
-              </span>
-              <span class="bm-aside">
-                <span class="bm-dur">4 h</span>
-                <span class="bm-status">Ouvrir</span>
-              </span>
-            </a>
-            <a href="j4/intro.html">
-              <span class="bm-main">
-                <span class="bm-num">J4</span>
-                <span class="bm-text">
-                  <span class="bm-title">NFC &amp; wallets numériques</span>
-                  <span class="bm-sub">Proximité + wallets après le token</span>
-                </span>
-              </span>
-              <span class="bm-aside">
-                <span class="bm-dur">4 h</span>
-                <span class="bm-status">Ouvrir</span>
-              </span>
-            </a>
-            <a href="j5/intro.html">
-              <span class="bm-main">
-                <span class="bm-num">J5</span>
-                <span class="bm-text">
-                  <span class="bm-title">Architecture SI omnicanale</span>
-                  <span class="bm-sub">Orchestration multi-canal</span>
-                </span>
-              </span>
-              <span class="bm-aside">
-                <span class="bm-dur">4 h</span>
-                <span class="bm-status">Ouvrir</span>
-              </span>
-            </a>
-          </nav>
-        </div>
-      </section>
 
-      <section class="section">
-        <div class="wrap">
-          <p class="section-label">Module</p>
-          <h2>Objectifs de la formation</h2>
-          <ul class="topic-list">
-            <li>Comprendre les architectures des systèmes de paiement digitaux</li>
-            <li>Analyser les technologies QR Code, NFC et tokenisation</li>
-            <li>Expliquer le fonctionnement des wallets numériques</li>
-            <li>Modéliser les flux transactionnels carte et wallet</li>
-            <li>Comprendre les standards internationaux (EMV, ISO)</li>
-            <li>Concevoir une architecture SI de paiement omnicanale</li>
-            <li>Identifier les enjeux de sécurité, conformité et gouvernance</li>
-          </ul>
-          <div class="hero-actions" style="margin-top: 1.5rem">
-            <a class="btn" href="j1/intro.html">Démarrer le Jour 1</a>
+          <div class="hub-days" id="hub-days">
+            <article class="hub-day" data-day="j1">
+              <button
+                type="button"
+                class="hub-day-toggle"
+                aria-expanded="false"
+                aria-controls="hub-panel-j1"
+              >
+                <span class="bm-main">
+                  <span class="bm-num">J1</span>
+                  <span class="bm-text">
+                    <span class="bm-title">Écosystème &amp; flux carte</span>
+                    <span class="bm-sub">Socle métier et transactionnel</span>
+                  </span>
+                </span>
+                <span class="bm-aside">
+                  <span class="bm-dur">4 h</span>
+                  <span class="hub-day-chevron" aria-hidden="true"></span>
+                </span>
+              </button>
+              <div class="hub-day-panel" id="hub-panel-j1" hidden>
+                <div class="hub-day-grid">
+                  <div>
+                    <h3>But / pertinence</h3>
+                    <p>Socle monétique avant QR / NFC / wallets.</p>
+                  </div>
+                  <div>
+                    <h3>Notions</h3>
+                    <p class="hub-notions">
+                      Acteurs · chaîne · SI · Auth → Clearing → Settlement ·
+                      online / offline
+                    </p>
+                  </div>
+                </div>
+                <a class="btn hub-day-open" href="j1/intro.html">Ouvrir le Jour 1</a>
+              </div>
+            </article>
+
+            <article class="hub-day" data-day="j2">
+              <button
+                type="button"
+                class="hub-day-toggle"
+                aria-expanded="false"
+                aria-controls="hub-panel-j2"
+              >
+                <span class="bm-main">
+                  <span class="bm-num">J2</span>
+                  <span class="bm-text">
+                    <span class="bm-title">Paiements par QR Code</span>
+                    <span class="bm-sub">Canal digital software-first</span>
+                  </span>
+                </span>
+                <span class="bm-aside">
+                  <span class="bm-dur">4 h</span>
+                  <span class="hub-day-chevron" aria-hidden="true"></span>
+                </span>
+              </button>
+              <div class="hub-day-panel" id="hub-panel-j2" hidden>
+                <div class="hub-day-grid">
+                  <div>
+                    <h3>But / pertinence</h3>
+                    <p>Canal digital sans prérequis token / SE.</p>
+                  </div>
+                  <div>
+                    <h3>Notions</h3>
+                    <p class="hub-notions">
+                      Typologies · payload · EMV QR · interop
+                    </p>
+                  </div>
+                </div>
+                <a class="btn hub-day-open" href="j2/intro.html">Ouvrir le Jour 2</a>
+              </div>
+            </article>
+
+            <article class="hub-day" data-day="j3">
+              <button
+                type="button"
+                class="hub-day-toggle"
+                aria-expanded="false"
+                aria-controls="hub-panel-j3"
+              >
+                <span class="bm-main">
+                  <span class="bm-num">J3</span>
+                  <span class="bm-text">
+                    <span class="bm-title">Tokenisation &amp; sécurité</span>
+                    <span class="bm-sub">PAN → token, TSP, risques</span>
+                  </span>
+                </span>
+                <span class="bm-aside">
+                  <span class="bm-dur">4 h</span>
+                  <span class="hub-day-chevron" aria-hidden="true"></span>
+                </span>
+              </button>
+              <div class="hub-day-panel" id="hub-panel-j3" hidden>
+                <div class="hub-day-grid">
+                  <div>
+                    <h3>But / pertinence</h3>
+                    <p>Modèle de sécurité réutilisé par NFC et wallets.</p>
+                  </div>
+                  <div>
+                    <h3>Notions</h3>
+                    <p class="hub-notions">
+                      PAN / token · TSP · lifecycle · PCI · SCA
+                    </p>
+                  </div>
+                </div>
+                <a class="btn hub-day-open" href="j3/intro.html">Ouvrir le Jour 3</a>
+              </div>
+            </article>
+
+            <article class="hub-day" data-day="j4">
+              <button
+                type="button"
+                class="hub-day-toggle"
+                aria-expanded="false"
+                aria-controls="hub-panel-j4"
+              >
+                <span class="bm-main">
+                  <span class="bm-num">J4</span>
+                  <span class="bm-text">
+                    <span class="bm-title">NFC &amp; wallets numériques</span>
+                    <span class="bm-sub">Proximité + wallets après le token</span>
+                  </span>
+                </span>
+                <span class="bm-aside">
+                  <span class="bm-dur">4 h</span>
+                  <span class="hub-day-chevron" aria-hidden="true"></span>
+                </span>
+              </button>
+              <div class="hub-day-panel" id="hub-panel-j4" hidden>
+                <div class="hub-day-grid">
+                  <div>
+                    <h3>But / pertinence</h3>
+                    <p>Token + SE / HCE appliqués au canal de proximité.</p>
+                  </div>
+                  <div>
+                    <h3>Notions</h3>
+                    <p class="hub-notions">
+                      NFC · contactless · SE / HCE · wallets
+                    </p>
+                  </div>
+                </div>
+                <a class="btn hub-day-open" href="j4/intro.html">Ouvrir le Jour 4</a>
+              </div>
+            </article>
+
+            <article class="hub-day" data-day="j5">
+              <button
+                type="button"
+                class="hub-day-toggle"
+                aria-expanded="false"
+                aria-controls="hub-panel-j5"
+              >
+                <span class="bm-main">
+                  <span class="bm-num">J5</span>
+                  <span class="bm-text">
+                    <span class="bm-title">Architecture SI omnicanale</span>
+                    <span class="bm-sub">Orchestration multi-canal</span>
+                  </span>
+                </span>
+                <span class="bm-aside">
+                  <span class="bm-dur">4 h</span>
+                  <span class="hub-day-chevron" aria-hidden="true"></span>
+                </span>
+              </button>
+              <div class="hub-day-panel" id="hub-panel-j5" hidden>
+                <div class="hub-day-grid">
+                  <div>
+                    <h3>But / pertinence</h3>
+                    <p>Synthèse QR + token + NFC en plateforme SI.</p>
+                  </div>
+                  <div>
+                    <h3>Notions</h3>
+                    <p class="hub-notions">
+                      Omnicanal · gateway · fraud · gouvernance
+                    </p>
+                  </div>
+                </div>
+                <a class="btn hub-day-open" href="j5/intro.html">Ouvrir le Jour 5</a>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -179,5 +276,30 @@
         formateur
       </div>
     </footer>
+
+    <script>
+      (function () {
+        const root = document.getElementById("hub-days");
+        if (!root) return;
+        root.querySelectorAll(".hub-day-toggle").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const day = btn.closest(".hub-day");
+            const panel = day.querySelector(".hub-day-panel");
+            const open = btn.getAttribute("aria-expanded") === "true";
+            root.querySelectorAll(".hub-day").forEach((el) => {
+              el.classList.remove("is-open");
+              el.querySelector(".hub-day-toggle").setAttribute("aria-expanded", "false");
+              el.querySelector(".hub-day-panel").hidden = true;
+            });
+            if (!open) {
+              day.classList.add("is-open");
+              btn.setAttribute("aria-expanded", "true");
+              panel.hidden = false;
+              panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
