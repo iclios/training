@@ -4,7 +4,7 @@ window.J3_BLOCS = [
   { id: "lifecycle", title: "Network tokenization & lifecycle", href: "lifecycle.html" },
   { id: "architecture-si", title: "Architecture SI tokenisation", href: "architecture-si.html" },
   { id: "securite-conformite", title: "Sécurité & conformité", href: "securite-conformite.html" },
-  { id: "atelier", title: "Atelier palpable", href: "atelier.html" },
+  { id: "atelier", title: "Atelier", href: "atelier.html" },
 ];
 
 (function initJ3Nav() {

@@ -1,0 +1,54 @@
+BLOC — FORMATEUR
+Cours : Paiements digitaux & Wallets numériques
+Jour 1 · Écosystème
+Bloc : Standards internationaux (EMV / ISO)
+Durée indicative : 20–25 min
+Précédent : Acteurs de l’écosystème · Suivant : Chaîne de valeur
+Sources : EMVCo · ISO 8583 · ISO/IEC 14443 · ISO 20022 · (mention) ISO/TS 12812
+
+
+================================================================================
+0. VOCABULAIRE (ouvrir le bloc)
+================================================================================
+Norme (ISO) ≠ Spec (EMVCo) ≠ « Standard » (mot fourre-tout) ≠ Règles scheme
+(+ Réglementation DSP2/SCA = encore autre chose)
+Phrase : technique vs métier vs droit.
+
+
+================================================================================
+1. IDÉE CLÉ
+================================================================================
+Deux familles : EMV/EMVCo (produit paiement) · ISO (technique transverse).
+Objectif module : situer EMV et ISO — pas digérer chaque spec.
+
+
+================================================================================
+2. EMVCo — QUATRE FAMILLES
+================================================================================
+Chip · 3DS · QR · Token (+ ponts J1 / J2 / J3 / J4)
+
+
+================================================================================
+3. ISO — TROIS NORMES DU PARCOURS
+================================================================================
+- 8583 → messages auth / clearing (J1)
+- 14443 → interface RF proximité (J4)
+- 20022 → messaging moderne / plateforme (J5)
+
+
+================================================================================
+4. WALLET — PAS D’ISO UNIQUE
+================================================================================
+Empilement :
+1) ISO 14443 (RF)
+2) EMV Contactless (logique paiement)
+3) EMV Payment Tokenisation (credential) ← le vrai « standard wallet » carte
+Mention : ISO/TS 12812 (mobile financial services) — peu structurant pour
+wallet scheme. SE/HCE/TEE = modèles de confiance (J4), pas ISO paiement.
+
+
+================================================================================
+5. PIÈGES
+================================================================================
+« Standard » ≠ un type unique · EMVCo ≠ scheme · ISO ≠ autorisation ·
+Wallet ≠ une norme · 14443 ≠ paiement

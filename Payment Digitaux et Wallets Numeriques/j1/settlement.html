@@ -710,34 +710,79 @@
           </div>
         </section>
 
-        <!-- Cas pratiques -->
         <section class="section">
           <p class="section-label">Ancrage</p>
-          <h2>Cas pratiques</h2>
-          <div class="split-2">
-            <div class="panel ok">
-              <h3>Cas 1 — Fil rouge J1</h3>
-              <ul>
-                <li>Autorisation OK → clearing OK → settlement</li>
-                <li>Puis crédit marchand selon contrat</li>
-                <li>Reposer toute la chronologie</li>
-              </ul>
+          <h2>Trois lectures settlement</h2>
+          <p class="intro">
+            Fil rouge · retard · écart de réconciliation.
+          </p>
+
+          <div class="diagram" id="diagram-cas-settlement">
+            <div class="diagram-header">
+              <h3>Fil rouge · Retard · Écart</h3>
+              <p>Auth → clearing → settlement → crédit marchand</p>
             </div>
-            <div class="panel ko">
-              <h3>Cas 2 — Settlement en retard</h3>
-              <ul>
-                <li>Positions clearing connues</li>
-                <li>Règlement non abouti (cut-off, incident…)</li>
-                <li>≠ decline d’autorisation</li>
-              </ul>
+            <svg viewBox="0 0 1000 280" role="img" aria-label="Trois lectures settlement">
+              <g>
+                <rect x="30" y="28" width="300" height="220" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="48" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                <text x="140" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Fil rouge J1</text>
+                <text x="140" y="94" fill="#5a6b7c" font-size="12">chronologie complète</text>
+                <rect x="48" y="140" width="90" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                <text x="93" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Auth OK</text>
+                <rect x="148" y="140" width="160" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                <text x="228" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Clearing → Settle</text>
+                <text x="180" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Puis crédit marchand</text>
+                <text x="180" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">selon contrat</text>
+              </g>
+              <g>
+                <rect x="350" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="368" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                <text x="460" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Retard</text>
+                <text x="460" y="94" fill="#5a6b7c" font-size="12">cut-off · incident</text>
+                <rect x="368" y="140" width="140" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                <text x="438" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Positions OK</text>
+                <rect x="518" y="140" width="110" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                <text x="573" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">≠ decline</text>
+                <text x="500" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Règlement non abouti</text>
+                <text x="500" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Clearing déjà connu</text>
+              </g>
+              <g>
+                <rect x="670" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-psp.jpg" x="688" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                <text x="780" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Écart</text>
+                <text x="780" y="94" fill="#5a6b7c" font-size="12">réconciliation</text>
+                <rect x="688" y="140" width="100" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                <text x="738" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Auth ≠</text>
+                <rect x="798" y="140" width="150" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                <text x="873" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Clearing ≠ crédit</text>
+                <text x="820" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Placer l’écart</text>
+                <text x="820" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">sur la chaîne</text>
+              </g>
+            </svg>
+            <div class="seq-steps" id="cas-settlement-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Fil rouge</strong>
+                  <p>Auth OK → clearing OK → settlement → crédit marchand selon contrat.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Retard</strong>
+                  <p>Positions connues, règlement non abouti — ≠ decline d’autorisation.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Écart</strong>
+                  <p>Montant autorisé ≠ présenté ≠ réglé / crédité — où est l’écart ?</p>
+                </span>
+              </button>
             </div>
-          </div>
-          <div class="panel" style="margin-top: 1rem">
-            <h3>Cas 3 — Écart de réconciliation</h3>
-            <ul>
-              <li>Montant autorisé ≠ présenté clearing ≠ réglé / crédité</li>
-              <li>Placer l’écart sur la chaîne</li>
-            </ul>
           </div>
         </section>
 
@@ -769,33 +814,6 @@
             </div>
           </div>
         </section>
-
-        <details class="trainer-notes">
-          <summary>Notes formateur — questions SI</summary>
-          <div class="notes-body">
-            <ul>
-              <li>
-                Qui « possède » le settlement&nbsp;: trésorerie, monétique,
-                back-office cartes&nbsp;?
-              </li>
-              <li>Quels cut-offs scheme suivez-vous au quotidien&nbsp;?</li>
-              <li>
-                Comment traitez-vous un écart autorisation / clearing /
-                settlement&nbsp;?
-              </li>
-            </ul>
-          </div>
-        </details>
-
-        <div class="check-end">
-          <h3>Check de fin de bloc</h3>
-          <ul>
-            <li>Settlement = règlement des positions</li>
-            <li>Net vs Gross / RTGS distingués</li>
-            <li>Domestique (TARGET…) vs international (scheme) situés</li>
-            <li>Distinction settlement interbancaire vs crédit marchand vécu</li>
-          </ul>
-        </div>
 
         <div class="sources-box">
           <strong>Sources normes / specs</strong> — à affiner : règles de

@@ -2,6 +2,7 @@ window.J1_BLOCS = [
   { id: "intro", title: "Intro & objectifs", href: "intro.html" },
   { id: "evolution", title: "Évolution des paiements", href: "evolution.html" },
   { id: "acteurs", title: "Acteurs de l’écosystème", href: "acteurs.html" },
+  { id: "standards-emvco", title: "Standards internationaux", href: "standards-emvco.html" },
   { id: "chaine", title: "Chaîne de valeur", href: "chaine.html" },
   { id: "composants-si", title: "Composants SI", href: "composants-si.html" },
   { id: "autorisation", title: "Autorisation", href: "autorisation.html" },

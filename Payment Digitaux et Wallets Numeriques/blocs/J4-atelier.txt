@@ -1,4 +1,4 @@
-JOUR 4 — Atelier palpable
+JOUR 4 — Atelier
 Kit : PN532, ACR122U, tags, carte CL, smartphones wallet, NFC Tools.
 Déroulé : antenne → lecture UID → distance → lien flux mobile → NFC vs QR.
 Limites : pas de données sensibles · tag ≠ paiement EMV.

@@ -3,7 +3,7 @@ Cours : Paiements digitaux & Wallets numériques
 Jour 1 · Architecture générale
 Bloc : Chaîne de valeur
 Durée indicative : 30–40 min
-Précédent : Acteurs de l’écosystème · Suivant : Composants SI
+Précédent : Standards EMVCo · Suivant : Composants SI
 Sources normes : à affiner (modèles scheme, ISO messages…)
 
 

@@ -6,7 +6,7 @@ window.J2_BLOCS = [
   { id: "standards", title: "Standards & interopérabilité", href: "standards.html" },
   { id: "cas-usage", title: "Cas d’usage", href: "cas-usage.html" },
   { id: "cas-national", title: "Cas : QR national", href: "cas-national.html" },
-  { id: "atelier", title: "Atelier palpable", href: "atelier.html" },
+  { id: "atelier", title: "Atelier", href: "atelier.html" },
 ];
 
 (function initJ2Nav() {

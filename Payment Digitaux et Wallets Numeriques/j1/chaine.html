@@ -752,65 +752,83 @@
 
             <section class="section">
               <p class="section-label">Ancrage</p>
-              <h2>Cas pratiques</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>Cas 1 — Reconstituer l’ordre</h3>
-                  <ul>
-                    <li>5 étiquettes, sans notes</li>
-                  </ul>
+              <h2>Trois lectures de la chaîne</h2>
+              <p class="intro">
+                Ordre du message · montage PSP · incident.
+              </p>
+
+              <div class="diagram" id="diagram-cas-chaine">
+                <div class="diagram-header">
+                  <h3>Ordre · PSP · Incident</h3>
+                  <p>Reconstituer · situer · diagnostiquer</p>
                 </div>
-                <div class="panel">
-                  <h3>Cas 2 — Quel montage PSP&nbsp;?</h3>
-                  <ul>
-                    <li>Chez vous&nbsp;: 1, 2 ou 3&nbsp;?</li>
-                    <li>Contrat + statut scheme</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="split-2">
-                <div class="panel">
-                  <h3>Cas 3 — E-commerce</h3>
-                  <ul>
-                    <li>Checkout = terminal</li>
-                    <li>Puis appliquer le bon montage PSP / acquéreur</li>
-                  </ul>
-                </div>
-                <div class="panel ko">
-                  <h3>Cas 4 — Réponse absente</h3>
-                  <ul>
-                    <li>Enquêter maillon par maillon (horodatages)</li>
-                  </ul>
+                <svg
+                  viewBox="0 0 1000 280"
+                  role="img"
+                  aria-label="Trois lectures de la chaîne de valeur"
+                >
+                  <g>
+                    <rect x="30" y="28" width="300" height="220" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="48" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="140" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">L’ordre</text>
+                    <text x="140" y="94" fill="#5a6b7c" font-size="12">5 maillons</text>
+                    <rect x="48" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                    <text x="108" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Message</text>
+                    <rect x="178" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                    <text x="243" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Sans notes</text>
+                    <text x="180" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Client → … → émetteur</text>
+                    <text x="180" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Puis la réponse revient</text>
+                  </g>
+                  <g>
+                    <rect x="350" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-psp.jpg" x="368" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="460" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Le montage PSP</text>
+                    <text x="460" y="94" fill="#5a6b7c" font-size="12">1 · 2 · ou 3</text>
+                    <rect x="368" y="140" width="110" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                    <text x="423" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Contrat</text>
+                    <rect x="488" y="140" width="140" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                    <text x="558" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Statut scheme</text>
+                    <text x="500" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Banque seule · façade</text>
+                    <text x="500" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">ou PSP-acquéreur</text>
+                  </g>
+                  <g>
+                    <rect x="670" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="688" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="780" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">L’incident</text>
+                    <text x="780" y="94" fill="#5a6b7c" font-size="12">réponse absente</text>
+                    <rect x="688" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                    <text x="748" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Timeout</text>
+                    <rect x="818" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#5a6b7c" stroke-width="1.5"/>
+                    <text x="883" y="159" text-anchor="middle" fill="#5a6b7c" font-size="11" font-weight="700">Hop par hop</text>
+                    <text x="820" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Enquêter maillon</text>
+                    <text x="820" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">par maillon</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="cas-chaine-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Ordre</strong>
+                      <p>Reconstituer Client → terminal → acquéreur → réseau → émetteur (et retour).</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>PSP</strong>
+                      <p>Chez vous : montage 1, 2 ou 3 ? Contrat + statut scheme.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Incident</strong>
+                      <p>Réponse absente → horodatages hop par hop, pas un « bug vague ».</p>
+                    </span>
+                  </button>
                 </div>
               </div>
             </section>
-
-            <details class="trainer-notes">
-              <summary>Notes formateur</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>
-                    Faire redessiner la chaîne au tableau avant le schéma
-                    projeté
-                  </li>
-                  <li>
-                    Insister sur le retour : beaucoup s’arrêtent mentalement à
-                    l’émetteur
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Check de fin de bloc</h3>
-              <ul>
-                <li>Chaîne complète restituée dans l’ordre</li>
-                <li>Vue message ≠ vue argent</li>
-                <li>Les 3 montages PSP / acquéreur distingués</li>
-                <li>Sens demande / réponse compris</li>
-                <li>Transition claire vers composants SI</li>
-              </ul>
-            </div>
 
             <div class="sources-box">
               <strong>Sources normes / specs</strong> — à affiner : modèles

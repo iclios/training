@@ -775,37 +775,79 @@
           </div>
         </section>
 
-        <!-- Cas pratiques -->
         <section class="section">
           <p class="section-label">Ancrage</p>
-          <h2>Cas pratiques</h2>
-          <div class="split-2">
-            <div class="panel ok">
-              <h3>Cas 1 — Journée marchand</h3>
-              <ul>
-                <li>Plusieurs autorisations OK</li>
-                <li>Remise clearing → positions</li>
-                <li>
-                  Le commerçant n’est pas « payé » au clearing : compensation
-                  entre établissements
-                </li>
-              </ul>
+          <h2>Trois lectures clearing</h2>
+          <p class="intro">
+            Journée marchand · anomalie · banque duale.
+          </p>
+
+          <div class="diagram" id="diagram-cas-clearing">
+            <div class="diagram-header">
+              <h3>Remise · Anomalie · Duale</h3>
+              <p>Compensation ≠ paiement commerçant · ≠ decline auth</p>
             </div>
-            <div class="panel ko">
-              <h3>Cas 2 — Anomalie clearing</h3>
-              <ul>
-                <li>Autorisation OK</li>
-                <li>Problème à la présentation / compensation</li>
-                <li>Diagnostic ≠ « carte refusée »</li>
-              </ul>
+            <svg viewBox="0 0 1000 280" role="img" aria-label="Trois lectures clearing">
+              <g>
+                <rect x="30" y="28" width="300" height="220" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-commercant.jpg" x="48" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                <text x="140" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Journée marchand</text>
+                <text x="140" y="94" fill="#5a6b7c" font-size="12">plusieurs auth OK</text>
+                <rect x="48" y="140" width="110" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                <text x="103" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Remise</text>
+                <rect x="168" y="140" width="140" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                <text x="238" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Positions</text>
+                <text x="180" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Compensation entre</text>
+                <text x="180" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">établissements</text>
+              </g>
+              <g>
+                <rect x="350" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="368" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                <text x="460" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Anomalie</text>
+                <text x="460" y="94" fill="#5a6b7c" font-size="12">présentation / compensation</text>
+                <rect x="368" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                <text x="433" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Auth était OK</text>
+                <rect x="508" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                <text x="568" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">≠ refusée</text>
+                <text x="500" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Diagnostic clearing</text>
+                <text x="500" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">≠ « carte refusée »</text>
+              </g>
+              <g>
+                <rect x="670" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="688" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                <text x="780" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Banque duale</text>
+                <text x="780" y="94" fill="#5a6b7c" font-size="12">issuer + acquirer</text>
+                <rect x="688" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                <text x="753" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">2 files SI</text>
+                <rect x="828" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                <text x="888" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Out / In</text>
+                <text x="820" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Acquiring outgoing</text>
+                <text x="820" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">vs issuing incoming</text>
+              </g>
+            </svg>
+            <div class="seq-steps" id="cas-clearing-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Journée</strong>
+                  <p>Auth OK → remise clearing → positions. Le commerçant n’est pas « payé » au clearing.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Anomalie</strong>
+                  <p>Auth était OK — le problème est à la présentation / compensation.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Duale</strong>
+                  <p>Deux files SI : outgoing acquiring vs incoming issuing — qui lit quoi chez vous ?</p>
+                </span>
+              </button>
             </div>
-          </div>
-          <div class="panel" style="margin-top: 1rem">
-            <h3>Cas 3 — Banque duale (issuer + acquirer)</h3>
-            <ul>
-              <li>Deux files SI : outgoing acquiring vs incoming issuing</li>
-              <li>Qui lit quoi dans votre organisation&nbsp;?</li>
-            </ul>
           </div>
         </section>
 
@@ -830,30 +872,6 @@
             </div>
           </div>
         </section>
-
-        <details class="trainer-notes">
-          <summary>Notes formateur — questions SI</summary>
-          <div class="notes-body">
-            <ul>
-              <li>Où voyez-vous les fichiers / cycles de clearing&nbsp;?</li>
-              <li>
-                Qui traite les rejets / exceptions de clearing (pas les
-                declines d’autorisation)&nbsp;?
-              </li>
-              <li>Quel est votre interlocuteur scheme / processeur&nbsp;?</li>
-            </ul>
-          </div>
-        </details>
-
-        <div class="check-end">
-          <h3>Check de fin de bloc</h3>
-          <ul>
-            <li>Clearing défini sans le confondre avec settlement</li>
-            <li>Single vs dual message distingués</li>
-            <li>« Qui doit qui » + rôle chambre (ex. STET) compris</li>
-            <li>Cas anomalie clearing vs decline d’autorisation maîtrisé</li>
-          </ul>
-        </div>
 
         <div class="sources-box">
           <strong>Sources normes / specs</strong> — à affiner : règles scheme,

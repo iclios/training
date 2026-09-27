@@ -1,4 +1,4 @@
-JOUR 3 — Atelier palpable
+JOUR 3 — Atelier
 
 Avant / après tokenisation à partir d'un message d'auth J1.
 Simulateur ou sandbox PAN ↔ token ↔ cryptogramme.

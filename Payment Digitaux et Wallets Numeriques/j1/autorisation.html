@@ -447,54 +447,78 @@
           </div>
         </section>
 
-        <!-- Cas pratiques -->
         <section class="section">
           <p class="section-label">Ancrage</p>
-          <h2>Cas pratiques</h2>
+          <h2>Trois réponses d’autorisation</h2>
           <p class="intro">
-            Après la définition — pour faire parler la salle, pas pour remplacer
-            le cadre monétique.
+            Accord · refus métier · échec technique — la décision est chez l’émetteur.
           </p>
-          <div class="split-2">
-            <div class="panel ok">
-              <h3>Cas 1 — Accord</h3>
-              <ul>
-                <li>Demande acheminée jusqu’à l’émetteur</li>
-                <li>Contrôles OK</li>
-                <li>Réponse d’approbation + code d’autorisation</li>
-              </ul>
-              <p style="margin: 0.75rem 0 0; font-size: 0.88rem; color: var(--muted)">
-                Faire dire : la décision est chez l’émetteur.
-              </p>
+
+          <div class="diagram" id="diagram-cas-auth">
+            <div class="diagram-header">
+              <h3>Approve · Decline · Timeout</h3>
+              <p>Trois issues, trois lectures SI</p>
             </div>
-            <div class="panel ko">
-              <h3>Cas 2 — Refus métier</h3>
-              <ul>
-                <li>Même chemin message</li>
-                <li>L’émetteur refuse (disponible, opposition, risque…)</li>
-                <li>C’est une réponse d’autorisation, pas un « bug »</li>
-              </ul>
-            </div>
-          </div>
-          <div class="split-2">
-            <div class="panel">
-              <h3>Cas 3 — Échec technique</h3>
-              <ul>
-                <li>Timeout, indispo réseau ou host émetteur</li>
-                <li>Pas de décision métier claire dans les délais</li>
-                <li>Diagnostic ≠ decline « fonds insuffisants »</li>
-              </ul>
-            </div>
-            <div class="panel">
-              <h3>Cas 4 — Pré-autorisation (optionnel)</h3>
-              <ul>
-                <li>Accord sur un montant estimé / à compléter</li>
-                <li>Toujours une autorisation au sens monétique</li>
-                <li>Cycle métier différent (complétion / capture)</li>
-              </ul>
-              <p style="margin: 0.75rem 0 0; font-size: 0.88rem; color: var(--muted)">
-                À ouvrir si le public acquiring / PSP le demande.
-              </p>
+            <svg viewBox="0 0 1000 280" role="img" aria-label="Trois réponses d’autorisation">
+              <g>
+                <rect x="30" y="28" width="300" height="220" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="48" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                <text x="140" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Accord</text>
+                <text x="140" y="94" fill="#5a6b7c" font-size="12">approve</text>
+                <rect x="48" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                <text x="108" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Contrôles OK</text>
+                <rect x="178" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                <text x="243" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Auth code</text>
+                <text x="180" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Demande jusqu’à l’émetteur</text>
+                <text x="180" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Réponse d’approbation</text>
+              </g>
+              <g>
+                <rect x="350" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-porteur.jpg" x="368" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                <text x="460" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Refus métier</text>
+                <text x="460" y="94" fill="#5a6b7c" font-size="12">decline</text>
+                <rect x="368" y="140" width="110" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                <text x="423" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Fonds / risque</text>
+                <rect x="488" y="140" width="140" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                <text x="558" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">≠ bug</text>
+                <text x="500" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Même chemin message</text>
+                <text x="500" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Réponse d’autorisation</text>
+              </g>
+              <g>
+                <rect x="670" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-scheme.jpg" x="688" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                <text x="780" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Échec technique</text>
+                <text x="780" y="94" fill="#5a6b7c" font-size="12">timeout / indispo</text>
+                <rect x="688" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#3d5a80" stroke-width="1.5"/>
+                <text x="748" y="159" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700">Pas de décision</text>
+                <rect x="818" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                <text x="883" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">≠ fonds</text>
+                <text x="820" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Réseau ou host</text>
+                <text x="820" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Runbook technique</text>
+              </g>
+            </svg>
+            <div class="seq-steps" id="cas-auth-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Accord</strong>
+                  <p>Contrôles OK → code d’autorisation. La décision est chez l’émetteur.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Refus métier</strong>
+                  <p>Même chemin, réponse decline — ce n’est pas un incident technique.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>Échec technique</strong>
+                  <p>Timeout / indispo — pas de décision métier claire dans les délais.</p>
+                </span>
+              </button>
             </div>
           </div>
         </section>
@@ -514,31 +538,6 @@
             </div>
           </div>
         </section>
-
-        <details class="trainer-notes">
-          <summary>Notes formateur — questions SI</summary>
-          <div class="notes-body">
-            <ul>
-              <li>Quel composant est votre centre d’autorisation / host issuing&nbsp;?</li>
-              <li>Où tracez-vous demande vs réponse (codes, délais, timeouts)&nbsp;?</li>
-              <li>Qui porte le diagnostic decline métier vs incident technique&nbsp;?</li>
-            </ul>
-            <p class="intro" style="margin: 1rem 0 0">
-              Livrable mental : reformuler la définition monétique sans anecdote
-              magasin, puis illustrer avec un cas.
-            </p>
-          </div>
-        </details>
-
-        <div class="check-end">
-          <h3>Check de fin de bloc</h3>
-          <ul>
-            <li>Définition monétique restituée (demande + réponse + émetteur)</li>
-            <li>Auth localisée dans le cycle EMV (≠ AuthN / CVM)</li>
-            <li>Au moins un cas (accord / refus métier / technique) maîtrisé</li>
-            <li>Pont PAN dans le flux d’auth évoqué sans dériver sur le token</li>
-          </ul>
-        </div>
 
         <div class="sources-box">
           <strong>Sources normes / specs</strong> — à affiner :

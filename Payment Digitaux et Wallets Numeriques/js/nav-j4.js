@@ -4,7 +4,7 @@ window.J4_BLOCS = [
   { id: "paiement-contactless", title: "Paiement sans contact EMV", href: "paiement-contactless.html" },
   { id: "architecture-wallets", title: "Architecture NFC mobile & wallets", href: "architecture-wallets.html" },
   { id: "cas-pratique", title: "Cas pratique smartphone → POS", href: "cas-pratique.html" },
-  { id: "atelier", title: "Atelier palpable", href: "atelier.html" },
+  { id: "atelier", title: "Atelier", href: "atelier.html" },
 ];
 
 (function initJ4Nav() {

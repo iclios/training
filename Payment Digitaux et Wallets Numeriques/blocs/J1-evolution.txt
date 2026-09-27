@@ -15,9 +15,9 @@ nouveaux intermédiaires / messages pour le SI.
 
 Ordre de séance
 1) Cash → carte → mobile → wallet (définir + fresque)
-2) Électronique vs digital
-3) En ligne / proximité / in-app
-4) Temps réel vs différé
+2) Paiement électronique vs digital
+3) Paiement en ligne / proximité / in-app
+4) Paiement temps réel vs paiement différé
 
 
 ================================================================================
@@ -29,17 +29,24 @@ Ordre de séance
 ================================================================================
 3. DISTINCTIONS SYLLABUS
 ================================================================================
-Électronique vs digital
-Électronique = dématérialisation (carte, virement…)
-Digital = canaux numériques (app, QR, wallet…)
-Piège : carte plastique = déjà électronique, pas « digitale »
+Paiement électronique vs digital
+Pastilles cliquables → définitions en panneau.
+Électronique = dématérialisé (messages / systèmes) — ≠ smartphone.
+Digital = initié via canal numérique ; digital ⊂ électronique.
+Web & normes amalgament souvent — ici on tranche.
+Exemple : carte POS = électronique ; Apple Pay / QR = digital.
 
-En ligne · Proximité · In-app
-Où s’initie le paiement — canal ≠ rail
+Paiement en ligne · proximité · in-app
+Pastilles cliquables → définitions en panneau.
+Canal = où s’initie — pas le rail.
+In-app = paiement terminé dans une app marchand (ex. Uber) — EPC.
+≠ site / navigateur · ≠ terminal magasin · ≠ wallet (trousseau + acceptation externe).
+Un wallet peut être un moyen dans l’in-app ; le canal reste l’app.
 
-Temps réel vs différé
-Temps réel : auth online, Instant Payment…
-Différé : clearing / settlement, batch
+Paiement temps réel vs paiement différé
+Pastilles cliquables → définitions en panneau.
+Paiement temps réel : auth online, Instant Payment…
+Paiement différé : clearing / settlement, batch
 Pont : vue message / argent · T+0 / post-tx
 
 
@@ -48,6 +55,6 @@ Pont : vue message / argent · T+0 / post-tx
 ================================================================================
 [ ] Cash → carte → mobile → wallet
 [ ] Électronique ≠ digital
-[ ] En ligne / proximité / in-app
-[ ] Temps réel ≠ différé
+[ ] Paiement en ligne / proximité / in-app
+[ ] Paiement temps réel ≠ paiement différé
 [ ] SI situé à partir de la carte

@@ -3,8 +3,8 @@ Cours : Paiements digitaux & Wallets numériques
 Jour 1 · Écosystème
 Bloc : Acteurs de l’écosystème
 Durée indicative : 25–35 min
-Précédent : Évolution des paiements · Suivant : Chaîne de valeur
-Sources normes : à affiner (EMVCo, règles scheme, cadres locaux…)
+Précédent : Évolution des paiements · Suivant : Standards EMVCo
+Sources normes : documentation scheme, cadres locaux d’agrément PSP
 
 
 ================================================================================
@@ -104,10 +104,10 @@ Consigne : le wallet s’ajoute ; l’émetteur reste décideur (token = J4).
 
 
 ================================================================================
-6. PONT EMVCo
+6. PONT VERS STANDARDS EMVCo
 ================================================================================
-Une ligne en fin de bloc : specs communes (EMVCo…) pour l’interopérabilité —
-sans cours EMV ; on y revient via canaux / standards.
+Le bloc suivant (Standards internationaux) traite EMV / ISO
+et l’empilement wallet — pas de digression specs ici.
 
 
 ================================================================================

@@ -282,47 +282,78 @@
           </div>
         </section>
 
-        <!-- Cas pratiques -->
         <section class="section">
           <p class="section-label">Ancrage</p>
-          <h2>Cas pratiques</h2>
-          <div class="split-2">
-            <div class="panel ok">
-              <h3>Cas 1 — AuthN OK + autorisation accordée</h3>
-              <ul>
-                <li>Porteur authentifié</li>
-                <li>Demande d’autorisation</li>
-                <li>Émetteur approuve</li>
-              </ul>
-              <p style="margin: 0.75rem 0 0; font-size: 0.88rem; color: var(--muted)">
-                Faire dire : deux étapes, deux résultats.
-              </p>
+          <h2>Trois croisements AuthN / Auth</h2>
+          <p class="intro">
+            Deux étapes, deux résultats — à ne pas fusionner.
+          </p>
+
+          <div class="diagram" id="diagram-cas-authn">
+            <div class="diagram-header">
+              <h3>OK+OK · Échec AuthN · AuthN OK / Auth refusée</h3>
+              <p>Preuve que authentification ≠ autorisation</p>
             </div>
-            <div class="panel ko">
-              <h3>Cas 2 — Échec d’authentification</h3>
-              <ul>
-                <li>PIN erroné / abandon 3DS / timeout AuthN</li>
-                <li>Parcours stoppé ou refusé</li>
-                <li>Cause racine = couche authentification</li>
-              </ul>
-            </div>
-          </div>
-          <div class="split-2">
-            <div class="panel">
-              <h3>Cas 3 — AuthN OK, autorisation refusée</h3>
-              <ul>
-                <li>Porteur bien authentifié</li>
-                <li>Émetteur refuse (fonds, risque, statut…)</li>
-                <li>Preuve que AuthN ≠ autorisation</li>
-              </ul>
-            </div>
-            <div class="panel">
-              <h3>Cas 4 — Frictionless 3DS (optionnel)</h3>
-              <ul>
-                <li>Pas de challenge visible porteur</li>
-                <li>Évaluation de risque côté protocole</li>
-                <li>Ce n’est pas « pas d’authentification »</li>
-              </ul>
+            <svg viewBox="0 0 1000 280" role="img" aria-label="Trois croisements authentification autorisation">
+              <g>
+                <rect x="30" y="28" width="300" height="220" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <image href="../img/acteurs/acteur-porteur.jpg" x="48" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                <text x="140" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Double OK</text>
+                <text x="140" y="94" fill="#5a6b7c" font-size="12">AuthN + Auth</text>
+                <rect x="48" y="140" width="110" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                <text x="103" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Porteur OK</text>
+                <rect x="168" y="140" width="140" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                <text x="238" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Émetteur OK</text>
+                <text x="180" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Deux étapes</text>
+                <text x="180" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Deux résultats</text>
+              </g>
+              <g>
+                <rect x="350" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-device.jpg" x="368" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                <text x="460" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Échec AuthN</text>
+                <text x="460" y="94" fill="#5a6b7c" font-size="12">PIN / 3DS / timeout</text>
+                <rect x="368" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                <text x="433" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Stop parcours</text>
+                <rect x="508" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#5a6b7c" stroke-width="1.5"/>
+                <text x="568" y="159" text-anchor="middle" fill="#5a6b7c" font-size="11" font-weight="700">Cause AuthN</text>
+                <text x="500" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Logs authentification</text>
+                <text x="500" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">≠ code d’autorisation</text>
+              </g>
+              <g>
+                <rect x="670" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <image href="../img/acteurs/acteur-banque.jpg" x="688" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                <text x="780" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">AuthN OK / Auth KO</text>
+                <text x="780" y="94" fill="#5a6b7c" font-size="12">fonds · risque…</text>
+                <rect x="688" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                <text x="753" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Porteur OK</text>
+                <rect x="828" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                <text x="888" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Decline</text>
+                <text x="820" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Preuve décisive :</text>
+                <text x="820" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">AuthN ≠ autorisation</text>
+              </g>
+            </svg>
+            <div class="seq-steps" id="cas-authn-steps">
+              <button type="button" class="seq-step is-active" data-step="1">
+                <span class="n">1</span>
+                <span>
+                  <strong>Double OK</strong>
+                  <p>Porteur authentifié puis émetteur approuve — deux étapes distinctes.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="2">
+                <span class="n">2</span>
+                <span>
+                  <strong>Échec AuthN</strong>
+                  <p>Cause racine = couche authentification, pas le code d’autorisation.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="3">
+                <span class="n">3</span>
+                <span>
+                  <strong>AuthN OK / Auth KO</strong>
+                  <p>Porteur OK, émetteur refuse — AuthN et autorisation sont découplées.</p>
+                </span>
+              </button>
             </div>
           </div>
         </section>
@@ -372,34 +403,6 @@
             </div>
           </div>
         </section>
-
-        <details class="trainer-notes">
-          <summary>Notes formateur — questions SI</summary>
-          <div class="notes-body">
-            <ul>
-              <li>Où sont gérés essais PIN / blocages chez vous&nbsp;?</li>
-              <li>Qui opère l’ACS / le parcours 3DS&nbsp;?</li>
-              <li>
-                Comment corrélez-vous un refus avec un log AuthN vs une
-                réponse d’autorisation&nbsp;?
-              </li>
-            </ul>
-            <p class="intro" style="margin: 1rem 0 0">
-              Pont J3 / J4 : SCA, biométrie wallet, device binding —
-              vocabulaire posé ici.
-            </p>
-          </div>
-        </details>
-
-        <div class="check-end">
-          <h3>Check de fin de bloc</h3>
-          <ul>
-            <li>Définition AuthN monétique restituée</li>
-            <li>AuthN localisée dans le cycle EMV (≠ autorisation)</li>
-            <li>Un mécanisme proximité + un e-com cités</li>
-            <li>Cas échec AuthN vs decline d’autorisation maîtrisé</li>
-          </ul>
-        </div>
 
         <div class="sources-box">
           <strong>Sources normes / specs</strong> — à affiner : EMV (PIN /

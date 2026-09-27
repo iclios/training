@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Évolution des paiements — Jour 1 | Paiements digitaux</title>
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/styles.css?v=fresco3" />
   </head>
   <body data-bloc="evolution">
     <header class="site-bar">
@@ -47,92 +47,77 @@
             <section class="section" style="border-top: none; padding-top: 0">
               <p class="section-label">1 · Définir</p>
               <h2>Quatre notions</h2>
-              <p class="intro">
-                On fixe le vocabulaire avant les dates. Pour chaque notion :
-                définition + ce qui change pour le SI.
-              </p>
 
-              <div class="notion-grid">
-                <article class="notion-card">
+              <div class="notion-rail" aria-label="Cash, carte, mobile, wallet">
+                <article class="notion-tile">
                   <img
-                    src="../img/evolution/evo-cash.png"
-                    alt="Illustration paiement cash"
-                    width="88"
-                    height="88"
+                    src="../img/evolution/evo-cash.svg"
+                    alt=""
+                    width="200"
+                    height="140"
                   />
-                  <div>
+                  <div class="notion-tile-body">
+                    <p class="notion-tile-num">01</p>
                     <h3>Cash</h3>
                     <p>
-                      Échange de valeur physique (pièce / billet) entre deux
-                      parties, sans intermédiaire technique de paiement.
+                      Valeur physique échangée entre deux parties — sans
+                      intermédiaire technique.
                     </p>
-                    <p class="si">
-                      <strong>SI :</strong> pas de message monétique temps réel
-                    </p>
+                    <p class="notion-tile-si">Pas de message monétique</p>
                   </div>
                 </article>
 
-                <article class="notion-card">
+                <article class="notion-tile is-key">
                   <img
-                    src="../img/evolution/evo-carte.png"
-                    alt="Illustration paiement carte"
-                    width="88"
-                    height="88"
+                    src="../img/evolution/evo-carte.svg"
+                    alt=""
+                    width="200"
+                    height="140"
                   />
-                  <div>
+                  <div class="notion-tile-body">
+                    <p class="notion-tile-num">02</p>
                     <h3>Carte</h3>
                     <p>
-                      Instrument émis qui s’appuie sur un
-                      <strong>réseau</strong> pour faire autoriser puis régler
-                      une opération.
+                      Instrument émis + <strong>réseau</strong> pour autoriser
+                      puis régler.
                     </p>
-                    <p class="si">
-                      <strong>SI :</strong> chaîne auth / clearing / settlement
-                    </p>
-                    <p class="creator">
-                      France : Carte Bleue (1967) · puce Moreno (1974) · proto
-                      B0 (Bull) avant EMV
-                    </p>
+                    <p class="notion-tile-si">Auth · Clearing · Settlement</p>
                   </div>
                 </article>
 
-                <article class="notion-card">
+                <article class="notion-tile">
                   <img
-                    src="../img/evolution/evo-mobile.png"
-                    alt="Illustration paiement mobile"
-                    width="88"
-                    height="88"
+                    src="../img/evolution/evo-mobile.svg"
+                    alt=""
+                    width="200"
+                    height="140"
                   />
-                  <div>
+                  <div class="notion-tile-body">
+                    <p class="notion-tile-num">03</p>
                     <h3>Mobile</h3>
                     <p>
-                      Le <strong>téléphone</strong> devient canal
-                      d’initiation du paiement (app, SMS, mPOS…).
+                      Le <strong>téléphone</strong> devient canal d’initiation
+                      (app, SMS, mPOS…).
                     </p>
-                    <p class="si">
-                      <strong>SI :</strong> device + app ; rail souvent encore
-                      carte (parfois mobile money / A2A)
-                    </p>
+                    <p class="notion-tile-si">Canal — rail souvent encore carte</p>
                   </div>
                 </article>
 
-                <article class="notion-card">
+                <article class="notion-tile">
                   <img
-                    src="../img/evolution/evo-wallet.png"
-                    alt="Illustration wallet numérique"
-                    width="88"
-                    height="88"
+                    src="../img/evolution/evo-wallet.svg"
+                    alt=""
+                    width="200"
+                    height="140"
                   />
-                  <div>
+                  <div class="notion-tile-body">
+                    <p class="notion-tile-num">04</p>
                     <h3>Wallet</h3>
                     <p>
-                      Application qui <strong>orchestre</strong> un ou plusieurs
-                      moyens de paiement (souvent tokenisés) sur un device.
+                      App qui <strong>orchestre</strong> un ou plusieurs moyens
+                      (souvent tokenisés).
                     </p>
-                    <p class="si">
-                      <strong>SI :</strong> token + device binding + UX — détail
-                      J3 / J4
-                    </p>
+                    <p class="notion-tile-si">Token · device · UX → J3 / J4</p>
                   </div>
                 </article>
               </div>
@@ -142,105 +127,175 @@
             <section class="section">
               <p class="section-label">2 · Relier dans le temps</p>
               <h2>Fresque schématique</h2>
-              <p class="intro">
-                Une seule lecture : ce qui s’ajoute à chaque étape. Les dates
-                sont des ancres, pas un catalogue.
-              </p>
 
-              <div class="fresco" aria-label="Fresque cash carte mobile wallet">
+              <div class="diagram" id="diagram-fresque-prop">
+                <div class="diagram-header">
+                  <h3>Troc → Cash → Carte → Mobile → Wallet</h3>
+                  <p>Ligne historique · usagers · moteurs de transformation</p>
+                </div>
                 <svg
-                  viewBox="0 0 960 280"
+                  viewBox="0 0 940 410"
                   role="img"
-                  aria-labelledby="fresco-title"
+                  aria-label="Proposition fresque avec ligne historique, qui et moteurs"
                 >
-                  <title id="fresco-title">
-                    Fresque : cash puis carte puis mobile puis wallet
-                  </title>
-
-                  <!-- Boxes -->
-                  <rect x="20" y="70" width="160" height="100" rx="4" fill="#2f4858" />
-                  <text x="100" y="112" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="18" font-weight="700">Cash</text>
-                  <text x="100" y="138" text-anchor="middle" fill="#c5d3df" font-size="12">monnaies → billets</text>
-
-                  <rect x="270" y="70" width="160" height="100" rx="4" fill="#1e5f8a" />
-                  <text x="350" y="108" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="18" font-weight="700">Carte</text>
-                  <text x="350" y="132" text-anchor="middle" fill="#c5dceb" font-size="12">1967 · Carte Bleue</text>
-                  <text x="350" y="150" text-anchor="middle" fill="#c5dceb" font-size="11">puce · B0 → EMV</text>
-
-                  <rect x="520" y="70" width="160" height="100" rx="4" fill="#0d9f8a" />
-                  <text x="600" y="108" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="18" font-weight="700">Mobile</text>
-                  <text x="600" y="132" text-anchor="middle" fill="#c8f0e8" font-size="12">~1997 SMS</text>
-                  <text x="600" y="150" text-anchor="middle" fill="#c8f0e8" font-size="11">~2007 M-Pesa</text>
-
-                  <rect x="770" y="70" width="170" height="100" rx="4" fill="#087a6a" />
-                  <text x="855" y="108" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="18" font-weight="700">Wallet</text>
-                  <text x="855" y="132" text-anchor="middle" fill="#c8f0e8" font-size="12">~2011–2014</text>
-                  <text x="855" y="150" text-anchor="middle" fill="#c8f0e8" font-size="11">token · NFC</text>
-
-                  <!-- Arrows + labels -->
-                  <path d="M185 120 H255" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#evo-arrow)" fill="none" />
-                  <path d="M435 120 H505" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#evo-arrow)" fill="none" />
-                  <path d="M685 120 H755" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#evo-arrow)" fill="none" />
-
                   <defs>
-                    <marker id="evo-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                    <marker id="ah-fresque" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                       <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
                     </marker>
                   </defs>
 
-                  <text x="220" y="48" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">+ réseau</text>
-                  <text x="220" y="64" text-anchor="middle" fill="#5a6b7c" font-size="11">+ messages</text>
+                  <!-- Moteurs (sur les flèches) -->
+                  <text x="160" y="22" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">double coïncidence</text>
+                  <text x="160" y="38" text-anchor="middle" fill="#5a6b7c" font-size="10">stockage · divisibilité</text>
+                  <text x="370" y="22" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">multi-commerçants</text>
+                  <text x="370" y="38" text-anchor="middle" fill="#5a6b7c" font-size="10">crédit · distance · réseau</text>
+                  <text x="580" y="22" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">device ubiquitaire</text>
+                  <text x="580" y="38" text-anchor="middle" fill="#5a6b7c" font-size="10">inclusion · UX mobile</text>
+                  <text x="790" y="22" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">friction · fraude</text>
+                  <text x="790" y="38" text-anchor="middle" fill="#5a6b7c" font-size="10">multi-moyens · token</text>
 
-                  <text x="470" y="48" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">+ device</text>
-                  <text x="470" y="64" text-anchor="middle" fill="#5a6b7c" font-size="11">canal téléphone</text>
+                  <!-- Âges (cliquables) -->
+                  <g class="node-hit" data-age="troc" tabindex="0" role="button" aria-label="Troc">
+                    <rect x="20" y="52" width="150" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="95" y="88" text-anchor="middle" fill="#2f4858" font-family="Syne, sans-serif" font-size="16" font-weight="700">Troc</text>
+                    <text x="95" y="110" text-anchor="middle" fill="#5a6b7c" font-size="11">bien ↔ bien</text>
+                    <text x="95" y="138" text-anchor="middle" fill="#5a6b7c" font-size="11">pré-monnaie</text>
+                  </g>
+                  <line x1="170" y1="107" x2="200" y2="107" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fresque)"/>
 
-                  <text x="720" y="48" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">+ orchestration</text>
-                  <text x="720" y="64" text-anchor="middle" fill="#5a6b7c" font-size="11">token / biométrie</text>
+                  <g class="node-hit" data-age="cash" tabindex="0" role="button" aria-label="Cash">
+                    <rect x="208" y="52" width="150" height="110" rx="10" fill="#2f4858" stroke="#2f4858" stroke-width="2"/>
+                    <text x="283" y="88" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Cash</text>
+                    <text x="283" y="110" text-anchor="middle" fill="#c5d3df" font-size="11">monnaies → billets</text>
+                    <text x="283" y="138" text-anchor="middle" fill="#c5d3df" font-size="11">valeur neutre</text>
+                  </g>
+                  <line x1="358" y1="107" x2="388" y2="107" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fresque)"/>
 
-                  <!-- Bottom SI strip -->
-                  <rect x="20" y="200" width="920" height="56" rx="4" fill="#0c1b2a" />
-                  <text x="480" y="234" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">
-                    Cash = pas de SI monétique · Carte = naissance du SI · Mobile = canal · Wallet = couche
+                  <g class="node-hit" data-age="carte" tabindex="0" role="button" aria-label="Carte">
+                    <rect x="396" y="52" width="150" height="110" rx="10" fill="#1e5f8a" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="471" y="78" text-anchor="middle" fill="#e7f6f3" font-size="10" font-weight="700" letter-spacing="0.04em">SI NAÎT ICI</text>
+                    <text x="471" y="102" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Carte</text>
+                    <text x="471" y="124" text-anchor="middle" fill="#c5dceb" font-size="11">réseau + messages</text>
+                    <text x="471" y="144" text-anchor="middle" fill="#c5dceb" font-size="11">puce · EMV</text>
+                  </g>
+                  <line x1="546" y1="107" x2="576" y2="107" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fresque)"/>
+
+                  <g class="node-hit" data-age="mobile" tabindex="0" role="button" aria-label="Mobile">
+                    <rect x="584" y="52" width="150" height="110" rx="10" fill="#0d9f8a" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="659" y="88" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Mobile</text>
+                    <text x="659" y="110" text-anchor="middle" fill="#c8f0e8" font-size="11">téléphone = canal</text>
+                    <text x="659" y="138" text-anchor="middle" fill="#c8f0e8" font-size="11">SMS · apps</text>
+                  </g>
+                  <line x1="734" y1="107" x2="764" y2="107" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fresque)"/>
+
+                  <g class="node-hit" data-age="wallet" tabindex="0" role="button" aria-label="Wallet">
+                    <rect x="772" y="52" width="150" height="110" rx="10" fill="#087a6a" stroke="#087a6a" stroke-width="2"/>
+                    <text x="847" y="88" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Wallet</text>
+                    <text x="847" y="110" text-anchor="middle" fill="#c8f0e8" font-size="11">orchestration</text>
+                    <text x="847" y="138" text-anchor="middle" fill="#c8f0e8" font-size="11">token · NFC</text>
+                  </g>
+
+                  <!-- Ligne historique (points cliquables) -->
+                  <text x="471" y="188" text-anchor="middle" fill="#5a6b7c" font-size="11" font-weight="700" letter-spacing="0.06em">LIGNE HISTORIQUE</text>
+                  <line x1="40" y1="210" x2="900" y2="210" stroke="#1e5f8a" stroke-width="3"/>
+
+                  <g class="node-hit" data-age="troc" tabindex="0" role="button" aria-label="Repère historique Troc">
+                    <circle cx="95" cy="210" r="8" fill="#2f4858"/>
+                    <line x1="95" y1="210" x2="95" y2="222" stroke="#2f4858" stroke-width="2"/>
+                    <text x="95" y="238" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Antiquité</text>
+                    <text x="95" y="254" text-anchor="middle" fill="#5a6b7c" font-size="10">échanges directs</text>
+                  </g>
+
+                  <g class="node-hit" data-age="cash" tabindex="0" role="button" aria-label="Repère historique Cash">
+                    <circle cx="283" cy="210" r="8" fill="#2f4858"/>
+                    <line x1="283" y1="210" x2="283" y2="222" stroke="#2f4858" stroke-width="2"/>
+                    <text x="283" y="238" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">~VIIe av. J.-C.</text>
+                    <text x="283" y="254" text-anchor="middle" fill="#5a6b7c" font-size="10">monnaies → billets</text>
+                  </g>
+
+                  <g class="node-hit" data-age="carte" tabindex="0" role="button" aria-label="Repère historique Carte">
+                    <circle cx="471" cy="210" r="9" fill="#0d9f8a" stroke="#087a6a" stroke-width="2"/>
+                    <line x1="471" y1="210" x2="471" y2="222" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="471" y="238" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">1950 → 1967</text>
+                    <text x="471" y="254" text-anchor="middle" fill="#5a6b7c" font-size="10">Diners · CB · puce 1974</text>
+                  </g>
+
+                  <g class="node-hit" data-age="mobile" tabindex="0" role="button" aria-label="Repère historique Mobile">
+                    <circle cx="659" cy="210" r="8" fill="#0d9f8a"/>
+                    <line x1="659" y1="210" x2="659" y2="222" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="659" y="238" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">~1997 → 2007</text>
+                    <text x="659" y="254" text-anchor="middle" fill="#5a6b7c" font-size="10">SMS · M-Pesa</text>
+                  </g>
+
+                  <g class="node-hit" data-age="wallet" tabindex="0" role="button" aria-label="Repère historique Wallet">
+                    <circle cx="847" cy="210" r="8" fill="#087a6a"/>
+                    <line x1="847" y1="210" x2="847" y2="222" stroke="#087a6a" stroke-width="2"/>
+                    <text x="847" y="238" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">~2011 → 2014</text>
+                    <text x="847" y="254" text-anchor="middle" fill="#5a6b7c" font-size="10">wallets NFC</text>
+                  </g>
+
+                  <!-- Qui (fiches dédiées) -->
+                  <text x="471" y="282" text-anchor="middle" fill="#5a6b7c" font-size="11" font-weight="700" letter-spacing="0.06em">QUI UTILISAIT / UTILISE</text>
+
+                  <g class="node-hit" data-fiche="qui-communautes" tabindex="0" role="button" aria-label="Communautés">
+                    <rect x="20" y="292" width="150" height="58" rx="8" fill="#fff" stroke="#c5d3df" stroke-width="1.5"/>
+                    <text x="95" y="316" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Communautés</text>
+                    <text x="95" y="334" text-anchor="middle" fill="#5a6b7c" font-size="10">échanges locaux</text>
+                  </g>
+
+                  <g class="node-hit" data-fiche="qui-tous" tabindex="0" role="button" aria-label="Tout le monde">
+                    <rect x="208" y="292" width="150" height="58" rx="8" fill="#fff" stroke="#c5d3df" stroke-width="1.5"/>
+                    <text x="283" y="316" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Tout le monde</text>
+                    <text x="283" y="334" text-anchor="middle" fill="#5a6b7c" font-size="10">+ États / monnayeurs</text>
+                  </g>
+
+                  <g class="node-hit" data-fiche="qui-porteurs" tabindex="0" role="button" aria-label="Porteurs et commerçants">
+                    <rect x="396" y="292" width="150" height="58" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="471" y="316" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Porteurs · commerçants</text>
+                    <text x="471" y="334" text-anchor="middle" fill="#5a6b7c" font-size="10">banques + schemes</text>
+                  </g>
+
+                  <g class="node-hit" data-fiche="qui-mass" tabindex="0" role="button" aria-label="Mass market">
+                    <rect x="584" y="292" width="150" height="58" rx="8" fill="#fff" stroke="#c5d3df" stroke-width="1.5"/>
+                    <text x="659" y="316" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Mass market</text>
+                    <text x="659" y="334" text-anchor="middle" fill="#5a6b7c" font-size="10">opérateurs / fintechs</text>
+                  </g>
+
+                  <g class="node-hit" data-fiche="qui-digitaux" tabindex="0" role="button" aria-label="Usagers digitaux">
+                    <rect x="772" y="292" width="150" height="58" rx="8" fill="#fff" stroke="#c5d3df" stroke-width="1.5"/>
+                    <text x="847" y="316" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Usagers digitaux</text>
+                    <text x="847" y="334" text-anchor="middle" fill="#5a6b7c" font-size="10">wallets · TSP</text>
+                  </g>
+
+                  <!-- Bandeau SI -->
+                  <rect x="20" y="366" width="902" height="36" rx="6" fill="#0c1b2a"/>
+                  <text x="471" y="389" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">
+                    Troc / Cash = pas de SI monétique · Carte = naissance du SI · Mobile = canal · Wallet = couche
                   </text>
                 </svg>
-                <p class="fresco-legend">
-                  Chaque étape n’efface pas la précédente : elle s’ajoute
-                  dessus.
-                </p>
-              </div>
-
-              <div class="callout" style="margin-top: 1.25rem">
-                <h3>Question salle</h3>
-                <p class="q">
-                  Où commence vraiment votre métier SI banque dans cette
-                  fresque&nbsp;?
-                </p>
-                <p style="margin: 0.65rem 0 0">
-                  Réponse attendue : <strong>à la carte</strong> — quand
-                  apparaissent réseau, messages et chaîne auth / clearing /
-                  settlement.
-                </p>
-              </div>
-
-              <div class="callout warn" style="margin-top: 1rem">
-                <h3>Repères carte — fil français + international</h3>
-                <p>
-                  <strong>France</strong> —
-                  <strong>Carte Bleue</strong> (1967), consortium bancaire
-                  (BNP, Société générale, Crédit lyonnais, CCF, CIC, Crédit du
-                  Nord…) ·
-                  <strong>Roland Moreno</strong> (1974), invention de la carte à
-                  puce · protocole <strong>B0</strong> (Bull CP), standard
-                  français d’authentification à la puce avant le passage à
-                  <strong>EMV</strong>.
-                </p>
-                <p style="margin: 0.65rem 0 0">
-                  <strong>International (contexte)</strong> —
-                  Diners Club / Frank McNamara (1950), BankAmericard (1958) →
-                  Visa : la carte multi-commerçants existe déjà aux USA ; la
-                  France structure ensuite un modèle national (CB) puis une
-                  avance forte sur la <em>puce</em>.
-                </p>
+                <div class="schema-define">
+                  <p class="schema-define-label">Explorer un âge</p>
+                  <div class="schema-keys" role="group" aria-label="Âges de la fresque">
+                    <button type="button" class="schema-key" data-age="troc">Troc</button>
+                    <button type="button" class="schema-key" data-age="cash">Cash</button>
+                    <button type="button" class="schema-key" data-age="carte">Carte</button>
+                    <button type="button" class="schema-key" data-age="mobile">Mobile</button>
+                    <button type="button" class="schema-key" data-age="wallet">Wallet</button>
+                  </div>
+                  <div class="detail-panel fresco-detail" id="fresco-detail">
+                    <p class="detail-placeholder">
+                      Cliquez un âge ou un acteur (Communautés, Tout le monde…)
+                      pour ouvrir sa fiche.
+                    </p>
+                    <div class="detail-body" hidden>
+                      <header class="fresco-fiche-head">
+                        <p class="fresco-fiche-kicker" data-f-kicker></p>
+                        <h4 data-f-title></h4>
+                      </header>
+                      <ul class="fresco-aspects" data-f-aspects></ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
 
@@ -248,171 +303,147 @@
             <section class="section">
               <p class="section-label">3 · Distinctions utiles</p>
               <h2>Électronique · Canaux · Temporalité</h2>
-              <p class="intro">
-                Trois grilles du syllabus — à ne pas fusionner avec cash →
-                carte → mobile → wallet.
-              </p>
 
               <!-- Électronique vs digital -->
+              <h2 style="margin-top: 1.75rem">Électronique · Digital</h2>
               <div class="diagram" id="diagram-elec-digital">
                 <div class="diagram-header">
-                  <h3>Électronique vs digital</h3>
-                  <p>Dématérialisation ≠ canal numérique</p>
+                  <h3>Paiement électronique vs digital</h3>
+                  <p>Dématérialisation ≠ canal numérique — cliquez une zone</p>
                 </div>
-                <svg viewBox="0 0 1000 200" role="img" aria-label="Paiements électroniques versus digitaux">
-                  <g>
-                    <rect x="40" y="40" width="420" height="110" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="250" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Électronique</text>
-                    <text x="250" y="112" text-anchor="middle" fill="#5a6b7c" font-size="12">valeur / message dématérialisés</text>
-                    <text x="250" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">carte, virement, prélèvement…</text>
+                <p class="intro" style="margin: 0 0 1rem">
+                  En une phrase&nbsp;:
+                  <strong>électronique = dématérialisé</strong>&nbsp;;
+                  <strong>digital = initié via un canal numérique</strong>.
+                </p>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Paiements électroniques versus digitaux — inclusion">
+                  <g class="node-hit" data-def="elec" tabindex="0" role="button" aria-label="Paiement électronique">
+                    <rect x="40" y="30" width="920" height="140" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="70" y="62" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Électronique</text>
+                    <text x="70" y="88" fill="#5a6b7c" font-size="12">Sans cash physique — messages / systèmes</text>
+                    <text x="70" y="112" fill="#5a6b7c" font-size="11">carte POS · virement · prélèvement · …</text>
                   </g>
-                  <g>
-                    <rect x="540" y="40" width="420" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="750" y="85" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Digital</text>
-                    <text x="750" y="112" text-anchor="middle" fill="#0d9f8a" font-size="12">canaux numériques d’initiation</text>
-                    <text x="750" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">app, QR, wallet, in-app…</text>
+                  <g class="node-hit" data-def="digital" tabindex="0" role="button" aria-label="Paiement digital">
+                    <rect x="420" y="55" width="510" height="90" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="445" y="88" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Digital ⊂ électronique</text>
+                    <text x="445" y="114" fill="#0d9f8a" font-size="12">Initié via canal numérique — app · web · QR · wallet</text>
                   </g>
                 </svg>
-                <div class="seq-steps" id="elec-digital-steps">
-                  <button type="button" class="seq-step is-active" data-step="1">
-                    <span class="n">1</span>
-                    <span>
-                      <strong>Électronique</strong>
-                      <p>Plus de cash physique — mais pas forcément une app.</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="2">
-                    <span class="n">2</span>
-                    <span>
-                      <strong>Digital</strong>
-                      <p>Le parcours passe par un canal numérique (souvent mobile / web).</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="3">
-                    <span class="n">3</span>
-                    <span>
-                      <strong>Piège</strong>
-                      <p>Une carte plastique est déjà électronique — pas « digitale » au sens canal.</p>
-                    </span>
-                  </button>
+                <div class="detail-panel" id="elec-digital-detail">
+                  <p class="detail-placeholder">
+                    Cliquez <strong>Électronique</strong> ou <strong>Digital</strong>
+                    pour la définition.
+                  </p>
+                  <div class="detail-body" hidden>
+                    <h4 data-ed-title></h4>
+                    <p data-ed-body></p>
+                    <p class="detail-not" data-ed-note></p>
+                  </div>
                 </div>
                 <p class="montage-example">
                   <strong>Exemple</strong>
-                  Paiement carte au POS = électronique. Apple Pay / QR =
-                  digital (souvent encore sur rails carte).
+                  Carte au POS = électronique. Apple Pay / QR = digital
+                  (souvent encore sur rails carte).
                 </p>
               </div>
 
               <!-- Canaux -->
-              <div class="diagram" id="diagram-canaux" style="margin-top: 1.5rem">
+              <h2 style="margin-top: 2.25rem">En ligne · Proximité · In-app</h2>
+              <div class="diagram" id="diagram-canaux">
                 <div class="diagram-header">
-                  <h3>En ligne · Proximité · In-app</h3>
-                  <p>Où s’initie le paiement — pas quel rail monétique</p>
+                  <h3>Paiement en ligne · proximité · in-app</h3>
+                  <p>Où s’initie le paiement — pas quel rail monétique — cliquez une zone</p>
                 </div>
-                <svg viewBox="0 0 1000 220" role="img" aria-label="Trois canaux de paiement">
-                  <g>
-                    <rect x="40" y="40" width="280" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-device.jpg" x="60" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="140" y="82" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">En ligne</text>
-                    <text x="140" y="108" fill="#0d9f8a" font-size="12">e-commerce / web</text>
-                    <text x="140" y="132" fill="#5a6b7c" font-size="11">checkout distant</text>
+                <p class="intro" style="margin: 0 0 1rem">
+                  En une phrase&nbsp;:
+                  <strong>canal = où s’initie le paiement</strong>&nbsp;;
+                  <strong>pas le rail monétique derrière</strong>.
+                </p>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Paiement en ligne, proximité et in-app">
+                  <g class="node-hit" data-canal="enligne" tabindex="0" role="button" aria-label="Paiement en ligne">
+                    <rect x="40" y="30" width="280" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="60" y="48" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="140" y="68" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Paiement en ligne</text>
+                    <text x="140" y="98" fill="#0d9f8a" font-size="12">e-commerce / web</text>
+                    <text x="140" y="122" fill="#5a6b7c" font-size="11">checkout distant</text>
                   </g>
-                  <g>
-                    <rect x="360" y="40" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-commercant.jpg" x="380" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="460" y="82" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Proximité</text>
-                    <text x="460" y="108" fill="#c45c26" font-size="12">magasin · POS · NFC · QR</text>
-                    <text x="460" y="132" fill="#5a6b7c" font-size="11">face au commerçant</text>
+                  <g class="node-hit" data-canal="proximite" tabindex="0" role="button" aria-label="Paiement proximité">
+                    <rect x="360" y="30" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="380" y="48" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="460" y="68" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Paiement proximité</text>
+                    <text x="460" y="98" fill="#c45c26" font-size="12">magasin · POS · NFC · QR</text>
+                    <text x="460" y="122" fill="#5a6b7c" font-size="11">face au commerçant</text>
                   </g>
-                  <g>
-                    <rect x="680" y="40" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-wallet.jpg" x="700" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="780" y="82" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">In-app</text>
-                    <text x="780" y="108" fill="#1e5f8a" font-size="12">dans l’app marchand</text>
-                    <text x="780" y="132" fill="#5a6b7c" font-size="11">sans quitter l’app</text>
+                  <g class="node-hit" data-canal="inapp" tabindex="0" role="button" aria-label="Paiement in-app">
+                    <rect x="680" y="30" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-wallet.jpg" x="700" y="48" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="780" y="68" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Paiement in-app</text>
+                    <text x="780" y="98" fill="#1e5f8a" font-size="12">dans l’app marchand</text>
+                    <text x="780" y="122" fill="#5a6b7c" font-size="11">ex. Uber</text>
                   </g>
-                  <text x="500" y="195" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Canal ≠ rail : in-app peut être carte tokenisée, A2A, wallet…
-                  </text>
                 </svg>
-                <div class="seq-steps" id="canaux-steps">
-                  <button type="button" class="seq-step is-active" data-step="1">
-                    <span class="n">1</span>
-                    <span>
-                      <strong>En ligne</strong>
-                      <p>Paiement distant via navigateur / site marchand.</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="2">
-                    <span class="n">2</span>
-                    <span>
-                      <strong>Proximité</strong>
-                      <p>Présence physique : carte, sans contact, QR magasin…</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="3">
-                    <span class="n">3</span>
-                    <span>
-                      <strong>In-app</strong>
-                      <p>Paiement intégré à l’application (ride, food, banque…).</p>
-                    </span>
-                  </button>
+                <div class="detail-panel" id="canaux-detail">
+                  <p class="detail-placeholder">
+                    Cliquez <strong>paiement en ligne</strong>,
+                    <strong>proximité</strong> ou
+                    <strong>in-app</strong> pour la définition.
+                  </p>
+                  <div class="detail-body" hidden>
+                    <h4 data-c-title></h4>
+                    <p data-c-body></p>
+                    <p class="detail-not" data-c-note></p>
+                  </div>
                 </div>
-                <p class="montage-example">
+                <p class="montage-example" id="canaux-example">
                   <strong>Exemple</strong>
-                  Commander un trajet dans une app = in-app. Payer le même
-                  trajet au terminal du chauffeur = proximité.
+                  <span data-c-example
+                    >Cliquez un canal pour voir un exemple adapté.</span
+                  >
                 </p>
               </div>
 
-              <!-- Temps réel vs différé -->
-              <div class="diagram" id="diagram-temps" style="margin-top: 1.5rem">
+              <!-- Paiement temps réel vs paiement différé -->
+              <h2 style="margin-top: 2.25rem">Temps réel · Différé</h2>
+              <div class="diagram" id="diagram-temps">
                 <div class="diagram-header">
-                  <h3>Temps réel vs différé</h3>
-                  <p>Décision / expérience ≠ règlement interbancaire</p>
+                  <h3>Paiement temps réel vs paiement différé</h3>
+                  <p>Décision / expérience ≠ règlement interbancaire — cliquez une zone</p>
                 </div>
-                <svg viewBox="0 0 1000 200" role="img" aria-label="Paiements temps réel versus différés">
-                  <g>
+                <p class="intro" style="margin: 0 0 1rem">
+                  En une phrase&nbsp;:
+                  <strong>paiement temps réel = décision / expérience immédiate</strong>&nbsp;;
+                  <strong>paiement différé = clearing / settlement après coup</strong>.
+                </p>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Paiement temps réel versus paiement différé">
+                  <g class="node-hit" data-temps="realtime" tabindex="0" role="button" aria-label="Paiement temps réel">
                     <rect x="40" y="40" width="420" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="250" y="85" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Temps réel</text>
+                    <text x="250" y="82" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Paiement temps réel</text>
                     <text x="250" y="112" text-anchor="middle" fill="#0d9f8a" font-size="12">autorisation online · instantané</text>
                     <text x="250" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">réponse tout de suite (T+0)</text>
                   </g>
-                  <g>
+                  <g class="node-hit" data-temps="differe" tabindex="0" role="button" aria-label="Paiement différé">
                     <rect x="540" y="40" width="420" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="750" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Différé</text>
+                    <text x="750" y="82" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Paiement différé</text>
                     <text x="750" y="112" text-anchor="middle" fill="#5a6b7c" font-size="12">clearing · settlement · batch</text>
                     <text x="750" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">après coup, calendriers / cut-offs</text>
                   </g>
                 </svg>
-                <div class="seq-steps" id="temps-steps">
-                  <button type="button" class="seq-step is-active" data-step="1">
-                    <span class="n">1</span>
-                    <span>
-                      <strong>Temps réel</strong>
-                      <p>Auth online, Instant Payment, certains A2A — décision / crédit immédiat selon le rail.</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="2">
-                    <span class="n">2</span>
-                    <span>
-                      <strong>Différé</strong>
-                      <p>Clearing / settlement carte, remises batch — l’OK caisse ≠ argent déjà réglé.</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="3">
-                    <span class="n">3</span>
-                    <span>
-                      <strong>Pont J1</strong>
-                      <p>Même idée que vue message vs vue argent (Chaîne) et T+0 vs post-tx (Composants SI).</p>
-                    </span>
-                  </button>
+                <div class="detail-panel" id="temps-detail">
+                  <p class="detail-placeholder">
+                    Cliquez <strong>paiement temps réel</strong> ou
+                    <strong>paiement différé</strong> pour la définition.
+                  </p>
+                  <div class="detail-body" hidden>
+                    <h4 data-t-title></h4>
+                    <p data-t-body></p>
+                    <p class="detail-not" data-t-note></p>
+                  </div>
                 </div>
-                <p class="montage-example">
+                <p class="montage-example" id="temps-example">
                   <strong>Exemple</strong>
-                  Carte au magasin&nbsp;: autorisation temps réel, règlement
-                  souvent différé. Un Instant Payment = rail pensé pour le
-                  temps réel bout en bout.
+                  <span data-t-example
+                    >Cliquez une zone pour voir un exemple adapté.</span
+                  >
                 </p>
               </div>
             </section>
@@ -437,7 +468,7 @@
                   <!-- Cas 1 -->
                   <g>
                     <rect x="30" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <image href="../img/evolution/evo-carte.png" x="48" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                    <image href="../img/evolution/evo-carte.svg" x="48" y="48" width="72" height="72" preserveAspectRatio="xMidYMid meet"/>
                     <text x="140" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Au magasin</text>
                     <text x="140" y="94" fill="#5a6b7c" font-size="12">carte plastique · POS</text>
                     <rect x="48" y="140" width="110" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
@@ -463,7 +494,7 @@
                   <!-- Cas 3 -->
                   <g>
                     <rect x="670" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <image href="../img/evolution/evo-wallet.png" x="688" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                    <image href="../img/evolution/evo-wallet.svg" x="688" y="48" width="72" height="72" preserveAspectRatio="xMidYMid meet"/>
                     <text x="780" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Au téléphone</text>
                     <text x="780" y="94" fill="#5a6b7c" font-size="12">wallet ou mobile money</text>
                     <rect x="688" y="140" width="90" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
@@ -516,5 +547,355 @@
     </footer>
     <script src="../js/nav-j1.js"></script>
     <script src="../js/fiche.js"></script>
+    <script>
+      (function () {
+        const defs = {
+          elec: {
+            title: "Paiement électronique",
+            body:
+              "La valeur ne circule plus sous forme d’espèces physiques : l’ordre et/ou le transfert passent par des messages et systèmes (carte, virement, prélèvement…). Ce n’est pas synonyme de « paiement sur smartphone ».",
+            note: "Phrase salle : électronique = dématérialisé.",
+          },
+          digital: {
+            title: "Paiement digital",
+            body:
+              "Paiement initié via un canal numérique : app, web, QR, wallet, in-app… Le porteur passe par une interface digitale. Derrière, le rail reste souvent carte / compte — d’où digital ⊂ électronique.",
+            note: "Phrase salle : digital = initié via un canal numérique. Web & normes amalgament souvent les deux — ici on tranche.",
+          },
+        };
+
+        const root = document.getElementById("diagram-elec-digital");
+        const panel = document.getElementById("elec-digital-detail");
+        if (!root || !panel) return;
+
+        function show(key) {
+          const data = defs[key];
+          if (!data) return;
+          const placeholder = panel.querySelector(".detail-placeholder");
+          const body = panel.querySelector(".detail-body");
+          if (placeholder) placeholder.hidden = true;
+          if (body) body.hidden = false;
+          panel.classList.add("is-filled");
+          panel.querySelector("[data-ed-title]").textContent = data.title;
+          panel.querySelector("[data-ed-body]").textContent = data.body;
+          panel.querySelector("[data-ed-note]").textContent = data.note;
+          root.querySelectorAll(".node-hit").forEach((n) => {
+            n.classList.toggle("is-active", n.getAttribute("data-def") === key);
+          });
+        }
+
+        root.addEventListener("click", (e) => {
+          const node = e.target.closest(".node-hit");
+          if (!node || !root.contains(node)) return;
+          const key = node.getAttribute("data-def");
+          if (!key) return;
+          e.preventDefault();
+          show(key);
+        });
+        root.addEventListener("keydown", (e) => {
+          if (e.key !== "Enter" && e.key !== " ") return;
+          const node = e.target.closest(".node-hit");
+          if (!node || !root.contains(node)) return;
+          const key = node.getAttribute("data-def");
+          if (!key) return;
+          e.preventDefault();
+          show(key);
+        });
+      })();
+
+      (function () {
+        const defs = {
+          enligne: {
+            title: "Paiement en ligne",
+            body:
+              "Paiement distant via un site / navigateur : e-commerce, checkout web. Le porteur n’est pas face au commerçant.",
+            note: "Canal ≠ rail : derrière, souvent carte, parfois A2A.",
+            example:
+              "Acheter sur un site e-commerce (navigateur) = en ligne. Même article commandé dans l’app du marchand = in-app.",
+          },
+          proximite: {
+            title: "Paiement proximité",
+            body:
+              "Paiement en présence physique chez le commerçant : carte au POS, sans contact NFC, QR magasin…",
+            note: "Face au commerçant — pas dans une app de service, pas sur un site distant.",
+            example:
+              "Payer au terminal du chauffeur (ou en magasin au POS) = proximité. Même trajet payé dans l’app Uber = in-app.",
+          },
+          inapp: {
+            title: "Paiement in-app",
+            body:
+              "Paiement fait directement depuis une application (souvent l’app marchand) : le parcours se termine dans l’app — sans site / navigateur, sans terminal magasin. Exemple type : Uber. Définition EPC : paiement réalisé depuis une application mobile (ex. app marchand).",
+            note: "≠ wallet. Wallet = trousseau de moyens + contexte d’acceptation externe (POS, checkout…). Un wallet peut être un moyen dans l’in-app (ex. Apple Pay dans Uber) ; le canal reste l’app.",
+            example:
+              "Course Uber payée dans l’app = in-app. Même trajet payé au terminal du chauffeur = proximité.",
+          },
+        };
+
+        const root = document.getElementById("diagram-canaux");
+        const panel = document.getElementById("canaux-detail");
+        const exampleEl = root && root.querySelector("[data-c-example]");
+        if (!root || !panel) return;
+
+        function show(key) {
+          const data = defs[key];
+          if (!data) return;
+          const placeholder = panel.querySelector(".detail-placeholder");
+          const body = panel.querySelector(".detail-body");
+          if (placeholder) placeholder.hidden = true;
+          if (body) body.hidden = false;
+          panel.classList.add("is-filled");
+          panel.querySelector("[data-c-title]").textContent = data.title;
+          panel.querySelector("[data-c-body]").textContent = data.body;
+          panel.querySelector("[data-c-note]").textContent = data.note;
+          if (exampleEl) exampleEl.textContent = data.example;
+          root.querySelectorAll(".node-hit").forEach((n) => {
+            n.classList.toggle("is-active", n.getAttribute("data-canal") === key);
+          });
+        }
+
+        root.addEventListener("click", (e) => {
+          const node = e.target.closest(".node-hit");
+          if (!node || !root.contains(node)) return;
+          const key = node.getAttribute("data-canal");
+          if (!key) return;
+          e.preventDefault();
+          show(key);
+        });
+        root.addEventListener("keydown", (e) => {
+          if (e.key !== "Enter" && e.key !== " ") return;
+          const node = e.target.closest(".node-hit");
+          if (!node || !root.contains(node)) return;
+          const key = node.getAttribute("data-canal");
+          if (!key) return;
+          e.preventDefault();
+          show(key);
+        });
+      })();
+
+      (function () {
+        const defs = {
+          realtime: {
+            title: "Paiement temps réel",
+            body:
+              "La décision / l’expérience est immédiate : autorisation online, Instant Payment, certains A2A — réponse tout de suite (T+0) selon le rail.",
+            note: "Pont J1 : vue message (Chaîne) et T+0 (Composants SI). L’OK immédiat ≠ toujours un règlement interbancaire déjà fait.",
+            example:
+              "Instant Payment = rail pensé pour le temps réel bout en bout. Carte au magasin : l’autorisation est temps réel, le règlement souvent encore différé.",
+          },
+          differe: {
+            title: "Paiement différé",
+            body:
+              "Clearing / settlement / batch après coup : calendriers, cut-offs. L’OK en caisse ne signifie pas que l’argent est déjà réglé entre banques.",
+            note: "Pont J1 : vue argent (Chaîne) et post-tx (Composants SI). Différé = compensation / règlement, pas le ressenti porteur à la caisse.",
+            example:
+              "Carte au magasin : règlement souvent différé (clearing / settlement). L’autorisation, elle, était temps réel.",
+          },
+        };
+
+        const root = document.getElementById("diagram-temps");
+        const panel = document.getElementById("temps-detail");
+        const exampleEl = root && root.querySelector("[data-t-example]");
+        if (!root || !panel) return;
+
+        function show(key) {
+          const data = defs[key];
+          if (!data) return;
+          const placeholder = panel.querySelector(".detail-placeholder");
+          const body = panel.querySelector(".detail-body");
+          if (placeholder) placeholder.hidden = true;
+          if (body) body.hidden = false;
+          panel.classList.add("is-filled");
+          panel.querySelector("[data-t-title]").textContent = data.title;
+          panel.querySelector("[data-t-body]").textContent = data.body;
+          panel.querySelector("[data-t-note]").textContent = data.note;
+          if (exampleEl) exampleEl.textContent = data.example;
+          root.querySelectorAll(".node-hit").forEach((n) => {
+            n.classList.toggle("is-active", n.getAttribute("data-temps") === key);
+          });
+        }
+
+        root.addEventListener("click", (e) => {
+          const node = e.target.closest(".node-hit");
+          if (!node || !root.contains(node)) return;
+          const key = node.getAttribute("data-temps");
+          if (!key) return;
+          e.preventDefault();
+          show(key);
+        });
+        root.addEventListener("keydown", (e) => {
+          if (e.key !== "Enter" && e.key !== " ") return;
+          const node = e.target.closest(".node-hit");
+          if (!node || !root.contains(node)) return;
+          const key = node.getAttribute("data-temps");
+          if (!key) return;
+          e.preventDefault();
+          show(key);
+        });
+      })();
+
+      (function () {
+        const fiches = {
+          troc: {
+            title: "Troc",
+            kicker: "Âge 1 · Pré-monnaie",
+            highlightLast: false,
+            aspects: [
+              "Échange direct d’un bien contre un autre — pas d’intermédiaire monétaire.",
+              "Antiquité : communautés locales, échanges de proximité.",
+              "Friction majeure : la double coïncidence des besoins ; difficile à stocker, transporter, diviser.",
+            ],
+          },
+          cash: {
+            title: "Cash",
+            kicker: "Âge 2 · Monnaie",
+            aspects: [
+              "Pièces puis billets : une valeur neutre acceptée largement.",
+              "Dès ~VIIe av. J.-C. pour les monnaies ; billets plus tard — usage de masse jusqu’à aujourd’hui.",
+              "Usagers : tout le monde ; émission côté États / banques centrales / monnayeurs.",
+              "Reste lourd et risqué à transporter ; mal adapté au crédit différé et au multi-commerçants à distance.",
+              "Règlement encore physique.",
+            ],
+          },
+          carte: {
+            title: "Carte",
+            kicker: "Âge 3 · Réseau · le SI naît ici",
+            aspects: [
+              "Instrument émis qui s’appuie sur un réseau pour autoriser puis régler.",
+              "1950 Diners · 1958 BankAmericard → Visa · 1967 Carte Bleue · 1974 puce · EMV.",
+              "Porteurs et commerçants ; banques émettrice / acquéreuse ; schemes.",
+              "Répond au besoin de crédit, d’acceptation multi-enseignes et de moins de cash en caisse.",
+              "Naissance du SI monétique : messages, autorisation, clearing, settlement.",
+            ],
+          },
+          mobile: {
+            title: "Mobile",
+            kicker: "Âge 4 · Canal device",
+            aspects: [
+              "Le téléphone devient canal d’initiation : SMS, app, mPOS, mobile money…",
+              "~1997 banking SMS · 2007 M-Pesa · apps bancaires ensuite.",
+              "Clients mass market ; opérateurs, fintechs et/ou banques selon le modèle local.",
+              "Ubiquité du device et inclusion — multi-moyens et fraude restent à traiter.",
+              "Souvent encore un rail carte (parfois mobile money / A2A) : canal ≠ nouveau rail.",
+            ],
+          },
+          wallet: {
+            title: "Wallet",
+            kicker: "Âge 5 · Orchestration",
+            aspects: [
+              "Une app orchestre un ou plusieurs moyens, souvent tokenisés, sur un device.",
+              "~2011–2014 : montée des wallets NFC ; généralisation ensuite.",
+              "Usagers digitaux ; providers wallet ; TSP / network tokenization.",
+              "Moins de friction UX, moins d’exposition du PAN ; un device, plusieurs moyens.",
+              "Couche d’orchestration au-dessus du socle carte — détail token / SE en J3–J4.",
+            ],
+          },
+          "qui-communautes": {
+            title: "Communautés",
+            kicker: "Qui · âge du troc",
+            highlightLast: false,
+            aspects: [
+              "Pas le grand public : un cercle restreint qui se connaît ou se croise.",
+              "On échange ce qu’on a contre ce dont on a besoin — face à face.",
+              "La confiance est locale : pas d’institution monétaire, pas d’étranger anonyme.",
+              "Hors du cercle, l’échange bloque → d’où l’intérêt d’une monnaie neutre.",
+            ],
+          },
+          "qui-tous": {
+            title: "Tout le monde",
+            kicker: "Qui · âge du cash",
+            highlightLast: false,
+            aspects: [
+              "Le libellé est volontairement large : particuliers, commerçants, tout agent économique.",
+              "Même unité de compte — on paie sans connaître le vendeur.",
+              "Côté émission : États, banques centrales, monnayeurs (pas les usagers).",
+              "« Tout le monde » = usagers du cash ; le réseau de paiement n’existe pas encore.",
+            ],
+          },
+          "qui-porteurs": {
+            title: "Porteurs · commerçants",
+            kicker: "Qui · âge de la carte",
+            highlightLast: false,
+            aspects: [
+              "Porteur : détient la carte, initie le paiement.",
+              "Commerçant : accepte le moyen et contractualise l’acceptation.",
+              "Entre les deux : banques (émettrice / acquéreuse) et schemes organisent le jeu.",
+              "Deux rôles distincts, un même réseau — c’est là que le SI monétique apparaît.",
+            ],
+          },
+          "qui-mass": {
+            title: "Mass market",
+            kicker: "Qui · âge du mobile",
+            highlightLast: false,
+            aspects: [
+              "Le téléphone touche des volumes hors carte plastique classique.",
+              "Selon le pays : opérateurs télécoms, fintechs, banques — ou un mix.",
+              "Inclusion et ubiquité : le canal scale auprès du grand public.",
+              "Mass market = usagers du canal ; le rail derrière peut rester carte ou autre.",
+            ],
+          },
+          "qui-digitaux": {
+            title: "Usagers digitaux",
+            kicker: "Qui · âge du wallet",
+            highlightLast: false,
+            aspects: [
+              "Usagers équipés d’un smartphone et d’un wallet (Apple Pay, Google Pay, wallet banque…).",
+              "Côté offre : providers wallet + TSP / network tokenization.",
+              "Ils ne « portent » plus seulement une carte : ils orchestrent des moyens tokenisés.",
+              "Pont vers J3–J4 : token, SE / HCE, biométrie.",
+            ],
+          },
+        };
+
+        const root = document.getElementById("diagram-fresque-prop");
+        const panel = document.getElementById("fresco-detail");
+        if (!root || !panel) return;
+
+        function ficheKey(node) {
+          return node.getAttribute("data-fiche") || node.getAttribute("data-age");
+        }
+
+        function show(key) {
+          const data = fiches[key];
+          if (!data) return;
+          const placeholder = panel.querySelector(".detail-placeholder");
+          const body = panel.querySelector(".detail-body");
+          const list = panel.querySelector("[data-f-aspects]");
+          if (placeholder) placeholder.hidden = true;
+          if (body) body.hidden = false;
+          panel.classList.add("is-filled");
+          panel.querySelector("[data-f-title]").textContent = data.title;
+          panel.querySelector("[data-f-kicker]").textContent = data.kicker;
+          list.innerHTML = "";
+          data.aspects.forEach((text, i) => {
+            const li = document.createElement("li");
+            const isLast = i === data.aspects.length - 1;
+            if (isLast && data.highlightLast !== false) li.classList.add("is-si");
+            li.textContent = text;
+            list.appendChild(li);
+          });
+          root.querySelectorAll(".node-hit, .schema-key").forEach((n) => {
+            n.classList.toggle("is-active", ficheKey(n) === key);
+          });
+        }
+
+        root.addEventListener("click", (e) => {
+          const node = e.target.closest(".node-hit, .schema-key");
+          if (!node || !root.contains(node)) return;
+          const key = ficheKey(node);
+          if (!key) return;
+          e.preventDefault();
+          show(key);
+        });
+        root.addEventListener("keydown", (e) => {
+          if (e.key !== "Enter" && e.key !== " ") return;
+          const node = e.target.closest(".node-hit, .schema-key");
+          if (!node || !root.contains(node)) return;
+          const key = ficheKey(node);
+          if (!key) return;
+          e.preventDefault();
+          show(key);
+        });
+      })();
+    </script>
   </body>
 </html>
