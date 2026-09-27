@@ -53,8 +53,8 @@ window.chainCopy = {
     text: "Présente la carte (ou le mobile). En modèle classique, c’est son PAN qui part dans la demande d’autorisation.",
   },
   terminal: {
-    title: "Terminal (POS / mPOS)",
-    text: "Capture le montant, lit la carte, construit le message d’auth, affiche le résultat. Première brique SI côté acceptation.",
+    title: "Terminal / point d’acceptation",
+    text: "Capture montant + données, construit la demande, affiche le résultat. Peut être un POS, un checkout e-com, une in-app ou un wallet — même maillon, façades différentes.",
   },
   acquereur: {
     title: "Acquéreur",

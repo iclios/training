@@ -12,18 +12,19 @@ Sources normes : à affiner (modèles scheme, ISO messages…)
 ================================================================================
 Objectif
 Restituer l’ordre Client → terminal → acquéreur → réseau → émetteur (+ retour),
-distinguer vue message / vue argent, placer PSP et e-com sans casser le modèle.
+distinguer vue message / vue argent, montrer que le digital change la façade
+d’initiation (pas l’ordre), placer PSP sans casser le modèle.
 
 Idée clé
 « Chaîne de valeur = dans quel ordre le message passe — pas qui (acteurs),
-pas dans quels SI (composants). »
+pas dans quels SI (composants). Digital = canal, pas autre chaîne. »
 
 Posture
-1) Définition : question « dans quel ordre ? »
-2) Deux lectures : message (ce bloc) vs argent (clearing/settlement)
-3) Schéma aller / retour + ce qui circule à chaque maillon
-4) Variantes : PSP · e-commerce
-5) Clarification ≠ acteurs ≠ composants SI ≠ autorisation seule
+1) Définition + schéma aller / retour (clic maillon)
+2) Pont digital : 4 façades → même suite
+3) Deux lectures : message vs argent
+4) Variantes PSP
+5) Ancrage : ordre · façade digitale · montage PSP
 
 
 ================================================================================
@@ -51,16 +52,16 @@ Trois montages (obligatoire en salle) + 1 exemple sous chacun
 2) PSP devant l’acquéreur — ex. gateway PSP → banque partenaire
 3) PSP-acquéreur — ex. Paybox (souvent) ; Adyen / Stripe selon contrat
 
-Anti-confusion : PSP ≠ toujours distinct — contrat + statut scheme.
-E-com : checkout Paybox = terminal, puis 2 ou 3.
+Façades maillon 02 : POS · checkout · in-app · wallet → puis montage 1, 2 ou 3.
 
 
 ================================================================================
 5. CAS + CHECK
 ================================================================================
-Cas : ordre · quel montage PSP chez vous · e-com · réponse absente
+Cas : ordre · façade digitale · quel montage PSP
 
 [ ] Ordre + retour
+[ ] Digital = façade, pas autre chaîne
 [ ] Message ≠ argent
 [ ] 3 montages PSP / acquéreur
 [ ] Pont composants SI
