@@ -51,9 +51,6 @@
             <strong>acceptée sans décision online immédiate</strong> de
             l’émetteur, sous contrôles locaux et présentation différée.
           </p>
-          <p class="intro" style="margin-top: 1.1rem">
-            Même symptôme porteur («&nbsp;refusé&nbsp;») ≠ même cause SI.
-          </p>
         </section>
 
         <!-- Situation -->
@@ -518,30 +515,6 @@
           </div>
         </section>
 
-        <!-- Rôle -->
-        <section class="section">
-          <p class="section-label">Rôle</p>
-          <h2>Que retient le SI&nbsp;?</h2>
-          <div class="split-2">
-            <div class="panel">
-              <h3>Online</h3>
-              <ul>
-                <li>Latence bout en bout (+ par hop)</li>
-                <li>Disponibilité de chaque maillon</li>
-                <li>Timeouts, retry, abort</li>
-              </ul>
-            </div>
-            <div class="panel">
-              <h3>Offline</h3>
-              <ul>
-                <li>Normal&nbsp;: paramètres produit / scheme</li>
-                <li>Dégradé&nbsp;: fallback quand dispo / latence cassent l’online</li>
-                <li>Présentation différée → clearing</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
         <!-- Rejets -->
         <section class="section">
           <p class="section-label">Diagnostic</p>
@@ -622,131 +595,6 @@
                   <p>Anomalie après coup — rappel bloc Clearing, pas un decline.</p>
                 </span>
               </button>
-            </div>
-          </div>
-        </section>
-
-        <!-- Pont J3 -->
-        <section class="section">
-          <p class="section-label">Pont J3</p>
-          <h2>Le PAN dans le flux</h2>
-          <p class="intro">
-            En modèle carte classique, le <strong>PAN</strong> circule dans la
-            demande d’autorisation (surtout online). La
-            <strong>tokenisation</strong> (Jour 3) réduit cette exposition sans
-            supprimer la logique Auth → Clearing → Settlement, ni les modes
-            online / offline.
-          </p>
-        </section>
-
-        <!-- Cas -->
-        <section class="section">
-          <p class="section-label">Ancrage</p>
-          <h2>Trois diagnostics</h2>
-          <p class="intro">
-            Technique vs métier · offline · code sandbox.
-          </p>
-
-          <div class="diagram" id="diagram-cas-online">
-            <div class="diagram-header">
-              <h3>Timeout · Contactless · Sandbox</h3>
-              <p>Classer avant d’agir</p>
-            </div>
-            <svg viewBox="0 0 1000 280" role="img" aria-label="Trois diagnostics online offline">
-              <g>
-                <rect x="30" y="28" width="300" height="220" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                <image href="../img/acteurs/acteur-device.jpg" x="48" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
-                <text x="140" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Timeout vs fonds</text>
-                <text x="140" y="94" fill="#5a6b7c" font-size="12">même message caisse</text>
-                <rect x="48" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
-                <text x="108" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Technique</text>
-                <rect x="178" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
-                <text x="243" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Métier</text>
-                <text x="180" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Deux runbooks</text>
-                <text x="180" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Deux responsables</text>
-              </g>
-              <g>
-                <rect x="350" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-porteur.jpg" x="368" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
-                <text x="460" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Contactless</text>
-                <text x="460" y="94" fill="#5a6b7c" font-size="12">sous seuil</text>
-                <rect x="368" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                <text x="433" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Offline normal</text>
-                <rect x="508" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
-                <text x="568" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">ou online</text>
-                <text x="500" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Selon règles produit</text>
-                <text x="500" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">/ scheme</text>
-              </g>
-              <g>
-                <rect x="670" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-psp.jpg" x="688" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
-                <text x="780" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Code sandbox</text>
-                <text x="780" y="94" fill="#5a6b7c" font-size="12">prépare l’atelier</text>
-                <rect x="688" y="140" width="90" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
-                <text x="733" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Métier</text>
-                <rect x="788" y="140" width="160" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
-                <text x="868" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">AuthN / technique</text>
-                <text x="820" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Classer le code</text>
-                <text x="820" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">avant le runbook</text>
-              </g>
-            </svg>
-            <div class="seq-steps" id="cas-online-steps">
-              <button type="button" class="seq-step is-active" data-step="1">
-                <span class="n">1</span>
-                <span>
-                  <strong>Timeout vs fonds</strong>
-                  <p>Timeout gateway ≠ decline « fonds insuffisants » — causes opposées.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="2">
-                <span class="n">2</span>
-                <span>
-                  <strong>Contactless</strong>
-                  <p>Offline normal ou online forcé — selon règles produit / scheme.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="3">
-                <span class="n">3</span>
-                <span>
-                  <strong>Sandbox</strong>
-                  <p>Classer métier / AuthN / technique — prépare l’atelier.</p>
-                </span>
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <!-- Clarification -->
-        <section class="section">
-          <p class="section-label">Clarification</p>
-          <h2>Ce que ce n’est pas</h2>
-          <div class="not-list">
-            <div class="not-item">
-              <strong>Offline normal ≠ dégradé</strong>
-              <p>
-                Le premier est prévu par les règles&nbsp;; le second est un
-                secours quand l’online échoue.
-              </p>
-            </div>
-            <div class="not-item">
-              <strong>« Refusé » ≠ « pas d’argent »</strong>
-              <p>
-                Peut être AuthN, technique, ou métier — classer avant d’agir.
-              </p>
-            </div>
-            <div class="not-item">
-              <strong>Timeout ≠ decline métier</strong>
-              <p>
-                Latence / indispo d’un hop ≠ décision fonds ou opposition —
-                runbooks différents.
-              </p>
-            </div>
-            <div class="not-item">
-              <strong>≠ Cours offline exhaustif</strong>
-              <p>
-                Ici&nbsp;: concepts et diagnostic. Détail = règles scheme /
-                produit / EMV.
-              </p>
             </div>
           </div>
         </section>
