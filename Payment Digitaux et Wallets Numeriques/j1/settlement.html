@@ -50,10 +50,6 @@
             interbancaires), de sorte que les obligations financières
             correspondantes sont éteintes.
           </p>
-          <p class="intro" style="margin-top: 1.1rem">
-            Après le clearing&nbsp;: on <strong>exécute le règlement</strong>
-            des positions.
-          </p>
         </section>
 
         <!-- Situation chaîne post-transaction -->
@@ -105,7 +101,7 @@
           <p class="intro">
             Selon le rail, on règle des <strong>soldes nets</strong> après
             compensation, ou chaque obligation <strong>en brut</strong>
-            (souvent RTGS).
+            (souvent via RTGS).
           </p>
 
           <div class="diagram" id="diagram-net-settlement">
@@ -185,12 +181,12 @@
           <div class="diagram" id="diagram-gross-settlement" style="margin-top: 1.5rem">
             <div class="diagram-header">
               <h3>Gross / RTGS</h3>
-              <p>Règlement brut, souvent en temps réel — moins de netting</p>
+              <p>Mode brut · système temps réel (ex. TARGET)</p>
             </div>
             <svg
               viewBox="0 0 1000 240"
               role="img"
-              aria-label="Settlement brut ou RTGS"
+              aria-label="Settlement brut via système RTGS"
             >
               <defs>
                 <marker id="ah-gr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
@@ -201,15 +197,15 @@
                 <rect x="40" y="60" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
                 <image href="../img/acteurs/acteur-banque.jpg" x="52" y="74" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
                 <text x="122" y="98" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Banque A</text>
-                <text x="122" y="118" fill="#5a6b7c" font-size="11">obligation 1</text>
+                <text x="122" y="118" fill="#5a6b7c" font-size="11">1 obligation</text>
               </g>
               <line class="flow-line" x1="250" y1="105" x2="340" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gr)"/>
               <g>
                 <rect x="340" y="50" width="320" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
                 <image href="../img/acteurs/acteur-scheme.jpg" x="360" y="72" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
-                <text x="440" y="95" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">RTGS / agent</text>
-                <text x="440" y="118" fill="#0d9f8a" font-size="12">règlement brut</text>
-                <text x="440" y="138" fill="#5a6b7c" font-size="11">souvent temps réel</text>
+                <text x="440" y="90" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">RTGS</text>
+                <text x="440" y="112" fill="#0d9f8a" font-size="12">règlement brut · temps réel</text>
+                <text x="440" y="134" fill="#5a6b7c" font-size="11">comptes banque centrale</text>
               </g>
               <line class="flow-line" x1="670" y1="105" x2="760" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gr)"/>
               <g>
@@ -226,28 +222,38 @@
               <button type="button" class="seq-step is-active" data-step="1">
                 <span class="n">1</span>
                 <span>
-                  <strong>Obligation unitaire</strong>
-                  <p>Pas (ou peu) de compensation multilatérale avant paiement.</p>
+                  <strong>Gross</strong>
+                  <p>
+                    Mode&nbsp;: chaque obligation est réglée une à une — pas (ou
+                    peu) de netting avant paiement.
+                  </p>
                 </span>
               </button>
               <button type="button" class="seq-step" data-step="2">
                 <span class="n">2</span>
                 <span>
-                  <strong>RTGS / agent</strong>
-                  <p>Règlement brut, souvent temps réel sur comptes banque centrale.</p>
+                  <strong>RTGS</strong>
+                  <p>
+                    Real-Time Gross Settlement&nbsp;: système qui exécute ce
+                    règlement brut en temps réel (comptes banque centrale, ex.
+                    TARGET).
+                  </p>
                 </span>
               </button>
               <button type="button" class="seq-step" data-step="3">
                 <span class="n">3</span>
                 <span>
-                  <strong>Contrepartie crédité</strong>
-                  <p>Obligation éteinte immédiatement — coût liquidité plus élevé.</p>
+                  <strong>Soldé tout de suite</strong>
+                  <p>
+                    Contrepartie créditée immédiatement — liquidité plus
+                    exigeante. Gross = le mode · RTGS = le rail.
+                  </p>
                 </span>
               </button>
             </div>
             <p class="diagram-hint">
               Cartes retail&nbsp;: souvent net après chambre. Gros montants /
-              urgents&nbsp;: plutôt RTGS.
+              urgents&nbsp;: plutôt gross via RTGS.
             </p>
           </div>
         </section>
@@ -676,143 +682,6 @@
             RTGS ≠ toujours carte&nbsp;: le tableau mélange systèmes de
             règlement utiles au cours — à relier au rail (carte, ACH, SEPA…).
           </p>
-        </section>
-
-        <!-- Ce que fait le settlement -->
-        <section class="section">
-          <p class="section-label">Rôle</p>
-          <h2>Que fait le settlement&nbsp;?</h2>
-          <div class="split-2">
-            <div class="panel">
-              <h3>Exécution</h3>
-              <ul>
-                <li>Règle les positions issues du clearing</li>
-                <li>Net&nbsp;: soldes après compensation</li>
-                <li>Gross / RTGS&nbsp;: obligations unitaires</li>
-              </ul>
-            </div>
-            <div class="panel">
-              <h3>Infrastructure</h3>
-              <ul>
-                <li>Comptes BC / agents, cut-offs</li>
-                <li>Europe&nbsp;: TARGET après chambre (STET…)</li>
-                <li>International&nbsp;: mécanismes Visa / Mastercard…</li>
-              </ul>
-            </div>
-          </div>
-          <div class="panel" style="margin-top: 1rem">
-            <h3>Soldé (« qui a payé qui »)</h3>
-            <ul>
-              <li>Obligations interbancaires éteintes</li>
-              <li>Pas encore le crédit marchand « vécu » (contrat acquéreur)</li>
-              <li>Incidents = liquidité / calendrier — ≠ decline d’auth</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="section">
-          <p class="section-label">Ancrage</p>
-          <h2>Trois lectures settlement</h2>
-          <p class="intro">
-            Fil rouge · retard · écart de réconciliation.
-          </p>
-
-          <div class="diagram" id="diagram-cas-settlement">
-            <div class="diagram-header">
-              <h3>Fil rouge · Retard · Écart</h3>
-              <p>Auth → clearing → settlement → crédit marchand</p>
-            </div>
-            <svg viewBox="0 0 1000 280" role="img" aria-label="Trois lectures settlement">
-              <g>
-                <rect x="30" y="28" width="300" height="220" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                <image href="../img/acteurs/acteur-banque.jpg" x="48" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
-                <text x="140" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Fil rouge J1</text>
-                <text x="140" y="94" fill="#5a6b7c" font-size="12">chronologie complète</text>
-                <rect x="48" y="140" width="90" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                <text x="93" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Auth OK</text>
-                <rect x="148" y="140" width="160" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
-                <text x="228" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Clearing → Settle</text>
-                <text x="180" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Puis crédit marchand</text>
-                <text x="180" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">selon contrat</text>
-              </g>
-              <g>
-                <rect x="350" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-scheme.jpg" x="368" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
-                <text x="460" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Retard</text>
-                <text x="460" y="94" fill="#5a6b7c" font-size="12">cut-off · incident</text>
-                <rect x="368" y="140" width="140" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                <text x="438" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Positions OK</text>
-                <rect x="518" y="140" width="110" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
-                <text x="573" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">≠ decline</text>
-                <text x="500" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Règlement non abouti</text>
-                <text x="500" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Clearing déjà connu</text>
-              </g>
-              <g>
-                <rect x="670" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-psp.jpg" x="688" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
-                <text x="780" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Écart</text>
-                <text x="780" y="94" fill="#5a6b7c" font-size="12">réconciliation</text>
-                <rect x="688" y="140" width="100" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
-                <text x="738" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Auth ≠</text>
-                <rect x="798" y="140" width="150" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
-                <text x="873" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Clearing ≠ crédit</text>
-                <text x="820" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Placer l’écart</text>
-                <text x="820" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">sur la chaîne</text>
-              </g>
-            </svg>
-            <div class="seq-steps" id="cas-settlement-steps">
-              <button type="button" class="seq-step is-active" data-step="1">
-                <span class="n">1</span>
-                <span>
-                  <strong>Fil rouge</strong>
-                  <p>Auth OK → clearing OK → settlement → crédit marchand selon contrat.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="2">
-                <span class="n">2</span>
-                <span>
-                  <strong>Retard</strong>
-                  <p>Positions connues, règlement non abouti — ≠ decline d’autorisation.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="3">
-                <span class="n">3</span>
-                <span>
-                  <strong>Écart</strong>
-                  <p>Montant autorisé ≠ présenté ≠ réglé / crédité — où est l’écart ?</p>
-                </span>
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <!-- Clarification -->
-        <section class="section">
-          <p class="section-label">Clarification</p>
-          <h2>Ce que le settlement n’est pas</h2>
-          <div class="not-list">
-            <div class="not-item">
-              <strong>≠ Autorisation OK</strong>
-              <p>
-                Le OK émetteur n’est pas un virement définitif vers le
-                commerçant.
-              </p>
-            </div>
-            <div class="not-item">
-              <strong>≠ Clearing</strong>
-              <p>
-                Le clearing calcule / compense ; le settlement règle les soldes
-                qui en résultent.
-              </p>
-            </div>
-            <div class="not-item">
-              <strong>≠ Crédit marchand « vécu »</strong>
-              <p>
-                Le moment où le commerçant voit les fonds dépend du contrat
-                acquéreur / PSP — lié au settlement, mais pas identique.
-              </p>
-            </div>
-          </div>
         </section>
 
         <div class="sources-box">

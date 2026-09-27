@@ -20,10 +20,10 @@ Idée clé
 Autorisation = accord de l’émetteur sur l’opération. »
 
 Posture
-1) Définition monétique + intention (légitimité, pas accord financier)
+1) Définition monétique
 2) Localiser AuthN dans le cycle EMV (étape 4 · CVM)
-3) AuthN ≠ autorisation (panneaux)
-4) Schéma canaux + seq-steps → cas
+3) Quatre canaux → modes AuthN → convergence autorisation
+4) Ancrage : trois cas de mode (POS · checkout · wallet)
 
 
 ================================================================================
@@ -33,10 +33,6 @@ Authentification (paiement par carte / monétique)
 Ensemble des procédures permettant de s’assurer, avec un niveau de confiance
 adapté au canal, que l’opération est initiée par le porteur légitime du
 moyen de paiement — ou via un dispositif / parcours reconnu comme tel.
-
-Intention
-Objet = légitimité du porteur / device / parcours — pas l’accord financier
-de l’émetteur.
 
 
 ================================================================================
@@ -55,41 +51,30 @@ Contraste utile : AuthN (étape 4) ≠ autorisation (étape 6).
 
 
 ================================================================================
-4. DISTINCTION + CANAUX
+4. CANAUX → MODES AUTHN → CONVERGENCE
 ================================================================================
-AuthN : « Est-ce le bon porteur / dispositif ? »
-Autorisation : « L’émetteur accepte-t-il l’opération ? »
+1) Carte (POS) — CVM : PIN · signature · seuils sans contact
+2) Web (checkout) — 3-D Secure : challenge / frictionless · ACS
+3) Wallet (tap) — biométrie device / CDCVM (détail J4)
+4) In-app — 3DS / SDK / wallet embarqué selon intégration
 
-Proximité : possession, PIN, seuils sans contact, biométrie device (J4)
-E-com : 3DS, challenge / frictionless, SCA teaser
-
-Schéma : deux parcours → convergence autorisation → accord / refus
-(+ seq-steps)
-
-
-================================================================================
-5. CAS PRATIQUES
-================================================================================
-Cas 1 — AuthN OK + autorisation accordée (deux étapes, deux résultats)
-Cas 2 — Échec AuthN (PIN / 3DS / timeout) — cause = couche authentification
-Cas 3 — AuthN OK, autorisation refusée — preuve AuthN ≠ autorisation
-Cas 4 (optionnel) — Frictionless 3DS ≠ « pas d’AuthN »
+Tous convergent vers l’autorisation émetteur (accord / refus).
+Le canal change le mode AuthN — pas le décideur.
 
 
 ================================================================================
-6. LECTURE SI + CLARIFICATION
+5. CAS — TROIS MODES
 ================================================================================
-Succès AuthN → poursuite vers / avec autorisation
-Échec AuthN → logs authentification, pas seulement codes d’autorisation
-Incident « refusés » : (1) AuthN (2) declines autorisation (3) technique
-
-≠ Autorisation — ne pas dire « auth » pour les deux.
+Cas 1 — POS magasin → CVM (PIN / seuils)
+Cas 2 — Checkout web → 3DS (challenge / frictionless · ACS)
+Cas 3 — Tap wallet → CDCVM / biométrie device
+Oral — In-app : selon intégration (3DS / SDK / wallet)
 
 
 ================================================================================
-7. CHECK DE FIN
+6. CHECK DE FIN
 ================================================================================
 [ ] Définition AuthN monétique restituée
-[ ] AuthN localisée EMV (≠ autorisation)
-[ ] Un mécanisme proximité + un e-com cités
-[ ] Cas échec AuthN vs decline d’autorisation maîtrisé
+[ ] AuthN localisée EMV (étape 4)
+[ ] Mode cité pour POS, web et wallet
+[ ] Convergence vers autorisation rappelée

@@ -42,8 +42,9 @@ Net settlement
 Positions nettes après chambre → un règlement par cycle
 Ex. : TARGET après STET / CORE
 
-Gross / RTGS
-Obligation unitaire, souvent temps réel, liquidité plus exigeante
+Gross = mode (obligation une à une, sans netting préalable)
+RTGS = système qui exécute ce brut en temps réel (ex. TARGET)
+Liquidité plus exigeante · cartes retail souvent net après chambre
 
 
 ================================================================================
