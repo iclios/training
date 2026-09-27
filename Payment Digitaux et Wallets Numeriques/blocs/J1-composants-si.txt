@@ -11,20 +11,19 @@ Sources : architecture référence scheme / processeurs · PCI scope
 1. MÉTA FORMATEUR
 ================================================================================
 Objectif
-Nommer les 5 composants, situer T+0 vs différé, distinguer gateway /
-acquiring (3 montages + exemples), relier maillon de chaîne → brique SI.
+Nommer les 5 briques SI, distinguer passerelle / SI acquisition (3 montages),
+relier maillon de chaîne → brique SI.
 
 Idée clé
 « Composants SI = dans quels systèmes ça tourne — uniquement.
-Gateway ≠ always acquiring — même logique que PSP ≠ acquéreur. »
+Passerelle ≠ toujours SI acquisition — même logique que PSP ≠ acquéreur. »
 
 Posture
-1) Définition + question « dans quels SI ? »
-2) Deux temps : T+0 vs différé
-3) Cartographie 5 briques (illustrée + seq-steps)
-4) Gateway / acquiring : 3 montages + exemples (Paybox…)
-5) Correspondance chaîne → SI
-6) Cas + clarifications
+1) Définition
+2) Cartographie 5 briques (clic + seq-steps)
+3) Passerelle / SI acquisition : 3 montages + exemples (Paybox…)
+4) Correspondance chaîne → SI
+5) Ancrage
 
 
 ================================================================================
@@ -35,18 +34,22 @@ post-transaction — chez un acteur ou un prestataire.
 
 
 ================================================================================
-3. CINQ COMPOSANTS
+3. CINQ COMPOSANTS (vocabulaire SI)
 ================================================================================
-POS/mPOS · Gateway · Acquiring · Issuing · Clearing & Settlement
+Front d’acceptation (POS · mPOS · checkout)
+Passerelle (gateway · API)
+SI acquisition (host acquéreur)
+SI émission (host d’autorisation)
+SI post-transaction (clearing · settlement)
 Scheme = externe (interface SI)
 
 
 ================================================================================
-4. GATEWAY / ACQUIRING — 3 MONTAGES (+ exemples)
+4. PASSERELLE / SI ACQUISITION — 3 MONTAGES (+ exemples)
 ================================================================================
-1) Acquiring banque « maison » — POS banque, pas de gateway PSP visible
-2) Gateway devant acquiring banque — deux briques
-3) Gateway + acquiring chez le même PSP — ex. Paybox (souvent)
+1) SI acquisition « maison » — front banque, pas de passerelle PSP visible
+2) Passerelle devant SI acquisition banque — deux briques
+3) Passerelle + SI acquisition chez le même PSP — ex. Paybox (souvent)
 
 Parallèle exact avec montages PSP / acquéreur de la Chaîne.
 
@@ -56,8 +59,7 @@ Parallèle exact avec montages PSP / acquéreur de la Chaîne.
 ================================================================================
 Cas : banque émettrice · acceptation 1/2/3 · e-com Paybox · timeout
 
-[ ] 5 composants
-[ ] T+0 vs différé
-[ ] 3 montages gateway / acquiring
+[ ] 5 briques SI nommées
+[ ] 3 montages passerelle / SI acquisition
 [ ] Maillon → brique
 [ ] Cas « chez nous »
