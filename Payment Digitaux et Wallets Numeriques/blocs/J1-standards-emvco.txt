@@ -8,7 +8,15 @@ Sources : EMVCo · ISO 8583 · ISO/IEC 14443 · ISO 20022 · (mention) ISO/TS 12
 
 
 ================================================================================
-0. VOCABULAIRE (ouvrir le bloc)
+0. ORGANISMES (avant le vocabulaire)
+================================================================================
+ISO (+ IEC) = normes techniques
+EMVCo = specs paiement (joint-venture schemes)
+Schemes (Visa / MC / CB…) = règles métier
+
+
+================================================================================
+1. VOCABULAIRE
 ================================================================================
 Norme (ISO) ≠ Spec (EMVCo) ≠ « Standard » (mot fourre-tout) ≠ Règles scheme
 (+ Réglementation DSP2/SCA = encore autre chose)
@@ -16,20 +24,14 @@ Phrase : technique vs métier vs droit.
 
 
 ================================================================================
-1. IDÉE CLÉ
+2. IDÉE CLÉ
 ================================================================================
 Deux familles : EMV/EMVCo (produit paiement) · ISO (technique transverse).
 Objectif module : situer EMV et ISO — pas digérer chaque spec.
 
 
 ================================================================================
-2. EMVCo — QUATRE FAMILLES
-================================================================================
-Chip · 3DS · QR · Token (+ ponts J1 / J2 / J3 / J4)
-
-
-================================================================================
-3. ISO — TROIS NORMES DU PARCOURS
+3. ISO — TROIS NORMES DU PARCOURS (socle, souvent sous EMV)
 ================================================================================
 - 8583 → messages auth / clearing (J1)
 - 14443 → interface RF proximité (J4)
@@ -37,18 +39,23 @@ Chip · 3DS · QR · Token (+ ponts J1 / J2 / J3 / J4)
 
 
 ================================================================================
-4. WALLET — PAS D’ISO UNIQUE
+4. EMVCo — QUATRE FAMILLES (produit paiement par-dessus)
+================================================================================
+Chip · 3DS · QR · Token (+ ponts J1 / J2 / J3 / J4)
+
+
+================================================================================
+5. WALLET — PAS D’ISO UNIQUE
 ================================================================================
 Empilement :
 1) ISO 14443 (RF)
 2) EMV Contactless (logique paiement)
 3) EMV Payment Tokenisation (credential) ← le vrai « standard wallet » carte
-Mention : ISO/TS 12812 (mobile financial services) — peu structurant pour
-wallet scheme. SE/HCE/TEE = modèles de confiance (J4), pas ISO paiement.
+SE/HCE/TEE = modèles de confiance (J4), pas ISO paiement.
 
 
 ================================================================================
-5. PIÈGES
+6. PIÈGES
 ================================================================================
 « Standard » ≠ un type unique · EMVCo ≠ scheme · ISO ≠ autorisation ·
 Wallet ≠ une norme · 14443 ≠ paiement

@@ -45,20 +45,81 @@
           <div class="wrap">
             <section class="section" style="border-top: none; padding-top: 0">
               <p class="section-label">Définition</p>
-              <h2>EMV · ISO — deux familles, un même but</h2>
+              <h2>Interopérabilité — qui publie, quoi publie</h2>
               <p class="definition-full">
                 Les <strong>standards internationaux</strong> rendent les
                 paiements <em>interopérables</em>&nbsp;: même message, même
                 interface, même credential — quel que soit le pays, le
-                fabricant ou la banque. Deux familles à distinguer&nbsp;:
-                <strong>EMV / EMVCo</strong> (specs paiement carte &amp;
-                digitaux) et <strong>ISO</strong> (normes techniques
-                transverses).
+                fabricant ou la banque.
               </p>
-              <p class="intro" style="margin-top: 1.1rem">
-                Ce bloc <strong>situe et rattache</strong> au parcours
-                module — il n’enseigne pas chaque spec en profondeur.
+            </section>
+
+            <section class="section">
+              <p class="section-label">Organismes</p>
+              <h2>ISO · IEC · EMVCo · schemes — qui est qui&nbsp;?</h2>
+              <p class="intro">
+                Avant de parler norme / spec / règles : qui publie quoi.
               </p>
+
+              <div class="diagram" id="diagram-organismes">
+                <div class="diagram-header">
+                  <h3>Qui publie quoi&nbsp;?</h3>
+                  <p>Normalisation · specs paiement · règles métier</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 240"
+                  role="img"
+                  aria-label="ISO, EMVCo et schemes"
+                >
+                  <g>
+                    <rect x="40" y="28" width="280" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="180" y="64" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="17" font-weight="700">ISO · IEC</text>
+                    <text x="180" y="90" text-anchor="middle" fill="#5a6b7c" font-size="11">normalisation internationale</text>
+                    <text x="180" y="120" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Normes techniques</text>
+                    <text x="180" y="146" text-anchor="middle" fill="#5a6b7c" font-size="12">Messages · RF · banking</text>
+                    <text x="180" y="174" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">« Comment parler / transporter »</text>
+                  </g>
+                  <g>
+                    <rect x="360" y="28" width="280" height="180" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="500" y="68" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="18" font-weight="700">EMVCo</text>
+                    <text x="500" y="94" text-anchor="middle" fill="#5a6b7c" font-size="12">Joint-venture des schemes</text>
+                    <text x="500" y="124" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Specs produit paiement</text>
+                    <text x="500" y="150" text-anchor="middle" fill="#5a6b7c" font-size="12">Chip · Contactless · 3DS · Token</text>
+                    <text x="500" y="178" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">« Comment payer » interopérable</text>
+                  </g>
+                  <g>
+                    <rect x="680" y="28" width="280" height="180" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                    <text x="820" y="68" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="18" font-weight="700">Schemes</text>
+                    <text x="820" y="94" text-anchor="middle" fill="#5a6b7c" font-size="12">Visa · Mastercard · CB…</text>
+                    <text x="820" y="124" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Règles métier</text>
+                    <text x="820" y="150" text-anchor="middle" fill="#5a6b7c" font-size="12">Frais · chargeback · seuils</text>
+                    <text x="820" y="178" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">« Qui doit quoi »</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="organismes-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>ISO · IEC</strong>
+                      <p>L’ISO (International Organization for Standardization) publie des normes techniques internationales (ex. ISO 8583, ISO 20022) — « comment parler / transporter ». L’IEC (International Electrotechnical Commission) est l’organisme frère pour l’électrotechnique / l’électronique : quand une norme touche aussi le matériel radio ou les circuits, elle est souvent co-publiée ISO/IEC (ex. ISO/IEC 14443 pour le NFC sans contact). Souvent sous-jacent à EMV.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>EMVCo</strong>
+                      <p>EMVCo est la joint-venture des grands schemes carte : elle publie les specs produit paiement (Chip, Contactless, 3DS, QR, Token…) — « comment payer » de façon interopérable. Ce n’est pas une norme ISO.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Schemes</strong>
+                      <p>Un scheme (Visa, Mastercard, CB…) fixe les règles métier pour ses participants — « qui doit quoi » (interchange, chargeback, acceptation…). Ni norme ISO ni spec EMVCo, même si les schemes co-fondent EMVCo.</p>
+                    </span>
+                  </button>
+                </div>
+              </div>
             </section>
 
             <section class="section">
@@ -68,149 +129,172 @@
                 Quatre mots souvent amalgamés — quatre portées différentes.
               </p>
 
-              <div class="diagram" id="diagram-vocab">
+              <div class="diagram" id="diagram-vocab-liens">
                 <div class="diagram-header">
-                  <h3>Qui dit quoi, avec quelle force&nbsp;?</h3>
-                  <p>Technique · métier · droit — à ne pas fusionner</p>
+                  <h3>Norme · Spec · Standard · Règles</h3>
+                  <p>Qui dit quoi, avec quelle force — et comment ils s’enchaînent</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 300"
+                  viewBox="0 0 1000 400"
                   role="img"
-                  aria-label="Norme, standard, spécification et règles scheme"
+                  aria-label="Norme, spec, standard et règles — définitions et interactions"
                 >
-                  <g>
-                    <rect x="20" y="24" width="230" height="250" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="135" y="58" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Norme</text>
-                    <text x="135" y="84" text-anchor="middle" fill="#5a6b7c" font-size="12">ex. ISO 8583 · 14443</text>
-                    <text x="135" y="130" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Organisme de</text>
-                    <text x="135" y="150" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">normalisation</text>
-                    <text x="135" y="190" text-anchor="middle" fill="#5a6b7c" font-size="12">Consensus formel</text>
-                    <text x="135" y="212" text-anchor="middle" fill="#5a6b7c" font-size="12">Référence publiée</text>
-                    <text x="135" y="248" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">« Comment faire »</text>
-                  </g>
-                  <g>
-                    <rect x="265" y="24" width="230" height="250" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="380" y="58" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Spec</text>
-                    <text x="380" y="84" text-anchor="middle" fill="#5a6b7c" font-size="12">ex. EMV Chip · 3DS</text>
-                    <text x="380" y="130" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Document technique</text>
-                    <text x="380" y="150" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">détaillé (EMVCo…)</text>
-                    <text x="380" y="190" text-anchor="middle" fill="#5a6b7c" font-size="12">Implémentable</text>
-                    <text x="380" y="212" text-anchor="middle" fill="#5a6b7c" font-size="12">Testable / certifiable</text>
-                    <text x="380" y="248" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">« Comment payer »</text>
-                  </g>
-                  <g>
-                    <rect x="510" y="24" width="230" height="250" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="625" y="58" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Standard</text>
-                    <text x="625" y="84" text-anchor="middle" fill="#5a6b7c" font-size="12">usage courant / EN</text>
-                    <text x="625" y="130" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Mot fourre-tout</text>
-                    <text x="625" y="150" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">norme ou spec</text>
-                    <text x="625" y="190" text-anchor="middle" fill="#5a6b7c" font-size="12">En salle : préciser</text>
-                    <text x="625" y="212" text-anchor="middle" fill="#5a6b7c" font-size="12">ISO ? EMVCo ? scheme ?</text>
-                    <text x="625" y="248" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700">À déplier</text>
-                  </g>
-                  <g>
-                    <rect x="755" y="24" width="225" height="250" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
-                    <text x="867" y="58" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Règles</text>
-                    <text x="867" y="84" text-anchor="middle" fill="#5a6b7c" font-size="12">scheme · contrat</text>
-                    <text x="867" y="130" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Métier / commercial</text>
-                    <text x="867" y="150" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Visa · MC · local</text>
-                    <text x="867" y="190" text-anchor="middle" fill="#5a6b7c" font-size="12">Frais · chargeback</text>
-                    <text x="867" y="212" text-anchor="middle" fill="#5a6b7c" font-size="12">Acceptation · seuils</text>
-                    <text x="867" y="248" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">« Qui doit quoi »</text>
-                  </g>
+                  <defs>
+                    <marker id="vocab-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                      <path d="M0,0 L8,4 L0,8 Z" fill="#0d9f8a"/>
+                    </marker>
+                    <marker id="vocab-arrow-down" markerWidth="8" markerHeight="8" refX="4" refY="6" orient="auto">
+                      <path d="M0,0 L4,8 L8,0 Z" fill="#c45c26"/>
+                    </marker>
+                  </defs>
+
+                  <!-- Cadre Standard -->
+                  <rect x="40" y="20" width="920" height="240" rx="14" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2" stroke-dasharray="8 5"/>
+                  <text x="70" y="48" fill="#3d5a80" font-family="Syne, sans-serif" font-size="15" font-weight="700">« Standard »</text>
+                  <text x="170" y="48" fill="#5a6b7c" font-size="12">mot fourre-tout — « standard EMV » ou « standard ISO 8583 » ? À préciser</text>
+
+                  <!-- Norme -->
+                  <rect x="70" y="70" width="360" height="170" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="250" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="17" font-weight="700">Norme</text>
+                  <text x="250" y="122" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">« Comment faire »</text>
+                  <text x="250" y="146" text-anchor="middle" fill="#5a6b7c" font-size="12">Organisme de normalisation · consensus</text>
+                  <text x="250" y="172" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="600">ISO 8583 — messages auth</text>
+                  <text x="250" y="194" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="600">ISO/IEC 14443 — radio NFC</text>
+                  <text x="250" y="216" text-anchor="middle" fill="#5a6b7c" font-size="11">ISO 20022 — messaging moderne</text>
+
+                  <!-- Spec -->
+                  <rect x="570" y="70" width="360" height="170" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="750" y="100" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="17" font-weight="700">Spec</text>
+                  <text x="750" y="122" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">« Comment payer »</text>
+                  <text x="750" y="146" text-anchor="middle" fill="#5a6b7c" font-size="12">EMVCo · implémentable / certifiable</text>
+                  <text x="750" y="172" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="600">EMV Chip — carte à puce</text>
+                  <text x="750" y="194" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="600">EMV Contactless — sans contact</text>
+                  <text x="750" y="216" text-anchor="middle" fill="#5a6b7c" font-size="11">EMV 3DS · Tokenisation</text>
+
+                  <!-- Lien Norme → Spec -->
+                  <line x1="430" y1="155" x2="560" y2="155" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#vocab-arrow)"/>
+                  <text x="495" y="140" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">s’appuie</text>
+                  <text x="495" y="178" text-anchor="middle" fill="#5a6b7c" font-size="10">14443 ↔</text>
+                  <text x="495" y="192" text-anchor="middle" fill="#5a6b7c" font-size="10">Contactless</text>
+
+                  <!-- Flèche vers Règles -->
+                  <line x1="500" y1="260" x2="500" y2="292" stroke="#c45c26" stroke-width="2.5" marker-end="url(#vocab-arrow-down)"/>
+                  <text x="560" y="282" fill="#c45c26" font-size="12" font-weight="600">usage métier</text>
+
+                  <!-- Règles -->
+                  <rect x="120" y="298" width="760" height="84" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                  <text x="500" y="326" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Règles scheme / contrat</text>
+                  <text x="500" y="348" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">« Qui doit quoi »</text>
+                  <text x="500" y="368" text-anchor="middle" fill="#5a6b7c" font-size="12">Visa · Mastercard · CB — interchange, chargeback, plafonds sans contact…</text>
                 </svg>
-                <div class="seq-steps" id="vocab-steps">
+                <div class="seq-steps" id="vocab-liens-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
                       <strong>Norme</strong>
-                      <p>Document formel d’un organisme de normalisation (ISO…) — référence technique.</p>
+                      <p>Une norme est un document formel publié par un organisme de normalisation (ex. ISO) : référence technique consensuelle. Ex. ISO 8583, ISO/IEC 14443 — « comment faire ».</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
                       <strong>Spec</strong>
-                      <p>Spécification détaillée (souvent EMVCo) — ce que l’on implémente et certifie.</p>
+                      <p>Une spec (spécification) est un document technique détaillé, souvent EMVCo, qu’on implémente et certifie. Ex. EMV Chip, Contactless — « comment payer ». Elle s’appuie souvent sur une norme (14443 ↔ Contactless).</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
                     <span class="n">3</span>
                     <span>
-                      <strong>Standard</strong>
-                      <p>Mot anglais / courant qui mélange tout — toujours demander : norme, spec ou règle ?</p>
+                      <strong>« Standard »</strong>
+                      <p>Un « standard » est un mot fourre-tout (surtout en anglais / usage courant) : il peut désigner une norme ou une spec. Ex. « standard EMV » ≈ spec ; « standard ISO 8583 » ≈ norme — à déplier.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="4">
                     <span class="n">4</span>
                     <span>
                       <strong>Règles</strong>
-                      <p>Cadre scheme / contrat — métier, pas « comment formater le message ».</p>
+                      <p>Des règles scheme / contrat sont le cadre métier commercial : qui doit quoi (frais, chargeback, seuils…). Ex. Visa, Mastercard, CB — pas le format du message technique.</p>
                     </span>
                   </button>
                 </div>
               </div>
-
-              <div class="callout" style="margin-top: 1rem">
-                <h3>Phrase à ancrer</h3>
-                <p>
-                  <strong>Norme / spec</strong> = technique interopérable ·
-                  <strong>Règles scheme</strong> = métier ·
-                  <strong>Réglementation</strong> (DSP2, SCA…) = droit — une
-                  quatrième couche encore distincte.
-                </p>
-              </div>
             </section>
 
             <section class="section">
-              <p class="section-label">Deux couches</p>
-              <h2>Qui publie quoi&nbsp;?</h2>
+              <p class="section-label">Cartographie ISO</p>
+              <h2>Trois normes ISO du parcours</h2>
               <p class="intro">
-                Même écosystème — rôles normatifs différents.
+                Socle technique — <strong>souvent sous-jacent</strong> aux specs
+                EMV. Celles qui reviennent dans la formation, pas un catalogue ISO.
               </p>
 
-              <div class="diagram" id="diagram-couches">
+              <div class="diagram" id="diagram-iso">
                 <div class="diagram-header">
-                  <h3>EMVCo · ISO</h3>
-                  <p>Produit paiement · technique transverse</p>
+                  <h3>8583 · 14443 · 20022</h3>
+                  <p>Messages auth · interface RF · messaging moderne</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 260"
+                  viewBox="0 0 1000 280"
                   role="img"
-                  aria-label="Couches EMVCo et ISO"
+                  aria-label="Trois normes ISO du parcours module"
                 >
                   <g>
-                    <rect x="40" y="30" width="440" height="200" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-scheme.jpg" x="60" y="50" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="145" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="700">EMV / EMVCo</text>
-                    <text x="145" y="96" fill="#5a6b7c" font-size="12">Joint-venture schemes</text>
-                    <text x="260" y="145" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Specs produit paiement</text>
-                    <text x="260" y="172" text-anchor="middle" fill="#5a6b7c" font-size="12">Chip · 3DS · QR · Token · Contactless</text>
-                    <text x="260" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">« Comment payer de façon interopérable »</text>
+                    <rect x="30" y="28" width="300" height="220" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-scheme.jpg" x="48" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="140" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">ISO 8583</text>
+                    <text x="140" y="94" fill="#5a6b7c" font-size="12">Messages carte</text>
+                    <rect x="48" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                    <text x="108" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Auth / clearing</text>
+                    <rect x="178" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                    <text x="243" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Formats scheme</text>
+                    <text x="180" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Demande / réponse</text>
+                    <text x="180" y="220" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">→ J1 flux</text>
                   </g>
                   <g>
-                    <rect x="520" y="30" width="440" height="200" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-banque.jpg" x="540" y="50" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="625" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="18" font-weight="700">ISO</text>
-                    <text x="625" y="96" fill="#5a6b7c" font-size="12">Organisation internationale</text>
-                    <text x="740" y="145" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Normes techniques</text>
-                    <text x="740" y="172" text-anchor="middle" fill="#5a6b7c" font-size="12">Messages · RF · mobile banking</text>
-                    <text x="740" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">« Comment parler / transporter »</text>
+                    <rect x="350" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="368" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="460" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">ISO 14443</text>
+                    <text x="460" y="94" fill="#5a6b7c" font-size="12">Proximité RF</text>
+                    <rect x="368" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                    <text x="433" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Interface NFC</text>
+                    <rect x="508" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                    <text x="568" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">≠ logique pay</text>
+                    <text x="500" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Comment parler en RF</text>
+                    <text x="500" y="220" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">→ J4 NFC / CL</text>
+                  </g>
+                  <g>
+                    <rect x="670" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-banque.jpg" x="688" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="780" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">ISO 20022</text>
+                    <text x="780" y="94" fill="#5a6b7c" font-size="12">Messaging moderne</text>
+                    <rect x="688" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#3d5a80" stroke-width="1.5"/>
+                    <text x="753" y="159" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700">Rails / settle</text>
+                    <rect x="828" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                    <text x="888" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">≠ 8583</text>
+                    <text x="820" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Enrichi · XML / API</text>
+                    <text x="820" y="220" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">→ J5 plateforme</text>
                   </g>
                 </svg>
-                <div class="seq-steps" id="couches-steps">
+                <div class="seq-steps" id="iso-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
-                      <strong>EMVCo</strong>
-                      <p>Logique paiement carte / digital — familles Chip, 3DS, QR, Token.</p>
+                      <strong>8583</strong>
+                      <p>Format historique des messages d’autorisation / clearing carte.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
-                      <strong>ISO</strong>
-                      <p>Socle technique (messages, radio, services mobiles) — souvent sous-jacent à EMV.</p>
+                      <strong>14443</strong>
+                      <p>Interface radio de proximité — le « tuyau » du tap NFC.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>20022</strong>
+                      <p>Messaging structuré moderne — rails, settlement, omnicanal.</p>
                     </span>
                   </button>
                 </div>
@@ -221,7 +305,8 @@
               <p class="section-label">Cartographie EMV</p>
               <h2>Quatre familles EMVCo à situer</h2>
               <p class="intro">
-                Carte · e-com · QR · token — détail aux jours suivants.
+                Produit paiement <strong>par-dessus</strong> le socle ISO —
+                Chip · 3DS · QR · token. Détail aux jours suivants.
               </p>
 
               <div class="diagram" id="diagram-emvco">
@@ -309,86 +394,6 @@
             </section>
 
             <section class="section">
-              <p class="section-label">Cartographie ISO</p>
-              <h2>Trois normes ISO du parcours</h2>
-              <p class="intro">
-                Celles qui reviennent dans la formation — pas un catalogue ISO.
-              </p>
-
-              <div class="diagram" id="diagram-iso">
-                <div class="diagram-header">
-                  <h3>8583 · 14443 · 20022</h3>
-                  <p>Messages auth · interface RF · messaging moderne</p>
-                </div>
-                <svg
-                  viewBox="0 0 1000 280"
-                  role="img"
-                  aria-label="Trois normes ISO du parcours module"
-                >
-                  <g>
-                    <rect x="30" y="28" width="300" height="220" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-scheme.jpg" x="48" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="140" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">ISO 8583</text>
-                    <text x="140" y="94" fill="#5a6b7c" font-size="12">Messages carte</text>
-                    <rect x="48" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                    <text x="108" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Auth / clearing</text>
-                    <rect x="178" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
-                    <text x="243" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Formats scheme</text>
-                    <text x="180" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Demande / réponse</text>
-                    <text x="180" y="220" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">→ J1 flux</text>
-                  </g>
-                  <g>
-                    <rect x="350" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-device.jpg" x="368" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="460" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">ISO 14443</text>
-                    <text x="460" y="94" fill="#5a6b7c" font-size="12">Proximité RF</text>
-                    <rect x="368" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
-                    <text x="433" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Interface NFC</text>
-                    <rect x="508" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
-                    <text x="568" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">≠ logique pay</text>
-                    <text x="500" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Comment parler en RF</text>
-                    <text x="500" y="220" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">→ J4 NFC / CL</text>
-                  </g>
-                  <g>
-                    <rect x="670" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-banque.jpg" x="688" y="48" width="72" height="72" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="780" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">ISO 20022</text>
-                    <text x="780" y="94" fill="#5a6b7c" font-size="12">Messaging moderne</text>
-                    <rect x="688" y="140" width="130" height="28" rx="6" fill="#fff" stroke="#3d5a80" stroke-width="1.5"/>
-                    <text x="753" y="159" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700">Rails / settle</text>
-                    <rect x="828" y="140" width="120" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                    <text x="888" y="159" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">≠ 8583</text>
-                    <text x="820" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">Enrichi · XML / API</text>
-                    <text x="820" y="220" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">→ J5 plateforme</text>
-                  </g>
-                </svg>
-                <div class="seq-steps" id="iso-steps">
-                  <button type="button" class="seq-step is-active" data-step="1">
-                    <span class="n">1</span>
-                    <span>
-                      <strong>8583</strong>
-                      <p>Format historique des messages d’autorisation / clearing carte.</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="2">
-                    <span class="n">2</span>
-                    <span>
-                      <strong>14443</strong>
-                      <p>Interface radio de proximité — le « tuyau » du tap NFC.</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="3">
-                    <span class="n">3</span>
-                    <span>
-                      <strong>20022</strong>
-                      <p>Messaging structuré moderne — rails, settlement, omnicanal.</p>
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </section>
-
-            <section class="section">
               <p class="section-label">Focus wallet</p>
               <h2>Pas d’ISO « wallet » unique</h2>
               <p class="intro">
@@ -447,53 +452,6 @@
                       <p>Ce que le wallet présente : un jeton gouverné, pas le PAN nu.</p>
                     </span>
                   </button>
-                </div>
-              </div>
-
-              <div class="callout" style="margin-top: 1rem">
-                <h3>À noter</h3>
-                <p>
-                  Il existe une série ISO sur les services financiers mobiles
-                  (<strong>ISO/TS 12812</strong> — cadre banque / mobile, peu
-                  structurant pour le wallet carte scheme. SE / HCE / TEE
-                  (GlobalPlatform, plateformes) sont des
-                  <strong>modèles de confiance</strong>, pas des ISO de
-                  paiement — détail en J4.
-                </p>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Clarification</p>
-              <h2>Ce que ce n’est pas</h2>
-              <div class="not-list">
-                <div class="not-item">
-                  <strong>« Standard » ≠ un type unique</strong>
-                  <p>
-                    En anglais / en réunion, le mot recouvre norme ISO, spec
-                    EMVCo ou règle scheme. Toujours préciser laquelle.
-                  </p>
-                </div>
-                <div class="not-item">
-                  <strong>EMVCo ≠ scheme</strong>
-                  <p>
-                    Visa / Mastercard / scheme national portent les règles
-                    métier. EMVCo publie des specs techniques.
-                  </p>
-                </div>
-                <div class="not-item">
-                  <strong>ISO ≠ autorisation</strong>
-                  <p>
-                    8583 formate le message ; l’émetteur décide approve /
-                    decline. 14443 porte la radio ; EMV CL porte le paiement.
-                  </p>
-                </div>
-                <div class="not-item">
-                  <strong>Wallet ≠ une norme</strong>
-                  <p>
-                    Produit / UX qui empile 14443 + EMV Contactless +
-                    tokenisation (+ SE/HCE). Pas un « ISO wallet ».
-                  </p>
                 </div>
               </div>
             </section>

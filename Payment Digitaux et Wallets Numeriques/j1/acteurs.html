@@ -51,12 +51,8 @@
                 ou rôle qui <strong>contracte</strong>, <strong>décide</strong>,
                 <strong>route</strong> ou <strong>accepte</strong> une opération
                 (porteur, émetteur, commerçant, acquéreur, scheme, et
-                satellites&nbsp;: device, PSP, wallet…).
-              </p>
-              <p class="intro" style="margin-top: 1.1rem">
-                Ce bloc répond à une seule question&nbsp;:
-                <strong>qui&nbsp;?</strong> — pas l’ordre du message, pas les
-                briques SI.
+                satellites&nbsp;: device, PSP
+                (Payment Service Provider), wallet…).
               </p>
             </section>
 
@@ -64,9 +60,9 @@
               <p class="section-label">1 · Relation</p>
               <h2>Porteur ↔ banque émettrice</h2>
               <p class="intro">
-                Premier maillon : le contrat produit (carte / compte). Cliquez
-                un acteur pour le détail. Le wallet viendra plus tard comme
-                canal, pas comme remplacement de l’émetteur.
+                Premier maillon : le contrat produit (carte / compte). Le wallet
+                viendra plus tard comme canal, pas comme remplacement de
+                l’émetteur.
               </p>
               <div class="diagram" id="diagram-issuer">
                 <div class="diagram-header">
@@ -117,8 +113,7 @@
               <p class="section-label">2 · Relation</p>
               <h2>Commerçant ↔ banque acquéreuse</h2>
               <p class="intro">
-                Deuxième maillon : le contrat d’acceptation. Cliquez un acteur
-                pour le détail.
+                Deuxième maillon : le contrat d’acceptation.
               </p>
               <div class="diagram" id="diagram-acquirer">
                 <div class="diagram-header">
@@ -312,9 +307,10 @@
               <p class="section-label">5 · Ancrage</p>
               <h2>Le même modèle — avec la carte</h2>
               <p class="intro">
-                Écho à l’évolution vue avant : le métier SI monétique commence
-                vraiment à la <strong>carte</strong>. Même 4 parties, instruments
-                concrets — ensuite on pourra faire le parallèle mobile / wallet.
+                Le modèle 4 parties s’incarne d’abord avec la
+                <strong>carte</strong> — plastique côté porteur, TPE (terminal
+                de paiement électronique) côté commerçant. Mobile et wallet
+                reprendront les mêmes rôles plus tard.
               </p>
               <div
                 class="hub-evo"
@@ -354,7 +350,7 @@
               <div class="diagram" id="diagram-card">
                 <div class="diagram-header">
                   <h3>Modèle carte classique</h3>
-                  <p>Carte plastique · TPE / POS · mêmes rôles 4 parties</p>
+                  <p>Carte plastique · TPE / POS (Point of Sale) · mêmes rôles 4 parties</p>
                 </div>
                 <svg viewBox="0 0 1000 480" role="img" aria-label="Modèle 4 parties avec carte et TPE">
                   <line x1="280" y1="120" x2="720" y2="120" stroke="#5a6b7c" stroke-width="2"/>
@@ -430,8 +426,8 @@
               <p class="section-label">6 · Satellites</p>
               <h2>Device, PSP, wallet</h2>
               <p class="intro">
-                L’évolution continue : ces acteurs s’ajoutent au modèle carte —
-                ils ne remplacent pas issuer / acquirer / scheme.
+                Ces acteurs s’ajoutent au modèle carte — ils ne remplacent pas
+                issuer / acquirer / scheme.
               </p>
               <div class="diagram" id="diagram-satellites">
                 <div class="diagram-header">
@@ -491,19 +487,19 @@
                     <text x="822" y="394" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Banque acquéreuse</text>
                     <text x="822" y="416" fill="#5a6b7c" font-size="11">Acquirer · marchand</text>
                   </g>
-                  <g class="node-hit" data-node="device" tabindex="0" role="button" aria-label="Device / POS">
+                  <g class="node-hit" data-node="device" tabindex="0" role="button" aria-label="Device / POS — Point of Sale">
                     <rect x="28" y="500" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
                     <rect x="28" y="500" width="7" height="96" rx="3.5" fill="#2f4858"/>
                     <image href="../img/acteurs/acteur-device.jpg" x="46" y="516" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
                     <text x="126" y="542" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Device / POS</text>
-                    <text x="126" y="564" fill="#5a6b7c" font-size="11">point d’entrée physique</text>
+                    <text x="126" y="564" fill="#5a6b7c" font-size="11">Point of Sale · TPE</text>
                   </g>
-                  <g class="node-hit" data-node="psp" tabindex="0" role="button" aria-label="PSP / Fintech">
+                  <g class="node-hit" data-node="psp" tabindex="0" role="button" aria-label="PSP — Payment Service Provider">
                     <rect x="724" y="500" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
                     <rect x="724" y="500" width="7" height="96" rx="3.5" fill="#2f4858"/>
                     <image href="../img/acteurs/acteur-psp.jpg" x="742" y="516" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="822" y="542" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">PSP / Fintech</text>
-                    <text x="822" y="564" fill="#5a6b7c" font-size="11">façade d’acceptation</text>
+                    <text x="822" y="542" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">PSP</text>
+                    <text x="822" y="564" fill="#5a6b7c" font-size="11">Payment Service Provider</text>
                   </g>
                   <text x="500" y="600" text-anchor="middle" fill="#5a6b7c" font-size="11">Satellites : s’ajoutent au modèle, ne remplacent pas issuer / acquirer / scheme</text>
                 </svg>
@@ -517,7 +513,7 @@
                   <button type="button" class="schema-key" data-node="commercant">Commerçant</button>
                   <button type="button" class="schema-key" data-node="acquereur">Banque acquéreuse</button>
                   <button type="button" class="schema-key" data-node="device">Device / POS</button>
-                  <button type="button" class="schema-key" data-node="psp">PSP / Fintech</button>
+                  <button type="button" class="schema-key" data-node="psp">PSP</button>
                   </div>
                   <div class="detail-panel" id="actor-detail-satellites">
                     <p class="detail-placeholder">
@@ -537,13 +533,19 @@
 
             <section class="section">
               <p class="section-label">Clarification</p>
-              <h2>Acquéreur ≠ PSP (pas toujours)</h2>
-              <p class="intro">
-                L’<strong>acquéreur</strong> est le <strong>rôle</strong> côté
-                acceptation face au scheme. Le <strong>PSP</strong> est souvent
-                <strong>qui réalise</strong> ce rôle en service / en SI —
-                parfois la même entité, parfois non.
-              </p>
+              <h2>Acquéreur · PSP — ne pas confondre</h2>
+              <ul class="intro" style="margin: 0 0 1rem; padding-left: 1.2rem; color: var(--ink-soft); max-width: 60ch; line-height: 1.5">
+                <li>
+                  L’<strong>acquéreur</strong> est le <strong>rôle</strong> côté
+                  acceptation face au scheme.
+                </li>
+                <li>
+                  Le <strong>PSP</strong> (Payment Service Provider) est souvent
+                  <strong>qui réalise</strong> ce rôle en service&nbsp;/
+                  en&nbsp;SI.
+                </li>
+                <li>Parfois la même entité, parfois non.</li>
+              </ul>
               <div class="split-2">
                 <div class="panel ok">
                   <h3>Acquéreur</h3>
@@ -554,7 +556,7 @@
                   </ul>
                 </div>
                 <div class="panel">
-                  <h3>PSP</h3>
+                  <h3>PSP (Payment Service Provider)</h3>
                   <ul>
                     <li>Prestataire technique / commercial</li>
                     <li>Gateway, agrégation, checkout, APIs</li>
@@ -562,24 +564,7 @@
               </ul>
                 </div>
               </div>
-              <div class="callout" style="margin-top: 1rem">
-                <h3>Trois montages (détail + exemples en Chaîne de valeur)</h3>
-                <p>
-                  1) Banque seule · 2) PSP devant une banque · 3) PSP-acquéreur
-                  (ex. Paybox). Message&nbsp;:
-                  <em>PSP ≠ toujours distinct de l’acquéreur — contrat + statut
-                  scheme.</em>
-                </p>
-              </div>
             </section>
-
-            <div class="callout warn">
-              <h3>Pièges de vocabulaire</h3>
-              <p>
-                Scheme ≠ banque · « Visa a autorisé » est en général faux
-                (c’est l’émetteur) · PSP ≠ toujours acquéreur en droit.
-              </p>
-            </div>
 
             <section class="section">
               <p class="section-label">Ancrage</p>
@@ -682,7 +667,7 @@
       </div>
     </footer>
 
-    <script src="../js/app.js?v=20260920"></script>
+    <script src="../js/app.js?v=20260927"></script>
     <script src="../js/nav-j1.js"></script>
     <script src="../js/fiche.js"></script>
   </body>

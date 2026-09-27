@@ -11,13 +11,13 @@ window.actorCopy = {
   },
   commercant: {
     title: "Commerçant",
-    role: "Accepte le paiement (magasin, site, app). Contractualise l’acceptation avec un acquéreur (ou via un PSP).",
+    role: "Accepte le paiement (magasin, site, app). Contractualise l’acceptation avec un acquéreur (ou via un PSP — Payment Service Provider).",
     not: "Ne route pas vers l’émetteur et ne décide pas l’autorisation.",
   },
   acquereur: {
     title: "Banque acquéreuse (Acquirer)",
     role: "Rôle monétique côté marchand : contractualise l’acceptation (souvent), présente les opérations au scheme, porte le risque d’acceptation, crédite le commerçant selon contrat.",
-    not: "Ne décide pas à la place de l’émetteur. ≠ PSP : le PSP peut être distinct, façade, ou la même entité.",
+    not: "Ne décide pas à la place de l’émetteur. ≠ PSP (Payment Service Provider) : le PSP peut être distinct, façade, ou la même entité.",
   },
   reseau: {
     title: "Scheme / réseau (Visa, Mastercard…)",
@@ -25,13 +25,19 @@ window.actorCopy = {
     not: "Ni la banque du client, ni celle du commerçant — et ce n’est en général pas lui qui « autorise ».",
   },
   psp: {
-    title: "PSP / Fintech",
-    role: "Prestataire d’acceptation : gateway, APIs, agrégation, souvent le lien terminal / checkout. Peut seulement router vers un acquéreur, ou être lui-même acquéreur (licence / statut scheme).",
+    title: "PSP (Payment Service Provider)",
+    role: "Prestataire de services de paiement.",
+    bullets: [
+      "L’acceptation se complexifie : e-commerce, multi-canal, plusieurs moyens à gérer, besoin d’APIs / d’un gateway — le commerçant ne traite plus seul avec une banque acquéreuse.",
+      "Le PSP se place entre le commerçant et le rôle d’acquéreur.",
+      "Il fournit le checkout ou le lien terminal, agrège les moyens et route les opérations.",
+      "Deux cas : façade devant une banque, ou PSP qui est lui-même acquéreur (licence / scheme).",
+    ],
     not: "PSP ≠ toujours distinct de l’acquéreur — regarder le contrat et le statut scheme.",
   },
   device: {
-    title: "Device / POS",
-    role: "Point d’entrée physique (POS, pinpad, mPOS) chez le commerçant. Capture et initie.",
+    title: "Device / POS (Point of Sale)",
+    role: "Point d’entrée physique chez le commerçant : TPE (terminal de paiement électronique), pinpad, mPOS. Capture et initie.",
     not: "Ne remplace ni l’acquéreur ni l’émetteur.",
   },
   wallet: {
@@ -95,7 +101,29 @@ function bindPanel(selector, map, panelId, attr) {
 
     if (titleEl) titleEl.textContent = data.title || "";
 
-    if (roleEl && (data.role || data.not)) {
+    let bulletsEl = panel.querySelector("[data-detail-bullets]");
+    if (data.bullets && data.bullets.length) {
+      if (!bulletsEl) {
+        bulletsEl = document.createElement("ul");
+        bulletsEl.setAttribute("data-detail-bullets", "");
+        bulletsEl.className = "detail-bullets";
+        if (roleEl) roleEl.after(bulletsEl);
+        else if (titleEl) titleEl.after(bulletsEl);
+        else body.prepend(bulletsEl);
+      }
+      bulletsEl.innerHTML = "";
+      data.bullets.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        bulletsEl.appendChild(li);
+      });
+      bulletsEl.hidden = false;
+    } else if (bulletsEl) {
+      bulletsEl.hidden = true;
+      bulletsEl.innerHTML = "";
+    }
+
+    if (roleEl && (data.role || data.not || data.bullets)) {
       roleEl.textContent = data.role || "";
       roleEl.hidden = !data.role;
       if (notEl) {

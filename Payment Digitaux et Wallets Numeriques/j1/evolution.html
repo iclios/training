@@ -117,7 +117,7 @@
                       App qui <strong>orchestre</strong> un ou plusieurs moyens
                       (souvent tokenisés).
                     </p>
-                    <p class="notion-tile-si">Token · device · UX → J3 / J4</p>
+                    <p class="notion-tile-si">Token · device · UX</p>
                   </div>
                 </article>
               </div>
@@ -554,13 +554,13 @@
             title: "Paiement électronique",
             body:
               "La valeur ne circule plus sous forme d’espèces physiques : l’ordre et/ou le transfert passent par des messages et systèmes (carte, virement, prélèvement…). Ce n’est pas synonyme de « paiement sur smartphone ».",
-            note: "Phrase salle : électronique = dématérialisé.",
+            note: "",
           },
           digital: {
             title: "Paiement digital",
             body:
               "Paiement initié via un canal numérique : app, web, QR, wallet, in-app… Le porteur passe par une interface digitale. Derrière, le rail reste souvent carte / compte — d’où digital ⊂ électronique.",
-            note: "Phrase salle : digital = initié via un canal numérique. Web & normes amalgament souvent les deux — ici on tranche.",
+            note: "Web & normes amalgament souvent les deux — ici on tranche.",
           },
         };
 
@@ -573,12 +573,16 @@
           if (!data) return;
           const placeholder = panel.querySelector(".detail-placeholder");
           const body = panel.querySelector(".detail-body");
+          const noteEl = panel.querySelector("[data-ed-note]");
           if (placeholder) placeholder.hidden = true;
           if (body) body.hidden = false;
           panel.classList.add("is-filled");
           panel.querySelector("[data-ed-title]").textContent = data.title;
           panel.querySelector("[data-ed-body]").textContent = data.body;
-          panel.querySelector("[data-ed-note]").textContent = data.note;
+          if (noteEl) {
+            noteEl.textContent = data.note || "";
+            noteEl.hidden = !data.note;
+          }
           root.querySelectorAll(".node-hit").forEach((n) => {
             n.classList.toggle("is-active", n.getAttribute("data-def") === key);
           });
