@@ -1,7 +1,3 @@
 BLOC — FORMATEUR · JOUR 2 · Flux transactionnels QR
-Durée : 25–35 min
-
-Séquence : génération → scan & validation → autorisation → confirmation.
-
-Schéma : 4 étapes QR + bandeau pont J1 (Auth → Clearing → Settlement).
-Cas : QR expiré (échec validation) · auth OK sans confirmation (réconciliation).
+FUSIONNÉ dans Architecture SI & flux (architecture-si.html#flux).
+Ne plus animer comme page séparée — voir J2-architecture-si.txt.

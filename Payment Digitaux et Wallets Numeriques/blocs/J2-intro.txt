@@ -2,16 +2,13 @@ BLOC — FORMATEUR · JOUR 2 · Intro & objectifs
 Durée : 15–20 min · Suivant : Typologies
 
 Idée clé
-Aujourd’hui : le QR comme canal digital software-first — typologies, architecture SI, standards, atelier.
+Aujourd’hui : le QR comme canal digital software-first — même socle J1
+(Auth → Clearing → Settlement), autre façade.
 
-Objectifs du jour
-- Distinguer typologies QR
-- Décrire architecture SI QR
-- Modéliser génération → confirmation
-- Citer EMV QR et interop
-- Cas QR national (allégé)
-- Atelier tangible
+Positionnement
+- Canal optique / app, sans prérequis token / SE pour comprendre le flux
+- J1 reste le socle ; Token (J3) et NFC (J4) viennent ensuite
 
-Lien J1 : acteurs, chaîne, auth/clearing/settlement restent le socle.
+Fil : Typologies → Architecture SI → Flux → Standards → Cas → Atelier
 
-Fiche HTML : bandeau journée + block-map ; pas de « Bloc formateur ».
+Fiche HTML : bandeau + schémas + block-map ; pas de « Bloc formateur ».

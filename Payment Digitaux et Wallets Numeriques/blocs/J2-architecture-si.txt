@@ -1,9 +1,13 @@
-BLOC — FORMATEUR · JOUR 2 · Architecture SI QR
-Durée : 30–40 min
+BLOC — FORMATEUR · JOUR 2 · Architecture SI & flux QR
+Durée : 40–50 min · Fusionne l’ancien bloc Flux
+
+Fil
+1. Vocabulaire acteurs / moteur
+2. Éléments SI (où tournent les briques)
+3. Quatre temps + pont J1 (génération → confirmation)
+4. Trois cas : pull dynamique (MPM·12) · pull statique (MPM·11) · push (CPM)
+5. Synthèse : backend marchand — quand ?
 
 Idée clé
-App client · QR engine · backend marchand · PSP/switch · banque ou wallet.
-
-Lien J1 : auth/clearing/settlement restent ; le QR change l’initiation et l’orchestration.
-
-Fiche : schéma chaîne SI illustré (acteurs) + seq-steps hop par hop ; cas propriétaire QR engine.
+QR engine = moteur (pas un hop). Les cas montrent qui encode / décode.
+SI wallet ≠ app téléphone. Confirmation UX ≠ settlement (J1).

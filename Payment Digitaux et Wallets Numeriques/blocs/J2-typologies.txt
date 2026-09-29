@@ -1,14 +1,20 @@
 BLOC — FORMATEUR · JOUR 2 · Principes & typologies QR
-Durée : 30–40 min
+Durée : 35–45 min
 
 Idée clé
-Le QR de paiement n’est pas un seul objet : statique/dynamique, push/pull, closed/open — chaque choix change le SI et le risque.
+Le QR de paiement n’est pas un seul objet : payload métier ≠ algo optique ;
+statique/dynamique (tag 01 · 11/12), push/pull (MPM/CPM), closed/open — chaque choix change le SI et le risque.
+
+Ouverture
+1. Définition QR + payload standard (ex. URL)
+2. Génération (ISO/IEC 18004) : payload → encodage → ECC → matrice → image
+3. QR de paiement + payload paiement (ex. pédagogique pipe / équiv. EMV)
+   — même support optique, chaîne structurée pour l’app
 
 Axes (chaque axe = schéma SVG + seq-steps sur la fiche)
-1. Statique vs dynamique — sticker vs caisse
-2. Push vs pull — qui présente / qui scanne
+1. Statique vs dynamique — sticker vs caisse (+ démo QR live) · EMV 11 / 12
+2. Push vs pull — qui présente / qui scanne (+ démo QR live) · MPM / CPM
 3. Closed-loop vs open-loop — périmètre d’acceptation
 4. Bancaire vs wallet (UX ; détail wallet = J4)
 
-Cas : sticker magasin (souvent statique pull) · caisse affichant QR (dynamique).
 Schémas : acteurs ../img/acteurs (porteur, commerçant, device, banque, wallet, scheme).

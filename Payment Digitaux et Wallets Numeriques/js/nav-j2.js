@@ -1,8 +1,7 @@
 window.J2_BLOCS = [
   { id: "intro", title: "Intro & objectifs", href: "intro.html" },
   { id: "typologies", title: "Principes & typologies QR", href: "typologies.html" },
-  { id: "architecture-si", title: "Architecture SI QR", href: "architecture-si.html" },
-  { id: "flux", title: "Flux transactionnels QR", href: "flux.html" },
+  { id: "architecture-si", title: "Architecture SI & flux QR", href: "architecture-si.html" },
   { id: "standards", title: "Standards & interopérabilité", href: "standards.html" },
   { id: "cas-usage", title: "Cas d’usage", href: "cas-usage.html" },
   { id: "cas-national", title: "Cas : QR national", href: "cas-national.html" },

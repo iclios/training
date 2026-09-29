@@ -51,7 +51,213 @@
                 texte libre, URL, contact, identifiant technique, ticket,
                 configuration… — <em>pas</em> uniquement un paiement.
               </p>
-              <p class="intro" style="margin-top: 1rem">
+
+              <div class="callout" style="margin-top: 1.25rem">
+                <h3>Payload</h3>
+                <p>
+                  Le <strong>payload</strong> est la
+                  <strong>charge utile</strong> portée par le QR&nbsp;: les
+                  octets / caractères que le lecteur récupère après scan. Le QR
+                  n’est que le support optique&nbsp;; le payload, c’est le
+                  contenu — n’importe quelle chaîne comprise par l’app qui
+                  lit.
+                </p>
+              </div>
+
+              <div class="diagram" style="margin-top: 1.25rem">
+                <div class="diagram-header">
+                  <h3>Payload standard — exemples</h3>
+                  <p>Cas courants hors paiement&nbsp;: URL · Wi‑Fi</p>
+                </div>
+
+                <div class="payload-example">
+                  <figure class="qr-hero">
+                    <img
+                      src="../img/qr/qr-url-demo.png"
+                      alt="QR code encodant une URL"
+                      width="220"
+                      height="220"
+                    />
+                    <figcaption>
+                      QR généré pour le payload URL ci-dessous — scannable.
+                    </figcaption>
+                  </figure>
+                  <pre class="payload-raw" aria-label="Payload URL générique">https://exemple.com/menu</pre>
+                  <div class="payload-fields" role="list">
+                    <div class="payload-field" role="listitem">
+                      <code>https://</code>
+                      <strong>Schéma</strong>
+                      <p>Protocole&nbsp;: le lecteur ouvre un navigateur / une app.</p>
+                    </div>
+                    <div class="payload-field" role="listitem">
+                      <code>exemple.com</code>
+                      <strong>Hôte</strong>
+                      <p>Serveur cible — menu, fiche produit, page d’info…</p>
+                    </div>
+                    <div class="payload-field" role="listitem">
+                      <code>/menu</code>
+                      <strong>Chemin</strong>
+                      <p>Ressource demandée après le scan.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="payload-example" style="margin-top: 1.5rem">
+                  <figure class="qr-hero">
+                    <img
+                      src="../img/qr/qr-wifi-demo.png"
+                      alt="QR code encodant une configuration Wi-Fi"
+                      width="220"
+                      height="220"
+                    />
+                    <figcaption>
+                      QR généré pour le payload Wi‑Fi ci-dessous — scannable
+                      (réseau démo).
+                    </figcaption>
+                  </figure>
+                  <pre class="payload-raw" aria-label="Payload Wi-Fi générique">WIFI:T:WPA;S:CafeDemo;P:demo1234;;</pre>
+                  <div class="payload-fields" role="list">
+                    <div class="payload-field" role="listitem">
+                      <code>WIFI:</code>
+                      <strong>Type</strong>
+                      <p>Convention téléphone&nbsp;: configurer un réseau Wi‑Fi.</p>
+                    </div>
+                    <div class="payload-field" role="listitem">
+                      <code>T:WPA</code>
+                      <strong>Sécurité</strong>
+                      <p>Type de chiffrement (WPA / WEP / nopass…).</p>
+                    </div>
+                    <div class="payload-field" role="listitem">
+                      <code>S:CafeDemo</code>
+                      <strong>SSID</strong>
+                      <p>Nom du réseau à rejoindre.</p>
+                    </div>
+                    <div class="payload-field" role="listitem">
+                      <code>P:demo1234</code>
+                      <strong>Mot de passe</strong>
+                      <p>Clé — exemple pédagogique uniquement.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="fresco-legend">
+                  Même algo de génération pour une URL, un Wi‑Fi ou un
+                  paiement&nbsp;: seule la <em>chaîne</em> change.
+                </p>
+              </div>
+            </section>
+
+            <!-- Génération / algo -->
+            <section class="section">
+              <p class="section-label">Support optique</p>
+              <h2>Génération du QR</h2>
+              <p class="intro">
+                Le <strong>payload</strong> est le contenu. L’algo de génération
+                (norme <strong>ISO/IEC 18004</strong>) le transforme en
+                <strong>matrice de modules</strong> noir / blanc — en pratique
+                une librairie, pas un moteur maison.
+              </p>
+
+              <div class="diagram" id="diagram-gen-qr">
+                <div class="diagram-header">
+                  <h3>Pipeline de génération</h3>
+                  <p>De la chaîne de caractères à l’image scannée</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 220"
+                  role="img"
+                  aria-label="Pipeline payload vers image QR"
+                >
+                  <defs>
+                    <marker id="ah-gen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <g>
+                    <rect x="20" y="40" width="160" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="100" y="88" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">1 · Payload</text>
+                    <text x="100" y="112" text-anchor="middle" fill="#5a6b7c" font-size="12">chaîne de données</text>
+                    <text x="100" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">URL · texte · pay…</text>
+                  </g>
+                  <line x1="180" y1="100" x2="210" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gen)"/>
+
+                  <g>
+                    <rect x="210" y="40" width="160" height="120" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="290" y="88" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">2 · Encodage</text>
+                    <text x="290" y="112" text-anchor="middle" fill="#5a6b7c" font-size="12">mode + bits</text>
+                    <text x="290" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">version (taille)</text>
+                  </g>
+                  <line x1="370" y1="100" x2="400" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gen)"/>
+
+                  <g>
+                    <rect x="400" y="40" width="180" height="120" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="490" y="82" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">3 · Correction</text>
+                    <text x="490" y="106" text-anchor="middle" fill="#5a6b7c" font-size="12">Reed-Solomon</text>
+                    <text x="490" y="128" text-anchor="middle" fill="#5a6b7c" font-size="11">niveaux L · M · Q · H</text>
+                  </g>
+                  <line x1="580" y1="100" x2="610" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gen)"/>
+
+                  <g>
+                    <rect x="610" y="40" width="160" height="120" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="690" y="88" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">4 · Matrice</text>
+                    <text x="690" y="112" text-anchor="middle" fill="#5a6b7c" font-size="12">modules + masque</text>
+                    <text x="690" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">finders · timing</text>
+                  </g>
+                  <line x1="770" y1="100" x2="800" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gen)"/>
+
+                  <g>
+                    <rect x="800" y="40" width="180" height="120" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                    <text x="890" y="88" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">5 · Image</text>
+                    <text x="890" y="112" text-anchor="middle" fill="#5a6b7c" font-size="12">écran / sticker</text>
+                    <text x="890" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">ce que l’on scanne</text>
+                  </g>
+                </svg>
+
+                <div class="seq-steps" id="gen-qr-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Payload</strong>
+                      <p>La chaîne à encoder (URL, texte, payload paiement…). C’est le contenu métier.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Encodage</strong>
+                      <p>Mode (numérique, alphanumérique, octets…) + version&nbsp;: plus le payload est long, plus la grille est dense.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Correction d’erreur</strong>
+                      <p>
+                        Reed-Solomon ajoute de la redondance (L ≈ 7&nbsp;% · M ≈ 15&nbsp;% · Q ≈ 25&nbsp;% · H ≈ 30&nbsp;%) pour reconstruire le payload si le sticker est rayé ou partiellement masqué — bruit optique, pas chiffrement.
+                      </p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="4">
+                    <span class="n">4–5</span>
+                    <span>
+                      <strong>Matrice → image</strong>
+                      <p>Motifs de repère (finders), masque, rendu pixels. Lib ISO&nbsp;18004 — pas un algo «&nbsp;maison&nbsp;» banque.</p>
+                    </span>
+                  </button>
+                </div>
+                <p class="fresco-legend">
+                  Terrain&nbsp;: payload trop long ou ECC trop haut → QR dense →
+                  scans ratés à distance. Le compromis est produit / UX, pas
+                  «&nbsp;plus de crypto&nbsp;».
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Cas d’usage</p>
+              <h2>Du support au paiement</h2>
+              <p class="intro">
                 Un <strong>QR de paiement</strong> est un cas d’usage&nbsp;: le
                 même support optique, mais un payload compris par une app
                 (bancaire, wallet, marchand) pour
@@ -59,6 +265,7 @@
                 opération. Ce n’est pas «&nbsp;un seul objet&nbsp;»&nbsp;:
                 plusieurs axes changent le SI et le risque.
               </p>
+
               <figure class="qr-hero">
                 <img
                   src="../img/qr/qr-paiement-demo.png"
@@ -72,29 +279,15 @@
                 </figcaption>
               </figure>
 
-              <div class="callout" style="margin-top: 1.25rem">
-                <h3>Payload</h3>
-                <p>
-                  Le <strong>payload</strong> est la
-                  <strong>charge utile</strong> portée par le QR&nbsp;: les
-                  octets / caractères que le lecteur récupère après scan. Ça
-                  peut être un simple texte, une URL, un JSON… En paiement, ce
-                  payload est <em>structuré</em> pour dire
-                  <em>qui</em> créditer, <em>combien</em>, en quelle devise,
-                  avec quelle référence — et comment traiter l’opération. Le QR
-                  n’est que le support&nbsp;; le payload, c’est le contenu.
-                </p>
-              </div>
-
               <div class="diagram" style="margin-top: 1.25rem">
                 <div class="diagram-header">
-                  <h3>Schéma du payload d’exemple</h3>
+                  <h3>Payload de paiement — exemple</h3>
                   <p>
                     Format pédagogique (pipe)&nbsp;· équivalent simplifié d’un
                     QR statique
                   </p>
                 </div>
-                <pre class="payload-raw" aria-label="Payload encodé dans le QR">PAY|MID:TRAIN|AMT:|CUR:XOF|REF:STAT|POI:11</pre>
+                <pre class="payload-raw" aria-label="Payload de paiement encodé dans le QR">PAY|MID:TRAIN|AMT:|CUR:XOF|REF:STAT|POI:11</pre>
                 <div class="payload-fields" role="list">
                   <div class="payload-field" role="listitem">
                     <code>PAY</code>
@@ -150,14 +343,51 @@
               <p class="intro">
                 <strong>Statique</strong>&nbsp;: contenu fixe (souvent ID
                 marchand). <strong>Dynamique</strong>&nbsp;: payload généré pour
-                une opération (montant, référence, TTL).
+                une opération (montant, référence, TTL). En EMV QR&nbsp;: tag&nbsp;01
+                = <code>11</code> / <code>12</code>.
+              </p>
+              <p class="intro" style="margin-top: 0.85rem">
+                <strong>Statique</strong>&nbsp;: le QR dit
+                <em>qui</em> créditer&nbsp;; le <em>combien</em> (et souvent la
+                réf.) vient <strong>après</strong> le scan, côté payeur ou app.
+                <strong>Dynamique</strong>&nbsp;: le QR dit
+                <em>qui + combien + réf. (+ TTL)</em>&nbsp;; généré
+                <strong>pour cette opération</strong>, puis jeté / expiré.
               </p>
 
               <div class="diagram" id="diagram-statique-dynamique">
                 <div class="diagram-header">
                   <h3>Statique · Dynamique</h3>
-                  <p>Qui porte le montant et la référence&nbsp;?</p>
+                  <p>Qui porte le montant — EMV tag&nbsp;01 · <code>11</code> / <code>12</code></p>
                 </div>
+
+                <div class="qr-live-demo" id="qr-live-demo" aria-label="Démo scannable statique vs dynamique">
+                  <p class="qr-live-hint">
+                    Sortez le téléphone — scannez les deux. À gauche le payload
+                    ne change jamais&nbsp;; à droite il expire et se régénère.
+                  </p>
+                  <div class="qr-live-grid">
+                    <article class="qr-live-card is-static">
+                      <header>
+                        <span class="qr-live-tag">Statique · 11</span>
+                        <h4>Sticker fixe</h4>
+                      </header>
+                      <div class="qr-live-frame" id="qr-live-static" aria-hidden="true"></div>
+                      <p class="qr-live-status">Toujours le même QR</p>
+                      <pre class="payload-raw qr-live-payload" id="qr-live-static-payload"></pre>
+                    </article>
+                    <article class="qr-live-card is-dynamic">
+                      <header>
+                        <span class="qr-live-tag">Dynamique · 12</span>
+                        <h4>Ticket de caisse</h4>
+                      </header>
+                      <div class="qr-live-frame" id="qr-live-dynamic" aria-hidden="true"></div>
+                      <p class="qr-live-status" id="qr-live-ttl">Expire dans 8 s</p>
+                      <pre class="payload-raw qr-live-payload" id="qr-live-dynamic-payload"></pre>
+                    </article>
+                  </div>
+                </div>
+
                 <svg
                   viewBox="0 0 1000 320"
                   role="img"
@@ -207,29 +437,74 @@
                     <text x="750" y="210" text-anchor="middle" fill="#0d9f8a" font-size="12">Montant + réf. + TTL dans le QR</text>
                   </g>
                   <text x="500" y="290" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Statique = réutilisable · Dynamique = lié à une opération
+                    Statique = réutilisable (tag 01 = 11) · Dynamique = une opération (tag 01 = 12)
                   </text>
                 </svg>
+
+                <div class="csm-table-wrap" style="margin-top: 1.25rem">
+                  <table class="csm-table">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Statique (11)</th>
+                        <th scope="col">Dynamique (12)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Payload</th>
+                        <td>Fixe (MID…)</td>
+                        <td>Unique par ticket</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Montant</th>
+                        <td>Saisi après scan</td>
+                        <td>Déjà dans le QR</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Risque typique</th>
+                        <td>Montant erroné / QR photocopié</td>
+                        <td>Replay si pas de TTL / unicité</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">SI</th>
+                        <td>Simple (sticker)</td>
+                        <td>QR engine + TTL + anti-rejeu</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
                 <div class="seq-steps" id="statique-dynamique-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
                       <strong>Statique</strong>
-                      <p>QR fixe affiché (sticker). Le payeur complète le montant.</p>
+                      <p>
+                        Sticker réutilisable&nbsp;; le payeur saisit le montant.
+                        Typique petit commerce / pourboire.
+                      </p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
                       <strong>Dynamique</strong>
-                      <p>La caisse / backend génère un payload unique (montant, réf., TTL).</p>
+                      <p>
+                        La caisse génère un payload unique&nbsp;; montant figé&nbsp;;
+                        TTL = fenêtre de validité.
+                      </p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
                     <span class="n">3</span>
                     <span>
                       <strong>Impact SI</strong>
-                      <p>Dynamique exige un QR engine + contrôle d’expiration / unicité.</p>
+                      <p>
+                        Dynamique = génération + session + expiration + unicité.
+                        Statique = moins de SI, plus de contrôle métier côté app
+                        payeur.
+                      </p>
                     </span>
                   </button>
                 </div>
@@ -241,17 +516,48 @@
               <p class="section-label">Modes monétiques</p>
               <h2>Push vs pull</h2>
               <p class="intro">
-                Qui présente le QR&nbsp;?
-                <strong>Pull</strong>&nbsp;: le payeur scanne le QR du
-                bénéficiaire. <strong>Push</strong>&nbsp;: le payeur présente un
-                QR scanné par le marchand / agent.
+                Qui présente le QR&nbsp;? En EMV&nbsp;: Merchant-Presented (MPM) ≈
+                pull · Consumer-Presented (CPM) ≈ push.
               </p>
 
               <div class="diagram" id="diagram-push-pull">
                 <div class="diagram-header">
                   <h3>Pull · Push</h3>
-                  <p>Sens du scan — qui lit le code</p>
+                  <p>Sens du scan — MPM / CPM</p>
                 </div>
+
+                <div class="qr-live-demo" id="qr-push-pull-demo" aria-label="Démo scannable pull vs push">
+                  <p class="qr-live-hint">
+                    Même geste «&nbsp;scanner&nbsp;», rôles inversés. À gauche vous
+                    êtes le <strong>payeur</strong> (vous scannez le marchand).
+                    À droite vous êtes la <strong>caisse</strong> (vous scannez
+                    le téléphone du client). Les deux QR sont
+                    <em>fixes ici</em>&nbsp;: statique / dynamique est un
+                    <strong>autre axe</strong> (un pull peut être dynamique —
+                    caisse qui affiche le montant).
+                  </p>
+                  <div class="qr-live-grid">
+                    <article class="qr-live-card is-dynamic">
+                      <header>
+                        <span class="qr-live-tag">Pull · MPM</span>
+                        <h4>QR marchand</h4>
+                      </header>
+                      <div class="qr-live-frame" id="qr-pp-pull" aria-hidden="true"></div>
+                      <p class="qr-live-status">Payeur scanne — tire l’identité du bénéficiaire</p>
+                      <pre class="payload-raw qr-live-payload" id="qr-pp-pull-payload"></pre>
+                    </article>
+                    <article class="qr-live-card is-static">
+                      <header>
+                        <span class="qr-live-tag">Push · CPM</span>
+                        <h4>QR payeur</h4>
+                      </header>
+                      <div class="qr-live-frame" id="qr-pp-push" aria-hidden="true"></div>
+                      <p class="qr-live-status">Caisse scanne — reçoit l’intention du payeur</p>
+                      <pre class="payload-raw qr-live-payload" id="qr-pp-push-payload"></pre>
+                    </article>
+                  </div>
+                </div>
+
                 <svg
                   viewBox="0 0 1000 300"
                   role="img"
@@ -297,29 +603,79 @@
                     </g>
                   </g>
                   <text x="500" y="270" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Pull = le plus courant en magasin · Push = caisse / agent lit le payeur
+                    Pull (MPM) = magasin · Push (CPM) = caisse / agent lit le payeur
                   </text>
                 </svg>
+
+                <div class="csm-table-wrap" style="margin-top: 1.25rem">
+                  <table class="csm-table">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Pull (MPM)</th>
+                        <th scope="col">Push (CPM)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Qui présente</th>
+                        <td>Marchand / bénéficiaire</td>
+                        <td>Payeur (écran téléphone)</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Qui scanne</th>
+                        <td>Payeur</td>
+                        <td>Caisse / agent</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Payload typique</th>
+                        <td>Identité du bénéficiaire (± montant)</td>
+                        <td>Identité / intention du payeur</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Risque typique</th>
+                        <td>Surtout si fixe&nbsp;: QR marchand falsifié / collé</td>
+                        <td>Surtout si fixe&nbsp;: QR payeur capturé / rejoué</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">SI</th>
+                        <td>QR côté acceptation</td>
+                        <td>App payeur + lecteur caisse</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
                 <div class="seq-steps" id="push-pull-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
                       <strong>Pull</strong>
-                      <p>Le payeur scanne le QR du marchand / bénéficiaire.</p>
+                      <p>
+                        Le payeur scanne le QR du bénéficiaire et tire l’info
+                        vers son app (magasin, resto, sticker).
+                      </p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
                       <strong>Push</strong>
-                      <p>Le marchand / agent scanne le QR présenté par le payeur.</p>
+                      <p>
+                        Le payeur présente un QR&nbsp;; la caisse le scanne et
+                        reçoit l’intention poussée (guichet, agent).
+                      </p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
                     <span class="n">3</span>
                     <span>
                       <strong>Impact SI</strong>
-                      <p>Qui génère le QR, qui valide le scan, qui porte le risque d’usurpation.</p>
+                      <p>
+                        Pull = génération / affichage côté marchand.
+                        Push = génération côté app payeur + lecteur sécurisé
+                        caisse + anti-rejeu.
+                      </p>
                     </span>
                   </button>
                 </div>
@@ -330,11 +686,7 @@
             <section class="section">
               <p class="section-label">Modes monétiques</p>
               <h2>Closed-loop vs open-loop</h2>
-              <p class="intro">
-                <strong>Closed</strong>&nbsp;: un écosystème (enseigne, un
-                wallet). <strong>Open</strong>&nbsp;: interopérable entre
-                banques / wallets / schemes.
-              </p>
+              <p class="intro">Qui peut payer avec ce QR&nbsp;?</p>
 
               <div class="diagram" id="diagram-closed-open">
                 <div class="diagram-header">
@@ -384,26 +736,75 @@
                     Open exige standards / switch communs — closed reste simple mais isolé
                   </text>
                 </svg>
+
+                <div class="csm-table-wrap" style="margin-top: 1.25rem">
+                  <table class="csm-table">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Closed-loop</th>
+                        <th scope="col">Open-loop</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Périmètre</th>
+                        <td>Un écosystème propriétaire</td>
+                        <td>Plusieurs banques / wallets / schemes</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Exemples</th>
+                        <td>Carte cadeau enseigne, wallet mono-rail</td>
+                        <td>QR national, EMV QR interop</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Payload / SI</th>
+                        <td>IDs et règles internes</td>
+                        <td>Specs communes + routage / switch</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Avantage</th>
+                        <td>Simple à déployer, contrôle total</td>
+                        <td>Portée large, un QR multi-apps</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Limite</th>
+                        <td>Isolé — pas d’acceptation hors réseau</td>
+                        <td>Gouvernance, interop, conformité</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
                 <div class="seq-steps" id="closed-open-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
                       <strong>Closed</strong>
-                      <p>Acceptation limitée à un réseau propriétaire.</p>
+                      <p>
+                        Un seul réseau (enseigne, un wallet)&nbsp;: seul ce rail
+                        sait lire et régler le QR.
+                      </p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
                       <strong>Open</strong>
-                      <p>Plusieurs banques / wallets / schemes sur un même QR.</p>
+                      <p>
+                        Plusieurs apps / banques scannent le même QR via un
+                        standard ou un switch commun.
+                      </p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
                     <span class="n">3</span>
                     <span>
                       <strong>Impact SI</strong>
-                      <p>Open = interop, gouvernance, specs nationales / EMV.</p>
+                      <p>
+                        Open = interop, gouvernance, specs (national / EMV).
+                        Closed = SI plus léger, mais silo.
+                      </p>
                     </span>
                   </button>
                 </div>
@@ -414,10 +815,7 @@
             <section class="section">
               <p class="section-label">Modes monétiques</p>
               <h2>Bancaire vs wallet</h2>
-              <p class="intro">
-                Vue <strong>UX / canal</strong>&nbsp;: app banque vs app wallet.
-                Le détail technique wallet est reporté au Jour 4.
-              </p>
+              <p class="intro">Quelle app initie le paiement&nbsp;?</p>
 
               <div class="diagram" id="diagram-bancaire-wallet">
                 <div class="diagram-header">
@@ -460,26 +858,70 @@
                     Le canal change l’expérience — pas la chronologie Auth → Clearing → Settlement
                   </text>
                 </svg>
+
+                <div class="csm-table-wrap" style="margin-top: 1.25rem">
+                  <table class="csm-table">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Bancaire</th>
+                        <th scope="col">Wallet</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Canal UX</th>
+                        <td>App / parcours banque</td>
+                        <td>App wallet (souvent multi-moyens)</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Vue J2</th>
+                        <td>Rails banque / PSP visibles</td>
+                        <td>Façade UX — technique reportée J4</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Socle J1</th>
+                        <td colspan="2">Auth → Clearing → Settlement inchangé</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Confusion à éviter</th>
+                        <td colspan="2">
+                          «&nbsp;Wallet&nbsp;» ici ≠ token / SE / NFC (J3–J4)
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
                 <div class="seq-steps" id="bancaire-wallet-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
                       <strong>Bancaire</strong>
-                      <p>Initiation via app / rails banque (souvent PSP).</p>
+                      <p>
+                        Le payeur initie via l’app banque (souvent derrière un
+                        PSP)&nbsp;: même QR, rail bancaire.
+                      </p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
                       <strong>Wallet</strong>
-                      <p>Même initiation vue utilisateur via wallet — technique J4.</p>
+                      <p>
+                        Même geste côté utilisateur via une app wallet&nbsp;:
+                        autre façade UX, détail technique au Jour 4.
+                      </p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
                     <span class="n">3</span>
                     <span>
                       <strong>Socle J1</strong>
-                      <p>Auth / clearing / settlement restent le fil conducteur.</p>
+                      <p>
+                        Le canal change l’expérience, pas la chronologie Auth /
+                        Clearing / Settlement.
+                      </p>
                     </span>
                   </button>
                 </div>
@@ -487,78 +929,6 @@
                   Ne pas confondre «&nbsp;wallet UX&nbsp;» (J2) et architecture
                   wallet / token / SE (J3–J4).
                 </p>
-              </div>
-            </section>
-
-            <!-- Rôle -->
-            <section class="section">
-              <p class="section-label">Rôle</p>
-              <h2>Que retient le SI&nbsp;?</h2>
-              <div class="split-2">
-                <div class="panel">
-                  <h3>Choix produit</h3>
-                  <ul>
-                    <li>Statique / dynamique → QR engine ou non</li>
-                    <li>Push / pull → qui génère, qui scanne</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Choix écosystème</h3>
-                  <ul>
-                    <li>Closed / open → interop &amp; gouvernance</li>
-                    <li>Bancaire / wallet → canal UX, rails derrière</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <!-- Ancrage -->
-            <section class="section">
-              <p class="section-label">Ancrage</p>
-              <h2>Cas pratiques</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>Cas 1 — Sticker magasin</h3>
-                  <ul>
-                    <li>Souvent <strong>statique + pull</strong></li>
-                    <li>Contrôle anti-fraude côté montant&nbsp;?</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Cas 2 — Caisse qui affiche</h3>
-                  <ul>
-                    <li>Souvent <strong>dynamique</strong></li>
-                    <li>TTL / unicité de la référence</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <!-- Clarification -->
-            <section class="section">
-              <p class="section-label">Clarification</p>
-              <h2>Ce que ce n’est pas</h2>
-              <div class="not-list">
-                <div class="not-item">
-                  <strong>Statique ≠ « moins sécurisé » simpliste</strong>
-                  <p>
-                    Risque différent (montant saisi, QR clonable) — règles
-                    produit, pas un verdict binaire.
-                  </p>
-                </div>
-                <div class="not-item">
-                  <strong>Push ≠ Pull</strong>
-                  <p>
-                    Qui présente le code change le parcours caisse et le
-                    contrôle d’identité.
-                  </p>
-                </div>
-                <div class="not-item">
-                  <strong>Wallet ≠ détail technique J2</strong>
-                  <p>
-                    Ici = canal UX. Token / SE / NFC = J3–J4.
-                  </p>
-                </div>
               </div>
             </section>
 
@@ -583,5 +953,7 @@
     <script src="../js/app.js"></script>
     <script src="../js/nav-j2.js"></script>
     <script src="../js/fiche.js"></script>
+    <script src="../js/vendor/qrcode.min.js"></script>
+    <script src="../js/qr-live-demo.js"></script>
   </body>
 </html>

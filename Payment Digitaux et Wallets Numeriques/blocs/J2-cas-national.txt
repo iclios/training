@@ -4,4 +4,11 @@ Durée : 40–50 min
 Livrables : schéma d’architecture · flux · acteurs & responsabilités.
 Périmètre allégé — omnicanal QR+NFC+wallet = J5.
 
-Fiche : schémas architecture open-loop + flux QR→settlement + panels RACI ; seq-steps.
+Fiche :
+1. Brief — un QR · plusieurs apps (open-loop national)
+2. Avant / après — silos vs profil + switch
+3. Architecture — marchand · switch · acquéreur · émetteurs
+4. Flux type pull (MPM) — encode → scan → Auth → clearing → settlement
+5. RACI simplifié
+6. Décisions à trancher (mode, 11/12, opérateur switch, P2P, international)
+7. Livrables groupe + périmètre ≠ J5

@@ -1,7 +1,18 @@
 BLOC — FORMATEUR · JOUR 2 · Standards & interopérabilité
-Durée : 30–40 min
+Durée : 35–45 min
 
-EMV QR Code (EMVCo) · QR national vs international · interop multi-wallet.
+Idée clé
+Sans standard + gouvernance → pas d’open-loop. EMV QR = structure payload ;
+national = profil + switch ; international = corridors.
 
-Fiche : schéma couches (EMV / national / international) + schéma multi-wallet + panels repères.
-Sources à affiner : EMVCo QR Code Specification ; specs nationales.
+Fil
+1. Pourquoi standards (lien open-loop)
+2. Couches EMV / national / international
+3. Tags EMV QR (extrait TLV) — pont payload Typologies
+4. Merchant-Presented ≈ pull · Consumer-Presented ≈ push
+5. Multi-wallet
+6. Checklist open-loop (spec · IDs · switch · apps)
+7. Quand l’interop casse
+8. Qui publie quoi (EMVCo · national · PSP)
+
+Sources : EMVCo QR Code Specification ; specs nationales.

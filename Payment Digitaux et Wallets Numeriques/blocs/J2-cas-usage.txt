@@ -1,7 +1,14 @@
 BLOC — FORMATEUR · JOUR 2 · Cas d’usage
-Durée : 20–25 min
+Durée : 25–30 min
 
-Proximité · transport · P2P.
-Pour chaque usage : statique/dynamique, push/pull, closed/open + contraintes SI.
+Idée clé
+Trois terrains — pour chacun : axes (statique/dyn · 11/12, push/pull · MPM/CPM, closed/open)
++ contrainte SI dominante. Un usage ≠ un seul axe.
 
-Fiche : un mini-schéma + seq-steps par usage (acteurs).
+Fil
+1. Proximité — pull · sticker vs caisse · open souhaitable
+2. Transport — SLA / offline · closed fréquent
+3. P2P — proxy · plafonds · usurpation QR perso
+4. Grille synthèse
+
+Liens : Architecture (cas pull/push) · Standards (open-loop).

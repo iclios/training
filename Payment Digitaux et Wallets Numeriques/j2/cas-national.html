@@ -40,34 +40,106 @@
 
           <div class="wrap">
             <section class="section" style="border-top: none; padding-top: 0">
-              <p class="section-label">Définition</p>
-              <h2>Étude allégée</h2>
+              <p class="section-label">Brief</p>
+              <h2>Un QR · plusieurs apps</h2>
               <p class="definition-full">
-                Concevoir un système de paiement QR
-                <strong>national</strong> et <strong>interopérable</strong>
-                (open-loop)&nbsp;: architecture, flux, acteurs &amp;
-                responsabilités. Omnicanal QR+NFC+wallet = Jour 5.
+                Concevoir un système QR <strong>national</strong> et
+                <strong>open-loop</strong>&nbsp;: un marchand affiche un code
+                (souvent pull / MPM) scannable par les apps banques et wallets
+                adhérentes. Architecture · flux · responsabilités.
               </p>
-              <p class="intro" style="margin-top: 1.1rem">
-                Livrables&nbsp;: schéma d’architecture · flux · RACI acteurs.
+              <p class="intro" style="margin-top: 0.85rem">
+                Omnicanal QR + NFC + wallet = Jour 5. Ici&nbsp;: canal QR seul,
+                interop domestique.
               </p>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Problème</p>
+              <h2>Avant / après</h2>
+              <p class="intro">
+                Sans switch commun, chaque wallet impose son QR — le marchand
+                multiplie les stickers.
+              </p>
+              <div class="diagram" id="diagram-avant-apres">
+                <div class="diagram-header">
+                  <h3>Closed silos → open national</h3>
+                  <p>Le levier = profil + IDs + switch + apps certifiées</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 280"
+                  role="img"
+                  aria-label="Avant silos versus après QR national"
+                >
+                  <g>
+                    <rect x="30" y="30" width="440" height="210" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+                    <text x="250" y="60" text-anchor="middle" fill="#8a9aaa" font-family="Syne, sans-serif" font-size="14" font-weight="700">Avant · silos</text>
+                    <g>
+                      <rect x="60" y="85" width="120" height="70" rx="8" fill="#fff" stroke="#2f4858" stroke-width="2"/>
+                      <text x="120" y="125" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">QR A</text>
+                    </g>
+                    <g>
+                      <rect x="190" y="85" width="120" height="70" rx="8" fill="#fff" stroke="#2f4858" stroke-width="2"/>
+                      <text x="250" y="125" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">QR B</text>
+                    </g>
+                    <g>
+                      <rect x="320" y="85" width="120" height="70" rx="8" fill="#fff" stroke="#2f4858" stroke-width="2"/>
+                      <text x="380" y="125" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">QR C</text>
+                    </g>
+                    <text x="250" y="200" text-anchor="middle" fill="#5a6b7c" font-size="12">1 sticker = 1 wallet</text>
+                  </g>
+                  <g>
+                    <rect x="530" y="30" width="440" height="210" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="750" y="60" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Après · national</text>
+                    <g>
+                      <rect x="640" y="85" width="220" height="70" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="3"/>
+                      <text x="750" y="115" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">1 QR profil pays</text>
+                      <text x="750" y="138" text-anchor="middle" fill="#5a6b7c" font-size="11">EMV + IDs nationaux</text>
+                    </g>
+                    <text x="750" y="200" text-anchor="middle" fill="#0d9f8a" font-size="12">A · B · C scannent le même code</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="avant-apres-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Silo</strong>
+                      <p>Chaque app ne lit que «&nbsp;son&nbsp;» QR — friction marchand.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Profil national</strong>
+                      <p>Payload commun (souvent EMV QR + règles pays).</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Switch</strong>
+                      <p>Routage et adhésion — la spec seule ne suffit pas (voir Standards).</p>
+                    </span>
+                  </button>
+                </div>
+              </div>
             </section>
 
             <section class="section">
               <p class="section-label">Architecture</p>
               <h2>Vue nationale open-loop</h2>
               <p class="intro">
-                Un QR marchand · un switch national · plusieurs banques /
-                wallets.
+                Marchand · switch / scheme · acquéreur · émetteurs (banques /
+                wallets).
               </p>
 
               <div class="diagram" id="diagram-arch-national">
                 <div class="diagram-header">
                   <h3>Architecture cible</h3>
-                  <p>Marchand · QR engine / switch · émetteurs</p>
+                  <p>Un QR standard · un rail de routage · N apps payeur</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 340"
+                  viewBox="0 0 1000 360"
                   role="img"
                   aria-label="Architecture QR national interopérable"
                 >
@@ -80,17 +152,17 @@
                     <rect x="40" y="40" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-commercant.jpg" x="52" y="56" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
                     <text x="120" y="80" fill="#1a2b3c" font-size="13" font-weight="700">Marchand</text>
-                    <text x="120" y="100" fill="#5a6b7c" font-size="11">QR standard</text>
+                    <text x="120" y="100" fill="#5a6b7c" font-size="11">QR MPM / profil</text>
                   </g>
-                  <line class="flow-line" x1="250" y1="90" x2="320" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cn)"/>
+                  <line class="flow-line" x1="250" y1="90" x2="310" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cn)"/>
                   <g>
-                    <rect x="320" y="30" width="360" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-scheme.jpg" x="340" y="52" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="420" y="75" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Switch / scheme national</text>
-                    <text x="420" y="100" fill="#0d9f8a" font-size="12">profil EMV / national · IDs</text>
-                    <text x="420" y="120" fill="#5a6b7c" font-size="11">routage · certification apps</text>
+                    <rect x="310" y="30" width="380" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-scheme.jpg" x="330" y="52" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="410" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Switch / scheme national</text>
+                    <text x="410" y="98" fill="#0d9f8a" font-size="12">profil · IDs · routage</text>
+                    <text x="410" y="120" fill="#5a6b7c" font-size="11">certification apps · règles</text>
                   </g>
-                  <line class="flow-line" x1="690" y1="90" x2="760" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cn)"/>
+                  <line class="flow-line" x1="700" y1="90" x2="760" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cn)"/>
                   <g>
                     <rect x="760" y="40" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-psp.jpg" x="772" y="56" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
@@ -98,26 +170,31 @@
                     <text x="842" y="100" fill="#5a6b7c" font-size="11">PSP / banque</text>
                   </g>
 
-                  <line x1="500" y1="150" x2="500" y2="190" stroke="#0d9f8a" stroke-width="2"/>
-                  <line x1="200" y1="190" x2="800" y2="190" stroke="#0d9f8a" stroke-width="2"/>
-                  <line x1="200" y1="190" x2="200" y2="215" stroke="#0d9f8a" stroke-width="2"/>
-                  <line x1="500" y1="190" x2="500" y2="215" stroke="#0d9f8a" stroke-width="2"/>
-                  <line x1="800" y1="190" x2="800" y2="215" stroke="#0d9f8a" stroke-width="2"/>
+                  <line x1="500" y1="150" x2="500" y2="195" stroke="#0d9f8a" stroke-width="2"/>
+                  <line x1="200" y1="195" x2="800" y2="195" stroke="#0d9f8a" stroke-width="2"/>
+                  <line x1="200" y1="195" x2="200" y2="220" stroke="#0d9f8a" stroke-width="2"/>
+                  <line x1="500" y1="195" x2="500" y2="220" stroke="#0d9f8a" stroke-width="2"/>
+                  <line x1="800" y1="195" x2="800" y2="220" stroke="#0d9f8a" stroke-width="2"/>
+
+                  <text x="500" y="185" text-anchor="middle" fill="#8a9aaa" font-size="11">Émetteurs / wallets adhérents</text>
 
                   <g>
-                    <rect x="80" y="215" width="240" height="80" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-banque.jpg" x="95" y="230" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="155" y="255" fill="#1a2b3c" font-size="13" font-weight="700">Banque A</text>
+                    <rect x="80" y="220" width="240" height="90" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-banque.jpg" x="95" y="238" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="160" y="260" fill="#1a2b3c" font-size="13" font-weight="700">Banque A</text>
+                    <text x="160" y="282" fill="#5a6b7c" font-size="11">AuthZ payeur</text>
                   </g>
                   <g>
-                    <rect x="380" y="215" width="240" height="80" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-wallet.jpg" x="395" y="230" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="455" y="255" fill="#1a2b3c" font-size="13" font-weight="700">Wallet B</text>
+                    <rect x="380" y="220" width="240" height="90" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-wallet.jpg" x="395" y="238" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="460" y="260" fill="#1a2b3c" font-size="13" font-weight="700">Wallet B</text>
+                    <text x="460" y="282" fill="#5a6b7c" font-size="11">AuthZ payeur</text>
                   </g>
                   <g>
-                    <rect x="680" y="215" width="240" height="80" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-banque.jpg" x="695" y="230" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="755" y="255" fill="#1a2b3c" font-size="13" font-weight="700">Banque C</text>
+                    <rect x="680" y="220" width="240" height="90" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-banque.jpg" x="695" y="238" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="760" y="260" fill="#1a2b3c" font-size="13" font-weight="700">Banque C</text>
+                    <text x="760" y="282" fill="#5a6b7c" font-size="11">AuthZ payeur</text>
                   </g>
                 </svg>
                 <div class="seq-steps" id="arch-national-steps">
@@ -125,21 +202,21 @@
                     <span class="n">1</span>
                     <span>
                       <strong>QR standard</strong>
-                      <p>Payload national / EMV — un code pour toutes les apps.</p>
+                      <p>Payload national / EMV — un code pour toutes les apps certifiées.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
                       <strong>Switch national</strong>
-                      <p>Routage, IDs marchands, certification des apps.</p>
+                      <p>IDs marchands, routage, règles d’adhésion.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
                     <span class="n">3</span>
                     <span>
                       <strong>Émetteurs</strong>
-                      <p>Banques / wallets adhérents — AuthZ puis clearing / settlement.</p>
+                      <p>AuthZ côté payeur, puis clearing / settlement (socle J1).</p>
                     </span>
                   </button>
                 </div>
@@ -148,61 +225,85 @@
 
             <section class="section">
               <p class="section-label">Flux</p>
-              <h2>Parcours bout en bout</h2>
+              <h2>Parcours type · pull (MPM)</h2>
+              <p class="intro">
+                Scénario fréquent en magasin&nbsp;: caisse ou sticker affiche ·
+                payeur scanne · Auth via switch.
+              </p>
               <div class="diagram" id="diagram-flux-national">
                 <div class="diagram-header">
-                  <h3>Génération → Auth → Clearing → Settlement</h3>
-                  <p>Même chronologie J1 après l’initiation QR</p>
+                  <h3>QR → Auth → Clearing → Settlement</h3>
+                  <p>Initiation QR · le reste reprend la chronologie J1</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 200"
+                  viewBox="0 0 1000 320"
                   role="img"
-                  aria-label="Flux QR national vers settlement"
+                  aria-label="Flux QR national pull vers settlement"
                 >
+                  <defs>
+                    <marker id="ah-fn" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
                   <g>
-                    <rect x="30" y="50" width="200" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="130" y="85" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">1 · QR</text>
-                    <text x="130" y="108" text-anchor="middle" fill="#5a6b7c" font-size="11">génération / scan</text>
+                    <rect x="30" y="40" width="170" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="115" y="80" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">1 · Encode</text>
+                    <text x="115" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">acquéreur / caisse</text>
+                  </g>
+                  <line x1="210" y1="90" x2="250" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fn)"/>
+                  <g>
+                    <rect x="250" y="40" width="170" height="100" rx="10" fill="#fff" stroke="#2f4858" stroke-width="2"/>
+                    <text x="335" y="80" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">2 · Scan</text>
+                    <text x="335" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">app payeur · decode</text>
+                  </g>
+                  <line x1="430" y1="90" x2="470" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fn)"/>
+                  <g>
+                    <rect x="470" y="40" width="200" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="570" y="80" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">3 · Switch</text>
+                    <text x="570" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">routage AuthZ</text>
+                  </g>
+                  <line x1="680" y1="90" x2="720" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fn)"/>
+                  <g>
+                    <rect x="720" y="40" width="250" height="100" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="845" y="80" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">4 · AuthZ</text>
+                    <text x="845" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">émetteur / wallet</text>
+                  </g>
+
+                  <line x1="570" y1="140" x2="570" y2="175" stroke="#0d9f8a" stroke-width="2"/>
+                  <g>
+                    <rect x="200" y="175" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="340" y="210" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">5 · Clearing</text>
+                    <text x="340" y="232" text-anchor="middle" fill="#5a6b7c" font-size="11">compensation nationale</text>
                   </g>
                   <g>
-                    <rect x="270" y="50" width="200" height="80" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="370" y="85" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">2 · AuthZ</text>
-                    <text x="370" y="108" text-anchor="middle" fill="#5a6b7c" font-size="11">via switch</text>
+                    <rect x="520" y="175" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="660" y="210" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">6 · Settlement</text>
+                    <text x="660" y="232" text-anchor="middle" fill="#5a6b7c" font-size="11">règlement · calendrier</text>
                   </g>
-                  <g>
-                    <rect x="510" y="50" width="200" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="610" y="85" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">3 · Clearing</text>
-                    <text x="610" y="108" text-anchor="middle" fill="#5a6b7c" font-size="11">compensation</text>
-                  </g>
-                  <g>
-                    <rect x="750" y="50" width="220" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="860" y="85" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">4 · Settlement</text>
-                    <text x="860" y="108" text-anchor="middle" fill="#5a6b7c" font-size="11">règlement</text>
-                  </g>
-                  <text x="500" y="170" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Le switch national orchestre 1–2 · 3–4 restent le socle J1
+                  <text x="500" y="295" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Dynamique (12) = TTL / unicité · Statique (11) = montant souvent saisi après scan
                   </text>
                 </svg>
                 <div class="seq-steps" id="flux-national-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
-                      <strong>Initiation QR</strong>
-                      <p>Génération / scan selon profil national.</p>
+                      <strong>Initiation</strong>
+                      <p>Encode (caisse / sticker) puis decode dans l’app payeur.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
                       <strong>Autorisation</strong>
-                      <p>Routage switch → émetteur / wallet.</p>
+                      <p>Switch route vers l’émetteur / SI wallet du payeur.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
                     <span class="n">3</span>
                     <span>
                       <strong>Post-transaction</strong>
-                      <p>Clearing puis settlement — calendriers nationaux.</p>
+                      <p>Clearing puis settlement — calendriers du scheme national.</p>
                     </span>
                   </button>
                 </div>
@@ -211,54 +312,119 @@
 
             <section class="section">
               <p class="section-label">Acteurs</p>
-              <h2>Responsabilités</h2>
-              <div class="split-2">
-                <div class="panel">
-                  <h3>Gouvernance / switch</h3>
-                  <ul>
-                    <li>Profil QR &amp; IDs</li>
-                    <li>Certification apps</li>
-                    <li>Routage &amp; règles</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Acquéreurs / PSP</h3>
-                  <ul>
-                    <li>Onboarding marchands</li>
-                    <li>Génération QR</li>
-                    <li>Réconciliation</li>
-                  </ul>
-                </div>
+              <h2>RACI simplifié</h2>
+              <p class="intro">
+                R = réalise · A = décide · C = consulté · I = informé.
+              </p>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Activité</th>
+                      <th scope="col">Scheme / switch</th>
+                      <th scope="col">Acquéreur</th>
+                      <th scope="col">Émetteur / wallet</th>
+                      <th scope="col">Marchand</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Profil QR &amp; IDs</th>
+                      <td>A / R</td>
+                      <td>C</td>
+                      <td>C</td>
+                      <td>I</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Certification apps</th>
+                      <td>A / R</td>
+                      <td>I</td>
+                      <td>R</td>
+                      <td>—</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Onboarding marchand</th>
+                      <td>C</td>
+                      <td>A / R</td>
+                      <td>I</td>
+                      <td>C</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Génération QR</th>
+                      <td>C (règles)</td>
+                      <td>A / R</td>
+                      <td>—</td>
+                      <td>R (affichage)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">AuthZ payeur</th>
+                      <td>C (routage)</td>
+                      <td>I</td>
+                      <td>A / R</td>
+                      <td>I</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Clearing / settlement</th>
+                      <td>A / R</td>
+                      <td>R</td>
+                      <td>R</td>
+                      <td>I</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <div class="split-2" style="margin-top: 1rem">
-                <div class="panel">
-                  <h3>Banques / wallets</h3>
-                  <ul>
-                    <li>AuthZ payeur</li>
-                    <li>Expérience app</li>
-                    <li>Risque &amp; limites</li>
-                  </ul>
-                </div>
-                <div class="panel ok">
-                  <h3>Marchand</h3>
-                  <ul>
-                    <li>Affichage QR</li>
-                    <li>Confirmation caisse</li>
-                    <li>Support client</li>
-                  </ul>
-                </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Décisions</p>
+              <h2>Ce que le groupe tranche</h2>
+              <p class="intro">
+                Pas de «&nbsp;bonne&nbsp;» réponse unique — justifier chaque choix.
+              </p>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Question</th>
+                      <th scope="col">Options typiques</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Mode dominant</th>
+                      <td>Pull / MPM magasin · CPM pour guichet / agent</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Statique vs dynamique</th>
+                      <td>11 sticker petit commerce · 12 caisse / TTL</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Qui opère le switch</th>
+                      <td>Banque centrale · scheme privé · opérateur dédié</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">P2P inclus&nbsp;?</th>
+                      <td>Même profil · profil séparé · hors périmètre V1</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">International</th>
+                      <td>Plus tard (EMV cross-border) · hors cas</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </section>
 
             <section class="section">
               <p class="section-label">Ancrage</p>
-              <h2>Travail en groupe</h2>
+              <h2>Livrables (40–50 min)</h2>
               <div class="panel">
-                <h3>Livrables (45–50 min)</h3>
+                <h3>À produire</h3>
                 <ul>
-                  <li>Schéma d’architecture annoté</li>
-                  <li>Flux génération → settlement</li>
-                  <li>Tableau acteurs / responsabilités</li>
+                  <li>Schéma d’architecture annoté (qui parle à qui)</li>
+                  <li>Flux génération → settlement pour un cas choisi</li>
+                  <li>Tableau acteurs / responsabilités (RACI ou équivalent)</li>
+                  <li>3 décisions tranchées + une phrase de justification chacune</li>
                 </ul>
               </div>
             </section>
@@ -272,7 +438,7 @@
                   <p>NFC + wallet + journal multi-canal = Jour 5.</p>
                 </div>
                 <div class="not-item">
-                  <strong>≠ Spec complète pays</strong>
+                  <strong>≠ Spec pays réelle</strong>
                   <p>Cas pédagogique — pas un cahier des charges réglementaire.</p>
                 </div>
               </div>

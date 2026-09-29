@@ -2139,6 +2139,10 @@ a.bloc-sidebar-item:hover {
   text-align: center;
 }
 
+.payload-example .qr-hero {
+  margin: 0 0 1rem;
+}
+
 .qr-hero {
   margin: 1.25rem 0 0;
   padding: 1.25rem 1.25rem 1rem;
@@ -2236,4 +2240,113 @@ a.bloc-sidebar-item:hover {
   grid-row: auto;
   padding: 0.05rem 0.3rem;
   font-size: 0.8em;
+}
+
+/* —— Live QR demo (statique / dynamique) —— */
+.qr-live-demo {
+  margin: 0 0 1.25rem;
+  padding: 0 0.25rem;
+}
+
+.qr-live-hint {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.qr-live-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .qr-live-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.qr-live-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1rem 1rem 0.85rem;
+  background: #f7f9fb;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.qr-live-card.is-dynamic {
+  background: #e7f6f3;
+  border-color: #0d9f8a;
+}
+
+.qr-live-card header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.75rem;
+}
+
+.qr-live-card h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.qr-live-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1e5f8a;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.2rem 0.45rem;
+}
+
+.qr-live-card.is-dynamic .qr-live-tag {
+  color: #087a6a;
+  border-color: #0d9f8a;
+}
+
+.qr-live-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 176px;
+  padding: 0.75rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.qr-live-frame img,
+.qr-live-frame canvas {
+  display: block;
+  width: 160px;
+  height: 160px;
+  image-rendering: pixelated;
+}
+
+.qr-live-status {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.qr-live-card.is-dynamic .qr-live-status {
+  color: #087a6a;
+}
+
+.qr-live-payload {
+  margin: 0;
+  font-size: 0.68rem;
+  white-space: pre-wrap;
+  word-break: break-all;
 }

@@ -40,23 +40,71 @@
 
           <div class="wrap">
             <section class="section" style="border-top: none; padding-top: 0">
-              <p class="section-label">Définition</p>
-              <h2>Le QR comme canal digital</h2>
-              <p class="definition-full">
-                Canal de paiement <strong>software-first</strong>&nbsp;: un code
-                optique initie ou reçoit une opération via une app (bancaire,
-                wallet, marchand) — sans prérequis token / SE pour comprendre
-                le flux.
-              </p>
-              <p class="intro" style="margin-top: 1.1rem">
-                J1 a posé acteurs, chaîne, Auth → Clearing → Settlement. J2
-                applique ce socle au QR.
-              </p>
+              <p class="section-label">Positionnement</p>
+              <h2>Le QR sur le socle J1</h2>
+              <div class="diagram" id="diagram-qr-canal">
+                <div class="diagram-header">
+                  <h3>Canal software-first</h3>
+                  <p>Même Auth → Clearing → Settlement — autre façade</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 320"
+                  role="img"
+                  aria-label="Canal QR du Jour 2 appuyé sur le socle monétique Jour 1"
+                >
+                  <defs>
+                    <marker id="ah-j2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <text x="500" y="28" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700" letter-spacing="0.06em">CANAUX</text>
+
+                  <g>
+                    <rect x="80" y="42" width="260" height="70" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="210" y="68" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.06em">AUJOURD’HUI</text>
+                    <text x="210" y="94" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="700">QR</text>
+                  </g>
+                  <g>
+                    <rect x="370" y="42" width="260" height="70" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="500" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">J3</text>
+                    <text x="500" y="96" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Token</text>
+                  </g>
+                  <g>
+                    <rect x="660" y="42" width="260" height="70" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="790" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">J4</text>
+                    <text x="790" y="96" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="16" font-weight="700">NFC · Wallets</text>
+                  </g>
+
+                  <line x1="210" y1="112" x2="210" y2="152" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j2)"/>
+                  <line x1="500" y1="112" x2="500" y2="152" stroke="#c5d3df" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ah-j2)"/>
+                  <line x1="790" y1="112" x2="790" y2="152" stroke="#c5d3df" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ah-j2)"/>
+
+                  <rect x="40" y="155" width="920" height="140" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="500" y="182" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.06em">SOCLE J1 — INCHANGÉ</text>
+
+                  <g>
+                    <rect x="70" y="198" width="200" height="72" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="170" y="228" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Qui</text>
+                    <text x="170" y="250" text-anchor="middle" fill="#5a6b7c" font-size="11">acteurs</text>
+                  </g>
+                  <g>
+                    <rect x="300" y="198" width="200" height="72" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="400" y="228" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">SI</text>
+                    <text x="400" y="250" text-anchor="middle" fill="#5a6b7c" font-size="11">où ça tourne</text>
+                  </g>
+                  <g>
+                    <rect x="530" y="198" width="400" height="72" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="730" y="228" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Auth → Clearing → Settlement</text>
+                    <text x="730" y="250" text-anchor="middle" fill="#5a6b7c" font-size="11">de la demande au règlement</text>
+                  </g>
+                </svg>
+              </div>
             </section>
 
             <section class="section">
               <p class="section-label">Fil de séance</p>
-              <h2>Blocs du Jour 2</h2>
+              <h2>Parcours</h2>
               <nav
                 class="block-map"
                 id="block-map"
@@ -65,26 +113,72 @@
             </section>
 
             <section class="section">
-              <p class="section-label">Jour 2</p>
-              <h2>Objectifs de la journée</h2>
-              <ul class="topic-list">
-                <li>Distinguer les typologies QR (4 axes)</li>
-                <li>Décrire l’architecture SI d’un paiement QR</li>
-                <li>Modéliser génération → confirmation</li>
-                <li>Citer EMV QR et enjeux d’interop</li>
-                <li>Cas QR national (allégé) + atelier</li>
-              </ul>
-            </section>
+              <p class="section-label">Cursus</p>
+              <h2>Programme module</h2>
+              <div class="diagram" id="diagram-programme">
+                <div class="diagram-header">
+                  <h3>Trajectoire du module</h3>
+                  <p>Socle → QR → token → NFC → plateforme</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 200"
+                  role="img"
+                  aria-label="Programme module sur 5 jours, Jour 2 mis en lumière"
+                >
+                  <defs>
+                    <marker id="ah-prog-j2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
 
-            <section class="section">
-              <p class="section-label">Bandeau journée</p>
-              <h2>Progression module</h2>
-              <div class="timeline-evo">
-                <span class="step">J1 Socle</span><span class="arrow">→</span>
-                <span class="step">J2 QR</span><span class="arrow">→</span>
-                <span class="step">J3 Token</span><span class="arrow">→</span>
-                <span class="step">J4 NFC</span><span class="arrow">→</span>
-                <span class="step">J5 Omnicanal</span>
+                  <g>
+                    <rect x="18" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+                    <text x="104" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="104" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J1</text>
+                    <text x="104" y="128" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">Socle</text>
+                    <text x="104" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">écosystème · flux</text>
+                  </g>
+
+                  <line class="flow-line" x1="198" y1="96" x2="218" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-prog-j2)"/>
+
+                  <g>
+                    <rect x="226" y="36" width="172" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="312" y="68" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.06em">AUJOURD’HUI</text>
+                    <text x="312" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="22" font-weight="700">J2</text>
+                    <text x="312" y="128" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">QR</text>
+                    <text x="312" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">software-first</text>
+                  </g>
+
+                  <line x1="406" y1="96" x2="426" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog-j2)"/>
+
+                  <g>
+                    <rect x="434" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="520" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="520" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J3</text>
+                    <text x="520" y="128" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">Token</text>
+                    <text x="520" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">PAN → jeton</text>
+                  </g>
+
+                  <line x1="614" y1="96" x2="634" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog-j2)"/>
+
+                  <g>
+                    <rect x="642" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="728" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="728" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J4</text>
+                    <text x="728" y="128" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">NFC</text>
+                    <text x="728" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">proximité · wallets</text>
+                  </g>
+
+                  <line x1="822" y1="96" x2="842" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog-j2)"/>
+
+                  <g>
+                    <rect x="850" y="36" width="132" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="916" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="916" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="20" font-weight="700">J5</text>
+                    <text x="916" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Omnicanal</text>
+                    <text x="916" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">architecture SI</text>
+                  </g>
+                </svg>
               </div>
             </section>
 

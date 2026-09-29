@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Architecture SI QR — Jour 2 | Paiements digitaux</title>
+    <title>Architecture SI &amp; flux QR — Jour 2 | Paiements digitaux</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body data-bloc="architecture-si">
@@ -33,199 +33,535 @@
               <div class="fiche-meta">
                 <span class="tag">Jour 2 · QR</span>
               </div>
-              <p class="day-kicker">2.2 · Architecture SI</p>
+              <p class="day-kicker">2.2 · Architecture SI &amp; flux</p>
               <h1>Architecture SI QR</h1>
             </div>
           </section>
 
           <div class="wrap">
             <section class="section" style="border-top: none; padding-top: 0">
-              <p class="section-label">Définition monétique</p>
+              <p class="section-label">Définition</p>
               <h2>Qu’est-ce que l’architecture SI QR&nbsp;?</h2>
               <p class="definition-full">
-                Ensemble des composants logiciels et d’orchestration qui
-                permettent de <strong>générer</strong>, <strong>lire</strong> et
+                Les composants qui permettent de
+                <strong>générer</strong>, <strong>lire</strong> et
                 <strong>autoriser</strong> un paiement initié par QR — du
-                téléphone client jusqu’à la banque ou le wallet, en passant par
-                le PSP / switch.
+                téléphone jusqu’au SI banque ou au SI wallet (provider).
               </p>
               <p class="intro" style="margin-top: 1.1rem">
-                Le QR change l’initiation et l’orchestration — pas la logique
-                Auth → Clearing → Settlement (J1).
+                Le QR change l’initiation — pas Auth → Clearing → Settlement
+                (J1). D’abord les <strong>éléments SI</strong> et les
+                <strong>4 temps</strong> du flux, puis
+                <strong>trois cas</strong> pour voir où ça change.
               </p>
             </section>
 
             <section class="section">
-              <p class="section-label">Composants</p>
-              <h2>Chaîne SI du paiement QR</h2>
+              <p class="section-label">Vocabulaire</p>
+              <h2>Acteurs et moteur</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Élément</th>
+                      <th scope="col">Nature</th>
+                      <th scope="col">Où</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Application client</th>
+                      <td>Acteur</td>
+                      <td>Téléphone — app banque ou app wallet</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Backend marchand</th>
+                      <td>Acteur</td>
+                      <td>SI commerçant (parfois délégué au PSP)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">PSP / switch</th>
+                      <td>Acteur</td>
+                      <td>Intermédiaire / cloud</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">SI banque / SI wallet</th>
+                      <td>Acteur</td>
+                      <td>Décideur AuthZ — SI wallet ≠ app téléphone</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">QR engine</th>
+                      <td><strong>Moteur</strong></td>
+                      <td>Chez celui qui encode ou décode — pas un hop fixe</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Éléments SI</p>
+              <h2>Où tournent les briques</h2>
               <p class="intro">
-                Cinq blocs à situer — chacun a un propriétaire et des SLA.
+                Carte des SI — le QR engine s’accroche à l’acteur qui encode ou
+                décode, selon le cas.
+              </p>
+              <div class="diagram" id="diagram-elements-si">
+                <div class="diagram-header">
+                  <h3>Application · Backend · PSP · SI banque / SI wallet</h3>
+                  <p>+ moteur QR (encode / decode)</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 280"
+                  role="img"
+                  aria-label="Éléments SI du paiement QR et leurs localisations"
+                >
+                  <g>
+                    <rect x="20" y="30" width="220" height="120" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="36" y="48" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="100" y="68" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Application</text>
+                    <text x="100" y="90" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">client</text>
+                    <text x="130" y="125" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Téléphone</text>
+                  </g>
+                  <g>
+                    <rect x="270" y="30" width="220" height="120" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="286" y="48" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="350" y="68" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Backend</text>
+                    <text x="350" y="90" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">marchand</text>
+                    <text x="380" y="125" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">SI commerçant</text>
+                  </g>
+                  <g>
+                    <rect x="520" y="30" width="220" height="120" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-psp.jpg" x="536" y="48" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="600" y="78" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">PSP / switch</text>
+                    <text x="630" y="125" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Cloud</text>
+                  </g>
+                  <g>
+                    <rect x="770" y="30" width="210" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="875" y="70" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">SI banque</text>
+                    <text x="875" y="92" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">ou SI wallet</text>
+                    <text x="875" y="125" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Décideur AuthZ</text>
+                  </g>
+                  <rect x="20" y="180" width="960" height="70" rx="10" fill="#f7fbf9" stroke="#0d9f8a" stroke-width="2" stroke-dasharray="8 5"/>
+                  <text x="500" y="210" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">QR engine = moteur encode / decode</text>
+                  <text x="500" y="232" text-anchor="middle" fill="#5a6b7c" font-size="12">Hébergé chez l’acteur concerné — pas une boîte au milieu du flux</text>
+                </svg>
+              </div>
+            </section>
+
+            <section class="section" id="flux">
+              <p class="section-label">Flux transactionnels</p>
+              <h2>Quatre temps + pont J1</h2>
+              <p class="intro">
+                Séquence commune&nbsp;:
+                <strong>génération</strong> →
+                <strong>scan &amp; validation</strong> →
+                <strong>autorisation</strong> →
+                <strong>confirmation</strong> — puis clearing / settlement (J1).
               </p>
 
-              <div class="diagram" id="diagram-arch-si">
+              <div class="diagram" id="diagram-flux-qr">
                 <div class="diagram-header">
-                  <h3>App · QR engine · Backend · PSP · Banque / wallet</h3>
-                  <p>Vue simplifiée — hop par hop</p>
+                  <h3>Génération → Scan → Auth → Confirmation</h3>
+                  <p>Les 3 cas ci-dessous montrent qui fait quoi à chaque temps</p>
                 </div>
                 <svg
                   viewBox="0 0 1000 360"
                   role="img"
-                  aria-label="Architecture SI paiement QR avec acteurs"
+                  aria-label="Quatre temps du flux QR et pont J1"
                 >
                   <defs>
-                    <marker id="ah-ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                    <marker id="ah-fx" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                       <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
                     </marker>
                   </defs>
                   <g>
-                    <rect x="20" y="40" width="170" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-porteur.jpg" x="32" y="56" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="100" y="80" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">App client</text>
-                    <text x="100" y="100" fill="#5a6b7c" font-size="11">scan / présentation</text>
+                    <rect x="30" y="30" width="200" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="130" y="75" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">1 · Génération</text>
+                    <text x="130" y="100" text-anchor="middle" fill="#5a6b7c" font-size="12">encode (QR engine)</text>
                   </g>
-                  <line class="flow-line" x1="200" y1="95" x2="250" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ar)"/>
+                  <line x1="230" y1="85" x2="270" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fx)"/>
                   <g>
-                    <rect x="250" y="40" width="170" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-device.jpg" x="262" y="56" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="330" y="80" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">QR engine</text>
-                    <text x="330" y="100" fill="#0d9f8a" font-size="11">encode / decode</text>
+                    <rect x="270" y="30" width="200" height="110" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="370" y="75" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">2 · Scan &amp; validation</text>
+                    <text x="370" y="100" text-anchor="middle" fill="#5a6b7c" font-size="12">decode + contrôles</text>
                   </g>
-                  <line class="flow-line" x1="430" y1="95" x2="480" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ar)"/>
+                  <line x1="470" y1="85" x2="510" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fx)"/>
                   <g>
-                    <rect x="480" y="40" width="170" height="110" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-commercant.jpg" x="492" y="56" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="560" y="80" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Backend</text>
-                    <text x="560" y="100" fill="#5a6b7c" font-size="11">marchand</text>
+                    <rect x="510" y="30" width="200" height="110" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="610" y="75" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">3 · Autorisation</text>
+                    <text x="610" y="100" text-anchor="middle" fill="#5a6b7c" font-size="12">PSP → SI banque / wallet</text>
                   </g>
-                  <line class="flow-line" x1="660" y1="95" x2="710" y2="95" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ar)"/>
+                  <line x1="710" y1="85" x2="750" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fx)"/>
                   <g>
-                    <rect x="710" y="40" width="250" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-psp.jpg" x="728" y="56" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="800" y="80" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">PSP / switch</text>
-                    <text x="800" y="100" fill="#5a6b7c" font-size="11">orchestration</text>
+                    <rect x="750" y="30" width="220" height="110" rx="10" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                    <text x="860" y="75" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">4 · Confirmation</text>
+                    <text x="860" y="100" text-anchor="middle" fill="#5a6b7c" font-size="12">caisse + app</text>
                   </g>
-
-                  <line x1="835" y1="150" x2="835" y2="200" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-ar)"/>
+                  <line x1="500" y1="150" x2="500" y2="185" stroke="#3d5a80" stroke-width="2"/>
                   <g>
-                    <rect x="200" y="200" width="280" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-banque.jpg" x="220" y="218" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="295" y="245" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Banque</text>
-                    <text x="295" y="268" fill="#5a6b7c" font-size="12">AuthZ · rails compte</text>
+                    <rect x="150" y="185" width="700" height="100" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-scheme.jpg" x="170" y="203" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="240" y="220" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Pont J1 — post-transaction</text>
+                    <text x="240" y="245" fill="#5a6b7c" font-size="12">Auth (étape 3) → Clearing → Settlement</text>
+                    <text x="240" y="268" fill="#3d5a80" font-size="11">Confirmation UX ≠ settlement interbancaire</text>
                   </g>
-                  <g>
-                    <rect x="520" y="200" width="280" height="100" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-wallet.jpg" x="540" y="218" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="615" y="245" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Wallet</text>
-                    <text x="615" y="268" fill="#5a6b7c" font-size="12">canal UX · détail J4</text>
-                  </g>
-                  <text x="500" y="340" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Banque ou wallet = décision / financement derrière le PSP
+                  <text x="500" y="320" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Qui encode / décode / passe par le backend change selon le cas
                   </text>
                 </svg>
-                <div class="seq-steps" id="arch-steps">
+                <div class="seq-steps" id="flux-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
-                      <strong>App client</strong>
-                      <p>Scanne (pull) ou présente (push) le QR.</p>
+                      <strong>Génération</strong>
+                      <p>Encode le payload — côté marchand, PSP ou payeur selon le cas.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
-                      <strong>QR engine</strong>
-                      <p>Encode / decode payload (montant, réf., TTL, IDs).</p>
+                      <strong>Scan &amp; validation</strong>
+                      <p>Decode + contrôles (TTL, format, unicité…).</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
                     <span class="n">3</span>
                     <span>
-                      <strong>Backend marchand</strong>
-                      <p>Crée l’intention de paiement, suit le statut.</p>
+                      <strong>Autorisation</strong>
+                      <p>PSP → SI banque / SI wallet (socle J1).</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="4">
                     <span class="n">4</span>
                     <span>
-                      <strong>PSP / switch</strong>
-                      <p>Route vers banque ou wallet — pont vers AuthZ.</p>
+                      <strong>Confirmation</strong>
+                      <p>Retour OK / KO — puis clearing / settlement.</p>
                     </span>
                   </button>
-                  <button type="button" class="seq-step" data-step="5">
-                    <span class="n">5</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- Cas 1 -->
+            <section class="section">
+              <p class="section-label">Cas 1 · Pull dynamique (MPM · 12)</p>
+              <h2>La caisse affiche un QR</h2>
+              <p class="intro">
+                Le payeur <strong>scanne</strong> le QR du marchand. Montant et
+                référence déjà dans le payload.
+              </p>
+
+              <div class="diagram" id="diagram-cas-pull-dyn">
+                <div class="diagram-header">
+                  <h3>Pull · dynamique</h3>
+                  <p>MPM · tag 01 = 12 — génération marchand → scan payeur</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 340"
+                  role="img"
+                  aria-label="Cas pull dynamique : caisse affiche, payeur scanne"
+                >
+                  <defs>
+                    <marker id="ah-c1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <text x="500" y="28" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.04em">A · GÉNÉRATION (encode)</text>
+                  <g>
+                    <rect x="40" y="48" width="200" height="88" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="52" y="64" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="110" y="82" fill="#087a6a" font-size="13" font-weight="700">Backend</text>
+                    <text x="110" y="102" fill="#5a6b7c" font-size="11">intention + montant</text>
+                  </g>
+                  <line x1="240" y1="92" x2="280" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c1)"/>
+                  <g>
+                    <rect x="280" y="48" width="200" height="88" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="380" y="82" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">QR engine</text>
+                    <text x="380" y="106" text-anchor="middle" fill="#5a6b7c" font-size="12">encode → image QR</text>
+                  </g>
+                  <line x1="480" y1="92" x2="520" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c1)"/>
+                  <g>
+                    <rect x="520" y="48" width="200" height="88" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="532" y="64" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="590" y="82" fill="#1a2b3c" font-size="13" font-weight="700">Caisse</text>
+                    <text x="590" y="102" fill="#5a6b7c" font-size="11">affiche le QR</text>
+                  </g>
+
+                  <text x="500" y="180" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.04em">B · SCAN → AUTH (decode puis décideur)</text>
+                  <g>
+                    <rect x="40" y="200" width="170" height="88" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="52" y="216" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="110" y="234" fill="#1a2b3c" font-size="13" font-weight="700">App payeur</text>
+                    <text x="110" y="254" fill="#5a6b7c" font-size="11">scanne + decode</text>
+                  </g>
+                  <line x1="210" y1="244" x2="250" y2="244" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c1)"/>
+                  <g>
+                    <rect x="250" y="200" width="170" height="88" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-psp.jpg" x="262" y="216" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="320" y="234" fill="#1a2b3c" font-size="13" font-weight="700">PSP / switch</text>
+                    <text x="320" y="254" fill="#5a6b7c" font-size="11">route</text>
+                  </g>
+                  <line x1="420" y1="244" x2="460" y2="244" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c1)"/>
+                  <g>
+                    <rect x="460" y="200" width="220" height="88" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="570" y="234" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">SI banque / wallet</text>
+                    <text x="570" y="256" text-anchor="middle" fill="#5a6b7c" font-size="11">AuthZ</text>
+                  </g>
+                  <line x1="680" y1="244" x2="720" y2="244" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c1)"/>
+                  <g>
+                    <rect x="720" y="200" width="240" height="88" rx="10" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                    <text x="840" y="234" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Confirmation</text>
+                    <text x="840" y="256" text-anchor="middle" fill="#5a6b7c" font-size="11">caisse + app · puis J1</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="cas1-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
                     <span>
-                      <strong>Banque / wallet</strong>
-                      <p>Décision et rails — clearing / settlement ensuite (J1).</p>
+                      <strong>Encode</strong>
+                      <p>Backend marchand (ou API PSP) + QR engine → QR à l’écran.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Decode</strong>
+                      <p>App payeur scanne et lit le payload (montant déjà figé).</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>AuthZ</strong>
+                      <p>PSP → SI banque / SI wallet — le backend marchand est surtout notifié.</p>
                     </span>
                   </button>
                 </div>
-                <p class="diagram-hint">
-                  Le QR engine peut vivre chez le marchand, le PSP ou un scheme
-                  national — à situer dans le cas national.
-                </p>
+              </div>
+            </section>
+
+            <!-- Cas 2 -->
+            <section class="section">
+              <p class="section-label">Cas 2 · Pull statique (MPM · 11)</p>
+              <h2>Sticker magasin</h2>
+              <p class="intro">
+                Même sens de scan (pull / MPM), mais le QR est
+                <strong>déjà imprimé</strong> — pas de génération live à chaque
+                vente. Le payeur saisit souvent le montant.
+              </p>
+
+              <div class="diagram" id="diagram-cas-pull-stat">
+                <div class="diagram-header">
+                  <h3>Pull · statique</h3>
+                  <p>MPM · tag 01 = 11 — encode une fois · decode à chaque scan</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 300"
+                  role="img"
+                  aria-label="Cas pull statique : sticker puis scan"
+                >
+                  <defs>
+                    <marker id="ah-c2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <g>
+                    <rect x="40" y="40" width="280" height="100" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="180" y="75" text-anchor="middle" fill="#8a9aaa" font-size="12" font-weight="700">EN AMONT (une fois)</text>
+                    <text x="180" y="100" text-anchor="middle" fill="#5a6b7c" font-size="13">Encode → sticker ID marchand</text>
+                    <text x="180" y="122" text-anchor="middle" fill="#8a9aaa" font-size="11">pas de backend live à chaque vente</text>
+                  </g>
+                  <line x1="320" y1="90" x2="380" y2="90" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-c2)"/>
+                  <g>
+                    <rect x="380" y="40" width="200" height="100" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="392" y="56" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="450" y="74" fill="#1a2b3c" font-size="13" font-weight="700">Sticker</text>
+                    <text x="450" y="96" fill="#5a6b7c" font-size="11">QR fixe affiché</text>
+                  </g>
+
+                  <g>
+                    <rect x="40" y="180" width="170" height="88" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="52" y="196" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="110" y="214" fill="#1a2b3c" font-size="13" font-weight="700">App payeur</text>
+                    <text x="110" y="234" fill="#5a6b7c" font-size="11">scan + montant</text>
+                  </g>
+                  <line x1="210" y1="224" x2="250" y2="224" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c2)"/>
+                  <g>
+                    <rect x="250" y="180" width="170" height="88" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="335" y="214" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">PSP / switch</text>
+                    <text x="335" y="236" text-anchor="middle" fill="#5a6b7c" font-size="11">route</text>
+                  </g>
+                  <line x1="420" y1="224" x2="460" y2="224" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c2)"/>
+                  <g>
+                    <rect x="460" y="180" width="220" height="88" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="570" y="214" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">SI banque / wallet</text>
+                    <text x="570" y="236" text-anchor="middle" fill="#5a6b7c" font-size="11">AuthZ</text>
+                  </g>
+                  <line x1="680" y1="224" x2="720" y2="224" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c2)"/>
+                  <g>
+                    <rect x="720" y="180" width="240" height="88" rx="10" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                    <text x="840" y="214" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Confirmation</text>
+                    <text x="840" y="236" text-anchor="middle" fill="#5a6b7c" font-size="11">notif marchand optionnelle</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="cas2-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Pas de backend live</strong>
+                      <p>Le QR a été encodé à l’impression — ID marchand fixe.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Decode + montant</strong>
+                      <p>L’app lit le sticker&nbsp;; le payeur complète souvent le montant.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>AuthZ</strong>
+                      <p>PSP → décideur. Backend marchand non obligatoire sur le chemin Auth.</p>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- Cas 3 -->
+            <section class="section">
+              <p class="section-label">Cas 3 · Push (CPM)</p>
+              <h2>Le payeur présente un QR</h2>
+              <p class="intro">
+                La <strong>caisse scanne</strong> le téléphone du client
+                (Consumer-Presented). Encode côté payeur&nbsp;; decode côté
+                acceptation.
+              </p>
+
+              <div class="diagram" id="diagram-cas-push">
+                <div class="diagram-header">
+                  <h3>Push</h3>
+                  <p>CPM — génération payeur → scan caisse</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 340"
+                  role="img"
+                  aria-label="Cas push : payeur affiche, caisse scanne"
+                >
+                  <defs>
+                    <marker id="ah-c3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <text x="500" y="28" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.04em">A · GÉNÉRATION (encode) — côté payeur</text>
+                  <g>
+                    <rect x="120" y="48" width="240" height="88" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="132" y="64" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="190" y="82" fill="#087a6a" font-size="13" font-weight="700">App / SI payeur</text>
+                    <text x="190" y="102" fill="#5a6b7c" font-size="11">intention payeur</text>
+                  </g>
+                  <line x1="360" y1="92" x2="420" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c3)"/>
+                  <g>
+                    <rect x="420" y="48" width="200" height="88" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="520" y="82" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">QR engine</text>
+                    <text x="520" y="106" text-anchor="middle" fill="#5a6b7c" font-size="12">encode → écran</text>
+                  </g>
+                  <line x1="620" y1="92" x2="680" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c3)"/>
+                  <g>
+                    <rect x="680" y="48" width="200" height="88" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="780" y="82" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Téléphone</text>
+                    <text x="780" y="106" text-anchor="middle" fill="#5a6b7c" font-size="12">QR présenté</text>
+                  </g>
+
+                  <text x="500" y="180" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.04em">B · SCAN CAISSE → AUTH</text>
+                  <g>
+                    <rect x="40" y="200" width="170" height="88" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="52" y="216" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="110" y="234" fill="#1a2b3c" font-size="13" font-weight="700">Caisse</text>
+                    <text x="110" y="254" fill="#5a6b7c" font-size="11">scanne + decode</text>
+                  </g>
+                  <line x1="210" y1="244" x2="250" y2="244" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c3)"/>
+                  <g>
+                    <rect x="250" y="200" width="170" height="88" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="262" y="216" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="320" y="234" fill="#1a2b3c" font-size="13" font-weight="700">Backend</text>
+                    <text x="320" y="254" fill="#5a6b7c" font-size="11">acceptation</text>
+                  </g>
+                  <line x1="420" y1="244" x2="460" y2="244" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c3)"/>
+                  <g>
+                    <rect x="460" y="200" width="170" height="88" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="545" y="234" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">PSP / switch</text>
+                    <text x="545" y="256" text-anchor="middle" fill="#5a6b7c" font-size="11">route</text>
+                  </g>
+                  <line x1="630" y1="244" x2="670" y2="244" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c3)"/>
+                  <g>
+                    <rect x="670" y="200" width="290" height="88" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="815" y="234" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">SI banque / wallet</text>
+                    <text x="815" y="256" text-anchor="middle" fill="#5a6b7c" font-size="11">AuthZ → confirmation</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="cas3-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Encode payeur</strong>
+                      <p>Pas le backend marchand — l’app / SI payeur génère le QR.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Decode caisse</strong>
+                      <p>Acceptation&nbsp;: caisse → backend marchand (et/ou PSP).</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>AuthZ</strong>
+                      <p>PSP → SI banque / SI wallet du payeur.</p>
+                    </span>
+                  </button>
+                </div>
               </div>
             </section>
 
             <section class="section">
-              <p class="section-label">Rôle</p>
-              <h2>Que fait le SI&nbsp;?</h2>
-              <div class="split-2">
-                <div class="panel">
-                  <h3>Initiation</h3>
-                  <ul>
-                    <li>Génération / lecture du QR</li>
-                    <li>Validation payload (TTL, signature…)</li>
-                    <li>Création de l’intention de paiement</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Orchestration</h3>
-                  <ul>
-                    <li>Routage PSP / switch</li>
-                    <li>AuthZ banque ou wallet</li>
-                    <li>Confirmation → réconciliation</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Ancrage</p>
-              <h2>Cas pratiques</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>Cas 1 — QR engine chez le PSP</h3>
-                  <ul>
-                    <li>Marchand appelle l’API PSP</li>
-                    <li>Moins de logique locale, dépendance SLA PSP</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Cas 2 — Backend marchand propriétaire</h3>
-                  <ul>
-                    <li>Génère le QR, appelle le PSP ensuite</li>
-                    <li>Maîtrise TTL / refs — plus de code à sécuriser</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Clarification</p>
-              <h2>Ce que ce n’est pas</h2>
-              <div class="not-list">
-                <div class="not-item">
-                  <strong>≠ Plateforme omnicanale J5</strong>
-                  <p>
-                    Ici le canal QR seul. NFC + wallet + journal unique = Jour 5.
-                  </p>
-                </div>
-                <div class="not-item">
-                  <strong>≠ Remplacement du socle J1</strong>
-                  <p>
-                    Auth / clearing / settlement restent — le QR est l’entrée.
-                  </p>
-                </div>
+              <p class="section-label">Synthèse</p>
+              <h2>Backend marchand — quand&nbsp;?</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Cas</th>
+                      <th scope="col">Encode</th>
+                      <th scope="col">Backend marchand</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Pull dynamique (MPM · 12)</th>
+                      <td>Côté marchand / PSP</td>
+                      <td>Oui à la génération · notifié après Auth</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Pull statique (MPM · 11)</th>
+                      <td>Une fois (impression)</td>
+                      <td>Non sur le chemin live Auth</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Push (CPM)</th>
+                      <td>Côté payeur</td>
+                      <td>Oui après le scan caisse (acceptation)</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </section>
 
@@ -244,7 +580,7 @@
     <footer class="site-foot">
       <div class="wrap">
         <a href="index.html">Sommaire Jour 2</a>
-        · Support formateur · Bloc Architecture SI QR
+        · Support formateur · Bloc Architecture SI &amp; flux QR
       </div>
     </footer>
 

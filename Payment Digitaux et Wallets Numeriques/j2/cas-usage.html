@@ -43,10 +43,14 @@
               <p class="section-label">Définition</p>
               <h2>Trois terrains typiques</h2>
               <p class="definition-full">
-                Proximité, transport, P2P — pour chaque usage, situer
-                <strong>statique / dynamique</strong>,
-                <strong>push / pull</strong>, <strong>closed / open</strong> et
-                les contraintes SI.
+                Proximité, transport, P2P — pour chaque usage, situer les
+                <strong>axes</strong> (statique / dynamique · tag 01,
+                push / pull · MPM / CPM, closed / open) et la
+                <strong>contrainte SI</strong> dominante.
+              </p>
+              <p class="intro" style="margin-top: 0.85rem">
+                Un usage n’impose pas un seul profil&nbsp;: on combine les axes
+                (ex. magasin open + dynamique + pull).
               </p>
             </section>
 
@@ -55,12 +59,13 @@
               <p class="section-label">Proximité</p>
               <h2>Commerce de proximité</h2>
               <p class="intro">
-                Sticker ou écran caisse — le plus fréquent en pull.
+                Sticker ou écran caisse — le plus fréquent en
+                <strong>pull</strong> (Merchant-Presented).
               </p>
 
               <div class="diagram" id="diagram-proximite">
                 <div class="diagram-header">
-                  <h3>Magasin · Pull</h3>
+                  <h3>Magasin · Pull (MPM)</h3>
                   <p>Marchand affiche · payeur scanne</p>
                 </div>
                 <svg
@@ -91,22 +96,59 @@
                     <rect x="720" y="50" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-psp.jpg" x="735" y="68" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
                     <text x="810" y="95" fill="#1a2b3c" font-size="13" font-weight="700">PSP</text>
-                    <text x="810" y="115" fill="#5a6b7c" font-size="11">AuthZ</text>
+                    <text x="810" y="115" fill="#5a6b7c" font-size="11">→ AuthZ</text>
                   </g>
                 </svg>
+
+                <div class="csm-table-wrap" style="margin-top: 1.25rem">
+                  <table class="csm-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Axe</th>
+                        <th scope="col">Profil fréquent</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Push / pull</th>
+                        <td>Pull / MPM (sticker ou caisse)</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Statique / dynamique</th>
+                        <td>Statique · 11 (petit commerce) · dynamique · 12 (caisse)</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Closed / open</th>
+                        <td>Open souhaitable (multi-app)</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Contrainte SI</th>
+                        <td>Montant saisi vs TTL · sticker cloné · notif caisse</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
                 <div class="seq-steps" id="proximite-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
-                      <strong>Profil type</strong>
-                      <p>Pull · souvent statique (sticker) ou dynamique (caisse).</p>
+                      <strong>Sticker</strong>
+                      <p>Pull statique (MPM · 11) — encode une fois · montant souvent saisi (cas Architecture).</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
-                      <strong>Contrainte SI</strong>
-                      <p>Montant saisi vs TTL ; fraude sticker cloné.</p>
+                      <strong>Caisse</strong>
+                      <p>Pull dynamique (MPM · 12) — encode live · montant figé · TTL.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Open</strong>
+                      <p>Plusieurs apps si standard + switch (Standards).</p>
                     </span>
                   </button>
                 </div>
@@ -118,7 +160,7 @@
               <p class="section-label">Transport</p>
               <h2>Gares · bus · bornes</h2>
               <p class="intro">
-                Volume, latence, parfois offline dégradé — profil distinct du
+                Volume, latence, parfois offline dégradé — autre profil que le
                 commerce.
               </p>
 
@@ -157,19 +199,56 @@
                     <text x="860" y="120" text-anchor="middle" fill="#5a6b7c" font-size="11">SLA strict</text>
                   </g>
                 </svg>
+
+                <div class="csm-table-wrap" style="margin-top: 1.25rem">
+                  <table class="csm-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Axe</th>
+                        <th scope="col">Profil fréquent</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Push / pull</th>
+                        <td>Les deux selon opérateur (MPM ou CPM)</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Statique / dynamique</th>
+                        <td>Dynamique · 12 dominant (ticket / validation)</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Closed / open</th>
+                        <td>Closed fréquent (opérateur / un rail)</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Contrainte SI</th>
+                        <td>Temps de réponse · offline dégradé · anti-rejeu</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
                 <div class="seq-steps" id="transport-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
-                      <strong>Profil type</strong>
-                      <p>Push ou pull selon opérateur · souvent closed-loop.</p>
+                      <strong>SLA</strong>
+                      <p>File d’attente — Auth trop lente = incident métier immédiat.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
-                      <strong>Contrainte SI</strong>
-                      <p>Temps de réponse, offline dégradé, anti-rejeu.</p>
+                      <strong>Offline</strong>
+                      <p>Mode dégradé possible — règles risque locales, réconciliation ensuite.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Closed</strong>
+                      <p>Souvent un écosystème opérateur — open = projet national / multi-opérateurs.</p>
                     </span>
                   </button>
                 </div>
@@ -181,8 +260,8 @@
               <p class="section-label">P2P</p>
               <h2>Paiements de personne à personne</h2>
               <p class="intro">
-                QR perso (proxy) — souvent pull vers un identifiant wallet /
-                banque.
+                QR perso (proxy) — souvent <strong>pull</strong> vers un
+                identifiant wallet / banque.
               </p>
 
               <div class="diagram" id="diagram-p2p">
@@ -220,19 +299,56 @@
                     <text x="870" y="145" text-anchor="middle" fill="#5a6b7c" font-size="11">Crédit</text>
                   </g>
                 </svg>
+
+                <div class="csm-table-wrap" style="margin-top: 1.25rem">
+                  <table class="csm-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Axe</th>
+                        <th scope="col">Profil fréquent</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Push / pull</th>
+                        <td>Pull / MPM vers QR perso (parfois push / CPM agent)</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Statique / dynamique</th>
+                        <td>Souvent statique · 11 (proxy) · montant saisi</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Closed / open</th>
+                        <td>Closed si mono-app · open si schéma P2P national</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Contrainte SI</th>
+                        <td>KYC / plafonds · usurpation de QR perso</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
                 <div class="seq-steps" id="p2p-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
-                      <strong>Profil type</strong>
-                      <p>Souvent pull · QR proxy · montant saisi par le payeur.</p>
+                      <strong>Proxy</strong>
+                      <p>Le QR pointe un identifiant — pas un ticket de caisse.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
-                      <strong>Contrainte SI</strong>
-                      <p>KYC / limites P2P · usurpation de QR perso.</p>
+                      <strong>Limites</strong>
+                      <p>Plafonds P2P, contrôles fraude / AML côté SI banque ou wallet.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>Risque</strong>
+                      <p>QR perso affiché / partagé = usurpation du bénéficiaire (surtout si fixe).</p>
                     </span>
                   </button>
                 </div>
@@ -240,43 +356,39 @@
             </section>
 
             <section class="section">
-              <p class="section-label">Rôle</p>
-              <h2>Grille rapide</h2>
-              <div class="split-2">
-                <div class="panel">
-                  <h3>Proximité</h3>
-                  <ul>
-                    <li>Pull · static/dyn</li>
-                    <li>Open souhaitable</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Transport</h3>
-                  <ul>
-                    <li>Latence critique</li>
-                    <li>Closed fréquent</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="panel" style="margin-top: 1rem">
-                <h3>P2P</h3>
-                <ul>
-                  <li>Proxy · limites · fraude d’identité du bénéficiaire</li>
-                </ul>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Clarification</p>
-              <h2>Ce que ce n’est pas</h2>
-              <div class="not-list">
-                <div class="not-item">
-                  <strong>Un usage ≠ un seul axe</strong>
-                  <p>
-                    Un magasin peut être open + dynamique + pull — combiner les
-                    axes.
-                  </p>
-                </div>
+              <p class="section-label">Synthèse</p>
+              <h2>Grille des trois terrains</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Proximité</th>
+                      <th scope="col">Transport</th>
+                      <th scope="col">P2P</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Dominant</th>
+                      <td>Pull (MPM)</td>
+                      <td>Latence / SLA</td>
+                      <td>Proxy + plafonds</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Boucle</th>
+                      <td>Open souhaitable</td>
+                      <td>Closed fréquent</td>
+                      <td>Closed ou open national</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Risque type</th>
+                      <td>Sticker cloné / montant</td>
+                      <td>Timeout / offline</td>
+                      <td>Usurpation bénéficiaire</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </section>
 
