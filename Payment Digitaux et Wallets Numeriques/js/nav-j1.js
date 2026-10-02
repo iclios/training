@@ -11,6 +11,7 @@ window.J1_BLOCS = [
   { id: "settlement", title: "Settlement", href: "settlement.html" },
   { id: "online-offline", title: "Online / offline & rejets", href: "online-offline.html" },
   { id: "atelier", title: "Atelier", href: "atelier.html" },
+  { id: "support", title: "Support", href: "support.html" },
 ];
 
 (function initJ1Nav() {

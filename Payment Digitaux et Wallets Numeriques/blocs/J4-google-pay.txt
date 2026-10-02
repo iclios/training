@@ -1,0 +1,18 @@
+JOUR 4 — Google Pay (densifié)
+
+Objectif
+Même grille qu’Apple Pay : plateforme Android, acteurs monétiques, HCE/TEE,
+3 flux, lifecycle + comparaison salle.
+
+Schémas
+1. Plateforme — Android / fragmentation / HCE
+2. Acteurs — mêmes 6 rôles (cartouche Google / HCE)
+3. Confiance — HCE · TEE+cloud · Wallet
+4. Provisioning — remise HCE (souvent TTL) vs SE Apple
+5. Tap NFC — même bande TOKEN qu’Apple
+6. In-app — Google Pay API
+7. Lifecycle
+8. Comparaison — commun / différent / question SI banque
+
+Ne pas dire « moins sûr » — comparer les modèles.
+Suite : cas pratique smartphone → POS.

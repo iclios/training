@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Apple Pay — Jour 4 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="apple-pay">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a class="is-active" href="intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 4 · NFC / Wallets</span>
+              </div>
+              <p class="day-kicker">4.3 · Wallet majeur</p>
+              <h1>Apple Pay</h1>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Définition</p>
+              <h2>Qu’est-ce qu’Apple Pay&nbsp;?</h2>
+              <p class="definition-full">
+                Wallet Apple qui
+                <strong>orchestre</strong> l’enrolment, le
+                <strong>provisioning</strong> d’un token réseau, le
+                <strong>CDCVM</strong> (Face ID / Touch ID / code) et la
+                <strong>présentation NFC</strong> (card emulation) — sans
+                remplacer l’émetteur ni la décision AuthZ.
+              </p>
+              <p class="intro" style="margin-top: 0.85rem">
+                Plateforme&nbsp;: <strong>iOS / watchOS</strong> · parc
+                homogène · stack confiance
+                <strong>Secure Element + Secure Enclave</strong>.
+                Ponts&nbsp;:
+                <a href="../j3/lifecycle.html">Lifecycle J3</a>
+                ·
+                <a href="architecture-wallets.html">SE / HCE / TEE</a>
+                ·
+                <a href="google-pay.html">Google Pay</a>
+                (contraste).
+              </p>
+            </section>
+
+            <!-- A · Plateforme -->
+            <section class="section" id="plateforme">
+              <p class="section-label">Plateforme</p>
+              <h2>Écosystème Apple</h2>
+              <p class="intro">
+                Un parc maîtrisé (matériel + OS) — moins de fragmentation qu’Android,
+                exigences device plus uniformes pour l’émetteur.
+              </p>
+
+              <div class="diagram" id="diagram-apple-platform">
+                <div class="diagram-header">
+                  <h3>OS · form factors · NFC</h3>
+                  <p>Cliquez — le cartouche détaille</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 400"
+                  role="img"
+                  aria-label="Plateforme Apple Pay iOS watchOS"
+                >
+                  <g data-step="1">
+                    <rect x="40" y="20" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="180" y="55" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">1 · OS</text>
+                    <text x="180" y="78" text-anchor="middle" fill="#5a6b7c" font-size="12">iOS · watchOS · …</text>
+                  </g>
+                  <g data-step="2">
+                    <rect x="360" y="20" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="500" y="55" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">2 · Devices</text>
+                    <text x="500" y="78" text-anchor="middle" fill="#5a6b7c" font-size="12">iPhone · Watch · …</text>
+                  </g>
+                  <g data-step="3">
+                    <rect x="680" y="20" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="820" y="55" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">3 · NFC</text>
+                    <text x="820" y="78" text-anchor="middle" fill="#5a6b7c" font-size="12">card emulation</text>
+                  </g>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="40" y="120" width="920" height="250" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="70" y="160" fill="#087a6a" font-family="Syne, sans-serif" font-size="17" font-weight="700">Plateforme logicielle</text>
+                    <text x="70" y="200" fill="#1a2b3c" font-size="13">iOS (iPhone) · watchOS (Apple Watch) · extensions (Mac / Safari pour web / in-app selon cas).</text>
+                    <text x="70" y="230" fill="#1a2b3c" font-size="13">PassKit = API wallet côté Apple — UX enrolment, liste des cartes, initiation du paiement.</text>
+                    <text x="70" y="260" fill="#1a2b3c" font-size="13">Parc relativement homogène&nbsp;: versions OS et capacités NFC plus prévisibles pour un issuer.</text>
+                    <text x="70" y="300" fill="#087a6a" font-size="13" font-weight="700">Point SI banque&nbsp;: une cible device «&nbsp;Apple&nbsp;» plus standardisée qu’Android multi-OEM.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="40" y="120" width="920" height="250" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="70" y="160" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="17" font-weight="700">Form factors = domaines token</text>
+                    <text x="70" y="200" fill="#1a2b3c" font-size="13">iPhone&nbsp;: token device-bound principal pour le tap de proximité.</text>
+                    <text x="70" y="230" fill="#1a2b3c" font-size="13">Apple Watch&nbsp;: souvent un <tspan font-weight="700">autre</tspan> token / domaine (montre ≠ téléphone).</text>
+                    <text x="70" y="260" fill="#1a2b3c" font-size="13">Perte d’un device → revoke ciblé de CE credential — la carte plastique et les autres devices peuvent rester OK.</text>
+                    <text x="70" y="300" fill="#1e5f8a" font-size="13" font-weight="700">Rappel J3 Domaines&nbsp;: token in-store lié au device, pas universel.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="40" y="120" width="920" height="250" rx="12" fill="#eef0f5" stroke="#3d5a80" stroke-width="3"/>
+                    <text x="70" y="160" fill="#3d5a80" font-family="Syne, sans-serif" font-size="17" font-weight="700">NFC · card emulation</text>
+                    <text x="70" y="200" fill="#1a2b3c" font-size="13">Le device se comporte comme une carte sans contact face au TPE (ISO 14443 / EMV Contactless).</text>
+                    <text x="70" y="230" fill="#1a2b3c" font-size="13">Ce qui sort = token + cryptogramme — pas le PAN d’origine (J3 Auth).</text>
+                    <text x="70" y="260" fill="#1a2b3c" font-size="13">In-app / web&nbsp;: autre présentation (session PassKit) — même logique token, autre canal.</text>
+                    <text x="70" y="300" fill="#3d5a80" font-size="13" font-weight="700">Prérequis terrain&nbsp;: POS contactless + acceptation wallet (seuils, schéma).</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="apple-platform-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>OS</strong><p>iOS · PassKit.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>Devices</strong><p>Domaines token.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>NFC</strong><p>Card emulation.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- B · Acteurs monétiques -->
+            <section class="section" id="acteurs">
+              <p class="section-label">Écosystème</p>
+              <h2>Tous les acteurs monétiques</h2>
+              <p class="intro">
+                Apple Pay s’insère dans la chaîne J1 — chaque maillon a un rôle
+                précis. Cliquez un acteur.
+              </p>
+
+              <div class="diagram" id="diagram-apple-acteurs">
+                <div class="diagram-header">
+                  <h3>Chaîne complète Apple Pay</h3>
+                  <p>Porteur → Wallet → TSP → Issuer · Acceptation → Acquéreur → Auth</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 480"
+                  role="img"
+                  aria-label="Acteurs monetiques Apple Pay"
+                >
+                  <!-- Rangée device / token -->
+                  <g data-step="1">
+                    <rect x="30" y="20" width="140" height="95" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="42" y="32" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="100" y="50" fill="#1a2b3c" font-size="11" font-weight="700">Porteur</text>
+                    <text x="100" y="70" fill="#5a6b7c" font-size="10">CDCVM</text>
+                    <text x="100" y="90" fill="#087a6a" font-size="10" font-weight="700">geste</text>
+                  </g>
+                  <g data-step="2">
+                    <rect x="190" y="20" width="150" height="95" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-wallet.jpg" x="202" y="32" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="260" y="50" fill="#087a6a" font-size="11" font-weight="700">Apple Wallet</text>
+                    <text x="260" y="70" fill="#5a6b7c" font-size="10">PassKit · SE</text>
+                    <text x="260" y="90" fill="#087a6a" font-size="10" font-weight="700">orchestre</text>
+                  </g>
+                  <g data-step="3">
+                    <rect x="360" y="20" width="150" height="95" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-scheme.jpg" x="372" y="32" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="430" y="50" fill="#087a6a" font-size="11" font-weight="700">TSP / scheme</text>
+                    <text x="430" y="70" fill="#5a6b7c" font-size="10">VTS · MDES…</text>
+                    <text x="430" y="90" fill="#087a6a" font-size="10" font-weight="700">token · vault</text>
+                  </g>
+                  <g data-step="4">
+                    <rect x="530" y="20" width="140" height="95" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-banque.jpg" x="542" y="32" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="600" y="50" fill="#1a2b3c" font-size="11" font-weight="700">Issuer</text>
+                    <text x="600" y="70" fill="#5a6b7c" font-size="10">PAN · AuthZ</text>
+                    <text x="600" y="90" fill="#c45c26" font-size="10" font-weight="700">décide</text>
+                  </g>
+                  <g data-step="5">
+                    <rect x="690" y="20" width="130" height="95" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="702" y="32" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="760" y="50" fill="#1a2b3c" font-size="11" font-weight="700">POS</text>
+                    <text x="760" y="70" fill="#5a6b7c" font-size="10">NFC EMV</text>
+                    <text x="760" y="90" fill="#5a6b7c" font-size="10">voit TOKEN</text>
+                  </g>
+                  <g data-step="6">
+                    <rect x="840" y="20" width="130" height="95" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-psp.jpg" x="852" y="32" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="910" y="50" fill="#1a2b3c" font-size="11" font-weight="700">Acquéreur</text>
+                    <text x="910" y="70" fill="#5a6b7c" font-size="10">/ PSP</text>
+                    <text x="910" y="90" fill="#087a6a" font-size="10" font-weight="700">TOKEN</text>
+                  </g>
+
+                  <text x="500" y="140" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">
+                    Provisioning ↑ · Paiement NFC → (POS · acquéreur · réseau détokenise · issuer)
+                  </text>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="30" y="160" width="940" height="280" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Porteur</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Ajoute la carte, valide l’IDV / OTP banque, authentifie chaque paiement (CDCVM).</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">Ne «&nbsp;crée&nbsp;» pas le token — il déclenche l’enrolment implicite.</text>
+                    <text x="60" y="295" fill="#1a2b3c" font-size="13">Voit&nbsp;: UX Wallet · biométrie · confirmation. Ne voit pas&nbsp;: vault, mapping PAN↔token.</text>
+                    <text x="60" y="340" fill="#087a6a" font-size="13" font-weight="700">Spécifique Apple&nbsp;: Face ID / Touch ID / code · Watch peut payer sans téléphone à proximité (selon config).</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="30" y="160" width="940" height="280" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Apple Wallet / PassKit (OEM)</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Orchestre UX, parle au SE, initie le provisioning vers le TSP, présente le credential en NFC.</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">≠ banque · ≠ TSP · ≠ acquéreur. Apple ne décide pas l’AuthZ sur le compte.</text>
+                    <text x="60" y="295" fill="#1a2b3c" font-size="13">Stocke / utilise le token dans le SE — pas le PAN d’origine pour le paiement.</text>
+                    <text x="60" y="340" fill="#087a6a" font-size="13" font-weight="700">Spécifique&nbsp;: stack fermée Apple · règles d’intégration issuer documentées côté Apple Pay.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="30" y="160" width="940" height="280" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">TSP / network tokenization (scheme)</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Émet le token, lie le domaine (device), gouverne le vault PAN ↔ token, états actif/suspend/delete.</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">Ex.&nbsp;: VTS (Visa), MDES (Mastercard) — selon le BIN / produit (co-badge possible).</text>
+                    <text x="60" y="295" fill="#1a2b3c" font-size="13">En Auth&nbsp;: détokenise pour joindre l’issuer — l’acquéreur a vu le TOKEN (J3).</text>
+                    <text x="60" y="340" fill="#1e5f8a" font-size="13" font-weight="700">≠ CB2A (protocole Auth) · ≠ Apple Wallet.</text>
+                  </g>
+                  <g class="step-panel" data-step="4">
+                    <rect x="30" y="160" width="940" height="280" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Banque émettrice (issuer)</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Détient le compte / PAN · valide le provisioning · décide OK/KO en AuthZ.</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">Peut appliquer des règles liées au token (device, canal, risque).</text>
+                    <text x="60" y="295" fill="#1a2b3c" font-size="13">Opposition carte ≠ automatiquement tous les tokens — gouvernance fine possible.</text>
+                    <text x="60" y="340" fill="#1e5f8a" font-size="13" font-weight="700">Reste la racine monétique — Apple et le TSP ne la remplacent pas.</text>
+                  </g>
+                  <g class="step-panel" data-step="5">
+                    <rect x="30" y="160" width="940" height="280" rx="12" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="60" y="200" fill="#3d5a80" font-family="Syne, sans-serif" font-size="16" font-weight="700">Marchand / POS</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">TPE contactless EMV · reçoit le tap · lance l’Auth comme une carte sans contact.</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">Voit un identifiant tokenisé (souvent DPAN) + crypto — pas le PAN d’origine.</text>
+                    <text x="60" y="295" fill="#1a2b3c" font-size="13">Pas de vault Apple côté caisse — le POS n’est pas le TSP.</text>
+                    <text x="60" y="340" fill="#3d5a80" font-size="13" font-weight="700">Contrainte&nbsp;: terminal certifié contactless + schéma accepté.</text>
+                  </g>
+                  <g class="step-panel" data-step="6">
+                    <rect x="30" y="160" width="940" height="280" rx="12" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="60" y="200" fill="#3d5a80" font-family="Syne, sans-serif" font-size="16" font-weight="700">Acquéreur / PSP</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Routage Auth · en network tokenization reçoit le TOKEN (pas le PAN).</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">Clearing / settlement ensuite — même rail J1, identifiant présenté changé.</text>
+                    <text x="60" y="295" fill="#1a2b3c" font-size="13">Nuance J3&nbsp;: si seul vault marchand (pas network), le PSP peut détokeniser avant — autre cas.</text>
+                    <text x="60" y="340" fill="#3d5a80" font-size="13" font-weight="700">Apple Pay NFC = scénario network token jusqu’à l’acquéreur.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="apple-acteurs-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>Porteur</strong><p>CDCVM.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>Wallet</strong><p>OEM Apple.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>TSP</strong><p>Token · vault.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="4">
+                    <span class="n">4</span>
+                    <span><strong>Issuer</strong><p>AuthZ.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="5">
+                    <span class="n">5</span>
+                    <span><strong>POS</strong><p>Voit token.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="6">
+                    <span class="n">6</span>
+                    <span><strong>Acquéreur</strong><p>TOKEN en Auth.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- C · Confiance -->
+            <section class="section" id="confiance">
+              <p class="section-label">Confiance device</p>
+              <h2>SE · Secure Enclave · PassKit</h2>
+              <p class="intro">
+                Trois briques à ne pas fusionner — chacune a un job.
+              </p>
+
+              <div class="diagram" id="diagram-apple-trust">
+                <div class="diagram-header">
+                  <h3>Où vit quoi</h3>
+                  <p>Credential · biométrie · UX</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 380"
+                  role="img"
+                  aria-label="SE Secure Enclave PassKit"
+                >
+                  <g data-step="1 2 3">
+                    <rect x="60" y="30" width="260" height="130" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="190" y="75" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Secure Element</text>
+                    <text x="190" y="105" text-anchor="middle" fill="#5a6b7c" font-size="12">token / applet paiement</text>
+                    <text x="190" y="130" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">→ ce qui tap</text>
+                  </g>
+                  <g data-step="2 3">
+                    <rect x="370" y="30" width="260" height="130" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="500" y="75" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Secure Enclave</text>
+                    <text x="500" y="105" text-anchor="middle" fill="#5a6b7c" font-size="12">clés · biométrie</text>
+                    <text x="500" y="130" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">→ CDCVM</text>
+                  </g>
+                  <g data-step="3">
+                    <rect x="680" y="30" width="260" height="130" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="810" y="75" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">PassKit / Wallet</text>
+                    <text x="810" y="105" text-anchor="middle" fill="#5a6b7c" font-size="12">UX · orchestration</text>
+                    <text x="810" y="130" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">→ pas le vault</text>
+                  </g>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="40" y="190" width="920" height="160" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="70" y="230" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">SE — credential de paiement</text>
+                    <text x="70" y="265" fill="#1a2b3c" font-size="13">Puce dédiée · token device-bound · crypto contactless générée pour le tap.</text>
+                    <text x="70" y="295" fill="#1a2b3c" font-size="13">Isolé de l’OS — le PAN d’origine n’y est pas pour le paiement NFC.</text>
+                    <text x="70" y="325" fill="#087a6a" font-size="13" font-weight="700">Modèle dominant Apple Pay ≠ HCE cloud.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="40" y="190" width="920" height="160" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="70" y="230" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Secure Enclave — CDCVM</text>
+                    <text x="70" y="265" fill="#1a2b3c" font-size="13">Face ID / Touch ID / code déverrouillent l’usage du credential.</text>
+                    <text x="70" y="295" fill="#1a2b3c" font-size="13">Authentification porteur côté device — distincte de l’AuthZ issuer.</text>
+                    <text x="70" y="325" fill="#1e5f8a" font-size="13" font-weight="700">Biométrie ≠ «&nbsp;la banque a validé le paiement&nbsp;».</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="40" y="190" width="920" height="160" rx="10" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="70" y="230" fill="#3d5a80" font-family="Syne, sans-serif" font-size="15" font-weight="700">PassKit — couche UX</text>
+                    <text x="70" y="265" fill="#1a2b3c" font-size="13">Enrolment, choix de carte, feuille de paiement in-app / web.</text>
+                    <text x="70" y="295" fill="#1a2b3c" font-size="13">Ne détient pas le mapping PAN↔token (vault TSP).</text>
+                    <text x="70" y="325" fill="#3d5a80" font-size="13" font-weight="700">Wallet = chef d’orchestre, pas le coffre monétique.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="apple-trust-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>SE</strong><p>Token · tap.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>Enclave</strong><p>CDCVM.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>PassKit</strong><p>UX.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- D · Flux provisioning -->
+            <section class="section" id="provisioning">
+              <p class="section-label">Flux 1</p>
+              <h2>Enrolment &amp; provisioning</h2>
+              <p class="intro">
+                UX simple · chaîne token complète derrière (cf. J3).
+              </p>
+
+              <div class="diagram" id="diagram-apple-provision">
+                <div class="diagram-header">
+                  <h3>De «&nbsp;Ajouter une carte&nbsp;» au token dans le SE</h3>
+                  <p>Chaque étape allume le maillon concerné</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 400"
+                  role="img"
+                  aria-label="Provisioning Apple Pay explicite"
+                >
+                  <defs>
+                    <marker id="ah-app" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g data-step="1 2 3 4">
+                    <rect x="30" y="25" width="170" height="90" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="115" y="60" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">1 · Wallet</text>
+                    <text x="115" y="85" text-anchor="middle" fill="#5a6b7c" font-size="11">saisie / photo</text>
+                  </g>
+                  <line class="flow-line" data-step="2 3 4" x1="205" y1="70" x2="245" y2="70" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-app)"/>
+                  <g data-step="2 3 4">
+                    <rect x="245" y="25" width="170" height="90" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="330" y="60" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">2 · Issuer</text>
+                    <text x="330" y="85" text-anchor="middle" fill="#5a6b7c" font-size="11">IDV · OTP · OK</text>
+                  </g>
+                  <line class="flow-line" data-step="3 4" x1="420" y1="70" x2="460" y2="70" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-app)"/>
+                  <g data-step="3 4">
+                    <rect x="460" y="15" width="200" height="110" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="560" y="55" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">3 · TSP</text>
+                    <text x="560" y="80" text-anchor="middle" fill="#0d9f8a" font-size="11">crée TOKEN</text>
+                    <text x="560" y="100" text-anchor="middle" fill="#5a6b7c" font-size="11">vault PAN↔token</text>
+                  </g>
+                  <line class="flow-line" data-step="4" x1="665" y1="70" x2="705" y2="70" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-app)"/>
+                  <g data-step="4">
+                    <rect x="705" y="25" width="260" height="90" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="835" y="60" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">4 · SE device</text>
+                    <text x="835" y="85" text-anchor="middle" fill="#5a6b7c" font-size="11">credential prêt · domaine device</text>
+                  </g>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="30" y="160" width="940" height="200" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Wallet — capture carte</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Photo / saisie / push issuer app → PassKit démarre l’enrolment.</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">Pas de bouton «&nbsp;tokeniser&nbsp;» — UX implicite.</text>
+                    <text x="60" y="310" fill="#087a6a" font-size="13" font-weight="700">Le PAN transite pour les contrôles — il ne reste pas comme instrument de paiement dans Wallet.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="30" y="160" width="940" height="200" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Issuer — contrôles</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Vérifie porteur, produit, risque (OTP SMS, app banque, etc.).</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">Sans OK issuer → pas de token actif.</text>
+                    <text x="60" y="310" fill="#1e5f8a" font-size="13" font-weight="700">L’émetteur reste maître du «&nbsp;oui, cette carte peut vivre dans Apple Pay&nbsp;».</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="30" y="160" width="940" height="200" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="15" font-weight="700">TSP — émission</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Crée le token, enregistre le mapping dans le vault, applique le domaine device.</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">VTS / MDES (ou équivalent) selon le réseau de la carte.</text>
+                    <text x="60" y="310" fill="#1e5f8a" font-size="13" font-weight="700">C’est ici que naît le substitut — pas dans l’iPhone «&nbsp;tout seul&nbsp;».</text>
+                  </g>
+                  <g class="step-panel" data-step="4">
+                    <rect x="30" y="160" width="940" height="200" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Remise au SE</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Le credential tokenisé est provisionné dans le Secure Element.</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">Prêt pour CDCVM + tap · lifecycle géré (suspend / delete) côté TSP + device.</text>
+                    <text x="60" y="310" fill="#087a6a" font-size="13" font-weight="700">Watch = provisioning séparé possible (autre domaine).</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="apple-prov-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>Capture</strong><p>Wallet.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>Contrôles</strong><p>Issuer.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>Token</strong><p>TSP · vault.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="4">
+                    <span class="n">4</span>
+                    <span><strong>SE</strong><p>Credential.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- E · Flux NFC -->
+            <section class="section" id="paiement-nfc">
+              <p class="section-label">Flux 2</p>
+              <h2>Paiement NFC (tap)</h2>
+              <p class="intro">
+                Qui voit le <strong>token</strong> · qui voit le
+                <strong>PAN</strong> — reprise explicite de J3 Auth.
+              </p>
+
+              <div class="diagram" id="diagram-apple-nfc">
+                <div class="diagram-header">
+                  <h3>Tap → Auth tokenisée</h3>
+                  <p>Bande verte = TOKEN circule · détokenisation au réseau</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 420"
+                  role="img"
+                  aria-label="Paiement NFC Apple Pay token PAN"
+                >
+                  <defs>
+                    <marker id="ah-anfc" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g data-step="1 2 3 4 5">
+                    <rect x="15" y="25" width="155" height="100" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="92" y="60" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Device</text>
+                    <text x="92" y="82" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">TOKEN+crypto</text>
+                    <text x="92" y="102" text-anchor="middle" fill="#5a6b7c" font-size="10">après CDCVM</text>
+                  </g>
+                  <line class="flow-line" data-step="2 3 4 5" x1="175" y1="75" x2="200" y2="75" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-anfc)"/>
+                  <g data-step="2 3 4 5">
+                    <rect x="200" y="25" width="140" height="100" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="270" y="65" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">POS</text>
+                    <text x="270" y="90" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">TOKEN</text>
+                  </g>
+                  <line class="flow-line" data-step="3 4 5" x1="345" y1="75" x2="370" y2="75" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-anfc)"/>
+                  <g data-step="3 4 5">
+                    <rect x="370" y="25" width="150" height="100" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="445" y="60" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Acquéreur</text>
+                    <text x="445" y="85" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">TOKEN</text>
+                    <text x="445" y="105" text-anchor="middle" fill="#5a6b7c" font-size="10">pas PAN</text>
+                  </g>
+                  <line class="flow-line" data-step="4 5" x1="525" y1="75" x2="550" y2="75" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-anfc)"/>
+                  <g data-step="4 5">
+                    <rect x="550" y="15" width="200" height="120" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="650" y="55" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">Réseau / TSP</text>
+                    <text x="650" y="80" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">détokenise</text>
+                    <text x="650" y="105" text-anchor="middle" fill="#5a6b7c" font-size="10">token → PAN</text>
+                  </g>
+                  <line class="flow-line" data-step="5" x1="755" y1="75" x2="780" y2="75" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-anfc)"/>
+                  <g data-step="5">
+                    <rect x="780" y="25" width="190" height="100" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="875" y="60" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">Issuer</text>
+                    <text x="875" y="85" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">compte / PAN</text>
+                    <text x="875" y="105" text-anchor="middle" fill="#5a6b7c" font-size="10">AuthZ OK/KO</text>
+                  </g>
+
+                  <rect x="15" y="155" width="970" height="32" rx="6" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <text x="500" y="176" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">
+                    Jusqu’à l’acquéreur inclus → TOKEN · Après TSP → PAN pour décider
+                  </text>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="15" y="205" width="970" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="45" y="245" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">CDCVM puis présentation</text>
+                    <text x="45" y="280" fill="#1a2b3c" font-size="13">Biométrie / code → SE libère token + crypto contactless.</text>
+                    <text x="45" y="310" fill="#1a2b3c" font-size="13">Card emulation NFC face au TPE.</text>
+                    <text x="45" y="350" fill="#087a6a" font-size="13" font-weight="700">Sans CDCVM valide → pas de tap utile.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="15" y="205" width="970" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="45" y="245" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">POS</text>
+                    <text x="45" y="280" fill="#1a2b3c" font-size="13">Traite comme EMV contactless · identifiant = token.</text>
+                    <text x="45" y="310" fill="#1a2b3c" font-size="13">Pas d’accès au vault Apple ni au PAN d’origine.</text>
+                    <text x="45" y="350" fill="#087a6a" font-size="13" font-weight="700">Réponse salle&nbsp;: le commerçant ne «&nbsp;lit&nbsp;» pas votre numéro de carte.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="15" y="205" width="970" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="45" y="245" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Acquéreur</text>
+                    <text x="45" y="280" fill="#1a2b3c" font-size="13">Auth avec TOKEN — réseau tokenization jusqu’ici.</text>
+                    <text x="45" y="310" fill="#1a2b3c" font-size="13">PCI&nbsp;: moins d’exposition PAN sur la chaîne d’acceptation.</text>
+                    <text x="45" y="350" fill="#087a6a" font-size="13" font-weight="700">Apple Pay NFC ≠ vault marchand qui renverrait du PAN.</text>
+                  </g>
+                  <g class="step-panel" data-step="4">
+                    <rect x="15" y="205" width="970" height="180" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="45" y="245" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="15" font-weight="700">TSP / réseau</text>
+                    <text x="45" y="280" fill="#1a2b3c" font-size="13">Mapping vault · contrôles domaine / crypto · route vers issuer.</text>
+                    <text x="45" y="310" fill="#1a2b3c" font-size="13">Détokeniser ≠ renvoyer le PAN à l’acquéreur.</text>
+                    <text x="45" y="350" fill="#1e5f8a" font-size="13" font-weight="700">Pont Lifecycle J3 #auth.</text>
+                  </g>
+                  <g class="step-panel" data-step="5">
+                    <rect x="15" y="205" width="970" height="180" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="45" y="245" fill="#c45c26" font-family="Syne, sans-serif" font-size="15" font-weight="700">Issuer</text>
+                    <text x="45" y="280" fill="#1a2b3c" font-size="13">Décide sur le compte · peut tenir compte du contexte token.</text>
+                    <text x="45" y="310" fill="#1a2b3c" font-size="13">OK/KO remonte · Clearing / Settlement = rail J1.</text>
+                    <text x="45" y="350" fill="#c45c26" font-size="13" font-weight="700">Fin du parcours monétique — Apple n’est plus dans la boucle AuthZ.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="apple-nfc-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>Device</strong><p>TOKEN+crypto.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>POS</strong><p>TOKEN.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>Acquéreur</strong><p>TOKEN.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="4">
+                    <span class="n">4</span>
+                    <span><strong>TSP</strong><p>Détokenise.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="5">
+                    <span class="n">5</span>
+                    <span><strong>Issuer</strong><p>AuthZ.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- F · In-app -->
+            <section class="section" id="in-app">
+              <p class="section-label">Flux 3</p>
+              <h2>Paiement in-app / web</h2>
+              <p class="intro">
+                Même token / TSP — autre présentation (PassKit session), pas un
+                tap POS.
+              </p>
+
+              <div class="diagram" id="diagram-apple-inapp">
+                <div class="diagram-header">
+                  <h3>App marchande · PassKit · PSP</h3>
+                  <p>Credential tokenisée vers l’acceptation</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 360"
+                  role="img"
+                  aria-label="Apple Pay in-app"
+                >
+                  <defs>
+                    <marker id="ah-aia" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g data-step="1 2 3">
+                    <rect x="40" y="30" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="140" y="70" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">App / site</text>
+                    <text x="140" y="95" text-anchor="middle" fill="#5a6b7c" font-size="11">checkout</text>
+                  </g>
+                  <line class="flow-line" data-step="2 3" x1="250" y1="80" x2="300" y2="80" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-aia)"/>
+                  <g data-step="2 3">
+                    <rect x="300" y="30" width="220" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="410" y="70" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">PassKit sheet</text>
+                    <text x="410" y="95" text-anchor="middle" fill="#5a6b7c" font-size="11">CDCVM · token</text>
+                  </g>
+                  <line class="flow-line" data-step="3" x1="530" y1="80" x2="580" y2="80" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-aia)"/>
+                  <g data-step="3">
+                    <rect x="580" y="30" width="180" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="670" y="70" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">PSP / Auth</text>
+                    <text x="670" y="95" text-anchor="middle" fill="#5a6b7c" font-size="11">credential</text>
+                  </g>
+                  <line class="flow-line" data-step="3" x1="770" y1="80" x2="820" y2="80" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-aia)"/>
+                  <g data-step="3">
+                    <rect x="820" y="30" width="140" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="890" y="75" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Issuer</text>
+                  </g>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="40" y="160" width="920" height="170" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="70" y="200" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Marchand initie</text>
+                    <text x="70" y="235" fill="#1a2b3c" font-size="13">Bouton Apple Pay dans l’app / Safari — demande une session de paiement.</text>
+                    <text x="70" y="275" fill="#087a6a" font-size="13" font-weight="700">≠ WebView qui saisit le PAN — flux natif PassKit.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="40" y="160" width="920" height="170" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="70" y="200" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Feuille Apple Pay</text>
+                    <text x="70" y="235" fill="#1a2b3c" font-size="13">Choix carte · CDCVM · génération d’une credential de paiement tokenisée.</text>
+                    <text x="70" y="275" fill="#087a6a" font-size="13" font-weight="700">Le marchand reçoit un payload opaque — pas le PAN.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="40" y="160" width="920" height="170" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="70" y="200" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="15" font-weight="700">PSP → réseau → issuer</text>
+                    <text x="70" y="235" fill="#1a2b3c" font-size="13">Auth sur base token / network — même logique détokenisation côté scheme.</text>
+                    <text x="70" y="275" fill="#1e5f8a" font-size="13" font-weight="700">Canal différent du tap · même famille network tokenization.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="apple-inapp-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>Checkout</strong><p>App / web.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>PassKit</strong><p>CDCVM.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>Auth</strong><p>Tokenisée.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- G · Lifecycle -->
+            <section class="section" id="lifecycle-apple">
+              <p class="section-label">Lifecycle</p>
+              <h2>Suspendre · supprimer · nouveau device</h2>
+              <div class="diagram" id="diagram-apple-life">
+                <div class="diagram-header">
+                  <h3>Gouvernance token Apple Pay</h3>
+                  <p>Device ≠ carte source</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 320"
+                  role="img"
+                  aria-label="Lifecycle Apple Pay"
+                >
+                  <g data-step="1">
+                    <rect x="40" y="30" width="280" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="180" y="70" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="15" font-weight="700">Suspend</text>
+                    <text x="180" y="95" text-anchor="middle" fill="#5a6b7c" font-size="12">device perdu</text>
+                  </g>
+                  <g data-step="2">
+                    <rect x="360" y="30" width="280" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="500" y="70" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="15" font-weight="700">Delete</text>
+                    <text x="500" y="95" text-anchor="middle" fill="#5a6b7c" font-size="12">désenrolment</text>
+                  </g>
+                  <g data-step="3">
+                    <rect x="680" y="30" width="280" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="820" y="70" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Nouveau device</text>
+                    <text x="820" y="95" text-anchor="middle" fill="#5a6b7c" font-size="12">re-provision</text>
+                  </g>
+                  <g class="step-panel" data-step="1">
+                    <rect x="40" y="150" width="920" height="140" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="70" y="190" fill="#c45c26" font-size="14" font-weight="700">iPhone perdu / volé</text>
+                    <text x="70" y="225" fill="#1a2b3c" font-size="13">Suspendre le token device (Find My / banque / scheme) — carte plastique OK.</text>
+                    <text x="70" y="260" fill="#c45c26" font-size="13" font-weight="700">Gouvernance fine = bénéfice J3 appliqué au wallet.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="40" y="150" width="920" height="140" rx="10" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="70" y="190" fill="#3d5a80" font-size="14" font-weight="700">Retirer la carte du Wallet</text>
+                    <text x="70" y="225" fill="#1a2b3c" font-size="13">Delete du token · éventuel nettoyage SE · mapping vault mis à jour.</text>
+                    <text x="70" y="260" fill="#3d5a80" font-size="13" font-weight="700">Le PAN issuer n’est pas «&nbsp;résilié&nbsp;» pour autant.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="40" y="150" width="920" height="140" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="70" y="190" fill="#087a6a" font-size="14" font-weight="700">Nouvel iPhone / Watch</text>
+                    <text x="70" y="225" fill="#1a2b3c" font-size="13">Nouveau domaine → en général nouveau provisioning (même PAN source).</text>
+                    <text x="70" y="260" fill="#087a6a" font-size="13" font-weight="700">Ancien token à suspendre / supprimer — ne pas laisser d’orphelins.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="apple-life-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>Suspend</strong><p>Perte device.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>Delete</strong><p>Retrait carte.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>Re-provision</strong><p>Nouveau device.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Ancrage SI</p>
+              <h2>Ce qu’une banque / un SI doit retenir</h2>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Maîtrise issuer</h3>
+                  <ul>
+                    <li>OK provisioning · AuthZ · opposition</li>
+                    <li>Règles produit Apple Pay</li>
+                    <li>Lifecycle tokens device</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Dépendances</h3>
+                  <ul>
+                    <li>Apple (PassKit · SE)</li>
+                    <li>TSP / scheme (VTS · MDES…)</li>
+                    <li>Acceptation contactless terrain</li>
+                  </ul>
+                </div>
+              </div>
+              <p class="intro" style="margin-top: 1rem">
+                Suite&nbsp;:
+                <a href="google-pay.html">Google Pay</a>
+                (même grille, stack HCE) ·
+                <a href="cas-pratique.html">Cas pratique</a>
+              </p>
+            </section>
+
+            <div class="sources-box">
+              <strong>Sources</strong> — Apple Pay / PassKit issuer · EMV
+              Contactless · VTS / MDES · CDCVM · Lifecycle tokenisation J3.
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 4</a>
+        · Support formateur · Bloc Apple Pay
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/nav-j4.js"></script>
+    <script src="../js/fiche.js"></script>
+  </body>
+</html>

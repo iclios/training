@@ -5,6 +5,7 @@ window.J5_BLOCS = [
   { id: "exigences", title: "Exigences SI", href: "exigences.html" },
   { id: "controle", title: "Contrôle & gouvernance", href: "controle.html" },
   { id: "atelier", title: "Atelier conception", href: "atelier.html" },
+  { id: "support", title: "Support", href: "support.html" },
 ];
 
 (function initJ5Nav() {

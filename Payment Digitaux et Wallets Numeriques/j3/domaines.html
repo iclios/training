@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Domaines d’usage — Jour 3 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="domaines">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a class="is-active" href="intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Tokenisation</span>
+              </div>
+              <p class="day-kicker">3.1 · Où</p>
+              <h1>Domaines d’usage</h1>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Modes / domaines</p>
+              <h2>Où on tokenise</h2>
+              <p class="definition-full">
+                Un token n’est pas universel&nbsp;: il est émis pour un
+                <strong>domaine</strong> (canal, device, parfois marchand).
+                Même rail Auth → Clearing → Settlement — ce qui change, c’est
+                <em>qui tokenise</em>, <em>où vit le token</em> et
+                <em>ce qui circule</em>.
+              </p>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Vue d’ensemble</p>
+              <h2>Trois terrains</h2>
+
+              <div class="diagram" id="diagram-domaines">
+                <div class="diagram-header">
+                  <h3>In-store · In-app · E-commerce</h3>
+                  <p>Cliquez un terrain — le cartouche développe les axes</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 420"
+                  role="img"
+                  aria-label="Trois domaines de tokenisation avec axes pédagogiques"
+                >
+                  <!-- 3 cartes terrain -->
+                  <g data-step="1">
+                    <rect x="40" y="20" width="280" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="56" y="37" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="124" y="58" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">In-store</text>
+                    <text x="124" y="82" fill="#5a6b7c" font-size="12">proximité · wallet / NFC / POS</text>
+                  </g>
+                  <g data-step="2">
+                    <rect x="360" y="20" width="280" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-wallet.jpg" x="376" y="37" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="444" y="58" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">In-app</text>
+                    <text x="444" y="82" fill="#5a6b7c" font-size="12">checkout natif dans l’app</text>
+                  </g>
+                  <g data-step="3">
+                    <rect x="680" y="20" width="280" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="696" y="37" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="764" y="58" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">E-commerce</text>
+                    <text x="764" y="82" fill="#5a6b7c" font-size="12">web · COF · récurrent</text>
+                  </g>
+
+                  <!-- Cartouche in-store -->
+                  <g class="step-panel" data-step="1">
+                    <rect x="40" y="130" width="920" height="270" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="70" y="168" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="700">In-store — token lié au device</text>
+                    <text x="70" y="198" fill="#1a2b3c" font-size="13">Geste</text>
+                    <text x="200" y="198" fill="#5a6b7c" font-size="13">Approcher téléphone / montre au TPE (biométrie + tap)</text>
+                    <text x="70" y="228" fill="#1a2b3c" font-size="13">Qui tokenise</text>
+                    <text x="200" y="228" fill="#5a6b7c" font-size="13">TSP réseau (VTS · MDES · wallet OEM) — enrolment implicite</text>
+                    <text x="70" y="258" fill="#1a2b3c" font-size="13">Où vit le token</text>
+                    <text x="200" y="258" fill="#5a6b7c" font-size="13">Secure Element / enclave — PAS dans l’OS ni au POS</text>
+                    <text x="70" y="288" fill="#1a2b3c" font-size="13">Ce qui circule</text>
+                    <text x="200" y="288" fill="#5a6b7c" font-size="13">Token + cryptogramme contactless EMV (DPAN / identifiant tokenisé)</text>
+                    <text x="70" y="318" fill="#1a2b3c" font-size="13">Contrainte SI</text>
+                    <text x="200" y="318" fill="#5a6b7c" font-size="13">Terminal EMV contactless · cert device · revoke ciblé (phone perdu ≠ carte bloquée)</text>
+                    <text x="70" y="348" fill="#1a2b3c" font-size="13">Exemples</text>
+                    <text x="200" y="348" fill="#5a6b7c" font-size="13">Apple Pay / Google Pay au supermarché · montre · pont J4 NFC</text>
+                    <text x="70" y="378" fill="#087a6a" font-size="13" font-weight="700">Le POS ne voit jamais le PAN d’origine</text>
+                  </g>
+
+                  <!-- Cartouche in-app -->
+                  <g class="step-panel" data-step="2">
+                    <rect x="40" y="130" width="920" height="270" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="70" y="168" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="18" font-weight="700">In-app — checkout intégré (≠ WebView)</text>
+                    <text x="70" y="198" fill="#1a2b3c" font-size="13">Geste</text>
+                    <text x="200" y="198" fill="#5a6b7c" font-size="13">Payer dans l’app marchande (1-tap · biométrie) — pas de ressaisie PAN</text>
+                    <text x="70" y="228" fill="#1a2b3c" font-size="13">Qui tokenise</text>
+                    <text x="200" y="228" fill="#5a6b7c" font-size="13">Deux voies : wallet pass-through (Apple/Google Pay in-app) OU token PSP / vault</text>
+                    <text x="70" y="258" fill="#1a2b3c" font-size="13">Où vit le token</text>
+                    <text x="200" y="258" fill="#5a6b7c" font-size="13">Wallet OS (PassKit…) ou vault PSP — l’app ne détient souvent qu’un id opaque</text>
+                    <text x="70" y="288" fill="#1a2b3c" font-size="13">Ce qui circule</text>
+                    <text x="200" y="288" fill="#5a6b7c" font-size="13">Credential via SDK / API · SCA / 3DS selon montant et réglementation</text>
+                    <text x="70" y="318" fill="#1a2b3c" font-size="13">Contrainte SI</text>
+                    <text x="200" y="318" fill="#5a6b7c" font-size="13">Intégration SDK native · UX checkout · logs backend SANS PAN</text>
+                    <text x="70" y="348" fill="#1a2b3c" font-size="13">Exemples</text>
+                    <text x="200" y="348" fill="#5a6b7c" font-size="13">Uber · Deliveroo · billetterie · Apple Pay dans une app e-commerce native</text>
+                    <text x="70" y="378" fill="#1e5f8a" font-size="13" font-weight="700">In-app ≠ page web embarquée : le token circule en natif</text>
+                  </g>
+
+                  <!-- Cartouche e-com -->
+                  <g class="step-panel" data-step="3">
+                    <rect x="40" y="130" width="920" height="270" rx="12" fill="#eef0f5" stroke="#3d5a80" stroke-width="3"/>
+                    <text x="70" y="168" fill="#3d5a80" font-family="Syne, sans-serif" font-size="18" font-weight="700">E-commerce — card-on-file · récurrent</text>
+                    <text x="70" y="198" fill="#1a2b3c" font-size="13">Geste</text>
+                    <text x="200" y="198" fill="#5a6b7c" font-size="13">Saisie ou «&nbsp;enregistrer ma carte&nbsp;» au checkout web (1ère fois)</text>
+                    <text x="70" y="228" fill="#1a2b3c" font-size="13">Qui tokenise</text>
+                    <text x="200" y="228" fill="#5a6b7c" font-size="13">PSP / acquéreur / TSP card-on-file — PAN capturé en hosted fields / iframe</text>
+                    <text x="70" y="258" fill="#1a2b3c" font-size="13">Où vit le token</text>
+                    <text x="200" y="258" fill="#5a6b7c" font-size="13">Base marchand ou vault PSP — le PAN reste chez TSP / émetteur</text>
+                    <text x="70" y="288" fill="#1a2b3c" font-size="13">Ce qui circule</text>
+                    <text x="200" y="288" fill="#5a6b7c" font-size="13">Token via gateway · COF puis MIT (merchant-initiated) pour les abos</text>
+                    <text x="70" y="318" fill="#1a2b3c" font-size="13">Contrainte SI</text>
+                    <text x="200" y="318" fill="#5a6b7c" font-size="13">Scope PCI réduit · conformité COF/MIT · 3DS au 1er paiement · pas de PAN en DB</text>
+                    <text x="70" y="348" fill="#1a2b3c" font-size="13">Exemples</text>
+                    <text x="200" y="348" fill="#5a6b7c" font-size="13">Streaming · SaaS · marketplace 1-clic · renouvellement carte géré par le TSP</text>
+                    <text x="70" y="378" fill="#3d5a80" font-size="13" font-weight="700">Cœur de la réduction PCI côté marchand</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="domaines-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>In-store</strong><p>Device · NFC · POS</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>In-app</strong><p>Checkout natif</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>E-commerce</strong><p>COF · MIT</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">In-store</p>
+              <h2>Tap au POS</h2>
+              <p class="intro">
+                Le payeur ne tape pas son PAN&nbsp;: le device présente un
+                token lié à l’appareil.
+              </p>
+
+              <div class="diagram" id="diagram-instore">
+                <div class="diagram-header">
+                  <h3>Domaine device → POS → Auth</h3>
+                  <p>Token device-bound · PAN hors POS</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 380"
+                  role="img"
+                  aria-label="Flux tokenisation in-store annoté"
+                >
+                  <defs>
+                    <marker id="ah-is" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <g data-step="1 2 3">
+                    <rect x="30" y="30" width="200" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="44" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="112" y="70" fill="#1a2b3c" font-size="13" font-weight="700">1 · Domaine</text>
+                    <text x="112" y="92" fill="#5a6b7c" font-size="11">token · device</text>
+                    <text x="112" y="112" fill="#5a6b7c" font-size="11">wallet prêt</text>
+                  </g>
+                  <line class="flow-line" data-step="2 3" x1="240" y1="85" x2="290" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-is)"/>
+                  <g data-step="2 3">
+                    <rect x="290" y="30" width="200" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="304" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="372" y="70" fill="#1a2b3c" font-size="13" font-weight="700">2 · Device</text>
+                    <text x="372" y="92" fill="#5a6b7c" font-size="11">token · SE</text>
+                    <text x="372" y="112" fill="#5a6b7c" font-size="11">device-bound</text>
+                  </g>
+                  <line class="flow-line" data-step="3" x1="500" y1="85" x2="550" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-is)"/>
+                  <g data-step="3">
+                    <rect x="550" y="30" width="190" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="564" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="632" y="70" fill="#1a2b3c" font-size="13" font-weight="700">3 · POS</text>
+                    <text x="632" y="92" fill="#5a6b7c" font-size="11">NFC · EMV</text>
+                    <text x="632" y="112" fill="#5a6b7c" font-size="11">≠ PAN</text>
+                  </g>
+                  <line class="flow-line" data-step="3" x1="750" y1="85" x2="800" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-is)"/>
+                  <g data-step="3">
+                    <rect x="800" y="30" width="170" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="885" y="75" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Auth</text>
+                    <text x="885" y="100" text-anchor="middle" fill="#5a6b7c" font-size="11">issuer · token</text>
+                  </g>
+
+                  <!-- annotations par étape -->
+                  <g class="step-panel" data-step="1">
+                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="60" y="210" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Domaine = device</text>
+                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Après enrolment wallet, le token est lié à CET appareil (pas à un marchand web).</text>
+                    <text x="60" y="275" fill="#1a2b3c" font-size="13">In-store = proximité · le credential vit sur le device, prêt pour le tap NFC.</text>
+                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Flux provisioning technique (TSP · vault) : Lifecycle · Provisioning.</text>
+                    <text x="60" y="335" fill="#087a6a" font-size="13" font-weight="700">Ici on situe le domaine — pas le détail d’émission.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="60" y="210" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Où vit le token</text>
+                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Stocké dans le Secure Element / enclave du device — isolé de l’OS.</text>
+                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Le PAN n’est ni dans le téléphone en clair, ni exposé au commerçant.</text>
+                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Domaine typique : device + canal proximité (ce token ne sert pas en COF web).</text>
+                    <text x="60" y="335" fill="#087a6a" font-size="13" font-weight="700">Perte du phone → suspendre CE token, la carte plastique reste OK ailleurs.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="60" y="210" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Au moment du tap</text>
+                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Le device présente token + cryptogramme contactless — le TPE lance l’Auth EMV.</text>
+                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Le marchand / POS voit un identifiant tokenisé (souvent DPAN), pas le PAN d’origine.</text>
+                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Contrainte SI : terminal contactless certifié · schéma / wallet compatibles · pas de PAN en caisse.</text>
+                    <text x="60" y="335" fill="#087a6a" font-size="13" font-weight="700">Pont J4 : même logique «&nbsp;le device présente, pas le PAN&nbsp;» · NFC / tags.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="instore-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>Domaine</strong><p>Token lié au device.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>Device</strong><p>Secure Element</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>Tap</strong><p>POS · Auth</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">In-app</p>
+              <h2>Checkout natif</h2>
+              <p class="intro">
+                L’achat se fait dans l’application du marchand — token wallet
+                ou vault PSP, pas une WebView.
+              </p>
+
+              <div class="diagram" id="diagram-inapp">
+                <div class="diagram-header">
+                  <h3>App → SDK / wallet → Backend → Auth</h3>
+                  <p>Deux variantes de tokenisation à distinguer</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 380"
+                  role="img"
+                  aria-label="Flux tokenisation in-app annoté"
+                >
+                  <defs>
+                    <marker id="ah-ia" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <g data-step="1 2 3">
+                    <rect x="40" y="30" width="200" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="54" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="122" y="70" fill="#1a2b3c" font-size="13" font-weight="700">1 · App</text>
+                    <text x="122" y="92" fill="#5a6b7c" font-size="11">checkout natif</text>
+                    <text x="122" y="112" fill="#5a6b7c" font-size="11">1er achat / moyen</text>
+                  </g>
+                  <line class="flow-line" data-step="2 3" x1="250" y1="85" x2="300" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ia)"/>
+                  <g data-step="2 3">
+                    <rect x="300" y="30" width="220" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-wallet.jpg" x="314" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="382" y="70" fill="#1a2b3c" font-size="13" font-weight="700">2 · SDK / wallet</text>
+                    <text x="382" y="92" fill="#5a6b7c" font-size="11">token · SCA</text>
+                    <text x="382" y="112" fill="#5a6b7c" font-size="11">2 variantes</text>
+                  </g>
+                  <line class="flow-line" data-step="3" x1="530" y1="85" x2="580" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ia)"/>
+                  <g data-step="3">
+                    <rect x="580" y="30" width="200" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-psp.jpg" x="594" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="662" y="70" fill="#1a2b3c" font-size="13" font-weight="700">3 · Backend</text>
+                    <text x="662" y="92" fill="#5a6b7c" font-size="11">credential</text>
+                    <text x="662" y="112" fill="#5a6b7c" font-size="11">≠ PAN</text>
+                  </g>
+                  <line class="flow-line" data-step="3" x1="790" y1="85" x2="840" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ia)"/>
+                  <g data-step="3">
+                    <rect x="840" y="30" width="130" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="905" y="80" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Auth</text>
+                    <text x="905" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">token</text>
+                  </g>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="60" y="210" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Premier achat / enregistrement</text>
+                    <text x="60" y="245" fill="#1a2b3c" font-size="13">L’utilisateur ajoute un moyen de paiement dans l’app (carte ou wallet).</text>
+                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Provisioning pour ce couple app / device (ou app / marchand selon architecture).</text>
+                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Objectif UX : plus de ressaisie PAN aux commandes suivantes.</text>
+                    <text x="60" y="335" fill="#1e5f8a" font-size="13" font-weight="700">Ex. : VTC, livraison, billetterie — 1er onboarding, puis 1-tap.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="60" y="210" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Deux variantes à ne pas confondre</text>
+                    <text x="60" y="245" fill="#1a2b3c" font-size="13">A · Wallet pass-through : Apple Pay / Google Pay in-app — le token reste côté wallet OS.</text>
+                    <text x="60" y="275" fill="#1a2b3c" font-size="13">B · Token PSP : carte enregistrée via vault PSP — l’app appelle le SDK avec un id opaque.</text>
+                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Dans les deux cas : biométrie / SCA au moment du paiement selon règles.</text>
+                    <text x="60" y="335" fill="#1e5f8a" font-size="13" font-weight="700">≠ WebView checkout : ici le flux est natif (API mobile / SDK).</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="60" y="210" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Côté SI marchand</text>
+                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Le backend reçoit une credential / payment token — jamais le PAN en clair.</text>
+                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Contrainte : intégration SDK, gestion SCA/3DS, logs et base SANS PAN.</text>
+                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Révocation : supprimer la carte dans l’app ou revoke wallet — le marchand n’a souvent qu’un id.</text>
+                    <text x="60" y="335" fill="#1e5f8a" font-size="13" font-weight="700">Le rail Auth reste le même — seul le payload présenté change.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="inapp-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>Enrolment</strong><p>Dans l’app</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>SDK</strong><p>2 variantes</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>Backend</strong><p>Sans PAN</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">E-commerce</p>
+              <h2>Card-on-file</h2>
+              <p class="intro">
+                Le marchand réutilise la carte (1-clic, abonnement) en stockant
+                un token — pas le PAN.
+              </p>
+
+              <div class="diagram" id="diagram-ecom">
+                <div class="diagram-header">
+                  <h3>Checkout → PSP / TSP → Marchand → MIT</h3>
+                  <p>COF + récurrence · cœur du scope PCI</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 380"
+                  role="img"
+                  aria-label="Flux tokenisation e-commerce annoté"
+                >
+                  <defs>
+                    <marker id="ah-ec" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <g data-step="1 2 3">
+                    <rect x="30" y="30" width="190" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="44" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="112" y="70" fill="#1a2b3c" font-size="13" font-weight="700">1 · Checkout</text>
+                    <text x="112" y="92" fill="#5a6b7c" font-size="11">hosted fields</text>
+                    <text x="112" y="112" fill="#5a6b7c" font-size="11">+ 3DS souvent</text>
+                  </g>
+                  <line class="flow-line" data-step="2 3" x1="230" y1="85" x2="280" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ec)"/>
+                  <g data-step="2 3">
+                    <rect x="280" y="30" width="210" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-psp.jpg" x="294" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="362" y="70" fill="#1a2b3c" font-size="13" font-weight="700">2 · PSP / TSP</text>
+                    <text x="362" y="92" fill="#5a6b7c" font-size="11">tokenise · vault</text>
+                    <text x="362" y="112" fill="#5a6b7c" font-size="11">lien PAN↔token</text>
+                  </g>
+                  <line class="flow-line" data-step="2 3" x1="500" y1="85" x2="550" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ec)"/>
+                  <g data-step="2 3">
+                    <rect x="550" y="30" width="200" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="564" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="632" y="70" fill="#1a2b3c" font-size="13" font-weight="700">Marchand</text>
+                    <text x="632" y="92" fill="#5a6b7c" font-size="11">stocke token</text>
+                    <text x="632" y="112" fill="#5a6b7c" font-size="11">PCI scope ↓</text>
+                  </g>
+                  <line class="flow-line" data-step="3" x1="760" y1="85" x2="810" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ec)"/>
+                  <g data-step="3">
+                    <rect x="810" y="30" width="160" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="890" y="75" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">3 · MIT</text>
+                    <text x="890" y="100" text-anchor="middle" fill="#5a6b7c" font-size="11">récurrent</text>
+                  </g>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="60" y="210" fill="#3d5a80" font-family="Syne, sans-serif" font-size="16" font-weight="700">Premier paiement</text>
+                    <text x="60" y="245" fill="#1a2b3c" font-size="13">PAN saisi une seule fois chez le PSP (iframe / hosted fields) — pas en base marchande.</text>
+                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Souvent 3DS / SCA sur ce premier enregistrement (COF).</text>
+                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Le PSP / TSP crée le token et le mapping PAN ↔ token dans le vault.</text>
+                    <text x="60" y="335" fill="#3d5a80" font-size="13" font-weight="700">Le marchand reçoit un token — jamais le PAN à stocker.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="60" y="210" fill="#3d5a80" font-family="Syne, sans-serif" font-size="16" font-weight="700">Card-on-file</text>
+                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Le marchand (ou le vault PSP) conserve le token pour les paiements suivants.</text>
+                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Impact direct : moins de PAN manipulés → scope PCI DSS réduit.</text>
+                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Si la carte est renouvelée, le TSP met à jour le mapping — l’id token côté marchand peut rester.</text>
+                    <text x="60" y="335" fill="#3d5a80" font-size="13" font-weight="700">Gouvernance centralisée du lien PAN ↔ token (TSP), pas chez le marchand.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="60" y="210" fill="#3d5a80" font-family="Syne, sans-serif" font-size="16" font-weight="700">MIT · abonnements</text>
+                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Paiements suivants : le marchand envoie le token → Auth (merchant-initiated).</text>
+                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Pas de ré-authentification systématique à chaque prélèvement (règles COF / MIT).</text>
+                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Ex. : streaming, SaaS, marketplace 1-clic — suite Architecture SI &amp; Sécurité / PCI.</text>
+                    <text x="60" y="335" fill="#3d5a80" font-size="13" font-weight="700">Token COF ≠ token in-store device : domaines non interchangeables.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="ecom-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>1er paiement</strong><p>Hosted fields</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>COF</strong><p>Token stocké</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>MIT</strong><p>Récurrent</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Ancrage</p>
+              <h2>Question salle</h2>
+              <div class="panel ok">
+                <h3>Où reste le PAN — et quel domaine&nbsp;?</h3>
+                <ul>
+                  <li>Vault / TSP / issuer — pas chez le marchand ni au POS</li>
+                  <li>Token in-store (device) ≠ token COF e-commerce</li>
+                  <li>Même rail J1 — contexte d’émission différent</li>
+                </ul>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Sources</strong> — EMV tokenization · VTS / MDES · COF / MIT · PCI DSS scope reduction.
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 3</a>
+        · Support formateur · Bloc Domaines d’usage
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/nav-j3.js"></script>
+    <script src="../js/fiche.js"></script>
+  </body>
+</html>

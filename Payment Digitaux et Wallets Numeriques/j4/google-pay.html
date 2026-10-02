@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Google Pay — Jour 4 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="google-pay">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a class="is-active" href="intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 4 · NFC / Wallets</span>
+              </div>
+              <p class="day-kicker">4.3 · Wallet majeur</p>
+              <h1>Google Pay</h1>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Définition</p>
+              <h2>Qu’est-ce que Google Pay&nbsp;?</h2>
+              <p class="definition-full">
+                Wallet Google / Android qui
+                <strong>orchestre</strong> l’enrolment, le
+                <strong>provisioning</strong> d’un token réseau, le
+                <strong>CDCVM</strong> et la
+                <strong>présentation NFC</strong> — souvent via
+                <strong>HCE</strong> (+ TEE / cloud), parfois SE selon OEM —
+                sans remplacer l’émetteur ni l’AuthZ.
+              </p>
+              <p class="intro" style="margin-top: 0.85rem">
+                Plateforme&nbsp;: <strong>Android / Wear OS</strong> · parc
+                <strong>hétérogène</strong> · même métier monétique qu’
+                <a href="apple-pay.html">Apple Pay</a>, autre stack confiance.
+              </p>
+            </section>
+
+            <section class="section" id="plateforme">
+              <p class="section-label">Plateforme</p>
+              <h2>Écosystème Android</h2>
+              <p class="intro">
+                Multi-OEM, multi-versions OS — lire le device, pas «&nbsp;un&nbsp;»
+                Android unique.
+              </p>
+
+              <div class="diagram" id="diagram-google-platform">
+                <div class="diagram-header">
+                  <h3>OS · fragmentation · NFC</h3>
+                  <p>Cliquez — le cartouche détaille</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 400"
+                  role="img"
+                  aria-label="Plateforme Google Pay Android"
+                >
+                  <g data-step="1">
+                    <rect x="40" y="20" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="180" y="55" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">1 · OS</text>
+                    <text x="180" y="78" text-anchor="middle" fill="#5a6b7c" font-size="12">Android · Wear OS</text>
+                  </g>
+                  <g data-step="2">
+                    <rect x="360" y="20" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="500" y="55" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">2 · Parc</text>
+                    <text x="500" y="78" text-anchor="middle" fill="#5a6b7c" font-size="12">OEM · versions</text>
+                  </g>
+                  <g data-step="3">
+                    <rect x="680" y="20" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="820" y="55" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">3 · NFC / HCE</text>
+                    <text x="820" y="78" text-anchor="middle" fill="#5a6b7c" font-size="12">card emulation host</text>
+                  </g>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="40" y="120" width="920" height="250" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="70" y="160" fill="#087a6a" font-family="Syne, sans-serif" font-size="17" font-weight="700">Plateforme logicielle</text>
+                    <text x="70" y="200" fill="#1a2b3c" font-size="13">Android (téléphone / tablette) · Wear OS · APIs Google Pay / Wallet.</text>
+                    <text x="70" y="230" fill="#1a2b3c" font-size="13">Google Play Services / attestation device souvent dans la boucle de confiance.</text>
+                    <text x="70" y="260" fill="#1a2b3c" font-size="13">In-app / web&nbsp;: Google Pay API — parallèle PassKit, autre intégration SI.</text>
+                    <text x="70" y="300" fill="#087a6a" font-size="13" font-weight="700">Point SI banque&nbsp;: documents Google Pay issuer + contraintes Android par OEM.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="40" y="120" width="920" height="250" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="70" y="160" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="17" font-weight="700">Fragmentation = enjeu SI</text>
+                    <text x="70" y="200" fill="#1a2b3c" font-size="13">Constructeurs multiples · versions OS · présence NFC · qualité TEE / SE variable.</text>
+                    <text x="70" y="230" fill="#1a2b3c" font-size="13">Un même «&nbsp;Google Pay&nbsp;» n’implique pas la même profondeur de sécurité hardware.</text>
+                    <text x="70" y="260" fill="#1a2b3c" font-size="13">Wear / autres form factors = domaines token additionnels possibles.</text>
+                    <text x="70" y="300" fill="#1e5f8a" font-size="13" font-weight="700">Ne pas enseigner «&nbsp;un&nbsp;» schéma unique pour tout Android.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="40" y="120" width="920" height="250" rx="12" fill="#eef0f5" stroke="#3d5a80" stroke-width="3"/>
+                    <text x="70" y="160" fill="#3d5a80" font-family="Syne, sans-serif" font-size="17" font-weight="700">NFC via HCE (souvent)</text>
+                    <text x="70" y="200" fill="#1a2b3c" font-size="13">Card emulation côté host OS — le POS voit toujours un flux contactless EMV.</text>
+                    <text x="70" y="230" fill="#1a2b3c" font-size="13">Ce qui sort = token + crypto — pas le PAN (même règle J3 Auth).</text>
+                    <text x="70" y="260" fill="#1a2b3c" font-size="13">Certains devices ajoutent un SE — exception à situer, pas la norme pédagogique de base.</text>
+                    <text x="70" y="300" fill="#3d5a80" font-size="13" font-weight="700">HCE ≠ absence de sécurité — autre répartition des responsabilités (TEE / cloud / TSP).</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="google-platform-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>OS</strong><p>Android · APIs.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>Parc</strong><p>Fragmentation.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>HCE</strong><p>Émulation host.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="section" id="acteurs">
+              <p class="section-label">Écosystème</p>
+              <h2>Tous les acteurs monétiques</h2>
+              <p class="intro">
+                Même chaîne que Apple Pay — rôles monétiques identiques, stack
+                device différente. Cliquez un acteur.
+              </p>
+
+              <div class="diagram" id="diagram-google-acteurs">
+                <div class="diagram-header">
+                  <h3>Chaîne complète Google Pay</h3>
+                  <p>Porteur → Wallet → TSP → Issuer · POS → Acquéreur → Auth</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 480"
+                  role="img"
+                  aria-label="Acteurs monetiques Google Pay"
+                >
+                  <g data-step="1">
+                    <rect x="30" y="20" width="140" height="95" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="42" y="32" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="100" y="50" fill="#1a2b3c" font-size="11" font-weight="700">Porteur</text>
+                    <text x="100" y="70" fill="#5a6b7c" font-size="10">CDCVM</text>
+                    <text x="100" y="90" fill="#087a6a" font-size="10" font-weight="700">geste</text>
+                  </g>
+                  <g data-step="2">
+                    <rect x="190" y="20" width="150" height="95" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-wallet.jpg" x="202" y="32" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="260" y="50" fill="#087a6a" font-size="11" font-weight="700">Google Pay</text>
+                    <text x="260" y="70" fill="#5a6b7c" font-size="10">HCE · TEE</text>
+                    <text x="260" y="90" fill="#087a6a" font-size="10" font-weight="700">orchestre</text>
+                  </g>
+                  <g data-step="3">
+                    <rect x="360" y="20" width="150" height="95" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-scheme.jpg" x="372" y="32" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="430" y="50" fill="#087a6a" font-size="11" font-weight="700">TSP / scheme</text>
+                    <text x="430" y="70" fill="#5a6b7c" font-size="10">VTS · MDES…</text>
+                    <text x="430" y="90" fill="#087a6a" font-size="10" font-weight="700">token · vault</text>
+                  </g>
+                  <g data-step="4">
+                    <rect x="530" y="20" width="140" height="95" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-banque.jpg" x="542" y="32" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="600" y="50" fill="#1a2b3c" font-size="11" font-weight="700">Issuer</text>
+                    <text x="600" y="70" fill="#5a6b7c" font-size="10">PAN · AuthZ</text>
+                    <text x="600" y="90" fill="#c45c26" font-size="10" font-weight="700">décide</text>
+                  </g>
+                  <g data-step="5">
+                    <rect x="690" y="20" width="130" height="95" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="702" y="32" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="760" y="50" fill="#1a2b3c" font-size="11" font-weight="700">POS</text>
+                    <text x="760" y="70" fill="#5a6b7c" font-size="10">NFC EMV</text>
+                    <text x="760" y="90" fill="#5a6b7c" font-size="10">voit TOKEN</text>
+                  </g>
+                  <g data-step="6">
+                    <rect x="840" y="20" width="130" height="95" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-psp.jpg" x="852" y="32" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="910" y="50" fill="#1a2b3c" font-size="11" font-weight="700">Acquéreur</text>
+                    <text x="910" y="70" fill="#5a6b7c" font-size="10">/ PSP</text>
+                    <text x="910" y="90" fill="#087a6a" font-size="10" font-weight="700">TOKEN</text>
+                  </g>
+
+                  <text x="500" y="140" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">
+                    Même cartographie monétique qu’Apple — changer le cartouche «&nbsp;Wallet&nbsp;» suffit pour le contraste
+                  </text>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="30" y="160" width="940" height="280" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Porteur</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Ajoute la carte, passe l’IDV issuer, authentifie (empreinte / visage / PIN).</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">Enrolment implicite — pas de création manuelle de token.</text>
+                    <text x="60" y="295" fill="#1a2b3c" font-size="13">Compte Google peut relier plusieurs devices — attention aux domaines token.</text>
+                    <text x="60" y="340" fill="#087a6a" font-size="13" font-weight="700">Spécifique&nbsp;: UX Android / Wear · dépend du constructeur pour la biométrie.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="30" y="160" width="940" height="280" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Google Wallet / Pay (OEM logiciel)</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Orchestre UX, HCE, liaison TSP, présentation NFC / in-app.</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">≠ banque · ≠ TSP · ≠ acquéreur — n’autorise pas le compte.</text>
+                    <text x="60" y="295" fill="#1a2b3c" font-size="13">S’appuie sur TEE / cloud pour secrets et tokens souvent à durée limitée.</text>
+                    <text x="60" y="340" fill="#087a6a" font-size="13" font-weight="700">Spécifique&nbsp;: intégration Android + politiques Google (attestation, Play…).</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="30" y="160" width="940" height="280" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">TSP / network tokenization</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Même rôle qu’avec Apple&nbsp;: émet token, vault, domaine, états, détokenisation Auth.</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">VTS / MDES… selon le produit carte.</text>
+                    <text x="60" y="295" fill="#1a2b3c" font-size="13">En HCE, le TSP / cloud est souvent plus présent dans le cycle des clés courtes.</text>
+                    <text x="60" y="340" fill="#1e5f8a" font-size="13" font-weight="700">Le réseau reste le cœur du mapping — pas le wallet Google.</text>
+                  </g>
+                  <g class="step-panel" data-step="4">
+                    <rect x="30" y="160" width="940" height="280" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Issuer</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">OK provisioning · AuthZ · opposition — racine monétique inchangée.</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">Doit gérer multi-devices Android (re-provision, revoke).</text>
+                    <text x="60" y="295" fill="#1a2b3c" font-size="13">Exigences device / score de risque peuvent différer d’Apple (parc plus large).</text>
+                    <text x="60" y="340" fill="#1e5f8a" font-size="13" font-weight="700">Même question SI&nbsp;: où garde-t-on la maîtrise directe&nbsp;?</text>
+                  </g>
+                  <g class="step-panel" data-step="5">
+                    <rect x="30" y="160" width="940" height="280" rx="12" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="60" y="200" fill="#3d5a80" font-family="Syne, sans-serif" font-size="16" font-weight="700">POS</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Identique fonctionnellement à Apple Pay au tap — contactless EMV · TOKEN.</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">Le TPE ne distingue pas «&nbsp;HCE vs SE&nbsp;» dans le geste métier de base.</text>
+                    <text x="60" y="295" fill="#1a2b3c" font-size="13">Acceptation schéma / seuils = contrainte terrain commune.</text>
+                    <text x="60" y="340" fill="#3d5a80" font-size="13" font-weight="700">Différence = côté device, pas côté caisse.</text>
+                  </g>
+                  <g class="step-panel" data-step="6">
+                    <rect x="30" y="160" width="940" height="280" rx="12" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="60" y="200" fill="#3d5a80" font-family="Syne, sans-serif" font-size="16" font-weight="700">Acquéreur / PSP</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Network tokenization → TOKEN en Auth jusqu’à l’acquéreur.</text>
+                    <text x="60" y="265" fill="#1a2b3c" font-size="13">In-app Google Pay&nbsp;: credential tokenisée vers PSP — parallèle Apple in-app.</text>
+                    <text x="60" y="295" fill="#1a2b3c" font-size="13">Nuance vault marchand seul toujours valable (J3).</text>
+                    <text x="60" y="340" fill="#3d5a80" font-size="13" font-weight="700">Métier acquéreur = même lecture token qu’Apple Pay NFC.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="google-acteurs-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>Porteur</strong><p>CDCVM.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>Wallet</strong><p>Google · HCE.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>TSP</strong><p>Token · vault.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="4">
+                    <span class="n">4</span>
+                    <span><strong>Issuer</strong><p>AuthZ.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="5">
+                    <span class="n">5</span>
+                    <span><strong>POS</strong><p>TOKEN.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="6">
+                    <span class="n">6</span>
+                    <span><strong>Acquéreur</strong><p>TOKEN.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="section" id="confiance">
+              <p class="section-label">Confiance device</p>
+              <h2>HCE · TEE · cloud · (SE parfois)</h2>
+              <p class="intro">
+                Ne pas dire «&nbsp;moins sûr qu’Apple&nbsp;» — dire
+                <strong>autre modèle</strong>.
+              </p>
+
+              <div class="diagram" id="diagram-google-trust">
+                <div class="diagram-header">
+                  <h3>Répartition des responsabilités</h3>
+                  <p>Présentation · secrets · orchestration</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 380"
+                  role="img"
+                  aria-label="HCE TEE cloud Google Pay"
+                >
+                  <g data-step="1 2 3">
+                    <rect x="60" y="30" width="260" height="130" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="190" y="75" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">HCE</text>
+                    <text x="190" y="105" text-anchor="middle" fill="#5a6b7c" font-size="12">émulation côté host</text>
+                    <text x="190" y="130" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">→ ce que voit le POS</text>
+                  </g>
+                  <g data-step="2 3">
+                    <rect x="370" y="30" width="260" height="130" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="500" y="75" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">TEE + cloud</text>
+                    <text x="500" y="105" text-anchor="middle" fill="#5a6b7c" font-size="12">clés · tokens courts</text>
+                    <text x="500" y="130" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">→ secrets / refresh</text>
+                  </g>
+                  <g data-step="3">
+                    <rect x="680" y="30" width="260" height="130" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="810" y="75" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Wallet app</text>
+                    <text x="810" y="105" text-anchor="middle" fill="#5a6b7c" font-size="12">UX · CDCVM</text>
+                    <text x="810" y="130" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">→ orchestre</text>
+                  </g>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="40" y="190" width="920" height="160" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="70" y="230" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">HCE — présentation</text>
+                    <text x="70" y="265" fill="#1a2b3c" font-size="13">Le host (OS / app) émule la carte pour le tap NFC.</text>
+                    <text x="70" y="295" fill="#1a2b3c" font-size="13">Le POS reçoit token + crypto — même famille EMV contactless.</text>
+                    <text x="70" y="325" fill="#087a6a" font-size="13" font-weight="700">Pas de Secure Element obligatoire — d’où le rôle accru TEE / TSP.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="40" y="190" width="920" height="160" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="70" y="230" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="15" font-weight="700">TEE / cloud — secrets</text>
+                    <text x="70" y="265" fill="#1a2b3c" font-size="13">Enclave OS + souvent matériel limité dans le temps (refresh cloud / TSP).</text>
+                    <text x="70" y="295" fill="#1a2b3c" font-size="13">Attestation device / Play Protect peuvent entrer dans la confiance issuer.</text>
+                    <text x="70" y="325" fill="#1e5f8a" font-size="13" font-weight="700">Certains OEM ajoutent un SE — à traiter comme variante, pas comme règle.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="40" y="190" width="920" height="160" rx="10" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="70" y="230" fill="#3d5a80" font-family="Syne, sans-serif" font-size="15" font-weight="700">Wallet — UX</text>
+                    <text x="70" y="265" fill="#1a2b3c" font-size="13">Enrolment, choix instrument, CDCVM, initiation in-app.</text>
+                    <text x="70" y="295" fill="#1a2b3c" font-size="13">Ne remplace pas le vault TSP.</text>
+                    <text x="70" y="325" fill="#3d5a80" font-size="13" font-weight="700">Même phrase qu’Apple&nbsp;: orchestre, ne tokenise pas, ne décide pas AuthZ.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="google-trust-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>HCE</strong><p>Tap.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>TEE / cloud</strong><p>Secrets.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>Wallet</strong><p>UX.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="section" id="provisioning">
+              <p class="section-label">Flux 1</p>
+              <h2>Enrolment &amp; provisioning</h2>
+              <div class="diagram" id="diagram-google-provision">
+                <div class="diagram-header">
+                  <h3>Wallet → Issuer → TSP → credential HCE</h3>
+                  <p>Parallèle Apple · remise différente (HCE vs SE)</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 400"
+                  role="img"
+                  aria-label="Provisioning Google Pay"
+                >
+                  <defs>
+                    <marker id="ah-gpv" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g data-step="1 2 3 4">
+                    <rect x="30" y="25" width="170" height="90" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="115" y="60" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">1 · Wallet</text>
+                    <text x="115" y="85" text-anchor="middle" fill="#5a6b7c" font-size="11">ajout carte</text>
+                  </g>
+                  <line class="flow-line" data-step="2 3 4" x1="205" y1="70" x2="245" y2="70" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gpv)"/>
+                  <g data-step="2 3 4">
+                    <rect x="245" y="25" width="170" height="90" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="330" y="60" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">2 · Issuer</text>
+                    <text x="330" y="85" text-anchor="middle" fill="#5a6b7c" font-size="11">IDV · OK</text>
+                  </g>
+                  <line class="flow-line" data-step="3 4" x1="420" y1="70" x2="460" y2="70" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gpv)"/>
+                  <g data-step="3 4">
+                    <rect x="460" y="15" width="200" height="110" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="560" y="55" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">3 · TSP</text>
+                    <text x="560" y="80" text-anchor="middle" fill="#0d9f8a" font-size="11">TOKEN + vault</text>
+                    <text x="560" y="100" text-anchor="middle" fill="#5a6b7c" font-size="11">domaine device</text>
+                  </g>
+                  <line class="flow-line" data-step="4" x1="665" y1="70" x2="705" y2="70" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gpv)"/>
+                  <g data-step="4">
+                    <rect x="705" y="25" width="260" height="90" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="835" y="60" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">4 · HCE / TEE</text>
+                    <text x="835" y="85" text-anchor="middle" fill="#5a6b7c" font-size="11">credential prêt (souvent TTL)</text>
+                  </g>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="30" y="160" width="940" height="200" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#087a6a" font-size="15" font-weight="700">Capture dans Google Wallet</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Saisie / scan / issuer — UX implicite.</text>
+                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Prérequis NFC / contactless selon le marché.</text>
+                    <text x="60" y="320" fill="#087a6a" font-size="13" font-weight="700">Même pédagogie «&nbsp;geste simple · coulisse complète&nbsp;» qu’Apple.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="30" y="160" width="940" height="200" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#1e5f8a" font-size="15" font-weight="700">Contrôles issuer</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">OTP / app banque / score risque — parfois plus sensible au device Android.</text>
+                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Sans OK → pas de token actif.</text>
+                    <text x="60" y="320" fill="#1e5f8a" font-size="13" font-weight="700">Issuer reste le garde-barrière produit.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="30" y="160" width="940" height="200" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#1e5f8a" font-size="15" font-weight="700">TSP émet</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Token + vault + domaine — VTS / MDES…</text>
+                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Souvent orchestration de clés / tokens courts pour HCE.</text>
+                    <text x="60" y="320" fill="#1e5f8a" font-size="13" font-weight="700">Le token naît au TSP — pas «&nbsp;dans Google&nbsp;» seul.</text>
+                  </g>
+                  <g class="step-panel" data-step="4">
+                    <rect x="30" y="160" width="940" height="200" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="60" y="200" fill="#087a6a" font-size="15" font-weight="700">Remise HCE / TEE</text>
+                    <text x="60" y="235" fill="#1a2b3c" font-size="13">Credential utilisable pour le tap · refresh possible selon architecture.</text>
+                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Nouveau téléphone → souvent nouveau provisioning.</text>
+                    <text x="60" y="320" fill="#087a6a" font-size="13" font-weight="700">Contraste Apple&nbsp;: SE durable vs matériel HCE souvent plus dynamique.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="google-prov-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>Capture</strong><p>Wallet.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>Issuer</strong><p>Contrôles.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>TSP</strong><p>Token.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="4">
+                    <span class="n">4</span>
+                    <span><strong>HCE</strong><p>Credential.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="section" id="paiement-nfc">
+              <p class="section-label">Flux 2</p>
+              <h2>Paiement NFC (tap)</h2>
+              <p class="intro">
+                Identique à Apple côté chaîne monétique — TOKEN jusqu’à
+                l’acquéreur.
+              </p>
+
+              <div class="diagram" id="diagram-google-nfc">
+                <div class="diagram-header">
+                  <h3>Tap HCE → Auth tokenisée</h3>
+                  <p>Même bande TOKEN · détokenisation réseau</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 400"
+                  role="img"
+                  aria-label="Paiement NFC Google Pay"
+                >
+                  <defs>
+                    <marker id="ah-gnfc" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g data-step="1 2 3 4 5">
+                    <rect x="15" y="25" width="155" height="100" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="92" y="60" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Device HCE</text>
+                    <text x="92" y="82" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">TOKEN+crypto</text>
+                    <text x="92" y="102" text-anchor="middle" fill="#5a6b7c" font-size="10">après CDCVM</text>
+                  </g>
+                  <line class="flow-line" data-step="2 3 4 5" x1="175" y1="75" x2="200" y2="75" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gnfc)"/>
+                  <g data-step="2 3 4 5">
+                    <rect x="200" y="25" width="140" height="100" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="270" y="65" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">POS</text>
+                    <text x="270" y="90" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">TOKEN</text>
+                  </g>
+                  <line class="flow-line" data-step="3 4 5" x1="345" y1="75" x2="370" y2="75" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gnfc)"/>
+                  <g data-step="3 4 5">
+                    <rect x="370" y="25" width="150" height="100" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="445" y="60" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Acquéreur</text>
+                    <text x="445" y="85" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">TOKEN</text>
+                    <text x="445" y="105" text-anchor="middle" fill="#5a6b7c" font-size="10">pas PAN</text>
+                  </g>
+                  <line class="flow-line" data-step="4 5" x1="525" y1="75" x2="550" y2="75" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gnfc)"/>
+                  <g data-step="4 5">
+                    <rect x="550" y="15" width="200" height="120" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="650" y="55" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">Réseau / TSP</text>
+                    <text x="650" y="80" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">détokenise</text>
+                    <text x="650" y="105" text-anchor="middle" fill="#5a6b7c" font-size="10">token → PAN</text>
+                  </g>
+                  <line class="flow-line" data-step="5" x1="755" y1="75" x2="780" y2="75" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gnfc)"/>
+                  <g data-step="5">
+                    <rect x="780" y="25" width="190" height="100" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="875" y="60" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">Issuer</text>
+                    <text x="875" y="85" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">AuthZ</text>
+                    <text x="875" y="105" text-anchor="middle" fill="#5a6b7c" font-size="10">compte</text>
+                  </g>
+
+                  <rect x="15" y="155" width="970" height="32" rx="6" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <text x="500" y="176" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">
+                    Jusqu’à l’acquéreur → TOKEN · TSP détokenise · Issuer décide — comme Apple Pay
+                  </text>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="15" y="205" width="970" height="160" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="45" y="245" fill="#087a6a" font-size="15" font-weight="700">CDCVM + HCE</text>
+                    <text x="45" y="280" fill="#1a2b3c" font-size="13">Biométrie / PIN → présentation token + crypto via HCE.</text>
+                    <text x="45" y="320" fill="#087a6a" font-size="13" font-weight="700">Différence Apple = chemin device, pas le message métier POS.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="15" y="205" width="970" height="160" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="45" y="245" fill="#087a6a" font-size="15" font-weight="700">POS</text>
+                    <text x="45" y="280" fill="#1a2b3c" font-size="13">Voit TOKEN · contactless EMV.</text>
+                    <text x="45" y="320" fill="#087a6a" font-size="13" font-weight="700">Pas de PAN d’origine en caisse.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="15" y="205" width="970" height="160" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="45" y="245" fill="#087a6a" font-size="15" font-weight="700">Acquéreur</text>
+                    <text x="45" y="280" fill="#1a2b3c" font-size="13">Auth TOKEN — network tokenization.</text>
+                    <text x="45" y="320" fill="#087a6a" font-size="13" font-weight="700">Réponse salle identique à Apple sur ce maillon.</text>
+                  </g>
+                  <g class="step-panel" data-step="4">
+                    <rect x="15" y="205" width="970" height="160" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="45" y="245" fill="#1e5f8a" font-size="15" font-weight="700">TSP</text>
+                    <text x="45" y="280" fill="#1a2b3c" font-size="13">Détokenise · route issuer.</text>
+                    <text x="45" y="320" fill="#1e5f8a" font-size="13" font-weight="700">Vault = vérité du lien.</text>
+                  </g>
+                  <g class="step-panel" data-step="5">
+                    <rect x="15" y="205" width="970" height="160" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="45" y="245" fill="#c45c26" font-size="15" font-weight="700">Issuer</text>
+                    <text x="45" y="280" fill="#1a2b3c" font-size="13">AuthZ · rail J1 ensuite.</text>
+                    <text x="45" y="320" fill="#c45c26" font-size="13" font-weight="700">Google hors boucle de décision compte.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="google-nfc-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>Device</strong><p>HCE.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>POS</strong><p>TOKEN.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>Acquéreur</strong><p>TOKEN.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="4">
+                    <span class="n">4</span>
+                    <span><strong>TSP</strong><p>Détokenise.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="5">
+                    <span class="n">5</span>
+                    <span><strong>Issuer</strong><p>AuthZ.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="section" id="in-app">
+              <p class="section-label">Flux 3</p>
+              <h2>Paiement in-app / web</h2>
+              <div class="diagram" id="diagram-google-inapp">
+                <div class="diagram-header">
+                  <h3>App · Google Pay API · PSP</h3>
+                  <p>Credential tokenisée — parallèle PassKit</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 340"
+                  role="img"
+                  aria-label="Google Pay in-app"
+                >
+                  <defs>
+                    <marker id="ah-gia" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g data-step="1 2 3">
+                    <rect x="40" y="30" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="140" y="70" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">App / site</text>
+                  </g>
+                  <line class="flow-line" data-step="2 3" x1="250" y1="75" x2="300" y2="75" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gia)"/>
+                  <g data-step="2 3">
+                    <rect x="300" y="30" width="220" height="90" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="410" y="70" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Google Pay UI</text>
+                  </g>
+                  <line class="flow-line" data-step="3" x1="530" y1="75" x2="580" y2="75" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gia)"/>
+                  <g data-step="3">
+                    <rect x="580" y="30" width="180" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="670" y="70" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">PSP / Auth</text>
+                  </g>
+                  <line class="flow-line" data-step="3" x1="770" y1="75" x2="820" y2="75" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-gia)"/>
+                  <g data-step="3">
+                    <rect x="820" y="30" width="140" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="890" y="70" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Issuer</text>
+                  </g>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="40" y="150" width="920" height="160" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="70" y="195" fill="#087a6a" font-size="15" font-weight="700">Checkout marchand</text>
+                    <text x="70" y="230" fill="#1a2b3c" font-size="13">Intègre l’API Google Pay — bouton natif, pas saisie PAN.</text>
+                    <text x="70" y="270" fill="#087a6a" font-size="13" font-weight="700">Pont Domaines J3 in-app.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="40" y="150" width="920" height="160" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="70" y="195" fill="#087a6a" font-size="15" font-weight="700">CDCVM + credential</text>
+                    <text x="70" y="230" fill="#1a2b3c" font-size="13">Porteur authentifie · payload tokenisé renvoyé au marchand / PSP.</text>
+                    <text x="70" y="270" fill="#087a6a" font-size="13" font-weight="700">Pas de PAN en base applicative marchande.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="40" y="150" width="920" height="160" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="70" y="195" fill="#1e5f8a" font-size="15" font-weight="700">Auth tokenisée</text>
+                    <text x="70" y="230" fill="#1a2b3c" font-size="13">PSP → réseau / TSP → issuer — même famille network token.</text>
+                    <text x="70" y="270" fill="#1e5f8a" font-size="13" font-weight="700">Canal ≠ tap · métier token = même famille.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="google-inapp-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>Checkout</strong><p>API.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>CDCVM</strong><p>Credential.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>Auth</strong><p>Tokenisée.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="section" id="lifecycle-google">
+              <p class="section-label">Lifecycle</p>
+              <h2>Suspendre · supprimer · nouveau device</h2>
+              <div class="diagram" id="diagram-google-life">
+                <div class="diagram-header">
+                  <h3>Gouvernance token Google Pay</h3>
+                  <p>Compte Google · device · issuer</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 300"
+                  role="img"
+                  aria-label="Lifecycle Google Pay"
+                >
+                  <g data-step="1">
+                    <rect x="40" y="25" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="180" y="70" text-anchor="middle" fill="#c45c26" font-size="15" font-weight="700">Suspend</text>
+                  </g>
+                  <g data-step="2">
+                    <rect x="360" y="25" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="500" y="70" text-anchor="middle" fill="#3d5a80" font-size="15" font-weight="700">Delete</text>
+                  </g>
+                  <g data-step="3">
+                    <rect x="680" y="25" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="820" y="70" text-anchor="middle" fill="#087a6a" font-size="15" font-weight="700">Re-provision</text>
+                  </g>
+                  <g class="step-panel" data-step="1">
+                    <rect x="40" y="130" width="920" height="140" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="70" y="175" fill="#c45c26" font-size="14" font-weight="700">Device / compte compromis</text>
+                    <text x="70" y="210" fill="#1a2b3c" font-size="13">Suspendre token(s) — Find device / banque / scheme.</text>
+                    <text x="70" y="245" fill="#c45c26" font-size="13" font-weight="700">Carte source peut rester active.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="40" y="130" width="920" height="140" rx="10" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="70" y="175" fill="#3d5a80" font-size="14" font-weight="700">Retrait instrument</text>
+                    <text x="70" y="210" fill="#1a2b3c" font-size="13">Delete token · vault mis à jour.</text>
+                    <text x="70" y="245" fill="#3d5a80" font-size="13" font-weight="700">≠ résiliation PAN.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="40" y="130" width="920" height="140" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="70" y="175" fill="#087a6a" font-size="14" font-weight="700">Nouveau téléphone</text>
+                    <text x="70" y="210" fill="#1a2b3c" font-size="13">Nouveau domaine → nouveau provisioning fréquent.</text>
+                    <text x="70" y="245" fill="#087a6a" font-size="13" font-weight="700">Nettoyer l’ancien token — surtout si compte Google multi-devices.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="google-life-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>Suspend</strong></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>Delete</strong></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>Re-provision</strong></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- Comparaison -->
+            <section class="section" id="comparaison">
+              <p class="section-label">Salle</p>
+              <h2>Apple Pay vs Google Pay</h2>
+              <p class="intro">
+                Une grille pour ancrer — pas un match «&nbsp;gagnant&nbsp;».
+              </p>
+
+              <div class="diagram" id="diagram-vs">
+                <div class="diagram-header">
+                  <h3>Commun · différent · SI banque</h3>
+                  <p>Trois lectures du même tableau</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 420"
+                  role="img"
+                  aria-label="Comparaison Apple Google Pay"
+                >
+                  <g data-step="1">
+                    <rect x="40" y="20" width="920" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="500" y="60" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">1 · Commun (métier)</text>
+                    <text x="500" y="90" text-anchor="middle" fill="#5a6b7c" font-size="12">Network token · TSP · CDCVM · POS voit TOKEN · Issuer AuthZ · rail J1</text>
+                  </g>
+                  <g data-step="2">
+                    <rect x="40" y="140" width="440" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="260" y="180" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">Apple</text>
+                    <text x="260" y="210" text-anchor="middle" fill="#5a6b7c" font-size="12">SE + Enclave · parc homogène</text>
+                  </g>
+                  <g data-step="2">
+                    <rect x="520" y="140" width="440" height="100" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="740" y="180" text-anchor="middle" fill="#1e5f8a" font-size="14" font-weight="700">Google</text>
+                    <text x="740" y="210" text-anchor="middle" fill="#5a6b7c" font-size="12">HCE / TEE · parc hétérogène</text>
+                  </g>
+
+                  <g class="step-panel" data-step="1">
+                    <rect x="40" y="265" width="920" height="130" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="70" y="305" fill="#087a6a" font-size="14" font-weight="700">Ne pas opposer la sécurité globale</text>
+                    <text x="70" y="340" fill="#1a2b3c" font-size="13">Les deux reposent sur network tokenization + CDCVM + Auth issuer.</text>
+                    <text x="70" y="370" fill="#087a6a" font-size="13" font-weight="700">Le POS / l’acquéreur voient la même famille d’identifiant&nbsp;: le TOKEN.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="40" y="265" width="920" height="130" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="70" y="305" fill="#1e5f8a" font-size="14" font-weight="700">Différence = confiance device &amp; intégration</text>
+                    <text x="70" y="340" fill="#1a2b3c" font-size="13">Apple&nbsp;: SE + Enclave, cible plus uniforme. Google&nbsp;: HCE/TEE, multi-OEM.</text>
+                    <text x="70" y="370" fill="#1e5f8a" font-size="13" font-weight="700">Pour un SI banque&nbsp;: mêmes questions TSP/issuer — autre doc / autre parc device.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="40" y="265" width="920" height="130" rx="10" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="70" y="305" fill="#3d5a80" font-size="14" font-weight="700">Question salle SI</text>
+                    <text x="70" y="340" fill="#1a2b3c" font-size="13">Où gardons-nous la maîtrise (issuer)&nbsp;? Où dépendons-nous d’Apple / Google / TSP&nbsp;?</text>
+                    <text x="70" y="370" fill="#3d5a80" font-size="13" font-weight="700">Réponse à tracer sur le schéma acteurs — pas sur un slogan marketing.</text>
+                  </g>
+                </svg>
+                <!-- step 3 trigger via third button; need step 3 on a tab -->
+                <div class="seq-steps" id="vs-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span><strong>Commun</strong><p>Métier token / Auth.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span><strong>Différent</strong><p>SE vs HCE.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span><strong>SI banque</strong><p>Maîtrise / dépendances.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Ancrage</p>
+              <h2>Ce qu’il faut retenir</h2>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Google Pay =</h3>
+                  <ul>
+                    <li>Orchestration Android</li>
+                    <li>Network token · CDCVM</li>
+                    <li>HCE / TEE (souvent)</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Google Pay ≠</h3>
+                  <ul>
+                    <li>Banque émettrice</li>
+                    <li>«&nbsp;Sans token&nbsp;»</li>
+                    <li>Une seule stack hardware</li>
+                  </ul>
+                </div>
+              </div>
+              <p class="intro" style="margin-top: 1rem">
+                Suite&nbsp;:
+                <a href="cas-pratique.html">Cas pratique smartphone → POS</a>
+                ·
+                <a href="atelier.html">Atelier</a>
+              </p>
+            </section>
+
+            <div class="sources-box">
+              <strong>Sources</strong> — Google Pay / Android HCE · TEE ·
+              network tokenization · EMV Contactless · comparaison Apple Pay.
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 4</a>
+        · Support formateur · Bloc Google Pay
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/nav-j4.js"></script>
+    <script src="../js/fiche.js"></script>
+  </body>
+</html>

@@ -1,6 +1,8 @@
-JOUR 3 — Intro & objectifs
+BLOC — FORMATEUR · JOUR 3 · Intro & objectifs
+Durée : 10–15 min
 
-Tokenisation comme socle sécurité structurelle après flux carte / QR.
-Progression : définition → lifecycle → architecture → sécurité → atelier.
-Pont annoncé vers wallets / NFC (J4).
-Sans casser Auth → Clearing → Settlement.
+Positionnement : token = modèle de sécurité réutilisé par NFC / wallets (J4).
+Socle J1 inchangé (Auth → Clearing → Settlement) — on change l’identifiant exposé.
+Pont J1 : en carte classique le PAN circule ; ici on le substitue dans un domaine.
+
+Parcours : définition → objectifs → domaines → lifecycle → architecture SI → sécurité & conformité → atelier.

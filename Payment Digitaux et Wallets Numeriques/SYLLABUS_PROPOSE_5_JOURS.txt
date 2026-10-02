@@ -66,10 +66,13 @@ Notions :
 - Rappel : le PAN circule dans le modèle carte classique (pont vers J3 tokenisation)
 
 --- Proposition élément palpable (physique / logiciel) ---
-- Physique : 1 carte contact + 1 carte sans contact ; ticket de caisse ou capture ticket marchand
-- Logiciel : sandbox PSP (Stripe / Adyen / Checkout — mode test) + collection Postman (auth approve / decline)
-- Atelier suggéré (~45–60 min) : payer en sandbox, lire auth code / decline, placer chaque info sur le schéma émetteur / acquéreur / réseau / PSP
-- Règle : cartes et données de test uniquement, jamais de production
+- Physique : terminal Ingenico Lane 5000 (param TEST) + cartes de test contact / sans contact
+- Logiciel : Postman + collection mock auth approve / decline ; sandbox PSP optionnelle
+- Atelier suggéré (~75–90 min) :
+  · Rail A — init terminal → transactions contact/CL → lecture ticket → télécollecte
+  · Rail B — Postman approve / decline → placement champs sur la chaîne
+  · Optionnel : annulation, remboursement, seuil CL, échec réseau
+- Règle : cartes / MID / TID / clés de test uniquement — jamais de production
 
 
 ================================================================================
@@ -174,10 +177,10 @@ Réglementation :
 Lien pédagogique explicite : ce modèle sera appliqué au paiement NFC mobile (J4).
 
 --- Proposition élément palpable (physique / logiciel) ---
-- Physique / visuel : carte plastique + capture wallet (Apple Pay / Google Pay) côte à côte (PAN masqué vs token / Device Account Number)
-- Logiciel : sandbox VTS / MDES si accessible banque ; sinon simulateur maison PAN ↔ token ↔ cryptogramme + revoke/suspend
-- Atelier suggéré (~60 min) : partir du message d’auth J1, le passer en tokenisé, jouer provision → pay → suspend → delete
-- Lien conformité : ce qui sort du scope PCI marchand vs ce qui reste émetteur / TSP
+- Physique / visuel (à apporter) : carte plastique + captures wallet (Apple Pay / Google Pay) — PAN masqué vs token / DAN ; visuels support (Définition)
+- Logiciel : simulateur maison PAN ↔ token ↔ lifecycle (provision → pay → suspend → delete) — pas VTS/MDES sauf accès banque existant
+- Atelier suggéré (~60 min) : partir du message d’auth J1, scénario tokenisé, jouer le lifecycle, relier au scope PCI
+- Achat matériel : aucun — prep simulateur + visuels
 
 
 ================================================================================
@@ -215,9 +218,9 @@ Comparaison :
 - Embedded SE
 - Cloud-based HCE
 
-Wallets majeurs :
-- Apple Pay
-- Google Pay
+Wallets majeurs (sections dédiées) :
+- Apple Pay (SE · Enclave · CDCVM · flux)
+- Google Pay (HCE / TEE · CDCVM · flux · vs Apple)
 
 Fonctions wallet :
 - stockage des tokens
@@ -294,9 +297,10 @@ Livrables :
 - justification des choix techniques
 
 --- Proposition élément palpable (physique / logiciel) ---
-- Logiciel : mini lab Postman / mock gateway avec 3 moyens (carte, QR, token wallet) + journal unique des transactions
-- Physique : « mur d’architecture » (post-its / aimants : gateway, TSP, fraud, settlement…)
-- Atelier / contrôle (~2h) : brancher les 3 canaux, jouer 1 paiement chacun, livrer schéma + flux + justification, pitch type comité SI banque
+- Logiciel : réutiliser collection Postman J1 — mock gateway 3 moyens (carte, QR, token wallet) + journal unique
+- Physique (salle / consommable) : mur d’architecture post-its ou aimants (gateway, TSP, fraud, settlement…)
+- Atelier / contrôle (~2h) : brancher 3 canaux sur mock, 1 paiement par canal, livrer schéma + flux + justification, pitch comité SI
+- Achat matériel : aucun matériel métier — post-its / tableau = consommable salle
 
 
 ================================================================================
@@ -339,9 +343,9 @@ Budget matériel indicatif (achats) : ~80–150 €
 --------------------------------------------------------------------------------
 À APPORTER (pas d’achat obligatoire)
 --------------------------------------------------------------------------------
-- 1 carte contact + 1 carte sans contact           → J1, J3, J4
-  (perso / démo — jamais de données production projetées)
-- Ticket de caisse anonymisé ou capture ticket     → J1
+- Terminal Ingenico Lane 5000 (param TEST)         → J1
+- Cartes de test contact + sans contact            → J1 (priorité) ; aussi J3, J4
+- Ticket / journal terminal si disponible          → J1
 - 1–2 smartphones (idéalement Android + iPhone)    → J2, J4
   (QR scan + Apple Pay / Google Pay si possible)
 - PC formateur + vidéoprojecteur                   → tous les jours
@@ -362,7 +366,7 @@ LOGICIEL / COMPTES (gratuits ou sandbox)
 --------------------------------------------------------------------------------
 PAR JOUR (rappel atelier)
 --------------------------------------------------------------------------------
-J1  Cartes + ticket + sandbox PSP + Postman
+J1  Lane 5000 + cartes test + Postman
 J2  Stickers QR + 2 téléphones + générateur QR
 J3  Carte + capture wallet + sandbox token / simulateur
 J4  Achats principaux : PN532, ACR122U, tags + wallets sur téléphone

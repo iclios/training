@@ -3,8 +3,11 @@ window.J4_BLOCS = [
   { id: "technologie-nfc", title: "Technologie NFC", href: "technologie-nfc.html" },
   { id: "paiement-contactless", title: "Paiement sans contact EMV", href: "paiement-contactless.html" },
   { id: "architecture-wallets", title: "Architecture NFC mobile & wallets", href: "architecture-wallets.html" },
+  { id: "apple-pay", title: "Apple Pay", href: "apple-pay.html" },
+  { id: "google-pay", title: "Google Pay", href: "google-pay.html" },
   { id: "cas-pratique", title: "Cas pratique smartphone → POS", href: "cas-pratique.html" },
   { id: "atelier", title: "Atelier", href: "atelier.html" },
+  { id: "support", title: "Support", href: "support.html" },
 ];
 
 (function initJ4Nav() {

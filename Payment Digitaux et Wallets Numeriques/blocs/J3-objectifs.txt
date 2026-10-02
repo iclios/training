@@ -1,0 +1,14 @@
+JOUR 3 — Objectifs de la tokenisation
+
+Objectif pédagogique
+Expliquer pourquoi on tokenise, et pourquoi c’est surtout critique en digital.
+
+Contenu
+1. Moins d’exposition du PAN
+2. Fraude plus difficile à réutiliser (domaine / revoke ciblé)
+3. Conformité PCI-DSS (scope marchand réduit)
+
+Pourquoi surtout en digital
+- Rail classique : PAN lit/chip au POS, peu de stockage durable
+- Digital : wallet / e-com / COF → stockage, multi-acteurs, surface d’attaque
+- Token = modèle par défaut dès que le canal multiplie les copies

@@ -27,92 +27,168 @@
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
 
       <div class="fiche-main">
-    <main>
-      <section class="day-hero" style="padding-bottom: 1.5rem">
-        <div class="wrap">
-          <div class="fiche-meta">
-            <span class="tag">Jour 3 · Tokenisation</span>
-          </div>
-          <p class="day-kicker">Accueil</p>
-          <h1>Intro &amp; objectifs</h1>
-        </div>
-      </section>
-
-      <div class="wrap">
-        <section class="section" style="border-top: none; padding-top: 0">
-          <p class="section-label">Fil de séance</p>
-          <h2>Blocs du Jour 3</h2>
-          <nav
-            class="block-map"
-            id="block-map"
-            aria-label="Blocs du jour 3"
-          ></nav>
-        </section>
-
-        <section class="section">
-          <p class="section-label">Jour 3</p>
-          <h2>Pourquoi aujourd’hui</h2>
-          <p class="intro">
-            Après les flux carte et le QR&nbsp;: sécuriser l’identifiant
-            exposé. La tokenisation rend lisibles les wallets, le NFC
-            mobile et la réduction d’exposition des données carte — sans
-            casser Auth → Clearing → Settlement.
-          </p>
-        </section>
-
-        <section class="section">
-          <p class="section-label">Objectifs</p>
-          <h2>Ce que les participants sauront faire</h2>
-          <ul class="topic-list">
-            <li>Distinguer PAN, token, vault et TSP</li>
-            <li>Restituer le lifecycle d’un token</li>
-            <li>Décrire la chaîne SI de tokenisation</li>
-            <li>Relier token, cryptogrammes et autorisation</li>
-            <li>Situer PCI, SCA et le pont vers J4</li>
-          </ul>
-        </section>
-
-        <section class="section">
-          <p class="section-label">Progression</p>
-          <h2>Fil de journée</h2>
-          <div class="timeline-evo">
-            <span class="step">Définition</span>
-            <span class="arrow">→</span>
-            <span class="step">Lifecycle</span>
-            <span class="arrow">→</span>
-            <span class="step">Architecture</span>
-            <span class="arrow">→</span>
-            <span class="step">Sécurité</span>
-            <span class="arrow">→</span>
-            <span class="step">Atelier</span>
-          </div>
-        </section>
-
-        <section class="section">
-          <p class="section-label">Contrat de séance</p>
-          <h2>Règles du jour</h2>
-          <div class="split-2">
-            <div class="panel ok">
-              <h3>On fait</h3>
-              <ul>
-                <li>Vocabulaire monétique d’abord</li>
-                <li>Schémas + cas SI</li>
-                <li>Pont explicite vers wallets (J4)</li>
-              </ul>
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Ouverture</span>
+              </div>
+              <p class="day-kicker">Accueil</p>
+              <h1>Intro &amp; objectifs</h1>
             </div>
-            <div class="panel ko">
-              <h3>On ne fait pas</h3>
-              <ul>
-                <li>Détail SE / HCE / TEE dès J3</li>
-                <li>Données de production dans les démos</li>
-              </ul>
-            </div>
-          </div>
-        </section>
+          </section>
 
-        <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
-      </div>
-    </main>
+          <div class="wrap">
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Positionnement</p>
+              <h2>Sécuriser l’identifiant exposé</h2>
+              <div class="diagram" id="diagram-token-socle">
+                <div class="diagram-header">
+                  <h3>Modèle réutilisé par NFC et wallets</h3>
+                  <p>Même Auth → Clearing → Settlement — autre identité présentée</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 340"
+                  role="img"
+                  aria-label="Tokenisation Jour 3 entre canaux QR et NFC sur le socle Jour 1"
+                >
+                  <defs>
+                    <marker id="ah-j3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <text x="500" y="28" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700" letter-spacing="0.06em">CANAUX / MODÈLES</text>
+
+                  <g>
+                    <rect x="80" y="42" width="240" height="70" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+                    <text x="200" y="68" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">J2 · FAIT</text>
+                    <text x="200" y="94" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="18" font-weight="700">QR</text>
+                  </g>
+                  <g>
+                    <rect x="380" y="42" width="240" height="70" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="500" y="68" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.06em">AUJOURD’HUI</text>
+                    <text x="500" y="94" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="700">Token</text>
+                  </g>
+                  <g>
+                    <rect x="680" y="42" width="240" height="70" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="800" y="68" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">J4</text>
+                    <text x="800" y="94" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="16" font-weight="700">NFC · Wallets</text>
+                  </g>
+
+                  <line x1="200" y1="112" x2="200" y2="152" stroke="#c5d3df" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ah-j3)"/>
+                  <line x1="500" y1="112" x2="500" y2="152" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j3)"/>
+                  <line x1="800" y1="112" x2="800" y2="152" stroke="#c5d3df" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ah-j3)"/>
+
+                  <rect x="40" y="155" width="920" height="155" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="500" y="185" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.06em">SOCLE J1 — INCHANGÉ</text>
+
+                  <g>
+                    <rect x="70" y="205" width="200" height="72" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="170" y="235" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Qui</text>
+                    <text x="170" y="257" text-anchor="middle" fill="#5a6b7c" font-size="11">acteurs + TSP</text>
+                  </g>
+                  <g>
+                    <rect x="300" y="205" width="200" height="72" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="400" y="235" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">SI</text>
+                    <text x="400" y="257" text-anchor="middle" fill="#5a6b7c" font-size="11">vault · émetteur</text>
+                  </g>
+                  <g>
+                    <rect x="530" y="205" width="400" height="72" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="730" y="235" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Auth → Clearing → Settlement</text>
+                    <text x="730" y="257" text-anchor="middle" fill="#5a6b7c" font-size="11">token à l’Auth · PAN côté émetteur / TSP</text>
+                  </g>
+                </svg>
+              </div>
+              <p class="intro" style="margin-top: 1rem">
+                En J1 le PAN circule dans le modèle carte classique. Aujourd’hui&nbsp;:
+                le substituer dans un domaine d’usage — sans changer le rail.
+              </p>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Fil de séance</p>
+              <h2>Parcours</h2>
+              <nav
+                class="block-map"
+                id="block-map"
+                aria-label="Blocs du jour 3"
+              ></nav>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Cursus</p>
+              <h2>Programme module</h2>
+              <div class="diagram" id="diagram-programme">
+                <div class="diagram-header">
+                  <h3>Trajectoire du module</h3>
+                  <p>Socle → QR → token → NFC → plateforme</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 200"
+                  role="img"
+                  aria-label="Programme module sur 5 jours, Jour 3 mis en lumière"
+                >
+                  <defs>
+                    <marker id="ah-prog-j3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <g>
+                    <rect x="18" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+                    <text x="104" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="104" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J1</text>
+                    <text x="104" y="128" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">Socle</text>
+                    <text x="104" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">écosystème · flux</text>
+                  </g>
+
+                  <line class="flow-line" x1="198" y1="96" x2="218" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-prog-j3)"/>
+
+                  <g>
+                    <rect x="226" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+                    <text x="312" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="312" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J2</text>
+                    <text x="312" y="128" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">QR</text>
+                    <text x="312" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">software-first</text>
+                  </g>
+
+                  <line x1="406" y1="96" x2="426" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-prog-j3)"/>
+
+                  <g>
+                    <rect x="434" y="36" width="172" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="520" y="68" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.06em">AUJOURD’HUI</text>
+                    <text x="520" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="22" font-weight="700">J3</text>
+                    <text x="520" y="128" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Token</text>
+                    <text x="520" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">PAN → jeton</text>
+                  </g>
+
+                  <line x1="614" y1="96" x2="634" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog-j3)"/>
+
+                  <g>
+                    <rect x="642" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="728" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="728" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J4</text>
+                    <text x="728" y="128" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">NFC</text>
+                    <text x="728" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">proximité · wallets</text>
+                  </g>
+
+                  <line x1="822" y1="96" x2="842" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog-j3)"/>
+
+                  <g>
+                    <rect x="850" y="36" width="132" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="916" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="916" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="20" font-weight="700">J5</text>
+                    <text x="916" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Omnicanal</text>
+                    <text x="916" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">architecture SI</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
       </div>
     </div>
 

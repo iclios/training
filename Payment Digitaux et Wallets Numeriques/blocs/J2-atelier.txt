@@ -1,7 +1,7 @@
 BLOC — FORMATEUR · JOUR 2 · Atelier
 Durée : 45–60 min
 
-Kit : stickers QR · 2 téléphones · générateur statique/dynamique · parseur optionnel.
+Kit : stickers imprimés · 2 téléphones · démos QR live support (Typologies) · parseur EMV optionnel · aucun achat matériel.
 Déroulé : groupe marchand génère · groupe client scanne · tracer le flux · débat closed/open push/pull.
 
 Fiche : marqueur « Ancrage atelier » ; sans bloat formateur ; check fin J2 + teaser J3.

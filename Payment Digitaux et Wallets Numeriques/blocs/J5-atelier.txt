@@ -1,2 +1,2 @@
 JOUR 5 — Atelier conception plateforme
-Mock gateway 3 canaux · mur d’architecture · livrables schéma + flux + justification · pitch comité SI.
+Réutiliser Postman J1 · mock gateway 3 canaux · mur post-its (consommable salle) · aucun achat matériel métier · pitch comité SI.

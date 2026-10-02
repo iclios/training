@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="title desc">
+  <title id="title">Carte bancaire — PAN encadré</title>
+  <desc id="desc">Carte de démonstration avec le numéro PAN mis en évidence dans un cadre</desc>
+  <defs>
+    <linearGradient id="cardFace" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e5f8a"/>
+      <stop offset="100%" stop-color="#2f4858"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="400" fill="#eef2f5"/>
+  <rect x="70" y="55" width="500" height="290" rx="22" fill="url(#cardFace)"/>
+  <rect x="70" y="55" width="500" height="290" rx="22" fill="none" stroke="#143a54" stroke-width="2"/>
+  <text x="100" y="100" fill="#a8c5d8" font-family="Syne, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="0.08em">BANQUE DÉMO</text>
+  <text x="470" y="100" fill="#c5d3df" font-family="system-ui, sans-serif" font-size="12" font-weight="600">NFC</text>
+  <circle cx="500" cy="95" r="8" fill="none" stroke="#8ab4c9" stroke-width="1.5"/>
+  <circle cx="512" cy="95" r="12" fill="none" stroke="#8ab4c9" stroke-width="1.5" opacity="0.7"/>
+  <rect x="100" y="125" width="72" height="56" rx="6" fill="#d4a84b" stroke="#b8892e" stroke-width="1.5"/>
+  <line x1="108" y1="143" x2="164" y2="143" stroke="#b8892e" stroke-width="1.2"/>
+  <line x1="108" y1="153" x2="164" y2="153" stroke="#b8892e" stroke-width="1.2"/>
+  <line x1="108" y1="163" x2="148" y2="163" stroke="#b8892e" stroke-width="1.2"/>
+  <text x="100" y="215" fill="#8ab4c9" font-family="system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.08em">PAN</text>
+  <!-- Cadre autour du numéro -->
+  <rect x="92" y="226" width="380" height="52" rx="8" fill="#0a1a28" fill-opacity="0.35" stroke="#f4c430" stroke-width="3"/>
+  <text x="108" y="260" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="700" letter-spacing="0.04em">4532 1488 0342 7764</text>
+  <text x="100" y="310" fill="#a8c5d8" font-family="system-ui, sans-serif" font-size="11" letter-spacing="0.04em">TITULAIRE DÉMO</text>
+  <text x="100" y="330" fill="#ffffff" font-family="Syne, system-ui, sans-serif" font-size="15" font-weight="700">A. DUPONT</text>
+  <text x="420" y="310" fill="#a8c5d8" font-family="system-ui, sans-serif" font-size="11" letter-spacing="0.04em">EXP</text>
+  <text x="420" y="330" fill="#ffffff" font-family="ui-monospace, Menlo, monospace" font-size="15" font-weight="700">09/29</text>
+</svg>

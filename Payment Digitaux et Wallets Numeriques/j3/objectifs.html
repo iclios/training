@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Objectifs — Jour 3 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="objectifs">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a class="is-active" href="intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Tokenisation</span>
+              </div>
+              <p class="day-kicker">3.1 · Pourquoi</p>
+              <h1>Objectifs de la tokenisation</h1>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Rôle</p>
+              <h2>Pourquoi tokeniser</h2>
+              <p class="definition-full">
+                On ne change pas le rail
+                <strong>Auth → Clearing → Settlement</strong>&nbsp;: on change
+                <em>ce qui est présenté</em> — pour réduire l’exposition, la
+                fraude réutilisable et le scope PCI.
+              </p>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Trois raisons</p>
+              <h2>Ce que la tokenisation vise</h2>
+              <div class="split-2">
+                <div class="panel">
+                  <h3>1 · Moins d’exposition du PAN</h3>
+                  <ul>
+                    <li>Le canal voit un substitut, pas le numéro de carte</li>
+                    <li>Le PAN reste chez l’émetteur / vault / TSP</li>
+                    <li>Moins de copies dans POS, apps, logs, bases marchandes</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>2 · Fraude plus difficile à réutiliser</h3>
+                  <ul>
+                    <li>Token souvent lié à un domaine (device, canal, marchand)</li>
+                    <li>Suspendre un token ≠ bloquer toute la carte</li>
+                    <li>Ex.&nbsp;: téléphone perdu → revoke ciblé</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="panel" style="margin-top: 1rem">
+                <h3>3 · Conformité (PCI-DSS)</h3>
+                <ul>
+                  <li>
+                    Moins de PAN côté marchand → scope PCI réduit — détail
+                    réglementaire&nbsp;:
+                    <a href="securite-conformite.html">Sécurité &amp; conformité</a>
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Contexte</p>
+              <h2>Pourquoi surtout en digital&nbsp;?</h2>
+              <p class="intro">
+                Le rail carte classique expose peu de copies persistantes&nbsp;;
+                les canaux digitaux multiplient stockage et acteurs.
+              </p>
+
+              <div class="diagram" id="diagram-pourquoi-digital">
+                <div class="diagram-header">
+                  <h3>Rail classique vs canaux digitaux</h3>
+                  <p>Où le token devient le modèle par défaut</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 280"
+                  role="img"
+                  aria-label="Tokenisation plus critique en digital qu en rail classique"
+                >
+                  <g>
+                    <rect x="40" y="30" width="440" height="200" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="260" y="65" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Rail classique</text>
+                    <text x="260" y="95" text-anchor="middle" fill="#5a6b7c" font-size="13">Carte plastique → POS → Auth</text>
+                    <text x="80" y="135" fill="#5a6b7c" font-size="13">• PAN lit / chip / bande — geste court</text>
+                    <text x="80" y="160" fill="#5a6b7c" font-size="13">• Peu de stockage durable chez le marchand</text>
+                    <text x="80" y="185" fill="#5a6b7c" font-size="13">• Exposition limitée dans le temps</text>
+                    <text x="260" y="215" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">Token utile, pas toujours central</text>
+                  </g>
+                  <g>
+                    <rect x="520" y="30" width="440" height="200" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="740" y="65" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Canaux digitaux</text>
+                    <text x="740" y="95" text-anchor="middle" fill="#0d9f8a" font-size="13">Wallet · e-com · in-app · card-on-file</text>
+                    <text x="560" y="135" fill="#5a6b7c" font-size="13">• PAN entrerait dans apps, serveurs, cloud</text>
+                    <text x="560" y="160" fill="#5a6b7c" font-size="13">• Stockage récurrent · multi-acteurs</text>
+                    <text x="560" y="185" fill="#5a6b7c" font-size="13">• Surface d’attaque &amp; scope PCI plus larges</text>
+                    <text x="740" y="215" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Token = modèle par défaut</text>
+                  </g>
+                </svg>
+                <div class="seq-steps" id="pourquoi-digital-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Classique</strong>
+                      <p>
+                        Le PAN circule le temps de la transaction au POS — moins
+                        de copies persistantes.
+                      </p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>Digital</strong>
+                      <p>
+                        Wallet, e-commerce, card-on-file&nbsp;: le numéro serait
+                        stocké et rejoué — d’où la tokenisation.
+                      </p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>En bref</strong>
+                      <p>
+                        Plus le canal est software et multiplie les stockages,
+                        plus le token devient indispensable.
+                      </p>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 3</a>
+        · Support formateur · Bloc Objectifs
+      </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/nav-j3.js"></script>
+    <script src="../js/fiche.js"></script>
+  </body>
+</html>

@@ -1,23 +1,41 @@
 JOUR 3 — Network tokenization & lifecycle
 
-Objectif pédagogique
-Expliquer le cycle de vie du token (distinct de la carte source) :
-enrolment / provisioning, usage en transaction, activate / suspend / delete,
-et introduire les cryptogrammes dynamiques.
+Objectif
+Cycle du token (≠ carte) + ce qui circule en Auth (token chez l’acquéreur).
 
-Étapes
-- provisioning (enrolment)
-- activation / utilisation en txn
-- suspension / reprise
-- suppression
+Parcours (UNE seule carte des états)
+Provision → Actif → Suspend → Delete
+Durée = états (longue) · crypto txn = éphémère
+Détail actions = section Gouvernance (pas de doublon)
 
-Points de fond
-- carte source et token n'ont pas le même cycle de vie
-- gouvernance fine sur device / canal
-- cryptogramme = preuve dynamique (≠ token)
+1 · Provisioning
+Demande → contrôles issuer/TSP → token + domaine → vault
+
+2 · Stockage dual (pas de 2e cycle de vie ici)
+- Vault TSP : PAN ↔ token · état · gouvernance
+- Credential : SE device / wallet / COF marchand
+POS / app / acquéreur ≠ vault
+
+3 · Auth — qui voit quoi
+Device → Acceptation → Acquéreur → Réseau/TSP → Issuer
+- Jusqu’à l’acquéreur inclus : TOKEN (+ crypto)
+- TSP : détokenise token → PAN (vault)
+- Issuer : décide sur le compte
+Réponse salle : chez l’acquéreur = TOKEN, pas le PAN
+
+Nuance
+- Network tokenization (VTS/MDES) : token va jusqu’à l’acquéreur
+- Vault marchand/PSP seul : PSP peut détokeniser et envoyer le PAN à l’acquéreur
+
+4 · Gouvernance (détail unique des états)
+Activate · Suspend · Delete — ciblé device/canal, carte intacte
+
+5 · Cryptogramme
+Token durable ≠ crypto dynamique anti-replay (pont J4)
 
 Cas
-- device perdu : suspendre le token sans résilier la carte
-- nouveau device : nouveau provisioning
-- suspicion fraude : geler un contexte précis
-- carte réémise : re-liaison / re-provision
+Device perdu · nouveau device · « chez l’acquéreur ? » · carte réémise
+
+Clarifications
+Lifecycle ≠ carte · token ≠ crypto · vault ≠ credential ·
+acquéreur ≠ PAN (network) · ≠ SE/HCE (J4)

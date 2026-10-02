@@ -1,35 +1,24 @@
-JOUR 3 — Définition & objectifs
+JOUR 3 — Définition
 
 Objectif pédagogique
-Définir la tokenisation au sens paiement, distinguer PAN, token, vault et TSP,
-et expliquer pourquoi la tokenisation réduit l'exposition sans modifier la
-logique monétique Auth → Clearing → Settlement.
+Définir la tokenisation, distinguer PAN / token / vault / TSP, et expliquer
+comment on obtient le token (provisioning) — sans encore dérouler objectifs
+ni domaines (fiches dédiées).
 
-Définition monétique
-Substitution du PAN par un token utilisable dans un domaine d'usage défini,
-gouverné (vault / TSP), afin de réduire l'exposition des données carte.
+Contenu
+- Définition monétique (substitution PAN → token, rail Auth inchangé)
+- PAN vs token (+ visuels carte / wallet)
+- Vault & TSP (en exergue)
+  · Vault = coffre du mapping PAN ↔ token
+  · TSP = qui émet / gouverne les états
+  · Placement chaîne J1 : souvent côté réseau/scheme (pas chez le marchand) ;
+    émetteur garde PAN + AuthZ — détail Architecture SI
+- Comment on obtient le token (demande → contrôles → émission → remise)
+- UX wallet : schéma enrolment implicite (TSP réseau ≠ CB2A Auth)
+- Clarification :
+  · PAN tronqué = stockage d’un fragment (PAN non reconstitutable)
+  · PAN masqué = affichage flouté (PAN complet peut encore exister)
+  · Token = autre identifiant gouverné
+  · ≠ chiffrement · ≠ nouveau rail · ≠ risque zéro
 
-Vocabulaire
-- PAN : identifiant carte d'origine (sensible)
-- Token : substitut gouverné, domaine / device / canal
-- Token vault : référentiel de correspondance PAN ↔ token
-- TSP : Token Service Provider (émission et cycle de vie)
-
-Domaines
-- in-store (wallet / NFC / POS)
-- in-app
-- e-commerce (card-on-file, récurrent)
-
-Objectifs
-- réduction de la fraude liée à l'exposition du PAN
-- limitation de l'exposition des données carte
-- aide à la conformité PCI-DSS
-
-Clarification
-- ≠ chiffrement simple
-- ≠ nouveau rail (Auth → Clearing → Settlement inchangé)
-- ≠ risque zéro
-
-Cas
-- wallet mobile : présentation d'un token, pas du PAN
-- e-commerce tokenisé : marchand conserve un token
+Suite : Objectifs · Domaines · Lifecycle

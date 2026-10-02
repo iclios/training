@@ -1,0 +1,28 @@
+JOUR 3 — Domaines d’usage
+
+Objectif
+Token lié à un domaine ≠ universel. Contenu pédagogique DANS les schémas (cartouches).
+
+Vue d’ensemble — 3 terrains + cartouche axes
+Geste · Qui tokenise · Où vit · Ce qui circule · Contrainte SI · Exemples
+1 In-store — TSP réseau · SE device · tap EMV · revoke device · pont J4
+2 In-app — wallet pass-through OU token PSP · ≠ WebView · SCA
+3 E-commerce — PSP/TSP COF · marchand stocke token · MIT · PCI ↓
+
+In-store — flux + panel
+1 Enrolment / provisioning TSP (≠ CB2A)
+2 Device SE · device-bound · revoke ciblé
+3 Tap POS · token+crypto · pas de PAN · pont J4
+
+In-app — flux + panel
+1 Enrolment dans l’app
+2 2 variantes : wallet OS vs vault PSP
+3 Backend credential sans PAN
+
+E-commerce — flux + panel
+1 Hosted fields · 3DS · token créé
+2 COF · scope PCI · mapping TSP
+3 MIT récurrent · token COF ≠ token in-store
+
+Ancrage
+Où reste le PAN ? Domaines non interchangeables.
