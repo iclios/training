@@ -1,0 +1,433 @@
+/* Support étudiant — écran (cours) + print A4 polycopié */
+
+.support-print-bar {
+  position: sticky;
+  top: 52px;
+  z-index: 40;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+
+.support-print-bar-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0;
+  font-size: 0.9rem;
+}
+
+.support-print-bar .btn-print {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--accent-deep);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Animations cours → visibles (sinon PDF vide) */
+.support-doc .day-hero,
+.support-doc .section,
+.support-doc .key-idea,
+.support-doc .hub-strip,
+.support-doc .detail-panel {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.support-doc .support-bloc {
+  scroll-margin-top: 7rem;
+  border-top: 1px solid var(--line);
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.support-doc .support-bloc:first-of-type,
+.support-doc .support-cover-hero + .support-bloc {
+  border-top: none;
+  margin-top: 0;
+}
+
+.support-doc .support-bloc .day-hero {
+  padding-top: 1.75rem;
+}
+
+.support-doc .support-bloc .bloc-pager {
+  display: none !important;
+}
+
+.support-doc .diagram svg [data-step],
+.support-doc .diagram svg [data-step].is-dim,
+.support-doc .diagram svg text[data-step].is-dim,
+.support-doc .diagram svg g.step-panel.is-dim {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  filter: none !important;
+}
+
+.support-doc .flow-line,
+.support-doc .clearing-pulse,
+.support-doc .clearing-hub {
+  animation: none !important;
+}
+
+/* ========== A4 polycopié (PDF) ========== */
+@page {
+  size: A4;
+  margin: 14mm 14mm 16mm 14mm;
+}
+
+@media print {
+  .support-doc,
+  .support-doc * {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .support-doc .day-hero,
+  .support-doc .section,
+  .support-doc .key-idea,
+  .support-doc .detail-panel {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Fond blanc — plus de dégradé / grille */
+  html,
+  body.support-doc {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 10pt !important;
+    line-height: 1.45 !important;
+  }
+
+  body.support-doc::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  .no-print,
+  .site-bar,
+  .support-print-bar,
+  .site-foot,
+  .bloc-pager,
+  .eco-view-toggle,
+  button.eco-view-btn,
+  .seq-steps,
+  .seq-step,
+  .detail-placeholder,
+  .detail-panel,
+  .fresco-detail,
+  .schema-define,
+  .schema-define-label,
+  .schema-keys,
+  .present-hud,
+  .key-nav {
+    display: none !important;
+  }
+
+  /* Mise en page plate, une colonne, sans décalage */
+  .support-doc .fiche-shell,
+  .support-doc .support-shell,
+  .support-doc .fiche-main,
+  .support-doc main {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    grid-template-columns: none !important;
+  }
+
+  .support-doc .wrap,
+  .support-doc .support-bloc-body {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Sommaire */
+  .support-doc .bloc-sidebar {
+    position: static !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: #fff !important;
+    border: 1px solid #ccc !important;
+    border-radius: 0 !important;
+    padding: 10pt 12pt !important;
+    margin: 0 0 10pt !important;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .support-doc .bloc-sidebar-title {
+    color: #111 !important;
+    font-size: 11pt !important;
+    letter-spacing: 0.04em !important;
+    margin: 0 0 8pt !important;
+  }
+
+  .support-doc .bloc-sidebar-nav {
+    display: block !important;
+    columns: 2;
+    column-gap: 18pt;
+  }
+
+  .support-doc .bloc-sidebar-item {
+    display: flex !important;
+    gap: 6pt !important;
+    border: none !important;
+    background: none !important;
+    padding: 2pt 0 !important;
+    color: #111 !important;
+    font-size: 9.5pt !important;
+    break-inside: avoid;
+  }
+
+  .support-doc .bloc-sidebar-num {
+    color: #333 !important;
+    min-width: 1.4em;
+  }
+
+  /* Couverture + titres de bloc */
+  .support-doc .support-cover-hero {
+    padding: 0 0 10pt !important;
+    margin: 0 0 8pt !important;
+    border-bottom: 1.5pt solid #111;
+  }
+
+  .support-doc .day-hero {
+    padding: 0 0 6pt !important;
+    margin: 0 0 8pt !important;
+  }
+
+  .support-doc .day-hero h1 {
+    font-size: 18pt !important;
+    max-width: none !important;
+    margin: 0 0 4pt !important;
+    color: #111 !important;
+  }
+
+  .support-doc .day-kicker,
+  .support-doc .section-label {
+    color: #333 !important;
+    font-size: 8.5pt !important;
+  }
+
+  .support-doc .lead,
+  .support-doc .definition-full,
+  .support-doc p {
+    color: #111 !important;
+    max-width: none !important;
+  }
+
+  .support-doc .tag,
+  .support-doc .fiche-meta .tag {
+    border: 1px solid #999 !important;
+    background: #fff !important;
+    color: #111 !important;
+    box-shadow: none !important;
+  }
+
+  /* Un bloc pédagogique = nouvelle page */
+  .support-doc .support-bloc {
+    break-before: page;
+    page-break-before: always;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    scroll-margin-top: 0;
+  }
+
+  .support-doc .support-cover-hero + .support-bloc {
+    break-before: auto;
+    page-break-before: auto;
+  }
+
+  /* Titre de bloc collé au début du contenu */
+  .support-doc .support-bloc > .day-hero {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .support-doc .support-bloc-body > .section:first-child {
+    break-before: avoid;
+    page-break-before: avoid;
+  }
+
+  .support-doc .section {
+    padding: 8pt 0 !important;
+    border-top: 1px solid #ddd !important;
+    margin: 0 !important;
+    break-inside: auto;
+  }
+
+  .support-doc .section:first-child {
+    border-top: none !important;
+    padding-top: 0 !important;
+  }
+
+  /* Pas de titre orphelin en bas de page */
+  .support-doc h1,
+  .support-doc h2,
+  .support-doc h3,
+  .support-doc h4,
+  .support-doc .section-label,
+  .support-doc .day-kicker,
+  .support-doc .fiche-meta,
+  .support-doc .monnaie-sub,
+  .support-doc .diagram-header {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .support-doc h1 + *,
+  .support-doc h2 + *,
+  .support-doc h3 + *,
+  .support-doc h4 + *,
+  .support-doc .section-label + *,
+  .support-doc .day-kicker + *,
+  .support-doc .diagram-header + * {
+    break-before: avoid !important;
+    page-break-before: avoid !important;
+  }
+
+  /* Garder ensemble : label + titre + 1er bloc de contenu */
+  .support-doc .section > .section-label,
+  .support-doc .section > h2 {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .support-doc p,
+  .support-doc li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .support-doc h2 {
+    font-size: 13pt !important;
+    margin: 0 0 6pt !important;
+    color: #111 !important;
+  }
+
+  .support-doc h3 {
+    font-size: 11pt !important;
+    margin: 8pt 0 4pt !important;
+    color: #111 !important;
+  }
+
+  /* Schémas : bloc indivisible (titre + SVG) */
+  .support-doc .diagram {
+    background: #fff !important;
+    border: 1px solid #bbb !important;
+    border-radius: 0 !important;
+    padding: 6pt !important;
+    margin: 8pt 0 !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    break-before: auto;
+    overflow: visible !important;
+  }
+
+  .support-doc .diagram-header h3 {
+    font-size: 10pt !important;
+  }
+
+  .support-doc .diagram-header p {
+    display: none !important;
+  }
+
+  .support-doc .diagram svg {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .support-doc .diagram-hint {
+    font-size: 8pt !important;
+    color: #444 !important;
+  }
+
+  /* Grilles / tuiles : ne pas couper une carte au milieu */
+  .support-doc .monnaie-tile,
+  .support-doc .domaine-tile,
+  .support-doc .panel,
+  .support-doc .key-idea,
+  .support-doc .montage-example,
+  .support-doc .fil-suite,
+  .support-doc .split-2 > *,
+  .support-doc .monnaie-grid,
+  .support-doc .domaines-grid,
+  .support-doc .actors,
+  .support-doc .hub-evo {
+    background: #fff !important;
+    box-shadow: none !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Grille domaines TES : compacte + indivisible */
+  .support-doc .domaines-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 4pt !important;
+    margin-top: 6pt !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .support-doc .domaine-tile {
+    padding: 4pt 3pt !important;
+    gap: 2pt !important;
+  }
+
+  .support-doc .domaine-tile img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .support-doc .domaine-tile span {
+    font-size: 7.5pt !important;
+  }
+
+  /* Paquets titre + début de contenu */
+  .support-doc .print-keep {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    break-after: auto;
+  }
+
+  /* Si le paquet ne tient pas, pousser le titre avec le contenu (pas seul) */
+  .support-doc .print-keep {
+    break-before: auto;
+  }
+
+  .support-doc .support-bloc-body > .print-keep:first-child {
+    break-before: avoid !important;
+    page-break-before: avoid !important;
+  }
+
+  .support-doc .detail-body[hidden] {
+    display: none !important;
+  }
+
+  a {
+    color: #111 !important;
+    text-decoration: none !important;
+  }
+}
