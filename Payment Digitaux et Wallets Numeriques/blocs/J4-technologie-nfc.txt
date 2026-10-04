@@ -1,5 +1,11 @@
 JOUR 4 — Technologie NFC
 Principes physiques (proximité, induction, session courte).
 Trois modes : card emulation, reader/writer, peer-to-peer.
+Card emulation téléphone : NFC (device) + 14443 + EMV Contactless (+ token)
+  → le POS voit une carte sans contact · pont J1 empilement
+Périmètre NFC Forum : modes · contrôleur · tags/NDEF — pas le métier EMV
+  NFC Forum : NFC-A/B = device · ISO 14443 = équivalent hors Forum
+  Carte plastique 14443 sans wallet ≠ notion NFC Forum
+  Ambiguïté « carte NFC / TPE NFC » = radio 13,56 MHz (langage marché)
 Comparaison NFC vs QR (canal radio vs optique).
 Schémas SVG + seq-steps · ponts J1 online/offline et J3 token.

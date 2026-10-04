@@ -36,9 +36,11 @@ post-transaction — chez un acteur ou un prestataire.
 ================================================================================
 3. CINQ COMPOSANTS (vocabulaire SI)
 ================================================================================
-Front d’acceptation (POS · mPOS · checkout)
-Passerelle (gateway · API)
-SI acquisition (host acquéreur)
+Front d’acceptation (POS · mPOS · checkout) = capture commerçant
+  ≠ front office bancaire · ≠ « présenter à l’acquéreur »
+Passerelle (gateway · API · souvent PSP) — après le front
+SI acquisition (host acquéreur) — après front (+ souvent après passerelle)
+Ordre : front → passerelle → SI acquisition → scheme / émission
 SI émission (host d’autorisation)
 SI post-transaction (clearing · settlement)
 Scheme = externe (interface SI)
@@ -47,8 +49,9 @@ Scheme = externe (interface SI)
 ================================================================================
 4. PASSERELLE / SI ACQUISITION — 3 MONTAGES (+ exemples)
 ================================================================================
-1) SI acquisition « maison » — front banque, pas de passerelle PSP visible
-2) Passerelle devant SI acquisition banque — deux briques
+Dans les 3 : front d’acceptation d’abord (POS/checkout), puis…
+1) SI acquisition « maison » — pas de passerelle PSP visible au milieu
+2) Passerelle (PSP) devant SI acquisition banque — deux briques
 3) Passerelle + SI acquisition chez le même PSP — ex. Paybox (souvent)
 
 Parallèle exact avec montages PSP / acquéreur de la Chaîne.
@@ -59,7 +62,10 @@ Parallèle exact avec montages PSP / acquéreur de la Chaîne.
 ================================================================================
 Cas : banque émettrice · acceptation 1/2/3 · e-com Paybox · timeout
 
+Schéma bas FO/BO : FO sous hosts banque · BO sur post-tx
+
 [ ] 5 briques SI nommées
 [ ] 3 montages passerelle / SI acquisition
 [ ] Maillon → brique
+[ ] FO/BO situés sur le schéma bas
 [ ] Cas « chez nous »

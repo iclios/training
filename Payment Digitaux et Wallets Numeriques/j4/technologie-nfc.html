@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Technologie NFC — Jour 4 | Paiements digitaux</title>
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/styles.css?v=present6" />
   </head>
   <body data-bloc="technologie-nfc">
     <header class="site-bar">
@@ -177,17 +177,24 @@
                 <text x="698" y="172" fill="#5a6b7c" font-size="11">peu central carte</text>
               </g>
               <text x="500" y="250" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                En paiement sans contact&nbsp;: le téléphone (ou la carte) est en card emulation face au POS
+                Paiement&nbsp;: contrôleur NFC → émulation carte → le POS voit une carte sans contact EMV
               </text>
             </svg>
+            <p class="diagram-hint">
+              En pratique téléphone&nbsp;:
+              <strong>NFC (device) + ISO/IEC 14443 + EMV Contactless</strong>
+              (+ token). EMV utilise le tuyau RF type 14443&nbsp;; le téléphone
+              l’expose via sa stack NFC.
+              <a href="../j1/standards-emvco.html">← J1 empilement</a>
+            </p>
             <div class="seq-steps" id="modes-steps">
               <button type="button" class="seq-step is-active" data-step="1">
                 <span class="n">1</span>
                 <span>
                   <strong>Card emulation</strong>
                   <p>
-                    Le support se comporte comme une carte face au lecteur POS
-                    — cœur du paiement NFC.
+                    Le contrôleur NFC met le wallet en émulation carte — le POS
+                    voit une carte sans contact (14443 + EMV Contactless).
                   </p>
                 </span>
               </button>
@@ -329,6 +336,51 @@
           </div>
         </section>
 
+        <!-- Ce que structure le NFC Forum -->
+        <section class="section">
+          <p class="section-label">Périmètre</p>
+          <h2>Ce que structure vraiment le NFC Forum</h2>
+          <p class="definition-full">
+            Confirmé par le <strong>NFC Forum</strong> lui-même. Dans ses
+            <em>Device Requirements</em>, il distingue explicitement&nbsp;:
+          </p>
+          <ul style="margin: 0 0 1.25rem; padding-left: 1.25rem; color: var(--ink-soft)">
+            <li>
+              <strong>NFC-A / NFC-B</strong> → quand on parle d’un
+              <em>NFC Forum Device</em>
+            </li>
+            <li>
+              <strong>ISO/IEC 14443 A / B</strong> → pour les technologies
+              <em>équivalentes non définies</em> par le NFC Forum
+            </li>
+          </ul>
+          <p class="intro">
+            Il parle aussi d’<strong>infrastructure contactless existante</strong>
+            / smart cards basées sur 14443, hors définitions NFC Forum — et du
+            fait que ses specs (Digital Protocol, etc.) s’appuient
+            <strong>par-dessus</strong> ISO 14443 / 18092 pour que les
+            <strong>devices</strong> interopèrent avec cette infra.
+          </p>
+          <p class="intro">
+            La <strong>card emulation</strong> sert justement à ce qu’un
+            téléphone «&nbsp;ressemble&nbsp;» à une carte face à un lecteur déjà
+            là — sans que le POS ait besoin de savoir que c’est un device NFC
+            Forum.
+          </p>
+          <p class="intro">
+            Donc&nbsp;: trx <strong>carte plastique 14443 sans wallet</strong>
+            = <strong>ISO 14443 (+ EMV)</strong>, pas une notion NFC Forum. Le
+            Forum arrive surtout quand un <strong>device NFC</strong> est en
+            jeu.
+          </p>
+          <p class="diagram-hint">
+            Source&nbsp;: NFC Forum Device Requirements · Digital Protocol
+            «&nbsp;on top of&nbsp;» 14443 / 18092 ·
+            <a href="../j1/standards-emvco.html">J1 organismes</a>
+            · on affinera après.
+          </p>
+        </section>
+
         <!-- Clarification -->
         <section class="section">
           <p class="section-label">Clarification</p>
@@ -356,6 +408,14 @@
                 courte.
               </p>
             </div>
+            <div class="not-item">
+              <strong>≠ Spec paiement EMV</strong>
+              <p>
+                NFC Forum = device / proximité.
+                <a href="paiement-contactless.html">EMV Contactless</a>
+                = logique monétique.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -380,5 +440,6 @@
     <script src="../js/app.js"></script>
     <script src="../js/nav-j4.js"></script>
     <script src="../js/fiche.js"></script>
-  </body>
+      <script src="../js/present.js?v=7" data-present-js="1"></script>
+</body>
 </html>

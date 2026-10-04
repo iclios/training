@@ -44,7 +44,7 @@ Monnaie = valeur + signe → sous quelle forme circule-t-elle ?
 ================================================================================
 Paiement électronique vs digital
 Pastilles cliquables → définitions en panneau.
-Électronique = dématérialisé (messages / systèmes) — ≠ smartphone.
+Électronique = dématérialisé (messages / systèmes).
 Digital = initié via canal numérique ; digital ⊂ électronique.
 Web & normes amalgament souvent — ici on tranche.
 Exemple : carte POS = électronique ; Apple Pay / QR = digital.
@@ -56,11 +56,12 @@ In-app = paiement terminé dans une app marchand (ex. Uber) — EPC.
 ≠ site / navigateur · ≠ terminal magasin · ≠ wallet (trousseau + acceptation externe).
 Un wallet peut être un moyen dans l’in-app ; le canal reste l’app.
 
-Paiement temps réel vs paiement différé
-Pastilles cliquables → définitions en panneau.
-Paiement temps réel : auth online, Instant Payment…
-Paiement différé : clearing / settlement, batch
-Pont : vue message / argent · T+0 / post-tx
+Paiement temps réel · temps différé (terminologie syllabus)
+Tableau comparatif :
+- Moment du débit · trésorerie · visibilité budget · usages · risques
+- Temps réel : débit immédiat (sec. ou 24–48 h) · fonds immobilisés tout de suite
+- Temps différé : débit unique à date fixe (souvent fin de mois) · souplesse trésorerie
+≠ clearing / settlement (après le paiement)
 
 
 ================================================================================
@@ -70,5 +71,6 @@ Pont : vue message / argent · T+0 / post-tx
 [ ] Cash → carte → mobile → wallet
 [ ] Électronique ≠ digital
 [ ] Paiement en ligne / proximité / in-app
-[ ] Paiement temps réel ≠ paiement différé
+[ ] Paiement temps réel ≠ paiement temps différé (pas débit immédiat / différé)
+[ ] Clearing / settlement ≠ le paiement
 [ ] SI situé à partir de la carte

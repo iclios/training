@@ -67,3 +67,19 @@ window.J4_BLOCS = [
     });
   }
 })();
+
+(function loadPresentMode() {
+  if (document.querySelector("script[data-present-js]")) return;
+  var src = "../js/present.js";
+  var link = document.querySelector('link[rel="stylesheet"][href*="styles.css"]');
+  if (link && link.href) {
+    src = link.href.replace(/css\/styles\.css[^/]*$/i, "js/present.js");
+  } else {
+    var here = document.currentScript && document.currentScript.src;
+    if (here) src = new URL("present.js", here).href;
+  }
+  var s = document.createElement("script");
+  s.src = src;
+  s.dataset.presentJs = "1";
+  (document.body || document.documentElement).appendChild(s);
+})();

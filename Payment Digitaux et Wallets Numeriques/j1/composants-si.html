@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Composants SI — Jour 1 | Paiements digitaux</title>
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/styles.css?v=present6" />
   </head>
   <body data-bloc="composants-si">
     <header class="site-bar">
@@ -61,32 +61,40 @@
               <p class="section-label">Cartographie</p>
               <h2>Les cinq composants</h2>
               <p class="intro">
-                Cliquez une brique. Puis parcourez ce que chacune fait.
+                Ordre de flux&nbsp;:
+                <strong>front d’acceptation → passerelle → SI acquisition</strong>
+                (puis scheme / émission). «&nbsp;Front&nbsp;» = point de capture
+                côté commerçant — <em>pas</em> le front office bancaire, ni
+                «&nbsp;présenter à l’acquéreur&nbsp;».
               </p>
 
               <div class="diagram">
                 <div class="diagram-header">
                   <h3>Front · Passerelle · SI · Post-tx</h3>
-                  <p>Cinq briques — pas les rôles acteurs</p>
+                  <p>Cinq briques SI — pas les rôles acteurs · pas FO bancaire</p>
                 </div>
                 <svg
                   viewBox="0 0 1000 420"
                   role="img"
                   aria-label="Composants SI illustrés d un système de paiement carte"
                 >
-                  <text x="40" y="28" fill="#5a6b7c" font-size="11" font-weight="700" letter-spacing="1">ACCEPTATION</text>
+                  <text x="40" y="28" fill="#5a6b7c" font-size="11" font-weight="700" letter-spacing="1">ACCEPTATION (côté commerçant)</text>
                   <g class="node-hit" data-si="pos" tabindex="0" role="button" aria-label="Front d acceptation">
                     <rect x="40" y="42" width="220" height="96" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-device.jpg" x="52" y="58" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="130" y="82" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Front d’acceptation</text>
-                    <text x="130" y="104" fill="#5a6b7c" font-size="11">POS · mPOS · checkout</text>
+                    <text x="130" y="78" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Front d’acceptation</text>
+                    <text x="130" y="98" fill="#5a6b7c" font-size="11">POS · mPOS · checkout</text>
+                    <text x="130" y="118" fill="#c45c26" font-size="10" font-weight="700">capture · ≠ FO banque</text>
                   </g>
+                  <text x="268" y="98" fill="#0d9f8a" font-size="16" font-weight="700">→</text>
                   <g class="node-hit" data-si="gateway" tabindex="0" role="button" aria-label="Passerelle">
                     <rect x="280" y="42" width="220" height="96" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-psp.jpg" x="292" y="58" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="370" y="82" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Passerelle</text>
-                    <text x="370" y="104" fill="#5a6b7c" font-size="11">gateway · API</text>
+                    <text x="370" y="78" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Passerelle</text>
+                    <text x="370" y="98" fill="#5a6b7c" font-size="11">gateway · API · PSP</text>
+                    <text x="370" y="118" fill="#5a6b7c" font-size="10">souvent avant l’acquéreur</text>
                   </g>
+                  <text x="512" y="98" fill="#0d9f8a" font-size="16" font-weight="700">→</text>
 
                   <text x="540" y="28" fill="#5a6b7c" font-size="11" font-weight="700" letter-spacing="1">PROCESSING</text>
                   <g class="node-hit" data-si="acquiring" tabindex="0" role="button" aria-label="SI acquisition">
@@ -130,21 +138,21 @@
                     <span class="n">1</span>
                     <span>
                       <strong>Front d’acceptation</strong>
-                      <p>POS · mPOS · checkout — capture et envoi vers l’acquisition.</p>
+                      <p>POS · mPOS · checkout — <strong>capture côté commerçant</strong>. Pas le front office banque, pas « présenter à l’acquéreur ».</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
                       <strong>Passerelle</strong>
-                      <p>Gateway / API — contrôles de forme, journalisation, front-door.</p>
+                      <p>Gateway / API (souvent PSP) — <strong>après</strong> le front, <strong>avant</strong> (ou chez) le SI acquisition.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
                     <span class="n">3</span>
                     <span>
                       <strong>SI acquisition</strong>
-                      <p>Host acquéreur : opérations marchandes, routage vers le scheme.</p>
+                      <p>Host acquéreur — arrive <strong>après</strong> le front (et souvent après la passerelle) ; routage vers le scheme.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="4">
@@ -169,17 +177,25 @@
             <section class="section">
               <p class="section-label">Frontière critique</p>
               <h2>Trois montages passerelle / SI acquisition</h2>
+              <p class="intro">
+                Dans les trois cas, le <strong>front d’acceptation</strong>
+                (POS / checkout) est <em>toujours en premier</em> — capture
+                commerçant. Ce qui change&nbsp;: où se placent la
+                <strong>passerelle</strong> et le <strong>SI acquisition</strong>
+                après ce front.
+              </p>
 
               <div class="diagram" id="diagram-si-m1" style="margin-top: 1.25rem">
                 <div class="diagram-header">
                   <h3>1 · SI acquisition « maison »</h3>
-                  <p>Banque — passerelle évent. interne / peu visible</p>
+                  <p>Banque — pas de passerelle PSP visible au milieu</p>
                 </div>
                 <svg viewBox="0 0 1000 180" role="img" aria-label="SI montage acquiring banque">
                   <g>
                     <rect x="80" y="40" width="180" height="90" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-device.jpg" x="96" y="54" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="168" y="80" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Front</text>
+                    <text x="168" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Front accept.</text>
+                    <text x="168" y="94" fill="#5a6b7c" font-size="11">POS / checkout</text>
                   </g>
                   <line x1="270" y1="85" x2="340" y2="85" stroke="#0d9f8a" stroke-width="2.5"/>
                   <g>
@@ -187,7 +203,7 @@
                     <image href="../img/acteurs/acteur-banque.jpg" x="360" y="48" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
                     <text x="440" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">SI acquisition</text>
                     <text x="440" y="98" fill="#0d9f8a" font-size="12">(+ passerelle interne évent.)</text>
-                    <text x="440" y="118" fill="#5a6b7c" font-size="11">une logique SI côté acceptation</text>
+                    <text x="440" y="118" fill="#5a6b7c" font-size="11">chez la banque — sans PSP au milieu</text>
                   </g>
                   <line x1="670" y1="85" x2="740" y2="85" stroke="#0d9f8a" stroke-width="2.5"/>
                   <g>
@@ -198,22 +214,24 @@
                 </svg>
                 <p class="montage-example">
                   <strong>Exemple</strong>
-                  Front banque «&nbsp;maison&nbsp;» branché sur le SI acquisition
-                  de la banque — pas de marque passerelle PSP au milieu.
-                  Typique&nbsp;; le contrat exact peut varier.
+                  POS / checkout branché directement sur le
+                  <em>SI acquisition</em> de la banque — pas de marque
+                  passerelle PSP au milieu. Typique&nbsp;; le contrat exact
+                  peut varier.
                 </p>
               </div>
 
               <div class="diagram" id="diagram-si-m2" style="margin-top: 1.5rem">
                 <div class="diagram-header">
                   <h3>2 · Passerelle devant le SI acquisition</h3>
-                  <p>Deux briques — technique puis SI acquisition</p>
+                  <p>Front → passerelle (PSP) → SI acquisition banque</p>
                 </div>
                 <svg viewBox="0 0 1000 180" role="img" aria-label="SI montage gateway puis acquiring">
                   <g>
                     <rect x="40" y="40" width="150" height="90" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-device.jpg" x="56" y="54" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="120" y="85" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Front</text>
+                    <text x="120" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="11" font-weight="700">Front accept.</text>
+                    <text x="120" y="94" fill="#5a6b7c" font-size="10">POS / checkout</text>
                   </g>
                   <line x1="200" y1="85" x2="260" y2="85" stroke="#0d9f8a" stroke-width="2.5"/>
                   <g>
@@ -254,15 +272,16 @@
                   <g>
                     <rect x="60" y="40" width="160" height="90" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-device.jpg" x="76" y="54" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="140" y="85" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Checkout</text>
+                    <text x="140" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="11" font-weight="700">Front accept.</text>
+                    <text x="140" y="94" fill="#5a6b7c" font-size="10">checkout</text>
                   </g>
                   <line x1="230" y1="85" x2="300" y2="85" stroke="#0d9f8a" stroke-width="2.5"/>
                   <g>
                     <rect x="300" y="25" width="380" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
                     <image href="../img/acteurs/acteur-psp.jpg" x="320" y="45" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
                     <text x="400" y="70" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Passerelle + SI acquisition</text>
-                    <text x="400" y="96" fill="#0d9f8a" font-size="12">même SI / même prestataire</text>
-                    <text x="400" y="118" fill="#5a6b7c" font-size="11">PSP-acquéreur côté briques</text>
+                    <text x="400" y="96" fill="#0d9f8a" font-size="12">même prestataire (après le front)</text>
+                    <text x="400" y="118" fill="#5a6b7c" font-size="11">PSP-acquéreur — double étiquette</text>
                   </g>
                   <line x1="690" y1="85" x2="760" y2="85" stroke="#0d9f8a" stroke-width="2.5"/>
                   <g>
@@ -336,6 +355,94 @@
               </div>
             </section>
 
+            <section class="section">
+              <p class="section-label">Organisation banque</p>
+              <h2>Front office · Back office — pas les briques du hop</h2>
+              <p class="intro">
+                Même grille que les composants SI — FO et BO banque placés
+                au bon endroit.
+              </p>
+
+              <div class="diagram" id="diagram-fo-bo">
+                <div class="diagram-header">
+                  <h3>Hop paiement vs FO / BO</h3>
+                  <p>FO sous les hosts banque · BO sur le post-transaction</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 360"
+                  role="img"
+                  aria-label="Front office et back office banque sur la grille des composants SI"
+                >
+                  <text x="40" y="28" fill="#5a6b7c" font-size="11" font-weight="700" letter-spacing="1">HOP PAIEMENT (autorisation)</text>
+
+                  <rect x="40" y="42" width="150" height="70" rx="8" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                  <text x="115" y="70" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Front accept.</text>
+                  <text x="115" y="92" text-anchor="middle" fill="#5a6b7c" font-size="10">POS · checkout</text>
+
+                  <text x="200" y="82" fill="#0d9f8a" font-size="16" font-weight="700">→</text>
+
+                  <rect x="220" y="42" width="130" height="70" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                  <text x="285" y="70" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Passerelle</text>
+                  <text x="285" y="92" text-anchor="middle" fill="#5a6b7c" font-size="10">souvent PSP</text>
+
+                  <text x="360" y="82" fill="#0d9f8a" font-size="16" font-weight="700">→</text>
+
+                  <rect x="380" y="42" width="130" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="445" y="70" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">SI acq.</text>
+                  <text x="445" y="92" text-anchor="middle" fill="#0d9f8a" font-size="10">host</text>
+
+                  <text x="520" y="82" fill="#0d9f8a" font-size="16" font-weight="700">→</text>
+
+                  <rect x="540" y="42" width="110" height="70" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="595" y="82" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Scheme</text>
+
+                  <text x="660" y="82" fill="#0d9f8a" font-size="16" font-weight="700">→</text>
+
+                  <rect x="680" y="42" width="140" height="70" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="750" y="70" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">SI émission</text>
+                  <text x="750" y="92" text-anchor="middle" fill="#5a6b7c" font-size="10">host auth</text>
+
+                  <!-- FO aligné sous SI acq + SI émission -->
+                  <rect x="380" y="140" width="440" height="72" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2.5" stroke-dasharray="7 4"/>
+                  <text x="400" y="168" fill="#c45c26" font-size="14" font-weight="700">FO banque</text>
+                  <text x="400" y="192" fill="#5a6b7c" font-size="12">agence · commercial · opposition client</text>
+                  <line x1="445" y1="112" x2="445" y2="140" stroke="#c45c26" stroke-width="1.5"/>
+                  <line x1="750" y1="112" x2="750" y2="140" stroke="#c45c26" stroke-width="1.5"/>
+
+                  <!-- Post-tx + BO -->
+                  <rect x="40" y="240" width="920" height="96" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="60" y="272" fill="#1a2b3c" font-size="14" font-weight="700">SI post-transaction</text>
+                  <text x="60" y="296" fill="#5a6b7c" font-size="12">clearing · settlement</text>
+                  <rect x="520" y="256" width="420" height="64" rx="8" fill="#f4f7ff" stroke="#4a6fa5" stroke-width="2.5" stroke-dasharray="7 4"/>
+                  <text x="540" y="284" fill="#4a6fa5" font-size="14" font-weight="700">BO banque</text>
+                  <text x="540" y="306" fill="#5a6b7c" font-size="12">réconciliation · litiges · compta</text>
+                </svg>
+                <div class="seq-steps" id="fo-bo-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span>
+                    <span>
+                      <strong>Hop</strong>
+                      <p>Front accept. → passerelle → SI acq. → scheme → SI émission.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span>
+                    <span>
+                      <strong>FO banque</strong>
+                      <p>Sous les hosts banque (SI acq. · SI émission) — pas sous le front d’acceptation.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span>
+                    <span>
+                      <strong>BO banque</strong>
+                      <p>Sur le SI post-transaction — réconciliation, litiges, compta.</p>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
             <div class="sources-box">
               <strong>Sources normes / specs</strong> — à affiner : documents
               d’architecture de référence scheme / processeurs, périmètre PCI
@@ -365,15 +472,15 @@
       const siCopy = {
         pos: {
           title: "Front d’acceptation",
-          text: "Brique POS / mPOS / checkout : capture de l’opération, interaction avec le moyen de paiement, envoi vers l’acquisition.",
+          text: "Point de capture côté commerçant (POS / mPOS / checkout) — pas le front office bancaire. Envoie ensuite vers la passerelle / l’acquisition ; ce n’est pas « présenter d’abord à l’acquéreur ».",
         },
         gateway: {
           title: "Passerelle",
-          text: "Gateway / API : protocoles, contrôles de forme, journalisation. Souvent distincte du SI acquisition — voir les 3 montages.",
+          text: "Gateway / API (souvent opérée par un PSP) : protocoles, contrôles de forme, journalisation. Se place après le front d’acceptation, avant ou chez le SI acquisition — voir les 3 montages.",
         },
         acquiring: {
           title: "SI acquisition",
-          text: "Host acquéreur : opérations marchandes, routage réseau, lien clearing. Chez la banque ou chez un PSP-acquéreur.",
+          text: "Host acquéreur : opérations marchandes, routage réseau, lien clearing. Reçoit le flux après le front (et souvent après la passerelle). Chez la banque ou chez un PSP-acquéreur.",
         },
         issuing: {
           title: "SI émission",
@@ -406,5 +513,6 @@
         });
       });
     </script>
-  </body>
+      <script src="../js/present.js?v=7" data-present-js="1"></script>
+</body>
 </html>

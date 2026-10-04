@@ -4,14 +4,17 @@ Jour 1 · Écosystème
 Bloc : Standards internationaux (EMV / ISO)
 Durée indicative : 20–25 min
 Précédent : Acteurs de l’écosystème · Suivant : Chaîne de valeur
-Sources : EMVCo · ISO 8583 · ISO/IEC 14443 · ISO 20022 · (mention) ISO/TS 12812
+Sources : EMVCo · ISO 8583 · ISO/IEC 7816 · ISO/IEC 14443 · ISO 20022 · EPC (SEPA) · NFC Forum · (mention) ISO/TS 12812
 
 
 ================================================================================
 0. ORGANISMES (avant le vocabulaire)
 ================================================================================
-ISO (+ IEC) = normes techniques
+ISO (+ IEC) = normes techniques (14443 = RF proximité)
 EMVCo = specs paiement (joint-venture schemes)
+EPC = European Payments Council — schémas / rulebooks SEPA (messaging ISO 20022 ; pas une norme ISO)
+NFC Forum = device/tags (modes, contrôleur, NDEF) · réutilise 14443
+  ≠ EMV (cryptogrammes, CVM…) · détail J4 NFC
 Schemes (Visa / MC / CB…) = règles métier
 
 
@@ -21,6 +24,9 @@ Schemes (Visa / MC / CB…) = règles métier
 Norme (ISO) ≠ Spec (EMVCo) ≠ « Standard » (mot fourre-tout) ≠ Règles scheme
 (+ Réglementation DSP2/SCA = encore autre chose)
 Phrase : technique vs métier vs droit.
+ISO = technique (souvent transverse, pas forcément paiement)
+EMV = couche applicative paiement sur socle ISO :
+  Contact ← 7816 · Contactless ← 14443
 
 
 ================================================================================
@@ -48,9 +54,10 @@ Chip · 3DS · QR · Token (+ ponts J1 / J2 / J3 / J4)
 5. WALLET — PAS D’ISO UNIQUE
 ================================================================================
 Empilement :
-1) ISO 14443 (RF)
+1) ISO 14443 (RF) — téléphone : stack NFC → émulation carte
 2) EMV Contactless (logique paiement)
 3) EMV Payment Tokenisation (credential) ← le vrai « standard wallet » carte
+En pratique : NFC (device) + 14443 + EMV CL (+ token)
 SE/HCE/TEE = modèles de confiance (J4), pas ISO paiement.
 
 

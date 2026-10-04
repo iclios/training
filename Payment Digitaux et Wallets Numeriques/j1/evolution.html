@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Évolution des paiements — Jour 1 | Paiements digitaux</title>
-    <link rel="stylesheet" href="../css/styles.css?v=fresco5" />
+    <link rel="stylesheet" href="../css/styles.css?v=present7" />
   </head>
   <body data-bloc="evolution">
     <header class="site-bar">
@@ -258,10 +258,11 @@
 
                   <g class="node-hit" data-age="carte" tabindex="0" role="button" aria-label="Carte">
                     <rect x="396" y="52" width="150" height="110" rx="10" fill="#1e5f8a" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="471" y="78" text-anchor="middle" fill="#e7f6f3" font-size="10" font-weight="700" letter-spacing="0.04em">SI NAÎT ICI</text>
-                    <text x="471" y="102" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Carte</text>
-                    <text x="471" y="124" text-anchor="middle" fill="#c5dceb" font-size="11">réseau + messages</text>
-                    <text x="471" y="144" text-anchor="middle" fill="#c5dceb" font-size="11">puce · EMV</text>
+                    <text x="471" y="74" text-anchor="middle" fill="#e7f6f3" font-size="9" font-weight="700" letter-spacing="0.04em">SI NAÎT ICI</text>
+                    <text x="471" y="96" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="700">Carte</text>
+                    <text x="471" y="116" text-anchor="middle" fill="#c5dceb" font-size="10">Diners → piste</text>
+                    <text x="471" y="132" text-anchor="middle" fill="#c5dceb" font-size="10">→ puce FR → EMV</text>
+                    <text x="471" y="150" text-anchor="middle" fill="#a8c4d8" font-size="9">réseau + messages</text>
                   </g>
                   <line x1="546" y1="107" x2="576" y2="107" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fresque)"/>
 
@@ -301,8 +302,8 @@
                   <g class="node-hit" data-age="carte" tabindex="0" role="button" aria-label="Repère historique Carte">
                     <circle cx="471" cy="210" r="9" fill="#0d9f8a" stroke="#087a6a" stroke-width="2"/>
                     <line x1="471" y1="210" x2="471" y2="222" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="471" y="238" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">1950 → 1967</text>
-                    <text x="471" y="254" text-anchor="middle" fill="#5a6b7c" font-size="10">Diners · CB · puce 1974</text>
+                    <text x="471" y="238" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">1950 → EMV</text>
+                    <text x="471" y="254" text-anchor="middle" fill="#5a6b7c" font-size="9">Diners · piste · puce FR · EMV</text>
                   </g>
 
                   <g class="node-hit" data-age="mobile" tabindex="0" role="button" aria-label="Repère historique Mobile">
@@ -376,6 +377,7 @@
                       <header class="fresco-fiche-head">
                         <p class="fresco-fiche-kicker" data-f-kicker></p>
                         <h4 data-f-title></h4>
+                        <p class="fresco-fiche-sub" data-f-sub hidden></p>
                       </header>
                       <ul class="fresco-aspects" data-f-aspects></ul>
                     </div>
@@ -390,7 +392,7 @@
               <h2>Électronique · Canaux · Temporalité</h2>
 
               <!-- Électronique vs digital -->
-              <h2 style="margin-top: 1.75rem">Électronique · Digital</h2>
+              <h2 style="margin-top: 1.75rem">Paiement électronique · digital</h2>
               <div class="diagram" id="diagram-elec-digital">
                 <div class="diagram-header">
                   <h3>Paiement électronique vs digital</h3>
@@ -422,7 +424,7 @@
                   <div class="detail-body" hidden>
                     <h4 data-ed-title></h4>
                     <p data-ed-body></p>
-                    <p class="detail-not" data-ed-note></p>
+                    <p class="detail-aside" data-ed-note></p>
                   </div>
                 </div>
                 <p class="montage-example">
@@ -433,7 +435,7 @@
               </div>
 
               <!-- Canaux -->
-              <h2 style="margin-top: 2.25rem">En ligne · Proximité · In-app</h2>
+              <h2 style="margin-top: 2.25rem">Paiement en ligne · proximité · in-app</h2>
               <div class="diagram" id="diagram-canaux">
                 <div class="diagram-header">
                   <h3>Paiement en ligne · proximité · in-app</h3>
@@ -477,6 +479,7 @@
                     <h4 data-c-title></h4>
                     <p data-c-body></p>
                     <p class="detail-not" data-c-note></p>
+                    <p class="detail-aside" data-c-epc hidden></p>
                   </div>
                 </div>
                 <p class="montage-example" id="canaux-example">
@@ -487,41 +490,37 @@
                 </p>
               </div>
 
-              <!-- Paiement temps réel vs paiement différé -->
-              <h2 style="margin-top: 2.25rem">Temps réel · Différé</h2>
+              <!-- Paiement temps réel · temps différé -->
+              <h2 style="margin-top: 2.25rem">Paiement temps réel · temps différé</h2>
               <div class="diagram" id="diagram-temps">
                 <div class="diagram-header">
-                  <h3>Paiement temps réel vs paiement différé</h3>
-                  <p>Décision / expérience ≠ règlement interbancaire — cliquez une zone</p>
+                  <h3>Paiement temps réel vs temps différé</h3>
+                  <p>Moment du débit · trésorerie — cliquez une zone</p>
                 </div>
-                <p class="intro" style="margin: 0 0 1rem">
-                  En une phrase&nbsp;:
-                  <strong>paiement temps réel = décision / expérience immédiate</strong>&nbsp;;
-                  <strong>paiement différé = clearing / settlement après coup</strong>.
-                </p>
-                <svg viewBox="0 0 1000 200" role="img" aria-label="Paiement temps réel versus paiement différé">
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Paiement temps réel versus paiement temps différé">
                   <g class="node-hit" data-temps="realtime" tabindex="0" role="button" aria-label="Paiement temps réel">
                     <rect x="40" y="40" width="420" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
                     <text x="250" y="82" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Paiement temps réel</text>
-                    <text x="250" y="112" text-anchor="middle" fill="#0d9f8a" font-size="12">autorisation online · instantané</text>
-                    <text x="250" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">réponse tout de suite (T+0)</text>
+                    <text x="250" y="112" text-anchor="middle" fill="#0d9f8a" font-size="12">débit immédiat</text>
+                    <text x="250" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">secondes · ou sous 24–48 h</text>
                   </g>
-                  <g class="node-hit" data-temps="differe" tabindex="0" role="button" aria-label="Paiement différé">
+                  <g class="node-hit" data-temps="differe" tabindex="0" role="button" aria-label="Paiement temps différé">
                     <rect x="540" y="40" width="420" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="750" y="82" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Paiement différé</text>
-                    <text x="750" y="112" text-anchor="middle" fill="#5a6b7c" font-size="12">clearing · settlement · batch</text>
-                    <text x="750" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">après coup, calendriers / cut-offs</text>
+                    <text x="750" y="82" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Paiement temps différé</text>
+                    <text x="750" y="112" text-anchor="middle" fill="#5a6b7c" font-size="12">débit à date fixe</text>
+                    <text x="750" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">souvent fin de mois</text>
                   </g>
                 </svg>
                 <div class="detail-panel" id="temps-detail">
                   <p class="detail-placeholder">
                     Cliquez <strong>paiement temps réel</strong> ou
-                    <strong>paiement différé</strong> pour la définition.
+                    <strong>paiement temps différé</strong> pour la définition.
                   </p>
                   <div class="detail-body" hidden>
                     <h4 data-t-title></h4>
                     <p data-t-body></p>
-                    <p class="detail-not" data-t-note></p>
+                    <ul class="detail-bullets" data-t-bullets></ul>
+                    <p class="detail-aside" data-t-note></p>
                   </div>
                 </div>
                 <p class="montage-example" id="temps-example">
@@ -638,7 +637,7 @@
           elec: {
             title: "Paiement électronique",
             body:
-              "La valeur ne circule plus sous forme d’espèces physiques : l’ordre et/ou le transfert passent par des messages et systèmes (carte, virement, prélèvement…). Ce n’est pas synonyme de « paiement sur smartphone ».",
+              "La valeur ne circule plus sous forme d’espèces physiques : l’ordre et/ou le transfert passent par des messages et systèmes (carte, virement, prélèvement…).",
             note: "",
           },
           digital: {
@@ -713,10 +712,12 @@
           inapp: {
             title: "Paiement in-app",
             body:
-              "Paiement fait directement depuis une application (souvent l’app marchand) : le parcours se termine dans l’app — sans site / navigateur, sans terminal magasin. Exemple type : Uber. Définition EPC : paiement réalisé depuis une application mobile (ex. app marchand).",
+              "Paiement fait directement depuis une application (souvent l’app marchand) : le parcours se termine dans l’app — sans site / navigateur, sans terminal magasin. Exemple type : Uber.",
             note: "≠ wallet. Wallet = trousseau de moyens + contexte d’acceptation externe (POS, checkout…). Un wallet peut être un moyen dans l’in-app (ex. Apple Pay dans Uber) ; le canal reste l’app.",
             example:
               "Course Uber payée dans l’app = in-app. Même trajet payé au terminal du chauffeur = proximité.",
+            epc:
+              "EPC (European Payments Council) : organisme interbancaire européen qui définit des règles et schémas de paiement harmonisés (SEPA…). Définition EPC du paiement in-app : paiement réalisé depuis une application mobile (ex. app marchand).",
           },
         };
 
@@ -736,6 +737,16 @@
           panel.querySelector("[data-c-title]").textContent = data.title;
           panel.querySelector("[data-c-body]").textContent = data.body;
           panel.querySelector("[data-c-note]").textContent = data.note;
+          const epcEl = panel.querySelector("[data-c-epc]");
+          if (epcEl) {
+            if (data.epc) {
+              epcEl.textContent = data.epc;
+              epcEl.hidden = false;
+            } else {
+              epcEl.textContent = "";
+              epcEl.hidden = true;
+            }
+          }
           if (exampleEl) exampleEl.textContent = data.example;
           root.querySelectorAll(".node-hit").forEach((n) => {
             n.classList.toggle("is-active", n.getAttribute("data-canal") === key);
@@ -766,18 +777,30 @@
           realtime: {
             title: "Paiement temps réel",
             body:
-              "La décision / l’expérience est immédiate : autorisation online, Instant Payment, certains A2A — réponse tout de suite (T+0) selon le rail.",
-            note: "Pont J1 : vue message (Chaîne) et T+0 (Composants SI). L’OK immédiat ≠ toujours un règlement interbancaire déjà fait.",
+              "Le débit intervient immédiatement — en quelques secondes, ou sous 24–48 h.",
+            bullets: [
+              "Trésorerie : immobilisation instantanée des fonds",
+              "Budget : suivi au jour le jour facilité",
+              "Pratique pour : remboursements, urgences",
+              "Risque principal : blocage si solde insuffisant",
+            ],
+            note: "",
             example:
-              "Instant Payment = rail pensé pour le temps réel bout en bout. Carte au magasin : l’autorisation est temps réel, le règlement souvent encore différé.",
+              "Carte à débit au fil de l’eau, virement instantané : les fonds sont pris tout de suite.",
           },
           differe: {
-            title: "Paiement différé",
+            title: "Paiement temps différé",
             body:
-              "Clearing / settlement / batch après coup : calendriers, cut-offs. L’OK en caisse ne signifie pas que l’argent est déjà réglé entre banques.",
-            note: "Pont J1 : vue argent (Chaîne) et post-tx (Composants SI). Différé = compensation / règlement, pas le ressenti porteur à la caisse.",
+              "Un seul débit, à date fixe — généralement en fin de mois.",
+            bullets: [
+              "Trésorerie : décalage sans frais (souplesse)",
+              "Budget : vigilance sur le cumul des dépenses",
+              "Pratique pour : cautions, voyages, imprévus",
+              "Risque principal : oubli du cumul → découvert",
+            ],
+            note: "",
             example:
-              "Carte au magasin : règlement souvent différé (clearing / settlement). L’autorisation, elle, était temps réel.",
+              "Carte à débit en fin de période : les achats du mois sont prélevés en une fois.",
           },
         };
 
@@ -791,12 +814,25 @@
           if (!data) return;
           const placeholder = panel.querySelector(".detail-placeholder");
           const body = panel.querySelector(".detail-body");
+          const list = panel.querySelector("[data-t-bullets]");
           if (placeholder) placeholder.hidden = true;
           if (body) body.hidden = false;
           panel.classList.add("is-filled");
           panel.querySelector("[data-t-title]").textContent = data.title;
           panel.querySelector("[data-t-body]").textContent = data.body;
-          panel.querySelector("[data-t-note]").textContent = data.note;
+          const noteEl = panel.querySelector("[data-t-note]");
+          if (noteEl) {
+            noteEl.textContent = data.note || "";
+            noteEl.hidden = !data.note;
+          }
+          if (list) {
+            list.innerHTML = "";
+            (data.bullets || []).forEach((text) => {
+              const li = document.createElement("li");
+              li.textContent = text;
+              list.appendChild(li);
+            });
+          }
           if (exampleEl) exampleEl.textContent = data.example;
           root.querySelectorAll(".node-hit").forEach((n) => {
             n.classList.toggle("is-active", n.getAttribute("data-temps") === key);
@@ -848,11 +884,13 @@
           carte: {
             title: "Carte",
             kicker: "Âge 3 · Réseau · le SI naît ici",
+            subtitle:
+              "Diners (produit carte) → piste → puce 1974 FR (Moreno) → EMV",
             aspects: [
               "Instrument émis qui s’appuie sur un réseau pour autoriser puis régler.",
-              "1950 Diners · 1958 BankAmericard → Visa · 1967 Carte Bleue · 1974 puce · EMV.",
+              "1950 Diners = naissance du produit carte (USA) — pas encore « la piste » au sens technique.",
+              "Piste magnétique ensuite (DAB / TPE) ; 1967 Carte Bleue ; 1974 brevet puce Roland Moreno (France) ; EMV standardise la puce mondialement.",
               "Porteurs et commerçants ; banques émettrice / acquéreuse ; schemes.",
-              "Répond au besoin de crédit, d’acceptation multi-enseignes et de moins de cash en caisse.",
               "Naissance du SI monétique : messages, autorisation, clearing, settlement.",
             ],
           },
@@ -863,7 +901,7 @@
               "Le téléphone devient canal d’initiation : SMS, app, mPOS, mobile money…",
               "~1997 banking SMS · 2007 M-Pesa · apps bancaires ensuite.",
               "Clients mass market ; opérateurs, fintechs et/ou banques selon le modèle local.",
-              "Ubiquité du device et inclusion — multi-moyens et fraude restent à traiter.",
+              "Le téléphone est déjà dans la poche de presque tout le monde — d’où l’inclusion ; restent multi-moyens et fraude.",
               "Souvent encore un rail carte (parfois mobile money / A2A) : canal ≠ nouveau rail.",
             ],
           },
@@ -918,7 +956,7 @@
             aspects: [
               "Le téléphone touche des volumes hors carte plastique classique.",
               "Selon le pays : opérateurs télécoms, fintechs, banques — ou un mix.",
-              "Inclusion et ubiquité : le canal scale auprès du grand public.",
+              "Le canal touche le grand public : presque tout le monde a un téléphone.",
               "Mass market = usagers du canal ; le rail derrière peut rester carte ou autre.",
             ],
           },
@@ -954,6 +992,16 @@
           panel.classList.add("is-filled");
           panel.querySelector("[data-f-title]").textContent = data.title;
           panel.querySelector("[data-f-kicker]").textContent = data.kicker;
+          const sub = panel.querySelector("[data-f-sub]");
+          if (sub) {
+            if (data.subtitle) {
+              sub.textContent = data.subtitle;
+              sub.hidden = false;
+            } else {
+              sub.textContent = "";
+              sub.hidden = true;
+            }
+          }
           list.innerHTML = "";
           data.aspects.forEach((text, i) => {
             const li = document.createElement("li");
@@ -986,5 +1034,6 @@
         });
       })();
     </script>
-  </body>
+      <script src="../js/present.js?v=7" data-present-js="1"></script>
+</body>
 </html>

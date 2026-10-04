@@ -98,9 +98,13 @@ Cas 3 — Banque universelle
 Situation : même enseigne issuer + acquirer.
 Consigne : deux casquettes, deux logiques de risque / SI.
 
-Cas 4 — Wallet (teaser)
+Cas 4 — Téléphone / wallet (teaser)
 Situation : Apple Pay / Google Pay au magasin.
-Consigne : le wallet s’ajoute ; l’émetteur reste décideur (token = J4).
+Consigne : wallet côté porteur + PSP côté acceptation ;
+l’émetteur reste décideur (token = J3 / J4).
+
+Ancrage page : Trois montages Magasin (sans PSP) · Web (+ PSP) ·
+Téléphone (+ Wallet + PSP).
 
 
 ================================================================================
