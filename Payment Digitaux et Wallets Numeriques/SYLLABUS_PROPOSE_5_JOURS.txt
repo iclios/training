@@ -21,10 +21,17 @@ JOUR 1 — Écosystème & flux carte (4h)
 Objectif du jour : poser le socle métier et transactionnel avant les canaux digitaux.
 
 1.1 Évolution des systèmes de paiement
+- Monnaie : définition, 3 fonctions, unité monétaire, 4 conditions
 - Paiement cash → carte → mobile → wallet
 - Paiements électroniques vs paiements digitaux
 - Paiements en ligne, de proximité et in-app
 - Paiements temps réel vs différés
+
+1.1b · Définitions monétiques (après évolution, avant les acteurs)
+- Technologies informatiques, magnétiques, électroniques, télématiques
+- Échange de fonds sans papier · relation tripartite
+- Triptyque : carte · TPE/DAB · banque
+- Domaines connexes (TES)
 
 1.2 Écosystème des paiements digitaux
 Acteurs clés :

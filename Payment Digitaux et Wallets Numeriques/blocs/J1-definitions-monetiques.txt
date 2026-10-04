@@ -1,0 +1,17 @@
+JOUR 1 — Définitions monétiques
+
+Objectif
+Poser la définition monétique et le périmètre TES avant les acteurs.
+
+Définition
+Technologies informatiques, magnétiques, électroniques et télématiques ;
+échange de fonds sans papier ; relation tripartite banques / commerces /
+consommateurs. Triptyque d’origine : carte (puce/piste) · TPE/DAB · banque.
+
+Domaines connexes (TES)
+Technologies monétiques adaptables aux Transactions Électroniques
+Sécurisées : porte-monnaie, fidélité, identité, passeport, santé,
+transport, téléphonie, vote, vie quotidienne, contrôle d’accès…
+
+Enchaînement
+Intro → Évolution → Définitions monétiques → Acteurs…

@@ -1,0 +1,186 @@
+{
+  "info": {
+    "_postman_id": "a8f3c2e1-4b5d-4e6a-9c1f-2d8e7b6a5c4d",
+    "name": "J1 ISO8583 Auth and Clearing",
+    "description": "ISO 8583 packed messages (MTI + bitmap + DE). Start mock_auth_server.py on port 8787 first.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "0 Legend MTI DE bitmap",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8787/iso8583/legend",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8787",
+          "path": ["iso8583", "legend"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "1 Auth APPROVE 0100 to 0110",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fields\": {\n    \"2\": \"4761730000000010\",\n    \"3\": \"000000\",\n    \"4\": \"000000002500\",\n    \"11\": \"000142\",\n    \"14\": \"2812\",\n    \"22\": \"051\",\n    \"41\": \"TIDLANE1\",\n    \"42\": \"MIDDEMO00000001\",\n    \"49\": \"978\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8787/iso8583/auth/approve",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8787",
+          "path": ["iso8583", "auth", "approve"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2 Auth DECLINE 0100 to 0110",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fields\": {\n    \"2\": \"4761730000000010\",\n    \"3\": \"000000\",\n    \"4\": \"000000250000\",\n    \"11\": \"000143\",\n    \"22\": \"071\",\n    \"41\": \"TIDLANE1\",\n    \"42\": \"MIDDEMO00000001\",\n    \"49\": \"978\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8787/iso8583/auth/decline",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8787",
+          "path": ["iso8583", "auth", "decline"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3 Clearing presentment 0220 to 0230",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"originalStan\": \"000142\",\n  \"authId\": \"A1B2C3\",\n  \"originalDE7\": \"1003061530\",\n  \"fields\": {\n    \"2\": \"4761730000000010\",\n    \"4\": \"000000002500\",\n    \"22\": \"051\",\n    \"41\": \"TIDLANE1\",\n    \"42\": \"MIDDEMO00000001\",\n    \"49\": \"978\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8787/iso8583/clearing/presentment",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8787",
+          "path": ["iso8583", "clearing", "presentment"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4 Settlement reconciliation 0500 to 0510",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"settlementDate\": \"1003\",\n  \"creditsNumber\": \"12\",\n  \"debitsNumber\": \"3\",\n  \"creditsAmount\": \"250000\",\n  \"debitsAmount\": \"35000\",\n  \"batchId\": \"STL*BATCH*EOD001\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8787/iso8583/settlement/reconciliation",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8787",
+          "path": ["iso8583", "settlement", "reconciliation"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5 Example Auth GET",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8787/iso8583/examples/auth-approve",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8787",
+          "path": ["iso8583", "examples", "auth-approve"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6 Example Clearing GET",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8787/iso8583/examples/clearing",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8787",
+          "path": ["iso8583", "examples", "clearing"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7 Example Settlement GET",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8787/iso8583/examples/settlement",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8787",
+          "path": ["iso8583", "examples", "settlement"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

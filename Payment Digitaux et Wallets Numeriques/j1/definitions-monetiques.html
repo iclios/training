@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Définitions monétiques — Jour 1 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="definitions-monetiques">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a class="is-active" href="intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · Après évolution</span>
+              </div>
+              <p class="day-kicker">Socle</p>
+              <h1>Définitions monétiques</h1>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Définition monétique</p>
+              <h2>Qu’est-ce que la monétique&nbsp;?</h2>
+              <p class="definition-full">
+                La monétique couvre l’ensemble des technologies
+                <strong>informatiques</strong>,
+                <strong>magnétiques</strong>,
+                <strong>électroniques</strong> et
+                <strong>télématiques</strong> qui permettent l’échange de
+                fonds <strong>sans supports papier</strong>. Elle implique une
+                relation <strong>tripartite</strong> entre les banques, les
+                commerces et les consommateurs.
+              </p>
+              <p class="intro" style="margin-top: 1rem">
+                Au sens strict, à l’origine, la monétique est liée au système
+                de paiement électronique qui intègre le triptyque&nbsp;:
+              </p>
+              <div class="diagram" id="diagram-triptyque" style="margin-top: 1rem">
+                <div class="diagram-header">
+                  <h3>Triptyque d’origine</h3>
+                  <p>Carte · terminal · établissement bancaire</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 200"
+                  role="img"
+                  aria-label="Triptyque monétique carte TPE banque"
+                >
+                  <g>
+                    <rect x="40" y="40" width="280" height="120" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="180" y="95" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Carte</text>
+                    <text x="180" y="125" text-anchor="middle" fill="#5a6b7c" font-size="12">puce ou piste magnétique</text>
+                  </g>
+                  <g>
+                    <rect x="360" y="40" width="280" height="120" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="500" y="95" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">TPE / DAB</text>
+                    <text x="500" y="125" text-anchor="middle" fill="#5a6b7c" font-size="12">terminal d’acceptation</text>
+                  </g>
+                  <g>
+                    <rect x="680" y="40" width="280" height="120" rx="12" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="820" y="95" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Banque</text>
+                    <text x="820" y="125" text-anchor="middle" fill="#5a6b7c" font-size="12">établissement bancaire</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Périmètre élargi</p>
+              <h2>Domaines connexes à la monétique</h2>
+              <p class="definition-full">
+                Les technologies et architectures déployées dans le monde
+                monétique sont adaptables à d’autres domaines regroupés sous
+                l’expression
+                <strong>«&nbsp;Transactions Électroniques Sécurisées&nbsp;»</strong>
+                (TES).
+              </p>
+              <div class="domaines-grid" aria-label="Domaines TES">
+                <div class="domaine-tile">
+                  <img src="../img/domaines/porte-monnaie.svg" alt="" width="72" height="72" />
+                  <span>Portemonnaies électroniques</span>
+                </div>
+                <div class="domaine-tile">
+                  <img src="../img/domaines/fidelite.svg" alt="" width="72" height="72" />
+                  <span>Cartes de fidélisation</span>
+                </div>
+                <div class="domaine-tile">
+                  <img src="../img/domaines/identite.svg" alt="" width="72" height="72" />
+                  <span>Cartes d’identité</span>
+                </div>
+                <div class="domaine-tile">
+                  <img src="../img/domaines/passeport.svg" alt="" width="72" height="72" />
+                  <span>Passeports électroniques</span>
+                </div>
+                <div class="domaine-tile">
+                  <img src="../img/domaines/sante.svg" alt="" width="72" height="72" />
+                  <span>Cartes d’assuré maladie</span>
+                </div>
+                <div class="domaine-tile">
+                  <img src="../img/domaines/transport.svg" alt="" width="72" height="72" />
+                  <span>Cartes de transports</span>
+                </div>
+                <div class="domaine-tile">
+                  <img src="../img/domaines/telephone.svg" alt="" width="72" height="72" />
+                  <span>Cartes téléphoniques</span>
+                </div>
+                <div class="domaine-tile">
+                  <img src="../img/domaines/vote.svg" alt="" width="72" height="72" />
+                  <span>Vote électronique</span>
+                </div>
+                <div class="domaine-tile">
+                  <img src="../img/domaines/vie-quotidienne.svg" alt="" width="72" height="72" />
+                  <span>Cartes de vie quotidienne</span>
+                </div>
+                <div class="domaine-tile">
+                  <img src="../img/domaines/acces.svg" alt="" width="72" height="72" />
+                  <span>Contrôle d’accès…</span>
+                </div>
+              </div>
+            </section>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a> · Définitions monétiques
+      </div>
+    </footer>
+    <script src="../js/app.js"></script>
+    <script src="../js/nav-j1.js"></script>
+    <script src="../js/fiche.js"></script>
+  </body>
+</html>

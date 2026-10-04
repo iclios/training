@@ -49,13 +49,17 @@
                     <ul>
                       <li>Terminal <strong>Ingenico Lane&nbsp;5000</strong></li>
                       <li>Cartes de test contact + sans contact</li>
-                      <li>Tickets / journaux terminaux (si dispo)</li>
+                      <li>Tickets / journaux terminaux</li>
                     </ul>
                   </div>
                   <div>
                     <h3>Logiciel</h3>
                     <ul>
-                      <li>Postman — collection mock Auth approve / decline</li>
+                      <li>Postman</li>
+                      <li>
+                        Fichiers atelier&nbsp;:
+                        <code>atelier/j1-postman/</code>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -239,16 +243,16 @@
                   <g class="step-panel" data-step="1">
                     <rect x="40" y="125" width="920" height="200" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
                     <text x="70" y="165" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Paiement test APPROVE</text>
-                    <text x="70" y="200" fill="#1a2b3c" font-size="13">Lancer la requête · noter status, auth code, ids (txn / merchant…).</text>
-                    <text x="70" y="230" fill="#1a2b3c" font-size="13">Relier au ticket Lane&nbsp;5000&nbsp;: même famille d’informations, autre format.</text>
-                    <text x="70" y="275" fill="#087a6a" font-size="13" font-weight="700">Ce n’est pas du clearing — c’est l’accord (ou le refus) de l’émetteur.</text>
+                    <text x="70" y="200" fill="#1a2b3c" font-size="13">MTI 0100 → 0110 · noter DE38 (auth ID), DE39=00, DE11 STAN, DE37 RRN.</text>
+                    <text x="70" y="230" fill="#1a2b3c" font-size="13">Relier au ticket Lane&nbsp;5000&nbsp;: même famille (auth code, MID/TID), autre surface.</text>
+                    <text x="70" y="275" fill="#087a6a" font-size="13" font-weight="700">DE39 = décision Auth — ce n’est pas du clearing.</text>
                   </g>
                   <g class="step-panel" data-step="2">
                     <rect x="40" y="125" width="920" height="200" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
                     <text x="70" y="165" fill="#c45c26" font-family="Syne, sans-serif" font-size="16" font-weight="700">Paiement test DECLINE</text>
-                    <text x="70" y="200" fill="#1a2b3c" font-size="13">Noter code / motif · distinguer refus métier (fonds, fraude…) vs erreur tech.</text>
+                    <text x="70" y="200" fill="#1a2b3c" font-size="13">DE39=51 (insufficient funds) · pas de DE38 · refus métier émetteur.</text>
                     <text x="70" y="230" fill="#1a2b3c" font-size="13">Comparer avec un decline terminal si disponible.</text>
-                    <text x="70" y="275" fill="#c45c26" font-size="13" font-weight="700">Le decline reste une Auth «&nbsp;terminée&nbsp;» — pas un oubli de settlement.</text>
+                    <text x="70" y="275" fill="#c45c26" font-size="13" font-weight="700">0110 avec DE39≠00 = Auth terminée — ≠ panne settlement.</text>
                   </g>
                   <g class="step-panel" data-step="3">
                     <rect x="40" y="125" width="920" height="200" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
@@ -271,6 +275,88 @@
                     <span class="n">3</span>
                     <span><strong>Placement</strong><p>Sur la chaîne.</p></span>
                   </button>
+                </div>
+              </div>
+
+              <div class="panel" style="margin-top: 1.5rem">
+                <h3>Fichiers fournis</h3>
+                <ul>
+                  <li>
+                    <a href="../atelier/j1-postman/mock_auth_server.py"
+                      ><code>mock_auth_server.py</code></a
+                    >
+                    — serveur mock Auth (port 8787)
+                  </li>
+                  <li>
+                    <a
+                      href="../atelier/j1-postman/J1-Auth-Approve-Decline.postman_collection.json"
+                      ><code>J1-Auth-Approve-Decline.postman_collection.json</code></a
+                    >
+                    — collection Postman (APPROVE / DECLINE)
+                  </li>
+                </ul>
+                <p class="intro" style="margin: 0.85rem 0 0">
+                  Aussi joints au
+                  <a href="support.html">support étudiant</a>.
+                </p>
+              </div>
+
+              <div class="panel ok" style="margin-top: 1rem">
+                <h3>Utiliser avec Postman (ISO&nbsp;8583 packé)</h3>
+                <ol class="topic-list" style="padding-left: 1.25rem">
+                  <li>
+                    Lancer le mock&nbsp;:
+                    <code>python3 mock_auth_server.py</code>
+                    (depuis <code>atelier/j1-postman/</code>)
+                  </li>
+                  <li>
+                    Import collection (ou saisie manuelle) — réimporter après
+                    mise à jour
+                  </li>
+                </ol>
+              </div>
+
+              <div style="margin-top: 1.5rem">
+                <p class="section-label">Synthèse</p>
+                <h2>Auth · clearing · réconciliation · règlement</h2>
+                <p class="intro">
+                  Chrono&nbsp;: Auth → compensation (chambre / netting) →
+                  règlement des positions nettes.
+                </p>
+                <div class="csm-table-wrap">
+                  <table class="csm-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Étape</th>
+                        <th scope="col">Rôle</th>
+                        <th scope="col">Forme typique</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><code>0100</code></th>
+                        <td>Autorisation</td>
+                        <td>Message online</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <code>0220</code> / fichiers clearing
+                        </th>
+                        <td>Compensation (opérations) → chambre / scheme</td>
+                        <td>Message et/ou fichier</td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><code>05xx</code></th>
+                        <td>Réconciliation des totaux</td>
+                        <td>Message (quand utilisé) — pas le règlement</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Settlement</th>
+                        <td>Règlement des positions nettes</td>
+                        <td>Souvent hors ISO&nbsp;8583 (banque de settlement, RTGS…)</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
 

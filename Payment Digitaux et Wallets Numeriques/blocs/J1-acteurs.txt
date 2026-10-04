@@ -3,7 +3,7 @@ Cours : Paiements digitaux & Wallets numériques
 Jour 1 · Écosystème
 Bloc : Acteurs de l’écosystème
 Durée indicative : 25–35 min
-Précédent : Évolution des paiements · Suivant : Standards EMVCo
+Précédent : Définitions monétiques · Suivant : Standards EMVCo
 Sources normes : documentation scheme, cadres locaux d’agrément PSP
 
 

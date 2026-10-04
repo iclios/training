@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Évolution des paiements — Jour 1 | Paiements digitaux</title>
-    <link rel="stylesheet" href="../css/styles.css?v=fresco3" />
+    <link rel="stylesheet" href="../css/styles.css?v=fresco5" />
   </head>
   <body data-bloc="evolution">
     <header class="site-bar">
@@ -43,10 +43,95 @@
 
           <div class="wrap">
 
-            <!-- 1. Définitions -->
+            <!-- 0. Monnaie -->
             <section class="section" style="border-top: none; padding-top: 0">
-              <p class="section-label">1 · Définir</p>
+              <p class="section-label">1 · Fondamentaux</p>
+              <h2>Monnaie</h2>
+              <div class="monnaie-hero">
+                <img
+                  src="../img/evolution/mon-piece.svg"
+                  alt=""
+                  width="160"
+                  height="120"
+                />
+                <p class="definition-full">
+                  Le terme <strong>monnaie</strong> désigne toute forme
+                  certifiant à l’acquéreur la valeur d’un bien mesurée dans un
+                  système accepté par tous les partenaires d’un échange.
+                </p>
+              </div>
+
+              <h3 class="monnaie-sub">Trois fonctions</h3>
+              <div class="monnaie-grid monnaie-grid-3" aria-label="Fonctions de la monnaie">
+                <article class="monnaie-tile">
+                  <img src="../img/evolution/mon-mesure.svg" alt="" width="72" height="72" />
+                  <strong>Mesure des valeurs</strong>
+                  <span>Unité de compte commune</span>
+                </article>
+                <article class="monnaie-tile">
+                  <img src="../img/evolution/mon-echange.svg" alt="" width="72" height="72" />
+                  <strong>Échange</strong>
+                  <span>Intermédiaire des transactions</span>
+                </article>
+                <article class="monnaie-tile">
+                  <img src="../img/evolution/mon-epargne.svg" alt="" width="72" height="72" />
+                  <strong>Épargne</strong>
+                  <span>Réserve de pouvoir d’achat</span>
+                </article>
+              </div>
+
+              <p class="definition-full" style="margin-top: 1.5rem">
+                L’<strong>unité monétaire</strong> est un signe monétaire doté
+                d’un réel pouvoir libératoire que les agents économiques
+                acceptent de recevoir en paiement dans un espace géographique
+                précis.
+              </p>
+
+              <h3 class="monnaie-sub">Quatre conditions du signe monétaire</h3>
+              <div class="monnaie-grid monnaie-grid-4" aria-label="Conditions du signe monétaire">
+                <article class="monnaie-tile">
+                  <img src="../img/evolution/mon-visible.svg" alt="" width="72" height="72" />
+                  <strong>Visible</strong>
+                </article>
+                <article class="monnaie-tile">
+                  <img src="../img/evolution/mon-convertible.svg" alt="" width="72" height="72" />
+                  <strong>Convertible</strong>
+                </article>
+                <article class="monnaie-tile">
+                  <img src="../img/evolution/mon-reconnu.svg" alt="" width="72" height="72" />
+                  <strong>Reconnu</strong>
+                  <span>Dans un espace ouvert</span>
+                </article>
+                <article class="monnaie-tile">
+                  <img src="../img/evolution/mon-protege.svg" alt="" width="72" height="72" />
+                  <strong>Protégé</strong>
+                  <span>Par le pouvoir exécutif</span>
+                </article>
+              </div>
+
+              <aside class="fil-suite" aria-label="Passage vers les formes de paiement">
+                <div class="fil-suite-rail" aria-hidden="true"></div>
+                <div class="fil-suite-body">
+                  <p class="fil-suite-label">Fil</p>
+                  <p>
+                    La monnaie fixe la <strong>valeur</strong> et le
+                    <strong>signe</strong>. Reste la question pratique&nbsp;:
+                    <em>sous quelle forme cette valeur circule-t-elle&nbsp;?</em>
+                    Quatre étapes successives — du cash au wallet — montrent ce
+                    qui s’ajoute à chaque fois.
+                  </p>
+                </div>
+              </aside>
+            </section>
+
+            <!-- 2. Définitions -->
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">2 · Définir</p>
               <h2>Quatre notions</h2>
+              <p class="lead" style="margin-top: 0.35rem">
+                Formes de circulation de la monnaie — et ce que chacune
+                implique pour le SI.
+              </p>
 
               <div class="notion-rail" aria-label="Cash, carte, mobile, wallet">
                 <article class="notion-tile">
@@ -125,7 +210,7 @@
 
             <!-- 2. Fresque -->
             <section class="section">
-              <p class="section-label">2 · Relier dans le temps</p>
+              <p class="section-label">3 · Relier dans le temps</p>
               <h2>Fresque schématique</h2>
 
               <div class="diagram" id="diagram-fresque-prop">
@@ -301,7 +386,7 @@
 
             <!-- 3. Distinctions syllabus -->
             <section class="section">
-              <p class="section-label">3 · Distinctions utiles</p>
+              <p class="section-label">4 · Distinctions utiles</p>
               <h2>Électronique · Canaux · Temporalité</h2>
 
               <!-- Électronique vs digital -->

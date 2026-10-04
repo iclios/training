@@ -3,7 +3,7 @@ Cours : Paiements digitaux & Wallets numériques
 Jour 1 · 1.1
 Bloc : Évolution des paiements
 Durée indicative : 30–35 min
-Précédent : Intro · Suivant : Acteurs
+Précédent : Intro · Suivant : Définitions monétiques
 
 
 ================================================================================
@@ -14,20 +14,33 @@ Chaque étape n’efface pas la précédente : elle s’ajoute — et avec elle 
 nouveaux intermédiaires / messages pour le SI.
 
 Ordre de séance
-1) Cash → carte → mobile → wallet (définir + fresque)
-2) Paiement électronique vs digital
-3) Paiement en ligne / proximité / in-app
-4) Paiement temps réel vs paiement différé
+1) Monnaie — définition, 3 fonctions, unité monétaire, 4 conditions
+2) Cash → carte → mobile → wallet (définir + fresque)
+3) Paiement électronique vs digital
+4) Paiement en ligne / proximité / in-app
+5) Paiement temps réel vs paiement différé
 
 
 ================================================================================
-2. CASH → CARTE → MOBILE → WALLET
+2. MONNAIE
+================================================================================
+Définition · 3 fonctions (mesure / échange / épargne)
+Unité monétaire · pouvoir libératoire · espace géographique
+4 conditions : visible · convertible · reconnu · protégé
+
+Fil vers suite
+Monnaie = valeur + signe → sous quelle forme circule-t-elle ?
+→ cash · carte · mobile · wallet
+
+
+================================================================================
+3. CASH → CARTE → MOBILE → WALLET
 ================================================================================
 (définitions + fresque « ce qui s’ajoute » — inchangé)
 
 
 ================================================================================
-3. DISTINCTIONS SYLLABUS
+4. DISTINCTIONS SYLLABUS
 ================================================================================
 Paiement électronique vs digital
 Pastilles cliquables → définitions en panneau.
@@ -51,8 +64,9 @@ Pont : vue message / argent · T+0 / post-tx
 
 
 ================================================================================
-4. CHECK
+5. CHECK
 ================================================================================
+[ ] Monnaie · 3 fonctions · 4 conditions
 [ ] Cash → carte → mobile → wallet
 [ ] Électronique ≠ digital
 [ ] Paiement en ligne / proximité / in-app

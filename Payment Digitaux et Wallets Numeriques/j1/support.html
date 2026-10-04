@@ -61,13 +61,57 @@
               <h2>Contenu à reprendre dans le PDF</h2>
               <ul class="topic-list">
                 <li>Évolution des paiements</li>
+                <li>Définitions monétiques</li>
                 <li>Acteurs de l’écosystème</li>
                 <li>Standards internationaux</li>
                 <li>Chaîne de valeur</li>
                 <li>Composants SI</li>
                 <li>Autorisation · Authentification · Clearing · Settlement</li>
                 <li>Online / offline & rejets</li>
+                <li>Atelier Postman — mock Auth approve / decline</li>
               </ul>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Pièces jointes</p>
+              <h2>Fichiers atelier Postman</h2>
+              <p class="intro">
+                À joindre au PDF / mail de remise — même dossier
+                <code>atelier/j1-postman/</code>.
+              </p>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>mock_auth_server.py</h3>
+                  <ul>
+                    <li>Serveur mock local (port 8787)</li>
+                    <li>
+                      <a href="../atelier/j1-postman/mock_auth_server.py" download
+                        >Télécharger le script</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Collection Postman</h3>
+                  <ul>
+                    <li>Requêtes Auth APPROVE / DECLINE</li>
+                    <li>
+                      <a
+                        href="../atelier/j1-postman/J1-Auth-Approve-Decline.postman_collection.json"
+                        download
+                        >Télécharger le JSON</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <p class="intro" style="margin-top: 1rem">
+                Usage&nbsp;: lancer le script → importer le JSON → Auth
+                (<code>0100</code>/<code>0110</code> avec bitmap) puis
+                clearing / compensation (<code>0220</code>/<code>0230</code>).
+                Détail dans
+                <a href="atelier.html#postman">Atelier · Postman</a>.
+              </p>
             </section>
 
             <section class="section">
@@ -76,7 +120,8 @@
               <div class="panel">
                 <p class="intro" style="margin: 0">
                   Lien / fichier PDF — à brancher ici quand le support sera
-                  finalisé.
+                  finalisé. Les deux fichiers Postman ci-dessus sont déjà
+                  prêts à joindre.
                 </p>
               </div>
             </section>

@@ -28,11 +28,19 @@ Physique
 - Tickets / journaux si disponibles
 
 Logiciel
-- Postman — collection mock Auth approve / decline
-- Optionnel : sandbox PSP (Stripe test…)
+- Postman
+- Fichiers atelier/j1-postman/ :
+  · mock_auth_server.py (mock ISO 8583, port 8787)
+  · J1-Auth-Approve-Decline.postman_collection.json
+- Joindre les 2 fichiers au support étudiant (PDF / mail)
 
-Règle
-- Cartes / MID / TID / clés de test uniquement — jamais de production
+Usage Postman (ISO 8583 packé)
+1. python3 mock_auth_server.py
+2. Import du JSON (ou saisie manuelle)
+3. Auth 0100→0110 : bitmap.hex + message_hex + DE38/DE39
+4. Decline : DE39=51, DE38 absent du bitmap
+5. Clearing/compensation 0220→0230 : DE38 + DE90 (lien Auth) + message_hex
+Note : message_hex = MTI+bitmap+DE (lien host pédagogique). Fichiers scheme (IPM/Base II) évoqués en note.
 
 
 ================================================================================

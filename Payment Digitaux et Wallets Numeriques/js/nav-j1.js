@@ -1,6 +1,7 @@
 window.J1_BLOCS = [
   { id: "intro", title: "Intro & objectifs", href: "intro.html" },
   { id: "evolution", title: "Évolution des paiements", href: "evolution.html" },
+  { id: "definitions-monetiques", title: "Définitions monétiques", href: "definitions-monetiques.html" },
   { id: "acteurs", title: "Acteurs de l’écosystème", href: "acteurs.html" },
   { id: "standards-emvco", title: "Standards internationaux", href: "standards-emvco.html" },
   { id: "chaine", title: "Chaîne de valeur", href: "chaine.html" },
