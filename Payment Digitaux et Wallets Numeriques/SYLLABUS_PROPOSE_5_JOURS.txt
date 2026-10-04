@@ -61,8 +61,8 @@ Composants SI (vue métier, pas plateforme complète) :
 
 1.4 Flux transactionnel carte
 Analyse détaillée :
-- Autorisation
 - Authentification
+- Autorisation
 - Clearing
 - Settlement
 

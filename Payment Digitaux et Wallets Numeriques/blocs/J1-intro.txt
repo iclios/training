@@ -35,7 +35,7 @@ Jours suivants : QR → tokenisation → NFC/wallets → omnicanal SI
 - Situer l’évolution cash → carte → mobile → wallet
 - Identifier les acteurs de l’écosystème
 - Restituer la chaîne de valeur et les composants SI
-- Distinguer autorisation, authentification, clearing, settlement
+- Distinguer authentification, autorisation, clearing, settlement
 - Qualifier online / offline et les types de rejets
 - Relier une manip sandbox à la chaîne monétique (atelier)
 

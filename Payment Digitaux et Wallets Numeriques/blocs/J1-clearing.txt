@@ -3,7 +3,7 @@ Cours : Paiements digitaux & Wallets numériques
 Jour 1 · Flux transactionnel carte
 Bloc : Clearing
 Durée indicative : 25–35 min
-Précédent : Authentification · Suivant : Settlement
+Précédent : Autorisation · Suivant : Settlement
 Sources : règles scheme · STET / CORE(FR) · single vs dual message
 
 

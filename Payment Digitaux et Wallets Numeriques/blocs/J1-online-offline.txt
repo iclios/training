@@ -62,7 +62,7 @@ Tentative online → indispo / timeout → politique de secours
 5. REJETS (schéma + seq-steps)
 ================================================================================
 1) Métier (AuthZ) — fonds, opposition, risque
-2) Authentification — PIN, 3DS, abandon
+2) Authentification — PIN/CVM, 3DS, abandon (bloc AuthN avant AuthZ)
 3) Technique — timeout, gateway, réseau, host
 4) Clearing — anomalie post-transaction (rappel)
 

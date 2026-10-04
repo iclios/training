@@ -61,6 +61,11 @@
               <em>au nom de</em> l’émetteur, pas du commerçant ni du scheme.
             </p>
           </div>
+          <p class="diagram-hint" style="margin-top: 1rem">
+            Bloc précédent&nbsp;:
+            <a href="authentification.html">Authentification</a>
+            (SDA / DDA / CDA · CVM · 3DS) — déjà vu avant cette AuthZ.
+          </p>
         </section>
 
         <!-- Cycle EMV -->
@@ -100,8 +105,8 @@
               <g>
                 <rect x="584" y="30" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
                 <image href="../img/emv/emv-oda.jpg" x="596" y="46" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
-                <text x="676" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">3 · Auth. données</text>
-                <text x="676" y="92" fill="#5a6b7c" font-size="11">offline</text>
+                <text x="676" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">3 · AuthN carte</text>
+                <text x="676" y="92" fill="#5a6b7c" font-size="11">SDA · DDA · CDA</text>
               </g>
 
               <!-- connecteur 1→2 rangée -->
@@ -116,7 +121,7 @@
                 <rect x="40" y="190" width="208" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
                 <image href="../img/emv/emv-cvm.jpg" x="52" y="206" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
                 <text x="130" y="232" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">4 · Porteur</text>
-                <text x="130" y="252" fill="#5a6b7c" font-size="11">CVM · AuthN</text>
+                <text x="130" y="252" fill="#5a6b7c" font-size="11">CVM · vérif. / ID</text>
               </g>
               <g>
                 <rect x="292" y="190" width="248" height="96" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
@@ -144,7 +149,7 @@
               </g>
 
               <text x="500" y="500" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                L’étape 4 = AuthN (porteur) · l’étape 6 = Auth (accord émetteur)
+                3 = AuthN carte (SDA/DDA/CDA) · 4 = CVM · 6 = AuthZ (ce bloc)
               </text>
             </svg>
           </div>
@@ -421,8 +426,8 @@
                 <li>Scoring / règles anti-fraude</li>
                 <li>Signaux device / comportement</li>
                 <li>
-                  Exigence d’AuthN porteur selon le contexte → bloc
-                  Authentification
+                  Signaux liés à l’AuthN / CVM déjà vus →
+                  <a href="authentification.html">Authentification</a>
                 </li>
               </ul>
             </div>

@@ -3,7 +3,7 @@ Cours : Paiements digitaux & Wallets numériques
 Jour 1 · Architecture générale
 Bloc : Composants SI
 Durée indicative : 30–40 min
-Précédent : Chaîne de valeur · Suivant : Autorisation
+Précédent : Chaîne de valeur · Suivant : Authentification
 Sources : architecture référence scheme / processeurs · PCI scope
 
 

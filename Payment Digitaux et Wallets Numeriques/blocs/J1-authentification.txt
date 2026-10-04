@@ -3,78 +3,71 @@ Cours : Paiements digitaux & Wallets numériques
 Jour 1 · Flux transactionnel carte
 Bloc : Authentification
 Durée indicative : 20–30 min
-Précédent : Autorisation · Suivant : Clearing
-Sources normes : à affiner (EMV, 3-D Secure / EMV 3DS, SCA / DSP2…)
+Précédent : Composants SI · Suivant : Autorisation
+Sources normes : à affiner (EMV ODA SDA/DDA/CDA, CVM, 3-D Secure, SCA / DSP2…)
 
 
 ================================================================================
 1. MÉTA FORMATEUR
 ================================================================================
 Objectif pédagogique
-À la fin du bloc, les participants définissent l’authentification au sens
-monétique, la localisent dans le cycle EMV (CVM · étape 4), la distinguent
-de l’autorisation, et illustrent proximité vs e-commerce.
+Distinguer AuthN carte (SDA/DDA/CDA), CVM (vérif./ID porteur) et AuthN e-com
+(3DS/ACS) ; localiser dans le cycle EMV ; illustrer les canaux.
 
 Idée clé
-« Authentification = légitimité du porteur / device / parcours.
-Autorisation = accord de l’émetteur sur l’opération. »
+« Carte : AuthN = SDA/DDA/CDA (données/carte).
+CVM = vérification / identification porteur (PIN, signature, No CVM).
+E-com : AuthN = 3DS / ACS. Autorisation = accord émetteur. »
 
 Posture
-1) Définition monétique
-2) Localiser AuthN dans le cycle EMV (étape 4 · CVM)
-3) Quatre canaux → modes AuthN → convergence autorisation
-4) Ancrage : trois cas de mode (POS · checkout · wallet)
+1) Définition AuthN selon canal + callout CVM ≠ AuthN carte
+2) Cycle EMV : étape 3 = ODA · étape 4 = CVM
+3) Quatre canaux → autorisation
+4) Ancrage POS / checkout / wallet
 
 
 ================================================================================
-2. DÉFINITION MONÉTIQUE
+2. DÉFINITION
 ================================================================================
-Authentification (paiement par carte / monétique)
-Ensemble des procédures permettant de s’assurer, avec un niveau de confiance
-adapté au canal, que l’opération est initiée par le porteur légitime du
-moyen de paiement — ou via un dispositif / parcours reconnu comme tel.
+AuthN carte EMV (Offline Data Authentication)
+SDA · DDA · CDA — authentifier la carte / ses données (pas le porteur).
 
+CVM
+Vérification / identification du porteur au POS :
+PIN · signature · No CVM. ≠ AuthN carte.
 
-================================================================================
-3. PLACE DANS LE CYCLE DE VIE EMV
-================================================================================
-Schéma illustré — localiser l’étape 4 (ce bloc)
-1. Sélection d’application
-2. Lecture des données
-3. Authentification des données (offline)
-4. Vérification du porteur (CVM · AuthN) ← CE BLOC
-5. Analyse de risque
-6. Autorisation online (AuthZ)
-7. Fin de transaction
-
-Contraste utile : AuthN (étape 4) ≠ autorisation (étape 6).
+AuthN e-com
+3-D Secure / ACS — authentifier le porteur dans le parcours web / in-app.
 
 
 ================================================================================
-4. CANAUX → MODES AUTHN → CONVERGENCE
+3. CYCLE EMV
 ================================================================================
-1) Carte (POS) — CVM : PIN · signature · seuils sans contact
-2) Web (checkout) — 3-D Secure : challenge / frictionless · ACS
-3) Wallet (tap) — biométrie device / CDCVM (détail J4)
-4) In-app — 3DS / SDK / wallet embarqué selon intégration
+1. Sélection
+2. Lecture
+3. AuthN carte — SDA / DDA / CDA  ← AuthN carte
+4. CVM — vérif. / ID porteur
+5. Risque
+6. Autorisation (AuthZ)
+7. Fin
 
-Tous convergent vers l’autorisation émetteur (accord / refus).
-Le canal change le mode AuthN — pas le décideur.
-
-
-================================================================================
-5. CAS — TROIS MODES
-================================================================================
-Cas 1 — POS magasin → CVM (PIN / seuils)
-Cas 2 — Checkout web → 3DS (challenge / frictionless · ACS)
-Cas 3 — Tap wallet → CDCVM / biométrie device
-Oral — In-app : selon intégration (3DS / SDK / wallet)
+Ce cycle = carte / POS. Web = autre mécanisme (3DS).
 
 
 ================================================================================
-6. CHECK DE FIN
+4. CANAUX
 ================================================================================
-[ ] Définition AuthN monétique restituée
-[ ] AuthN localisée EMV (étape 4)
-[ ] Mode cité pour POS, web et wallet
-[ ] Convergence vers autorisation rappelée
+1) Carte — SDA/DDA/CDA + CVM
+2) Web — AuthN 3DS / ACS
+3) Wallet — CDCVM (détail J4)
+4) In-app — 3DS / SDK / wallet
+
+
+================================================================================
+5. CHECK
+================================================================================
+[ ] SDA / DDA / CDA cités comme AuthN carte
+[ ] CVM ≠ AuthN
+[ ] 3DS / ACS pour le web
+[ ] Convergence autorisation
+[ ] Transition naturelle vers le bloc Autorisation

@@ -382,7 +382,7 @@
                     <text x="380" y="150" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">3-D Secure</text>
                     <text x="380" y="178" text-anchor="middle" fill="#5a6b7c" font-size="12">Challenge / frictionless</text>
                     <text x="380" y="200" text-anchor="middle" fill="#5a6b7c" font-size="12">AuthN ≠ autorisation</text>
-                    <text x="380" y="240" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">→ J1 AuthN</text>
+                    <text x="380" y="240" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">→ AuthN puis AuthZ</text>
                   </g>
                   <g>
                     <rect x="510" y="28" width="220" height="240" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
@@ -417,7 +417,12 @@
                     <span class="n">2</span>
                     <span>
                       <strong>3DS</strong>
-                      <p>Authentification e-commerce — distincte de l’autorisation émetteur.</p>
+                      <p>
+                        Authentification e-commerce — distincte de l’autorisation.
+                        <a href="authentification.html">J1 Authentification</a>
+                        ·
+                        <a href="autorisation.html">Autorisation</a>
+                      </p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
@@ -548,8 +553,8 @@
                     <text x="418" y="159" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">EMV 3DS</text>
                     <rect x="478" y="140" width="150" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
                     <text x="553" y="159" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">≠ autorisation</text>
-                    <text x="500" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">AuthN puis Auth</text>
-                    <text x="500" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">(+ 8583 en fond)</text>
+                    <text x="500" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">AuthN puis AuthZ</text>
+                    <text x="500" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">J1 AuthN → Auth</text>
                   </g>
                   <g>
                     <rect x="670" y="28" width="300" height="220" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
@@ -576,7 +581,12 @@
                     <span class="n">2</span>
                     <span>
                       <strong>Web</strong>
-                      <p>3DS authentifie le porteur ; l’émetteur autorise ensuite.</p>
+                      <p>
+                        3DS authentifie le porteur ; l’émetteur autorise ensuite —
+                        <a href="authentification.html">AuthN</a>
+                        puis
+                        <a href="autorisation.html">AuthZ</a>.
+                      </p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">

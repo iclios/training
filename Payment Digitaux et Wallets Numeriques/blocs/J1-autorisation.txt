@@ -3,7 +3,7 @@ Cours : Paiements digitaux & Wallets numériques
 Jour 1 · Flux transactionnel carte
 Bloc : Autorisation
 Durée indicative : 25–35 min
-Précédent : Chaîne de valeur · Suivant : Authentification
+Précédent : Authentification · Suivant : Clearing
 Sources normes : à affiner (ISO 8583 / messages scheme, EMV online, règles réseau…)
 
 
@@ -59,14 +59,14 @@ Caractéristiques monétiques
 Schéma illustré (cases + images) — localiser l’étape 6, sans clearing/settlement
 1. Sélection d’application
 2. Lecture des données
-3. Authentification des données (offline)
-4. Vérification du porteur (CVM · AuthN)
+3. AuthN carte (SDA / DDA / CDA) — bloc précédent
+4. Vérification du porteur (CVM · vérif. / ID) — bloc précédent
 5. Analyse de risque (terminal + carte)
 6. Autorisation online ← CE BLOC
 7. Fin de transaction (completion / scripts)
 
 Ne pas mélanger clearing / settlement sur cette page — blocs dédiés plus loin.
-Seul contraste utile ici : AuthN (étape 4) ≠ Auth (étape 6).
+Contraste : AuthN / CVM (3–4) ≠ AuthZ (étape 6).
 
 
 ================================================================================
@@ -126,7 +126,8 @@ un cycle de vie métier un peu différent (complétion / capture).
 ================================================================================
 7. CE QUE L’AUTORISATION N’EST PAS (sur cette page)
 ================================================================================
-≠ Authentification (CVM / AuthN)
+≠ Authentification carte (SDA/DDA/CDA) · ≠ CVM (vérif. / ID)
+  → page authentification.html (bloc précédent)
 Légitimité du porteur ≠ accord de l’émetteur sur l’opération.
 
 Clearing / settlement : hors page — blocs dédiés.
@@ -148,9 +149,8 @@ puis illustrer avec un cas.
 ================================================================================
 9. TRANSITION
 ================================================================================
-Vers Authentification
-« L’émetteur décide sur l’opération. Reste la preuve que c’est le bon
-porteur — autre brique, souvent préalable ou liée. »
+Rappel (bloc précédent)
+Authentification / CVM déjà vus — ici on traite la décision AuthZ.
 
 Vers Clearing
 « Accord obtenu : la monétique enchaîne ensuite sur la compensation. »
