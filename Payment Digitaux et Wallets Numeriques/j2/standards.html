@@ -49,10 +49,10 @@
                 plusieurs apps de lire et d’honorer le même code.
               </p>
               <p class="intro" style="margin-top: 0.85rem">
-                Suite de
-                <a href="normes-standards-qr.html">Normes et standards QR</a>
-                (18004 · EMV QR · profil)&nbsp;: ici on déroule interop, tags et
-                multi-wallet.
+                Après
+                <a href="emv-qr.html">Focus EMV QR</a>
+                (payload, tags, MPM/CPM)&nbsp;: ici l’empilement national /
+                international et l’interop multi-app.
               </p>
             </section>
 
@@ -152,100 +152,18 @@
             </section>
 
             <section class="section">
-              <p class="section-label">Payload</p>
-              <h2>EMV QR — quelques tags</h2>
+              <p class="section-label">Rappel</p>
+              <h2>Payload &amp; modes — déjà vu</h2>
               <p class="intro">
-                Même idées que le payload pédagogique (pipe) de Typologies —
-                autre syntaxe&nbsp;: <strong>TLV</strong> (Tag · Length · Value).
+                Tags TLV, CRC, POI&nbsp;11/12, MPM/CPM&nbsp;: voir
+                <a href="emv-qr.html">Focus EMV QR</a>. Ici on enchaîne sur
+                l’interop.
               </p>
-              <div class="diagram">
-                <div class="diagram-header">
-                  <h3>Repères EMV QR (extrait)</h3>
-                  <p>Pédagogique — pas une spec complète</p>
-                </div>
-                <pre class="payload-raw" aria-label="Exemple simplifié de structure EMV QR">00 … Payload Format · 01 … Point of Initiation · 26–51 … Merchant Account · 54 Amount · 53 Currency · 63 CRC</pre>
-                <div class="payload-fields" role="list">
-                  <div class="payload-field" role="listitem">
-                    <code>01</code>
-                    <strong>Point of Initiation</strong>
-                    <p><code>11</code> statique · <code>12</code> dynamique</p>
-                  </div>
-                  <div class="payload-field" role="listitem">
-                    <code>26–51</code>
-                    <strong>Merchant Account</strong>
-                    <p>Qui créditer (IDs scheme / banque / PSP)</p>
-                  </div>
-                  <div class="payload-field" role="listitem">
-                    <code>54</code>
-                    <strong>Amount</strong>
-                    <p>Montant — souvent vide en statique</p>
-                  </div>
-                  <div class="payload-field" role="listitem">
-                    <code>53</code>
-                    <strong>Currency</strong>
-                    <p>Code monétaire (ex. 952 = XOF)</p>
-                  </div>
-                  <div class="payload-field" role="listitem">
-                    <code>63</code>
-                    <strong>CRC</strong>
-                    <p>Contrôle d’intégrité du payload</p>
-                  </div>
-                </div>
-                <p class="fresco-legend">
-                  Le profil national précise quels tags sont obligatoires et
-                  comment remplir les Merchant Account Info.
-                </p>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Modes EMV</p>
-              <h2>Merchant-Presented · Consumer-Presented</h2>
-              <ul class="topic-list">
-                <li>
-                  <strong>EMVCo</strong> — MPM / CPM = … Presented
-                  <strong>Mode</strong> (critère&nbsp;: qui affiche le QR)
-                </li>
-                <li>
-                  <strong>Amalgame</strong> — pull / push ≠ vocabulaire EMV&nbsp;;
-                  à démêler (Typologies)
-                </li>
-              </ul>
-              <div class="diagram" id="diagram-mpm-cpm">
-                <div class="diagram-header">
-                  <h3>Qui présente le QR&nbsp;?</h3>
-                  <p>Vocabulaire EMV — MPM · CPM</p>
-                </div>
-                <svg
-                  viewBox="0 0 1000 260"
-                  role="img"
-                  aria-label="Merchant-Presented versus Consumer-Presented"
-                >
-                  <g>
-                    <rect x="40" y="30" width="440" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="260" y="65" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Merchant-Presented</text>
-                    <text x="260" y="95" text-anchor="middle" fill="#5a6b7c" font-size="13">≈ Pull</text>
-                    <image href="../img/acteurs/acteur-commercant.jpg" x="100" y="120" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="165" y="140" fill="#1a2b3c" font-size="13" font-weight="700">Marchand affiche</text>
-                    <text x="165" y="160" fill="#5a6b7c" font-size="12">Payeur scanne</text>
-                    <text x="260" y="195" text-anchor="middle" fill="#087a6a" font-size="12">Sticker · caisse</text>
-                  </g>
-                  <g>
-                    <rect x="520" y="30" width="440" height="180" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="740" y="65" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Consumer-Presented</text>
-                    <text x="740" y="95" text-anchor="middle" fill="#5a6b7c" font-size="13">≈ Push</text>
-                    <image href="../img/acteurs/acteur-porteur.jpg" x="580" y="120" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="645" y="140" fill="#1a2b3c" font-size="13" font-weight="700">Payeur présente</text>
-                    <text x="645" y="160" fill="#5a6b7c" font-size="12">Caisse scanne</text>
-                    <text x="740" y="195" text-anchor="middle" fill="#1e5f8a" font-size="12">Écran téléphone</text>
-                  </g>
-                </svg>
-              </div>
             </section>
 
             <section class="section">
               <p class="section-label">Interop</p>
-              <h2>Multi-wallet — qui lit quoi&nbsp;?</h2>
+              <h2>Multi-app — qui lit quoi&nbsp;?</h2>
               <p class="intro">
                 Open-loop&nbsp;: plusieurs apps (banque / wallet) honorent le
                 <strong>même</strong> QR marchand.

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Focus EMV QR — Jour 2 | Paiements digitaux</title>
+    <link rel="stylesheet" href="../css/styles.css?v=present6" />
+  </head>
+  <body data-bloc="emv-qr">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >Paiements digitaux <span>&amp; Wallets</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a class="is-active" href="intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · QR</span>
+              </div>
+              <p class="day-kicker">2.3 · Focus EMV QR</p>
+              <h1>Focus EMV QR</h1>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Définition</p>
+              <h2>Qu’est-ce que la spec EMV QR&nbsp;?</h2>
+              <p class="definition-full">
+                Les <strong>EMV QR Code Specifications</strong> (EMVCo)
+                définissent le <strong>format de données</strong> d’un QR de
+                paiement&nbsp;: comment encoder / décoder le payload pour
+                initier une transaction. Ce n’est
+                <strong>pas</strong> le protocole réseau après le scan
+                (Auth / clearing), ni la norme optique
+                <strong>ISO/IEC 18004</strong>, ni les specs
+                <strong>EMV carte à puce</strong>.
+              </p>
+              <ul class="topic-list" style="margin-top: 1rem">
+                <li>
+                  <strong>Deux documents</strong> — MPM (marchand présente) et
+                  CPM (consommateur présente)
+                </li>
+                <li>
+                  <strong>But</strong> — un format commun pour qu’apps et
+                  réseaux lisent le même type de payload
+                </li>
+                <li>
+                  <strong>Limite</strong> — messaging après lecture = hors
+                  scope (scheme, issuer, PSP)
+                </li>
+              </ul>
+
+              <div class="diagram" id="diagram-emv-qr-vs-chip" style="margin-top: 1.5rem">
+                <div class="diagram-header">
+                  <h3>Parallèle avec EMV chip</h3>
+                  <p>Couche support (ISO) · couche paiement (EMVCo)</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 300"
+                  role="img"
+                  aria-label="ISO 18004 et EMV QR face à ISO 7816 et EMV chip"
+                >
+                  <text x="250" y="28" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Canal carte</text>
+                  <text x="750" y="28" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Canal QR</text>
+
+                  <g>
+                    <rect x="40" y="48" width="420" height="90" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="250" y="78" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">EMV chip (Contact)</text>
+                    <text x="250" y="104" text-anchor="middle" fill="#1a2b3c" font-size="13">Couche paiement — appli carte</text>
+                    <text x="250" y="124" text-anchor="middle" fill="#5a6b7c" font-size="11">AuthZ, cryptogrammes, CVM…</text>
+                  </g>
+                  <g>
+                    <rect x="540" y="48" width="420" height="90" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="750" y="78" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">EMV QR</text>
+                    <text x="750" y="104" text-anchor="middle" fill="#1a2b3c" font-size="13">Couche paiement — payload</text>
+                    <text x="750" y="124" text-anchor="middle" fill="#5a6b7c" font-size="11">TLV, IDs, CRC, MPM / CPM…</text>
+                  </g>
+
+                  <text x="250" y="158" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">sur</text>
+                  <text x="750" y="158" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">sur</text>
+
+                  <g>
+                    <rect x="40" y="172" width="420" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="250" y="202" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">ISO/IEC 7816</text>
+                    <text x="250" y="228" text-anchor="middle" fill="#1a2b3c" font-size="13">Couche support — interface carte</text>
+                    <text x="250" y="248" text-anchor="middle" fill="#5a6b7c" font-size="11">Contacts · APDU (hors paiement seul)</text>
+                  </g>
+                  <g>
+                    <rect x="540" y="172" width="420" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="750" y="202" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">ISO/IEC 18004</text>
+                    <text x="750" y="228" text-anchor="middle" fill="#1a2b3c" font-size="13">Couche support — symbologie QR</text>
+                    <text x="750" y="248" text-anchor="middle" fill="#5a6b7c" font-size="11">Génération / lecture de la matrice</text>
+                  </g>
+
+                  <text x="500" y="288" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Formule : 18004 : EMV QR ≈ 7816 : EMV chip — support vs paiement
+                  </text>
+                </svg>
+                <div class="callout" style="margin-top: 1rem">
+                  <h3>À retenir</h3>
+                  <p>
+                    <strong>18004</strong> = processus de génération (et de
+                    décodage) du symbole&nbsp;: modes, version, correction
+                    d’erreur, masque…
+                    <strong>EMV QR</strong> = ce que la chaîne de données
+                    <em>paiement</em> contient avant / après ce passage. En
+                    sans contact carte, le parallèle radio est plutôt
+                    <strong>ISO 14443</strong> → EMV Contactless.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Sources</p>
+              <h2>Où trouver la spec&nbsp;?</h2>
+              <ul class="topic-list">
+                <li>
+                  <strong>Portail EMVCo</strong> —
+                  <a
+                    href="https://www.emvco.com/emv-technologies/qr-codes/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >emvco.com · EMV QR Codes</a
+                  >
+                  (vue d’ensemble, FAQ, marques / icônes)
+                </li>
+                <li>
+                  <strong>Specs complètes</strong> — PDF MPM / CPM via le
+                  canal EMVCo (Associates / Subscribers)&nbsp;; versions
+                  publiques circulent aussi (ex. MPM v1.1)
+                </li>
+                <li>
+                  <strong>Compléments</strong> — guidance Merchant-Presented
+                  (exemples de traitement), règles des
+                  <em>QR Payment Marks</em>
+                </li>
+                <li>
+                  <strong>Profils nationaux</strong> — hors EMVCo&nbsp;: banque
+                  centrale / switch / scheme local (obligations tags, IDs
+                  marchands)
+                </li>
+              </ul>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Sommaire</p>
+              <h2>Modules de la spec MPM</h2>
+              <p class="intro">
+                Vue <strong>MPM</strong>. Cliquez un bloc pour le détail et
+                ses dépendances — les contenus (C) s’appuient sur le noyau
+                TLV (B).
+              </p>
+
+              <div class="diagram" id="diagram-emv-modules">
+                <div class="diagram-header">
+                  <h3>Dépendances</h3>
+                  <p>Cliquez un module · A → B → C → D · E transversales</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 340"
+                  role="img"
+                  aria-label="Modules EMV QR MPM cliquables"
+                >
+                  <defs>
+                    <marker id="ah-emv-mod" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <g class="node-hit" data-module="a" tabindex="0" role="button" aria-label="Module A mise en contexte">
+                    <rect x="80" y="20" width="840" height="52" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="500" y="42" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">A · Mise en contexte</text>
+                    <text x="500" y="60" text-anchor="middle" fill="#5a6b7c" font-size="11">Introduction · Overview</text>
+                  </g>
+
+                  <line class="flow-line" x1="500" y1="72" x2="500" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-emv-mod)"/>
+
+                  <g class="node-hit" data-module="b" tabindex="0" role="button" aria-label="Module B noyau">
+                    <rect x="80" y="96" width="840" height="52" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="500" y="118" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">B · Noyau</text>
+                    <text x="500" y="136" text-anchor="middle" fill="#5a6b7c" font-size="11">Payload &amp; organisation TLV · Requirements</text>
+                  </g>
+
+                  <line class="flow-line" x1="500" y1="148" x2="500" y2="168" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-emv-mod)"/>
+
+                  <g class="node-hit" data-module="c1" tabindex="0" role="button" aria-label="Module C1 Merchant Account">
+                    <rect x="80" y="172" width="200" height="70" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="180" y="200" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">C1 · Merchant</text>
+                    <text x="180" y="220" text-anchor="middle" fill="#5a6b7c" font-size="11">Account 26–51</text>
+                  </g>
+                  <g class="node-hit" data-module="c2" tabindex="0" role="button" aria-label="Module C2 Additional Data">
+                    <rect x="295" y="172" width="200" height="70" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="395" y="200" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">C2 · Additional</text>
+                    <text x="395" y="220" text-anchor="middle" fill="#5a6b7c" font-size="11">Data · template 62</text>
+                  </g>
+                  <g class="node-hit" data-module="c3" tabindex="0" role="button" aria-label="Module C3 Language">
+                    <rect x="510" y="172" width="200" height="70" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="610" y="200" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">C3 · Language</text>
+                    <text x="610" y="220" text-anchor="middle" fill="#5a6b7c" font-size="11">template 64</text>
+                  </g>
+                  <g class="node-hit" data-module="c4" tabindex="0" role="button" aria-label="Module C4 RFU Unreserved">
+                    <rect x="725" y="172" width="195" height="70" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="822" y="200" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">C4 · RFU / Unres.</text>
+                    <text x="822" y="220" text-anchor="middle" fill="#5a6b7c" font-size="11">65–99 · extensions</text>
+                  </g>
+
+                  <line class="flow-line" x1="500" y1="242" x2="500" y2="262" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-emv-mod)"/>
+
+                  <g class="node-hit" data-module="d" tabindex="0" role="button" aria-label="Module D pont optique">
+                    <rect x="80" y="266" width="560" height="52" rx="8" fill="#f4f7ff" stroke="#4a6fa5" stroke-width="2"/>
+                    <text x="360" y="288" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">D · Pont optique — Data coding</text>
+                    <text x="360" y="306" text-anchor="middle" fill="#5a6b7c" font-size="11">Payload complet → symbole ISO/IEC 18004</text>
+                  </g>
+
+                  <g class="node-hit" data-module="e" tabindex="0" role="button" aria-label="Module E annexes">
+                    <rect x="660" y="266" width="260" height="52" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="790" y="288" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">E · Annexes</text>
+                    <text x="790" y="306" text-anchor="middle" fill="#5a6b7c" font-size="11">Dictionnaire · exemples</text>
+                  </g>
+                </svg>
+
+                <div class="detail-panel fresco-detail" id="emv-modules-detail">
+                  <p class="detail-placeholder">
+                    Cliquez un bloc du schéma pour afficher son contenu et
+                    ses dépendances.
+                  </p>
+                  <div class="detail-body" hidden>
+                    <header class="fresco-fiche-head">
+                      <p class="fresco-fiche-kicker" data-f-kicker></p>
+                      <h4 data-f-title></h4>
+                      <p class="fresco-fiche-sub" data-f-sub hidden></p>
+                    </header>
+                    <ul class="fresco-aspects" data-f-aspects></ul>
+                  </div>
+                </div>
+              </div>
+
+              <p class="fresco-legend">
+                Suite de la page&nbsp;: focus pédagogique SI — pas le détail
+                de chaque sous-tag.
+              </p>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Deux specs</p>
+              <h2>MPM · CPM</h2>
+              <p class="intro">
+                Critère unique&nbsp;: <strong>qui présente</strong> le QR
+                (déjà vu en Typologies).
+              </p>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>MPM</h3>
+                  <ul>
+                    <li>Merchant-Presented Mode</li>
+                    <li>Marchand affiche · payeur scanne</li>
+                    <li>Payload = infos marchand (± montant)</li>
+                    <li>Cas courant&nbsp;: sticker, ticket, caisse</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>CPM</h3>
+                  <ul>
+                    <li>Consumer-Presented Mode</li>
+                    <li>Payeur affiche · caisse / POI scanne</li>
+                    <li>Payload = credentials côté consommateur</li>
+                    <li>Souvent lié à un instrument provisionné</li>
+                  </ul>
+                </div>
+              </div>
+              <p class="fresco-legend">
+                Suite du cours = surtout <strong>MPM</strong> (acceptation
+                marchand). CPM = même famille, autre sens du flux optique.
+              </p>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Syntaxe</p>
+              <h2>TLV — Tag · Length · Value</h2>
+              <p class="intro">
+                Au tableau&nbsp;: chaque objet du payload EMV QR est un
+                triplet. On lit de gauche à droite, objet après objet,
+                jusqu’au CRC.
+              </p>
+
+              <div class="diagram" id="diagram-tlv-board">
+                <div class="diagram-header">
+                  <h3>Un objet = trois cases</h3>
+                  <p>Type (ID) · Taille · Valeur — toujours dans cet ordre</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 300"
+                  role="img"
+                  aria-label="Tableau TLV Tag Length Value"
+                >
+                  <!-- Trois cases encadrées -->
+                  <g>
+                    <rect x="60" y="28" width="260" height="130" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="190" y="64" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="700">T · Tag</text>
+                    <text x="190" y="92" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Type de donnée</text>
+                    <text x="190" y="116" text-anchor="middle" fill="#5a6b7c" font-size="12">Toujours 2 chiffres</text>
+                    <text x="190" y="140" text-anchor="middle" fill="#5a6b7c" font-size="12">ex. 00 · 01 · 26 · 54 · 63</text>
+                  </g>
+                  <g>
+                    <rect x="370" y="28" width="260" height="130" rx="10" fill="#f4f7ff" stroke="#4a6fa5" stroke-width="3"/>
+                    <text x="500" y="64" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="18" font-weight="700">L · Length</text>
+                    <text x="500" y="92" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Taille</text>
+                    <text x="500" y="116" text-anchor="middle" fill="#5a6b7c" font-size="12">Toujours 2 chiffres</text>
+                    <text x="500" y="140" text-anchor="middle" fill="#5a6b7c" font-size="12">nb de caractères de V</text>
+                  </g>
+                  <g>
+                    <rect x="680" y="28" width="260" height="130" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+                    <text x="810" y="64" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="18" font-weight="700">V · Value</text>
+                    <text x="810" y="92" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Valeur</text>
+                    <text x="810" y="116" text-anchor="middle" fill="#5a6b7c" font-size="12">Contenu métier</text>
+                    <text x="810" y="140" text-anchor="middle" fill="#5a6b7c" font-size="12">longueur = L</text>
+                  </g>
+
+                  <!-- Mini exemple au tableau -->
+                  <text x="500" y="188" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Mini-exemple au tableau — premier objet d’un payload MPM
+                  </text>
+                  <rect x="200" y="204" width="600" height="72" rx="8" fill="#1a2b3c"/>
+                  <text x="280" y="238" text-anchor="middle" fill="#7dcea0" font-family="ui-monospace, monospace" font-size="22" font-weight="700">00</text>
+                  <text x="360" y="238" text-anchor="middle" fill="#9bb8d4" font-family="ui-monospace, monospace" font-size="22" font-weight="700">02</text>
+                  <text x="480" y="238" text-anchor="middle" fill="#f0b27a" font-family="ui-monospace, monospace" font-size="22" font-weight="700">01</text>
+                  <text x="640" y="238" text-anchor="middle" fill="#e7f6f3" font-size="14">→ Format EMV = 01</text>
+                  <text x="280" y="262" text-anchor="middle" fill="#7dcea0" font-size="12">T · type</text>
+                  <text x="360" y="262" text-anchor="middle" fill="#9bb8d4" font-size="12">L · taille</text>
+                  <text x="480" y="262" text-anchor="middle" fill="#f0b27a" font-size="12">V · valeur</text>
+                </svg>
+                <p class="fresco-legend">
+                  L’app avance de 2 + 2 + L caractères, puis recommence — jusqu’à
+                  l’objet <code>63</code> (CRC). Suite&nbsp;: un payload complet.
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Exemple</p>
+              <h2>Un payload MPM complet</h2>
+              <p class="intro">
+                On applique le TLV sur une chaîne <strong>fictive</strong>
+                complète (CRC valide) — sticker <strong>statique</strong>,
+                sans montant.
+              </p>
+              <div class="diagram" id="diagram-emv-payload-full">
+                <div class="diagram-header">
+                  <h3>Payload brut → schéma TLV</h3>
+                  <p>Chaîne complète, puis découpe objet par objet</p>
+                </div>
+                <pre
+                  class="payload-raw"
+                  aria-label="Exemple complet de payload EMV QR MPM statique"
+                >00020101021126300014com.example.qr0108DEMO00015204541153039525802SN5913BOUTIQUE DEMO6005DAKAR6304D678</pre>
+                <svg
+                  viewBox="0 0 1000 420"
+                  role="img"
+                  aria-label="Schéma de découpe TLV du payload EMV QR"
+                  style="margin-top: 0.5rem"
+                >
+                  <text x="500" y="22" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Même payload — chaque case = un objet TLV (ID · longueur · valeur)
+                  </text>
+
+                  <!-- Ligne 1 : 00, 01 -->
+                  <g>
+                    <rect x="40" y="40" width="140" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="110" y="62" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">00</text>
+                    <text x="110" y="82" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">000201</text>
+                    <text x="110" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">Format = 01</text>
+                  </g>
+                  <g>
+                    <rect x="195" y="40" width="140" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="265" y="62" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">01</text>
+                    <text x="265" y="82" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">010211</text>
+                    <text x="265" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">POI = 11 statique</text>
+                  </g>
+
+                  <!-- 26 large -->
+                  <g>
+                    <rect x="350" y="40" width="610" height="70" rx="8" fill="#f4f7ff" stroke="#4a6fa5" stroke-width="2"/>
+                    <text x="655" y="62" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">26 · Merchant Account (len 30)</text>
+                    <text x="655" y="82" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">26300014com.example.qr0108DEMO0001</text>
+                    <text x="655" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">Qui créditer / router — template (sous-objets ↓)</text>
+                  </g>
+
+                  <!-- flèche vers nested -->
+                  <line x1="655" y1="110" x2="655" y2="128" stroke="#4a6fa5" stroke-width="2"/>
+                  <polygon points="655,134 650,126 660,126" fill="#4a6fa5"/>
+
+                  <!-- nested 00 / 01 under 26 -->
+                  <g>
+                    <rect x="400" y="140" width="250" height="64" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="525" y="162" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">26→00 GUID</text>
+                    <text x="525" y="180" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">0014com.example.qr</text>
+                    <text x="525" y="196" text-anchor="middle" fill="#5a6b7c" font-size="10">programme / scheme</text>
+                  </g>
+                  <g>
+                    <rect x="670" y="140" width="230" height="64" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="785" y="162" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">26→01 Merchant ID</text>
+                    <text x="785" y="180" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">0108DEMO0001</text>
+                    <text x="785" y="196" text-anchor="middle" fill="#5a6b7c" font-size="10">ID marchand</text>
+                  </g>
+
+                  <!-- Ligne 2 : 52 53 58 -->
+                  <g>
+                    <rect x="40" y="230" width="200" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="140" y="252" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">52</text>
+                    <text x="140" y="272" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">52045411</text>
+                    <text x="140" y="290" text-anchor="middle" fill="#5a6b7c" font-size="10">MCC = 5411</text>
+                  </g>
+                  <g>
+                    <rect x="255" y="230" width="200" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="355" y="252" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">53</text>
+                    <text x="355" y="272" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">5303952</text>
+                    <text x="355" y="290" text-anchor="middle" fill="#5a6b7c" font-size="10">Devise = 952 (XOF)</text>
+                  </g>
+                  <g>
+                    <rect x="470" y="230" width="200" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="570" y="252" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">58</text>
+                    <text x="570" y="272" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">5802SN</text>
+                    <text x="570" y="290" text-anchor="middle" fill="#5a6b7c" font-size="10">Pays = SN</text>
+                  </g>
+                  <g>
+                    <rect x="685" y="230" width="275" height="70" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="822" y="252" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="13" font-weight="700">63</text>
+                    <text x="822" y="272" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">6304D678</text>
+                    <text x="822" y="290" text-anchor="middle" fill="#5a6b7c" font-size="10">CRC = D678</text>
+                  </g>
+
+                  <!-- Ligne 3 : 59 60 -->
+                  <g>
+                    <rect x="40" y="320" width="460" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="270" y="342" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">59</text>
+                    <text x="270" y="362" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">5913BOUTIQUE DEMO</text>
+                    <text x="270" y="380" text-anchor="middle" fill="#5a6b7c" font-size="10">Merchant Name = BOUTIQUE DEMO</text>
+                  </g>
+                  <g>
+                    <rect x="520" y="320" width="440" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="740" y="342" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">60</text>
+                    <text x="740" y="362" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">6005DAKAR</text>
+                    <text x="740" y="380" text-anchor="middle" fill="#5a6b7c" font-size="10">Merchant City = DAKAR</text>
+                  </g>
+
+                  <text x="500" y="412" text-anchor="middle" fill="#5a6b7c" font-size="11">
+                    Ordre de lecture gauche → droite, haut → bas · pas de tag 54 (statique)
+                  </text>
+                </svg>
+
+                <figure class="qr-hero" style="margin-left: auto; margin-right: auto">
+                  <img
+                    src="../img/qr/qr-emv-mpm-demo.png"
+                    alt="QR code ISO/IEC 18004 encodant le payload EMV MPM de démonstration"
+                    width="220"
+                    height="220"
+                  />
+                  <figcaption>
+                    <strong>Support optique (ISO/IEC 18004)</strong> — même
+                    payload que ci-dessus, passé en matrice QR (version&nbsp;6,
+                    ECC&nbsp;M). Scannable&nbsp;; une app paiement est
+                    nécessaire pour l’interpréter (≠ caméra OS seule).
+                  </figcaption>
+                </figure>
+
+                <p class="fresco-legend">
+                  Variante dynamique (même marchand)&nbsp;:
+                  <code>01</code>=<code>12</code> +
+                  <code>54</code>=montant + souvent
+                  <code>62</code> (réf.) — ex.&nbsp;:
+                  <code>…54042500…62120108FAC-7781…6304106A</code>
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Tags à connaître</p>
+              <h2>Les IDs qui changent le SI</h2>
+              <p class="intro">
+                Trois zones dans le payload&nbsp;: socle parseur, données
+                opérationnelles, et champs cadrés par le
+                <strong>profil pays / international</strong>.
+              </p>
+
+              <div class="diagram" id="diagram-emv-ids-si">
+                <div class="diagram-header">
+                  <h3>Carte des IDs</h3>
+                  <p>Ce que lit le SI · ce que le profil cadre ensuite</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 360"
+                  role="img"
+                  aria-label="Schéma des IDs EMV QR qui changent le SI"
+                >
+                  <!-- Zone A socle -->
+                  <rect x="40" y="28" width="300" height="200" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="190" y="58" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">A · Socle</text>
+                  <text x="190" y="78" text-anchor="middle" fill="#5a6b7c" font-size="11">Structure · parseur</text>
+                  <rect x="60" y="96" width="260" height="36" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <text x="190" y="119" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">00</tspan>  Format — entrée parseur</text>
+                  <rect x="60" y="142" width="260" height="36" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <text x="190" y="165" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">01</tspan>  POI 11 / 12</text>
+                  <rect x="60" y="188" width="260" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <text x="190" y="207" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">63</tspan>  CRC — intégrité</text>
+
+                  <!-- Zone B opération -->
+                  <rect x="360" y="28" width="300" height="200" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="510" y="58" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">B · Opération</text>
+                  <text x="510" y="78" text-anchor="middle" fill="#5a6b7c" font-size="11">Montant · affichage</text>
+                  <rect x="380" y="96" width="260" height="36" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                  <text x="510" y="119" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">52</tspan>  MCC</text>
+                  <rect x="380" y="142" width="260" height="36" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                  <text x="510" y="165" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">53 / 54</tspan>  Devise · montant</text>
+                  <rect x="380" y="188" width="260" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                  <text x="510" y="207" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">58–60</tspan>  Pays · nom · ville</text>
+
+                  <!-- Zone C profil — surlignée -->
+                  <rect x="680" y="28" width="280" height="200" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+                  <text x="820" y="54" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="700">C · Profil</text>
+                  <text x="820" y="72" text-anchor="middle" fill="#5a6b7c" font-size="10">National · international</text>
+                  <rect x="698" y="88" width="244" height="40" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                  <text x="820" y="106" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">26–51</text>
+                  <text x="820" y="122" text-anchor="middle" fill="#5a6b7c" font-size="10">Merchant Account · routage</text>
+                  <rect x="698" y="138" width="244" height="40" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                  <text x="820" y="156" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">62</text>
+                  <text x="820" y="172" text-anchor="middle" fill="#5a6b7c" font-size="10">Additional Data · réf. / tip</text>
+                  <rect x="698" y="188" width="244" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                  <text x="820" y="207" text-anchor="middle" fill="#1a2b3c" font-size="12"><tspan font-weight="700">80–99</tspan>  Unreserved</text>
+
+                  <!-- Bandeau bas -->
+                  <rect x="40" y="250" width="920" height="78" rx="10" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                  <text x="500" y="280" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="700">Zone C — EMV fixe la structure, le profil fixe les règles</text>
+                  <text x="500" y="304" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Obligations, remplissage GUID / IDs, switch · détail → Standards &amp; interop (QR national · international)
+                  </text>
+                </svg>
+                <p class="fresco-legend">
+                  Suite&nbsp;:
+                  <a href="standards.html">Standards &amp; interopérabilité</a>
+                  pour dérouler national / international.
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Règles utiles</p>
+              <h2>Cinq points opérationnels</h2>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Côté génération</h3>
+                  <ul>
+                    <li>Ordre des IDs et CRC calculé sur le payload</li>
+                    <li>Statique&nbsp;: pas (ou peu) de montant</li>
+                    <li>Dynamique&nbsp;: montant + réf. + fenêtre de vie</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Côté lecture</h3>
+                  <ul>
+                    <li>Parser TLV → valider CRC → extraire IDs</li>
+                    <li>Caméra OS seule ≠ app paiement</li>
+                    <li>Messaging Auth = hors scope EMV QR (réseau / issuer)</li>
+                  </ul>
+                </div>
+              </div>
+              <ul class="topic-list" style="margin-top: 1rem">
+                <li>
+                  <strong>Un QR, plusieurs programmes</strong> — plusieurs
+                  blocs Merchant Account possibles dans le même sticker
+                  (selon marchés)
+                </li>
+                <li>
+                  <strong>Account-based et card-based</strong> — EMV QR
+                  peut porter les deux familles (champs prévus)
+                </li>
+                <li>
+                  <strong>RFU</strong> — IDs réservés&nbsp;: l’app doit
+                  ignorer ce qu’elle ne connaît pas (évolutivité)
+                </li>
+              </ul>
+            </section>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 2</a>
+        · Focus EMV QR
+      </div>
+    </footer>
+
+    <script src="../js/nav-j2.js"></script>
+    <script src="../js/fiche.js"></script>
+
+    <script>
+      (function () {
+        const fiches = {
+          a: {
+            title: "Mise en contexte",
+            kicker: "Module A",
+            subtitle: "Dépend de : — (point d’entrée)",
+            aspects: [
+              "Introduction — objet du document, références normatives, conventions d’écriture.",
+              "Overview — déroulé d’un paiement QR EMV (marchand, app, réseau).",
+              "Pose le vocabulaire avant les règles TLV — pas encore le format du payload.",
+            ],
+          },
+          b: {
+            title: "Noyau",
+            kicker: "Module B",
+            subtitle: "Dépend de : A",
+            aspects: [
+              "Payload & organisation — chaîne TLV, allocation des IDs (root, templates).",
+              "Requirements — présence, longueurs, valeurs ; objets root (00, 01, montant, devise, CRC…).",
+              "Socle technique : sans B, les blocs C et le data coding n’ont pas de règles.",
+            ],
+          },
+          c1: {
+            title: "Merchant Account Info",
+            kicker: "Module C1 · IDs 26–51",
+            subtitle: "Dépend de : B · parallèle aux autres C",
+            aspects: [
+              "Qui créditer / comment router (GUID scheme, IDs banque / PSP…).",
+              "Cœur métier du sticker MPM pour l’acceptation.",
+              "Plusieurs blocs possibles dans un même QR (selon marchés).",
+            ],
+          },
+          c2: {
+            title: "Additional Data",
+            kicker: "Module C2 · template 62",
+            subtitle: "Dépend de : B · parallèle aux autres C",
+            aspects: [
+              "Données additionnelles : réf. facture, store label, tip / convenience…",
+              "Le profil national précise souvent ce qui est obligatoire.",
+              "Ne remplace pas le Merchant Account — le complète.",
+            ],
+          },
+          c3: {
+            title: "Language template",
+            kicker: "Module C3 · template 64",
+            subtitle: "Dépend de : B · parallèle aux autres C",
+            aspects: [
+              "Libellés marchand dans une autre langue / alphabet.",
+              "Affichage côté app payeur — pas le routage.",
+              "Optionnel selon marchés.",
+            ],
+          },
+          c4: {
+            title: "RFU & Unreserved",
+            kicker: "Module C4 · IDs 65–99",
+            subtitle: "Dépend de : B · parallèle aux autres C",
+            aspects: [
+              "RFU EMVCo — réservé ; l’app ignore ce qu’elle ne connaît pas.",
+              "Unreserved — extensions scheme / marché.",
+              "Garantit l’évolutivité sans casser les parseurs existants.",
+            ],
+          },
+          d: {
+            title: "Pont optique — Data coding",
+            kicker: "Module D",
+            subtitle: "Dépend de : B (+ C utiles) puis ISO/IEC 18004",
+            aspects: [
+              "Passe de la chaîne payload complète au symbole QR.",
+              "C’est le pont vers 18004 (modes, version, ECC, masque…).",
+              "Sans payload valide (CRC inclus), pas de coding utile.",
+            ],
+          },
+          e: {
+            title: "Annexes",
+            kicker: "Module E · transversales",
+            subtitle: "Éclairent B et C — pas une étape du flux",
+            aspects: [
+              "Dictionnaire des objets de données.",
+              "Exemples de payloads / constructions.",
+              "Référence de lecture, pas un prérequis séquentiel comme A → B.",
+            ],
+          },
+        };
+
+        const root = document.getElementById("diagram-emv-modules");
+        const panel = document.getElementById("emv-modules-detail");
+        if (!root || !panel) return;
+
+        function show(key) {
+          const data = fiches[key];
+          if (!data) return;
+          const placeholder = panel.querySelector(".detail-placeholder");
+          const body = panel.querySelector(".detail-body");
+          const list = panel.querySelector("[data-f-aspects]");
+          if (placeholder) placeholder.hidden = true;
+          if (body) body.hidden = false;
+          panel.classList.add("is-filled");
+          panel.querySelector("[data-f-title]").textContent = data.title;
+          panel.querySelector("[data-f-kicker]").textContent = data.kicker;
+          const sub = panel.querySelector("[data-f-sub]");
+          if (sub) {
+            sub.textContent = data.subtitle || "";
+            sub.hidden = !data.subtitle;
+          }
+          list.innerHTML = "";
+          data.aspects.forEach((text) => {
+            const li = document.createElement("li");
+            li.textContent = text;
+            list.appendChild(li);
+          });
+          root.querySelectorAll(".node-hit").forEach((n) => {
+            n.classList.toggle("is-active", n.getAttribute("data-module") === key);
+          });
+        }
+
+        root.addEventListener("click", (e) => {
+          const node = e.target.closest(".node-hit");
+          if (!node || !root.contains(node)) return;
+          show(node.getAttribute("data-module"));
+        });
+
+        root.addEventListener("keydown", (e) => {
+          if (e.key !== "Enter" && e.key !== " ") return;
+          const node = e.target.closest(".node-hit");
+          if (!node || !root.contains(node)) return;
+          e.preventDefault();
+          show(node.getAttribute("data-module"));
+        });
+      })();
+    </script>
+
+    <script src="../js/present.js?v=7" data-present-js="1"></script>
+  </body>
+</html>

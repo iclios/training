@@ -2777,6 +2777,55 @@ a.bloc-sidebar-item:hover {
   font-size: 0.8em;
 }
 
+.payload-seg-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.payload-seg {
+  display: grid;
+  gap: 0.2rem 0.85rem;
+  padding: 0.65rem 0.85rem;
+  background: #f7f9fb;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.88rem;
+}
+
+.payload-seg.is-nested {
+  margin-left: 1.1rem;
+  border-left-color: #1e5f8a;
+  background: #fff;
+}
+
+.payload-seg-chunk {
+  font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-deep);
+  word-break: break-all;
+}
+
+.payload-seg-meta {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+.payload-seg-meta strong {
+  color: var(--ink);
+}
+
+.payload-seg-tlv {
+  font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  color: #5a6b7c;
+}
+
 /* —— Live QR demo (statique / dynamique) —— */
 .qr-live-demo {
   margin: 0 0 1.25rem;

@@ -2,6 +2,7 @@ window.J2_BLOCS = [
   { id: "intro", title: "Intro & objectifs", href: "intro.html" },
   { id: "typologies", title: "Principes & typologies QR", href: "typologies.html" },
   { id: "normes-standards-qr", title: "Normes et standards QR", href: "normes-standards-qr.html" },
+  { id: "emv-qr", title: "Focus EMV QR", href: "emv-qr.html" },
   { id: "architecture-si", title: "Architecture SI & flux QR", href: "architecture-si.html" },
   { id: "standards", title: "Standards & interopérabilité", href: "standards.html" },
   { id: "cas-usage", title: "Cas d’usage", href: "cas-usage.html" },
