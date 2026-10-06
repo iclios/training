@@ -430,7 +430,7 @@
                     QR statique
                   </p>
                 </div>
-                <pre class="payload-raw" aria-label="Payload de paiement encodé dans le QR">PAY|MID:TRAIN|AMT:|CUR:XOF|REF:STAT|POI:11</pre>
+                <pre class="payload-raw" aria-label="Payload de paiement encodé dans le QR">PAY|MID:TRAIN|AMT:|CUR:XOF|REF:STAT|INIT:11</pre>
                 <div class="payload-fields" role="list">
                   <div class="payload-field" role="listitem">
                     <code>PAY</code>
@@ -458,11 +458,12 @@
                     <p>Libellé / référence métier côté acceptation.</p>
                   </div>
                   <div class="payload-field" role="listitem">
-                    <code>POI:11</code>
+                    <code>INIT:11</code>
                     <strong>Mode d’initiation</strong>
                     <p>
-                      <code>11</code> = statique (convention type EMV)&nbsp;;
-                      <code>12</code> = dynamique.
+                      Équivalent pédagogique du tag EMV <code>01</code>&nbsp;:
+                      <code>11</code> = statique&nbsp;;
+                      <code>12</code> = dynamique. (≠ POI terminal)
                     </p>
                   </div>
                 </div>
@@ -490,7 +491,7 @@
                 </li>
                 <li>
                   <strong>Dynamique</strong> — payload généré pour une
-                  opération (montant, réf., TTL)
+                  opération (montant, réf.&nbsp;; TTL côté SI)
                 </li>
                 <li>
                   <strong>EMV QR</strong> — tag&nbsp;01 =
@@ -504,8 +505,8 @@
                 </li>
                 <li>
                   <strong>Dynamique</strong> — le QR dit
-                  <em>qui + combien + réf. (+ TTL)</em>&nbsp;; généré pour
-                  cette opération, puis jeté / expiré
+                  <em>qui + combien + réf.</em>&nbsp;; généré pour cette
+                  opération&nbsp;; TTL / anti-rejeu côté SI (pas un tag EMV)
                 </li>
               </ul>
 
@@ -588,7 +589,7 @@
                       <text x="850" y="115" fill="#1a2b3c" font-size="12" font-weight="700">Payeur</text>
                       <text x="850" y="135" fill="#5a6b7c" font-size="11">scanne OK</text>
                     </g>
-                    <text x="750" y="210" text-anchor="middle" fill="#0d9f8a" font-size="12">Montant + réf. + TTL dans le QR</text>
+                    <text x="750" y="210" text-anchor="middle" fill="#0d9f8a" font-size="12">Montant + réf. dans le QR · TTL côté SI</text>
                   </g>
                   <text x="500" y="290" text-anchor="middle" fill="#5a6b7c" font-size="12">
                     Statique = réutilisable (tag 01 = 11) · Dynamique = une opération (tag 01 = 12)
@@ -618,12 +619,12 @@
                       <tr>
                         <th scope="row">Risque typique</th>
                         <td>Montant erroné / QR photocopié</td>
-                        <td>Replay si pas de TTL / unicité</td>
+                        <td>Replay si pas d’unicité / expiration SI</td>
                       </tr>
                       <tr>
                         <th scope="row">SI</th>
                         <td>Simple (sticker)</td>
-                        <td>QR engine + TTL + anti-rejeu</td>
+                        <td>QR engine + TTL SI + anti-rejeu</td>
                       </tr>
                     </tbody>
                   </table>
@@ -646,7 +647,7 @@
                       <strong>Dynamique</strong>
                       <p>
                         La caisse génère un payload unique&nbsp;; montant figé&nbsp;;
-                        TTL = fenêtre de validité.
+                        TTL = fenêtre de validité côté SI / app.
                       </p>
                     </span>
                   </button>
@@ -833,7 +834,7 @@
                       <tr>
                         <th scope="row">Payload typique</th>
                         <td>Données marchand (± montant) → initiation côté app</td>
-                        <td>Données consommateur → lecture côté POI</td>
+                        <td>Données consommateur → lecture côté caisse / terminal</td>
                       </tr>
                       <tr>
                         <th scope="row">Risque typique</th>
@@ -865,8 +866,8 @@
                     <span>
                       <strong>CPM</strong>
                       <p>
-                        Consommateur présente&nbsp;; marchand scanne au POI
-                        (guichet, agent, caisse).
+                        Consommateur présente&nbsp;; marchand scanne au
+                        terminal / caisse (guichet, agent…).
                       </p>
                     </span>
                   </button>

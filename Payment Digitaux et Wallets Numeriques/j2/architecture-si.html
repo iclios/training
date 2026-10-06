@@ -95,9 +95,9 @@
                   <g>
                     <rect x="400" y="24" width="176" height="118" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-psp.jpg" x="412" y="40" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="488" y="62" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">PSP / switch</text>
+                    <text x="488" y="62" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">PSP</text>
                     <text x="488" y="84" text-anchor="middle" fill="#5a6b7c" font-size="11">rôle configuré</text>
-                    <text x="488" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">commerçant ou client</text>
+                    <text x="488" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">≠ réseau / switch</text>
                   </g>
                   <g>
                     <rect x="592" y="24" width="188" height="118" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
@@ -114,7 +114,7 @@
                     <text x="890" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">AuthZ</text>
                   </g>
                   <text x="500" y="168" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    PSP client ou commerçant · puis souvent réseau / scheme → SI AuthZ (banque ou wallet)
+                    PSP (client ou commerçant) → réseau / switch / scheme → SI AuthZ (banque ou wallet)
                   </text>
                   <rect x="16" y="188" width="968" height="70" rx="10" fill="#f7fbf9" stroke="#0d9f8a" stroke-width="2" stroke-dasharray="8 5"/>
                   <text x="500" y="218" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">QR engine = moteur encode / decode</text>
@@ -174,7 +174,7 @@
 
                   <!-- return path -->
                   <path d="M780 130 L780 155 L190 155 L190 135" fill="none" stroke="#c45c26" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#ah-fx-back)"/>
-                  <text x="485" y="148" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">← Confirmation (retour OK / KO) · app + caisse</text>
+                  <text x="485" y="148" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">← Confirmation (retour OK / KO) · app · notif caisse = autre canal</text>
 
                   <g>
                     <rect x="150" y="195" width="700" height="100" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
@@ -216,7 +216,7 @@
                     <span class="n">4</span>
                     <span>
                       <strong>Confirmation ←</strong>
-                      <p>Retour OK / KO vers app (+ caisse) — pas un hop « à droite ».</p>
+                      <p>Retour OK / KO vers l’app — pas un hop « à droite ». Notif caisse = canal à part.</p>
                     </span>
                   </button>
                 </div>
@@ -335,7 +335,7 @@
                   <rect x="520" y="72" width="450" height="148" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
                   <text x="745" y="100" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Wallet</text>
                   <text x="745" y="126" text-anchor="middle" fill="#1a2b3c" font-size="13">Compte / token provider → <tspan font-weight="700">SI wallet</tspan></text>
-                  <text x="745" y="150" text-anchor="middle" fill="#5a6b7c" font-size="12">Même logique de routage AuthZ</text>
+                  <text x="745" y="150" text-anchor="middle" fill="#5a6b7c" font-size="12">Même logique AuthZ (IDs → SI du moyen)</text>
                   <text x="745" y="172" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">Si le wallet porte une carte banque</text>
                   <text x="745" y="196" text-anchor="middle" fill="#5a6b7c" font-size="12">AuthZ → SI émetteur de la carte (pas forcément le wallet)</text>
                 </svg>
@@ -368,7 +368,7 @@
                 <svg
                   viewBox="0 0 1000 420"
                   role="img"
-                  aria-label="Cas MPM dynamique : Auth émetteur puis acquéreur crédite"
+                  aria-label="Cas MPM dynamique : Auth émetteur puis retour confirmation"
                 >
                   <defs>
                     <marker id="ah-c1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
@@ -376,7 +376,7 @@
                     </marker>
                   </defs>
 
-                  <text x="500" y="26" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.04em">A · ENCODE — QR porte le routage marchand</text>
+                  <text x="500" y="26" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.04em">A · ENCODE — QR porte les IDs marchand</text>
                   <g>
                     <rect x="40" y="42" width="200" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-commercant.jpg" x="52" y="52" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
@@ -483,7 +483,7 @@
                 <svg
                   viewBox="0 0 1000 420"
                   role="img"
-                  aria-label="Cas MPM statique : Auth émetteur puis acquéreur crédite"
+                  aria-label="Cas MPM statique : Auth émetteur puis retour confirmation"
                 >
                   <defs>
                     <marker id="ah-c2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
@@ -491,7 +491,7 @@
                     </marker>
                   </defs>
 
-                  <text x="500" y="26" text-anchor="middle" fill="#8a9aaa" font-size="12" font-weight="700" letter-spacing="0.04em">A · ENCODE EN AMONT — payload = routage marchand (fixe)</text>
+                  <text x="500" y="26" text-anchor="middle" fill="#8a9aaa" font-size="12" font-weight="700" letter-spacing="0.04em">A · ENCODE EN AMONT — payload = IDs marchand (fixes)</text>
                   <g>
                     <rect x="40" y="42" width="260" height="80" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
                     <text x="170" y="72" text-anchor="middle" fill="#8a9aaa" font-size="12" font-weight="700">UNE FOIS · IDs marchand</text>
@@ -541,7 +541,7 @@
                     ← Confirmation (retour OK / KO) · app (+ notif) — sens inverse
                   </text>
                   <text x="500" y="330" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Même logique · 12 — ID pour le règlement (banque marchand → commerçant)
+                    Comme en 12 — l’ID contrôlé sert au règlement (banque marchand → commerçant)
                   </text>
                   <text x="500" y="354" text-anchor="middle" fill="#5a6b7c" font-size="12">
                     Confirmation = réponse · pas la suite du schéma à droite

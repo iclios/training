@@ -120,8 +120,8 @@
                     décodage) du symbole&nbsp;: modes, version, correction
                     d’erreur, masque…
                     <strong>EMV QR</strong> = ce que la chaîne de données
-                    <em>paiement</em> contient avant / après ce passage. En
-                    sans contact carte, le parallèle radio est plutôt
+                    <em>paiement</em> contient avant / après ce passage. Pour
+                    le sans-contact carte, le parallèle radio est plutôt
                     <strong>ISO 14443</strong> → EMV Contactless.
                   </p>
                 </div>
@@ -204,7 +204,7 @@
                   <g class="node-hit" data-module="c1" tabindex="0" role="button" aria-label="Module C1 Merchant Account">
                     <rect x="80" y="172" width="200" height="70" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
                     <text x="180" y="200" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">C1 · Merchant</text>
-                    <text x="180" y="220" text-anchor="middle" fill="#5a6b7c" font-size="11">Account 26–51</text>
+                    <text x="180" y="220" text-anchor="middle" fill="#5a6b7c" font-size="11">Account 02–51</text>
                   </g>
                   <g class="node-hit" data-module="c2" tabindex="0" role="button" aria-label="Module C2 Additional Data">
                     <rect x="295" y="172" width="200" height="70" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
@@ -280,7 +280,7 @@
                   <h3>CPM</h3>
                   <ul>
                     <li>Consumer-Presented Mode</li>
-                    <li>Payeur affiche · caisse / POI scanne</li>
+                    <li>Payeur affiche · caisse / terminal scanne</li>
                     <li>Payload = credentials côté consommateur</li>
                     <li>Souvent lié à un instrument provisionné</li>
                   </ul>
@@ -392,7 +392,7 @@
                     <rect x="195" y="40" width="140" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
                     <text x="265" y="62" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">01</text>
                     <text x="265" y="82" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">010211</text>
-                    <text x="265" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">POI = 11 statique</text>
+                    <text x="265" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">Init. = 11 statique</text>
                   </g>
 
                   <!-- 26 large -->
@@ -400,7 +400,7 @@
                     <rect x="350" y="40" width="610" height="70" rx="8" fill="#f4f7ff" stroke="#4a6fa5" stroke-width="2"/>
                     <text x="655" y="62" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">26 · Merchant Account (len 30)</text>
                     <text x="655" y="82" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">26300014com.example.qr0108DEMO0001</text>
-                    <text x="655" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">Qui créditer / router — template (sous-objets ↓)</text>
+                    <text x="655" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">Qui créditer — template MAI (souvent 26–51 en profil national)</text>
                   </g>
 
                   <!-- flèche vers nested -->
@@ -421,49 +421,44 @@
                     <text x="785" y="196" text-anchor="middle" fill="#5a6b7c" font-size="10">ID marchand</text>
                   </g>
 
-                  <!-- Ligne 2 : 52 53 58 -->
+                  <!-- Ligne 2 : 52 53 58 59 60 — ordre payload -->
                   <g>
-                    <rect x="40" y="230" width="200" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="140" y="252" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">52</text>
-                    <text x="140" y="272" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">52045411</text>
-                    <text x="140" y="290" text-anchor="middle" fill="#5a6b7c" font-size="10">MCC = 5411</text>
+                    <rect x="40" y="230" width="120" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="100" y="252" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">52</text>
+                    <text x="100" y="272" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">5411</text>
+                    <text x="100" y="290" text-anchor="middle" fill="#5a6b7c" font-size="10">MCC</text>
                   </g>
                   <g>
-                    <rect x="255" y="230" width="200" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="355" y="252" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">53</text>
-                    <text x="355" y="272" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">5303952</text>
-                    <text x="355" y="290" text-anchor="middle" fill="#5a6b7c" font-size="10">Devise = 952 (XOF)</text>
+                    <rect x="175" y="230" width="130" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="240" y="252" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">53</text>
+                    <text x="240" y="272" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">952</text>
+                    <text x="240" y="290" text-anchor="middle" fill="#5a6b7c" font-size="10">XOF</text>
                   </g>
                   <g>
-                    <rect x="470" y="230" width="200" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="570" y="252" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">58</text>
-                    <text x="570" y="272" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">5802SN</text>
-                    <text x="570" y="290" text-anchor="middle" fill="#5a6b7c" font-size="10">Pays = SN</text>
+                    <rect x="320" y="230" width="110" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="375" y="252" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">58</text>
+                    <text x="375" y="272" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">SN</text>
+                    <text x="375" y="290" text-anchor="middle" fill="#5a6b7c" font-size="10">Pays</text>
                   </g>
                   <g>
-                    <rect x="685" y="230" width="275" height="70" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
-                    <text x="822" y="252" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="13" font-weight="700">63</text>
-                    <text x="822" y="272" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">6304D678</text>
-                    <text x="822" y="290" text-anchor="middle" fill="#5a6b7c" font-size="10">CRC = D678</text>
-                  </g>
-
-                  <!-- Ligne 3 : 59 60 -->
-                  <g>
-                    <rect x="40" y="320" width="460" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="270" y="342" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">59</text>
-                    <text x="270" y="362" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">5913BOUTIQUE DEMO</text>
-                    <text x="270" y="380" text-anchor="middle" fill="#5a6b7c" font-size="10">Merchant Name = BOUTIQUE DEMO</text>
+                    <rect x="445" y="230" width="280" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="585" y="252" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">59</text>
+                    <text x="585" y="272" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">BOUTIQUE DEMO</text>
+                    <text x="585" y="290" text-anchor="middle" fill="#5a6b7c" font-size="10">Merchant Name</text>
                   </g>
                   <g>
-                    <rect x="520" y="320" width="440" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="740" y="342" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">60</text>
-                    <text x="740" y="362" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">6005DAKAR</text>
-                    <text x="740" y="380" text-anchor="middle" fill="#5a6b7c" font-size="10">Merchant City = DAKAR</text>
+                    <rect x="740" y="230" width="220" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="850" y="252" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">60</text>
+                    <text x="850" y="272" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">DAKAR</text>
+                    <text x="850" y="290" text-anchor="middle" fill="#5a6b7c" font-size="10">Merchant City</text>
                   </g>
 
-                  <text x="500" y="412" text-anchor="middle" fill="#5a6b7c" font-size="11">
-                    Ordre de lecture gauche → droite, haut → bas · pas de tag 54 (statique)
-                  </text>
+                  <!-- Ligne 3 : 63 CRC en dernier -->
+                  <g>
+                    <rect x="40" y="320" width="920" height="70" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="500" y="348" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="700">63 · CRC = D678 — toujours en fin de payload</text>
+                    <text x="500" y="372" text-anchor="middle" fill="#5a6b7c" font-size="11">Ordre payload : … → 58 → 59 → 60 → 63 · pas de tag 54 (statique)</text>
+                  </g>
                 </svg>
 
                 <figure class="qr-hero" style="margin-left: auto; margin-right: auto">
@@ -517,7 +512,7 @@
                   <rect x="60" y="96" width="260" height="36" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
                   <text x="190" y="119" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">00</tspan>  Format — entrée parseur</text>
                   <rect x="60" y="142" width="260" height="36" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                  <text x="190" y="165" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">01</tspan>  POI 11 / 12</text>
+                  <text x="190" y="165" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">01</tspan>  Initiation 11 / 12</text>
                   <rect x="60" y="188" width="260" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
                   <text x="190" y="207" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">63</tspan>  CRC — intégrité</text>
 
@@ -537,8 +532,8 @@
                   <text x="820" y="54" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="700">C · Profil</text>
                   <text x="820" y="72" text-anchor="middle" fill="#5a6b7c" font-size="10">National · international</text>
                   <rect x="698" y="88" width="244" height="40" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
-                  <text x="820" y="106" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">26–51</text>
-                  <text x="820" y="122" text-anchor="middle" fill="#5a6b7c" font-size="10">Merchant Account · routage</text>
+                  <text x="820" y="106" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">02–51</text>
+                  <text x="820" y="122" text-anchor="middle" fill="#5a6b7c" font-size="10">MAI (souvent 26–51 national)</text>
                   <rect x="698" y="138" width="244" height="40" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
                   <text x="820" y="156" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">62</text>
                   <text x="820" y="172" text-anchor="middle" fill="#5a6b7c" font-size="10">Additional Data · réf. / tip</text>
@@ -601,11 +596,11 @@
           },
           c1: {
             title: "Merchant Account Info",
-            kicker: "Module C1 · IDs 26–51",
+            kicker: "Module C1 · MAI 02–51",
             subtitle: "Dépend de : B · parallèle aux autres C",
             aspects: [
-              "Qui créditer / comment router (GUID scheme, IDs banque / PSP…).",
-              "Cœur métier du sticker MPM pour l’acceptation.",
+              "Merchant Account Information (IDs 02–51) — souvent 26–51 en profil national.",
+              "Qui créditer (GUID scheme, IDs banque / PSP…) — cœur du sticker MPM.",
               "Plusieurs blocs possibles dans un même QR (selon marchés).",
             ],
           },
