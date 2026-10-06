@@ -1247,6 +1247,172 @@ body.is-presenting .wrap {
   color: #f0c9a8;
 }
 
+.atelier-qr-gen {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 800px) {
+  .atelier-qr-gen {
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: start;
+  }
+}
+
+.atelier-qr-gen label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.45rem;
+  color: var(--ink);
+}
+
+.atelier-qr-gen textarea {
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--ink);
+  background: #fff;
+}
+
+.atelier-qr-gen textarea:focus {
+  outline: 2px solid rgba(13, 159, 138, 0.35);
+  border-color: #0d9f8a;
+}
+
+.atelier-qr-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.atelier-qr-presets button {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  font-family: var(--font-display);
+  cursor: pointer;
+}
+
+.atelier-qr-presets button:hover {
+  border-color: #0d9f8a;
+  color: #087a6a;
+}
+
+.atelier-qr-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1rem;
+  background: #f7f9fb;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  min-height: 280px;
+  justify-content: center;
+}
+
+.atelier-qr-preview .qr-live-frame {
+  width: 200px;
+  height: 200px;
+  background: #fff;
+}
+
+.atelier-qr-meta {
+  margin: 0;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+.atelier-pay-status {
+  margin: 1rem 0 0.65rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.atelier-pay-status.is-ok {
+  color: #087a6a;
+}
+
+.atelier-pay-status.is-ko {
+  color: #c45c26;
+}
+
+.atelier-pay-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0 0 0.75rem;
+}
+
+.atelier-pay-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 0.9rem;
+  border-radius: 8px;
+  background: #0d9f8a;
+  color: #fff !important;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.atelier-pay-link.is-disabled {
+  pointer-events: none;
+  opacity: 0.45;
+  background: #8a9aaa;
+}
+
+.atelier-pay-refresh {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink-soft);
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.82rem;
+  font-family: var(--font-display);
+  cursor: pointer;
+}
+
+.atelier-pay-refresh:hover {
+  border-color: #0d9f8a;
+  color: #087a6a;
+}
+
+ol.atelier-proc {
+  list-style: decimal;
+  padding-left: 1.35rem;
+}
+
+ol.atelier-proc > li {
+  margin-bottom: 0.85rem;
+  padding-left: 0.25rem;
+}
+
+ol.atelier-proc > li::before {
+  content: none;
+}
+
+ol.atelier-proc code {
+  font-size: 0.86em;
+}
+
 .table-wrap {
   margin: 0.85rem 0 0;
   overflow-x: auto;

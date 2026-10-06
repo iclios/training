@@ -2,12 +2,23 @@ BLOC — FORMATEUR · JOUR 2 · Architecture SI & flux QR
 Durée : 40–50 min · Fusionne l’ancien bloc Flux
 
 Fil
-1. Vocabulaire acteurs / moteur
-2. Éléments SI (où tournent les briques)
-3. Quatre temps + pont J1 (génération → confirmation)
-4. Trois cas : pull dynamique (MPM·12) · pull statique (MPM·11) · push (CPM)
-5. Synthèse : backend marchand — quand ?
+1. Éléments SI (où tournent les briques) — SI banque ≠ SI wallet · PSP = rôle
+2. Séquence du paiement QR (génération → confirmation ; puis clearing / settlement J1)
+3. Cadrage MPM / CPM (pull/push = vocabulaire cours, pas EMVCo)
+4. IDs moyen : MPM (dans l’app) vs CPM (credentials type carte dans le QR)
+5. Trois cas : MPM·12 · MPM·11 · CPM
+6. Synthèse : payload · quel PSP · AuthZ (+ réseau / acquéreur)
 
 Idée clé
-QR engine = moteur (pas un hop). Les cas montrent qui encode / décode.
-SI wallet ≠ app téléphone. Confirmation UX ≠ settlement (J1).
+QR engine = moteur (pas un hop). MPM/CPM = specs EMVCo (qui encode/décode + payload).
+Pull/push = aide mémoire cours seulement.
+PSP = rôle configuré : côté client (MPM) ou côté commerçant (CPM).
+MPM : PSP client « acquiert le flux » (capture trx app → réseau).
+      Réseau contrôle l’ID acquéreur marchand (valeur QR) pour le règlement.
+      Routage Auth = vers l’émetteur. Caisse hors chemin Auth :
+      elle apprend OK/KO par notif PSP (webhook/push) via la réf. trx — timing = juste après AuthZ
+      (dès le résultat connu), pas au settlement. Sticker (11) : notif optionnelle / relevé.
+CPM EMVCo = credentials type chip (ADF, token/PAN, cryptogramme) — pas IBAN nu.
+Montant (ID 54) souvent présent en MPM·12, pas obligatoire en spec.
+Carte tokenisée dans un wallet → AuthZ chez l’émetteur de la carte (pas forcément SI wallet).
+Confirmation UX ≠ settlement (J1).

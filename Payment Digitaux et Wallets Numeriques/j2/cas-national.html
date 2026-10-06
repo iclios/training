@@ -125,328 +125,731 @@
               </div>
             </section>
 
+            <!-- Exemple concret -->
+            <section class="section">
+              <p class="section-label">Exemple concret · Afrique</p>
+              <h2>GhQR — Ghana (GhIPSS)</h2>
+              <p class="definition-full">
+                QR <strong>universel national</strong> ghanéen&nbsp;: un sticker
+                marchand, N moyens de paiement côté client.
+              </p>
+
+              <div class="diagram" id="diagram-ghqr-id" style="margin-top: 1.25rem">
+                <div class="diagram-header">
+                  <h3>Carte d’identité</h3>
+                  <p>Terrain · moyens · canaux · rail</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 280"
+                  role="img"
+                  aria-label="Carte d’identité GhQR Ghana"
+                >
+                  <g>
+                    <rect x="20" y="20" width="230" height="160" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="135" y="52" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.06em">TERRAIN</text>
+                    <text x="135" y="95" text-anchor="middle" fill="#1a2b3c" font-size="15" font-weight="700">1 sticker</text>
+                    <text x="135" y="122" text-anchor="middle" fill="#5a6b7c" font-size="12">marchand</text>
+                    <text x="135" y="150" text-anchor="middle" fill="#5a6b7c" font-size="12">+ Merchant ID</text>
+                  </g>
+                  <g>
+                    <rect x="270" y="20" width="230" height="160" rx="10" fill="#fff" stroke="#2f4858" stroke-width="2"/>
+                    <text x="385" y="52" text-anchor="middle" fill="#8a9aaa" font-size="12" font-weight="700" letter-spacing="0.06em">MOYENS</text>
+                    <text x="385" y="90" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Compte banque</text>
+                    <text x="385" y="118" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Mobile money</text>
+                    <text x="385" y="146" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Carte</text>
+                  </g>
+                  <g>
+                    <rect x="520" y="20" width="230" height="160" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                    <text x="635" y="52" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700" letter-spacing="0.06em">CANAUX QR</text>
+                    <text x="635" y="95" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">App banque</text>
+                    <text x="635" y="123" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">App wallet MoMo</text>
+                    <text x="635" y="154" text-anchor="middle" fill="#5a6b7c" font-size="11">scan optique du QR</text>
+                  </g>
+                  <g>
+                    <rect x="770" y="20" width="210" height="160" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="875" y="52" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.06em">RAIL</text>
+                    <text x="875" y="82" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">GhIPSS</text>
+                    <text x="875" y="104" text-anchor="middle" fill="#5a6b7c" font-size="10">op. national paiement</text>
+                    <text x="875" y="122" text-anchor="middle" fill="#5a6b7c" font-size="10">filiale Bank of Ghana</text>
+                    <text x="875" y="146" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">gh-link · GIP</text>
+                    <text x="875" y="166" text-anchor="middle" fill="#5a6b7c" font-size="11">crédit instantané</text>
+                  </g>
+                  <text x="500" y="220" text-anchor="middle" fill="#5a6b7c" font-size="13">
+                    Un QR · banques + MoMo + cartes · apps qui scannent · switch national
+                  </text>
+                  <text x="500" y="250" text-anchor="middle" fill="#8a9aaa" font-size="12">
+                    S1 Makola + banque · S2 stand + MoMo — voir cinématiques ci-dessous
+                  </text>
+                </svg>
+              </div>
+
+              <div class="split-2" style="margin-top: 1rem">
+                <div class="panel ok">
+                  <h3>Pourquoi GhQR ici</h3>
+                  <ul>
+                    <li>Open-loop réel (pas un silo wallet)</li>
+                    <li>Banques + MoMo sur le même sticker</li>
+                    <li>Rail temps réel (GIP) lisible en cours</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Ancrage pédagogique</h3>
+                  <ul>
+                    <li>Même famille qu’un SGQR / PromptPay</li>
+                    <li>Rôles simplifiés (Architecture SI)</li>
+                    <li>≠ CDC GhIPSS recopié</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="csm-table-wrap" style="margin-top: 1.25rem">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Brique</th>
+                      <th scope="col">Concret</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Scheme</th>
+                      <td>GhQR (Universal QR) · opéré GhIPSS</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">GhIPSS</th>
+                      <td>Ghana Interbank Payment and Settlement Systems — opérateur national (filiale Bank of Ghana)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Payload</th>
+                      <td>Profil national + Merchant ID (sticker / stand / caisse)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Modes</th>
+                      <td>Sticker (montant saisi dans l’app) · caisse dynamique · scan app</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Hors QR</th>
+                      <td>Dial to Pay (USSD + Merchant ID) — même marchand, pas de scan optique</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Autres Afrique</th>
+                      <td>NQR (Nigeria / NIBSS) · Meeza QR (Égypte)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
             <section class="section">
               <p class="section-label">Architecture</p>
-              <h2>Vue nationale open-loop</h2>
+              <h2>Vue nationale open-loop · tous les acteurs</h2>
               <p class="intro">
-                Marchand · switch / scheme · acquéreur · émetteurs (banques /
-                wallets).
+                Qui est sur le terrain, qui acquiert le flux, qui AuthZ, qui
+                sert au règlement.
               </p>
 
               <div class="diagram" id="diagram-arch-national">
                 <div class="diagram-header">
-                  <h3>Architecture cible</h3>
-                  <p>Un QR standard · un rail de routage · N apps payeur</p>
+                  <h3>Cartographie des acteurs</h3>
+                  <p>MPM national · un QR · N apps</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 360"
+                  viewBox="0 0 1000 400"
                   role="img"
-                  aria-label="Architecture QR national interopérable"
+                  aria-label="Architecture QR national avec tous les acteurs"
                 >
-                  <defs>
-                    <marker id="ah-cn" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
-                    </marker>
-                  </defs>
-                  <g>
-                    <rect x="40" y="40" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-commercant.jpg" x="52" y="56" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="120" y="80" fill="#1a2b3c" font-size="13" font-weight="700">Marchand</text>
-                    <text x="120" y="100" fill="#5a6b7c" font-size="11">QR MPM / profil</text>
-                  </g>
-                  <line class="flow-line" x1="250" y1="90" x2="310" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cn)"/>
-                  <g>
-                    <rect x="310" y="30" width="380" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-scheme.jpg" x="330" y="52" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="410" y="72" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Switch / scheme national</text>
-                    <text x="410" y="98" fill="#0d9f8a" font-size="12">profil · IDs · routage</text>
-                    <text x="410" y="120" fill="#5a6b7c" font-size="11">certification apps · règles</text>
-                  </g>
-                  <line class="flow-line" x1="700" y1="90" x2="760" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cn)"/>
-                  <g>
-                    <rect x="760" y="40" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-psp.jpg" x="772" y="56" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="842" y="80" fill="#1a2b3c" font-size="13" font-weight="700">Acquéreur</text>
-                    <text x="842" y="100" fill="#5a6b7c" font-size="11">PSP / banque</text>
-                  </g>
+                  <rect x="30" y="20" width="300" height="160" rx="10" fill="#f7fbf9" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="180" y="48" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">CÔTÉ MARCHAND</text>
+                  <text x="180" y="78" text-anchor="middle" fill="#1a2b3c" font-size="12">① Marchand + caisse</text>
+                  <text x="180" y="100" text-anchor="middle" fill="#1a2b3c" font-size="12">② Acquéreur / PSP commerçant</text>
+                  <text x="180" y="122" text-anchor="middle" fill="#5a6b7c" font-size="11">IDs dans le QR · notif caisse</text>
+                  <text x="180" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">crédit après règlement</text>
 
-                  <line x1="500" y1="150" x2="500" y2="195" stroke="#0d9f8a" stroke-width="2"/>
-                  <line x1="200" y1="195" x2="800" y2="195" stroke="#0d9f8a" stroke-width="2"/>
-                  <line x1="200" y1="195" x2="200" y2="220" stroke="#0d9f8a" stroke-width="2"/>
-                  <line x1="500" y1="195" x2="500" y2="220" stroke="#0d9f8a" stroke-width="2"/>
-                  <line x1="800" y1="195" x2="800" y2="220" stroke="#0d9f8a" stroke-width="2"/>
+                  <rect x="350" y="20" width="300" height="160" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="500" y="48" text-anchor="middle" fill="#1e5f8a" font-size="13" font-weight="700">RAIL NATIONAL · GhIPSS</text>
+                  <text x="500" y="78" text-anchor="middle" fill="#1a2b3c" font-size="12">③ Switch gh-link · GIP</text>
+                  <text x="500" y="100" text-anchor="middle" fill="#5a6b7c" font-size="11">profil GhQR · apps certifiées</text>
+                  <text x="500" y="122" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">contrôle ID acquéreur</text>
+                  <text x="500" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">route Auth → émetteur</text>
 
-                  <text x="500" y="185" text-anchor="middle" fill="#8a9aaa" font-size="11">Émetteurs / wallets adhérents</text>
+                  <rect x="670" y="20" width="300" height="160" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                  <text x="820" y="48" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">CÔTÉ PAYEUR</text>
+                  <text x="820" y="78" text-anchor="middle" fill="#1a2b3c" font-size="12">④ App banque / wallet</text>
+                  <text x="820" y="100" text-anchor="middle" fill="#1a2b3c" font-size="12">⑤ PSP client (flux)</text>
+                  <text x="820" y="122" text-anchor="middle" fill="#1a2b3c" font-size="12">⑥ SI AuthZ émetteur</text>
+                  <text x="820" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">débite le compte / wallet</text>
 
+                  <rect x="30" y="210" width="940" height="150" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="500" y="240" text-anchor="middle" fill="#1e5f8a" font-size="13" font-weight="700">ÉMETTEURS ADHÉRENTS (ex.)</text>
                   <g>
-                    <rect x="80" y="220" width="240" height="90" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-banque.jpg" x="95" y="238" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="160" y="260" fill="#1a2b3c" font-size="13" font-weight="700">Banque A</text>
-                    <text x="160" y="282" fill="#5a6b7c" font-size="11">AuthZ payeur</text>
+                    <rect x="60" y="260" width="260" height="70" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="190" y="290" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Banque A</text>
+                    <text x="190" y="312" text-anchor="middle" fill="#5a6b7c" font-size="11">app + SI AuthZ</text>
                   </g>
                   <g>
-                    <rect x="380" y="220" width="240" height="90" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-wallet.jpg" x="395" y="238" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="460" y="260" fill="#1a2b3c" font-size="13" font-weight="700">Wallet B</text>
-                    <text x="460" y="282" fill="#5a6b7c" font-size="11">AuthZ payeur</text>
+                    <rect x="370" y="260" width="260" height="70" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="500" y="290" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Wallet MoMo B</text>
+                    <text x="500" y="312" text-anchor="middle" fill="#5a6b7c" font-size="11">app + SI AuthZ</text>
                   </g>
                   <g>
-                    <rect x="680" y="220" width="240" height="90" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-banque.jpg" x="695" y="238" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="760" y="260" fill="#1a2b3c" font-size="13" font-weight="700">Banque C</text>
-                    <text x="760" y="282" fill="#5a6b7c" font-size="11">AuthZ payeur</text>
+                    <rect x="680" y="260" width="260" height="70" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="810" y="290" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Banque C</text>
+                    <text x="810" y="312" text-anchor="middle" fill="#5a6b7c" font-size="11">app + SI AuthZ</text>
                   </g>
                 </svg>
-                <div class="seq-steps" id="arch-national-steps">
+                <p class="fresco-legend">
+                  Acquéreur ≠ hop Auth. Il fournit les IDs du QR et reçoit le
+                  crédit au règlement&nbsp;; le PSP <em>client</em> acquiert le
+                  flux vers le switch.
+                </p>
+              </div>
+            </section>
+
+            <!-- Payload EMV GhQR -->
+            <section class="section">
+              <p class="section-label">Payload</p>
+              <h2>Exemple EMV QR · profil GhQR</h2>
+
+              <div class="diagram" id="diagram-ghqr-payload">
+                <div class="diagram-header">
+                  <h3>Payload GhQR (pédagogique)</h3>
+                  <p>MPM · 11 · GHS · GH — le profil vit surtout dans le tag 26</p>
+                </div>
+                <pre
+                  class="payload-raw"
+                  aria-label="Exemple pédagogique payload EMV QR GhQR"
+                >00020101021126410014gh.ghipss.ghqr0108AMA000010207ACQGH015204581253039365802GH5909STAND AMA6008KANESHIE63049988</pre>
+
+                <svg
+                  viewBox="0 0 1000 480"
+                  role="img"
+                  aria-label="Découpe TLV payload GhQR avec profil national"
+                  style="margin-top: 0.5rem"
+                >
+                  <text x="500" y="22" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Vert = socle EMV · orange = profil national (ce que lit le switch / les apps)
+                  </text>
+
+                  <!-- Socle -->
+                  <g>
+                    <rect x="20" y="40" width="120" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="80" y="62" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">00</text>
+                    <text x="80" y="82" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">000201</text>
+                    <text x="80" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">Format 01</text>
+                  </g>
+                  <g>
+                    <rect x="150" y="40" width="130" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="215" y="62" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">01</text>
+                    <text x="215" y="82" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">010211</text>
+                    <text x="215" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">POI = 11</text>
+                  </g>
+
+                  <!-- Profil 26 highlighted -->
+                  <g>
+                    <rect x="295" y="40" width="685" height="70" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="3"/>
+                    <text x="637" y="62" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">26 · Merchant Account — PROFIL NATIONAL</text>
+                    <text x="637" y="82" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">26410014gh.ghipss.ghqr0108AMA000010207ACQGH01</text>
+                    <text x="637" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">Template · sous-objets = règles GhQR (pédagogiques)</text>
+                  </g>
+
+                  <line x1="637" y1="110" x2="637" y2="128" stroke="#c45c26" stroke-width="2"/>
+                  <polygon points="637,134 632,126 642,126" fill="#c45c26"/>
+
+                  <!-- Nested profile objects -->
+                  <g>
+                    <rect x="220" y="140" width="280" height="78" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="3"/>
+                    <text x="360" y="164" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">26→00 GUID scheme</text>
+                    <text x="360" y="184" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">gh.ghipss.ghqr</text>
+                    <text x="360" y="204" text-anchor="middle" fill="#5a6b7c" font-size="10">« c’est du GhQR » — pas un QR silo</text>
+                  </g>
+                  <g>
+                    <rect x="520" y="140" width="210" height="78" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                    <text x="625" y="164" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">26→01 MID</text>
+                    <text x="625" y="184" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">AMA00001</text>
+                    <text x="625" y="204" text-anchor="middle" fill="#5a6b7c" font-size="10">Merchant ID stand</text>
+                  </g>
+                  <g>
+                    <rect x="750" y="140" width="230" height="78" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                    <text x="865" y="164" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">26→02 Acq. ID</text>
+                    <text x="865" y="184" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">ACQGH01</text>
+                    <text x="865" y="204" text-anchor="middle" fill="#5a6b7c" font-size="10">contrôlé par GhIPSS</text>
+                  </g>
+
+                  <!-- Opération Ghana -->
+                  <g>
+                    <rect x="20" y="250" width="150" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="95" y="272" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">52</text>
+                    <text x="95" y="292" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">5812</text>
+                    <text x="95" y="310" text-anchor="middle" fill="#5a6b7c" font-size="10">MCC resto</text>
+                  </g>
+                  <g>
+                    <rect x="185" y="250" width="160" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="265" y="272" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">53</text>
+                    <text x="265" y="292" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">936</text>
+                    <text x="265" y="310" text-anchor="middle" fill="#5a6b7c" font-size="10">Devise = GHS</text>
+                  </g>
+                  <g>
+                    <rect x="360" y="250" width="140" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="430" y="272" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">58</text>
+                    <text x="430" y="292" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">GH</text>
+                    <text x="430" y="310" text-anchor="middle" fill="#5a6b7c" font-size="10">Pays</text>
+                  </g>
+                  <g>
+                    <rect x="515" y="250" width="250" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="640" y="272" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">59</text>
+                    <text x="640" y="292" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">STAND AMA</text>
+                    <text x="640" y="310" text-anchor="middle" fill="#5a6b7c" font-size="10">Nom marchand</text>
+                  </g>
+                  <g>
+                    <rect x="780" y="250" width="200" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="880" y="272" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">60</text>
+                    <text x="880" y="292" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">KANESHIE</text>
+                    <text x="880" y="310" text-anchor="middle" fill="#5a6b7c" font-size="10">Ville</text>
+                  </g>
+
+                  <g>
+                    <rect x="20" y="340" width="200" height="55" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="120" y="364" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">63 · CRC</text>
+                    <text x="120" y="384" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">9988</text>
+                  </g>
+                  <g>
+                    <rect x="240" y="340" width="740" height="55" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="610" y="364" text-anchor="middle" fill="#1e5f8a" font-size="13" font-weight="700">Pas de tag 54</text>
+                    <text x="610" y="384" text-anchor="middle" fill="#5a6b7c" font-size="11">Sticker 11 → montant saisi dans l’app (scénario 2 MoMo)</text>
+                  </g>
+
+                  <text x="500" y="430" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">
+                    L’app certifiée lit le GUID → « scheme GhQR » → envoie MID + Acq. ID au rail GhIPSS
+                  </text>
+                  <text x="500" y="458" text-anchor="middle" fill="#8a9aaa" font-size="11">
+                    GUID / sous-tags = illustration pédagogique — le CDC GhIPSS fixe les valeurs réelles
+                  </text>
+                </svg>
+
+                <div class="csm-table-wrap" style="margin-top: 1rem">
+                  <table class="csm-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Zone</th>
+                        <th scope="col">Tags</th>
+                        <th scope="col">Rôle pour l’étudiant</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Socle EMV</th>
+                        <td>00 · 01 · 63</td>
+                        <td>Parseur · POI 11/12 · intégrité</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Profil GhQR</th>
+                        <td><strong>26</strong> (00 GUID · 01 MID · 02 Acq.)</td>
+                        <td>Identifie le scheme national + IDs de règlement</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Contexte GH</th>
+                        <td>52 · 53=936 · 58=GH · 59 · 60</td>
+                        <td>MCC · cedi · pays · libellés affichage</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Variante S1</th>
+                        <td>01→12 · +54 · +62</td>
+                        <td>Caisse Makola&nbsp;: montant 245.00 + réf. trx dans 62</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="fresco-legend">
+                  Variante dynamique (scénario&nbsp;1)&nbsp;:
+                  <code>01</code>=<code>12</code> +
+                  <code>54</code>=<code>245.00</code> +
+                  <code>62</code> (réf.) — même GUID profil dans le
+                  <code>26</code>.
+                </p>
+              </div>
+            </section>
+
+            <!-- Cinématique -->
+            <section class="section">
+              <p class="section-label">Cinématique</p>
+              <h2>Plusieurs scénarios autour de GhQR</h2>
+              <p class="intro">
+                Même scheme national · terrains et apps différents. Les apps
+                banques <em>et</em> MoMo sont des canaux certifiés qui scannent
+                le profil GhQR.
+              </p>
+
+              <div class="csm-table-wrap" style="margin-bottom: 1.5rem">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Axe</th>
+                      <th scope="col">S1 · Magasin + banque</th>
+                      <th scope="col">S2 · Stand + MoMo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Terrain</th>
+                      <td>Boutique Makola · caisse</td>
+                      <td>Stand street food · sticker</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Mode QR</th>
+                      <td>MPM · <strong>12</strong> (dynamique)</td>
+                      <td>MPM · <strong>11</strong> (statique)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Montant</th>
+                      <td><strong>245 GHS</strong> dans le QR</td>
+                      <td><strong>35 GHS</strong> saisis dans l’app</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Payeur</th>
+                      <td>App <strong>Banque A</strong></td>
+                      <td>App <strong>MoMo B</strong></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Notif marchand</th>
+                      <td>Caisse (réf. trx)</td>
+                      <td>SMS / push téléphone</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p class="section-label" style="margin-top: 0.5rem">Scénario 1</p>
+              <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin: 0 0 0.65rem; letter-spacing: -0.02em">
+                Magasin · caisse dynamique · app Banque A
+              </h3>
+              <p class="intro">
+                Accra · « Boutique Makola » · <strong>245 GHS</strong> · QR
+                généré à la caisse · débit compte banque.
+              </p>
+
+              <div class="diagram" id="diagram-cinema-national">
+                <div class="diagram-header">
+                  <h3>Cinématique · scénario 1</h3>
+                  <p>Aller Auth · retour confirmation · notif caisse · règlement</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 520"
+                  role="img"
+                  aria-label="Cinématique QR national MPM avec tous les acteurs"
+                >
+                  <defs>
+                    <marker id="ah-cin" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                    <marker id="ah-cin-back" markerWidth="8" markerHeight="8" refX="1" refY="3" orient="auto">
+                      <path d="M8,0 L2,3 L8,6 Z" fill="#c45c26" />
+                    </marker>
+                  </defs>
+
+                  <text x="500" y="24" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.03em">A · PRÉPARATION (hors paiement live)</text>
+                  <g>
+                    <rect x="40" y="40" width="280" height="70" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="5 4"/>
+                    <text x="180" y="68" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">Onboarding marchand</text>
+                    <text x="180" y="90" text-anchor="middle" fill="#8a9aaa" font-size="11">acquéreur → MID / IDs QR</text>
+                  </g>
+                  <g>
+                    <rect x="360" y="40" width="280" height="70" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="5 4"/>
+                    <text x="500" y="70" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">GhIPSS certifie</text>
+                    <text x="500" y="92" text-anchor="middle" fill="#8a9aaa" font-size="11">apps Banque A · MoMo B · C</text>
+                  </g>
+                  <g>
+                    <rect x="680" y="40" width="280" height="70" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="5 4"/>
+                    <text x="820" y="70" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">Marchand équipé</text>
+                    <text x="820" y="92" text-anchor="middle" fill="#8a9aaa" font-size="11">caisse / API acquéreur</text>
+                  </g>
+
+                  <text x="500" y="140" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.03em">B · ALLER · PAIEMENT LIVE</text>
+                  <g>
+                    <rect x="20" y="156" width="140" height="88" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="90" y="186" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">1 · Caisse</text>
+                    <text x="90" y="208" text-anchor="middle" fill="#5a6b7c" font-size="11">encode QR</text>
+                    <text x="90" y="226" text-anchor="middle" fill="#5a6b7c" font-size="10">IDs+réf+245 GHS</text>
+                  </g>
+                  <line x1="160" y1="200" x2="178" y2="200" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-cin)"/>
+                  <g>
+                    <rect x="178" y="156" width="140" height="88" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="248" y="186" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">2 · Payeur</text>
+                    <text x="248" y="208" text-anchor="middle" fill="#5a6b7c" font-size="11">scan app A</text>
+                    <text x="248" y="226" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">choisit moyen</text>
+                  </g>
+                  <line x1="318" y1="200" x2="336" y2="200" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-cin)"/>
+                  <g>
+                    <rect x="336" y="156" width="140" height="88" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                    <text x="406" y="186" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">3 · PSP client</text>
+                    <text x="406" y="208" text-anchor="middle" fill="#c45c26" font-size="11">acquiert flux</text>
+                    <text x="406" y="226" text-anchor="middle" fill="#5a6b7c" font-size="10">Banque A</text>
+                  </g>
+                  <line x1="476" y1="200" x2="494" y2="200" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-cin)"/>
+                  <g>
+                    <rect x="494" y="156" width="160" height="88" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="3"/>
+                    <text x="574" y="182" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">4 · GhIPSS</text>
+                    <text x="574" y="204" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">contrôle ID acq.</text>
+                    <text x="574" y="224" text-anchor="middle" fill="#5a6b7c" font-size="10">GIP → émetteur A</text>
+                  </g>
+                  <line x1="654" y1="200" x2="672" y2="200" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-cin)"/>
+                  <g>
+                    <rect x="672" y="156" width="150" height="88" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="747" y="186" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">5 · SI AuthZ</text>
+                    <text x="747" y="208" text-anchor="middle" fill="#5a6b7c" font-size="11">Banque A</text>
+                    <text x="747" y="226" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">OK / KO</text>
+                  </g>
+                  <line x1="822" y1="200" x2="848" y2="200" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-cin)"/>
+                  <g>
+                    <rect x="848" y="156" width="130" height="88" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="913" y="192" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Fin aller</text>
+                    <text x="913" y="214" text-anchor="middle" fill="#5a6b7c" font-size="11">Auth terminée</text>
+                  </g>
+
+                  <text x="500" y="280" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700" letter-spacing="0.03em">C · RETOUR · MÊME MOMENT · DEUX CANAUX</text>
+                  <path d="M747 244 L747 300 L248 300 L248 244" fill="none" stroke="#c45c26" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#ah-cin-back)"/>
+                  <text x="500" y="294" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">6a ← Confirmation app payeur (retour Auth)</text>
+
+                  <g>
+                    <rect x="40" y="330" width="440" height="70" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                    <text x="260" y="358" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">6b · Notif caisse (autre canal)</text>
+                    <text x="260" y="380" text-anchor="middle" fill="#5a6b7c" font-size="11">Acquéreur / PSP commerçant → caisse via réf. trx — juste après AuthZ</text>
+                  </g>
+                  <g>
+                    <rect x="520" y="330" width="440" height="70" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="740" y="358" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">7 · Clearing → Settlement (J1)</text>
+                    <text x="740" y="380" text-anchor="middle" fill="#5a6b7c" font-size="11">Switch · puis crédit banque marchand → commerçant</text>
+                  </g>
+
+                  <text x="500" y="465" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Caisse hors chemin Auth · elle sait par la notif 6b (réf. générée en 1)
+                  </text>
+                </svg>
+
+                <div class="seq-steps" id="cinema-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
-                      <strong>QR standard</strong>
-                      <p>Payload national / EMV — un code pour toutes les apps certifiées.</p>
+                      <strong>Encode</strong>
+                      <p>Caisse + API acquéreur → QR GhQR (IDs + réf. + 245 GHS).</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
-                      <strong>Switch national</strong>
-                      <p>IDs marchands, routage, règles d’adhésion.</p>
+                      <strong>Scan → Auth</strong>
+                      <p>App Banque A → PSP client → GhIPSS (contrôle ID) → SI Banque A.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
                     <span class="n">3</span>
                     <span>
-                      <strong>Émetteurs</strong>
-                      <p>AuthZ côté payeur, puis clearing / settlement (socle J1).</p>
+                      <strong>Retour + notif</strong>
+                      <p>OK app banque · notif caisse via réf. · clearing / settlement.</p>
                     </span>
                   </button>
                 </div>
               </div>
             </section>
 
+            <!-- Scénario 2 MoMo -->
             <section class="section">
-              <p class="section-label">Flux</p>
-              <h2>Parcours type · pull (MPM)</h2>
+              <p class="section-label">Scénario 2</p>
+              <h2>Stand street food · sticker · app MoMo</h2>
               <p class="intro">
-                Scénario fréquent en magasin&nbsp;: caisse ou sticker affiche ·
-                payeur scanne · Auth via switch.
+                Accra · Kaneshie · « Stand Ama » · <strong>35 GHS</strong> ·
+                sticker <strong>GhQR · 11</strong> · payeur
+                <strong>app MoMo B</strong> · notif SMS / push.
               </p>
-              <div class="diagram" id="diagram-flux-national">
+
+              <div class="diagram" id="diagram-cinema-momo">
                 <div class="diagram-header">
-                  <h3>QR → Auth → Clearing → Settlement</h3>
-                  <p>Initiation QR · le reste reprend la chronologie J1</p>
+                  <h3>Cinématique · scénario 2</h3>
+                  <p>MPM · 11 · MoMo scanne · AuthZ wallet · SMS marchand</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 320"
+                  viewBox="0 0 1000 520"
                   role="img"
-                  aria-label="Flux QR national pull vers settlement"
+                  aria-label="Cinématique GhQR stickers stand MoMo"
                 >
                   <defs>
-                    <marker id="ah-fn" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    <marker id="ah-momo" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#c45c26" />
+                    </marker>
+                    <marker id="ah-momo-back" markerWidth="8" markerHeight="8" refX="1" refY="3" orient="auto">
+                      <path d="M8,0 L2,3 L8,6 Z" fill="#0d9f8a" />
                     </marker>
                   </defs>
+
+                  <text x="500" y="24" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.03em">A · PRÉPARATION (hors paiement live)</text>
                   <g>
-                    <rect x="30" y="40" width="170" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="115" y="80" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">1 · Encode</text>
-                    <text x="115" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">acquéreur / caisse</text>
+                    <rect x="40" y="40" width="280" height="70" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="5 4"/>
+                    <text x="180" y="68" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">Onboarding stand</text>
+                    <text x="180" y="90" text-anchor="middle" fill="#8a9aaa" font-size="11">MMO acquéreur → MID GhQR</text>
                   </g>
-                  <line x1="210" y1="90" x2="250" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fn)"/>
                   <g>
-                    <rect x="250" y="40" width="170" height="100" rx="10" fill="#fff" stroke="#2f4858" stroke-width="2"/>
-                    <text x="335" y="80" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">2 · Scan</text>
-                    <text x="335" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">app payeur · decode</text>
+                    <rect x="360" y="40" width="280" height="70" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="5 4"/>
+                    <text x="500" y="70" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">GhIPSS certifie</text>
+                    <text x="500" y="92" text-anchor="middle" fill="#8a9aaa" font-size="11">apps MoMo B · banques…</text>
                   </g>
-                  <line x1="430" y1="90" x2="470" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fn)"/>
                   <g>
-                    <rect x="470" y="40" width="200" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="570" y="80" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">3 · Switch</text>
-                    <text x="570" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">routage AuthZ</text>
-                  </g>
-                  <line x1="680" y1="90" x2="720" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fn)"/>
-                  <g>
-                    <rect x="720" y="40" width="250" height="100" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="845" y="80" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">4 · AuthZ</text>
-                    <text x="845" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">émetteur / wallet</text>
+                    <rect x="680" y="40" width="280" height="70" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2" stroke-dasharray="5 4"/>
+                    <text x="820" y="70" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">Sticker 11 affiché</text>
+                    <text x="820" y="92" text-anchor="middle" fill="#8a9aaa" font-size="11">pas de caisse · IDs fixes</text>
                   </g>
 
-                  <line x1="570" y1="140" x2="570" y2="175" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="500" y="140" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700" letter-spacing="0.03em">B · ALLER · PAIEMENT LIVE</text>
                   <g>
-                    <rect x="200" y="175" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="340" y="210" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">5 · Clearing</text>
-                    <text x="340" y="232" text-anchor="middle" fill="#5a6b7c" font-size="11">compensation nationale</text>
+                    <rect x="20" y="156" width="140" height="88" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                    <text x="90" y="186" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">1 · Sticker</text>
+                    <text x="90" y="208" text-anchor="middle" fill="#5a6b7c" font-size="11">GhQR · 11</text>
+                    <text x="90" y="226" text-anchor="middle" fill="#5a6b7c" font-size="10">IDs · sans montant</text>
+                  </g>
+                  <line x1="160" y1="200" x2="178" y2="200" stroke="#c45c26" stroke-width="2" marker-end="url(#ah-momo)"/>
+                  <g>
+                    <rect x="178" y="156" width="140" height="88" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="3"/>
+                    <text x="248" y="182" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">2 · Payeur</text>
+                    <text x="248" y="204" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">scan MoMo B</text>
+                    <text x="248" y="226" text-anchor="middle" fill="#5a6b7c" font-size="10">saisit 35 GHS</text>
+                  </g>
+                  <line x1="318" y1="200" x2="336" y2="200" stroke="#c45c26" stroke-width="2" marker-end="url(#ah-momo)"/>
+                  <g>
+                    <rect x="336" y="156" width="140" height="88" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                    <text x="406" y="186" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">3 · PSP client</text>
+                    <text x="406" y="208" text-anchor="middle" fill="#c45c26" font-size="11">MoMo B</text>
+                    <text x="406" y="226" text-anchor="middle" fill="#5a6b7c" font-size="10">acquiert le flux</text>
+                  </g>
+                  <line x1="476" y1="200" x2="494" y2="200" stroke="#c45c26" stroke-width="2" marker-end="url(#ah-momo)"/>
+                  <g>
+                    <rect x="494" y="156" width="160" height="88" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="3"/>
+                    <text x="574" y="182" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">4 · GhIPSS</text>
+                    <text x="574" y="204" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">contrôle ID acq.</text>
+                    <text x="574" y="224" text-anchor="middle" fill="#5a6b7c" font-size="10">GIP → MoMo B</text>
+                  </g>
+                  <line x1="654" y1="200" x2="672" y2="200" stroke="#c45c26" stroke-width="2" marker-end="url(#ah-momo)"/>
+                  <g>
+                    <rect x="672" y="156" width="150" height="88" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="747" y="186" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">5 · SI AuthZ</text>
+                    <text x="747" y="208" text-anchor="middle" fill="#5a6b7c" font-size="11">wallet MoMo B</text>
+                    <text x="747" y="226" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">OK / KO</text>
+                  </g>
+                  <line x1="822" y1="200" x2="848" y2="200" stroke="#c45c26" stroke-width="2" marker-end="url(#ah-momo)"/>
+                  <g>
+                    <rect x="848" y="156" width="130" height="88" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="913" y="192" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Fin aller</text>
+                    <text x="913" y="214" text-anchor="middle" fill="#5a6b7c" font-size="11">Auth terminée</text>
+                  </g>
+
+                  <text x="500" y="280" text-anchor="middle" fill="#0d9f8a" font-size="12" font-weight="700" letter-spacing="0.03em">C · RETOUR · DEUX CANAUX (PAS DE CAISSE)</text>
+                  <path d="M747 244 L747 300 L248 300 L248 244" fill="none" stroke="#0d9f8a" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#ah-momo-back)"/>
+                  <text x="500" y="294" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">6a ← Confirmation app MoMo B</text>
+
+                  <g>
+                    <rect x="40" y="330" width="440" height="70" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                    <text x="260" y="358" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">6b · Notif téléphone marchand</text>
+                    <text x="260" y="380" text-anchor="middle" fill="#5a6b7c" font-size="11">SMS / push acquéreur MMO — Ama voit « 35 GHS reçus »</text>
                   </g>
                   <g>
-                    <rect x="520" y="175" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="660" y="210" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">6 · Settlement</text>
-                    <text x="660" y="232" text-anchor="middle" fill="#5a6b7c" font-size="11">règlement · calendrier</text>
+                    <rect x="520" y="330" width="440" height="70" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="740" y="358" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">7 · Crédit marchand (GIP)</text>
+                    <text x="740" y="380" text-anchor="middle" fill="#5a6b7c" font-size="11">Instantané vers wallet / compte lié au MID du sticker</text>
                   </g>
-                  <text x="500" y="295" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Dynamique (12) = TTL / unicité · Statique (11) = montant souvent saisi après scan
+
+                  <text x="500" y="440" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Film = parcours MoMo · le levier GhQR = le même sticker sert aussi une app banque
+                  </text>
+                  <text x="500" y="468" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">
+                    ≠ QR silo MoMo&nbsp;: closed-loop MoMo marcherait aussi, mais sans interop banque
+                  </text>
+                  <text x="500" y="496" text-anchor="middle" fill="#8a9aaa" font-size="11">
+                    App Banque A sur ce sticker → débit banque payeur · crédit wallet MoMo Ama (MID du QR)
                   </text>
                 </svg>
-                <div class="seq-steps" id="flux-national-steps">
+
+                <div class="seq-steps" id="cinema-momo-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
-                      <strong>Initiation</strong>
-                      <p>Encode (caisse / sticker) puis decode dans l’app payeur.</p>
+                      <strong>Sticker</strong>
+                      <p>GhQR · 11 déjà affiché · IDs marchand · montant absent.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
-                      <strong>Autorisation</strong>
-                      <p>Switch route vers l’émetteur / SI wallet du payeur.</p>
+                      <strong>Scan MoMo</strong>
+                      <p>App MoMo B · 35 GHS · via rail GhQR (même sticker = aussi scannable banque).</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
                     <span class="n">3</span>
                     <span>
-                      <strong>Post-transaction</strong>
-                      <p>Clearing puis settlement — calendriers du scheme national.</p>
+                      <strong>Retour</strong>
+                      <p>OK app MoMo · Ama voit 35 GHS · le QR reste utilisable par une app banque.</p>
                     </span>
                   </button>
                 </div>
+                <p class="fresco-legend">
+                  Point à retenir&nbsp;: ce n’est pas «&nbsp;MoMo a besoin de
+                  GhIPSS&nbsp;» — c’est «&nbsp;ce sticker n’est pas un silo
+                  MoMo&nbsp;». Scénario&nbsp;1 = autre terrain (caisse +
+                  banque)&nbsp;; scénario&nbsp;2 = stand + MoMo sur le
+                  <em>même</em> scheme national.
+                </p>
               </div>
             </section>
 
             <section class="section">
               <p class="section-label">Acteurs</p>
-              <h2>RACI simplifié</h2>
-              <p class="intro">
-                R = réalise · A = décide · C = consulté · I = informé.
-              </p>
+              <h2>Qui fait quoi · scénarios 1 et 2</h2>
               <div class="csm-table-wrap">
                 <table class="csm-table">
                   <thead>
                     <tr>
-                      <th scope="col">Activité</th>
-                      <th scope="col">Scheme / switch</th>
-                      <th scope="col">Acquéreur</th>
-                      <th scope="col">Émetteur / wallet</th>
-                      <th scope="col">Marchand</th>
+                      <th scope="col">#</th>
+                      <th scope="col">Acteur</th>
+                      <th scope="col">Rôle dans le film</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="row">Profil QR &amp; IDs</th>
-                      <td>A / R</td>
-                      <td>C</td>
-                      <td>C</td>
-                      <td>I</td>
+                      <th scope="row">1</th>
+                      <td>Marchand</td>
+                      <td>S1&nbsp;: caisse + notif réf. · S2&nbsp;: sticker + SMS/push téléphone</td>
                     </tr>
                     <tr>
-                      <th scope="row">Certification apps</th>
-                      <td>A / R</td>
-                      <td>I</td>
-                      <td>R</td>
-                      <td>—</td>
+                      <th scope="row">2</th>
+                      <td>Acquéreur</td>
+                      <td>S1&nbsp;: banque/PSP caisse · S2&nbsp;: MMO (sticker GhQR + MID)</td>
                     </tr>
                     <tr>
-                      <th scope="row">Onboarding marchand</th>
-                      <td>C</td>
-                      <td>A / R</td>
-                      <td>I</td>
-                      <td>C</td>
+                      <th scope="row">3</th>
+                      <td>GhIPSS</td>
+                      <td>Contrôle ID acquéreur · route Auth via GIP · clearing (identique)</td>
                     </tr>
                     <tr>
-                      <th scope="row">Génération QR</th>
-                      <td>C (règles)</td>
-                      <td>A / R</td>
-                      <td>—</td>
-                      <td>R (affichage)</td>
+                      <th scope="row">4</th>
+                      <td>App payeur</td>
+                      <td>S1&nbsp;: Banque A · S2&nbsp;: MoMo B (montant saisi si 11)</td>
                     </tr>
                     <tr>
-                      <th scope="row">AuthZ payeur</th>
-                      <td>C (routage)</td>
-                      <td>I</td>
-                      <td>A / R</td>
-                      <td>I</td>
+                      <th scope="row">5</th>
+                      <td>PSP client</td>
+                      <td>S1&nbsp;: banque A · S2&nbsp;: wallet MoMo B — acquiert le flux</td>
                     </tr>
                     <tr>
-                      <th scope="row">Clearing / settlement</th>
-                      <td>A / R</td>
-                      <td>R</td>
-                      <td>R</td>
-                      <td>I</td>
+                      <th scope="row">6</th>
+                      <td>SI AuthZ</td>
+                      <td>S1&nbsp;: compte banque · S2&nbsp;: solde wallet MoMo</td>
                     </tr>
                   </tbody>
                 </table>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Décisions</p>
-              <h2>Ce que le groupe tranche</h2>
-              <p class="intro">
-                Pas de «&nbsp;bonne&nbsp;» réponse unique — justifier chaque choix.
-              </p>
-              <div class="csm-table-wrap">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Question</th>
-                      <th scope="col">Options typiques</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Mode dominant</th>
-                      <td>Pull / MPM magasin · CPM pour guichet / agent</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Statique vs dynamique</th>
-                      <td>11 sticker petit commerce · 12 caisse / TTL</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Qui opère le switch</th>
-                      <td>Banque centrale · scheme privé · opérateur dédié</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">P2P inclus&nbsp;?</th>
-                      <td>Même profil · profil séparé · hors périmètre V1</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">International</th>
-                      <td>Plus tard (EMV cross-border) · hors cas</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Ancrage</p>
-              <h2>Livrables (40–50 min)</h2>
-              <div class="panel">
-                <h3>À produire</h3>
-                <ul>
-                  <li>Schéma d’architecture annoté (qui parle à qui)</li>
-                  <li>Flux génération → settlement pour un cas choisi</li>
-                  <li>Tableau acteurs / responsabilités (RACI ou équivalent)</li>
-                  <li>3 décisions tranchées + une phrase de justification chacune</li>
-                </ul>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Clarification</p>
-              <h2>Périmètre</h2>
-              <div class="not-list">
-                <div class="not-item">
-                  <strong>≠ Plateforme omnicanale</strong>
-                  <p>NFC + wallet + journal multi-canal = Jour 5.</p>
-                </div>
-                <div class="not-item">
-                  <strong>≠ Spec pays réelle</strong>
-                  <p>Cas pédagogique — pas un cahier des charges réglementaire.</p>
-                </div>
               </div>
             </section>
 
             <div class="sources-box">
-              <strong>Sources normes / specs</strong> — à affiner : specs
-              nationales QR ; EMVCo QR ; documentation switch / scheme local.
+              <strong>Sources</strong> — GhQR / GhIPSS (Ghana)&nbsp;; NQR / NIBSS
+              (Nigeria)&nbsp;; Meeza QR (Égypte)&nbsp;; EMVCo QR MPM&nbsp;;
+              Architecture SI (PSP client, contrôle ID, notif caisse).
             </div>
 
             <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>

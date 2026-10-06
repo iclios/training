@@ -41,42 +41,47 @@
           <div class="wrap">
             <section class="section" style="border-top: none; padding-top: 0">
               <p class="section-label">Remise</p>
-              <h2>PDF du Jour 2</h2>
-              <p class="definition-full">
-                Document <strong>PDF</strong> envoyé aux étudiants après la
-                séance — reprise de
-                <strong>tous les éléments du jour</strong>
-                (Paiements par QR Code) avec le
-                <strong>maximum de détail</strong> possible (schémas,
-                définitions, flux, vocabulaire).
-              </p>
-              <p class="intro" style="margin-top: 0.85rem">
-                Placeholder&nbsp;: le PDF sera produit et peaufiné plus tard.
-                Cette page sert d’ancrage dans le parcours formateur.
-              </p>
+              <h2>Support cours</h2>
+              <div class="panel ok" style="margin-top: 1rem">
+                <h3>Fichier PDF</h3>
+                <ul>
+                  <li>Polycopié A4 avec schémas</li>
+                  <li>
+                    <a
+                      href="../supports/J2-support-etudiant-paiements-par-qr-code.pdf"
+                      download="J2-support-etudiant-paiements-par-qr-code.pdf"
+                      >Télécharger J2-support-etudiant-paiements-par-qr-code.pdf</a
+                    >
+                  </li>
+                  <li>
+                    Source HTML imprimable&nbsp;:
+                    <a href="support-etudiant.html">support-etudiant.html</a>
+                  </li>
+                </ul>
+              </div>
             </section>
 
             <section class="section">
-              <p class="section-label">Périmètre</p>
-              <h2>Contenu à reprendre dans le PDF</h2>
-              <ul class="topic-list">
-                <li>Principes & typologies QR</li>
-                <li>Normes et standards QR</li>
-                <li>Architecture SI & flux QR</li>
-                <li>Interopérabilité QR</li>
-                <li>Cas d’usage</li>
-                <li>Cas : QR national</li>
-              </ul>
-            </section>
-
-            <section class="section">
-              <p class="section-label">État</p>
-              <h2>À venir</h2>
-              <div class="panel">
-                <p class="intro" style="margin: 0">
-                  Lien / fichier PDF — à brancher ici quand le support sera
-                  finalisé.
-                </p>
+              <p class="section-label">Pièces jointes</p>
+              <h2>Atelier simu 2 téléphones</h2>
+              <p class="intro">
+                À joindre au mail de remise — dossier
+                <code>atelier/j2-pay-sim/</code>.
+              </p>
+              <div class="panel ok">
+                <h3>server.py</h3>
+                <ul>
+                  <li>Serveur local marchand / payeur (port 8790)</li>
+                  <li>
+                    <a href="../atelier/j2-pay-sim/server.py" download
+                      >Télécharger le script</a
+                    >
+                  </li>
+                  <li>
+                    Lancer&nbsp;:
+                    <code>python3 atelier/j2-pay-sim/server.py</code>
+                  </li>
+                </ul>
               </div>
             </section>
 
@@ -96,6 +101,6 @@
     <script src="../js/app.js"></script>
     <script src="../js/nav-j2.js"></script>
     <script src="../js/fiche.js"></script>
-      <script src="../js/present.js?v=7" data-present-js="1"></script>
-</body>
+    <script src="../js/present.js?v=7" data-present-js="1"></script>
+  </body>
 </html>

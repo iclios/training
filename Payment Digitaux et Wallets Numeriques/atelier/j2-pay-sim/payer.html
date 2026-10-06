@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Payer · Simu paiement J2</title>
+    <style>
+      :root {
+        --ink: #1a2b3c;
+        --soft: #5a6b7c;
+        --line: #c5d3df;
+        --accent: #0d9f8a;
+        --accent-ink: #087a6a;
+        --warn: #c45c26;
+        --bg: #f4f7f9;
+        --font: "Syne", system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        min-height: 100dvh;
+      }
+      .wrap { max-width: 420px; margin: 0 auto; padding: 1.5rem 1rem 2.5rem; }
+      .kicker {
+        font-family: var(--font);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--warn);
+        margin: 0 0 0.35rem;
+      }
+      h1 {
+        font-family: var(--font);
+        font-size: 1.55rem;
+        margin: 0 0 0.35rem;
+        letter-spacing: -0.03em;
+      }
+      .card {
+        margin-top: 1.25rem;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 1.25rem;
+      }
+      .card.ok { border-color: var(--accent); background: #e7f6f3; }
+      .amount {
+        font-family: var(--font);
+        font-size: 2.4rem;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        margin: 0.4rem 0;
+      }
+      .merchant { color: var(--soft); margin: 0 0 1rem; }
+      label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin: 0 0 0.35rem;
+      }
+      input {
+        width: 100%;
+        padding: 0.75rem 0.85rem;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+      button {
+        appearance: none;
+        border: none;
+        border-radius: 10px;
+        padding: 1rem;
+        font-size: 1.05rem;
+        font-weight: 700;
+        width: 100%;
+        background: var(--accent);
+        color: #fff;
+        cursor: pointer;
+      }
+      button:disabled { opacity: 0.55; cursor: default; }
+      .msg { margin-top: 1rem; color: var(--soft); font-size: 0.95rem; }
+      .err { color: var(--warn); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <p class="kicker">Téléphone B · Payeur</p>
+      <h1>Confirmer le paiement</h1>
+
+      <div id="card" class="card">
+        <p class="merchant" id="merchant">Chargement…</p>
+        <p class="amount" id="amount"></p>
+        <label for="payer">Votre libellé (démo)</label>
+        <input id="payer" value="Client MoMo B" maxlength="40" />
+        <button type="button" id="btn-pay">Payer</button>
+        <p class="msg" id="msg">Simu pédagogique — aucun vrai débit.</p>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const params = new URLSearchParams(location.search);
+        const id = params.get("id");
+        const merchantEl = document.getElementById("merchant");
+        const amountEl = document.getElementById("amount");
+        const msgEl = document.getElementById("msg");
+        const btn = document.getElementById("btn-pay");
+        const card = document.getElementById("card");
+
+        if (!id) {
+          merchantEl.textContent = "QR invalide";
+          amountEl.textContent = "—";
+          btn.disabled = true;
+          msgEl.className = "msg err";
+          msgEl.textContent = "Scannez le QR généré par le téléphone marchand.";
+          return;
+        }
+
+        async function load() {
+          const res = await fetch("/api/trx/" + id);
+          const trx = await res.json();
+          if (!res.ok) {
+            merchantEl.textContent = "Transaction introuvable";
+            amountEl.textContent = "—";
+            btn.disabled = true;
+            msgEl.className = "msg err";
+            msgEl.textContent = trx.error || "Erreur";
+            return trx;
+          }
+          merchantEl.textContent = "Payer " + trx.merchant;
+          amountEl.textContent = trx.amount + " " + trx.currency;
+          if (trx.status === "paid") {
+            card.classList.add("ok");
+            btn.disabled = true;
+            btn.textContent = "Déjà payé";
+            msgEl.textContent = "Le marchand a reçu la confirmation.";
+          }
+          return trx;
+        }
+
+        btn.addEventListener("click", async function () {
+          btn.disabled = true;
+          const res = await fetch("/api/trx/" + id + "/pay", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              payer: document.getElementById("payer").value.trim() || "Payeur",
+            }),
+          });
+          const trx = await res.json();
+          if (!res.ok) {
+            btn.disabled = false;
+            msgEl.className = "msg err";
+            msgEl.textContent = trx.error || "Échec";
+            return;
+          }
+          card.classList.add("ok");
+          btn.textContent = "Payé";
+          msgEl.className = "msg";
+          msgEl.textContent =
+            "OK — le téléphone marchand doit passer au vert (polling).";
+        });
+
+        load().catch(function () {
+          merchantEl.textContent = "Serveur injoignable";
+          btn.disabled = true;
+          msgEl.className = "msg err";
+          msgEl.textContent = "Vérifiez le Wi‑Fi et l’URL du serveur (port 8790).";
+        });
+      })();
+    </script>
+  </body>
+</html>

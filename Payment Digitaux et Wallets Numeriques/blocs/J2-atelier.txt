@@ -1,7 +1,13 @@
 BLOC — FORMATEUR · JOUR 2 · Atelier
-Durée : 45–60 min
 
-Kit : stickers imprimés · 2 téléphones · démos QR live support (Typologies) · parseur EMV optionnel · aucun achat matériel.
-Déroulé : groupe marchand génère · groupe client scanne · tracer le flux · débat closed/open push/pull.
+Kit : PC formateur · 2 téléphones même Wi‑Fi · aucun achat.
 
-Fiche : marqueur « Ancrage atelier » ; sans bloat formateur ; check fin J2 + teaser J3.
+Déroulé
+1. Génération de QR — textarea live (+ presets)
+2. Paiement simulé 2 téléphones — tableau rôles + commande serveur
+   python3 atelier/j2-pay-sim/server.py
+   Liens auto sur la fiche (ce PC / Wi‑Fi)
+
+Pièges
+- Tél. : lien Wi‑Fi (IP), pas localhost
+- IP change selon la salle → Rafraîchir le lien

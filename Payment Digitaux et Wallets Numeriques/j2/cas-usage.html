@@ -66,38 +66,65 @@
               <div class="diagram" id="diagram-proximite">
                 <div class="diagram-header">
                   <h3>Magasin · Pull (MPM)</h3>
-                  <p>Marchand affiche · payeur scanne</p>
+                  <p>Marchand affiche · payeur scanne · PSP client → réseau → AuthZ</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 220"
+                  viewBox="0 0 1000 340"
                   role="img"
-                  aria-label="Cas usage proximité QR"
+                  aria-label="Cas usage proximité QR avec flux Auth"
                 >
                   <defs>
                     <marker id="ah-pr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                       <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
                     </marker>
                   </defs>
+
+                  <text x="500" y="28" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.04em">1 · PRÉSENTATION · SCAN</text>
                   <g>
-                    <rect x="80" y="50" width="220" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-commercant.jpg" x="95" y="68" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="170" y="95" fill="#1a2b3c" font-size="13" font-weight="700">Marchand</text>
-                    <text x="170" y="115" fill="#5a6b7c" font-size="11">QR affiché</text>
+                    <rect x="60" y="44" width="220" height="96" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="75" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="140" y="80" fill="#1a2b3c" font-size="13" font-weight="700">Marchand</text>
+                    <text x="140" y="100" fill="#5a6b7c" font-size="11">QR affiché</text>
+                    <text x="140" y="120" fill="#087a6a" font-size="11" font-weight="700">11 sticker · 12 caisse</text>
                   </g>
-                  <line class="flow-line" x1="320" y1="100" x2="400" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pr)"/>
+                  <line class="flow-line" x1="280" y1="92" x2="360" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pr)"/>
+                  <text x="320" y="80" text-anchor="middle" fill="#0d9f8a" font-size="11" font-weight="700">scan</text>
                   <g>
-                    <rect x="400" y="50" width="220" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-porteur.jpg" x="415" y="68" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="490" y="95" fill="#087a6a" font-size="13" font-weight="700">Payeur</text>
-                    <text x="490" y="115" fill="#5a6b7c" font-size="11">scan pull</text>
+                    <rect x="360" y="44" width="220" height="96" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="375" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="440" y="80" fill="#087a6a" font-size="13" font-weight="700">Payeur</text>
+                    <text x="440" y="100" fill="#5a6b7c" font-size="11">app · pull</text>
+                    <text x="440" y="120" fill="#c45c26" font-size="11" font-weight="700">choisit le moyen</text>
                   </g>
-                  <line class="flow-line" x1="640" y1="100" x2="720" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pr)"/>
+                  <line class="flow-line" x1="580" y1="92" x2="660" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pr)"/>
+                  <text x="620" y="80" text-anchor="middle" fill="#0d9f8a" font-size="11" font-weight="700">flux</text>
                   <g>
-                    <rect x="720" y="50" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-psp.jpg" x="735" y="68" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="810" y="95" fill="#1a2b3c" font-size="13" font-weight="700">PSP</text>
-                    <text x="810" y="115" fill="#5a6b7c" font-size="11">→ AuthZ</text>
+                    <rect x="660" y="44" width="280" height="96" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-psp.jpg" x="680" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="745" y="80" fill="#1a2b3c" font-size="13" font-weight="700">PSP client</text>
+                    <text x="745" y="100" fill="#c45c26" font-size="11" font-weight="700">acquiert le flux</text>
+                    <text x="745" y="120" fill="#5a6b7c" font-size="11">≠ PSP marchand Auth</text>
                   </g>
+
+                  <text x="500" y="172" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.04em">2 · RÉSEAU → AUTHZ (aller) · confirmation = retour</text>
+                  <g>
+                    <rect x="120" y="190" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="260" y="222" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Réseau</text>
+                    <text x="260" y="246" text-anchor="middle" fill="#5a6b7c" font-size="11">contrôle ID acquéreur (QR)</text>
+                  </g>
+                  <line class="flow-line" x1="400" y1="230" x2="460" y2="230" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pr)"/>
+                  <g>
+                    <rect x="460" y="190" width="320" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="620" y="222" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">SI AuthZ · émetteur</text>
+                    <text x="620" y="246" text-anchor="middle" fill="#5a6b7c" font-size="11">fin de l’aller</text>
+                  </g>
+                  <defs>
+                    <marker id="ah-pr-back" markerWidth="8" markerHeight="8" refX="1" refY="3" orient="auto">
+                      <path d="M8,0 L2,3 L8,6 Z" fill="#c45c26" />
+                    </marker>
+                  </defs>
+                  <path d="M500 270 L500 292 L200 292 L200 270" fill="none" stroke="#c45c26" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#ah-pr-back)"/>
+                  <text x="350" y="286" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">← Confirmation (retour) · puis règlement (J1)</text>
                 </svg>
 
                 <div class="csm-table-wrap" style="margin-top: 1.25rem">
@@ -167,38 +194,75 @@
               <div class="diagram" id="diagram-transport">
                 <div class="diagram-header">
                   <h3>Borne · Validateur</h3>
-                  <p>Throughput · TTL court · closed fréquent</p>
+                  <p>Throughput · TTL court · closed fréquent · SLA Auth</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 220"
+                  viewBox="0 0 1000 340"
                   role="img"
-                  aria-label="Cas usage transport QR"
+                  aria-label="Cas usage transport QR avec flux"
                 >
                   <defs>
                     <marker id="ah-tr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                       <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
                     </marker>
                   </defs>
+
+                  <text x="500" y="28" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.04em">1 · INTERACTION BORNE ↔ VOYAGEUR (MPM ou CPM)</text>
                   <g>
-                    <rect x="100" y="50" width="240" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-device.jpg" x="115" y="68" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="190" y="95" fill="#1a2b3c" font-size="13" font-weight="700">Validateur</text>
-                    <text x="190" y="115" fill="#5a6b7c" font-size="11">scan / affiche</text>
+                    <rect x="80" y="44" width="240" height="96" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-device.jpg" x="95" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="160" y="80" fill="#1a2b3c" font-size="13" font-weight="700">Validateur</text>
+                    <text x="160" y="100" fill="#5a6b7c" font-size="11">affiche (MPM)</text>
+                    <text x="160" y="120" fill="#5a6b7c" font-size="11">ou scanne (CPM)</text>
                   </g>
-                  <line class="flow-line" x1="360" y1="100" x2="440" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-tr)"/>
+                  <line class="flow-line" x1="320" y1="92" x2="400" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-tr)"/>
+                  <text x="360" y="78" text-anchor="middle" fill="#0d9f8a" font-size="11" font-weight="700">↔</text>
                   <g>
-                    <rect x="440" y="50" width="240" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-porteur.jpg" x="455" y="68" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="530" y="95" fill="#087a6a" font-size="13" font-weight="700">Voyageur</text>
-                    <text x="530" y="115" fill="#5a6b7c" font-size="11">app / QR</text>
+                    <rect x="400" y="44" width="240" height="96" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="415" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="480" y="80" fill="#087a6a" font-size="13" font-weight="700">Voyageur</text>
+                    <text x="480" y="100" fill="#5a6b7c" font-size="11">app / QR</text>
+                    <text x="480" y="120" fill="#087a6a" font-size="11" font-weight="700">dyn. 12 fréquent</text>
                   </g>
-                  <line class="flow-line" x1="700" y1="100" x2="780" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-tr)"/>
+                  <line class="flow-line" x1="640" y1="92" x2="720" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-tr)"/>
                   <g>
-                    <rect x="780" y="50" width="160" height="100" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
-                    <text x="860" y="95" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">Latence</text>
-                    <text x="860" y="120" text-anchor="middle" fill="#5a6b7c" font-size="11">SLA strict</text>
+                    <rect x="720" y="44" width="200" height="96" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="820" y="84" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">Latence</text>
+                    <text x="820" y="108" text-anchor="middle" fill="#5a6b7c" font-size="11">SLA strict</text>
+                    <text x="820" y="128" text-anchor="middle" fill="#5a6b7c" font-size="11">file d’attente</text>
                   </g>
+
+                  <text x="500" y="172" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.04em">2 · FLUX · PSP → RÉSEAU / LOCAL → AUTHZ (aller)</text>
+                  <g>
+                    <rect x="80" y="190" width="220" height="80" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                    <text x="190" y="222" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">PSP</text>
+                    <text x="190" y="246" text-anchor="middle" fill="#5a6b7c" font-size="11">client ou opérateur</text>
+                  </g>
+                  <line class="flow-line" x1="300" y1="230" x2="350" y2="230" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-tr)"/>
+                  <g>
+                    <rect x="350" y="190" width="240" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="470" y="222" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Réseau / local</text>
+                    <text x="470" y="246" text-anchor="middle" fill="#5a6b7c" font-size="11">closed fréquent</text>
+                  </g>
+                  <line class="flow-line" x1="590" y1="230" x2="640" y2="230" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-tr)"/>
+                  <g>
+                    <rect x="640" y="190" width="260" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="770" y="222" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">AuthZ · émetteur</text>
+                    <text x="770" y="246" text-anchor="middle" fill="#5a6b7c" font-size="11">fin de l’aller</text>
+                  </g>
+                  <defs>
+                    <marker id="ah-tr-back" markerWidth="8" markerHeight="8" refX="1" refY="3" orient="auto">
+                      <path d="M8,0 L2,3 L8,6 Z" fill="#c45c26" />
+                    </marker>
+                  </defs>
+                  <path d="M770 270 L770 292 L200 292 L200 270" fill="none" stroke="#c45c26" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#ah-tr-back)"/>
+                  <text x="485" y="286" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">← Confirmation / OK porte (retour · sens inverse)</text>
                 </svg>
+                <p class="fresco-legend">
+                  Confirmation / OK porte = <strong>retour</strong> vers la
+                  borne (pas un hop à droite). *Offline dégradé possible —
+                  réconciliation ensuite.
+                </p>
 
                 <div class="csm-table-wrap" style="margin-top: 1.25rem">
                   <table class="csm-table">
@@ -267,38 +331,62 @@
               <div class="diagram" id="diagram-p2p">
                 <div class="diagram-header">
                   <h3>Payeur · Bénéficiaire</h3>
-                  <p>Proxy · open ou closed selon app</p>
+                  <p>Proxy · open ou closed selon app · flux jusqu’au crédit</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 220"
+                  viewBox="0 0 1000 320"
                   role="img"
-                  aria-label="Cas usage P2P QR"
+                  aria-label="Cas usage P2P QR avec flux"
                 >
                   <defs>
                     <marker id="ah-p2p" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                       <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
                     </marker>
                   </defs>
+
+                  <text x="500" y="28" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.04em">1 · SCAN DU QR PERSO</text>
                   <g>
-                    <rect x="120" y="50" width="240" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-porteur.jpg" x="135" y="68" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="210" y="95" fill="#1a2b3c" font-size="13" font-weight="700">Payeur</text>
-                    <text x="210" y="115" fill="#5a6b7c" font-size="11">scanne QR</text>
+                    <rect x="80" y="44" width="240" height="96" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="95" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="160" y="80" fill="#1a2b3c" font-size="13" font-weight="700">Payeur</text>
+                    <text x="160" y="100" fill="#5a6b7c" font-size="11">scanne QR</text>
+                    <text x="160" y="120" fill="#c45c26" font-size="11" font-weight="700">+ montant</text>
                   </g>
-                  <line class="flow-line" x1="380" y1="100" x2="460" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-p2p)"/>
+                  <line class="flow-line" x1="320" y1="92" x2="400" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-p2p)"/>
+                  <text x="360" y="78" text-anchor="middle" fill="#0d9f8a" font-size="11" font-weight="700">pull</text>
                   <g>
-                    <rect x="460" y="50" width="240" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-wallet.jpg" x="475" y="68" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="550" y="95" fill="#087a6a" font-size="13" font-weight="700">Bénéficiaire</text>
-                    <text x="550" y="115" fill="#5a6b7c" font-size="11">QR perso</text>
+                    <rect x="400" y="44" width="240" height="96" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-wallet.jpg" x="415" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="480" y="80" fill="#087a6a" font-size="13" font-weight="700">Bénéficiaire</text>
+                    <text x="480" y="100" fill="#5a6b7c" font-size="11">QR perso</text>
+                    <text x="480" y="120" fill="#087a6a" font-size="11" font-weight="700">proxy · souvent 11</text>
                   </g>
-                  <line class="flow-line" x1="720" y1="100" x2="800" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-p2p)"/>
+                  <line class="flow-line" x1="640" y1="92" x2="720" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-p2p)"/>
                   <g>
-                    <rect x="800" y="50" width="140" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-banque.jpg" x="842" y="68" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="870" y="145" text-anchor="middle" fill="#5a6b7c" font-size="11">Crédit</text>
+                    <rect x="720" y="44" width="200" height="96" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                    <text x="820" y="84" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">PSP client</text>
+                    <text x="820" y="108" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">acquiert le flux</text>
+                    <text x="820" y="128" text-anchor="middle" fill="#5a6b7c" font-size="11">plafonds P2P</text>
+                  </g>
+
+                  <text x="500" y="172" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.04em">2 · RÉSEAU / SWITCH → CRÉDIT BÉNÉFICIAIRE</text>
+                  <g>
+                    <rect x="120" y="190" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="260" y="222" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Réseau / switch P2P</text>
+                    <text x="260" y="246" text-anchor="middle" fill="#5a6b7c" font-size="11">KYC · contrôles fraude</text>
+                  </g>
+                  <line class="flow-line" x1="400" y1="230" x2="480" y2="230" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-p2p)"/>
+                  <g>
+                    <rect x="480" y="190" width="400" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-banque.jpg" x="510" y="208" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="575" y="222" fill="#087a6a" font-size="13" font-weight="700">SI banque / wallet</text>
+                    <text x="575" y="246" fill="#5a6b7c" font-size="11">crédit du bénéficiaire</text>
                   </g>
                 </svg>
+                <p class="fresco-legend">
+                  Risque type&nbsp;: usurpation du QR perso (surtout s’il est
+                  fixe). Variante push / agent plus rare.
+                </p>
 
                 <div class="csm-table-wrap" style="margin-top: 1.25rem">
                   <table class="csm-table">
@@ -386,6 +474,12 @@
                       <td>Sticker cloné / montant</td>
                       <td>Timeout / offline</td>
                       <td>Usurpation bénéficiaire</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Flux Auth</th>
+                      <td>PSP client → réseau → émetteur</td>
+                      <td>PSP → réseau/local → Auth · SLA</td>
+                      <td>PSP client → switch → crédit</td>
                     </tr>
                   </tbody>
                 </table>

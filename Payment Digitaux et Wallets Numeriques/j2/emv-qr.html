@@ -44,12 +44,12 @@
               <h2>Qu’est-ce que la spec EMV QR&nbsp;?</h2>
               <p class="definition-full">
                 Les <strong>EMV QR Code Specifications</strong> (EMVCo)
-                définissent le <strong>format de données</strong> d’un QR de
-                paiement&nbsp;: comment encoder / décoder le payload pour
-                initier une transaction. Ce n’est
-                <strong>pas</strong> le protocole réseau après le scan
-                (Auth / clearing), ni la norme optique
-                <strong>ISO/IEC 18004</strong>, ni les specs
+                définissent le <strong>format du payload</strong> d’un QR de
+                paiement (TLV, IDs, CRC, MPM / CPM…) — ce que la chaîne contient
+                pour initier une transaction. Ce n’est
+                <strong>pas</strong> l’encodage / décodage optique du symbole
+                (<strong>ISO/IEC 18004</strong>), ni le protocole réseau après
+                le scan (Auth / clearing), ni les specs
                 <strong>EMV carte à puce</strong>.
               </p>
               <ul class="topic-list" style="margin-top: 1rem">
@@ -558,44 +558,6 @@
                   pour dérouler national / international.
                 </p>
               </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Règles utiles</p>
-              <h2>Cinq points opérationnels</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>Côté génération</h3>
-                  <ul>
-                    <li>Ordre des IDs et CRC calculé sur le payload</li>
-                    <li>Statique&nbsp;: pas (ou peu) de montant</li>
-                    <li>Dynamique&nbsp;: montant + réf. + fenêtre de vie</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Côté lecture</h3>
-                  <ul>
-                    <li>Parser TLV → valider CRC → extraire IDs</li>
-                    <li>Caméra OS seule ≠ app paiement</li>
-                    <li>Messaging Auth = hors scope EMV QR (réseau / issuer)</li>
-                  </ul>
-                </div>
-              </div>
-              <ul class="topic-list" style="margin-top: 1rem">
-                <li>
-                  <strong>Un QR, plusieurs programmes</strong> — plusieurs
-                  blocs Merchant Account possibles dans le même sticker
-                  (selon marchés)
-                </li>
-                <li>
-                  <strong>Account-based et card-based</strong> — EMV QR
-                  peut porter les deux familles (champs prévus)
-                </li>
-                <li>
-                  <strong>RFU</strong> — IDs réservés&nbsp;: l’app doit
-                  ignorer ce qu’elle ne connaît pas (évolutivité)
-                </li>
-              </ul>
             </section>
 
             <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>

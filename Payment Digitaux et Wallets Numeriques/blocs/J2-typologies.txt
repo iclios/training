@@ -7,7 +7,7 @@ statique/dynamique (tag 01 · 11/12), push/pull (MPM/CPM), closed/open — chaqu
 
 Ouverture
 1. Définition QR + payload standard (ex. URL)
-2. Génération (ISO/IEC 18004) : payload → encodage → ECC → matrice → image
+2. Génération + lecture (ISO/IEC 18004) : payload ↔ image (encodage / décodage)
 3. QR de paiement + payload paiement (ex. pédagogique pipe / équiv. EMV)
    — même support optique, chaîne structurée pour l’app
 

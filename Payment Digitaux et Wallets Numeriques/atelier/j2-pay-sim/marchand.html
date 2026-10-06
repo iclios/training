@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Marchand · Simu paiement J2</title>
+    <style>
+      :root {
+        --ink: #1a2b3c;
+        --soft: #5a6b7c;
+        --line: #c5d3df;
+        --accent: #0d9f8a;
+        --accent-ink: #087a6a;
+        --warn: #c45c26;
+        --bg: #f4f7f9;
+        --font: "Syne", system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        min-height: 100dvh;
+      }
+      .wrap { max-width: 420px; margin: 0 auto; padding: 1.25rem 1rem 2.5rem; }
+      .kicker {
+        font-family: var(--font);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent-ink);
+        margin: 0 0 0.35rem;
+      }
+      h1 {
+        font-family: var(--font);
+        font-size: 1.55rem;
+        margin: 0 0 0.35rem;
+        letter-spacing: -0.03em;
+      }
+      .sub { margin: 0 0 1.25rem; color: var(--soft); font-size: 0.95rem; }
+      label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin: 0 0 0.35rem;
+      }
+      input {
+        width: 100%;
+        padding: 0.75rem 0.85rem;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        font-size: 1rem;
+        margin-bottom: 0.85rem;
+        background: #fff;
+      }
+      .row { display: grid; grid-template-columns: 1.4fr 0.6fr; gap: 0.65rem; }
+      button {
+        appearance: none;
+        border: none;
+        border-radius: 10px;
+        padding: 0.9rem 1rem;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        width: 100%;
+      }
+      .btn-primary { background: var(--accent); color: #fff; }
+      .btn-ghost {
+        background: #fff;
+        color: var(--ink);
+        border: 1px solid var(--line);
+        margin-top: 0.65rem;
+      }
+      .card {
+        margin-top: 1.25rem;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 1.1rem;
+        text-align: center;
+      }
+      .card.paid {
+        border-color: var(--accent);
+        background: #e7f6f3;
+      }
+      #qr { width: 220px; height: 220px; margin: 0.5rem auto; }
+      #qr img, #qr canvas { width: 220px !important; height: 220px !important; }
+      .status {
+        font-family: var(--font);
+        font-weight: 700;
+        font-size: 1.05rem;
+        margin: 0.35rem 0;
+      }
+      .status.pending { color: var(--warn); }
+      .status.paid { color: var(--accent-ink); }
+      .meta { font-size: 0.85rem; color: var(--soft); word-break: break-all; }
+      .hidden { display: none; }
+      .hint { font-size: 0.85rem; color: var(--soft); margin-top: 1rem; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <p class="kicker">Téléphone A · Marchand</p>
+      <h1>Afficher un QR à payer</h1>
+      <p class="sub">Le téléphone B scanne → confirme → vous voyez le crédit ici.</p>
+
+      <form id="form">
+        <label for="merchant">Marchand</label>
+        <input id="merchant" value="Stand Ama" maxlength="40" required />
+        <div class="row">
+          <div>
+            <label for="amount">Montant</label>
+            <input id="amount" inputmode="decimal" value="35" required />
+          </div>
+          <div>
+            <label for="currency">Devise</label>
+            <input id="currency" value="GHS" maxlength="6" required />
+          </div>
+        </div>
+        <button class="btn-primary" type="submit">Générer le QR paiement</button>
+      </form>
+
+      <div id="panel" class="card hidden">
+        <div id="qr" aria-label="QR de paiement"></div>
+        <p class="status pending" id="status">En attente du scan…</p>
+        <p class="meta" id="summary"></p>
+        <p class="meta" id="payUrl"></p>
+        <button class="btn-ghost" type="button" id="btn-new">Nouvelle transaction</button>
+      </div>
+
+      <p class="hint" id="hint">
+        Même Wi‑Fi que le serveur · ouvrir cette page via l’IP affichée au
+        lancement (pas seulement localhost).
+      </p>
+    </div>
+
+    <script src="/js/qrcode.min.js"></script>
+    <script>
+      (function () {
+        const form = document.getElementById("form");
+        const panel = document.getElementById("panel");
+        const qrHost = document.getElementById("qr");
+        const statusEl = document.getElementById("status");
+        const summaryEl = document.getElementById("summary");
+        const payUrlEl = document.getElementById("payUrl");
+        const btnNew = document.getElementById("btn-new");
+        let pollTimer = null;
+        let currentId = null;
+
+        function setPendingUi(trx) {
+          panel.classList.remove("paid", "hidden");
+          statusEl.className = "status pending";
+          statusEl.textContent = "En attente du payeur…";
+          summaryEl.textContent =
+            trx.merchant + " · " + trx.amount + " " + trx.currency;
+          payUrlEl.textContent = trx.payUrl;
+          qrHost.innerHTML = "";
+          new QRCode(qrHost, {
+            text: trx.payUrl,
+            width: 220,
+            height: 220,
+            correctLevel: QRCode.CorrectLevel.M,
+          });
+        }
+
+        function setPaidUi(trx) {
+          panel.classList.add("paid");
+          statusEl.className = "status paid";
+          statusEl.textContent =
+            "Payé · " + trx.amount + " " + trx.currency + " reçus";
+          summaryEl.textContent =
+            (trx.payerLabel || "Payeur") + " → " + trx.merchant;
+        }
+
+        function stopPoll() {
+          if (pollTimer) clearInterval(pollTimer);
+          pollTimer = null;
+        }
+
+        function startPoll(id) {
+          stopPoll();
+          pollTimer = setInterval(async function () {
+            try {
+              const res = await fetch("/api/trx/" + id);
+              if (!res.ok) return;
+              const trx = await res.json();
+              if (trx.status === "paid") {
+                setPaidUi(trx);
+                stopPoll();
+              }
+            } catch (e) {}
+          }, 1000);
+        }
+
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault();
+          stopPoll();
+          const body = {
+            merchant: document.getElementById("merchant").value.trim(),
+            amount: document.getElementById("amount").value.trim(),
+            currency: document.getElementById("currency").value.trim(),
+          };
+          const res = await fetch("/api/trx", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
+          const trx = await res.json();
+          if (!res.ok) {
+            alert(trx.error || "Erreur");
+            return;
+          }
+          currentId = trx.id;
+          setPendingUi(trx);
+          startPoll(trx.id);
+        });
+
+        btnNew.addEventListener("click", function () {
+          stopPoll();
+          currentId = null;
+          panel.classList.add("hidden");
+          form.reset();
+          document.getElementById("merchant").value = "Stand Ama";
+          document.getElementById("amount").value = "35";
+          document.getElementById("currency").value = "GHS";
+        });
+
+        fetch("/api/meta")
+          .then(function (r) { return r.json(); })
+          .then(function (m) {
+            document.getElementById("hint").textContent =
+              "URL salle : " + m.baseUrl + "/marchand.html — les 2 téléphones sur le même réseau.";
+          })
+          .catch(function () {});
+      })();
+    </script>
+  </body>
+</html>

@@ -86,7 +86,7 @@
                     <rect x="520" y="120" width="400" height="90" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-psp.jpg" x="540" y="138" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
                     <text x="605" y="160" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">QR international</text>
-                    <text x="605" y="182" fill="#5a6b7c" font-size="12">Schemes / corridors transfrontières</text>
+                    <text x="605" y="182" fill="#5a6b7c" font-size="12">Réseaux · acceptation entre pays</text>
                   </g>
                   <text x="500" y="255" text-anchor="middle" fill="#5a6b7c" font-size="12">
                     Un QR national s’appuie souvent sur EMV QR + profil pays
@@ -114,11 +114,11 @@
                       <tr>
                         <th scope="row">National</th>
                         <td>Profil pays, IDs marchands, switch, règles</td>
-                        <td>Couvrir les corridors internationaux</td>
+                        <td>Couvrir l’acceptation d’un pays à l’autre</td>
                       </tr>
                       <tr>
                         <th scope="row">International</th>
-                        <td>Accords schemes / corridors, FX, agents</td>
+                        <td>Accords entre réseaux / pays, change, intermédiaires</td>
                         <td>Remplacer un profil domestique</td>
                       </tr>
                     </tbody>
@@ -144,21 +144,11 @@
                     <span class="n">3</span>
                     <span>
                       <strong>International</strong>
-                      <p>Corridors / schemes — FX, calendriers, agents&nbsp;: autre couche.</p>
+                      <p>Liens entre pays / réseaux — change, calendriers, intermédiaires&nbsp;: autre couche.</p>
                     </span>
                   </button>
                 </div>
               </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Rappel</p>
-              <h2>Payload &amp; modes — déjà vu</h2>
-              <p class="intro">
-                Tags TLV, CRC, POI&nbsp;11/12, MPM/CPM&nbsp;: voir
-                <a href="emv-qr.html">Focus EMV QR</a>. Ici on enchaîne sur
-                l’interop.
-              </p>
             </section>
 
             <section class="section">
@@ -308,43 +298,6 @@
                   </tbody>
                 </table>
               </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Gouvernance</p>
-              <h2>Qui publie quoi&nbsp;?</h2>
-              <div class="csm-table-wrap">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Acteur</th>
-                      <th scope="col">Produit</th>
-                      <th scope="col">Rôle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">EMVCo</th>
-                      <td>EMV QR Code Spec</td>
-                      <td>Structure internationale du payload</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Régulateur / scheme national</th>
-                      <td>Profil pays + règles</td>
-                      <td>IDs, switch, certification apps</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">PSP / banques / wallets</th>
-                      <td>Adhésion + implémentation</td>
-                      <td>Générer / lire / router dans le cadre</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="fresco-legend" style="margin-top: 1rem">
-                Publier une spec EMV ≠ avoir un QR national déployé — il manque
-                souvent profil, switch et gouvernance.
-              </p>
             </section>
 
             <div class="sources-box">

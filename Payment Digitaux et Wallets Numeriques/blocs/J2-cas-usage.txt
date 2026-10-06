@@ -4,11 +4,15 @@ Durée : 25–30 min
 Idée clé
 Trois terrains — pour chacun : axes (statique/dyn · 11/12, push/pull · MPM/CPM, closed/open)
 + contrainte SI dominante. Un usage ≠ un seul axe.
+Schémas d’origine enrichis : ligne 1 présentation/scan · ligne 2 flux Auth / crédit.
 
 Fil
 1. Proximité — pull · sticker vs caisse · open souhaitable
-2. Transport — SLA / offline · closed fréquent
+   Flux : marchand → payeur → PSP client → réseau (contrôle ID) → AuthZ → règlement
+2. Transport — SLA / offline · closed fréquent · MPM ou CPM
+   Flux : borne ↔ voyageur → PSP → réseau/local → AuthZ (+ offline*)
 3. P2P — proxy · plafonds · usurpation QR perso
-4. Grille synthèse
+   Flux : payeur → QR perso → PSP client → switch → crédit bénéficiaire
+4. Grille synthèse (+ ligne flux Auth)
 
 Liens : Architecture (cas pull/push) · Standards (open-loop).
