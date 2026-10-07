@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Support étudiant — Jour 3 | Paiements digitaux</title>
-    <link rel="stylesheet" href="../css/styles.css?v=present6" />
+    <link rel="stylesheet" href="../css/styles.css?v=present8" />
     <link rel="stylesheet" href="../css/support-etudiant.css?v=poly24" />
   </head>
   <body class="support-doc" data-bloc="support-etudiant">
@@ -221,7 +221,67 @@
                 <strong>TSP</strong> gouverne le cycle de vie.
               </p>
 
-              <div class="split-2">
+              <div class="diagram" id="definition--diagram-vault-tsp" style="margin-top: 1.1rem">
+                <div class="diagram-header">
+                  <h3>Vault ↔ TSP</h3>
+                  <p>Le TSP lit / écrit le vault — ce n’est pas la même brique</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 340"
+                  role="img"
+                  aria-label="Lien entre vault stockage et TSP gouvernance"
+                >
+                  <defs>
+                    <marker id="definition--ah-vt" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                    <marker id="definition--ah-vt-rev" markerWidth="8" markerHeight="8" refX="2" refY="3" orient="auto">
+                      <path d="M6,0 L0,3 L6,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <!-- PAN -->
+                  <g>
+                    <rect x="40" y="120" width="160" height="90" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="120" y="155" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="15" font-weight="700">PAN</text>
+                    <text x="120" y="178" text-anchor="middle" fill="#5a6b7c" font-size="11">racine carte</text>
+                  </g>
+                  <line x1="210" y1="165" x2="268" y2="165" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#definition--ah-vt)"/>
+
+                  <!-- Vault -->
+                  <g>
+                    <rect x="280" y="70" width="280" height="190" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="420" y="105" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Vault</text>
+                    <text x="420" y="128" text-anchor="middle" fill="#5a6b7c" font-size="12">stockage · coffre</text>
+                    <rect x="310" y="150" width="220" height="70" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                    <text x="420" y="178" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">PAN ↔ token</text>
+                    <text x="420" y="200" text-anchor="middle" fill="#5a6b7c" font-size="11">mapping (+ état)</text>
+                  </g>
+
+                  <!-- Lien bidirectionnel Vault ↔ TSP -->
+                  <line x1="575" y1="145" x2="665" y2="145" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#definition--ah-vt)" marker-start="url(#definition--ah-vt-rev)"/>
+                  <text x="620" y="128" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">lit / écrit</text>
+                  <text x="620" y="168" text-anchor="middle" fill="#5a6b7c" font-size="10">gouverne via</text>
+
+                  <!-- TSP -->
+                  <g>
+                    <rect x="680" y="70" width="280" height="190" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="820" y="105" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">TSP</text>
+                    <text x="820" y="128" text-anchor="middle" fill="#5a6b7c" font-size="12">acteur · gouvernance</text>
+                    <text x="820" y="165" text-anchor="middle" fill="#1a2b3c" font-size="12">émet · active · suspend</text>
+                    <text x="820" y="188" text-anchor="middle" fill="#1a2b3c" font-size="12">supprime · règles domaine</text>
+                    <text x="820" y="220" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">souvent scheme / réseau</text>
+                  </g>
+
+                  <!-- Token sortant -->
+                  <line x1="420" y1="270" x2="420" y2="295" stroke="#0d9f8a" stroke-width="2" marker-end="url(#definition--ah-vt)"/>
+                  <text x="500" y="318" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Le token présenté au canal sort du mapping — gouverné par le TSP
+                  </text>
+                </svg>
+              </div>
+
+              <div class="split-2" style="margin-top: 1.25rem">
                 <div class="panel">
                   <h3>Token vault</h3>
                   <ul>
@@ -240,50 +300,6 @@
                   </ul>
                 </div>
               </div>
-
-              <div class="diagram" id="definition--diagram-vault-tsp" style="margin-top: 1.5rem">
-                <div class="diagram-header">
-                  <h3>Lien PAN ↔ token</h3>
-                  <p>Vault = stockage · TSP = gouvernance</p>
-                </div>
-                <svg
-                  viewBox="0 0 1000 300"
-                  role="img"
-                  aria-label="Token vault et TSP"
-                >
-                  <defs>
-                    <marker id="definition--ah-vt" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
-                    </marker>
-                  </defs>
-                  <g>
-                    <rect x="40" y="80" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-banque.jpg" x="56" y="98" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="128" y="122" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">PAN</text>
-                    <text x="128" y="144" fill="#5a6b7c" font-size="11">référence carte</text>
-                  </g>
-                  <line class="flow-line" x1="250" y1="130" x2="320" y2="130" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#definition--ah-vt)"/>
-                  <g>
-                    <rect x="320" y="40" width="360" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-scheme.jpg" x="344" y="62" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="420" y="85" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Vault + TSP</text>
-                    <text x="420" y="112" fill="#0d9f8a" font-size="13" font-weight="700">Vault</text>
-                    <text x="420" y="132" fill="#5a6b7c" font-size="12">stocke PAN ↔ token</text>
-                    <text x="420" y="162" fill="#087a6a" font-size="13" font-weight="700">TSP</text>
-                    <text x="420" y="182" fill="#5a6b7c" font-size="12">émet · états · règles</text>
-                  </g>
-                  <line class="flow-line" x1="700" y1="130" x2="770" y2="130" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#definition--ah-vt)"/>
-                  <g>
-                    <rect x="770" y="80" width="190" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-wallet.jpg" x="786" y="98" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="858" y="122" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Token</text>
-                    <text x="858" y="144" fill="#5a6b7c" font-size="11">émis / gouverné</text>
-                  </g>
-                  <text x="500" y="270" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Vault = où vit le lien · TSP = qui gouverne le token
-                  </text>
-                </svg>
-</div>
 
               <div class="panel" style="margin-top: 1.25rem">
                 <h3>Où dans la chaîne&nbsp;?</h3>
@@ -306,7 +322,7 @@
               </div>
             </section>
 
-            <section class="section print-keep">
+            <section class="section">
               <p class="section-label">Émission</p>
               <h2>Comment naît le token (côté UX)</h2>
               <p class="intro">
@@ -504,49 +520,65 @@
               <p class="section-label">Clarification</p>
               <h2>À ne pas confondre</h2>
               <p class="intro">
-                Tronquer et masquer se ressemblent à l’œil — ce n’est pas la
-                même opération. Et aucun des deux n’est un token.
+                En PCI-DSS, <strong>troncature</strong> et
+                <strong>masquage</strong> ne sont pas synonymes — et aucun des
+                deux n’est un token.
               </p>
 
               <div class="diagram" id="definition--diagram-ne-pas-confondre">
                 <div class="diagram-header">
-                  <h3>PAN tronqué · PAN masqué · Token</h3>
-                  <p>Tronquer = stocker moins · Masquer = afficher moins · Token = autre identifiant</p>
+                  <h3>Troncature · Masquage · Token</h3>
+                  <p>PCI · stockage vs affichage vs substitut</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 280"
+                  viewBox="0 0 1000 300"
                   role="img"
-                  aria-label="Ne pas confondre token PAN tronque et PAN masque"
+                  aria-label="Troncature PCI, masquage PCI et token"
                 >
                   <g>
-                    <rect x="30" y="25" width="290" height="200" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
-                    <text x="175" y="58" text-anchor="middle" fill="#8a9aaa" font-family="Syne, sans-serif" font-size="14" font-weight="700">PAN tronqué</text>
-                    <text x="175" y="95" text-anchor="middle" fill="#1a2b3c" font-family="ui-monospace, Menlo, monospace" font-size="15" font-weight="700">···· 7764</text>
-                    <text x="175" y="130" text-anchor="middle" fill="#5a6b7c" font-size="12">Conservation / stockage</text>
-                    <text x="175" y="152" text-anchor="middle" fill="#5a6b7c" font-size="12">on ne garde qu’un fragment</text>
-                    <text x="175" y="174" text-anchor="middle" fill="#5a6b7c" font-size="12">PAN complet non reconstitutable</text>
-                    <text x="175" y="205" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">≠ token</text>
+                    <rect x="20" y="20" width="300" height="230" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="170" y="50" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="14" font-weight="700">Troncature</text>
+                    <text x="170" y="72" text-anchor="middle" fill="#5a6b7c" font-size="11">truncation · stockage</text>
+                    <text x="170" y="110" text-anchor="middle" fill="#1a2b3c" font-family="ui-monospace, Menlo, monospace" font-size="15" font-weight="700">453212 ···· 7764</text>
+                    <text x="170" y="145" text-anchor="middle" fill="#1a2b3c" font-size="12">Digits milieu <tspan font-weight="700">retirés</tspan></text>
+                    <text x="170" y="168" text-anchor="middle" fill="#5a6b7c" font-size="12">en base / fichier — définitif</text>
+                    <text x="170" y="191" text-anchor="middle" fill="#5a6b7c" font-size="12">pas de «&nbsp;dé-troncature&nbsp;» locale</text>
+                    <text x="170" y="222" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700">PCI · rendre illisible au repos</text>
+                    <text x="170" y="245" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">≠ token</text>
                   </g>
                   <g>
-                    <rect x="355" y="25" width="290" height="200" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
-                    <text x="500" y="58" text-anchor="middle" fill="#8a9aaa" font-family="Syne, sans-serif" font-size="14" font-weight="700">PAN masqué</text>
-                    <text x="500" y="95" text-anchor="middle" fill="#1a2b3c" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700">4532 ···· ···· 7764</text>
-                    <text x="500" y="130" text-anchor="middle" fill="#5a6b7c" font-size="12">Affichage (écran, ticket, log)</text>
-                    <text x="500" y="152" text-anchor="middle" fill="#5a6b7c" font-size="12">le PAN complet peut encore</text>
-                    <text x="500" y="174" text-anchor="middle" fill="#5a6b7c" font-size="12">exister en base / vault métier</text>
-                    <text x="500" y="205" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">≠ token</text>
+                    <rect x="350" y="20" width="300" height="230" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
+                    <text x="500" y="50" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="700">Masquage</text>
+                    <text x="500" y="72" text-anchor="middle" fill="#5a6b7c" font-size="11">masking · affichage</text>
+                    <text x="500" y="110" text-anchor="middle" fill="#1a2b3c" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700">4532 ···· ···· 7764</text>
+                    <text x="500" y="145" text-anchor="middle" fill="#1a2b3c" font-size="12">Digits <tspan font-weight="700">cachés à l’écran</tspan></text>
+                    <text x="500" y="168" text-anchor="middle" fill="#5a6b7c" font-size="12">ticket, UI, rapport imprimé</text>
+                    <text x="500" y="191" text-anchor="middle" fill="#5a6b7c" font-size="12">le PAN complet peut encore être stocké</text>
+                    <text x="500" y="222" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">PCI · limiter ce qu’on affiche</text>
+                    <text x="500" y="245" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">≠ token</text>
                   </g>
                   <g>
-                    <rect x="680" y="25" width="290" height="200" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="825" y="58" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Token</text>
-                    <text x="825" y="95" text-anchor="middle" fill="#1a2b3c" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700">4895 3702 1148 0091</text>
-                    <text x="825" y="130" text-anchor="middle" fill="#0d9f8a" font-size="12">Substitut gouverné (TSP)</text>
-                    <text x="825" y="152" text-anchor="middle" fill="#5a6b7c" font-size="12">autre numéro · domaine</text>
-                    <text x="825" y="174" text-anchor="middle" fill="#5a6b7c" font-size="12">lien PAN dans le vault</text>
-                    <text x="825" y="205" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">≠ affichage du PAN</text>
+                    <rect x="680" y="20" width="300" height="230" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="830" y="50" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Token</text>
+                    <text x="830" y="72" text-anchor="middle" fill="#5a6b7c" font-size="11">substitut · TSP</text>
+                    <text x="830" y="110" text-anchor="middle" fill="#1a2b3c" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="700">4895 3702 1148 0091</text>
+                    <text x="830" y="145" text-anchor="middle" fill="#1a2b3c" font-size="12"><tspan font-weight="700">Autre</tspan> numéro gouverné</text>
+                    <text x="830" y="168" text-anchor="middle" fill="#5a6b7c" font-size="12">domaine · device · canal</text>
+                    <text x="830" y="191" text-anchor="middle" fill="#5a6b7c" font-size="12">lien PAN dans le vault</text>
+                    <text x="830" y="222" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">≠ masquer / tronquer le PAN</text>
+                    <text x="830" y="245" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">≠ masking · ≠ truncation</text>
                   </g>
                 </svg>
-</div>
+                <p class="fresco-legend">
+                  Masquage = affichage&nbsp;; troncature = stockage (digits
+                  retirés). Formats «&nbsp;6+4&nbsp;» courants — détail selon
+                  longueur PAN / scheme.
+                </p>
+                <p class="fresco-legend" style="margin-top: 0.35rem">
+                  <strong>PCI DSS</strong> — Payment Card Industry Data Security
+                  Standard · PCI Security Standards Council.
+                </p>
+              </div>
 
               <div class="not-list" style="margin-top: 1.5rem">
                 <div class="not-item">
@@ -1087,6 +1119,7 @@
               </div>
             </section>
 
+            
             </div>
           </article>
 
@@ -1175,19 +1208,19 @@
               <p class="section-label">Provisioning</p>
               <h2>Enrôlement &amp; provisioning</h2>
               <p class="intro">
-                Demande d’usage → contrôles → création du token et
-                rattachement au device / canal.
+                Quatre temps&nbsp;: demande → TSP → OK émetteur (produit) →
+                émission token + vault. ≠ Auth de paiement.
               </p>
 
               <div class="diagram" id="lifecycle--diagram-provision">
                 <div class="diagram-header">
                   <h3>Enrôlement</h3>
-                  <p>Porteur · wallet · TSP · issuer</p>
+                  <p>1 Wallet · 2 TSP · 3 Issuer · 4 TSP + vault</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 320"
+                  viewBox="0 0 1000 360"
                   role="img"
-                  aria-label="Flux d enrôlement et provisioning"
+                  aria-label="Flux d enrôlement : wallet TSP issuer puis émission token"
                 >
                   <defs>
                     <marker id="lifecycle--ah-pr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
@@ -1195,42 +1228,53 @@
                     </marker>
                   </defs>
                   <g>
-                    <rect x="30" y="60" width="180" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-porteur.jpg" x="46" y="78" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="116" y="102" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Porteur</text>
-                    <text x="116" y="124" fill="#5a6b7c" font-size="11">demande usage</text>
+                    <circle cx="70" cy="55" r="14" fill="#0d9f8a"/>
+                    <text x="70" y="60" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">1</text>
+                    <rect x="30" y="85" width="180" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-wallet.jpg" x="46" y="103" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="116" y="127" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Wallet</text>
+                    <text x="116" y="149" fill="#5a6b7c" font-size="11">demande + PAN</text>
                   </g>
-                  <line class="flow-line" x1="220" y1="110" x2="280" y2="110" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#lifecycle--ah-pr)"/>
+                  <line class="flow-line" x1="220" y1="135" x2="280" y2="135" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#lifecycle--ah-pr)"/>
                   <g>
-                    <rect x="280" y="60" width="180" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-wallet.jpg" x="296" y="78" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="366" y="102" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Wallet / app</text>
-                    <text x="366" y="124" fill="#5a6b7c" font-size="11">canal</text>
+                    <circle cx="350" cy="55" r="14" fill="#0d9f8a"/>
+                    <text x="350" y="60" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">2</text>
+                    <rect x="280" y="85" width="180" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-scheme.jpg" x="296" y="103" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="366" y="127" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">TSP</text>
+                    <text x="366" y="149" fill="#5a6b7c" font-size="11">orchestre</text>
                   </g>
-                  <line class="flow-line" x1="470" y1="110" x2="530" y2="110" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#lifecycle--ah-pr)"/>
+                  <line class="flow-line" x1="470" y1="135" x2="530" y2="135" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#lifecycle--ah-pr)"/>
                   <g>
-                    <rect x="530" y="45" width="220" height="130" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-scheme.jpg" x="550" y="70" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="632" y="95" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">TSP</text>
-                    <text x="632" y="118" fill="#0d9f8a" font-size="12">crée le token</text>
-                    <text x="632" y="140" fill="#5a6b7c" font-size="11">lie device / domaine</text>
+                    <circle cx="620" cy="55" r="14" fill="#c45c26"/>
+                    <text x="620" y="60" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">3</text>
+                    <rect x="530" y="85" width="200" height="100" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2.5"/>
+                    <image href="../img/acteurs/acteur-banque.jpg" x="546" y="103" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="618" y="127" fill="#c45c26" font-family="Syne, sans-serif" font-size="13" font-weight="700">Issuer</text>
+                    <text x="618" y="149" fill="#5a6b7c" font-size="11">OK produit</text>
                   </g>
-                  <line class="flow-line" x1="760" y1="110" x2="820" y2="110" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#lifecycle--ah-pr)"/>
+                  <line class="flow-line" x1="740" y1="135" x2="800" y2="135" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#lifecycle--ah-pr)"/>
                   <g>
-                    <rect x="820" y="60" width="150" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-banque.jpg" x="836" y="78" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="908" y="102" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Issuer</text>
-                    <text x="908" y="124" fill="#5a6b7c" font-size="11">OK produit</text>
+                    <circle cx="880" cy="55" r="14" fill="#0d9f8a"/>
+                    <text x="880" y="60" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">4</text>
+                    <rect x="800" y="85" width="170" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="885" y="125" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">TSP + vault</text>
+                    <text x="885" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">réponse + token</text>
                   </g>
                   <g>
-                    <rect x="250" y="220" width="500" height="60" rx="8" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="500" y="255" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">
-                      Token provisionné · prêt à activer / utiliser
-                    </text>
+                    <rect x="80" y="230" width="840" height="100" rx="10" fill="#f7f9fb" stroke="#d5e1ea" stroke-width="1.5"/>
+                    <text x="100" y="258" fill="#087a6a" font-size="12" font-weight="700">1</text>
+                    <text x="120" y="258" fill="#1a2b3c" font-size="12">Wallet envoie la demande d’usage</text>
+                    <text x="100" y="280" fill="#087a6a" font-size="12" font-weight="700">2</text>
+                    <text x="120" y="280" fill="#1a2b3c" font-size="12">TSP orchestre le provisioning</text>
+                    <text x="100" y="302" fill="#c45c26" font-size="12" font-weight="700">3</text>
+                    <text x="120" y="302" fill="#1a2b3c" font-size="12">Issuer valide le produit — ≠ Auth de paiement</text>
+                    <text x="520" y="258" fill="#087a6a" font-size="12" font-weight="700">4</text>
+                    <text x="540" y="258" fill="#1a2b3c" font-size="12">TSP écrit le vault, renvoie le token au device</text>
+                    <text x="520" y="280" fill="#5a6b7c" font-size="12">Token prêt à activer / utiliser</text>
                   </g>
-                  <line x1="640" y1="175" x2="500" y2="220" stroke="#0d9f8a" stroke-width="2" stroke-dasharray="4 3"/>
                 </svg>
-</div>
+              </div>
             </section>
 
             <!-- Stockage dual -->
@@ -1492,6 +1536,7 @@
                 </div>
             </section>
 
+            
             </div>
           </article>
 
@@ -1719,6 +1764,7 @@
               </p>
             </section>
 
+            
             </div>
           </article>
 
@@ -1753,7 +1799,7 @@
         </section>
 
         <!-- Schéma socle -->
-        <section class="section">
+        <section class="section print-keep">
           <p class="section-label">Vocabulaire</p>
           <h2>Socle sécurité réutilisable</h2>
           <p class="intro">
@@ -1944,37 +1990,41 @@
           </div>
         </section>
 
+        
             </div>
           </article>
 
           <article class="support-bloc" id="atelier">
             <section class="day-hero" style="padding-bottom: 1.5rem">
-        <div class="wrap">
-          <div class="fiche-meta">
-            <span class="tag">Jour 3 · Tokenisation</span>
-          </div>
-          <p class="day-kicker">Mise en pratique</p>
-          <h1>Atelier · Simulateur TSP</h1>
-        </div>
-      </section>
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Tokenisation</span>
+              </div>
+              <p class="day-kicker">Mise en pratique</p>
+              <h1>Atelier · Simulateur TSP</h1>
+            </div>
+          </section>
             <div class="wrap support-bloc-body">
-              
-        <section class="section" style="border-top: none; padding-top: 0">
-          <p class="section-label">Objectif</p>
-          <h2>Jouer le rôle du TSP</h2>
-          <p class="definition-full">
-            Page interactive (<a href="atelier.html">atelier.html</a>)&nbsp;:
-            à partir d’un PAN fictif, <strong>générer un token</strong>,
-            voir le <strong>mapping</strong> vault, changer l’état
-            (actif · suspendu · supprimé), puis
-            <strong>simuler un paiement</strong> et observer le token en
-            transit. Simulation locale — pas de VTS / MDES réel.
-          </p>
-        </section>
+              <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Objectif</p>
+              <h2>Jouer le rôle du TSP</h2>
+              <p class="definition-full">
+                À partir d’une carte (PAN fictif), <strong>générer un
+                token</strong>, voir le <strong>mapping</strong> dans le
+                vault, changer l’<strong>état</strong> (actif · suspendu ·
+                supprimé), puis <strong>simuler un paiement</strong> et
+                observer le token en transit. Simulation locale uniquement —
+                pas de réseau réel.
+              </p>
+            </section>
 
-        <section class="section">
+        <section class="section print-keep">
           <p class="section-label">Déroulé</p>
-          <h2>Onglets (parcours)</h2>
+          <h2>Onglets du simulateur TSP</h2>
+          <p class="intro">
+            Page interactive&nbsp;: <a href="atelier.html">atelier.html</a>
+            (simulation locale, pas de VTS / MDES réel).
+          </p>
           <div class="csm-table-wrap">
             <table class="csm-table">
               <thead>
@@ -1998,7 +2048,7 @@
                 <tr>
                   <th scope="row">C · Transaction</th>
                   <td>Paiement</td>
-                  <td>Simuler Auth&nbsp;: device → acquéreur → TSP → réseau</td>
+                  <td>Simuler Auth&nbsp;: device → acquéreur → TSP → réseau (token + crypto)</td>
                 </tr>
                 <tr>
                   <th scope="row">Journal</th>
@@ -2014,18 +2064,18 @@
           </p>
         </section>
 
-        <section class="section">
+        <section class="section print-keep">
           <p class="section-label">Rappel</p>
           <h2>Ce que ce n’est pas</h2>
           <div class="panel">
             <ul>
               <li>≠ Labo production / vraies cartes</li>
               <li>≠ Appel réseau VTS / MDES</li>
+              <li>≠ Crypto réel — valeur illustrative dans la simu</li>
             </ul>
           </div>
         </section>
 
-        
             </div>
           </article>
 
