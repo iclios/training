@@ -354,35 +354,38 @@
               <!-- Nuance network vs vault marchand -->
               <div class="diagram" id="diagram-nuance-vault" style="margin-top: 1.25rem">
                 <div class="diagram-header">
-                  <h3>Nuance à dire en salle</h3>
-                  <p>Network token ≠ token vault marchand seul</p>
+                  <h3>Deux modèles de token</h3>
+                  <p>Jusqu’où le token remplace le PAN dans la chaîne</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 280"
+                  viewBox="0 0 1000 300"
                   role="img"
                   aria-label="Network tokenization versus vault marchand"
                 >
-                  <g data-step="1">
-                    <rect x="40" y="30" width="440" height="200" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="260" y="70" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Network tokenization</text>
-                    <text x="70" y="110" fill="#1a2b3c" font-size="13">VTS · MDES · wallets OEM…</text>
-                    <text x="70" y="140" fill="#1a2b3c" font-size="13">Token va jusqu’à l’acquéreur</text>
-                    <text x="70" y="170" fill="#1a2b3c" font-size="13">Détokenisation au réseau / TSP</text>
-                    <text x="70" y="200" fill="#087a6a" font-size="13" font-weight="700">Acquéreur : TOKEN · pas PAN</text>
+                  <g>
+                    <rect x="40" y="20" width="440" height="200" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="260" y="60" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Network tokenization</text>
+                    <text x="70" y="100" fill="#1a2b3c" font-size="13">VTS · MDES · wallets OEM…</text>
+                    <text x="70" y="130" fill="#1a2b3c" font-size="13">Token va jusqu’à l’acquéreur</text>
+                    <text x="70" y="160" fill="#1a2b3c" font-size="13">Détokenisation au réseau / TSP</text>
+                    <text x="70" y="190" fill="#087a6a" font-size="13" font-weight="700">Acquéreur : TOKEN · pas PAN</text>
                   </g>
-                  <g data-step="2">
-                    <rect x="520" y="30" width="440" height="200" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
-                    <text x="740" y="70" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="16" font-weight="700">Vault marchand / PSP seul</text>
-                    <text x="550" y="110" fill="#1a2b3c" font-size="13">Token opaque côté commerçant</text>
-                    <text x="550" y="140" fill="#1a2b3c" font-size="13">Le PSP peut détokeniser avant</text>
-                    <text x="550" y="170" fill="#1a2b3c" font-size="13">et envoyer le PAN à l’acquéreur</text>
-                    <text x="550" y="200" fill="#c45c26" font-size="13" font-weight="700">Acquéreur : peut revoir du PAN</text>
+                  <g>
+                    <rect x="520" y="20" width="440" height="200" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="740" y="60" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="16" font-weight="700">Vault marchand / PSP seul</text>
+                    <text x="550" y="100" fill="#1a2b3c" font-size="13">Token opaque côté commerçant</text>
+                    <text x="550" y="130" fill="#1a2b3c" font-size="13">Le PSP peut détokeniser avant</text>
+                    <text x="550" y="160" fill="#1a2b3c" font-size="13">et envoyer le PAN à l’acquéreur</text>
+                    <text x="550" y="190" fill="#c45c26" font-size="13" font-weight="700">Acquéreur : peut revoir du PAN</text>
                   </g>
-                  <text data-step="1" x="500" y="260" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">
-                    Network = le token va plus loin dans la chaîne
+                  <text x="260" y="255" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">
+                    Le token va plus loin dans la chaîne
                   </text>
-                  <text data-step="2" x="500" y="260" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">
-                    Vault marchand seul = protection surtout côté commerçant
+                  <text x="740" y="255" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">
+                    Protection surtout côté commerçant
+                  </text>
+                  <text x="500" y="285" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Même mot «&nbsp;token&nbsp;» — portée différente jusqu’à l’acquéreur
                   </text>
                 </svg>
 </div>
@@ -465,124 +468,6 @@
                     <span class="n">3</span>
                     <span><strong>Supprimer</strong><p>Fin de vie.</p></span>
                   </button>
-                </div>
-              </div>
-            </section>
-
-            <!-- Cryptogrammes -->
-            <section class="section" id="cryptogrammes">
-              <p class="section-label">Intro crypto</p>
-              <h2>Cryptogrammes dynamiques</h2>
-              <p class="intro">
-                Le token protège l’identifiant&nbsp;; le cryptogramme protège
-                l’usage dans le temps et le contexte.
-              </p>
-
-              <div class="diagram" id="diagram-crypto">
-                <div class="diagram-header">
-                  <h3>Token + cryptogramme</h3>
-                  <p>Données dynamiques · anti-réutilisation</p>
-                </div>
-                <svg
-                  viewBox="0 0 1000 240"
-                  role="img"
-                  aria-label="Token et cryptogramme dynamique"
-                >
-                  <defs>
-                    <marker id="ah-cr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
-                    </marker>
-                  </defs>
-                  <g>
-                    <rect x="80" y="50" width="280" height="110" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="220" y="95" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Token</text>
-                    <text x="220" y="120" text-anchor="middle" fill="#5a6b7c" font-size="12">identifiant durable</text>
-                  </g>
-                  <line class="flow-line" x1="380" y1="105" x2="450" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cr)"/>
-                  <g>
-                    <rect x="450" y="40" width="320" height="130" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-device.jpg" x="470" y="62" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="554" y="85" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Cryptogramme</text>
-                    <text x="554" y="110" fill="#0d9f8a" font-size="12">valeur dynamique</text>
-                    <text x="554" y="132" fill="#5a6b7c" font-size="11">txn · device · temps</text>
-                  </g>
-                  <g>
-                    <rect x="800" y="60" width="160" height="90" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="880" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Auth</text>
-                    <text x="880" y="122" text-anchor="middle" fill="#5a6b7c" font-size="11">contrôle</text>
-                  </g>
-                  <line class="flow-line" x1="780" y1="105" x2="790" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cr)"/>
-                  <text x="500" y="210" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Voler «&nbsp;un numéro&nbsp;» ne suffit plus à rejouer la même opération
-                  </text>
-                </svg>
-<p class="diagram-hint">Intro seulement — détail SE / HCE / TEE en Jour 4.</p>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Ancrage</p>
-              <h2>Cas pratiques</h2>
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>Cas 1 — Device perdu</h3>
-                  <ul>
-                    <li>Suspendre le token</li>
-                    <li>Carte source intacte</li>
-                  </ul>
-                </div>
-                <div class="panel">
-                  <h3>Cas 2 — Nouveau device</h3>
-                  <ul>
-                    <li>Nouveau provisioning</li>
-                    <li>Même PAN, nouveau contexte</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="split-2" style="margin-top: 1rem">
-                <div class="panel">
-                  <h3>Cas 3 — Chez l’acquéreur&nbsp;?</h3>
-                  <ul>
-                    <li>Network token → TOKEN en Auth</li>
-                    <li>Vault marchand seul → PAN possible</li>
-                  </ul>
-                </div>
-                <div class="panel ko">
-                  <h3>Cas 4 — Carte réémise</h3>
-                  <ul>
-                    <li>Re-liaison / re-provision</li>
-                    <li>COF : mapping TSP peut survivre</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Clarification</p>
-              <h2>Ce que ce n’est pas</h2>
-              <div class="not-list">
-                <div class="not-item">
-                  <strong>Lifecycle token ≠ cycle carte</strong>
-                  <p>On peut suspendre un device sans résilier la carte.</p>
-                </div>
-                <div class="not-item">
-                  <strong>Token ≠ cryptogramme</strong>
-                  <p>Durable vs preuve dynamique (éphémère) d’une txn.</p>
-                </div>
-                <div class="not-item">
-                  <strong>Vault ≠ credential d’usage</strong>
-                  <p>Le vault détient le lien&nbsp;; le device / marchand présente.</p>
-                </div>
-                <div class="not-item">
-                  <strong>Acquéreur ≠ détenteur du PAN</strong>
-                  <p>
-                    En network tokenization, l’acquéreur voit le token&nbsp;;
-                    le PAN apparaît à la détokenisation réseau / TSP.
-                  </p>
-                </div>
-                <div class="not-item">
-                  <strong>≠ Cours SE / HCE</strong>
-                  <p>Secure Element, HCE, TEE = Jour 4.</p>
                 </div>
               </div>
             </section>

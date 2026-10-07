@@ -13,7 +13,6 @@ window.J3_NAV = [
       { id: "stockage", title: "Stockage", href: "lifecycle.html#stockage" },
       { id: "auth", title: "Auth · token / PAN", href: "lifecycle.html#auth" },
       { id: "gouvernance", title: "Gouvernance", href: "lifecycle.html#gouvernance" },
-      { id: "cryptogrammes", title: "Cryptogrammes", href: "lifecycle.html#cryptogrammes" },
     ],
   },
   {
@@ -112,7 +111,6 @@ window.J3_BLOCS = window.J3_NAV.filter((n) => n.type === "item");
         "stockage",
         "auth",
         "gouvernance",
-        "cryptogrammes",
       ];
       const subLinks = [...list.querySelectorAll(".bloc-sidebar-subitem")];
       const parentLink = list.querySelector(

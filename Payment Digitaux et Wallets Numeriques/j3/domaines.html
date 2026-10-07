@@ -43,106 +43,17 @@
               <p class="section-label">Modes / domaines</p>
               <h2>Où on tokenise</h2>
               <p class="definition-full">
-                Un token n’est pas universel&nbsp;: il est émis pour un
-                <strong>domaine</strong> (canal, device, parfois marchand).
-                Même rail Auth → Clearing → Settlement — ce qui change, c’est
-                <em>qui tokenise</em>, <em>où vit le token</em> et
-                <em>ce qui circule</em>.
+                Un <strong>domaine d’usage</strong> est le
+                <strong>périmètre autorisé</strong> d’un token&nbsp;: dans
+                quel canal, sur quel device, parfois chez quel marchand il
+                peut servir. Ex.&nbsp;: token Watch (NFC) ≠ token carte
+                enregistrée chez un marchand (COF) — ce sont deux wallets,
+                deux domaines. Le rail
+                <strong>Auth → Clearing → Settlement</strong> reste le même&nbsp;;
+                ce qui change, c’est <em>qui tokenise</em>,
+                <em>où vit le token</em> et <em>ce qui circule</em> à la place
+                du PAN.
               </p>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Vue d’ensemble</p>
-              <h2>Trois terrains</h2>
-
-              <div class="diagram" id="diagram-domaines">
-                <div class="diagram-header">
-                  <h3>In-store · In-app · E-commerce</h3>
-                  <p>Cliquez un terrain — le cartouche développe les axes</p>
-                </div>
-                <svg
-                  viewBox="0 0 1000 420"
-                  role="img"
-                  aria-label="Trois domaines de tokenisation avec axes pédagogiques"
-                >
-                  <!-- 3 cartes terrain -->
-                  <g data-step="1">
-                    <rect x="40" y="20" width="280" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-device.jpg" x="56" y="37" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="124" y="58" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">In-store</text>
-                    <text x="124" y="82" fill="#5a6b7c" font-size="12">proximité · wallet / NFC / POS</text>
-                  </g>
-                  <g data-step="2">
-                    <rect x="360" y="20" width="280" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-wallet.jpg" x="376" y="37" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="444" y="58" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">In-app</text>
-                    <text x="444" y="82" fill="#5a6b7c" font-size="12">checkout natif dans l’app</text>
-                  </g>
-                  <g data-step="3">
-                    <rect x="680" y="20" width="280" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-commercant.jpg" x="696" y="37" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="764" y="58" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">E-commerce</text>
-                    <text x="764" y="82" fill="#5a6b7c" font-size="12">web · COF · récurrent</text>
-                  </g>
-
-                  <!-- Cartouche in-store -->
-                  <g class="step-panel" data-step="1">
-                    <rect x="40" y="130" width="920" height="270" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="70" y="168" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="700">In-store — token lié au device</text>
-                    <text x="70" y="198" fill="#1a2b3c" font-size="13">Geste</text>
-                    <text x="200" y="198" fill="#5a6b7c" font-size="13">Approcher téléphone / montre au TPE (biométrie + tap)</text>
-                    <text x="70" y="228" fill="#1a2b3c" font-size="13">Qui tokenise</text>
-                    <text x="200" y="228" fill="#5a6b7c" font-size="13">TSP réseau (VTS · MDES · wallet OEM) — enrôlement implicite</text>
-                    <text x="70" y="258" fill="#1a2b3c" font-size="13">Où vit le token</text>
-                    <text x="200" y="258" fill="#5a6b7c" font-size="13">Secure Element / enclave — PAS dans l’OS ni au POS</text>
-                    <text x="70" y="288" fill="#1a2b3c" font-size="13">Ce qui circule</text>
-                    <text x="200" y="288" fill="#5a6b7c" font-size="13">Token + cryptogramme contactless EMV (DPAN / identifiant tokenisé)</text>
-                    <text x="70" y="318" fill="#1a2b3c" font-size="13">Contrainte SI</text>
-                    <text x="200" y="318" fill="#5a6b7c" font-size="13">Terminal EMV contactless · cert device · revoke ciblé (phone perdu ≠ carte bloquée)</text>
-                    <text x="70" y="348" fill="#1a2b3c" font-size="13">Exemples</text>
-                    <text x="200" y="348" fill="#5a6b7c" font-size="13">Apple Pay / Google Pay au supermarché · montre · pont J4 NFC</text>
-                    <text x="70" y="378" fill="#087a6a" font-size="13" font-weight="700">Le POS ne voit jamais le PAN d’origine</text>
-                  </g>
-
-                  <!-- Cartouche in-app -->
-                  <g class="step-panel" data-step="2">
-                    <rect x="40" y="130" width="920" height="270" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
-                    <text x="70" y="168" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="18" font-weight="700">In-app — checkout intégré (≠ WebView)</text>
-                    <text x="70" y="198" fill="#1a2b3c" font-size="13">Geste</text>
-                    <text x="200" y="198" fill="#5a6b7c" font-size="13">Payer dans l’app marchande (1-tap · biométrie) — pas de ressaisie PAN</text>
-                    <text x="70" y="228" fill="#1a2b3c" font-size="13">Qui tokenise</text>
-                    <text x="200" y="228" fill="#5a6b7c" font-size="13">Deux voies : wallet pass-through (Apple/Google Pay in-app) OU token PSP / vault</text>
-                    <text x="70" y="258" fill="#1a2b3c" font-size="13">Où vit le token</text>
-                    <text x="200" y="258" fill="#5a6b7c" font-size="13">Wallet OS (PassKit…) ou vault PSP — l’app ne détient souvent qu’un id opaque</text>
-                    <text x="70" y="288" fill="#1a2b3c" font-size="13">Ce qui circule</text>
-                    <text x="200" y="288" fill="#5a6b7c" font-size="13">Credential via SDK / API · SCA / 3DS selon montant et réglementation</text>
-                    <text x="70" y="318" fill="#1a2b3c" font-size="13">Contrainte SI</text>
-                    <text x="200" y="318" fill="#5a6b7c" font-size="13">Intégration SDK native · UX checkout · logs backend SANS PAN</text>
-                    <text x="70" y="348" fill="#1a2b3c" font-size="13">Exemples</text>
-                    <text x="200" y="348" fill="#5a6b7c" font-size="13">Uber · Deliveroo · billetterie · Apple Pay dans une app e-commerce native</text>
-                    <text x="70" y="378" fill="#1e5f8a" font-size="13" font-weight="700">In-app ≠ page web embarquée : le token circule en natif</text>
-                  </g>
-
-                  <!-- Cartouche e-com -->
-                  <g class="step-panel" data-step="3">
-                    <rect x="40" y="130" width="920" height="270" rx="12" fill="#eef0f5" stroke="#3d5a80" stroke-width="3"/>
-                    <text x="70" y="168" fill="#3d5a80" font-family="Syne, sans-serif" font-size="18" font-weight="700">E-commerce — card-on-file · récurrent</text>
-                    <text x="70" y="198" fill="#1a2b3c" font-size="13">Geste</text>
-                    <text x="200" y="198" fill="#5a6b7c" font-size="13">Saisie ou «&nbsp;enregistrer ma carte&nbsp;» au checkout web (1ère fois)</text>
-                    <text x="70" y="228" fill="#1a2b3c" font-size="13">Qui tokenise</text>
-                    <text x="200" y="228" fill="#5a6b7c" font-size="13">PSP / acquéreur / TSP card-on-file — PAN capturé en hosted fields / iframe</text>
-                    <text x="70" y="258" fill="#1a2b3c" font-size="13">Où vit le token</text>
-                    <text x="200" y="258" fill="#5a6b7c" font-size="13">Base marchand ou vault PSP — le PAN reste chez TSP / émetteur</text>
-                    <text x="70" y="288" fill="#1a2b3c" font-size="13">Ce qui circule</text>
-                    <text x="200" y="288" fill="#5a6b7c" font-size="13">Token via gateway · COF puis MIT (merchant-initiated) pour les abos</text>
-                    <text x="70" y="318" fill="#1a2b3c" font-size="13">Contrainte SI</text>
-                    <text x="200" y="318" fill="#5a6b7c" font-size="13">Scope PCI réduit · conformité COF/MIT · 3DS au 1er paiement · pas de PAN en DB</text>
-                    <text x="70" y="348" fill="#1a2b3c" font-size="13">Exemples</text>
-                    <text x="200" y="348" fill="#5a6b7c" font-size="13">Streaming · SaaS · marketplace 1-clic · renouvellement carte géré par le TSP</text>
-                    <text x="70" y="378" fill="#3d5a80" font-size="13" font-weight="700">Cœur de la réduction PCI côté marchand</text>
-                  </g>
-                </svg>
-</div>
             </section>
 
             <section class="section">
@@ -155,13 +66,13 @@
 
               <div class="diagram" id="diagram-instore">
                 <div class="diagram-header">
-                  <h3>Domaine device → POS → Auth</h3>
-                  <p>Token device-bound · PAN hors POS</p>
+                  <h3>Wallet → Tap → TPE → Auth</h3>
+                  <p>Ce que voit le commerçant · ce qui circule</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 380"
+                  viewBox="0 0 1000 400"
                   role="img"
-                  aria-label="Flux tokenisation in-store annoté"
+                  aria-label="Flux in-store : wallet, tap NFC, terminal, autorisation"
                 >
                   <defs>
                     <marker id="ah-is" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
@@ -169,63 +80,67 @@
                     </marker>
                   </defs>
 
-                  <g data-step="1 2 3">
-                    <rect x="30" y="30" width="200" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-porteur.jpg" x="44" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="112" y="70" fill="#1a2b3c" font-size="13" font-weight="700">1 · Domaine</text>
-                    <text x="112" y="92" fill="#5a6b7c" font-size="11">token · device</text>
-                    <text x="112" y="112" fill="#5a6b7c" font-size="11">wallet prêt</text>
+                  <text x="500" y="28" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.05em">FLUX IN-STORE · 4 ÉTAPES</text>
+
+                  <!-- 1 Wallet -->
+                  <g>
+                    <circle cx="95" cy="90" r="16" fill="#0d9f8a"/>
+                    <text x="95" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1</text>
+                    <rect x="125" y="55" width="160" height="70" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                    <text x="205" y="85" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">Wallet</text>
+                    <text x="205" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">token sur le device</text>
                   </g>
-                  <line class="flow-line" data-step="2 3" x1="240" y1="85" x2="290" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-is)"/>
-                  <g data-step="2 3">
-                    <rect x="290" y="30" width="200" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-device.jpg" x="304" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="372" y="70" fill="#1a2b3c" font-size="13" font-weight="700">2 · Device</text>
-                    <text x="372" y="92" fill="#5a6b7c" font-size="11">token · SE</text>
-                    <text x="372" y="112" fill="#5a6b7c" font-size="11">device-bound</text>
+                  <line x1="295" y1="90" x2="335" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-is)"/>
+                  <text x="315" y="78" text-anchor="middle" fill="#0d9f8a" font-size="11" font-weight="700">tap</text>
+
+                  <!-- 2 NFC -->
+                  <g>
+                    <circle cx="365" cy="90" r="16" fill="#0d9f8a"/>
+                    <text x="365" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">2</text>
+                    <rect x="395" y="55" width="150" height="70" rx="10" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="470" y="85" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">NFC</text>
+                    <text x="470" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">contactless</text>
                   </g>
-                  <line class="flow-line" data-step="3" x1="500" y1="85" x2="550" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-is)"/>
-                  <g data-step="3">
-                    <rect x="550" y="30" width="190" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-commercant.jpg" x="564" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="632" y="70" fill="#1a2b3c" font-size="13" font-weight="700">3 · POS</text>
-                    <text x="632" y="92" fill="#5a6b7c" font-size="11">NFC · EMV</text>
-                    <text x="632" y="112" fill="#5a6b7c" font-size="11">≠ PAN</text>
+                  <line x1="555" y1="90" x2="595" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-is)"/>
+
+                  <!-- 3 TPE -->
+                  <g>
+                    <circle cx="625" cy="90" r="16" fill="#0d9f8a"/>
+                    <text x="625" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">3</text>
+                    <rect x="655" y="55" width="150" height="70" rx="10" fill="#fff" stroke="#2f4858" stroke-width="2"/>
+                    <text x="730" y="85" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">TPE</text>
+                    <text x="730" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">voit le token</text>
                   </g>
-                  <line class="flow-line" data-step="3" x1="750" y1="85" x2="800" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-is)"/>
-                  <g data-step="3">
-                    <rect x="800" y="30" width="170" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <text x="885" y="75" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Auth</text>
-                    <text x="885" y="100" text-anchor="middle" fill="#5a6b7c" font-size="11">issuer · token</text>
+                  <line x1="815" y1="90" x2="855" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-is)"/>
+
+                  <!-- 4 Auth -->
+                  <g>
+                    <circle cx="885" cy="90" r="16" fill="#c45c26"/>
+                    <text x="885" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">4</text>
+                    <rect x="820" y="120" width="150" height="58" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2.5"/>
+                    <text x="895" y="145" text-anchor="middle" fill="#c45c26" font-size="14" font-weight="700">Auth</text>
+                    <text x="895" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">émetteur décide</text>
                   </g>
 
-                  <!-- annotations par étape -->
-                  <g class="step-panel" data-step="1">
-                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="60" y="210" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Domaine = device</text>
-                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Après enrôlement wallet, le token est lié à CET appareil (pas à un marchand web).</text>
-                    <text x="60" y="275" fill="#1a2b3c" font-size="13">In-store = proximité · le credential vit sur le device, prêt pour le tap NFC.</text>
-                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Flux provisioning technique (TSP · vault) : Lifecycle · Provisioning.</text>
-                    <text x="60" y="335" fill="#087a6a" font-size="13" font-weight="700">Ici on situe le domaine — pas le détail d’émission.</text>
-                  </g>
-                  <g class="step-panel" data-step="2">
-                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="60" y="210" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Où vit le token</text>
-                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Stocké dans le Secure Element / enclave du device — isolé de l’OS.</text>
-                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Le PAN n’est ni dans le téléphone en clair, ni exposé au commerçant.</text>
-                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Domaine typique : device + canal proximité (ce token ne sert pas en COF web).</text>
-                    <text x="60" y="335" fill="#087a6a" font-size="13" font-weight="700">Perte du phone → suspendre CE token, la carte plastique reste OK ailleurs.</text>
-                  </g>
-                  <g class="step-panel" data-step="3">
-                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="60" y="210" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Au moment du tap</text>
-                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Le device présente token + cryptogramme contactless — le TPE lance l’Auth EMV.</text>
-                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Le marchand / POS voit un identifiant tokenisé (souvent DPAN), pas le PAN d’origine.</text>
-                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Contrainte SI : terminal contactless certifié · schéma / wallet compatibles · pas de PAN en caisse.</text>
-                    <text x="60" y="335" fill="#087a6a" font-size="13" font-weight="700">Pont J4 : même logique «&nbsp;le device présente, pas le PAN&nbsp;» · NFC / tags.</text>
-                  </g>
+                  <!-- Bande étapes -->
+                  <rect x="30" y="210" width="940" height="160" rx="10" fill="#f7f9fb" stroke="#d5e1ea" stroke-width="1.5"/>
+                  <text x="50" y="245" fill="#087a6a" font-size="13" font-weight="700">1 · Wallet</text>
+                  <text x="170" y="245" fill="#1a2b3c" font-size="13">token déjà sur le téléphone / Watch (après enrôlement)</text>
+                  <text x="50" y="275" fill="#087a6a" font-size="13" font-weight="700">2 · NFC</text>
+                  <text x="170" y="275" fill="#1a2b3c" font-size="13">le device présente token + cryptogramme — pas le PAN</text>
+                  <text x="50" y="305" fill="#087a6a" font-size="13" font-weight="700">3 · TPE</text>
+                  <text x="170" y="305" fill="#1a2b3c" font-size="13">le terminal / commerçant voit un numéro tokenisé, jamais le PAN d’origine</text>
+                  <text x="50" y="335" fill="#c45c26" font-size="13" font-weight="700">4 · Auth</text>
+                  <text x="170" y="335" fill="#1a2b3c" font-size="13">l’émetteur autorise le paiement (rail Auth → Clearing → Settlement)</text>
+                  <text x="50" y="365" fill="#087a6a" font-size="13" font-weight="700">Point clé</text>
+                  <text x="170" y="365" fill="#1a2b3c" font-size="13">perte du phone → suspendre CE token ; la carte plastique reste utilisable ailleurs</text>
                 </svg>
-</div>
+                <p class="fresco-legend">
+                  Domaine = <strong>device + proximité</strong>. Ce token ne sert pas
+                  en card-on-file web. Suite technique&nbsp;:
+                  <a href="lifecycle.html#provisioning">Lifecycle · Provisioning</a>.
+                </p>
+              </div>
             </section>
 
             <section class="section">
@@ -238,13 +153,13 @@
 
               <div class="diagram" id="diagram-inapp">
                 <div class="diagram-header">
-                  <h3>App → SDK / wallet → Backend → Auth</h3>
-                  <p>Deux variantes de tokenisation à distinguer</p>
+                  <h3>App → Wallet / PSP → Backend → Auth</h3>
+                  <p>Paiement dans l’app · pas une page web embarquée</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 380"
+                  viewBox="0 0 1000 420"
                   role="img"
-                  aria-label="Flux tokenisation in-app annoté"
+                  aria-label="Flux in-app : app, wallet ou PSP, backend, autorisation"
                 >
                   <defs>
                     <marker id="ah-ia" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
@@ -252,62 +167,69 @@
                     </marker>
                   </defs>
 
-                  <g data-step="1 2 3">
-                    <rect x="40" y="30" width="200" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-commercant.jpg" x="54" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="122" y="70" fill="#1a2b3c" font-size="13" font-weight="700">1 · App</text>
-                    <text x="122" y="92" fill="#5a6b7c" font-size="11">checkout natif</text>
-                    <text x="122" y="112" fill="#5a6b7c" font-size="11">1er achat / moyen</text>
+                  <text x="500" y="28" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.05em">FLUX IN-APP · 4 ÉTAPES</text>
+
+                  <!-- 1 App -->
+                  <g>
+                    <circle cx="95" cy="90" r="16" fill="#1e5f8a"/>
+                    <text x="95" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1</text>
+                    <rect x="125" y="55" width="150" height="70" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="200" y="85" text-anchor="middle" fill="#1e5f8a" font-size="14" font-weight="700">App</text>
+                    <text x="200" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">bouton Payer</text>
                   </g>
-                  <line class="flow-line" data-step="2 3" x1="250" y1="85" x2="300" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ia)"/>
-                  <g data-step="2 3">
-                    <rect x="300" y="30" width="220" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-wallet.jpg" x="314" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="382" y="70" fill="#1a2b3c" font-size="13" font-weight="700">2 · SDK / wallet</text>
-                    <text x="382" y="92" fill="#5a6b7c" font-size="11">token · SCA</text>
-                    <text x="382" y="112" fill="#5a6b7c" font-size="11">2 variantes</text>
+                  <line x1="285" y1="90" x2="325" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ia)"/>
+
+                  <!-- 2 Wallet ou PSP -->
+                  <g>
+                    <circle cx="355" cy="90" r="16" fill="#1e5f8a"/>
+                    <text x="355" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">2</text>
+                    <rect x="385" y="45" width="180" height="90" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="475" y="72" text-anchor="middle" fill="#1e5f8a" font-size="13" font-weight="700">Wallet ou PSP</text>
+                    <text x="475" y="92" text-anchor="middle" fill="#5a6b7c" font-size="11">A · Apple / Google Pay</text>
+                    <text x="475" y="110" text-anchor="middle" fill="#5a6b7c" font-size="11">B · carte via PSP</text>
                   </g>
-                  <line class="flow-line" data-step="3" x1="530" y1="85" x2="580" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ia)"/>
-                  <g data-step="3">
-                    <rect x="580" y="30" width="200" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-psp.jpg" x="594" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="662" y="70" fill="#1a2b3c" font-size="13" font-weight="700">3 · Backend</text>
-                    <text x="662" y="92" fill="#5a6b7c" font-size="11">credential</text>
-                    <text x="662" y="112" fill="#5a6b7c" font-size="11">≠ PAN</text>
+                  <line x1="575" y1="90" x2="615" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ia)"/>
+
+                  <!-- 3 Backend -->
+                  <g>
+                    <circle cx="645" cy="90" r="16" fill="#1e5f8a"/>
+                    <text x="645" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">3</text>
+                    <rect x="675" y="55" width="150" height="70" rx="10" fill="#fff" stroke="#2f4858" stroke-width="2"/>
+                    <text x="750" y="85" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Backend</text>
+                    <text x="750" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">reçoit le token</text>
                   </g>
-                  <line class="flow-line" data-step="3" x1="790" y1="85" x2="840" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ia)"/>
-                  <g data-step="3">
-                    <rect x="840" y="30" width="130" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <text x="905" y="80" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Auth</text>
-                    <text x="905" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">token</text>
+                  <line x1="835" y1="90" x2="870" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ia)"/>
+
+                  <!-- 4 Auth -->
+                  <g>
+                    <circle cx="900" cy="90" r="16" fill="#c45c26"/>
+                    <text x="900" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">4</text>
+                    <rect x="830" y="120" width="150" height="58" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2.5"/>
+                    <text x="905" y="145" text-anchor="middle" fill="#c45c26" font-size="14" font-weight="700">Auth</text>
+                    <text x="905" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">émetteur décide</text>
                   </g>
 
-                  <g class="step-panel" data-step="1">
-                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="60" y="210" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Premier achat / enregistrement</text>
-                    <text x="60" y="245" fill="#1a2b3c" font-size="13">L’utilisateur ajoute un moyen de paiement dans l’app (carte ou wallet).</text>
-                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Provisioning pour ce couple app / device (ou app / marchand selon architecture).</text>
-                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Objectif UX : plus de ressaisie PAN aux commandes suivantes.</text>
-                    <text x="60" y="335" fill="#1e5f8a" font-size="13" font-weight="700">Ex. : VTC, livraison, billetterie — 1er onboarding, puis 1-tap.</text>
-                  </g>
-                  <g class="step-panel" data-step="2">
-                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="60" y="210" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Deux variantes à ne pas confondre</text>
-                    <text x="60" y="245" fill="#1a2b3c" font-size="13">A · Wallet pass-through : Apple Pay / Google Pay in-app — le token reste côté wallet OS.</text>
-                    <text x="60" y="275" fill="#1a2b3c" font-size="13">B · Token PSP : carte enregistrée via vault PSP — l’app appelle le SDK avec un id opaque.</text>
-                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Dans les deux cas : biométrie / SCA au moment du paiement selon règles.</text>
-                    <text x="60" y="335" fill="#1e5f8a" font-size="13" font-weight="700">≠ WebView checkout : ici le flux est natif (API mobile / SDK).</text>
-                  </g>
-                  <g class="step-panel" data-step="3">
-                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="60" y="210" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Côté SI marchand</text>
-                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Le backend reçoit une credential / payment token — jamais le PAN en clair.</text>
-                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Contrainte : intégration SDK, gestion SCA/3DS, logs et base SANS PAN.</text>
-                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Révocation : supprimer la carte dans l’app ou revoke wallet — le marchand n’a souvent qu’un id.</text>
-                    <text x="60" y="335" fill="#1e5f8a" font-size="13" font-weight="700">Le rail Auth reste le même — seul le payload présenté change.</text>
-                  </g>
+                  <!-- Bande étapes -->
+                  <rect x="30" y="200" width="940" height="190" rx="10" fill="#f7f9fb" stroke="#d5e1ea" stroke-width="1.5"/>
+                  <text x="50" y="235" fill="#1e5f8a" font-size="13" font-weight="700">1 · App</text>
+                  <text x="170" y="235" fill="#1a2b3c" font-size="13">l’utilisateur paie dans l’app marchande (natif, pas une WebView)</text>
+                  <text x="50" y="265" fill="#1e5f8a" font-size="13" font-weight="700">2A · Wallet</text>
+                  <text x="170" y="265" fill="#1a2b3c" font-size="13">Apple Pay / Google Pay dans l’app — le token reste côté wallet téléphone</text>
+                  <text x="50" y="295" fill="#1e5f8a" font-size="13" font-weight="700">2B · PSP</text>
+                  <text x="170" y="295" fill="#1a2b3c" font-size="13">carte enregistrée via la passerelle — l’app n’a qu’un identifiant opaque</text>
+                  <text x="50" y="325" fill="#1e5f8a" font-size="13" font-weight="700">3 · Backend</text>
+                  <text x="170" y="325" fill="#1a2b3c" font-size="13">reçoit une credential / token — jamais le PAN en clair (logs &amp; base sans PAN)</text>
+                  <text x="50" y="355" fill="#c45c26" font-size="13" font-weight="700">4 · Auth</text>
+                  <text x="170" y="355" fill="#1a2b3c" font-size="13">l’émetteur autorise — même rail Auth → Clearing → Settlement</text>
+                  <text x="50" y="385" fill="#1e5f8a" font-size="13" font-weight="700">Point clé</text>
+                  <text x="170" y="385" fill="#1a2b3c" font-size="13">in-app ≠ page web dans l’app · biométrie / SCA selon les règles</text>
                 </svg>
-</div>
+                <p class="fresco-legend">
+                  Deux voies possibles au même endroit «&nbsp;2&nbsp;»&nbsp;: wallet
+                  constructeur <strong>ou</strong> token PSP. Ex.&nbsp;: Uber,
+                  Deliveroo, billetterie.
+                </p>
+              </div>
             </section>
 
             <section class="section">
@@ -320,13 +242,13 @@
 
               <div class="diagram" id="diagram-ecom">
                 <div class="diagram-header">
-                  <h3>Checkout → PSP / TSP → Marchand → MIT</h3>
-                  <p>COF + récurrence · cœur du scope PCI</p>
+                  <h3>Checkout → PSP → Token stocké → Paiements suivants</h3>
+                  <p>Carte enregistrée côté marchand · abos / 1-clic</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 380"
+                  viewBox="0 0 1000 420"
                   role="img"
-                  aria-label="Flux tokenisation e-commerce annoté"
+                  aria-label="Flux card-on-file : checkout, PSP, stockage token, paiements récurrents"
                 >
                   <defs>
                     <marker id="ah-ec" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
@@ -334,116 +256,141 @@
                     </marker>
                   </defs>
 
-                  <g data-step="1 2 3">
-                    <rect x="30" y="30" width="190" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-porteur.jpg" x="44" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="112" y="70" fill="#1a2b3c" font-size="13" font-weight="700">1 · Checkout</text>
-                    <text x="112" y="92" fill="#5a6b7c" font-size="11">hosted fields</text>
-                    <text x="112" y="112" fill="#5a6b7c" font-size="11">+ 3DS souvent</text>
+                  <text x="500" y="28" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700" letter-spacing="0.05em">FLUX CARD-ON-FILE · 4 ÉTAPES</text>
+
+                  <!-- 1 Checkout -->
+                  <g>
+                    <circle cx="95" cy="90" r="16" fill="#3d5a80"/>
+                    <text x="95" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1</text>
+                    <rect x="125" y="55" width="160" height="70" rx="10" fill="#eef0f5" stroke="#3d5a80" stroke-width="2.5"/>
+                    <text x="205" y="85" text-anchor="middle" fill="#3d5a80" font-size="14" font-weight="700">Checkout</text>
+                    <text x="205" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">sauver ma carte</text>
                   </g>
-                  <line class="flow-line" data-step="2 3" x1="230" y1="85" x2="280" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ec)"/>
-                  <g data-step="2 3">
-                    <rect x="280" y="30" width="210" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-psp.jpg" x="294" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="362" y="70" fill="#1a2b3c" font-size="13" font-weight="700">2 · PSP / TSP</text>
-                    <text x="362" y="92" fill="#5a6b7c" font-size="11">tokenise · vault</text>
-                    <text x="362" y="112" fill="#5a6b7c" font-size="11">lien PAN↔token</text>
+                  <line x1="295" y1="90" x2="335" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ec)"/>
+
+                  <!-- 2 PSP -->
+                  <g>
+                    <circle cx="365" cy="90" r="16" fill="#3d5a80"/>
+                    <text x="365" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">2</text>
+                    <rect x="395" y="55" width="160" height="70" rx="10" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="475" y="85" text-anchor="middle" fill="#3d5a80" font-size="14" font-weight="700">PSP</text>
+                    <text x="475" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">crée le token</text>
                   </g>
-                  <line class="flow-line" data-step="2 3" x1="500" y1="85" x2="550" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ec)"/>
-                  <g data-step="2 3">
-                    <rect x="550" y="30" width="200" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-commercant.jpg" x="564" y="48" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="632" y="70" fill="#1a2b3c" font-size="13" font-weight="700">Marchand</text>
-                    <text x="632" y="92" fill="#5a6b7c" font-size="11">stocke token</text>
-                    <text x="632" y="112" fill="#5a6b7c" font-size="11">PCI scope ↓</text>
+                  <line x1="565" y1="90" x2="605" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ec)"/>
+
+                  <!-- 3 Marchand stocke -->
+                  <g>
+                    <circle cx="635" cy="90" r="16" fill="#3d5a80"/>
+                    <text x="635" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">3</text>
+                    <rect x="665" y="55" width="150" height="70" rx="10" fill="#fff" stroke="#2f4858" stroke-width="2"/>
+                    <text x="740" y="85" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Marchand</text>
+                    <text x="740" y="105" text-anchor="middle" fill="#5a6b7c" font-size="11">garde le token</text>
                   </g>
-                  <line class="flow-line" data-step="3" x1="760" y1="85" x2="810" y2="85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ec)"/>
-                  <g data-step="3">
-                    <rect x="810" y="30" width="160" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <text x="890" y="75" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">3 · MIT</text>
-                    <text x="890" y="100" text-anchor="middle" fill="#5a6b7c" font-size="11">récurrent</text>
+                  <line x1="825" y1="90" x2="860" y2="90" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ec)"/>
+
+                  <!-- 4 MIT / Auth -->
+                  <g>
+                    <circle cx="890" cy="90" r="16" fill="#c45c26"/>
+                    <text x="890" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">4</text>
+                    <rect x="820" y="120" width="150" height="58" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2.5"/>
+                    <text x="895" y="145" text-anchor="middle" fill="#c45c26" font-size="14" font-weight="700">Auth / abo</text>
+                    <text x="895" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">marchand initie</text>
                   </g>
 
-                  <g class="step-panel" data-step="1">
-                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="60" y="210" fill="#3d5a80" font-family="Syne, sans-serif" font-size="16" font-weight="700">Premier paiement</text>
-                    <text x="60" y="245" fill="#1a2b3c" font-size="13">PAN saisi une seule fois chez le PSP (iframe / hosted fields) — pas en base marchande.</text>
-                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Souvent 3DS / SCA sur ce premier enregistrement (COF).</text>
-                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Le PSP / TSP crée le token et le mapping PAN ↔ token dans le vault.</text>
-                    <text x="60" y="335" fill="#3d5a80" font-size="13" font-weight="700">Le marchand reçoit un token — jamais le PAN à stocker.</text>
-                  </g>
-                  <g class="step-panel" data-step="2">
-                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="60" y="210" fill="#3d5a80" font-family="Syne, sans-serif" font-size="16" font-weight="700">Card-on-file</text>
-                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Le marchand (ou le vault PSP) conserve le token pour les paiements suivants.</text>
-                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Impact direct : moins de PAN manipulés → scope PCI DSS réduit.</text>
-                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Si la carte est renouvelée, le TSP met à jour le mapping — l’id token côté marchand peut rester.</text>
-                    <text x="60" y="335" fill="#3d5a80" font-size="13" font-weight="700">Gouvernance centralisée du lien PAN ↔ token (TSP), pas chez le marchand.</text>
-                  </g>
-                  <g class="step-panel" data-step="3">
-                    <rect x="30" y="170" width="940" height="180" rx="10" fill="#eef0f5" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="60" y="210" fill="#3d5a80" font-family="Syne, sans-serif" font-size="16" font-weight="700">MIT · abonnements</text>
-                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Paiements suivants : le marchand envoie le token → Auth (merchant-initiated).</text>
-                    <text x="60" y="275" fill="#1a2b3c" font-size="13">Pas de ré-authentification systématique à chaque prélèvement (règles COF / MIT).</text>
-                    <text x="60" y="305" fill="#1a2b3c" font-size="13">Ex. : streaming, SaaS, marketplace 1-clic — suite Architecture SI &amp; Sécurité / PCI.</text>
-                    <text x="60" y="335" fill="#3d5a80" font-size="13" font-weight="700">Token COF ≠ token in-store device : domaines non interchangeables.</text>
-                  </g>
+                  <!-- Bande étapes -->
+                  <rect x="30" y="200" width="940" height="190" rx="10" fill="#f7f9fb" stroke="#d5e1ea" stroke-width="1.5"/>
+                  <text x="50" y="235" fill="#3d5a80" font-size="13" font-weight="700">1 · Checkout</text>
+                  <text x="190" y="235" fill="#1a2b3c" font-size="13">PAN saisi une fois chez le PSP (pas en base marchande) · souvent 3DS</text>
+                  <text x="50" y="265" fill="#3d5a80" font-size="13" font-weight="700">2 · PSP</text>
+                  <text x="190" y="265" fill="#1a2b3c" font-size="13">tokenise · le lien PAN ↔ token vit dans le coffre (vault / TSP)</text>
+                  <text x="50" y="295" fill="#3d5a80" font-size="13" font-weight="700">3 · Marchand</text>
+                  <text x="190" y="295" fill="#1a2b3c" font-size="13">stocke le token (wallet côté marchand) — jamais le PAN → scope PCI ↓</text>
+                  <text x="50" y="325" fill="#c45c26" font-size="13" font-weight="700">4 · Suite</text>
+                  <text x="190" y="325" fill="#1a2b3c" font-size="13">abos / 1-clic : le marchand renvoie le token → Auth (paiement initié marchand)</text>
+                  <text x="50" y="355" fill="#3d5a80" font-size="13" font-weight="700">Point clé</text>
+                  <text x="190" y="355" fill="#1a2b3c" font-size="13">token COF ≠ token Watch NFC — domaines non interchangeables</text>
+                  <text x="50" y="385" fill="#3d5a80" font-size="13" font-weight="700">Exemples</text>
+                  <text x="190" y="385" fill="#1a2b3c" font-size="13">streaming · SaaS · marketplace 1-clic</text>
                 </svg>
-</div>
+                <p class="fresco-legend">
+                  Card-on-file = wallet <strong>côté marchand / PSP</strong>.
+                  Suite&nbsp;:
+                  <a href="architecture-si.html">Architecture SI</a>
+                  ·
+                  <a href="securite-conformite.html">Sécurité &amp; PCI</a>.
+                </p>
+              </div>
             </section>
 
             <section class="section">
               <p class="section-label">Synthèse</p>
-              <h2>Trois terrains · qui tokenise</h2>
+              <h2>Canal ≠ lieu de stockage</h2>
+              <p class="intro">
+                Le <strong>canal</strong> (magasin, app, web) dit
+                <em>comment</em> on paie. Le <strong>token</strong> dit
+                <em>où</em> il vit. Même Apple Pay sur le même iPhone&nbsp;:
+                souvent un seul token pour le tap et l’app — la carte
+                enregistrée chez un marchand, c’en est une autre.
+              </p>
               <div class="csm-table-wrap">
                 <table class="csm-table">
                   <thead>
                     <tr>
                       <th scope="col"></th>
-                      <th scope="col">In-store</th>
-                      <th scope="col">In-app</th>
-                      <th scope="col">E-commerce / COF</th>
+                      <th scope="col">Token device<br /><span style="font-weight:500;letter-spacing:0;text-transform:none;color:#5a6b7c">wallet OEM (ex. Apple Pay)</span></th>
+                      <th scope="col">Token COF<br /><span style="font-weight:500;letter-spacing:0;text-transform:none;color:#5a6b7c">wallet marchand / PSP</span></th>
                     </tr>
                   </thead>
                   <tbody>
+                    <tr class="is-exergue">
+                      <th scope="row">Où il vit</th>
+                      <td>Puce sécurisée du device (ex. Secure Element Apple Pay)</td>
+                      <td>Coffre PSP (le marchand garde surtout un id / référence)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Canaux d’usage</th>
+                      <td>Tap NFC · in-app · web wallet — ex. Apple Pay&nbsp;: même token device (DPAN) sur un même iPhone</td>
+                      <td>Checkout web · abo · 1-clic (souvent initié par le marchand)</td>
+                    </tr>
                     <tr>
                       <th scope="row">Qui tokenise</th>
-                      <td>TSP réseau (VTS · MDES · wallet OEM)</td>
-                      <td>TSP / wallet OEM</td>
-                      <td>PSP / TSP card-on-file</td>
+                      <td>TSP réseau (VTS · MDES) + wallet constructeur · OK issuer à l’enrôlement</td>
+                      <td>PSP / TSP card-on-file (parfois token réseau)</td>
                     </tr>
                     <tr>
-                      <th scope="row">Où vit le mapping</th>
-                      <td>Vault TSP / scheme</td>
-                      <td>Vault TSP · device</td>
-                      <td>Vault PSP / TSP</td>
+                      <th scope="row">Mapping PAN ↔ token</th>
+                      <td>Vault TSP / scheme (pas chez Apple, pas au TPE)</td>
+                      <td>Vault PSP / TSP (PAN hors base marchande)</td>
                     </tr>
                     <tr>
-                      <th scope="row">En Auth circule</th>
-                      <td>TOKEN (+ crypto) jusqu’à l’acquéreur</td>
-                      <td>TOKEN (+ crypto)</td>
-                      <td>TOKEN marchand / PSP (souvent)</td>
+                      <th scope="row">Attention</th>
+                      <td>Autre device = autre token (iPhone ≠ Watch)</td>
+                      <td>≠ token device Apple Pay / Google Pay</td>
                     </tr>
                     <tr>
                       <th scope="row">Risque type</th>
-                      <td>Device perdu · clone NFC</td>
-                      <td>Compte app compromis</td>
-                      <td>Fuite base COF · MIT abusif</td>
+                      <td>Device perdu · fraude de proximité</td>
+                      <td>Fuite des références COF · abus MIT</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Ancrage</p>
-              <h2>Question salle</h2>
-              <div class="panel ok">
-                <h3>Où reste le PAN — et quel domaine&nbsp;?</h3>
+              <p class="fresco-legend" style="margin-top: 0.75rem">
+                Si l’app enregistre la carte via le <strong>PSP</strong> (sans
+                Apple / Google Pay) → token COF, pas token device. Cas avancé
+                Apple&nbsp;: abo récurrents peuvent utiliser un
+                <strong>MPAN</strong> (token marchand) ≠ DPAN device.
+              </p>
+              <div class="panel" style="margin-top: 0.85rem">
+                <h3>Légende — sigles</h3>
                 <ul>
-                  <li>Vault / TSP / issuer — pas chez le marchand ni au POS</li>
-                  <li>Token in-store (device) ≠ token COF e-commerce</li>
-                  <li>Même rail J1 — contexte d’émission différent</li>
+                  <li><strong>Wallet</strong> — portefeuille électronique (téléphone, Watch, ou côté marchand)</li>
+                  <li><strong>TSP</strong> — Token Service Provider (émet / gouverne le token)</li>
+                  <li><strong>PSP</strong> — Payment Service Provider (passerelle paiement du marchand)</li>
+                  <li><strong>OEM</strong> — constructeur du téléphone / OS (Apple, Google…)</li>
+                  <li><strong>COF</strong> — card-on-file · carte enregistrée chez le marchand</li>
+                  <li><strong>VTS / MDES</strong> — TSP Visa / Mastercard</li>
+                  <li><strong>TPE / POS</strong> — terminal de paiement · <strong>NFC</strong> — contactless</li>
                 </ul>
               </div>
             </section>
