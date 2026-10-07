@@ -164,15 +164,14 @@
               <p class="section-label">Sommaire</p>
               <h2>Modules de la spec MPM</h2>
               <p class="intro">
-                Vue <strong>MPM</strong>. Cliquez un bloc pour le détail et
-                ses dépendances — les contenus (C) s’appuient sur le noyau
-                TLV (B).
+                Vue <strong>MPM</strong> — les contenus (C) s’appuient sur le
+                noyau TLV (B)&nbsp;; dépendances A → B → C → D (E transversales).
               </p>
 
               <div class="diagram" id="diagram-emv-modules">
                 <div class="diagram-header">
                   <h3>Dépendances</h3>
-                  <p>Cliquez un module · A → B → C → D · E transversales</p>
+                  <p>A → B → C → D · E transversales</p>
                 </div>
                 <svg
                   viewBox="0 0 1000 340"
@@ -286,9 +285,37 @@
                   </ul>
                 </div>
               </div>
+              <div class="csm-table-wrap" style="margin-top: 1.25rem">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Mode</th>
+                      <th scope="col">Tag format</th>
+                      <th scope="col">Valeur</th>
+                      <th scope="col">Rôle</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">MPM</th>
+                      <td><code>00</code></td>
+                      <td><code>01</code></td>
+                      <td>Payload se parse en TLV MPM</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">CPM</th>
+                      <td><code>85</code></td>
+                      <td><code>CPV01</code></td>
+                      <td>Payload se parse en BER-TLV CPM</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
               <p class="fresco-legend">
-                Suite du cours = surtout <strong>MPM</strong> (acceptation
-                marchand). CPM = même famille, autre sens du flux optique.
+                Le format dit <strong>quelle grammaire</strong> lire — pas le
+                profil national ni le moyen. Une seule valeur définie par
+                spec aujourd’hui. Suite du cours = surtout
+                <strong>MPM</strong>&nbsp;; CPM = même famille, autre sens.
               </p>
             </section>
 
@@ -307,49 +334,57 @@
                   <p>Type (ID) · Taille · Valeur — toujours dans cet ordre</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 300"
+                  viewBox="0 0 1000 360"
                   role="img"
-                  aria-label="Tableau TLV Tag Length Value"
+                  aria-label="Tableau TLV Tag Length Value et Payload Format Indicator 00"
                 >
                   <!-- Trois cases encadrées -->
                   <g>
-                    <rect x="60" y="28" width="260" height="130" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="190" y="64" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="700">T · Tag</text>
-                    <text x="190" y="92" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Type de donnée</text>
-                    <text x="190" y="116" text-anchor="middle" fill="#5a6b7c" font-size="12">Toujours 2 chiffres</text>
-                    <text x="190" y="140" text-anchor="middle" fill="#5a6b7c" font-size="12">ex. 00 · 01 · 26 · 54 · 63</text>
+                    <rect x="60" y="20" width="260" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="190" y="54" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="700">T · Tag</text>
+                    <text x="190" y="82" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Type de donnée</text>
+                    <text x="190" y="106" text-anchor="middle" fill="#5a6b7c" font-size="12">Toujours 2 chiffres</text>
+                    <text x="190" y="126" text-anchor="middle" fill="#5a6b7c" font-size="12">ex. 00 · 01 · 26 · 54 · 63</text>
                   </g>
                   <g>
-                    <rect x="370" y="28" width="260" height="130" rx="10" fill="#f4f7ff" stroke="#4a6fa5" stroke-width="3"/>
-                    <text x="500" y="64" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="18" font-weight="700">L · Length</text>
-                    <text x="500" y="92" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Taille</text>
-                    <text x="500" y="116" text-anchor="middle" fill="#5a6b7c" font-size="12">Toujours 2 chiffres</text>
-                    <text x="500" y="140" text-anchor="middle" fill="#5a6b7c" font-size="12">nb de caractères de V</text>
+                    <rect x="370" y="20" width="260" height="120" rx="10" fill="#f4f7ff" stroke="#4a6fa5" stroke-width="3"/>
+                    <text x="500" y="54" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="18" font-weight="700">L · Length</text>
+                    <text x="500" y="82" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Taille</text>
+                    <text x="500" y="106" text-anchor="middle" fill="#5a6b7c" font-size="12">Toujours 2 chiffres</text>
+                    <text x="500" y="126" text-anchor="middle" fill="#5a6b7c" font-size="12">nb de caractères de V</text>
                   </g>
                   <g>
-                    <rect x="680" y="28" width="260" height="130" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
-                    <text x="810" y="64" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="18" font-weight="700">V · Value</text>
-                    <text x="810" y="92" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Valeur</text>
-                    <text x="810" y="116" text-anchor="middle" fill="#5a6b7c" font-size="12">Contenu métier</text>
-                    <text x="810" y="140" text-anchor="middle" fill="#5a6b7c" font-size="12">longueur = L</text>
+                    <rect x="680" y="20" width="260" height="120" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+                    <text x="810" y="54" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="18" font-weight="700">V · Value</text>
+                    <text x="810" y="82" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Valeur</text>
+                    <text x="810" y="106" text-anchor="middle" fill="#5a6b7c" font-size="12">Contenu métier</text>
+                    <text x="810" y="126" text-anchor="middle" fill="#5a6b7c" font-size="12">longueur = L</text>
                   </g>
 
                   <!-- Mini exemple au tableau -->
-                  <text x="500" y="188" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Mini-exemple au tableau — premier objet d’un payload MPM
+                  <text x="500" y="168" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Premier objet MPM · ID 00 = Payload Format Indicator
                   </text>
-                  <rect x="200" y="204" width="600" height="72" rx="8" fill="#1a2b3c"/>
-                  <text x="280" y="238" text-anchor="middle" fill="#7dcea0" font-family="ui-monospace, monospace" font-size="22" font-weight="700">00</text>
-                  <text x="360" y="238" text-anchor="middle" fill="#9bb8d4" font-family="ui-monospace, monospace" font-size="22" font-weight="700">02</text>
-                  <text x="480" y="238" text-anchor="middle" fill="#f0b27a" font-family="ui-monospace, monospace" font-size="22" font-weight="700">01</text>
-                  <text x="640" y="238" text-anchor="middle" fill="#e7f6f3" font-size="14">→ Format EMV = 01</text>
-                  <text x="280" y="262" text-anchor="middle" fill="#7dcea0" font-size="12">T · type</text>
-                  <text x="360" y="262" text-anchor="middle" fill="#9bb8d4" font-size="12">L · taille</text>
-                  <text x="480" y="262" text-anchor="middle" fill="#f0b27a" font-size="12">V · valeur</text>
+                  <rect x="120" y="182" width="760" height="72" rx="8" fill="#1a2b3c"/>
+                  <text x="220" y="214" text-anchor="middle" fill="#7dcea0" font-family="ui-monospace, monospace" font-size="22" font-weight="700">00</text>
+                  <text x="320" y="214" text-anchor="middle" fill="#9bb8d4" font-family="ui-monospace, monospace" font-size="22" font-weight="700">02</text>
+                  <text x="440" y="214" text-anchor="middle" fill="#f0b27a" font-family="ui-monospace, monospace" font-size="22" font-weight="700">01</text>
+                  <text x="640" y="210" text-anchor="middle" fill="#e7f6f3" font-size="14" font-weight="700">→ format payload = 01</text>
+                  <text x="640" y="232" text-anchor="middle" fill="#8a9aaa" font-size="11">seul format défini · reste RFU</text>
+                  <text x="220" y="240" text-anchor="middle" fill="#7dcea0" font-size="11">T · type</text>
+                  <text x="320" y="240" text-anchor="middle" fill="#9bb8d4" font-size="11">L · taille</text>
+                  <text x="440" y="240" text-anchor="middle" fill="#f0b27a" font-size="11">V · valeur</text>
+
+                  <rect x="120" y="268" width="760" height="68" rx="8" fill="#f7fbf9" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="500" y="294" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">00 dit comment parser le reste du payload (IDs, longueurs, valeurs)</text>
+                  <text x="500" y="318" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Obligatoire · toujours en tête · ≠ initiation 11/12 · ≠ profil national (MAI / GUID)
+                  </text>
                 </svg>
                 <p class="fresco-legend">
-                  L’app avance de 2 + 2 + L caractères, puis recommence — jusqu’à
-                  l’objet <code>63</code> (CRC). Suite&nbsp;: un payload complet.
+                  L’app lit <code>000201</code>, vérifie le format
+                  <code>01</code>, puis avance de 2 + 2 + L jusqu’à
+                  <code>63</code> (CRC). Suite&nbsp;: un payload complet.
                 </p>
               </div>
             </section>
@@ -383,29 +418,29 @@
 
                   <!-- Ligne 1 : 00, 01 -->
                   <g>
-                    <rect x="40" y="40" width="140" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="110" y="62" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">00</text>
-                    <text x="110" y="82" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">000201</text>
-                    <text x="110" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">Format = 01</text>
+                    <rect x="40" y="40" width="200" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="140" y="58" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">00 · Payload Format</text>
+                    <text x="140" y="78" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">000201</text>
+                    <text x="140" y="98" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">V = 01 · seul défini (RFU sinon)</text>
                   </g>
                   <g>
-                    <rect x="195" y="40" width="140" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="265" y="62" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">01</text>
-                    <text x="265" y="82" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">010211</text>
-                    <text x="265" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">Init. = 11 statique</text>
+                    <rect x="255" y="40" width="140" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="325" y="62" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">01</text>
+                    <text x="325" y="82" text-anchor="middle" fill="#1a2b3c" font-size="11" font-family="ui-monospace, monospace">010211</text>
+                    <text x="325" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">Init. = 11 statique</text>
                   </g>
 
                   <!-- 26 large -->
                   <g>
-                    <rect x="350" y="40" width="610" height="70" rx="8" fill="#f4f7ff" stroke="#4a6fa5" stroke-width="2"/>
-                    <text x="655" y="62" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">26 · Merchant Account (len 30)</text>
-                    <text x="655" y="82" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">26300014com.example.qr0108DEMO0001</text>
-                    <text x="655" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">Qui créditer — template MAI (souvent 26–51 en profil national)</text>
+                    <rect x="410" y="40" width="550" height="70" rx="8" fill="#f4f7ff" stroke="#4a6fa5" stroke-width="2"/>
+                    <text x="685" y="62" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">26 · Merchant Account (len 30)</text>
+                    <text x="685" y="82" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">26300014com.example.qr0108DEMO0001</text>
+                    <text x="685" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">Qui créditer — template MAI (souvent 26–51 en profil national)</text>
                   </g>
 
                   <!-- flèche vers nested -->
-                  <line x1="655" y1="110" x2="655" y2="128" stroke="#4a6fa5" stroke-width="2"/>
-                  <polygon points="655,134 650,126 660,126" fill="#4a6fa5"/>
+                  <line x1="685" y1="110" x2="685" y2="128" stroke="#4a6fa5" stroke-width="2"/>
+                  <polygon points="685,134 680,126 690,126" fill="#4a6fa5"/>
 
                   <!-- nested 00 / 01 under 26 -->
                   <g>
@@ -487,70 +522,277 @@
             </section>
 
             <section class="section">
+              <p class="section-label">Exemple</p>
+              <h2>Un payload CPM complet</h2>
+              <p class="intro">
+                Autre spec, autre syntaxe&nbsp;:
+                <strong>BER-TLV</strong> (tags hex type chip), puis
+                <strong>Base64</strong> dans le symbole QR.
+                Payload <strong>fictif</strong> type carte — payeur présente,
+                caisse scanne.
+              </p>
+              <div class="diagram" id="diagram-emv-payload-cpm">
+                <div class="diagram-header">
+                  <h3>Payload Base64 → schéma BER-TLV</h3>
+                  <p>Format CPV01 · Application Template · Common Data</p>
+                </div>
+                <p class="fresco-legend" style="margin-bottom: 0.5rem">
+                  <strong>Pourquoi pas une chaîne type MPM&nbsp;?</strong>
+                  MPM = TLV <em>texte</em> (chiffres / ASCII) directement dans
+                  le QR. CPM = BER-TLV <em>binaire</em> → la spec impose un
+                  encodage <strong>Base64</strong> dans le symbole (ce que lit
+                  le scanneur en texte).
+                </p>
+                <p class="section-label" style="margin-top: 0.25rem">Dans le QR (Base64)</p>
+                <pre
+                  class="payload-raw"
+                  aria-label="Exemple complet de payload EMV QR CPM en Base64"
+                >hQVDUFYwMWETTwegAAAAVVVVUAhQcm9kdWN0MWETTwegAAAAZmZmUAhQcm9kdWN0MmJJWggSNFZ4kBI0WF8gDkNBUkRIT0xERVIvRU1WXy0IcnVlc2RlZW5kIZ8QBwYBCgMAAACfJghYT9OF+iNLzJ82AgABnzcEbVjvEw==</pre>
+                <p class="section-label" style="margin-top: 0.85rem">Brut décodé (BER-TLV hex)</p>
+                <pre
+                  class="payload-raw"
+                  aria-label="Payload EMV QR CPM décodé en hexadécimal BER-TLV"
+                >85054350563031
+61134F07A0000000555555500850726F6475637431
+61134F07A0000000666666500850726F6475637432
+62495A0812345678901234585F200E43415244484F4C4445522F454D565F2D08727565736465656E64219F100706010A030000009F2608584FD385FA234BCC9F360200019F37046D58EF13</pre>
+                <p class="fresco-legend" style="margin-top: 0.65rem">
+                  Lecture du premier objet&nbsp;:
+                  <code>85</code>&nbsp;=&nbsp;tag ·
+                  <code>05</code>&nbsp;=&nbsp;<em>longueur</em> (5 octets) ·
+                  <code>4350563031</code>&nbsp;=&nbsp;valeur
+                  <strong>CPV01</strong>.
+                  Le <code>05</code> n’est pas le format — c’est le L du TLV.
+                  Début Base64 <code>hQVDUFY…</code> = ce même objet.
+                </p>
+                <svg
+                  viewBox="0 0 1000 460"
+                  role="img"
+                  aria-label="Schéma de découpe BER-TLV du payload EMV QR CPM"
+                  style="margin-top: 0.5rem"
+                >
+                  <text x="500" y="22" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Même payload (décodé) — BER-TLV · ≠ TLV numérique MPM
+                  </text>
+
+                  <!-- 85 Format -->
+                  <g>
+                    <rect x="40" y="40" width="280" height="78" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="180" y="62" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">85 · Payload Format</text>
+                    <text x="180" y="84" text-anchor="middle" fill="#1a2b3c" font-size="12" font-family="ui-monospace, monospace">CPV01</text>
+                    <text x="180" y="104" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">seul format CPM défini</text>
+                  </g>
+
+                  <!-- 61 App 1 -->
+                  <g>
+                    <rect x="340" y="40" width="310" height="78" rx="8" fill="#f4f7ff" stroke="#4a6fa5" stroke-width="2"/>
+                    <text x="495" y="62" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">61 · Application Template</text>
+                    <text x="495" y="84" text-anchor="middle" fill="#1a2b3c" font-size="11">4F ADF · 50 Label</text>
+                    <text x="495" y="104" text-anchor="middle" fill="#5a6b7c" font-size="10">Produit 1 — routage AID</text>
+                  </g>
+
+                  <!-- 61 App 2 -->
+                  <g>
+                    <rect x="670" y="40" width="290" height="78" rx="8" fill="#f4f7ff" stroke="#4a6fa5" stroke-width="2"/>
+                    <text x="815" y="62" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">61 · Application Template</text>
+                    <text x="815" y="84" text-anchor="middle" fill="#1a2b3c" font-size="11">4F ADF · 50 Label</text>
+                    <text x="815" y="104" text-anchor="middle" fill="#5a6b7c" font-size="10">Produit 2 (optionnel)</text>
+                  </g>
+
+                  <!-- nested under 61 -->
+                  <line x1="495" y1="118" x2="495" y2="136" stroke="#4a6fa5" stroke-width="2"/>
+                  <polygon points="495,142 490,134 500,134" fill="#4a6fa5"/>
+                  <g>
+                    <rect x="200" y="148" width="280" height="64" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="340" y="170" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">61→4F · ADF Name</text>
+                    <text x="340" y="188" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">A0000000555555</text>
+                    <text x="340" y="204" text-anchor="middle" fill="#5a6b7c" font-size="10">POI match AID → route</text>
+                  </g>
+                  <g>
+                    <rect x="500" y="148" width="280" height="64" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="640" y="170" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">61→50 · App Label</text>
+                    <text x="640" y="188" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">Product1</text>
+                    <text x="640" y="204" text-anchor="middle" fill="#5a6b7c" font-size="10">affichage · pas AuthZ</text>
+                  </g>
+
+                  <!-- 62 Common Data -->
+                  <g>
+                    <rect x="40" y="236" width="920" height="70" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="3"/>
+                    <text x="500" y="262" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="700">62 · Common Data Template — credentials du moyen</text>
+                    <text x="500" y="286" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                      PAN / token · nom porteur · langue · (+ transparent&nbsp;: crypto, ATC…)
+                    </text>
+                  </g>
+
+                  <g>
+                    <rect x="40" y="322" width="220" height="64" rx="8" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                    <text x="150" y="344" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">5A · PAN / token</text>
+                    <text x="150" y="364" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">1234…3458</text>
+                    <text x="150" y="380" text-anchor="middle" fill="#5a6b7c" font-size="10">souvent tokenisé</text>
+                  </g>
+                  <g>
+                    <rect x="280" y="322" width="240" height="64" rx="8" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                    <text x="400" y="344" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">5F20 · Cardholder</text>
+                    <text x="400" y="364" text-anchor="middle" fill="#1a2b3c" font-size="10" font-family="ui-monospace, monospace">CARDHOLDER/EMV</text>
+                    <text x="400" y="380" text-anchor="middle" fill="#5a6b7c" font-size="10">affichage caisse</text>
+                  </g>
+                  <g>
+                    <rect x="540" y="322" width="420" height="64" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="750" y="344" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">64 · Transparent — crypto</text>
+                    <text x="750" y="364" text-anchor="middle" fill="#1a2b3c" font-size="10">9F26 Application Cryptogram · ATC · UN…</text>
+                    <text x="750" y="380" text-anchor="middle" fill="#5a6b7c" font-size="10">forward Acquirer → AuthZ émetteur</text>
+                  </g>
+
+                  <text x="500" y="420" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    CPM = credentials payeur · pas d’IDs marchand (ceux-là = conf caisse / PSP commerçant)
+                  </text>
+                  <text x="500" y="444" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    MPM&nbsp;: TLV décimal + CRC 63 · CPM&nbsp;: BER-TLV + Base64 · format 85=CPV01
+                  </text>
+                </svg>
+                <p class="fresco-legend">
+                  Exemple pédagogique inspiré de la démo EMVCo CPM (fictif).
+                  Le POI lit l’ADF (<code>4F</code>) pour router, puis envoie
+                  le message Auth au PSP / Acquirer commerçant.
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
               <p class="section-label">Tags à connaître</p>
               <h2>Les IDs qui changent le SI</h2>
               <p class="intro">
-                Trois zones dans le payload&nbsp;: socle parseur, données
-                opérationnelles, et champs cadrés par le
-                <strong>profil pays / international</strong>.
+                Deux cartes&nbsp;: <strong>MPM</strong> (marchand présente) et
+                <strong>CPM</strong> (consommateur présente). Même idée —
+                socle / données utiles / zone scheme — tags différents.
               </p>
 
               <div class="diagram" id="diagram-emv-ids-si">
                 <div class="diagram-header">
-                  <h3>Carte des IDs</h3>
-                  <p>Ce que lit le SI · ce que le profil cadre ensuite</p>
+                  <h3>Carte des IDs · MPM</h3>
+                  <p>Format 00 · initiation · opération · profil</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 360"
+                  viewBox="0 0 1000 400"
                   role="img"
-                  aria-label="Schéma des IDs EMV QR qui changent le SI"
+                  aria-label="Schéma des IDs EMV QR MPM avec Payload Format Indicator 00 = 01"
                 >
                   <!-- Zone A socle -->
-                  <rect x="40" y="28" width="300" height="200" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                  <text x="190" y="58" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">A · Socle</text>
-                  <text x="190" y="78" text-anchor="middle" fill="#5a6b7c" font-size="11">Structure · parseur</text>
-                  <rect x="60" y="96" width="260" height="36" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                  <text x="190" y="119" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">00</tspan>  Format — entrée parseur</text>
-                  <rect x="60" y="142" width="260" height="36" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                  <text x="190" y="165" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">01</tspan>  Initiation 11 / 12</text>
-                  <rect x="60" y="188" width="260" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                  <text x="190" y="207" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">63</tspan>  CRC — intégrité</text>
+                  <rect x="40" y="28" width="300" height="230" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="190" y="54" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">A · Socle</text>
+                  <text x="190" y="72" text-anchor="middle" fill="#5a6b7c" font-size="11">Structure · parseur</text>
+                  <rect x="60" y="88" width="260" height="72" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="190" y="110" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">00 · Payload Format</text>
+                  <text x="190" y="130" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Valeur = 01 (seul défini)</text>
+                  <text x="190" y="148" text-anchor="middle" fill="#c45c26" font-size="11">Autres valeurs = RFU</text>
+                  <rect x="60" y="170" width="260" height="36" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <text x="190" y="193" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">01</tspan>  Initiation 11 / 12</text>
+                  <rect x="60" y="216" width="260" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <text x="190" y="235" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">63</tspan>  CRC — intégrité</text>
 
                   <!-- Zone B opération -->
-                  <rect x="360" y="28" width="300" height="200" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                  <text x="510" y="58" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">B · Opération</text>
-                  <text x="510" y="78" text-anchor="middle" fill="#5a6b7c" font-size="11">Montant · affichage</text>
+                  <rect x="360" y="28" width="300" height="230" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="510" y="54" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">B · Opération</text>
+                  <text x="510" y="72" text-anchor="middle" fill="#5a6b7c" font-size="11">Montant · affichage</text>
                   <rect x="380" y="96" width="260" height="36" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
                   <text x="510" y="119" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">52</tspan>  MCC</text>
                   <rect x="380" y="142" width="260" height="36" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
                   <text x="510" y="165" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">53 / 54</tspan>  Devise · montant</text>
-                  <rect x="380" y="188" width="260" height="28" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
-                  <text x="510" y="207" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">58–60</tspan>  Pays · nom · ville</text>
+                  <rect x="380" y="188" width="260" height="48" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                  <text x="510" y="208" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">58–60</tspan>  Pays · nom · ville</text>
+                  <text x="510" y="226" text-anchor="middle" fill="#5a6b7c" font-size="11">≠ format 00</text>
 
                   <!-- Zone C profil — surlignée -->
-                  <rect x="680" y="28" width="280" height="200" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+                  <rect x="680" y="28" width="280" height="230" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
                   <text x="820" y="54" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="700">C · Profil</text>
                   <text x="820" y="72" text-anchor="middle" fill="#5a6b7c" font-size="10">National · international</text>
-                  <rect x="698" y="88" width="244" height="40" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
-                  <text x="820" y="106" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">02–51</text>
-                  <text x="820" y="122" text-anchor="middle" fill="#5a6b7c" font-size="10">MAI (souvent 26–51 national)</text>
-                  <rect x="698" y="138" width="244" height="40" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
-                  <text x="820" y="156" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">62</text>
-                  <text x="820" y="172" text-anchor="middle" fill="#5a6b7c" font-size="10">Additional Data · réf. / tip</text>
-                  <rect x="698" y="188" width="244" height="28" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
-                  <text x="820" y="207" text-anchor="middle" fill="#1a2b3c" font-size="12"><tspan font-weight="700">80–99</tspan>  Unreserved</text>
+                  <rect x="698" y="88" width="244" height="48" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                  <text x="820" y="108" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">02–51 · MAI</text>
+                  <text x="820" y="126" text-anchor="middle" fill="#5a6b7c" font-size="10">GUID = scheme (≠ tag 00)</text>
+                  <rect x="698" y="146" width="244" height="40" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                  <text x="820" y="164" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">62</text>
+                  <text x="820" y="180" text-anchor="middle" fill="#5a6b7c" font-size="10">Additional Data · réf. / tip</text>
+                  <rect x="698" y="196" width="244" height="44" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                  <text x="820" y="214" text-anchor="middle" fill="#1a2b3c" font-size="12"><tspan font-weight="700">80–99</tspan>  Unreserved</text>
+                  <text x="820" y="230" text-anchor="middle" fill="#5a6b7c" font-size="10">extensions scheme</text>
 
                   <!-- Bandeau bas -->
-                  <rect x="40" y="250" width="920" height="78" rx="10" fill="#fff" stroke="#c45c26" stroke-width="2"/>
-                  <text x="500" y="280" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="700">Zone C — EMV fixe la structure, le profil fixe les règles</text>
-                  <text x="500" y="304" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Obligations, remplissage GUID / IDs, switch · détail → Interopérabilité QR (national · international)
+                  <rect x="40" y="278" width="920" height="96" rx="10" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                  <text x="500" y="308" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="700">MPM — 00 = version du template · pas le profil pays</text>
+                  <text x="500" y="332" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Format (00=01) · Initiation (01=11/12) · Profil (MAI GUID) · CRC (63)
+                  </text>
+                  <text x="500" y="356" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Payload = qui est payé · moyen côté app
+                  </text>
+                </svg>
+              </div>
+
+              <div class="diagram" id="diagram-emv-ids-cpm" style="margin-top: 1.5rem">
+                <div class="diagram-header">
+                  <h3>Carte des IDs · CPM</h3>
+                  <p>Format 85 · Application · credentials (BER-TLV)</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 400"
+                  role="img"
+                  aria-label="Schéma des IDs EMV QR CPM avec Payload Format Indicator 85 = CPV01"
+                >
+                  <!-- Zone A socle -->
+                  <rect x="40" y="28" width="300" height="230" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="190" y="54" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">A · Socle</text>
+                  <text x="190" y="72" text-anchor="middle" fill="#5a6b7c" font-size="11">Parseur · encoding</text>
+                  <rect x="60" y="88" width="260" height="72" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="190" y="110" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">85 · Payload Format</text>
+                  <text x="190" y="130" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Valeur = CPV01</text>
+                  <text x="190" y="148" text-anchor="middle" fill="#c45c26" font-size="11">seul format CPM défini</text>
+                  <rect x="60" y="170" width="260" height="36" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <text x="190" y="193" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">Base64</tspan>  dans le symbole QR</text>
+                  <rect x="60" y="216" width="260" height="28" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <text x="190" y="235" text-anchor="middle" fill="#1a2b3c" font-size="13">BER-TLV · ≠ TLV MPM</text>
+
+                  <!-- Zone B application / routage -->
+                  <rect x="360" y="28" width="300" height="230" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="510" y="54" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">B · Application</text>
+                  <text x="510" y="72" text-anchor="middle" fill="#5a6b7c" font-size="11">Routage POI / AID</text>
+                  <rect x="380" y="96" width="260" height="48" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                  <text x="510" y="116" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">61</tspan>  Application Template</text>
+                  <text x="510" y="134" text-anchor="middle" fill="#5a6b7c" font-size="11">1..n applications</text>
+                  <rect x="380" y="154" width="260" height="48" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="510" y="174" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">4F · ADF Name</text>
+                  <text x="510" y="192" text-anchor="middle" fill="#c45c26" font-size="11">match AID → route</text>
+                  <rect x="380" y="212" width="260" height="32" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                  <text x="510" y="233" text-anchor="middle" fill="#1a2b3c" font-size="13"><tspan font-weight="700">50</tspan>  Application Label</text>
+
+                  <!-- Zone C credentials -->
+                  <rect x="680" y="28" width="280" height="230" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+                  <text x="820" y="54" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="700">C · Credentials</text>
+                  <text x="820" y="72" text-anchor="middle" fill="#5a6b7c" font-size="10">Moyen payeur</text>
+                  <rect x="698" y="88" width="244" height="48" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                  <text x="820" y="108" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">62 · Common Data</text>
+                  <text x="820" y="126" text-anchor="middle" fill="#5a6b7c" font-size="10">template credentials</text>
+                  <rect x="698" y="146" width="244" height="40" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                  <text x="820" y="164" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">5A · PAN / token</text>
+                  <text x="820" y="180" text-anchor="middle" fill="#5a6b7c" font-size="10">souvent tokenisé</text>
+                  <rect x="698" y="196" width="244" height="44" rx="6" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                  <text x="820" y="214" text-anchor="middle" fill="#1a2b3c" font-size="12"><tspan font-weight="700">64</tspan>  Transparent</text>
+                  <text x="820" y="230" text-anchor="middle" fill="#5a6b7c" font-size="10">9F26 crypto · ATC…</text>
+
+                  <!-- Bandeau bas -->
+                  <rect x="40" y="278" width="920" height="96" rx="10" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+                  <text x="500" y="308" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="700">CPM — 85 = CPV01 · pas d’IDs marchand dans le QR</text>
+                  <text x="500" y="332" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Format (85) · ADF (4F) pour router · credentials (62 / 5A / crypto) → Acquirer
+                  </text>
+                  <text x="500" y="356" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Payload = avec quoi on paie · marchand = conf caisse / PSP commerçant
                   </text>
                 </svg>
                 <p class="fresco-legend">
+                  MPM&nbsp;: <code>00</code>/<code>01</code>/<code>MAI</code>/<code>63</code>.
+                  CPM&nbsp;: <code>85</code>/<code>61</code>/<code>4F</code>/<code>62</code>.
                   Suite&nbsp;:
-                  <a href="standards.html">Interopérabilité QR</a>
-                  pour dérouler national / international.
+                  <a href="standards.html">Interopérabilité QR</a>.
                 </p>
               </div>
             </section>
@@ -590,6 +832,7 @@
             subtitle: "Dépend de : A",
             aspects: [
               "Payload & organisation — chaîne TLV, allocation des IDs (root, templates).",
+              "ID 00 · Payload Format Indicator — toujours en tête ; valeur = 01 (seul format défini, reste RFU).",
               "Requirements — présence, longueurs, valeurs ; objets root (00, 01, montant, devise, CRC…).",
               "Socle technique : sans B, les blocs C et le data coding n’ont pas de règles.",
             ],

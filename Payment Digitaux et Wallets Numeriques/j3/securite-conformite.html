@@ -105,30 +105,7 @@
                 Trois couches — tokeniser n’équivaut pas à «&nbsp;être SCA&nbsp;»
               </text>
             </svg>
-            <div class="seq-steps" id="socle-steps">
-              <button type="button" class="seq-step is-active" data-step="1">
-                <span class="n">1</span>
-                <span>
-                  <strong>Device binding</strong>
-                  <p>Rattacher le token à un device ou un contexte précis.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="2">
-                <span class="n">2</span>
-                <span>
-                  <strong>SCA / DSP2</strong>
-                  <p>Authentifier le porteur — sujet distinct du token.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="3">
-                <span class="n">3</span>
-                <span>
-                  <strong>Cryptogrammes</strong>
-                  <p>Limiter la réutilisation frauduleuse des données.</p>
-                </span>
-              </button>
-            </div>
-          </div>
+</div>
         </section>
 
         <!-- PCI & données -->
@@ -179,29 +156,34 @@
                 « Tokenisé ⇒ conforme » reste un raccourci — audit et gouvernance persistent
               </text>
             </svg>
-            <div class="seq-steps" id="pci-steps">
-              <button type="button" class="seq-step is-active" data-step="1">
-                <span class="n">1</span>
-                <span>
-                  <strong>Exposition</strong>
-                  <p>Moins de PAN stockés / transmis côté marchand.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="2">
-                <span class="n">2</span>
-                <span>
-                  <strong>Scope PCI</strong>
-                  <p>Réduction possible — à valider, pas à proclamer.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="3">
-                <span class="n">3</span>
-                <span>
-                  <strong>Données &amp; audit</strong>
-                  <p>Traçabilité, vault, contrôles TSP / issuer restent.</p>
-                </span>
-              </button>
-            </div>
+</div>
+
+
+          <div class="csm-table-wrap" style="margin-top: 1.25rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Avant tokenisation</th>
+                  <th scope="col">Après tokenisation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Chez le marchand</th>
+                  <td>PAN stocké / transmis → scope PCI large</td>
+                  <td>TOKEN (souvent) → scope potentiellement réduit</td>
+                </tr>
+                <tr>
+                  <th scope="row">Ce qui reste</th>
+                  <td colspan="2">Vault / TSP, audit, gouvernance, SCA, responsabilités issuer</td>
+                </tr>
+                <tr>
+                  <th scope="row">Piège</th>
+                  <td colspan="2">« Tokenisé ⇒ conforme » — faux ; réduction à valider, pas à proclamer</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="split-2" style="margin-top: 1.5rem">
@@ -346,9 +328,8 @@
         </section>
 
         <div class="sources-box">
-          <strong>Sources normes / specs</strong> — à affiner : PCI-DSS,
-          cadres SCA / DSP2, documentation scheme / TSP sur tokenization et
-          contrôle d’usage.
+          <strong>Sources</strong> — PCI-DSS · SCA / DSP2 · documentation
+          scheme / TSP (tokenization &amp; contrôle d’usage).
         </div>
 
         <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>

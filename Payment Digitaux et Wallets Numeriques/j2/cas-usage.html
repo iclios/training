@@ -33,7 +33,7 @@
               <div class="fiche-meta">
                 <span class="tag">Jour 2 · QR</span>
               </div>
-              <p class="day-kicker">2.3 · Cas d’usage</p>
+              <p class="day-kicker">2.6 · Cas d’usage</p>
               <h1>Cas d’usage</h1>
             </div>
           </section>
@@ -41,16 +41,18 @@
           <div class="wrap">
             <section class="section" style="border-top: none; padding-top: 0">
               <p class="section-label">Définition</p>
-              <h2>Trois terrains typiques</h2>
+              <h2>Deux terrains typiques</h2>
               <p class="definition-full">
-                Proximité, transport, P2P — pour chaque usage, situer les
+                Proximité et transport — pour chaque usage, situer les
                 <strong>axes</strong> (statique / dynamique · tag 01,
-                push / pull · MPM / CPM, closed / open) et la
+                MPM / CPM, closed / open) et la
                 <strong>contrainte SI</strong> dominante.
+                Le détail acquisition / routage est dans
+                <strong>Architecture SI</strong>.
               </p>
               <p class="intro" style="margin-top: 0.85rem">
                 Un usage n’impose pas un seul profil&nbsp;: on combine les axes
-                (ex. magasin open + dynamique + pull).
+                (ex. magasin open + dynamique + MPM).
               </p>
             </section>
 
@@ -60,18 +62,18 @@
               <h2>Commerce de proximité</h2>
               <p class="intro">
                 Sticker ou écran caisse — le plus fréquent en
-                <strong>pull</strong> (Merchant-Presented).
+                <strong>MPM</strong> (marchand présente · payeur scanne).
               </p>
 
               <div class="diagram" id="diagram-proximite">
                 <div class="diagram-header">
-                  <h3>Magasin · Pull (MPM)</h3>
-                  <p>Marchand affiche · payeur scanne · PSP client → réseau → AuthZ</p>
+                  <h3>Magasin · MPM</h3>
+                  <p>Qui présente · qui scanne · contrainte métier — Auth = Architecture SI</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 340"
+                  viewBox="0 0 1000 220"
                   role="img"
-                  aria-label="Cas usage proximité QR avec flux Auth"
+                  aria-label="Cas usage proximité : marchand affiche QR, payeur scanne"
                 >
                   <defs>
                     <marker id="ah-pr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
@@ -79,52 +81,31 @@
                     </marker>
                   </defs>
 
-                  <text x="500" y="28" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.04em">1 · PRÉSENTATION · SCAN</text>
                   <g>
-                    <rect x="60" y="44" width="220" height="96" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-commercant.jpg" x="75" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="140" y="80" fill="#1a2b3c" font-size="13" font-weight="700">Marchand</text>
-                    <text x="140" y="100" fill="#5a6b7c" font-size="11">QR affiché</text>
-                    <text x="140" y="120" fill="#087a6a" font-size="11" font-weight="700">11 sticker · 12 caisse</text>
+                    <rect x="60" y="40" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-commercant.jpg" x="80" y="64" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="150" y="84" fill="#1a2b3c" font-size="14" font-weight="700">Marchand</text>
+                    <text x="150" y="108" fill="#5a6b7c" font-size="12">QR affiché</text>
+                    <text x="150" y="132" fill="#087a6a" font-size="12" font-weight="700">11 sticker · 12 caisse</text>
                   </g>
-                  <line class="flow-line" x1="280" y1="92" x2="360" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pr)"/>
-                  <text x="320" y="80" text-anchor="middle" fill="#0d9f8a" font-size="11" font-weight="700">scan</text>
+                  <line class="flow-line" x1="340" y1="100" x2="420" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pr)"/>
+                  <text x="380" y="88" text-anchor="middle" fill="#0d9f8a" font-size="12" font-weight="700">scan</text>
                   <g>
-                    <rect x="360" y="44" width="220" height="96" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-porteur.jpg" x="375" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="440" y="80" fill="#087a6a" font-size="13" font-weight="700">Payeur</text>
-                    <text x="440" y="100" fill="#5a6b7c" font-size="11">app · pull</text>
-                    <text x="440" y="120" fill="#c45c26" font-size="11" font-weight="700">choisit le moyen</text>
+                    <rect x="420" y="40" width="280" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="440" y="64" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="510" y="84" fill="#087a6a" font-size="14" font-weight="700">Payeur</text>
+                    <text x="510" y="108" fill="#5a6b7c" font-size="12">app · MPM</text>
+                    <text x="510" y="132" fill="#c45c26" font-size="12" font-weight="700">choisit le moyen</text>
                   </g>
-                  <line class="flow-line" x1="580" y1="92" x2="660" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pr)"/>
-                  <text x="620" y="80" text-anchor="middle" fill="#0d9f8a" font-size="11" font-weight="700">flux</text>
                   <g>
-                    <rect x="660" y="44" width="280" height="96" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-psp.jpg" x="680" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="745" y="80" fill="#1a2b3c" font-size="13" font-weight="700">PSP client</text>
-                    <text x="745" y="100" fill="#c45c26" font-size="11" font-weight="700">acquiert le flux</text>
-                    <text x="745" y="120" fill="#5a6b7c" font-size="11">≠ PSP marchand Auth</text>
+                    <rect x="740" y="40" width="200" height="120" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                    <text x="840" y="84" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">Contrainte</text>
+                    <text x="840" y="110" text-anchor="middle" fill="#1a2b3c" font-size="12">montant · sticker</text>
+                    <text x="840" y="132" text-anchor="middle" fill="#5a6b7c" font-size="11">notif caisse (12)</text>
                   </g>
-
-                  <text x="500" y="172" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.04em">2 · RÉSEAU → AUTHZ (aller) · confirmation = retour</text>
-                  <g>
-                    <rect x="120" y="190" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="260" y="222" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Réseau</text>
-                    <text x="260" y="246" text-anchor="middle" fill="#5a6b7c" font-size="11">contrôle ID acquéreur (QR)</text>
-                  </g>
-                  <line class="flow-line" x1="400" y1="230" x2="460" y2="230" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pr)"/>
-                  <g>
-                    <rect x="460" y="190" width="320" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="620" y="222" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">SI AuthZ · émetteur</text>
-                    <text x="620" y="246" text-anchor="middle" fill="#5a6b7c" font-size="11">fin de l’aller</text>
-                  </g>
-                  <defs>
-                    <marker id="ah-pr-back" markerWidth="8" markerHeight="8" refX="1" refY="3" orient="auto">
-                      <path d="M8,0 L2,3 L8,6 Z" fill="#c45c26" />
-                    </marker>
-                  </defs>
-                  <path d="M500 270 L500 292 L200 292 L200 270" fill="none" stroke="#c45c26" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#ah-pr-back)"/>
-                  <text x="350" y="286" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">← Confirmation (retour) · puis règlement (J1)</text>
+                  <text x="500" y="198" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Profil Auth&nbsp;: MPM · PSP client → scheme → SI AuthZ — détail Architecture SI
+                  </text>
                 </svg>
 
                 <div class="csm-table-wrap" style="margin-top: 1.25rem">
@@ -137,8 +118,8 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">Push / pull</th>
-                        <td>Pull / MPM (sticker ou caisse)</td>
+                        <th scope="row">MPM / CPM</th>
+                        <td>MPM (sticker ou caisse)</td>
                       </tr>
                       <tr>
                         <th scope="row">Statique / dynamique</th>
@@ -155,30 +136,6 @@
                     </tbody>
                   </table>
                 </div>
-
-                <div class="seq-steps" id="proximite-steps">
-                  <button type="button" class="seq-step is-active" data-step="1">
-                    <span class="n">1</span>
-                    <span>
-                      <strong>Sticker</strong>
-                      <p>Pull statique (MPM · 11) — encode une fois · montant souvent saisi (cas Architecture).</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="2">
-                    <span class="n">2</span>
-                    <span>
-                      <strong>Caisse</strong>
-                      <p>Pull dynamique (MPM · 12) — encode live · montant figé · TTL côté SI.</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="3">
-                    <span class="n">3</span>
-                    <span>
-                      <strong>Open</strong>
-                      <p>Plusieurs apps si standard + switch (Standards).</p>
-                    </span>
-                  </button>
-                </div>
               </div>
             </section>
 
@@ -188,18 +145,18 @@
               <h2>Gares · bus · bornes</h2>
               <p class="intro">
                 Volume, latence, parfois offline dégradé — autre profil que le
-                commerce.
+                commerce. MPM <em>ou</em> CPM selon l’opérateur.
               </p>
 
               <div class="diagram" id="diagram-transport">
                 <div class="diagram-header">
                   <h3>Borne · Validateur</h3>
-                  <p>Throughput · TTL SI court · closed fréquent · SLA Auth</p>
+                  <p>Deux présentations possibles · contrainte = SLA / offline</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 340"
+                  viewBox="0 0 1000 280"
                   role="img"
-                  aria-label="Cas usage transport QR avec flux"
+                  aria-label="Cas usage transport : validateur MPM ou CPM, contrainte latence"
                 >
                   <defs>
                     <marker id="ah-tr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
@@ -207,61 +164,27 @@
                     </marker>
                   </defs>
 
-                  <text x="500" y="28" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.04em">1 · INTERACTION BORNE ↔ VOYAGEUR (MPM ou CPM)</text>
-                  <g>
-                    <rect x="80" y="44" width="240" height="96" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-device.jpg" x="95" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="160" y="80" fill="#1a2b3c" font-size="13" font-weight="700">Validateur</text>
-                    <text x="160" y="100" fill="#5a6b7c" font-size="11">affiche (MPM)</text>
-                    <text x="160" y="120" fill="#5a6b7c" font-size="11">ou scanne (CPM)</text>
-                  </g>
-                  <line class="flow-line" x1="320" y1="92" x2="400" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-tr)"/>
-                  <text x="360" y="78" text-anchor="middle" fill="#0d9f8a" font-size="11" font-weight="700">↔</text>
-                  <g>
-                    <rect x="400" y="44" width="240" height="96" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-porteur.jpg" x="415" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="480" y="80" fill="#087a6a" font-size="13" font-weight="700">Voyageur</text>
-                    <text x="480" y="100" fill="#5a6b7c" font-size="11">app / QR</text>
-                    <text x="480" y="120" fill="#087a6a" font-size="11" font-weight="700">dyn. 12 fréquent</text>
-                  </g>
-                  <line class="flow-line" x1="640" y1="92" x2="720" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-tr)"/>
-                  <g>
-                    <rect x="720" y="44" width="200" height="96" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
-                    <text x="820" y="84" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">Latence</text>
-                    <text x="820" y="108" text-anchor="middle" fill="#5a6b7c" font-size="11">SLA strict</text>
-                    <text x="820" y="128" text-anchor="middle" fill="#5a6b7c" font-size="11">file d’attente</text>
-                  </g>
+                  <text x="500" y="28" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.04em">DEUX PROFILS AU VALIDATEUR</text>
 
-                  <text x="500" y="172" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.04em">2 · FLUX · PSP → RÉSEAU / LOCAL → AUTHZ (aller)</text>
-                  <g>
-                    <rect x="80" y="190" width="220" height="80" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
-                    <text x="190" y="222" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">PSP</text>
-                    <text x="190" y="246" text-anchor="middle" fill="#5a6b7c" font-size="11">client ou opérateur</text>
-                  </g>
-                  <line class="flow-line" x1="300" y1="230" x2="350" y2="230" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-tr)"/>
-                  <g>
-                    <rect x="350" y="190" width="240" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="470" y="222" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Réseau / local</text>
-                    <text x="470" y="246" text-anchor="middle" fill="#5a6b7c" font-size="11">closed fréquent</text>
-                  </g>
-                  <line class="flow-line" x1="590" y1="230" x2="640" y2="230" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-tr)"/>
-                  <g>
-                    <rect x="640" y="190" width="260" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="770" y="222" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">AuthZ · émetteur</text>
-                    <text x="770" y="246" text-anchor="middle" fill="#5a6b7c" font-size="11">fin de l’aller</text>
-                  </g>
-                  <defs>
-                    <marker id="ah-tr-back" markerWidth="8" markerHeight="8" refX="1" refY="3" orient="auto">
-                      <path d="M8,0 L2,3 L8,6 Z" fill="#c45c26" />
-                    </marker>
-                  </defs>
-                  <path d="M770 270 L770 292 L200 292 L200 270" fill="none" stroke="#c45c26" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#ah-tr-back)"/>
-                  <text x="485" y="286" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">← Confirmation / OK porte (retour · sens inverse)</text>
+                  <rect x="40" y="48" width="440" height="120" rx="10" fill="#f7fbf9" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="260" y="78" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">A · MPM</text>
+                  <text x="260" y="104" text-anchor="middle" fill="#1a2b3c" font-size="12">Borne affiche · voyageur scanne</text>
+                  <text x="260" y="128" text-anchor="middle" fill="#5a6b7c" font-size="11">PSP client · QR = IDs borne / opérateur</text>
+                  <text x="260" y="150" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Auth via moyen dans l’app</text>
+
+                  <rect x="520" y="48" width="440" height="120" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="740" y="78" text-anchor="middle" fill="#1e5f8a" font-size="13" font-weight="700">B · CPM</text>
+                  <text x="740" y="104" text-anchor="middle" fill="#1a2b3c" font-size="12">Voyageur présente · borne scanne</text>
+                  <text x="740" y="128" text-anchor="middle" fill="#5a6b7c" font-size="11">PSP commerçant / opérateur · QR = credentials</text>
+                  <text x="740" y="150" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Auth via ADF + token dans le QR</text>
+
+                  <rect x="120" y="192" width="760" height="64" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                  <text x="500" y="220" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">Contrainte dominante · latence / SLA · offline dégradé · anti-rejeu</text>
+                  <text x="500" y="242" text-anchor="middle" fill="#5a6b7c" font-size="11">OK porte = retour vers la borne · détail Auth = Architecture SI</text>
                 </svg>
                 <p class="fresco-legend">
-                  Confirmation / OK porte = <strong>retour</strong> vers la
-                  borne (pas un hop à droite). *Offline dégradé possible —
-                  réconciliation ensuite.
+                  Closed fréquent (un opérateur / un rail). Open = projet
+                  national / multi-opérateurs.
                 </p>
 
                 <div class="csm-table-wrap" style="margin-top: 1.25rem">
@@ -274,8 +197,8 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">Push / pull</th>
-                        <td>Les deux selon opérateur (MPM ou CPM)</td>
+                        <th scope="row">MPM / CPM</th>
+                        <td>Les deux selon opérateur (borne affiche ou scanne)</td>
                       </tr>
                       <tr>
                         <th scope="row">Statique / dynamique</th>
@@ -292,160 +215,12 @@
                     </tbody>
                   </table>
                 </div>
-
-                <div class="seq-steps" id="transport-steps">
-                  <button type="button" class="seq-step is-active" data-step="1">
-                    <span class="n">1</span>
-                    <span>
-                      <strong>SLA</strong>
-                      <p>File d’attente — Auth trop lente = incident métier immédiat.</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="2">
-                    <span class="n">2</span>
-                    <span>
-                      <strong>Offline</strong>
-                      <p>Mode dégradé possible — règles risque locales, réconciliation ensuite.</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="3">
-                    <span class="n">3</span>
-                    <span>
-                      <strong>Closed</strong>
-                      <p>Souvent un écosystème opérateur — open = projet national / multi-opérateurs.</p>
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </section>
-
-            <!-- P2P -->
-            <section class="section">
-              <p class="section-label">P2P</p>
-              <h2>Paiements de personne à personne</h2>
-              <p class="intro">
-                QR perso (proxy) — souvent <strong>pull</strong> vers un
-                identifiant wallet / banque.
-              </p>
-
-              <div class="diagram" id="diagram-p2p">
-                <div class="diagram-header">
-                  <h3>Payeur · Bénéficiaire</h3>
-                  <p>Proxy · open ou closed selon app · flux jusqu’au crédit</p>
-                </div>
-                <svg
-                  viewBox="0 0 1000 320"
-                  role="img"
-                  aria-label="Cas usage P2P QR avec flux"
-                >
-                  <defs>
-                    <marker id="ah-p2p" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
-                    </marker>
-                  </defs>
-
-                  <text x="500" y="28" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.04em">1 · SCAN DU QR PERSO</text>
-                  <g>
-                    <rect x="80" y="44" width="240" height="96" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-porteur.jpg" x="95" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="160" y="80" fill="#1a2b3c" font-size="13" font-weight="700">Payeur</text>
-                    <text x="160" y="100" fill="#5a6b7c" font-size="11">scanne QR</text>
-                    <text x="160" y="120" fill="#c45c26" font-size="11" font-weight="700">+ montant</text>
-                  </g>
-                  <line class="flow-line" x1="320" y1="92" x2="400" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-p2p)"/>
-                  <text x="360" y="78" text-anchor="middle" fill="#0d9f8a" font-size="11" font-weight="700">pull</text>
-                  <g>
-                    <rect x="400" y="44" width="240" height="96" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-wallet.jpg" x="415" y="60" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="480" y="80" fill="#087a6a" font-size="13" font-weight="700">Bénéficiaire</text>
-                    <text x="480" y="100" fill="#5a6b7c" font-size="11">QR perso</text>
-                    <text x="480" y="120" fill="#087a6a" font-size="11" font-weight="700">proxy · souvent 11</text>
-                  </g>
-                  <line class="flow-line" x1="640" y1="92" x2="720" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-p2p)"/>
-                  <g>
-                    <rect x="720" y="44" width="200" height="96" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
-                    <text x="820" y="84" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">PSP client</text>
-                    <text x="820" y="108" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">acquiert le flux</text>
-                    <text x="820" y="128" text-anchor="middle" fill="#5a6b7c" font-size="11">plafonds P2P</text>
-                  </g>
-
-                  <text x="500" y="172" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.04em">2 · RÉSEAU / SWITCH → CRÉDIT BÉNÉFICIAIRE</text>
-                  <g>
-                    <rect x="120" y="190" width="280" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="260" y="222" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Réseau / switch P2P</text>
-                    <text x="260" y="246" text-anchor="middle" fill="#5a6b7c" font-size="11">KYC · contrôles fraude</text>
-                  </g>
-                  <line class="flow-line" x1="400" y1="230" x2="480" y2="230" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-p2p)"/>
-                  <g>
-                    <rect x="480" y="190" width="400" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <image href="../img/acteurs/acteur-banque.jpg" x="510" y="208" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="575" y="222" fill="#087a6a" font-size="13" font-weight="700">SI banque / wallet</text>
-                    <text x="575" y="246" fill="#5a6b7c" font-size="11">crédit du bénéficiaire</text>
-                  </g>
-                </svg>
-                <p class="fresco-legend">
-                  Risque type&nbsp;: usurpation du QR perso (surtout s’il est
-                  fixe). Variante push / agent plus rare.
-                </p>
-
-                <div class="csm-table-wrap" style="margin-top: 1.25rem">
-                  <table class="csm-table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Axe</th>
-                        <th scope="col">Profil fréquent</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">Push / pull</th>
-                        <td>Pull / MPM vers QR perso (parfois push / CPM agent)</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Statique / dynamique</th>
-                        <td>Souvent statique · 11 (proxy) · montant saisi</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Closed / open</th>
-                        <td>Closed si mono-app · open si schéma P2P national</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Contrainte SI</th>
-                        <td>KYC / plafonds · usurpation de QR perso</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <div class="seq-steps" id="p2p-steps">
-                  <button type="button" class="seq-step is-active" data-step="1">
-                    <span class="n">1</span>
-                    <span>
-                      <strong>Proxy</strong>
-                      <p>Le QR pointe un identifiant — pas un ticket de caisse.</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="2">
-                    <span class="n">2</span>
-                    <span>
-                      <strong>Limites</strong>
-                      <p>Plafonds P2P, contrôles fraude / AML côté SI banque ou wallet.</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="3">
-                    <span class="n">3</span>
-                    <span>
-                      <strong>Risque</strong>
-                      <p>QR perso affiché / partagé = usurpation du bénéficiaire (surtout si fixe).</p>
-                    </span>
-                  </button>
-                </div>
               </div>
             </section>
 
             <section class="section">
               <p class="section-label">Synthèse</p>
-              <h2>Grille des trois terrains</h2>
+              <h2>Grille des deux terrains</h2>
               <div class="csm-table-wrap">
                 <table class="csm-table">
                   <thead>
@@ -453,33 +228,28 @@
                       <th scope="col"></th>
                       <th scope="col">Proximité</th>
                       <th scope="col">Transport</th>
-                      <th scope="col">P2P</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <th scope="row">Dominant</th>
-                      <td>Pull (MPM)</td>
-                      <td>Latence / SLA</td>
-                      <td>Proxy + plafonds</td>
+                      <td>MPM (11 ou 12)</td>
+                      <td>Latence / SLA · MPM ou CPM</td>
                     </tr>
                     <tr>
                       <th scope="row">Boucle</th>
                       <td>Open souhaitable</td>
                       <td>Closed fréquent</td>
-                      <td>Closed ou open national</td>
                     </tr>
                     <tr>
                       <th scope="row">Risque type</th>
                       <td>Sticker cloné / montant</td>
                       <td>Timeout / offline</td>
-                      <td>Usurpation bénéficiaire</td>
                     </tr>
                     <tr>
-                      <th scope="row">Flux Auth</th>
-                      <td>PSP client → réseau → émetteur</td>
-                      <td>PSP → réseau/local → Auth · SLA</td>
-                      <td>PSP client → réseau → AuthZ émetteur</td>
+                      <th scope="row">Auth (rappel)</th>
+                      <td>PSP client → scheme → émetteur</td>
+                      <td>Selon MPM/CPM · voir Architecture SI</td>
                     </tr>
                   </tbody>
                 </table>
@@ -487,8 +257,8 @@
             </section>
 
             <div class="sources-box">
-              <strong>Sources normes / specs</strong> — à affiner : guides
-              opérateurs transport ; règles P2P banque / wallet.
+              <strong>Sources</strong> — EMVCo QR MPM / CPM (présentation) ·
+              contraintes transport&nbsp;: guides opérateurs / SLA validation.
             </div>
 
             <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>

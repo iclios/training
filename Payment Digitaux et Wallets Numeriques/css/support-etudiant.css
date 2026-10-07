@@ -216,8 +216,8 @@
     background: #fff !important;
     color: #1a2b3c !important;
     font-family: "Figtree", "Segoe UI", sans-serif !important;
-    font-size: 10.5pt !important;
-    line-height: 1.55 !important;
+    font-size: 9.15pt !important;
+    line-height: 1.4 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
@@ -237,6 +237,9 @@
   button.eco-view-btn,
   .seq-steps,
   .seq-step,
+  .qr-live-demo,
+  .qr-live-frame,
+  .qr-live-grid,
   .detail-placeholder,
   .detail-panel,
   .fresco-detail,
@@ -396,7 +399,7 @@
 
   .support-doc .day-hero h1 {
     font-family: "Syne", sans-serif !important;
-    font-size: 20pt !important;
+    font-size: 14pt !important;
     font-weight: 750 !important;
     letter-spacing: -0.015em !important;
     max-width: none !important;
@@ -407,7 +410,7 @@
   .support-doc .day-kicker,
   .support-doc .section-label {
     font-family: "Figtree", sans-serif !important;
-    font-size: 8pt !important;
+    font-size: 7.5pt !important;
     font-weight: 700 !important;
     letter-spacing: 0.06em !important;
     text-transform: uppercase !important;
@@ -506,25 +509,25 @@
 
   .support-doc h2 {
     font-family: "Syne", sans-serif !important;
-    font-size: 13.5pt !important;
+    font-size: 11pt !important;
     font-weight: 700 !important;
     letter-spacing: -0.01em !important;
-    margin: 0 0 7pt !important;
+    margin: 0 0 4pt !important;
     color: #0c1b2a !important;
   }
 
   .support-doc h3 {
     font-family: "Syne", sans-serif !important;
-    font-size: 11pt !important;
+    font-size: 9.5pt !important;
     font-weight: 700 !important;
-    margin: 10pt 0 5pt !important;
+    margin: 7pt 0 3pt !important;
     color: #1a2b3c !important;
   }
 
   .support-doc li {
-    font-size: 10.25pt !important;
-    line-height: 1.5 !important;
-    margin-bottom: 2pt !important;
+    font-size: 9pt !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1.5pt !important;
   }
 
   .support-doc .callout {
@@ -550,8 +553,52 @@
     page-break-inside: avoid !important;
     break-before: auto;
     overflow: visible !important;
-    /* Chrome print : réduit vraiment la boîte (vectoriel, net) */
-    zoom: 0.88;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    /* Chrome print : réduit la boîte (vectoriel) — polycopié plus dense */
+    zoom: 0.68;
+  }
+
+  /* Grands schémas (MPM/CPM détaillés, cinématiques…) : page neuve, pas de clip */
+  .support-doc .diagram.diagram--tall {
+    break-before: page !important;
+    page-break-before: always !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+    zoom: 0.58;
+  }
+
+  /* Schéma + tableau dans la même boîte : ne pas coller en un bloc trop haut */
+  .support-doc .diagram:has(.csm-table-wrap) {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  .support-doc .diagram > svg {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .support-doc .csm-table-wrap {
+    overflow: visible !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    break-before: auto;
+  }
+
+  .support-doc .csm-table {
+    width: 100% !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .support-doc .payload-raw,
+  .support-doc pre.payload-raw {
+    overflow: visible !important;
+    white-space: pre-wrap !important;
+    word-break: break-all !important;
+    font-size: 7.5pt !important;
+    line-height: 1.35 !important;
   }
 
   .support-doc .diagram-header {
@@ -577,6 +624,7 @@
     height: auto !important;
     display: block !important;
     margin: 0 auto !important;
+    overflow: visible !important;
   }
 
   .support-doc .diagram-hint {
@@ -675,9 +723,9 @@
 
   .support-doc .actors,
   .support-doc .monnaie-grid {
-    transform: scale(0.9);
+    transform: scale(0.78);
     transform-origin: top center;
-    margin-bottom: -3% !important;
+    margin-bottom: -6% !important;
   }
 
   .support-doc .montage-example,
@@ -691,6 +739,19 @@
     page-break-inside: avoid !important;
     break-after: auto;
     break-before: auto;
+  }
+
+  /* Section qui ouvre un grand schéma : ne pas coller le titre en bas de page précédente */
+  .support-doc .section:has(.diagram--tall) {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  .support-doc .section:has(.diagram--tall) > .section-label,
+  .support-doc .section:has(.diagram--tall) > h2,
+  .support-doc .section:has(.diagram--tall) > .intro {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
   }
 
   /* Quatre notions (Cash/Carte/Mobile/Wallet) : titre + grille ensemble */

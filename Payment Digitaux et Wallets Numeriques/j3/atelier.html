@@ -33,7 +33,7 @@
           <div class="fiche-meta">
             <span class="tag">Jour 3 · Tokenisation</span>
           </div>
-          <p class="day-kicker">3.5 · Atelier</p>
+          <p class="day-kicker">Mise en pratique</p>
           <h1>Atelier</h1>
         </div>
       </section>
@@ -46,7 +46,7 @@
             Partir d’un message d’autorisation classique (J1) et le
             transformer en scénario <strong>tokenisé</strong>&nbsp;:
             visualiser PAN vs token, jouer le lifecycle
-            (provision → pay → suspend → delete), et relier au
+            (provision → payer → suspendre → supprimer), et relier au
             <strong>scope PCI</strong>.
           </p>
         </section>
@@ -68,7 +68,7 @@
                 <h3>Logiciel</h3>
                 <ul>
                   <li>Simulateur maison PAN ↔ token ↔ lifecycle</li>
-                  <li>Provision → pay → suspend → delete</li>
+                  <li>Provision → payer → suspendre → supprimer</li>
                 </ul>
               </div>
               <div>
@@ -88,7 +88,7 @@
           <h2>Atelier guidé</h2>
           <div class="diagram" id="diagram-atelier">
             <div class="diagram-header">
-              <h3>Cinq temps</h3>
+              <h3>Quatre temps</h3>
               <p>Avant / après · lifecycle · responsabilités</p>
             </div>
             <div class="seq-steps" id="atelier-steps">
@@ -127,7 +127,31 @@
         <section class="section">
           <p class="section-label">Ancrage</p>
           <h2>Livrables par groupe</h2>
-          <div class="split-2">
+          <div class="csm-table-wrap">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Livrable</th>
+                  <th scope="col">Attendu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Message Auth</th>
+                  <td>Schéma J1 (PAN) → même flux tokenisé (TOKEN + crypto)</td>
+                </tr>
+                <tr>
+                  <th scope="row">Lifecycle</th>
+                  <td>Activer · Suspendre · Supprimer — cas device perdu</td>
+                </tr>
+                <tr>
+                  <th scope="row">Scope PCI</th>
+                  <td>Ce qui sort / ce qui reste (marchand · TSP · issuer)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="split-2" style="margin-top: 1.25rem">
             <div class="panel ok">
               <h3>À produire</h3>
               <ul>

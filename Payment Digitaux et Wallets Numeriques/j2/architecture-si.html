@@ -33,7 +33,7 @@
               <div class="fiche-meta">
                 <span class="tag">Jour 2 · QR</span>
               </div>
-              <p class="day-kicker">2.5 · Architecture SI &amp; flux</p>
+              <p class="day-kicker">2.5 · Architecture SI &amp; flux QR</p>
               <h1>Architecture SI QR</h1>
             </div>
           </section>
@@ -50,75 +50,63 @@
               </p>
               <p class="intro" style="margin-top: 1.1rem">
                 Le QR change l’initiation — pas Auth → Clearing → Settlement
-                (J1). D’abord les <strong>éléments SI</strong>, la
-                <strong>séquence</strong>, le cadrage
-                <strong>MPM / CPM</strong>, puis
-                <strong>trois cas</strong> pour voir où ça change.
+                (J1). Briques communes, séquence, puis
+                <strong>MPM</strong> et <strong>CPM</strong> en détail
+                (acquisition + routage).
               </p>
             </section>
 
             <section class="section">
               <p class="section-label">Éléments SI</p>
               <h2>Où tournent les briques</h2>
-              <p class="intro">
-                Carte des SI — le QR engine s’accroche à l’acteur qui encode ou
-                décode. Le <strong>PSP</strong> n’est pas « une boîte unique »&nbsp;:
-                c’est un <strong>rôle configuré</strong> — côté commerçant
-                (acceptation) ou côté client (app banque / wallet).
-                <strong>SI banque</strong> et <strong>SI wallet</strong>&nbsp;:
-                même rôle AuthZ, deux maisons possibles.
-              </p>
               <div class="diagram" id="diagram-elements-si">
                 <div class="diagram-header">
-                  <h3>Application · Backend · PSP · SI banque · SI wallet</h3>
-                  <p>PSP = rôle (commerçant ou client) · + moteur QR</p>
+                  <h3>Briques communes</h3>
+                  <p>App · Acceptation · PSP · SI AuthZ · QR engine</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 300"
+                  viewBox="0 0 1000 280"
                   role="img"
-                  aria-label="Éléments SI : PSP selon rôle configuré commerçant ou client"
+                  aria-label="Briques SI QR : application, acceptation, PSP, SI banque, SI wallet, QR engine"
                 >
                   <g>
                     <rect x="16" y="24" width="176" height="118" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-porteur.jpg" x="28" y="40" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
                     <text x="84" y="58" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Application</text>
                     <text x="84" y="78" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">client</text>
-                    <text x="104" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Téléphone</text>
+                    <text x="104" y="118" text-anchor="middle" fill="#5a6b7c" font-size="11">scan ou encode</text>
                   </g>
                   <g>
                     <rect x="208" y="24" width="176" height="118" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-commercant.jpg" x="220" y="40" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="276" y="58" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Backend</text>
-                    <text x="276" y="78" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">marchand</text>
-                    <text x="296" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">SI commerçant</text>
+                    <text x="276" y="58" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Acceptation</text>
+                    <text x="276" y="78" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">caisse / backend</text>
+                    <text x="296" y="118" text-anchor="middle" fill="#5a6b7c" font-size="11">affiche ou scanne</text>
                   </g>
                   <g>
-                    <rect x="400" y="24" width="176" height="118" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <rect x="400" y="24" width="176" height="118" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
                     <image href="../img/acteurs/acteur-psp.jpg" x="412" y="40" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
                     <text x="488" y="62" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">PSP</text>
-                    <text x="488" y="84" text-anchor="middle" fill="#5a6b7c" font-size="11">rôle configuré</text>
-                    <text x="488" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">≠ réseau / switch</text>
+                    <text x="488" y="84" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">rôle configuré</text>
+                    <text x="488" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">client ou commerçant</text>
                   </g>
                   <g>
                     <rect x="592" y="24" width="188" height="118" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
                     <image href="../img/acteurs/acteur-banque.jpg" x="608" y="40" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
                     <text x="664" y="58" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">SI banque</text>
                     <text x="664" y="78" fill="#5a6b7c" font-size="11">Host émetteur</text>
-                    <text x="686" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">AuthZ</text>
+                    <text x="686" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">AuthZ carte / cpt</text>
                   </g>
                   <g>
                     <rect x="796" y="24" width="188" height="118" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
                     <image href="../img/acteurs/acteur-wallet.jpg" x="812" y="40" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
                     <text x="868" y="58" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">SI wallet</text>
                     <text x="868" y="78" fill="#5a6b7c" font-size="11">Host provider</text>
-                    <text x="890" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">AuthZ</text>
+                    <text x="890" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">AuthZ si solde</text>
                   </g>
-                  <text x="500" y="168" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    PSP (client ou commerçant) → réseau / switch / scheme → SI AuthZ (banque ou wallet)
-                  </text>
-                  <rect x="16" y="188" width="968" height="70" rx="10" fill="#f7fbf9" stroke="#0d9f8a" stroke-width="2" stroke-dasharray="8 5"/>
-                  <text x="500" y="218" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">QR engine = moteur encode / decode</text>
-                  <text x="500" y="240" text-anchor="middle" fill="#5a6b7c" font-size="12">Hébergé chez l’acteur concerné — pas une boîte au milieu du flux</text>
+                  <rect x="16" y="168" width="968" height="88" rx="10" fill="#f7fbf9" stroke="#0d9f8a" stroke-width="2" stroke-dasharray="8 5"/>
+                  <text x="500" y="200" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">QR engine</text>
+                  <text x="500" y="226" text-anchor="middle" fill="#5a6b7c" font-size="12">Encode / decode du payload — accroché à qui présente le QR (détail MPM / CPM ci-dessous)</text>
                 </svg>
               </div>
             </section>
@@ -126,16 +114,6 @@
             <section class="section" id="flux">
               <p class="section-label">Flux</p>
               <h2>Séquence du paiement QR</h2>
-              <p class="intro">
-                Même enchaînement pour les trois cas&nbsp;:
-                <strong>génération</strong> →
-                <strong>scan &amp; validation</strong> →
-                <strong>autorisation</strong>.
-                La <strong>confirmation</strong> est le
-                <em>retour</em> OK / KO (sens inverse) — pas un 4ᵉ hop
-                avant. Ensuite&nbsp;: clearing / settlement (J1).
-              </p>
-
               <div class="diagram" id="diagram-flux-qr">
                 <div class="diagram-header">
                   <h3>Aller · Auth → Retour · confirmation</h3>
@@ -169,10 +147,9 @@
                   <g>
                     <rect x="640" y="30" width="280" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
                     <text x="780" y="72" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">3 · Autorisation</text>
-                    <text x="780" y="96" text-anchor="middle" fill="#5a6b7c" font-size="12">PSP → réseau → SI AuthZ</text>
+                    <text x="780" y="96" text-anchor="middle" fill="#5a6b7c" font-size="12">PSP → scheme → SI AuthZ</text>
                   </g>
 
-                  <!-- return path -->
                   <path d="M780 130 L780 155 L190 155 L190 135" fill="none" stroke="#c45c26" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#ah-fx-back)"/>
                   <text x="485" y="148" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">← Confirmation (retour OK / KO) · app · notif caisse = autre canal</text>
 
@@ -187,7 +164,7 @@
                     Aller = requête · confirmation = réponse (sens inverse)
                   </text>
                   <text x="500" y="354" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Qui encode / décode change selon le cas
+                    Qui encode / décode et comment on route = MPM / CPM ci-dessous
                   </text>
                 </svg>
                 <div class="seq-steps" id="flux-steps">
@@ -209,7 +186,7 @@
                     <span class="n">3</span>
                     <span>
                       <strong>Autorisation</strong>
-                      <p>PSP → réseau → SI AuthZ — fin de l’aller.</p>
+                      <p>PSP → scheme → SI AuthZ — fin de l’aller.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="4">
@@ -223,468 +200,322 @@
               </div>
             </section>
 
-            <!-- MPM / CPM — carte -->
+            <!-- MPM détaillé -->
             <section class="section">
-              <p class="section-label">Cadrage</p>
-              <h2>MPM · CPM — qui présente, qui route&nbsp;?</h2>
+              <p class="section-label">MPM · Merchant-Presented</p>
+              <h2>MPM — acquisition &amp; routage</h2>
               <p class="intro">
-                Deux modes EMVCo (specs distinctes)&nbsp;:
-                <strong>MPM</strong> et <strong>CPM</strong>.
-                <em>Pull / push</em> = vocabulaire de cours (pas EMVCo)&nbsp;:
-                pull ≈ marchand présente, push ≈ payeur présente.
-                Ce qui change&nbsp;: qui affiche, qui scanne, le payload, et
-                <strong>quel PSP</strong> est sur le chemin Auth (rôle
-                configuré). Scan ≠ AuthZ.
+                Marchand présente · payeur scanne.
+                QR = <strong>qui est payé</strong> (MAI / GUID / IDs).
+                Le <strong>moyen</strong> est dans l’app — pas dans le QR.
+                Acquéreur du flux Auth&nbsp;: <strong>PSP client</strong>.
               </p>
 
-              <div class="diagram" id="diagram-mpm-cpm">
+              <div class="diagram" id="diagram-mpm-detail">
                 <div class="diagram-header">
-                  <h3>MPM · CPM <span style="font-weight:400;color:#5a6b7c">(pull / push = cours)</span></h3>
-                  <p>Présentation · payload · quel PSP · AuthZ</p>
+                  <h3>MPM · flux complet</h3>
+                  <p>Encode → scan → acquisition PSP client → scheme → AuthZ · retour</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 520"
+                  viewBox="0 0 1000 920"
                   role="img"
-                  aria-label="Comparaison MPM et CPM : PSP côté client vs commerçant, AuthZ"
-                >
-                  <rect x="30" y="20" width="940" height="44" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
-                  <text x="500" y="48" text-anchor="middle" fill="#c45c26" font-size="14" font-weight="700">
-                    AuthZ = SI du moyen payeur · le PSP sur le schéma = rôle configuré (pas « le » PSP unique)
-                  </text>
-
-                  <rect x="30" y="80" width="450" height="400" rx="12" fill="#f7fbf9" stroke="#0d9f8a" stroke-width="2"/>
-                  <rect x="520" y="80" width="450" height="400" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-
-                  <text x="255" y="112" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="700">MPM</text>
-                  <text x="255" y="136" text-anchor="middle" fill="#5a6b7c" font-size="13">Marchand présente · payeur scanne · « pull »</text>
-
-                  <text x="745" y="112" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="18" font-weight="700">CPM</text>
-                  <text x="745" y="136" text-anchor="middle" fill="#5a6b7c" font-size="13">Payeur présente · caisse scanne · « push »</text>
-
-                  <rect x="50" y="156" width="410" height="48" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                  <text x="70" y="176" fill="#087a6a" font-size="12" font-weight="700">Qui encode</text>
-                  <text x="70" y="194" fill="#1a2b3c" font-size="13">Côté marchand / PSP acceptation (caisse ou sticker)</text>
-
-                  <rect x="50" y="214" width="410" height="48" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                  <text x="70" y="234" fill="#087a6a" font-size="12" font-weight="700">Qui décode (scan)</text>
-                  <text x="70" y="252" fill="#1a2b3c" font-size="13">App banque ou wallet du payeur</text>
-
-                  <rect x="50" y="272" width="410" height="56" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                  <text x="70" y="292" fill="#087a6a" font-size="12" font-weight="700">Payload QR = qui est payé</text>
-                  <text x="70" y="312" fill="#1a2b3c" font-size="12">IDs marchand / PSP commerçant — <tspan font-weight="700">pas un tunnel Auth</tspan></text>
-
-                  <rect x="50" y="338" width="410" height="56" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
-                  <text x="70" y="358" fill="#c45c26" font-size="12" font-weight="700">PSP client = acquiert le flux</text>
-                  <text x="70" y="378" fill="#1a2b3c" font-size="12">Capture la trx app → l’injecte au réseau (≠ crédit marchand)</text>
-
-                  <rect x="50" y="404" width="410" height="60" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                  <text x="70" y="426" fill="#087a6a" font-size="12" font-weight="700">Contrôle ID · pour le règlement (après Auth)</text>
-                  <text x="70" y="446" fill="#1a2b3c" font-size="12">Banque du marchand → puis client final (commerçant)</text>
-
-                  <rect x="540" y="156" width="410" height="48" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
-                  <text x="560" y="176" fill="#1e5f8a" font-size="12" font-weight="700">Qui encode</text>
-                  <text x="560" y="194" fill="#1a2b3c" font-size="13">Côté payeur (app banque / wallet)</text>
-
-                  <rect x="540" y="214" width="410" height="48" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
-                  <text x="560" y="234" fill="#1e5f8a" font-size="12" font-weight="700">Qui décode (scan)</text>
-                  <text x="560" y="252" fill="#1a2b3c" font-size="13">Caisse (+ backend acceptation)</text>
-
-                  <rect x="540" y="272" width="410" height="56" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
-                  <text x="560" y="292" fill="#1e5f8a" font-size="12" font-weight="700">Payload QR = credentials du moyen</text>
-                  <text x="560" y="312" fill="#1a2b3c" font-size="12">EMV&nbsp;: ADF, token/PAN, cryptogramme… → acquéreur</text>
-
-                  <rect x="540" y="338" width="410" height="56" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
-                  <text x="560" y="358" fill="#c45c26" font-size="12" font-weight="700">PSP sur le chemin Auth</text>
-                  <text x="560" y="378" fill="#1a2b3c" font-size="12">Rôle <tspan font-weight="700">côté commerçant</tspan> — PSP d’acceptation configuré</text>
-
-                  <rect x="540" y="404" width="410" height="60" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                  <text x="560" y="426" fill="#087a6a" font-size="12" font-weight="700">AuthZ → SI du moyen (via réseau / scheme)</text>
-                  <text x="560" y="446" fill="#1a2b3c" font-size="12">PSP commerçant mappe le payload → message Auth</text>
-                </svg>
-                <p class="fresco-legend">
-                  <strong>MPM</strong>&nbsp;: PSP client acquiert le flux.
-                  Le réseau <strong>contrôle</strong> l’ID acquéreur
-                  marchand (valeur QR) — il ne le route pas comme hop Auth.
-                  Auth → émetteur. <strong>CPM</strong>&nbsp;: PSP commerçant
-                  acquiert le flux. <em>Pull / push</em> = cours, pas EMVCo.
-                </p>
-              </div>
-
-              <div class="diagram" id="diagram-ids-moyen">
-                <div class="diagram-header">
-                  <h3>Moyen de paiement — quels identifiants&nbsp;?</h3>
-                  <p>MPM vs CPM · banque vs wallet</p>
-                </div>
-                <svg
-                  viewBox="0 0 1000 260"
-                  role="img"
-                  aria-label="Identifiants selon mode MPM ou CPM et type de moyen"
-                >
-                  <rect x="30" y="16" width="940" height="40" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
-                  <text x="500" y="42" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">
-                    Qui paie = IDs du moyen → SI AuthZ · où ils circulent dépend de MPM ou CPM
-                  </text>
-
-                  <rect x="30" y="72" width="450" height="148" rx="12" fill="#f7fbf9" stroke="#0d9f8a" stroke-width="2"/>
-                  <text x="255" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">App banque</text>
-                  <text x="255" y="126" text-anchor="middle" fill="#1a2b3c" font-size="13">Compte / instrument → <tspan font-weight="700">SI banque</tspan></text>
-                  <text x="255" y="150" text-anchor="middle" fill="#5a6b7c" font-size="12">MPM&nbsp;: IDs dans l’app (pas dans le QR marchand)</text>
-                  <text x="255" y="172" text-anchor="middle" fill="#5a6b7c" font-size="12">CPM&nbsp;: credentials type carte/token dans le QR</text>
-                  <text x="255" y="196" text-anchor="middle" fill="#5a6b7c" font-size="12">(PAN / Track2 souvent tokenisés — pas « IBAN nu »)</text>
-
-                  <rect x="520" y="72" width="450" height="148" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                  <text x="745" y="100" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Wallet</text>
-                  <text x="745" y="126" text-anchor="middle" fill="#1a2b3c" font-size="13">Compte / token provider → <tspan font-weight="700">SI wallet</tspan></text>
-                  <text x="745" y="150" text-anchor="middle" fill="#5a6b7c" font-size="12">Même logique AuthZ (IDs → SI du moyen)</text>
-                  <text x="745" y="172" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">Si le wallet porte une carte banque</text>
-                  <text x="745" y="196" text-anchor="middle" fill="#5a6b7c" font-size="12">AuthZ → SI émetteur de la carte (pas forcément le wallet)</text>
-                </svg>
-                <p class="fresco-legend">
-                  Spec CPM EMVCo = données type chip (ADF, cryptogramme…).
-                  Closed-loop wallet = IDs provider. Carte tokenisée dans un
-                  wallet → AuthZ chez l’émetteur de la carte.
-                </p>
-              </div>
-            </section>
-
-            <!-- Cas 1 -->
-            <section class="section">
-              <p class="section-label">Cas 1 · MPM dynamique (tag 01 = 12) · « pull »</p>
-              <h2>La caisse affiche un QR</h2>
-              <p class="intro">
-                Le payeur <strong>scanne</strong> avec son app. Auth via PSP
-                <strong>côté client</strong> → réseau → émetteur. La caisse
-                n’est <strong>pas</strong> sur ce chemin&nbsp;: elle apprend
-                le résultat par <strong>notification</strong> (webhook / push
-                PSP) grâce à la <strong>référence trx</strong> mise dans le QR
-                à la génération.
-              </p>
-
-              <div class="diagram" id="diagram-cas-pull-dyn">
-                <div class="diagram-header">
-                  <h3>MPM · dynamique</h3>
-                  <p>Tag 01 = 12 — réseau contrôle ID acquéreur · route → émetteur</p>
-                </div>
-                <svg
-                  viewBox="0 0 1000 420"
-                  role="img"
-                  aria-label="Cas MPM dynamique : Auth émetteur puis retour confirmation"
+                  aria-label="MPM détaillé : payload QR, acquisition PSP client, routage scheme et AuthZ"
                 >
                   <defs>
-                    <marker id="ah-c1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                    <marker id="ah-mpm" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                       <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
                     </marker>
-                  </defs>
-
-                  <text x="500" y="26" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.04em">A · ENCODE — QR porte les IDs marchand</text>
-                  <g>
-                    <rect x="40" y="42" width="200" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-commercant.jpg" x="52" y="52" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="106" y="70" fill="#087a6a" font-size="13" font-weight="700">Backend</text>
-                    <text x="106" y="90" fill="#5a6b7c" font-size="11">IDs + montant?</text>
-                  </g>
-                  <line x1="240" y1="82" x2="280" y2="82" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c1)"/>
-                  <g>
-                    <rect x="280" y="42" width="180" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="370" y="74" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">QR engine</text>
-                    <text x="370" y="96" text-anchor="middle" fill="#5a6b7c" font-size="12">encode</text>
-                  </g>
-                  <line x1="460" y1="82" x2="500" y2="82" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c1)"/>
-                  <g>
-                    <rect x="500" y="42" width="460" height="80" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="520" y="70" fill="#1a2b3c" font-size="13" font-weight="700">Caisse affiche le QR</text>
-                    <text x="520" y="94" fill="#087a6a" font-size="12" font-weight="700">qui est payé (+ montant souvent) · ≠ tunnel Auth</text>
-                  </g>
-
-                  <text x="500" y="152" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.04em">B · RÉSEAU CONTRÔLE L’ID ACQUÉREUR MARCHAND · ROUTE VERS L’ÉMETTEUR</text>
-                  <g>
-                    <rect x="30" y="172" width="150" height="96" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <text x="105" y="208" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">App</text>
-                    <text x="105" y="230" text-anchor="middle" fill="#5a6b7c" font-size="11">scan + moyen</text>
-                  </g>
-                  <line x1="180" y1="220" x2="205" y2="220" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-c1)"/>
-                  <g>
-                    <rect x="205" y="172" width="160" height="96" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
-                    <text x="285" y="202" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">PSP client</text>
-                    <text x="285" y="224" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">acquiert le flux</text>
-                    <text x="285" y="244" text-anchor="middle" fill="#5a6b7c" font-size="11">+ IDs marchand QR</text>
-                  </g>
-                  <line x1="365" y1="220" x2="390" y2="220" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-c1)"/>
-                  <g>
-                    <rect x="390" y="172" width="220" height="96" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="3"/>
-                    <text x="500" y="198" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Réseau</text>
-                    <text x="500" y="220" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">contrôle ID acquéreur</text>
-                    <text x="500" y="242" text-anchor="middle" fill="#5a6b7c" font-size="11">marchand (valeur QR)</text>
-                  </g>
-                  <line x1="610" y1="220" x2="680" y2="220" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-c1)"/>
-                  <g>
-                    <rect x="680" y="172" width="280" height="96" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="820" y="202" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">SI AuthZ · émetteur</text>
-                    <text x="820" y="226" text-anchor="middle" fill="#5a6b7c" font-size="12">autorise / débite — fin de l’aller</text>
-                    <text x="820" y="248" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">pas un hop « confirmation » après</text>
-                  </g>
-                  <defs>
-                    <marker id="ah-c1-back" markerWidth="8" markerHeight="8" refX="1" refY="3" orient="auto">
+                    <marker id="ah-mpm-back" markerWidth="8" markerHeight="8" refX="1" refY="3" orient="auto">
                       <path d="M8,0 L2,3 L8,6 Z" fill="#c45c26" />
                     </marker>
                   </defs>
-                  <path d="M820 268 L820 290 L105 290 L105 268" fill="none" stroke="#c45c26" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#ah-c1-back)"/>
-                  <text x="460" y="284" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">
-                    ← Après AuthZ · retour → app · et notif PSP → caisse (même moment, autre canal)
-                  </text>
-                  <text x="500" y="330" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Timing notif caisse = dès le résultat Auth connu — pas au clearing / settlement
-                  </text>
-                  <text x="500" y="354" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Canal&nbsp;: webhook / push PSP / poll sur la réf. trx du QR
+
+                  <!-- A Encode -->
+                  <text x="500" y="28" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700" letter-spacing="0.04em">A · ENCODE — qui génère le QR</text>
+                  <rect x="20" y="44" width="470" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="40" y="72" fill="#087a6a" font-size="13" font-weight="700">Dynamique (tag 01 = 12)</text>
+                  <text x="40" y="96" fill="#1a2b3c" font-size="12">Backend / caisse → QR engine → affiche</text>
+                  <text x="40" y="118" fill="#5a6b7c" font-size="12">IDs + montant souvent + réf. trx</text>
+                  <rect x="510" y="44" width="470" height="100" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                  <text x="530" y="72" fill="#8a9aaa" font-size="13" font-weight="700">Statique (tag 01 = 11)</text>
+                  <text x="530" y="96" fill="#1a2b3c" font-size="12">Encode une fois · sticker affiché</text>
+                  <text x="530" y="118" fill="#5a6b7c" font-size="12">IDs fixes · montant saisi dans l’app</text>
+
+                  <!-- B Payload -->
+                  <text x="500" y="178" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700" letter-spacing="0.04em">B · PAYLOAD QR — info utile à l’acquisition / au règlement</text>
+                  <rect x="20" y="194" width="960" height="120" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                  <rect x="40" y="210" width="220" height="88" rx="8" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                  <text x="150" y="240" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">MAI (02–51)</text>
+                  <text x="150" y="262" text-anchor="middle" fill="#1a2b3c" font-size="11">bloc marchand</text>
+                  <text x="150" y="280" text-anchor="middle" fill="#5a6b7c" font-size="11">+ sous-tags</text>
+                  <rect x="278" y="210" width="220" height="88" rx="8" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                  <text x="388" y="240" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">GUID</text>
+                  <text x="388" y="262" text-anchor="middle" fill="#1a2b3c" font-size="11">quel scheme</text>
+                  <text x="388" y="280" text-anchor="middle" fill="#5a6b7c" font-size="11">GhQR · Visa · …</text>
+                  <rect x="516" y="210" width="220" height="88" rx="8" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                  <text x="626" y="240" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">ID acquéreur / MID</text>
+                  <text x="626" y="262" text-anchor="middle" fill="#1a2b3c" font-size="11">qui est payé</text>
+                  <text x="626" y="280" text-anchor="middle" fill="#5a6b7c" font-size="11">contrôle règlement</text>
+                  <rect x="754" y="210" width="206" height="88" rx="8" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                  <text x="857" y="240" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">Montant · réf.</text>
+                  <text x="857" y="262" text-anchor="middle" fill="#1a2b3c" font-size="11">54 · 62… (si 12)</text>
+                  <text x="857" y="280" text-anchor="middle" fill="#5a6b7c" font-size="11">≠ moyen de paiement</text>
+
+                  <!-- C Acquisition + route -->
+                  <text x="500" y="348" text-anchor="middle" fill="#1e5f8a" font-size="13" font-weight="700" letter-spacing="0.04em">C · ACQUISITION DU FLUX + ROUTAGE</text>
+
+                  <g>
+                    <rect x="20" y="368" width="130" height="110" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="85" y="408" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">App</text>
+                    <text x="85" y="430" text-anchor="middle" fill="#5a6b7c" font-size="11">scan · decode</text>
+                    <text x="85" y="452" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">+ moyen</text>
+                  </g>
+                  <line x1="150" y1="423" x2="175" y2="423" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-mpm)"/>
+                  <g>
+                    <rect x="175" y="368" width="160" height="110" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="3"/>
+                    <text x="255" y="400" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">PSP client</text>
+                    <text x="255" y="424" text-anchor="middle" fill="#1a2b3c" font-size="12">acquiert le flux</text>
+                    <text x="255" y="448" text-anchor="middle" fill="#5a6b7c" font-size="11">+ IDs QR</text>
+                  </g>
+                  <line x1="335" y1="423" x2="360" y2="423" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-mpm)"/>
+                  <g>
+                    <rect x="360" y="368" width="280" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="3"/>
+                    <text x="500" y="396" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Scheme (via GUID)</text>
+                    <text x="500" y="420" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">1 · GUID → quel rail</text>
+                    <text x="500" y="442" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">2 · IDs → contrôle destinataire</text>
+                    <text x="500" y="464" text-anchor="middle" fill="#5a6b7c" font-size="11">≠ choisir l’émetteur AuthZ</text>
+                  </g>
+                  <line x1="640" y1="423" x2="665" y2="423" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-mpm)"/>
+                  <g>
+                    <rect x="665" y="368" width="315" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="822" y="400" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">SI AuthZ · émetteur</text>
+                    <text x="822" y="426" text-anchor="middle" fill="#1a2b3c" font-size="12">Routé par le <tspan font-weight="700">moyen dans l’app</tspan></text>
+                    <text x="822" y="450" text-anchor="middle" fill="#5a6b7c" font-size="11">banque · wallet · ou émetteur carte</text>
+                  </g>
+
+                  <!-- D Comment route -->
+                  <text x="500" y="516" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700" letter-spacing="0.04em">D · COMMENT ÇA ROUTE — deux emplois distincts de l’info QR</text>
+                  <rect x="20" y="532" width="470" height="140" rx="10" fill="#f7fbf9" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="40" y="562" fill="#087a6a" font-size="13" font-weight="700">Depuis le QR (GUID + IDs)</text>
+                  <text x="40" y="590" fill="#1a2b3c" font-size="12"><tspan font-weight="700">GUID</tspan> → sélectionne le scheme (GhQR, Visa…)</text>
+                  <text x="40" y="614" fill="#1a2b3c" font-size="12"><tspan font-weight="700">ID acquéreur / MID</tspan> → qui sera crédité</text>
+                  <text x="40" y="638" fill="#c45c26" font-size="12" font-weight="700">Sert au règlement / contrôle — pas à AuthZ</text>
+                  <text x="40" y="658" fill="#5a6b7c" font-size="11">Scheme vérifie que le MID est onboardé</text>
+
+                  <rect x="510" y="532" width="470" height="140" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="530" y="562" fill="#087a6a" font-size="13" font-weight="700">Depuis le moyen (dans l’app)</text>
+                  <text x="530" y="590" fill="#1a2b3c" font-size="12">Compte banque → <tspan font-weight="700">SI banque</tspan></text>
+                  <text x="530" y="614" fill="#1a2b3c" font-size="12">Solde wallet → <tspan font-weight="700">SI wallet</tspan></text>
+                  <text x="530" y="638" fill="#1a2b3c" font-size="12">Carte Visa dans wallet → token → <tspan font-weight="700">SI banque émettrice</tspan></text>
+                  <text x="530" y="658" fill="#c45c26" font-size="12" font-weight="700">Visa = scheme / marque · pas AuthZ</text>
+
+                  <!-- E Retour -->
+                  <text x="500" y="708" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700" letter-spacing="0.04em">E · RETOUR + NOTIF CAISSE</text>
+                  <path d="M822 682 L822 740 L85 740 L85 478" fill="none" stroke="#c45c26" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#ah-mpm-back)"/>
+                  <rect x="120" y="760" width="760" height="88" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                  <text x="500" y="792" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">← Confirmation Auth → app (chemin inverse)</text>
+                  <text x="500" y="816" text-anchor="middle" fill="#1a2b3c" font-size="12">Notif caisse (si 12)&nbsp;: autre canal · webhook / push / poll sur réf. trx — dès le OK/KO Auth</text>
+                  <text x="500" y="836" text-anchor="middle" fill="#5a6b7c" font-size="11">Acceptation hors chemin Auth · clearing / settlement = suite J1</text>
+
+                  <text x="500" y="892" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Chaîne Auth MPM&nbsp;: App (+ moyen) → PSP client → scheme (GUID) → SI AuthZ — <tspan fill="#c45c26" font-weight="700">pas via le marchand</tspan>
                   </text>
                 </svg>
-                <div class="seq-steps" id="cas1-steps">
+                <div class="seq-steps" id="mpm-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
-                      <strong>Encode</strong>
-                      <p>QR = IDs + réf. trx (souvent) + montant — la caisse « attend » sur cette réf.</p>
+                      <strong>Payload</strong>
+                      <p>MAI · GUID (= scheme) · IDs acquéreur/MID · ± montant/réf. — pas le moyen.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
-                      <strong>Decode + Auth</strong>
-                      <p>App → PSP client → réseau → émetteur. Caisse absente de ce chemin.</p>
+                      <strong>Acquisition</strong>
+                      <p>PSP <em>client</em> acquiert · pousse IDs QR + moyen app vers le scheme.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
                     <span class="n">3</span>
                     <span>
-                      <strong>Notif caisse</strong>
-                      <p><em>Quand&nbsp;?</em> Juste après l’AuthZ (dès le OK/KO) — pas au settlement. Via réf. trx.</p>
+                      <strong>Routage</strong>
+                      <p>GUID → rail · IDs → destinataire règlement · AuthZ = moyen dans l’app.</p>
+                    </span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="4">
+                    <span class="n">4</span>
+                    <span>
+                      <strong>Retour</strong>
+                      <p>OK/KO → app · notif caisse = canal à part (réf. trx si 12).</p>
                     </span>
                   </button>
                 </div>
               </div>
             </section>
 
-            <!-- Cas 2 -->
+            <!-- CPM détaillé -->
             <section class="section">
-              <p class="section-label">Cas 2 · MPM statique (tag 01 = 11) · « pull »</p>
-              <h2>Sticker magasin</h2>
+              <p class="section-label">CPM · Consumer-Presented</p>
+              <h2>CPM — acquisition &amp; routage</h2>
               <p class="intro">
-                Même sens MPM&nbsp;: QR <strong>déjà imprimé</strong>. Le réseau
-                <strong>contrôle l’ID acquéreur marchand</strong> du sticker —
-                pas un hop « vers l’acquéreur ». Auth → émetteur.
+                Payeur présente · caisse scanne.
+                QR = <strong>avec quoi on paie</strong> (ADF / token / crypto).
+                Le marchand est en <strong>conf caisse</strong> — pas dans le QR.
+                Acquéreur du flux Auth&nbsp;: <strong>PSP commerçant</strong>.
               </p>
 
-              <div class="diagram" id="diagram-cas-pull-stat">
+              <div class="diagram" id="diagram-cpm-detail">
                 <div class="diagram-header">
-                  <h3>MPM · statique</h3>
-                  <p>Tag 01 = 11 — réseau contrôle ID acquéreur · route → émetteur</p>
+                  <h3>CPM · flux complet</h3>
+                  <p>Encode payeur → scan caisse → PSP commerçant → scheme → AuthZ</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 420"
+                  viewBox="0 0 1000 900"
                   role="img"
-                  aria-label="Cas MPM statique : Auth émetteur puis retour confirmation"
+                  aria-label="CPM détaillé : payload credentials, acquisition PSP commerçant, routage ADF et token"
                 >
                   <defs>
-                    <marker id="ah-c2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                    <marker id="ah-cpm" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                       <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
                     </marker>
-                  </defs>
-
-                  <text x="500" y="26" text-anchor="middle" fill="#8a9aaa" font-size="12" font-weight="700" letter-spacing="0.04em">A · ENCODE EN AMONT — payload = IDs marchand (fixes)</text>
-                  <g>
-                    <rect x="40" y="42" width="260" height="80" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
-                    <text x="170" y="72" text-anchor="middle" fill="#8a9aaa" font-size="12" font-weight="700">UNE FOIS · IDs marchand</text>
-                    <text x="170" y="96" text-anchor="middle" fill="#8a9aaa" font-size="11">pas de backend live / vente</text>
-                  </g>
-                  <line x1="300" y1="82" x2="340" y2="82" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-c2)"/>
-                  <g>
-                    <rect x="340" y="42" width="620" height="80" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="360" y="72" fill="#1a2b3c" font-size="13" font-weight="700">Sticker affiché</text>
-                    <text x="360" y="96" fill="#087a6a" font-size="12" font-weight="700">qui est payé (IDs fixes) · ≠ tunnel Auth</text>
-                  </g>
-
-                  <text x="500" y="152" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.04em">B · RÉSEAU CONTRÔLE L’ID ACQUÉREUR MARCHAND · ROUTE VERS L’ÉMETTEUR</text>
-                  <g>
-                    <rect x="30" y="172" width="150" height="96" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <text x="105" y="208" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">App</text>
-                    <text x="105" y="230" text-anchor="middle" fill="#5a6b7c" font-size="11">scan + montant</text>
-                  </g>
-                  <line x1="180" y1="220" x2="205" y2="220" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-c2)"/>
-                  <g>
-                    <rect x="205" y="172" width="160" height="96" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
-                    <text x="285" y="202" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">PSP client</text>
-                    <text x="285" y="224" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">acquiert le flux</text>
-                    <text x="285" y="244" text-anchor="middle" fill="#5a6b7c" font-size="11">+ IDs marchand QR</text>
-                  </g>
-                  <line x1="365" y1="220" x2="390" y2="220" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-c2)"/>
-                  <g>
-                    <rect x="390" y="172" width="220" height="96" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="3"/>
-                    <text x="500" y="198" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Réseau</text>
-                    <text x="500" y="220" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">contrôle ID acquéreur</text>
-                    <text x="500" y="242" text-anchor="middle" fill="#5a6b7c" font-size="11">marchand (valeur QR)</text>
-                  </g>
-                  <line x1="610" y1="220" x2="680" y2="220" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-c2)"/>
-                  <g>
-                    <rect x="680" y="172" width="280" height="96" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="820" y="202" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">SI AuthZ · émetteur</text>
-                    <text x="820" y="226" text-anchor="middle" fill="#5a6b7c" font-size="12">autorise / débite — fin de l’aller</text>
-                    <text x="820" y="248" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">pas un hop « confirmation » après</text>
-                  </g>
-                  <defs>
-                    <marker id="ah-c2-back" markerWidth="8" markerHeight="8" refX="1" refY="3" orient="auto">
+                    <marker id="ah-cpm-back" markerWidth="8" markerHeight="8" refX="1" refY="3" orient="auto">
                       <path d="M8,0 L2,3 L8,6 Z" fill="#c45c26" />
                     </marker>
                   </defs>
-                  <path d="M820 268 L820 290 L105 290 L105 268" fill="none" stroke="#c45c26" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#ah-c2-back)"/>
-                  <text x="460" y="284" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">
-                    ← Confirmation (retour OK / KO) · app (+ notif) — sens inverse
-                  </text>
-                  <text x="500" y="330" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Comme en 12 — l’ID contrôlé sert au règlement (banque marchand → commerçant)
-                  </text>
-                  <text x="500" y="354" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Confirmation = réponse · pas la suite du schéma à droite
+
+                  <!-- A Encode -->
+                  <text x="500" y="28" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700" letter-spacing="0.04em">A · ENCODE PAYEUR — QR = credentials du moyen</text>
+                  <g>
+                    <rect x="40" y="48" width="260" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <image href="../img/acteurs/acteur-porteur.jpg" x="52" y="64" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
+                    <text x="110" y="82" fill="#087a6a" font-size="13" font-weight="700">App / SI payeur</text>
+                    <text x="110" y="104" fill="#5a6b7c" font-size="11">moyen déjà choisi</text>
+                    <text x="110" y="124" fill="#087a6a" font-size="11" font-weight="700">ADF · token · crypto</text>
+                  </g>
+                  <line x1="300" y1="98" x2="340" y2="98" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cpm)"/>
+                  <g>
+                    <rect x="340" y="48" width="200" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="440" y="88" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">QR engine</text>
+                    <text x="440" y="112" text-anchor="middle" fill="#5a6b7c" font-size="12">encode → écran</text>
+                  </g>
+                  <line x1="540" y1="98" x2="580" y2="98" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cpm)"/>
+                  <g>
+                    <rect x="580" y="48" width="380" height="100" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="600" y="82" fill="#1a2b3c" font-size="13" font-weight="700">Téléphone présente le QR</text>
+                    <text x="600" y="106" fill="#087a6a" font-size="12" font-weight="700">Format 85 → CPV01 · BER-TLV Base64</text>
+                    <text x="600" y="128" fill="#5a6b7c" font-size="11">pas un IBAN nu — souvent tokenisé</text>
+                  </g>
+
+                  <!-- B Payload -->
+                  <text x="500" y="184" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700" letter-spacing="0.04em">B · PAYLOAD QR — info utile au routage AuthZ</text>
+                  <rect x="20" y="200" width="960" height="120" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                  <rect x="40" y="216" width="300" height="88" rx="8" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                  <text x="190" y="246" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">4F · ADF</text>
+                  <text x="190" y="268" text-anchor="middle" fill="#1a2b3c" font-size="11">AID / rail (POI match)</text>
+                  <text x="190" y="286" text-anchor="middle" fill="#5a6b7c" font-size="11">quel scheme / application</text>
+                  <rect x="360" y="216" width="300" height="88" rx="8" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                  <text x="510" y="246" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">Token / PAN</text>
+                  <text x="510" y="268" text-anchor="middle" fill="#1a2b3c" font-size="11">vers quel émetteur</text>
+                  <text x="510" y="286" text-anchor="middle" fill="#5a6b7c" font-size="11">= routage AuthZ</text>
+                  <rect x="680" y="216" width="280" height="88" rx="8" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                  <text x="820" y="246" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">Crypto · CDCVM…</text>
+                  <text x="820" y="268" text-anchor="middle" fill="#1a2b3c" font-size="11">données type chip</text>
+                  <text x="820" y="286" text-anchor="middle" fill="#5a6b7c" font-size="11">validation Auth</text>
+
+                  <!-- C Acquisition -->
+                  <text x="500" y="356" text-anchor="middle" fill="#1e5f8a" font-size="13" font-weight="700" letter-spacing="0.04em">C · ACQUISITION DU FLUX + ROUTAGE</text>
+                  <g>
+                    <rect x="20" y="376" width="130" height="110" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="85" y="412" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Caisse</text>
+                    <text x="85" y="434" text-anchor="middle" fill="#5a6b7c" font-size="11">scanne</text>
+                    <text x="85" y="456" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">≠ AuthZ</text>
+                  </g>
+                  <line x1="150" y1="431" x2="175" y2="431" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cpm)"/>
+                  <g>
+                    <rect x="175" y="376" width="130" height="110" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="240" y="416" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Backend</text>
+                    <text x="240" y="440" text-anchor="middle" fill="#5a6b7c" font-size="11">+ montant</text>
+                    <text x="240" y="460" text-anchor="middle" fill="#5a6b7c" font-size="11">conf marchand</text>
+                  </g>
+                  <line x1="305" y1="431" x2="330" y2="431" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cpm)"/>
+                  <g>
+                    <rect x="330" y="376" width="170" height="110" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="3"/>
+                    <text x="415" y="408" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">PSP commerçant</text>
+                    <text x="415" y="432" text-anchor="middle" fill="#1a2b3c" font-size="12">acquiert le flux</text>
+                    <text x="415" y="456" text-anchor="middle" fill="#5a6b7c" font-size="11">mappe Auth</text>
+                  </g>
+                  <line x1="500" y1="431" x2="525" y2="431" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cpm)"/>
+                  <g>
+                    <rect x="525" y="376" width="200" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="3"/>
+                    <text x="625" y="404" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Scheme</text>
+                    <text x="625" y="428" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">1 · ADF → rail</text>
+                    <text x="625" y="450" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">2 · token → émetteur</text>
+                    <text x="625" y="470" text-anchor="middle" fill="#5a6b7c" font-size="11">= routage AuthZ</text>
+                  </g>
+                  <line x1="725" y1="431" x2="750" y2="431" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-cpm)"/>
+                  <g>
+                    <rect x="750" y="376" width="230" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="865" y="408" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">SI AuthZ du moyen</text>
+                    <text x="865" y="432" text-anchor="middle" fill="#1a2b3c" font-size="11">carte → SI banque</text>
+                    <text x="865" y="452" text-anchor="middle" fill="#1a2b3c" font-size="11">solde → SI wallet</text>
+                    <text x="865" y="472" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">Visa ≠ AuthZ</text>
+                  </g>
+
+                  <!-- D Comment route -->
+                  <text x="500" y="524" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700" letter-spacing="0.04em">D · COMMENT ÇA ROUTE — le moyen est dans le QR</text>
+                  <rect x="20" y="540" width="470" height="150" rx="10" fill="#f7fbf9" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="40" y="570" fill="#087a6a" font-size="13" font-weight="700">ADF (4F)</text>
+                  <text x="40" y="598" fill="#1a2b3c" font-size="12">Identifie l’application / AID acceptée au POI</text>
+                  <text x="40" y="622" fill="#1a2b3c" font-size="12">Sélectionne le <tspan font-weight="700">scheme</tspan> (rail national ou carte)</text>
+                  <text x="40" y="646" fill="#5a6b7c" font-size="12">POI doit matcher l’ADF pour traiter</text>
+                  <text x="40" y="670" fill="#c45c26" font-size="12" font-weight="700">Sans ADF correct → pas de rail Auth</text>
+
+                  <rect x="510" y="540" width="470" height="150" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="530" y="570" fill="#087a6a" font-size="13" font-weight="700">Token / PAN (+ crypto)</text>
+                  <text x="530" y="598" fill="#1a2b3c" font-size="12">Scheme lit le token → trouve l’émetteur</text>
+                  <text x="530" y="622" fill="#1a2b3c" font-size="12">Route AuthZ vers <tspan font-weight="700">SI banque émettrice</tspan></text>
+                  <text x="530" y="646" fill="#1a2b3c" font-size="12">Closed-loop solde → <tspan font-weight="700">SI wallet</tspan> (pas de rail carte)</text>
+                  <text x="530" y="670" fill="#c45c26" font-size="12" font-weight="700">Wallet UX + token · Visa = réseau seulement</text>
+
+                  <!-- E Retour -->
+                  <text x="500" y="726" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700" letter-spacing="0.04em">E · RETOUR</text>
+                  <rect x="120" y="744" width="760" height="88" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+                  <text x="500" y="776" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">← Confirmation Auth → caisse / PSP commerçant → (souvent) app payeur</text>
+                  <text x="500" y="800" text-anchor="middle" fill="#1a2b3c" font-size="12">Marchand déjà sur le chemin (caisse) · conf marchand = côté acceptation, pas dans le QR</text>
+                  <text x="500" y="820" text-anchor="middle" fill="#5a6b7c" font-size="11">Clearing / settlement = suite J1 après AuthZ</text>
+
+                  <text x="500" y="872" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Chaîne Auth CPM&nbsp;: Caisse → PSP commerçant → scheme (ADF + token) → SI AuthZ
                   </text>
                 </svg>
-                <div class="seq-steps" id="cas2-steps">
+                <div class="seq-steps" id="cpm-steps">
                   <button type="button" class="seq-step is-active" data-step="1">
                     <span class="n">1</span>
                     <span>
-                      <strong>Encode amont</strong>
-                      <p>Sticker = IDs marchand (qui est crédité).</p>
+                      <strong>Payload</strong>
+                      <p>ADF (4F) · token/PAN · crypto — credentials type chip, pas IDs marchand.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="2">
                     <span class="n">2</span>
                     <span>
-                      <strong>Decode + choix</strong>
-                      <p>App lit, saisit le montant, choisit le moyen (IDs dans l’app).</p>
+                      <strong>Acquisition</strong>
+                      <p>Caisse → backend (+ montant) → PSP <em>commerçant</em> acquiert.</p>
                     </span>
                   </button>
                   <button type="button" class="seq-step" data-step="3">
                     <span class="n">3</span>
                     <span>
-                      <strong>Contrôle + AuthZ</strong>
-                      <p>Contrôle ID = destinataire au règlement (banque marchand → commerçant) · Auth → émetteur.</p>
+                      <strong>Routage</strong>
+                      <p>ADF → rail · token → émetteur · AuthZ = SI du moyen lu dans le QR.</p>
                     </span>
                   </button>
-                </div>
-              </div>
-            </section>
-
-            <!-- Cas 3 -->
-            <section class="section">
-              <p class="section-label">Cas 3 · CPM · « push »</p>
-              <h2>Le payeur présente un QR</h2>
-              <p class="intro">
-                La <strong>caisse scanne</strong>. Spec EMVCo CPM&nbsp;:
-                credentials type <strong>carte / chip</strong> (ADF, token
-                ou PAN, cryptogramme…). Le PSP
-                <strong>commerçant</strong> mappe ça en message Auth →
-                (réseau) → SI de l’émetteur. Wallet closed-loop&nbsp;: IDs
-                provider → SI wallet.
-              </p>
-
-              <div class="diagram" id="diagram-cas-push">
-                <div class="diagram-header">
-                  <h3>CPM</h3>
-                  <p>Credentials type carte · PSP commerçant · AuthZ émetteur</p>
-                </div>
-                <svg
-                  viewBox="0 0 1000 400"
-                  role="img"
-                  aria-label="Cas push : payload IDs payeur puis AuthZ via PSP"
-                >
-                  <defs>
-                    <marker id="ah-c3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
-                    </marker>
-                  </defs>
-
-                  <text x="500" y="26" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700" letter-spacing="0.04em">A · ENCODE PAYEUR — QR = credentials (type carte / chip)</text>
-                  <g>
-                    <rect x="40" y="42" width="240" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-porteur.jpg" x="52" y="58" width="44" height="44" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="110" y="76" fill="#087a6a" font-size="13" font-weight="700">App / SI payeur</text>
-                    <text x="110" y="96" fill="#5a6b7c" font-size="11">moyen déjà choisi</text>
-                    <text x="110" y="116" fill="#087a6a" font-size="11" font-weight="700">ADF · token · crypto</text>
-                  </g>
-                  <line x1="280" y1="92" x2="320" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c3)"/>
-                  <g>
-                    <rect x="320" y="42" width="200" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="420" y="82" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">QR engine</text>
-                    <text x="420" y="106" text-anchor="middle" fill="#5a6b7c" font-size="12">encode → écran</text>
-                  </g>
-                  <line x1="520" y1="92" x2="560" y2="92" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c3)"/>
-                  <g>
-                    <rect x="560" y="42" width="400" height="100" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="580" y="72" fill="#1a2b3c" font-size="13" font-weight="700">Téléphone présente le QR</text>
-                    <text x="580" y="94" fill="#087a6a" font-size="12" font-weight="700">Payload = credentials du moyen</text>
-                    <text x="580" y="116" fill="#5a6b7c" font-size="11">pas un « IBAN nu » — souvent tokenisé</text>
-                  </g>
-
-                  <text x="500" y="178" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700" letter-spacing="0.04em">B · CAISSE → PSP COMMERÇANT → RÉSEAU → AUTHZ ÉMETTEUR</text>
-                  <g>
-                    <rect x="30" y="198" width="140" height="100" rx="10" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
-                    <image href="../img/acteurs/acteur-device.jpg" x="40" y="214" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-                    <text x="92" y="232" fill="#1a2b3c" font-size="12" font-weight="700">Caisse</text>
-                    <text x="92" y="252" fill="#5a6b7c" font-size="11">scanne</text>
-                    <text x="92" y="272" fill="#c45c26" font-size="11" font-weight="700">≠ AuthZ</text>
-                  </g>
-                  <line x1="170" y1="248" x2="195" y2="248" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c3)"/>
-                  <g>
-                    <rect x="195" y="198" width="140" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="265" y="238" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Backend</text>
-                    <text x="265" y="262" text-anchor="middle" fill="#5a6b7c" font-size="11">+ montant</text>
-                  </g>
-                  <line x1="335" y1="248" x2="360" y2="248" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c3)"/>
-                  <g>
-                    <rect x="360" y="198" width="150" height="100" rx="10" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
-                    <text x="435" y="232" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">PSP commerçant</text>
-                    <text x="435" y="254" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">acquéreur</text>
-                    <text x="435" y="274" text-anchor="middle" fill="#5a6b7c" font-size="11">mappe Auth</text>
-                  </g>
-                  <line x1="510" y1="248" x2="535" y2="248" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c3)"/>
-                  <g>
-                    <rect x="535" y="198" width="140" height="100" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="605" y="238" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Réseau</text>
-                    <text x="605" y="262" text-anchor="middle" fill="#5a6b7c" font-size="11">scheme</text>
-                  </g>
-                  <line x1="675" y1="248" x2="700" y2="248" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-c3)"/>
-                  <g>
-                    <rect x="700" y="198" width="260" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="830" y="228" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">SI AuthZ (émetteur)</text>
-                    <text x="830" y="250" text-anchor="middle" fill="#5a6b7c" font-size="11">banque · ou wallet closed-loop</text>
-                    <text x="830" y="274" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">carte dans wallet → SI carte</text>
-                  </g>
-                  <text x="500" y="340" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">
-                    Rail type carte — caisse lit, PSP commerçant → réseau → émetteur
-                  </text>
-                  <text x="500" y="368" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Spec CPM = credentials chip · pas « compte wallet » générique
-                  </text>
-                </svg>
-                <div class="seq-steps" id="cas3-steps">
-                  <button type="button" class="seq-step is-active" data-step="1">
-                    <span class="n">1</span>
+                  <button type="button" class="seq-step" data-step="4">
+                    <span class="n">4</span>
                     <span>
-                      <strong>Encode payeur</strong>
-                      <p>QR = credentials type carte/token (ADF, crypto…) — pas un IBAN nu.</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="2">
-                    <span class="n">2</span>
-                    <span>
-                      <strong>Decode caisse</strong>
-                      <p>Caisse → backend → PSP <em>commerçant</em> (acquéreur).</p>
-                    </span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="3">
-                    <span class="n">3</span>
-                    <span>
-                      <strong>AuthZ</strong>
-                      <p>PSP → réseau → SI émetteur (carte) ou SI wallet (closed-loop).</p>
+                      <strong>Retour</strong>
+                      <p>OK/KO vers caisse / PSP · souvent aussi vers l’app payeur.</p>
                     </span>
                   </button>
                 </div>
@@ -699,38 +530,31 @@
                   <thead>
                     <tr>
                       <th scope="col">Cas</th>
-                      <th scope="col">Payload QR</th>
-                      <th scope="col">Chemin Auth</th>
-                      <th scope="col">AuthZ / suite</th>
+                      <th scope="col">Info QR → sert à</th>
+                      <th scope="col">Qui acquiert</th>
+                      <th scope="col">Routage AuthZ</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="row">MPM · 12 (« pull »)</th>
-                      <td>IDs marchand · montant souvent</td>
-                      <td>PSP <strong>client</strong> → réseau (contrôle ID acquéreur)</td>
-                      <td>Route Auth → émetteur</td>
+                      <th scope="row">MPM</th>
+                      <td><strong>GUID</strong> → scheme · <strong>IDs/MID</strong> → qui est payé (règlement)</td>
+                      <td>PSP <strong>client</strong></td>
+                      <td>Moyen <strong>dans l’app</strong> → SI émetteur</td>
                     </tr>
                     <tr>
-                      <th scope="row">MPM · 11 (« pull »)</th>
-                      <td>IDs marchand (fixes)</td>
-                      <td>PSP <strong>client</strong> → réseau (contrôle ID acquéreur)</td>
-                      <td>Route Auth → émetteur</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">CPM (« push »)</th>
-                      <td>Credentials type carte/chip</td>
-                      <td>PSP <strong>commerçant</strong> acquiert le flux</td>
-                      <td>SI émetteur (ou wallet closed-loop)</td>
+                      <th scope="row">CPM</th>
+                      <td><strong>ADF</strong> → rail · <strong>token</strong> → émetteur</td>
+                      <td>PSP <strong>commerçant</strong></td>
+                      <td>Credentials <strong>dans le QR</strong> → SI AuthZ</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <p class="fresco-legend">
-                Contrôler l’ID acquéreur = préparer le
-                <strong>règlement</strong>&nbsp;: trouver la banque du
-                marchand, puis créditer le commerçant (client final) après
-                coup. Ce n’est pas un hop Auth vers l’acquéreur.
+                MPM&nbsp;: l’info QR prépare le <strong>règlement</strong> (destinataire),
+                pas le choix de l’émetteur Auth.
+                CPM&nbsp;: l’info QR <strong>est</strong> le routage AuthZ.
               </p>
             </section>
 

@@ -33,7 +33,7 @@
               <div class="fiche-meta">
                 <span class="tag">Jour 3 · Tokenisation</span>
               </div>
-              <p class="day-kicker">3.1 · Où</p>
+              <p class="day-kicker">3.1 · Tokenisation</p>
               <h1>Domaines d’usage</h1>
             </div>
           </section>
@@ -92,7 +92,7 @@
                     <text x="70" y="198" fill="#1a2b3c" font-size="13">Geste</text>
                     <text x="200" y="198" fill="#5a6b7c" font-size="13">Approcher téléphone / montre au TPE (biométrie + tap)</text>
                     <text x="70" y="228" fill="#1a2b3c" font-size="13">Qui tokenise</text>
-                    <text x="200" y="228" fill="#5a6b7c" font-size="13">TSP réseau (VTS · MDES · wallet OEM) — enrolment implicite</text>
+                    <text x="200" y="228" fill="#5a6b7c" font-size="13">TSP réseau (VTS · MDES · wallet OEM) — enrôlement implicite</text>
                     <text x="70" y="258" fill="#1a2b3c" font-size="13">Où vit le token</text>
                     <text x="200" y="258" fill="#5a6b7c" font-size="13">Secure Element / enclave — PAS dans l’OS ni au POS</text>
                     <text x="70" y="288" fill="#1a2b3c" font-size="13">Ce qui circule</text>
@@ -142,21 +142,7 @@
                     <text x="70" y="378" fill="#3d5a80" font-size="13" font-weight="700">Cœur de la réduction PCI côté marchand</text>
                   </g>
                 </svg>
-                <div class="seq-steps" id="domaines-steps">
-                  <button type="button" class="seq-step is-active" data-step="1">
-                    <span class="n">1</span>
-                    <span><strong>In-store</strong><p>Device · NFC · POS</p></span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="2">
-                    <span class="n">2</span>
-                    <span><strong>In-app</strong><p>Checkout natif</p></span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="3">
-                    <span class="n">3</span>
-                    <span><strong>E-commerce</strong><p>COF · MIT</p></span>
-                  </button>
-                </div>
-              </div>
+</div>
             </section>
 
             <section class="section">
@@ -217,7 +203,7 @@
                   <g class="step-panel" data-step="1">
                     <rect x="30" y="170" width="940" height="180" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
                     <text x="60" y="210" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Domaine = device</text>
-                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Après enrolment wallet, le token est lié à CET appareil (pas à un marchand web).</text>
+                    <text x="60" y="245" fill="#1a2b3c" font-size="13">Après enrôlement wallet, le token est lié à CET appareil (pas à un marchand web).</text>
                     <text x="60" y="275" fill="#1a2b3c" font-size="13">In-store = proximité · le credential vit sur le device, prêt pour le tap NFC.</text>
                     <text x="60" y="305" fill="#1a2b3c" font-size="13">Flux provisioning technique (TSP · vault) : Lifecycle · Provisioning.</text>
                     <text x="60" y="335" fill="#087a6a" font-size="13" font-weight="700">Ici on situe le domaine — pas le détail d’émission.</text>
@@ -239,21 +225,7 @@
                     <text x="60" y="335" fill="#087a6a" font-size="13" font-weight="700">Pont J4 : même logique «&nbsp;le device présente, pas le PAN&nbsp;» · NFC / tags.</text>
                   </g>
                 </svg>
-                <div class="seq-steps" id="instore-steps">
-                  <button type="button" class="seq-step is-active" data-step="1">
-                    <span class="n">1</span>
-                    <span><strong>Domaine</strong><p>Token lié au device.</p></span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="2">
-                    <span class="n">2</span>
-                    <span><strong>Device</strong><p>Secure Element</p></span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="3">
-                    <span class="n">3</span>
-                    <span><strong>Tap</strong><p>POS · Auth</p></span>
-                  </button>
-                </div>
-              </div>
+</div>
             </section>
 
             <section class="section">
@@ -335,21 +307,7 @@
                     <text x="60" y="335" fill="#1e5f8a" font-size="13" font-weight="700">Le rail Auth reste le même — seul le payload présenté change.</text>
                   </g>
                 </svg>
-                <div class="seq-steps" id="inapp-steps">
-                  <button type="button" class="seq-step is-active" data-step="1">
-                    <span class="n">1</span>
-                    <span><strong>Enrolment</strong><p>Dans l’app</p></span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="2">
-                    <span class="n">2</span>
-                    <span><strong>SDK</strong><p>2 variantes</p></span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="3">
-                    <span class="n">3</span>
-                    <span><strong>Backend</strong><p>Sans PAN</p></span>
-                  </button>
-                </div>
-              </div>
+</div>
             </section>
 
             <section class="section">
@@ -431,20 +389,49 @@
                     <text x="60" y="335" fill="#3d5a80" font-size="13" font-weight="700">Token COF ≠ token in-store device : domaines non interchangeables.</text>
                   </g>
                 </svg>
-                <div class="seq-steps" id="ecom-steps">
-                  <button type="button" class="seq-step is-active" data-step="1">
-                    <span class="n">1</span>
-                    <span><strong>1er paiement</strong><p>Hosted fields</p></span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="2">
-                    <span class="n">2</span>
-                    <span><strong>COF</strong><p>Token stocké</p></span>
-                  </button>
-                  <button type="button" class="seq-step" data-step="3">
-                    <span class="n">3</span>
-                    <span><strong>MIT</strong><p>Récurrent</p></span>
-                  </button>
-                </div>
+</div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Synthèse</p>
+              <h2>Trois terrains · qui tokenise</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">In-store</th>
+                      <th scope="col">In-app</th>
+                      <th scope="col">E-commerce / COF</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Qui tokenise</th>
+                      <td>TSP réseau (VTS · MDES · wallet OEM)</td>
+                      <td>TSP / wallet OEM</td>
+                      <td>PSP / TSP card-on-file</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Où vit le mapping</th>
+                      <td>Vault TSP / scheme</td>
+                      <td>Vault TSP · device</td>
+                      <td>Vault PSP / TSP</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">En Auth circule</th>
+                      <td>TOKEN (+ crypto) jusqu’à l’acquéreur</td>
+                      <td>TOKEN (+ crypto)</td>
+                      <td>TOKEN marchand / PSP (souvent)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Risque type</th>
+                      <td>Device perdu · clone NFC</td>
+                      <td>Compte app compromis</td>
+                      <td>Fuite base COF · MIT abusif</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </section>
 

@@ -6,7 +6,7 @@ window.J3_NAV = [
   {
     type: "item",
     id: "lifecycle",
-    title: "Network tokenization & lifecycle",
+    title: "Tokenisation réseau & cycle de vie",
     href: "lifecycle.html",
     children: [
       { id: "provisioning", title: "Provisioning", href: "lifecycle.html#provisioning" },
