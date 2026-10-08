@@ -44,14 +44,14 @@
           <p class="section-label">Définition monétique</p>
           <h2>Qu’est-ce qu’un wallet de paiement&nbsp;?</h2>
           <p class="definition-full">
-            Application et stack device qui
-            <strong>orchestrent</strong> l’enrolment, le
-            <strong>provisioning</strong> d’un instrument (souvent un
-            <a href="../j3/definition.html">token</a>), l’authentification
-            porteur (biométrie / CDCVM) et la
-            <strong>présentation NFC</strong> (card emulation) face au POS —
-            sans remplacer l’émetteur ni la décision AuthZ.
+            App + couches du téléphone (NFC, SE/HCE, TEE…) qui
+            <strong>enrolent</strong> un
+            <a href="../j3/definition.html">token</a>,
+            <strong>authentifient</strong> le porteur, et le
+            <strong>présentent au POS</strong> comme une carte —
+            sans décider l’AuthZ (rôle émetteur).
           </p>
+
           <p class="intro" style="margin-top: 1.1rem">
             Avant SE / HCE&nbsp;: ce que la
             <strong>puce carte classique</strong> porte déjà — même famille de
@@ -706,8 +706,11 @@
           <p class="section-label">Assemblages terrain</p>
           <h2>Couples · SE + TEE · HCE + TEE</h2>
           <p class="intro">
-            Le TEE <strong>s’ajoute</strong> à SE ou à HCE pour le CDCVM /
-            la protection&nbsp;: il ne remplace ni l’un ni l’autre.
+            Le TEE <strong>s’ajoute</strong> à SE ou à HCE pour le
+            <strong>CDCVM</strong>
+            (<em>Consumer Device Cardholder Verification Method</em>&nbsp;:
+            vérification du porteur sur le device — biométrie / code) et la
+            protection&nbsp;: il ne remplace ni l’un ni l’autre.
           </p>
 
           <div class="diagram" id="diagram-couples-tee">
@@ -739,7 +742,7 @@
               <text x="740" y="210" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">Ex. Google Pay · HCE + TrustZone</text>
 
               <text x="500" y="280" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">
-                TEE s’ajoute · ne remplace ni SE ni HCE
+                TEE s’ajoute (CDCVM) · ne remplace ni SE ni HCE
               </text>
               <text x="500" y="305" text-anchor="middle" fill="#5a6b7c" font-size="13">
                 Au tap · TEE déverrouille · SE ou HCE parle au POS
@@ -752,7 +755,9 @@
             <p style="margin: 0">
               <strong>SE</strong> = la carte (puce + secrets) ·
               <strong>HCE</strong> = logiciel qui joue la carte ·
-              <strong>TEE</strong> = isolation CPU pour CDCVM / protection —
+              <strong>TEE</strong> = isolation CPU pour
+              <strong>CDCVM</strong>
+              (<em>Consumer Device Cardholder Verification Method</em>) —
               pas le canal RF. Un device combine souvent
               <strong>SE + TEE</strong> ou <strong>HCE + TEE</strong>.
             </p>
@@ -819,7 +824,7 @@
               <text x="740" y="323" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">UDK-AC chez le TSP · credentials courts</text>
 
               <text x="500" y="395" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">
-                Wallet = UX + orchestration · la combinaison SE/HCE + TEE + coffre fait le stack
+                Wallet = UX + orchestration · SE/HCE + TEE + coffre = couches techniques du device
               </text>
             </svg>
           </div>
@@ -829,6 +834,85 @@
             <a href="apple-pay.html">Apple Pay</a> ·
             <a href="google-pay.html">Google Pay</a>.
           </p>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Synthèse</p>
+          <h2>Question clé · Apple / Google ne sont pas émetteurs</h2>
+          <p class="intro">
+            Comment, avec la saisie de la carte, mettent-ils un sans-contact
+            <strong>interopérable</strong>&nbsp;? Et où naissent les secrets&nbsp;?
+          </p>
+
+          <div class="csm-table-wrap" style="margin-top: 1rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Point</th>
+                  <th scope="col">Réponse</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Rôle Apple / Google</th>
+                  <td>
+                    Pas émetteurs · pas de copie du PAN · UX + présentation NFC
+                    (SE ou HCE)
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Enrolment</th>
+                  <td>
+                    Saisie carte → <strong>TSP</strong> →
+                    <strong>émetteur autorise</strong> → token (DPAN)
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Interop POS</th>
+                  <td>
+                    Même tuyau qu’une carte CL (14443 Type&nbsp;A + EMV) —
+                    le terminal voit une carte
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">AuthZ</th>
+                  <td>
+                    Scheme → TSP (détokenisation) →
+                    <strong>émetteur décide</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Naissance des secrets</th>
+                  <td>
+                    Couple <strong>émetteur + TSP</strong> (cadré scheme) —
+                    génère / dérive UDK-AC · ni Apple ni Google ne les inventent
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Apple (SE)</th>
+                  <td>
+                    Même naissance réseau → secret long
+                    <strong>injecté dans l’eSE</strong> · Apple = coffre
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Android (HCE)</th>
+                  <td>
+                    Pas de coffre local digne → UDK-AC
+                    <strong>reste au TSP</strong> · phone = credentials courts
+                  </td>
+                </tr>
+                <tr class="is-exergue">
+                  <th scope="row">À retenir</th>
+                  <td>
+                    Secrets = émetteur / TSP · Apple/Google = NFC + coffre ou
+                    HCE · seule différence =
+                    <em>où on range</em> le secret long
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <div class="sources-box">
