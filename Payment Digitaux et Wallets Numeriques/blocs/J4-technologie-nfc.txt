@@ -1,4 +1,4 @@
-JOUR 4 — Technologie NFC
+JOUR 4 — Technologie NFC / sans contact
 Principes physiques (proximité, induction, session courte).
 Trois modes : card emulation, reader/writer, peer-to-peer.
 Card emulation téléphone : NFC (device) + 14443 + EMV Contactless (+ token)

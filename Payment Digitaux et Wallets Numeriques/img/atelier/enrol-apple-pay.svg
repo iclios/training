@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" role="img" aria-label="Ajouter une carte Apple Pay en quatre etapes">
+  <rect width="1000" height="320" fill="#f7f9fb"/>
+  <!-- 1 -->
+  <rect x="20" y="40" width="220" height="240" rx="28" fill="#1a2b3c"/>
+  <rect x="40" y="70" width="180" height="180" rx="12" fill="#e7f6f3"/>
+  <text x="130" y="110" text-anchor="middle" fill="#087a6a" font-family="Syne,sans-serif" font-size="14" font-weight="800">Wallet</text>
+  <circle cx="130" cy="160" r="28" fill="#0d9f8a"/>
+  <text x="130" y="166" text-anchor="middle" fill="#fff" font-size="28" font-weight="700">+</text>
+  <text x="130" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Ajouter une carte</text>
+  <text x="130" y="300" text-anchor="middle" fill="#087a6a" font-family="Syne,sans-serif" font-size="13" font-weight="700">1 · Ouvrir Wallet</text>
+  <!-- 2 -->
+  <rect x="270" y="40" width="220" height="240" rx="28" fill="#1a2b3c"/>
+  <rect x="290" y="70" width="180" height="180" rx="12" fill="#fff"/>
+  <rect x="310" y="100" width="140" height="88" rx="10" fill="#0d9f8a"/>
+  <text x="380" y="140" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">SCAN / SAISIE</text>
+  <text x="380" y="160" text-anchor="middle" fill="#e7f6f3" font-size="11">N° · exp · CVV</text>
+  <text x="380" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Infos carte</text>
+  <text x="380" y="300" text-anchor="middle" fill="#087a6a" font-family="Syne,sans-serif" font-size="13" font-weight="700">2 · Ajouter la carte</text>
+  <!-- 3 -->
+  <rect x="520" y="40" width="220" height="240" rx="28" fill="#1a2b3c"/>
+  <rect x="540" y="70" width="180" height="180" rx="12" fill="#fff"/>
+  <text x="630" y="120" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="800">Banque</text>
+  <text x="630" y="150" text-anchor="middle" fill="#5a6b7c" font-size="12">code SMS / app</text>
+  <rect x="570" y="170" width="120" height="36" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+  <text x="630" y="194" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">· · · ·</text>
+  <text x="630" y="300" text-anchor="middle" fill="#087a6a" font-family="Syne,sans-serif" font-size="13" font-weight="700">3 · Valider (émetteur)</text>
+  <!-- 4 -->
+  <rect x="770" y="40" width="210" height="240" rx="28" fill="#1a2b3c"/>
+  <rect x="790" y="70" width="170" height="180" rx="12" fill="#e7f6f3"/>
+  <rect x="810" y="100" width="130" height="80" rx="10" fill="#0d9f8a"/>
+  <text x="875" y="140" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">TOKEN</text>
+  <text x="875" y="160" text-anchor="middle" fill="#e7f6f3" font-size="11">prêt · eSE</text>
+  <text x="875" y="220" text-anchor="middle" fill="#5a6b7c" font-size="12">Carte ajoutée ✓</text>
+  <text x="875" y="300" text-anchor="middle" fill="#087a6a" font-family="Syne,sans-serif" font-size="13" font-weight="700">4 · Token prêt</text>
+</svg>

@@ -43,111 +43,270 @@
           <p class="section-label">Définition</p>
           <h2>Ancrer le geste dans le flux</h2>
           <p class="definition-full">
-            Atelier matériel&nbsp;: montrer l’antenne, lire un tag / une carte,
-            mesurer la distance utile, puis
-            <strong>tests sur téléphone Android</strong>
-            (NFC / wallet) — sans manipuler de données sensibles.
+            Atelier wallet&nbsp;: <strong>ajouter une carte</strong> dans
+            Apple&nbsp;Pay ou Google&nbsp;Pay (étapes&nbsp;1–4), puis
+            <strong>payer au tap</strong> sur un
+            <strong>Ingenico Lane&nbsp;5000</strong> (param TEST).
           </p>
         </section>
 
-        <section class="section">
+        <section class="section print-keep">
+          <p class="section-label">Kit</p>
+          <figure class="atelier-photo">
+            <img
+              src="../img/atelier/lane-5000.jpg"
+              alt="Terminal de paiement Ingenico Lane 5000"
+              width="900"
+              height="900"
+            />
+          </figure>
           <div class="atelier">
-            <p class="section-label" style="color: #0d9f8a">Kit</p>
             <h2>Matériel &amp; logiciel</h2>
             <div class="atelier-grid">
               <div>
-                <h3>À acheter</h3>
+                <h3>Terminal</h3>
                 <ul>
-                  <li>Module PN532 (antenne visible)</li>
-                  <li>Lecteur USB NFC ACR122U</li>
-                  <li>Pack tags NTAG213/215 (~80–150 €)</li>
+                  <li>Ingenico Lane&nbsp;5000 (param TEST)</li>
+                  <li>Acceptation contactless active</li>
                 </ul>
               </div>
               <div>
                 <h3>À apporter</h3>
                 <ul>
-                  <li>Carte sans contact</li>
-                  <li>Smartphones wallet (Apple / Google Pay)</li>
-                  <li>App NFC Tools (~2 min install)</li>
+                  <li>iPhone (Apple&nbsp;Pay) et/ou Android (Google&nbsp;Pay)</li>
+                  <li>Carte bancaire enrolable (idéalement test)</li>
+                  <li>Accès SMS / app banque (OTP)</li>
                 </ul>
               </div>
               <div>
                 <h3>Limites</h3>
                 <ul>
-                  <li>Seul jour avec achats matériel dédié</li>
-                  <li>Lecture UID / présence puce uniquement</li>
-                  <li>Tag ≠ paiement EMV · pas de données sensibles</li>
+                  <li>Lane&nbsp;5000 en environnement TEST</li>
+                  <li>Pas de données prod hors cadre séance</li>
+                  <li>Objectif = parcours, pas labo émetteur</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="section">
-          <p class="section-label">Déroulé</p>
-          <h2>Atelier guidé</h2>
-          <div class="diagram" id="diagram-atelier">
-            <div class="diagram-header">
-              <h3>Cinq temps</h3>
-              <p>Du physique au flux SI</p>
-            </div>
-            <div class="seq-steps" id="atelier-steps">
-              <button type="button" class="seq-step is-active" data-step="1">
-                <span class="n">1</span>
-                <span>
-                  <strong>Antenne</strong>
-                  <p>Montrer physiquement où se situe le couple RF.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="2">
-                <span class="n">2</span>
-                <span>
-                  <strong>Lecture</strong>
-                  <p>Lire tag / carte (UID) — mode reader/writer.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="3">
-                <span class="n">3</span>
-                <span>
-                  <strong>Distance</strong>
-                  <p>Tester la distance utile — ancrer la physique NFC.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="4">
-                <span class="n">4</span>
-                <span>
-                  <strong>Android</strong>
-                  <p>
-                    Tests NFC / wallet sur un téléphone Android.
-                  </p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="5">
-                <span class="n">5</span>
-                <span>
-                  <strong>NFC vs QR</strong>
-                  <p>
-                    Comparer le geste — rappel
-                    <a href="technologie-nfc.html">technologie NFC</a>.
-                  </p>
-                </span>
-              </button>
-            </div>
+        <!-- Apple Pay enrolment -->
+        <section class="section print-keep" id="enrol-apple">
+          <p class="section-label">Exemple A · Apple Pay</p>
+          <h2>Comment ajouter une carte</h2>
+          <p class="intro">
+            Sur iPhone&nbsp;: Wallet orchestre · le
+            <strong>TSP</strong> crée le token · l’<strong>émetteur</strong>
+            autorise · le secret durable va dans l’<strong>eSE</strong>.
+          </p>
+          <figure class="atelier-photo atelier-photo--wide">
+            <img
+              src="../img/atelier/enrol-apple-pay.svg"
+              alt="Quatre étapes pour ajouter une carte dans Apple Wallet"
+              width="1000"
+              height="320"
+            />
+          </figure>
+          <div class="csm-table-wrap" style="margin-top: 1rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Étape</th>
+                  <th scope="col">Sur le téléphone</th>
+                  <th scope="col">Côté réseau</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>
+                    Ouvrir l’app <strong>Wallet</strong> (icône préinstallée
+                    iPhone) →
+                    <strong>+</strong> en haut à droite →
+                    <strong>Carte de débit ou de crédit</strong>
+                  </td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>
+                    Continuer → scan caméra ou
+                    <strong>Saisir les détails de la carte</strong> →
+                    Suivant · accepter les conditions
+                  </td>
+                  <td>Wallet → demande d’enrolment au <strong>TSP</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>
+                    Choisir la vérif. (SMS, appel, app banque) · saisir le code
+                  </td>
+                  <td>
+                    <strong>Émetteur</strong> valide le porteur (IDV)
+                  </td>
+                </tr>
+                <tr class="is-exergue">
+                  <th scope="row">4</th>
+                  <td>
+                    Carte apparaît dans Wallet · Face&nbsp;ID / Touch&nbsp;ID
+                    prêts
+                  </td>
+                  <td>
+                    TSP provisionne le <strong>token</strong> dans l’eSE
+                    (UDK-AC locale)
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+          <p class="montage-example" style="margin-top: 0.75rem">
+            <strong>Repère</strong>&nbsp;: tant que l’étape&nbsp;3 n’est pas
+            validée, aucun token n’est utilisable au POS.
+          </p>
         </section>
 
-        <section class="section">
-          <p class="section-label">Clarification</p>
-          <h2>Ce que l’atelier n’est pas</h2>
-          <div class="not-list">
-            <div class="not-item">
-              <strong>≠ Paiement réel</strong>
-              <p>Lecture UID / démo — pas d’autorisation live avec données prod.</p>
-            </div>
-            <div class="not-item">
-              <strong>Tag ≠ wallet</strong>
-              <p>Reader/writer ≠ card emulation de paiement.</p>
-            </div>
+        <!-- Google Pay enrolment -->
+        <section class="section print-keep" id="enrol-google">
+          <p class="section-label">Exemple B · Google Pay / Google Wallet</p>
+          <h2>Comment ajouter une carte (Android)</h2>
+          <p class="intro">
+            Sur Android, l’app s’appelle
+            <strong>Google Wallet</strong> (pas un dossier «&nbsp;Wallet&nbsp;»
+            générique). Google&nbsp;Pay = le paiement&nbsp;;
+            <strong>Google Wallet</strong> = l’app où on ajoute la carte.
+            Si absente&nbsp;: Play Store → «&nbsp;Google Wallet&nbsp;».
+          </p>
+          <figure class="atelier-photo atelier-photo--wide">
+            <img
+              src="../img/atelier/enrol-google-pay.svg"
+              alt="Quatre étapes pour ajouter une carte dans Google Wallet"
+              width="1000"
+              height="320"
+            />
+          </figure>
+          <div class="csm-table-wrap" style="margin-top: 1rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Étape</th>
+                  <th scope="col">Geste exact sur Android</th>
+                  <th scope="col">Côté réseau</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">0</th>
+                  <td>
+                    Tiroir d’apps → rechercher
+                    <strong>Wallet</strong> ou
+                    <strong>Google Wallet</strong> · sinon installer depuis le
+                    Play Store · se connecter au compte Google
+                  </td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>
+                    Ouvrir <strong>Google Wallet</strong> → en bas
+                    <strong>Ajouter à Wallet</strong>
+                  </td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>
+                    <strong>Carte de paiement</strong> →
+                    <strong>Nouvelle carte de crédit ou de débit</strong> →
+                    scan caméra ou saisie manuelle →
+                    <strong>Enregistrer et continuer</strong>
+                  </td>
+                  <td>Demande d’enrolment au <strong>TSP</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>
+                    Lire / <strong>Accepter</strong> les CGU émetteur · choisir
+                    la vérif. (SMS, e-mail, app banque) · saisir le code
+                  </td>
+                  <td>
+                    <strong>Émetteur</strong> valide le porteur (IDV)
+                  </td>
+                </tr>
+                <tr class="is-exergue">
+                  <th scope="row">4</th>
+                  <td>
+                    Carte visible dans Google Wallet · activer
+                    <strong>NFC</strong> ·
+                    Réglages → Appareils connectés → Préférences de connexion →
+                    <strong>Paiements sans contact</strong> → choisir
+                    <strong>Google Wallet</strong> (défaut)
+                  </td>
+                  <td>
+                    Token prêt · <strong>UDK-AC au TSP</strong> · HCE + LUK
+                    (credentials courts)
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="montage-example" style="margin-top: 0.75rem">
+            <strong>Repère</strong>&nbsp;: sans app Google Wallet + NFC défaut,
+            le tap POS échoue même si la carte est «&nbsp;dans Google&nbsp;».
+            Secret long au TSP · LUK rechargés online.
+          </p>
+        </section>
+
+        <!-- Lane 5000 -->
+        <section class="section print-keep" id="lane-tap">
+          <p class="section-label">Étape 5 · Transaction</p>
+          <h2>Tap sur Lane&nbsp;5000</h2>
+          <figure class="atelier-photo">
+            <img
+              src="../img/atelier/lane-5000.jpg"
+              alt="Terminal de paiement Ingenico Lane 5000"
+              width="900"
+              height="900"
+            />
+          </figure>
+          <p class="intro">
+            Une fois la carte enrolée&nbsp;: montant TEST sur le Lane&nbsp;5000
+            → CDCVM sur le phone → tap (card emulation) → suivre
+            approve / decline.
+          </p>
+          <div class="csm-table-wrap" style="margin-top: 1rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Geste</th>
+                  <th scope="col">Ce qui se passe</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Montant</th>
+                  <td>Saisir un montant TEST sur le Lane&nbsp;5000</td>
+                </tr>
+                <tr>
+                  <th scope="row">CDCVM</th>
+                  <td>
+                    Face&nbsp;ID / Touch&nbsp;ID / empreinte / code sur le phone
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Tap</th>
+                  <td>
+                    Phone près du lecteur · Type&nbsp;A · EMV CL · token
+                    (pas le PAN)
+                  </td>
+                </tr>
+                <tr class="is-exergue">
+                  <th scope="row">Résultat</th>
+                  <td>
+                    AuthZ · TSP détokenise · émetteur décide · ticket TEST
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
 

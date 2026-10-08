@@ -1,6 +1,6 @@
 window.J4_NAV = [
   { type: "item", id: "intro", title: "Intro & objectifs", href: "intro.html" },
-  { type: "item", id: "technologie-nfc", title: "Technologie NFC", href: "technologie-nfc.html" },
+  { type: "item", id: "technologie-nfc", title: "Technologie NFC / sans contact", href: "technologie-nfc.html" },
   {
     type: "item",
     id: "paiement-contactless",

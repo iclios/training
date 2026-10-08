@@ -494,7 +494,64 @@
             </svg>
           </div>
 
-          <div class="callout" style="margin-top: 1.25rem">
+                    <div class="csm-table-wrap" style="margin-top: 1.25rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col" colspan="2">
+                    «&nbsp;Court&nbsp;» = durée de vie limitée (HCE)
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Secret long</th>
+                  <td>
+                    <strong>UDK-AC</strong> reste au <strong>TSP</strong> —
+                    jamais en stock durable sur le phone
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    Credentials / LUK
+                    <br />
+                    <span style="font-weight: 500; color: var(--muted)">
+                      Limited Use Key
+                    </span>
+                  </th>
+                  <td>
+                    Clé à usage limité ·
+                    <strong>vie courte</strong> (TTL heures/jours et/ou nb de
+                    taps) — pas «&nbsp;clé plus petite&nbsp;»
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Quand envoyés&nbsp;?</th>
+                  <td>
+                    (1) à l’<strong>enrolment</strong> ·
+                    (2) <strong>recharge amont</strong> quand le phone est
+                    online (Wi‑Fi / data)
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Pas au tap</th>
+                  <td>
+                    Le POS parle au <strong>HCE</strong>, pas au TSP —
+                    pas de recharge via le terminal
+                  </td>
+                </tr>
+                <tr class="is-exergue">
+                  <th scope="row">Offline</th>
+                  <td>
+                    Utilise un credential encore valide · stock épuisé → tap
+                    bloqué jusqu’à la prochaine recharge
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+<div class="callout" style="margin-top: 1.25rem">
             <h3>À ce stade</h3>
             <p style="margin: 0">
               <strong>SE</strong> = la carte (puce + secrets) ·
@@ -836,7 +893,7 @@
           </p>
         </section>
 
-        <section class="section">
+        <section class="section print-keep">
           <p class="section-label">Synthèse</p>
           <h2>Question clé · Apple / Google ne sont pas émetteurs</h2>
           <p class="intro">

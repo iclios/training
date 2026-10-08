@@ -1,6 +1,20 @@
 JOUR 4 — Atelier
-À acheter (seul jour) : PN532, ACR122U, pack tags NTAG (~80–150 €).
-À apporter : carte CL, smartphones wallet, NFC Tools.
-Déroulé : antenne → lecture UID → distance → lien flux mobile → NFC vs QR.
-Limites : pas de données sensibles · tag ≠ paiement EMV.
-Check fin J4 : canal physique + wallet dans le flux.
+Kit : iPhone et/ou Android · carte enrolable · Lane 5000 (param TEST).
+
+Exemple Apple Pay — ajouter une carte
+1 · Wallet → + → Carte de paiement
+2 · Scan / saisie → demande TSP
+3 · OTP / app banque → émetteur valide
+4 · Token dans eSE · carte prête
+
+Exemple Google Pay — ajouter une carte (Android)
+0 · Trouver / installer l’app « Google Wallet » (Play Store si besoin)
+1 · Google Wallet → Ajouter à Wallet
+2 · Carte de paiement → Nouvelle carte → scan/saisie → Enregistrer et continuer
+3 · Accepter CGU → OTP banque → émetteur valide
+4 · Carte visible · NFC ON · Paiements sans contact = Google Wallet (défaut)
+   Token prêt · UDK-AC au TSP · HCE + LUK
+
+5 · Tap Lane 5000 (TEST) · CDCVM · approve / decline
+
+Images : img/atelier/enrol-apple-pay.svg · enrol-google-pay.svg · lane-5000.jpg

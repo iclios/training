@@ -195,7 +195,7 @@ JOUR 4 — NFC, sans contact & wallets numériques (4h)
 ================================================================================
 Objectif du jour : appliquer tokenisation + environnements sécurisés au canal de proximité et aux wallets.
 
-4.1 Technologie NFC
+4.1 Technologie NFC / sans contact
 - Principes physiques
 Modes NFC :
 - Card emulation
@@ -254,10 +254,10 @@ Les étudiants identifient :
 Prérequis mobilisés : J1 (flux carte) + J3 (tokenisation) + J4 (NFC/wallet)
 
 --- Proposition élément palpable (physique / logiciel) ---
-- À acheter / apporter : module PN532 (antenne visible), lecteur USB NFC type ACR122U, tags NFC (NTAG), carte sans contact, smartphones Apple Pay / Google Pay
-- Logiciel : app NFC Tools ; optionnel démo HCE Android (non bancaire)
-- Atelier suggéré (~75 min) : montrer l’antenne → lire tag/carte (UID, ISO 14443) → tester la distance → relier au paiement smartphone→POS (SE / HCE / token J3)
-- Attention : lecture UID / présence puce uniquement, pas d’extraction de données sensibles
+- Matériel : smartphones Apple Pay / Google Pay · carte enrolable · Ingenico Lane 5000 (param TEST)
+- Atelier suggéré (~75 min) : enrolment carte dans le wallet (étapes 1–4) → transaction tap sur Lane 5000 (CDCVM · approve/decline)
+- Relier : TSP / émetteur · token (SE ou HCE) · card emulation · POS
+- Attention : environnement TEST · pas de déploiement marchand live
 
 
 ================================================================================
@@ -332,15 +332,12 @@ J5  Omnicanal & conception SI (synthèse)
 LISTE DE COURSES — matériel & logiciels (5 jours)
 ================================================================================
 Public cible atelier : ~12–15 personnes
-Budget matériel indicatif (achats) : ~80–150 €
+Budget matériel indicatif (achats) : stickers QR + consommables salle
 
 
 --------------------------------------------------------------------------------
 À ACHETER (priorité)
 --------------------------------------------------------------------------------
-- Lecteur USB NFC ACR122U                          → J4 · qté 1–2
-- Module PN532 (antenne visible)                   → J4 · qté 1
-- Pack tags NFC NTAG213/215                        → J4 · qté 1 pack (10–20)
 - Stickers QR + présentoirs / supports             → J2 · qté 10–20 stickers + 2–3 supports
 - Papier A3 / tableau + post-its + marqueurs       → J1–J5 · 1 kit salle
 - Aimants / étiquettes composants SI               → J5 · 1 set
@@ -350,11 +347,11 @@ Budget matériel indicatif (achats) : ~80–150 €
 --------------------------------------------------------------------------------
 À APPORTER (pas d’achat obligatoire)
 --------------------------------------------------------------------------------
-- Terminal Ingenico Lane 5000 (param TEST)         → J1
+- Terminal Ingenico Lane 5000 (param TEST)         → J1 · J4
 - Cartes de test contact + sans contact            → J1 (priorité) ; aussi J3, J4
 - Ticket / journal terminal si disponible          → J1
 - 1–2 smartphones (idéalement Android + iPhone)    → J2, J4
-  (QR scan + Apple Pay / Google Pay si possible)
+  (QR scan + Apple Pay / Google Pay)
 - PC formateur + vidéoprojecteur                   → tous les jours
 
 
@@ -364,7 +361,6 @@ LOGICIEL / COMPTES (gratuits ou sandbox)
 - Compte sandbox PSP (Stripe / Adyen / Checkout)   → J1, J5
 - Postman + collection auth approve / decline      → J1, J5
 - Générateur QR (statique / dynamique)             → J2
-- App NFC Tools (mobile)                           → J4
 - Sandbox VTS / MDES si accès banque               → J3
   (sinon simulateur maison PAN ↔ token ↔ cryptogramme)
 - Mock gateway 3 canaux (carte / QR / token)       → J5
@@ -376,7 +372,7 @@ PAR JOUR (rappel atelier)
 J1  Lane 5000 + cartes test + Postman
 J2  Stickers QR + 2 téléphones + générateur QR
 J3  Carte + capture wallet + sandbox token / simulateur
-J4  Achats principaux : PN532, ACR122U, tags + wallets sur téléphone
+J4  Enrolment Apple / Google Pay + tap Lane 5000 (TEST)
 J5  Postman multi-canaux + mur post-its (réutilise le reste)
 
 

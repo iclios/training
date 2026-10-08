@@ -1,0 +1,435 @@
+#!/usr/bin/env python3
+"""Lecture / écriture de tags NFC Type 2 (NTAG / Ultralight) via PC/SC."""
+
+from __future__ import annotations
+
+import argparse
+import re
+import subprocess
+import sys
+import time
+import webbrowser
+from typing import List, Optional, Tuple
+
+READER_RE = re.compile(r"Contactless", re.I)
+DEFAULT_READER = "Alcor Link AK9567 [Contactless Card Reader] 01 00"
+
+HELP_TEXT = """\
+nfc-tag — lecture / écriture de tags NFC (Type 2 : NTAG / Ultralight)
+
+LECTEUR
+  Cible automatiquement l'interface sans contact (ex. Alcor AK9567 Contactless).
+  Pose le tag sur la zone NFC du lecteur, pas sur le slot contact EMV.
+
+COMMANDES
+  listen                  Écoute continue : dump à chaque pose de tag (Ctrl+C pour quitter)
+  read                    Une lecture (UID, CC, contenu NDEF)
+  write "texte"           Écrit un enregistrement NDEF texte
+  write-url <url>         Écrit un enregistrement NDEF URL
+  clear                   Efface la zone NDEF (tag vide)
+  help                    Affiche cette aide
+
+  Si la lecture détecte une URL (http/https), propose d'ouvrir le site
+  dans le navigateur (o/oui pour accepter, Entrée ou n pour refuser).
+
+OPTIONS
+  -r, --reader NOM        Force le nom exact du lecteur PC/SC
+  -h, --help              Aide argparse (courte)
+
+EXEMPLES
+  ./nfc-tag help
+  ./nfc-tag listen
+  ./nfc-tag read
+  ./nfc-tag write "atelier J4"
+  ./nfc-tag write-url https://example.com
+  ./nfc-tag clear
+
+NOTES
+  Adapté à l'AK9567 (écriture page par page, APDU Lc=0x10).
+  Nécessite pcscd + pcsc-tools (scriptor). Tags : NTAG213/215/216, Ultralight.
+  Ne fonctionne pas pour écrire via NFC Tools sur ce lecteur.
+"""
+
+
+def list_readers() -> List[str]:
+    out = subprocess.check_output(["pcsc_scan", "-r"], text=True, stderr=subprocess.DEVNULL)
+    readers = []
+    for line in out.splitlines():
+        # "0: Name" or "1: Name"
+        m = re.match(r"^\d+:\s*(.+)$", line.strip())
+        if m:
+            readers.append(m.group(1).strip())
+    return readers
+
+
+def pick_reader(forced: Optional[str] = None) -> str:
+    if forced:
+        return forced
+    readers = list_readers()
+    for r in readers:
+        if READER_RE.search(r):
+            return r
+    if readers:
+        return readers[0]
+    raise SystemExit("Aucun lecteur PC/SC détecté. Branche le lecteur et lance pcscd.")
+
+
+def scriptor(apdus: List[str], reader: str, timeout: float = 8.0) -> str:
+    body = "reset\n" + "\n".join(apdus) + "\n"
+    # scriptor parse "quit" mal → on ferme stdin
+    try:
+        proc = subprocess.run(
+            ["scriptor", "-r", reader],
+            input=body,
+            text=True,
+            capture_output=True,
+            timeout=timeout,
+        )
+    except subprocess.TimeoutExpired as e:
+        return (e.stdout or "") + (e.stderr or "")
+    return (proc.stdout or "") + (proc.stderr or "")
+
+
+def parse_sw_data(output: str) -> List[bytes]:
+    """Extrait les data+SW des réponses '< xx xx …'."""
+    results = []
+    for line in output.splitlines():
+        line = line.strip()
+        if not line.startswith("<"):
+            continue
+        if line.startswith("< OK:"):
+            continue
+        hexpart = line[1:].split(":")[0].strip()
+        hexpart = re.sub(r"\s+", " ", hexpart)
+        toks = [t for t in hexpart.split(" ") if re.fullmatch(r"[0-9A-Fa-f]{2}", t)]
+        if not toks:
+            continue
+        results.append(bytes(int(t, 16) for t in toks))
+    return results
+
+
+def get_uid(reader: str) -> Optional[bytes]:
+    out = scriptor(["FF CA 00 00 00"], reader, timeout=4.0)
+    for data in parse_sw_data(out):
+        if len(data) >= 2 and data[-2:] == b"\x90\x00":
+            return data[:-2]
+        if len(data) >= 3 and data[-3:] == b"\x90\x90\x00":
+            # certains lecteurs doublent le SW
+            return data[:-3]
+        if len(data) >= 4 and data[-2] == 0x90:
+            return data[:-2]
+    if "No smartcard" in out or "Card removed" in out:
+        return None
+    # échec / pas de carte
+    if "Can't allocate" in out or "No smartcard inserted" in out:
+        return None
+    return None
+
+
+def read_pages(reader: str, start: int, n_pages: int = 4) -> bytes:
+    """Lit n_pages × 4 octets. Une APDU lit 16 octets (4 pages)."""
+    buf = bytearray()
+    page = start
+    while page < start + n_pages:
+        # Lc Le = 10h → 16 octets
+        out = scriptor([f"FF B0 00 {page:02X} 10"], reader)
+        datas = parse_sw_data(out)
+        if not datas:
+            raise RuntimeError(f"Lecture page {page} échouée:\n{out}")
+        raw = datas[-1]
+        if len(raw) >= 2 and raw[-2:] == b"\x90\x00":
+            payload = raw[:-2]
+        else:
+            payload = raw
+        # 16 octets utiles
+        chunk = payload[:16]
+        take = min(16, (start + n_pages - page) * 4)
+        buf.extend(chunk[:take])
+        page += 4
+    return bytes(buf)
+
+
+def write_page(reader: str, page: int, four: bytes) -> None:
+    if len(four) != 4:
+        raise ValueError("page = 4 octets")
+    # AK9567 : Lc=10 obligatoire, seuls 4 premiers octets persistés
+    pad = four + bytes(12)
+    hexdata = " ".join(f"{b:02X}" for b in pad)
+    out = scriptor([f"FF D6 00 {page:02X} 10 {hexdata}"], reader)
+    datas = parse_sw_data(out)
+    ok = any(d.endswith(b"\x90\x00") for d in datas)
+    if not ok:
+        raise RuntimeError(f"Écriture page {page:02X} échouée:\n{out}")
+
+
+def write_user_bytes(reader: str, data: bytes, start_page: int = 4) -> None:
+    # pad à multiple de 4
+    if len(data) % 4:
+        data = data + bytes(4 - (len(data) % 4))
+    for i in range(0, len(data), 4):
+        write_page(reader, start_page + i // 4, data[i : i + 4])
+
+
+def ndef_text(text: str, lang: str = "fr") -> bytes:
+    lang_b = lang.encode("ascii")
+    payload = bytes([len(lang_b) & 0x3F]) + lang_b + text.encode("utf-8")
+    # Record: MB+ME+SR+TNF_WELL_KNOWN (0xD1), type "T"
+    rec = bytes([0xD1, 0x01, len(payload), 0x54]) + payload
+    if len(rec) > 254:
+        raise SystemExit("Texte trop long pour TLV court")
+    return bytes([0x03, len(rec)]) + rec + bytes([0xFE])
+
+
+def ndef_uri(url: str) -> bytes:
+    prefixes = [
+        "",
+        "http://www.",
+        "https://www.",
+        "http://",
+        "https://",
+        "tel:",
+        "mailto:",
+        "ftp://anonymous:anonymous@",
+        "ftp://ftp.",
+        "ftps://",
+        "sftp://",
+        "smb://",
+        "nfs://",
+        "ftp://",
+        "dav://",
+        "news:",
+        "telnet://",
+        "imap:",
+        "rtsp://",
+        "urn:",
+        "pop:",
+        "sip:",
+        "sips:",
+        "tftp:",
+        "btspp://",
+        "btl2cap://",
+        "btgoep://",
+        "tcpobex://",
+        "irdaobex://",
+        "file://",
+        "urn:epc:id:",
+        "urn:epc:tag:",
+        "urn:epc:pat:",
+        "urn:epc:raw:",
+        "urn:epc:",
+        "urn:nfc:",
+    ]
+    code = 0
+    rest = url
+    for i, p in enumerate(prefixes):
+        if p and url.startswith(p):
+            code = i
+            rest = url[len(p) :]
+            break
+    payload = bytes([code]) + rest.encode("utf-8")
+    rec = bytes([0xD1, 0x01, len(payload), 0x55]) + payload
+    if len(rec) > 254:
+        raise SystemExit("URL trop longue")
+    return bytes([0x03, len(rec)]) + rec + bytes([0xFE])
+
+
+def parse_ndef_user(user: bytes) -> Tuple[str, Optional[str]]:
+    """Décode un TLV Type 2 + 1 record NDEF.
+
+    Retourne (libellé affichable, url_si_présente_ou_None).
+    """
+    i = 0
+    while i < len(user):
+        t = user[i]
+        if t == 0x00:  # NULL
+            i += 1
+            continue
+        if t == 0xFE:  # Terminator
+            break
+        if i + 1 >= len(user):
+            break
+        ln = user[i + 1]
+        if ln == 0xFF:
+            return "(TLV long non supporté)", None
+        val = user[i + 2 : i + 2 + ln]
+        i = i + 2 + ln
+        if t != 0x03:
+            continue
+        if len(val) < 3:
+            return f"NDEF brut: {val.hex(' ')}", None
+        type_len = val[1]
+        payload_len = val[2]
+        typ = val[3 : 3 + type_len]
+        payload = val[3 + type_len : 3 + type_len + payload_len]
+        if typ == b"T" and payload:
+            lang_len = payload[0] & 0x3F
+            lang = payload[1 : 1 + lang_len].decode("ascii", "replace")
+            text = payload[1 + lang_len :].decode("utf-8", "replace")
+            # texte qui ressemble à une URL
+            maybe = text.strip()
+            url = maybe if re.match(r"^https?://", maybe, re.I) else None
+            return f'Texte ({lang}): "{text}"', url
+        if typ == b"U" and payload:
+            prefixes = [
+                "",
+                "http://www.",
+                "https://www.",
+                "http://",
+                "https://",
+                "tel:",
+                "mailto:",
+            ]
+            code = payload[0]
+            pref = prefixes[code] if code < len(prefixes) else ""
+            url = pref + payload[1:].decode("utf-8", "replace")
+            return f"URL: {url}", url
+        return f"NDEF type={typ!r} payload={payload.hex(' ')}", None
+    if user[:3] == b"\x03\x00\xfe":
+        return "(vide)", None
+    return f"Données: {user[:32].hex(' ')}…", None
+
+
+def decode_ndef_user(user: bytes) -> str:
+    return parse_ndef_user(user)[0]
+
+
+def offer_open_url(url: str) -> None:
+    """Propose d'ouvrir une URL http(s) dans le navigateur."""
+    if not re.match(r"^https?://", url, re.I):
+        return
+    try:
+        ans = input(f"Ouvrir le site {url} ? [o/N] ").strip().lower()
+    except EOFError:
+        return
+    if ans in ("o", "oui", "y", "yes"):
+        print(f"Ouverture de {url}…")
+        webbrowser.open(url)
+    else:
+        print("Ouverture annulée.")
+
+
+def cmd_read(reader: str) -> int:
+    uid = get_uid(reader)
+    if not uid:
+        print("Aucune carte posée.", file=sys.stderr)
+        return 1
+    print(f"UID : {uid.hex(' ').upper()}")
+    try:
+        cc_and = read_pages(reader, 3, 1)  # page 3 = CC (4 octets) ; on lit 16 → pages 3-6
+        # Relire zone user depuis page 4 (16 pages max pour affichage)
+        user = read_pages(reader, 4, 16)
+    except RuntimeError as e:
+        print(e, file=sys.stderr)
+        return 1
+    cc = cc_and[:4]
+    print(f"CC  : {cc.hex(' ').upper()}")
+    if len(cc) == 4 and cc[0] == 0xE1:
+        print(f"     capacité user ≈ {cc[2] * 8} octets")
+    label, url = parse_ndef_user(user)
+    print(f"NDEF: {label}")
+    print(f"Dump page 04+: {user[:48].hex(' ')}")
+    if url:
+        offer_open_url(url)
+    return 0
+
+
+
+def cmd_listen(reader: str) -> int:
+    print(f"Écoute sur : {reader}")
+    print("Pose / retire un tag (Ctrl+C pour quitter)…")
+    last: Optional[bytes] = None
+    try:
+        while True:
+            uid = get_uid(reader)
+            if uid and uid != last:
+                print("-" * 48)
+                cmd_read(reader)
+                last = uid
+            elif not uid:
+                if last is not None:
+                    print("(tag retiré)")
+                last = None
+            time.sleep(0.35)
+    except KeyboardInterrupt:
+        print("\nStop.")
+        return 0
+
+
+def cmd_write(reader: str, payload: bytes, label: str) -> int:
+    print(f"Écriture {label} ({len(payload)} octets)…")
+    print("Pose le tag et attends.")
+    # attendre une carte
+    uid = None
+    for _ in range(40):
+        uid = get_uid(reader)
+        if uid:
+            break
+        time.sleep(0.25)
+    if not uid:
+        print("Timeout : aucun tag.", file=sys.stderr)
+        return 1
+    print(f"UID : {uid.hex(' ').upper()}")
+    try:
+        write_user_bytes(reader, payload, 4)
+    except RuntimeError as e:
+        print(e, file=sys.stderr)
+        return 1
+    # vérif
+    time.sleep(0.15)
+    user = read_pages(reader, 4, max(4, (len(payload) + 15) // 16 * 4))
+    print(f"OK  : {decode_ndef_user(user)}")
+    return 0
+
+
+def print_help() -> int:
+    print(HELP_TEXT)
+    return 0
+
+
+def main() -> int:
+    if len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] in ("help", "-h", "--help")):
+        return print_help()
+
+    ap = argparse.ArgumentParser(
+        prog="nfc-tag",
+        description="Lecture / écriture tags NFC (AK9567 / PC/SC)",
+        epilog="Lance « ./nfc-tag help » pour l'aide complète.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    ap.add_argument("-r", "--reader", help="Nom exact du lecteur PC/SC contactless")
+    sub = ap.add_subparsers(dest="cmd", required=True)
+
+    sub.add_parser("help", help="Affiche l'aide complète")
+    sub.add_parser("listen", help="Écoute continue")
+    sub.add_parser("read", help="Une lecture")
+    sub.add_parser("clear", help="Efface NDEF (tag vide)")
+
+    p_w = sub.add_parser("write", help="Écrit un texte NDEF")
+    p_w.add_argument("texte", help="Texte à écrire sur le tag")
+
+    p_u = sub.add_parser("write-url", help="Écrit une URL NDEF")
+    p_u.add_argument("url", help="URL à écrire (http/https/…)")
+
+    args = ap.parse_args()
+
+    if args.cmd == "help":
+        return print_help()
+
+    reader = pick_reader(args.reader)
+
+    if args.cmd == "listen":
+        return cmd_listen(reader)
+    if args.cmd == "read":
+        return cmd_read(reader)
+    if args.cmd == "clear":
+        return cmd_write(reader, bytes([0x03, 0x00, 0xFE]), "NDEF vide")
+    if args.cmd == "write":
+        return cmd_write(reader, ndef_text(args.texte), f'texte "{args.texte}"')
+    if args.cmd == "write-url":
+        return cmd_write(reader, ndef_uri(args.url), f"URL {args.url}")
+    return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+
