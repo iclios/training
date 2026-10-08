@@ -224,7 +224,7 @@
             </section>
 
             <!-- Auth : qui voit token / PAN -->
-            <section class="section" id="auth">
+            <section class="section print-keep" id="auth">
               <p class="section-label">Usage · Auth</p>
               <h2>Qui voit le token · qui voit le PAN</h2>
               <p class="intro">
@@ -312,7 +312,7 @@
                     <text x="50" y="285" fill="#1a2b3c" font-size="13">Acceptation (POS / PSP) puis acquéreur reçoivent et routent le token — souvent un DPAN.</text>
                     <text x="50" y="315" fill="#1a2b3c" font-size="13">L’acquéreur traite une Auth «&nbsp;comme une carte&nbsp;», mais sans le PAN d’origine.</text>
                     <text x="50" y="345" fill="#1a2b3c" font-size="13">C’est l’intérêt PCI de la network tokenization le long de la chaîne d’acceptation.</text>
-                    <text x="50" y="375" fill="#087a6a" font-size="13" font-weight="700">Réponse salle : chez l’acquéreur, c’est le token qui part en Auth — pas le PAN.</text>
+                    <text x="50" y="375" fill="#087a6a" font-size="13" font-weight="700">Chez l’acquéreur, c’est le token qui part en Auth — pas le PAN.</text>
                   </g>
                   <g class="step-panel" data-step="3">
                     <rect x="20" y="210" width="960" height="190" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
@@ -352,6 +352,12 @@
               </div>
 
               <!-- Nuance network vs vault marchand -->
+            </section>
+
+            <section class="section print-keep">
+              <p class="section-label">Usage · Auth</p>
+              <h2>Deux modèles de token</h2>
+
               <div class="diagram" id="diagram-nuance-vault" style="margin-top: 1.25rem">
                 <div class="diagram-header">
                   <h3>Deux modèles de token</h3>
@@ -452,7 +458,7 @@
                     <text x="70" y="225" fill="#1a2b3c" font-size="13">Fin de vie du token (désenrôlement, fin d’app, device changé…).</text>
                     <text x="70" y="255" fill="#1a2b3c" font-size="13">Nouveau device → en général nouveau provisioning (nouveau contexte).</text>
                     <text x="70" y="285" fill="#1a2b3c" font-size="13">COF&nbsp;: renouvellement carte peut garder le même token si le TSP maj le mapping.</text>
-                    <text x="70" y="320" fill="#3d5a80" font-size="13" font-weight="700">Cycle token ≠ cycle carte — c’est le point pédagogique clé.</text>
+                    <text x="70" y="320" fill="#3d5a80" font-size="13" font-weight="700">Cycle token ≠ cycle carte — c’est le point clé.</text>
                   </g>
                 </svg>
                 <div class="seq-steps" id="gouv-steps">

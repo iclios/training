@@ -476,6 +476,7 @@
   .support-doc h3,
   .support-doc h4,
   .support-doc .section-label,
+  .support-doc .intro,
   .support-doc .day-kicker,
   .support-doc .fiche-meta,
   .support-doc .monnaie-sub,
@@ -489,6 +490,7 @@
   .support-doc h3 + *,
   .support-doc h4 + *,
   .support-doc .section-label + *,
+  .support-doc .intro + *,
   .support-doc .day-kicker + *,
   .support-doc .diagram-header + * {
     break-before: avoid !important;
@@ -496,9 +498,17 @@
   }
 
   .support-doc .section > .section-label,
-  .support-doc .section > h2 {
+  .support-doc .section > h2,
+  .support-doc .section > .intro {
     break-after: avoid !important;
     page-break-after: avoid !important;
+  }
+
+  /* Titre / intro collés au schéma qui suit (évite orphelin bas de page) */
+  .support-doc .section > .intro + .diagram,
+  .support-doc .section > h2 + .diagram {
+    break-before: avoid !important;
+    page-break-before: avoid !important;
   }
 
   .support-doc p,
@@ -686,6 +696,65 @@
   .support-doc .domaine-tile img {
     width: 24px !important;
     height: 24px !important;
+  }
+
+  /* PAN / token : photos réduites, côte à côte */
+  .support-doc .visuel-pair {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6pt !important;
+    margin: 4pt 0 2pt !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .support-doc .visuel-pair-card {
+    padding: 5pt 6pt !important;
+    gap: 3pt !important;
+    border-radius: 4pt !important;
+  }
+
+  .support-doc .visuel-pair-card h3 {
+    font-size: 10pt !important;
+  }
+
+  .support-doc .visuel-pair-card .visuel-tag {
+    font-size: 6.5pt !important;
+    padding: 1pt 3pt !important;
+  }
+
+  .support-doc .visuel-pair-card .visuel-frame {
+    display: block !important;
+    width: 42mm !important;
+    height: 16mm !important;
+    max-width: 42mm !important;
+    max-height: 16mm !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+
+  /* Schéma « Substitution illustrée » juste après : plus compact */
+  .support-doc #definition--diagram-pan-token {
+    margin-top: 4pt !important;
+  }
+
+  .support-doc #definition--diagram-pan-token > svg {
+    max-height: 28mm !important;
+  }
+
+  .support-doc .visuel-pair-card .visuel-def {
+    font-size: 7.5pt !important;
+    line-height: 1.3 !important;
+  }
+
+  .support-doc .visuel-pair-card .visuel-example {
+    font-size: 7.5pt !important;
+  }
+
+  .support-doc .visuel-pair-note {
+    font-size: 7.5pt !important;
+    margin: 3pt 0 0 !important;
   }
 
   .support-doc .domaine-tile span {

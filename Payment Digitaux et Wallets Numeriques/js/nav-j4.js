@@ -15,12 +15,6 @@ window.J4_NAV = [
   },
   { type: "item", id: "apple-pay", title: "Apple Pay", href: "apple-pay.html" },
   { type: "item", id: "google-pay", title: "Google Pay", href: "google-pay.html" },
-  {
-    type: "item",
-    id: "cas-pratique",
-    title: "Cas pratique smartphone → POS",
-    href: "cas-pratique.html",
-  },
   { type: "item", id: "atelier", title: "Atelier", href: "atelier.html" },
   { type: "item", id: "support", title: "Support", href: "support.html" },
 ];

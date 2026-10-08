@@ -53,15 +53,273 @@
             sans remplacer l’émetteur ni la décision AuthZ.
           </p>
           <p class="intro" style="margin-top: 1.1rem">
-            SE, HCE, TEE&nbsp;: modèles de confiance — pas un classement
-            «&nbsp;bon / mauvais&nbsp;».
+            Avant SE / HCE&nbsp;: ce que la
+            <strong>puce carte classique</strong> porte déjà — même famille de
+            secrets, autre boîte.
           </p>
         </section>
 
-        <!-- SE / HCE / TEE -->
+        <!-- Puce classique — référence avant SE / HCE -->
+        <section class="section">
+          <p class="section-label">Référence · carte plastique</p>
+          <h2>Que contient une puce classique&nbsp;?</h2>
+          <p class="definition-full">
+            Sur une carte EMV (contact ou sans contact), la
+            <strong>puce ICC</strong> héberge une
+            <strong>application de paiement</strong>&nbsp;: c’est
+            <em>dans cette appli</em> que vivent le PAN, les secrets longs et
+            les compteurs. Le wallet mobile ne «&nbsp;invente&nbsp;» pas ces
+            objets&nbsp;: il les <strong>reloge</strong> (SE) ou les
+            <strong>compense</strong> (HCE + TSP).
+          </p>
+
+          <div class="diagram" id="diagram-puce-classique">
+            <div class="diagram-header">
+              <h3>Puce ICC · ce qu’elle porte pour payer</h3>
+              <p>Appli EMV ⊃ PAN · UDK-AC · ATC — vocabulaire repris plus bas</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 420"
+              role="img"
+              aria-label="Puce ICC : application EMV contenant PAN, clé AC et ATC"
+            >
+              <!-- carte -->
+              <rect
+                x="40"
+                y="50"
+                width="240"
+                height="150"
+                rx="14"
+                fill="#1e5f8a"
+              />
+              <rect
+                x="62"
+                y="80"
+                width="52"
+                height="42"
+                rx="4"
+                fill="#d4a84b"
+                stroke="#b8923a"
+                stroke-width="1.5"
+              />
+              <text
+                x="88"
+                y="106"
+                text-anchor="middle"
+                fill="#5a3d0a"
+                font-size="10"
+                font-weight="800"
+              >
+                ICC
+              </text>
+              <text
+                x="200"
+                y="98"
+                text-anchor="middle"
+                fill="#fff"
+                font-size="13"
+                font-weight="700"
+              >
+                CARTE PLASTIQUE
+              </text>
+              <text
+                x="200"
+                y="122"
+                text-anchor="middle"
+                fill="#b8d4ea"
+                font-size="12"
+              >
+                embossage / piste
+              </text>
+              <text
+                x="200"
+                y="158"
+                text-anchor="middle"
+                fill="#e7f6f3"
+                font-size="12"
+                font-weight="700"
+              >
+                + puce ICC
+              </text>
+
+              <text
+                x="160"
+                y="240"
+                text-anchor="middle"
+                fill="#5a6b7c"
+                font-size="12"
+              >
+                Même logique qu’une
+              </text>
+              <text
+                x="160"
+                y="260"
+                text-anchor="middle"
+                fill="#5a6b7c"
+                font-size="12"
+              >
+                «&nbsp;carte dans le phone&nbsp;»
+              </text>
+              <text
+                x="160"
+                y="280"
+                text-anchor="middle"
+                fill="#087a6a"
+                font-size="12"
+                font-weight="700"
+              >
+                → SE plus bas
+              </text>
+
+              <!-- flèche -->
+              <path
+                d="M300 125 L345 125"
+                stroke="#0d9f8a"
+                stroke-width="2.5"
+              />
+              <polygon points="345,119 360,125 345,131" fill="#0d9f8a" />
+
+              <!-- PUCE = cadre externe -->
+              <rect
+                x="375"
+                y="20"
+                width="585"
+                height="380"
+                rx="14"
+                fill="#f7f9fb"
+                stroke="#2f4858"
+                stroke-width="2"
+              />
+              <text
+                x="400"
+                y="48"
+                fill="#5a6b7c"
+                font-size="12"
+                font-weight="700"
+                letter-spacing="0.04em"
+              >
+                PUCE ICC
+              </text>
+
+              <!-- APPLI = conteneur -->
+              <rect
+                x="395"
+                y="62"
+                width="545"
+                height="318"
+                rx="12"
+                fill="#e7f6f3"
+                stroke="#0d9f8a"
+                stroke-width="3"
+              />
+              <text
+                x="415"
+                y="90"
+                fill="#087a6a"
+                font-family="Syne, sans-serif"
+                font-size="15"
+                font-weight="800"
+              >
+                Application EMV (applet)
+              </text>
+              <text x="415" y="110" fill="#5a6b7c" font-size="12">
+                Répond aux APDU — c’est «&nbsp;la carte&nbsp;» côté protocole ·
+                elle contient&nbsp;:
+              </text>
+
+              <!-- dans l'appli : PAN -->
+              <rect
+                x="415"
+                y="128"
+                width="505"
+                height="70"
+                rx="8"
+                fill="#fff"
+                stroke="#1e5f8a"
+                stroke-width="1.5"
+              />
+              <text
+                x="435"
+                y="155"
+                fill="#1e5f8a"
+                font-size="14"
+                font-weight="800"
+              >
+                PAN (+ expiration, données appli.)
+              </text>
+              <text x="435" y="178" fill="#5a6b7c" font-size="12">
+                Identifiant dans l’appli — en wallet → souvent token / DPAN
+                (J3)
+              </text>
+
+              <!-- dans l'appli : UDK-AC -->
+              <rect
+                x="415"
+                y="212"
+                width="505"
+                height="78"
+                rx="8"
+                fill="#fff"
+                stroke="#0d9f8a"
+                stroke-width="2.5"
+              />
+              <text
+                x="435"
+                y="235"
+                fill="#087a6a"
+                font-size="13"
+                font-weight="800"
+              >
+                UDK-AC — clé unique carte pour le cryptogramme
+              </text>
+              <text x="435" y="253" fill="#1a2b3c" font-size="11">
+                Dérivée de la clé maître émetteur (IMK-AC) à la personnalisation
+              </text>
+              <text x="435" y="270" fill="#5a6b7c" font-size="11">
+                Secret long / durable = vie de la carte · calcule ARQC / TC · ne
+                quitte pas la puce
+              </text>
+              <text x="435" y="287" fill="#8a9aaa" font-size="11">
+                (+ souvent clés PIN offline / messagerie sécurisée)
+              </text>
+
+              <!-- dans l'appli : ATC -->
+              <rect
+                x="415"
+                y="304"
+                width="505"
+                height="58"
+                rx="8"
+                fill="#fff"
+                stroke="#c45c26"
+                stroke-width="1.5"
+              />
+              <text
+                x="435"
+                y="330"
+                fill="#c45c26"
+                font-size="14"
+                font-weight="800"
+              >
+                ATC (+ compteurs / profil)
+              </text>
+              <text x="435" y="350" fill="#5a6b7c" font-size="12">
+                Compteur de txn — anti-rejeu, alimente le cryptogramme
+              </text>
+            </svg>
+          </div>
+
+        </section>
+
+        <!-- SE / HCE — qui joue la carte -->
         <section class="section">
           <p class="section-label">Confiance device</p>
-          <h2>SE · HCE · TEE</h2>
+          <h2>SE · HCE</h2>
+          <p class="intro">
+            Deux modèles pour <strong>répondre au POS</strong> en card
+            emulation&nbsp;: puce coffre (<strong>SE</strong>) ou logiciel +
+            TSP (<strong>HCE</strong>).
+          </p>
 
           <!-- ===== SE ===== -->
           <p class="section-label" style="margin-top: 1.5rem">1 · SE</p>
@@ -70,57 +328,75 @@
           </h3>
           <p class="definition-full">
             Une <strong>puce dédiée</strong> qui
-            <strong>est</strong> la carte sans contact face au POS (applet +
-            secrets) — isolée de l’OS. Ce n’est pas l’app wallet qui «&nbsp;joue&nbsp;»
-            la carte&nbsp;: c’est le coffre matériel qui répond aux APDU.
+            <strong>est</strong> la carte sans contact face au POS —
+            même logique que l’ICC plastique.
           </p>
+          <ul class="topic-list">
+            <li>
+              Une <strong>appli</strong> avec identifiant (souvent
+              <strong>token / DPAN</strong>)
+            </li>
+            <li>
+              La <strong>UDK-AC</strong>&nbsp;: clé unique dérivée de la
+              <strong>clé maître émetteur</strong> (IMK-AC) — secret long /
+              durable pour le cryptogramme
+            </li>
+            <li>
+              Isolée de l’OS&nbsp;: ce n’est <strong>pas</strong> l’app wallet
+              qui «&nbsp;joue&nbsp;» la carte
+            </li>
+          </ul>
 
           <div class="diagram" id="diagram-se-detail">
             <div class="diagram-header">
               <h3>SE · où · quoi pour le tap</h3>
-              <p>Puce dédiée · contenu · flux POS</p>
+              <p>Même boîte que l’ICC · UDK-AC reste dans la puce</p>
             </div>
-            <svg viewBox="0 0 1000 420" role="img" aria-label="SE localisation contenu et tap">
+            <svg viewBox="0 0 1000 460" role="img" aria-label="SE localisation contenu et tap avec UDK-AC">
               <!-- phone -->
-              <rect x="40" y="30" width="200" height="260" rx="24" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
-              <text x="140" y="58" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">TÉLÉPHONE</text>
+              <rect x="40" y="40" width="200" height="280" rx="24" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
+              <text x="140" y="68" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">TÉLÉPHONE</text>
 
-              <rect x="60" y="75" width="160" height="50" rx="8" fill="#e8eef3" stroke="#c5d3df"/>
-              <text x="140" y="97" text-anchor="middle" fill="#8a9aaa" font-size="12" font-weight="700">OS + apps</text>
-              <text x="140" y="115" text-anchor="middle" fill="#8a9aaa" font-size="11">pas les secrets</text>
+              <rect x="60" y="85" width="160" height="50" rx="8" fill="#e8eef3" stroke="#c5d3df"/>
+              <text x="140" y="107" text-anchor="middle" fill="#8a9aaa" font-size="12" font-weight="700">OS + apps</text>
+              <text x="140" y="125" text-anchor="middle" fill="#8a9aaa" font-size="11">pas la UDK-AC</text>
 
-              <rect x="60" y="140" width="160" height="36" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
-              <text x="140" y="163" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">Contrôleur NFC</text>
+              <rect x="60" y="150" width="160" height="36" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+              <text x="140" y="173" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">Contrôleur NFC</text>
 
-              <rect x="70" y="195" width="140" height="60" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-              <text x="140" y="230" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="20" font-weight="800">SE</text>
+              <rect x="70" y="205" width="140" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="140" y="245" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="20" font-weight="800">SE</text>
 
-              <text x="140" y="280" text-anchor="middle" fill="#5a6b7c" font-size="11">puce dédiée</text>
+              <text x="140" y="300" text-anchor="middle" fill="#5a6b7c" font-size="11">puce dédiée = coffre</text>
 
               <!-- arrow -->
-              <path d="M255 225 L300 225" stroke="#0d9f8a" stroke-width="2.5"/>
-              <polygon points="300,219 315,225 300,231" fill="#0d9f8a"/>
+              <path d="M255 240 L300 240" stroke="#0d9f8a" stroke-width="2.5"/>
+              <polygon points="300,234 315,240 300,246" fill="#0d9f8a"/>
 
-              <!-- contents -->
-              <rect x="330" y="30" width="630" height="260" rx="14" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-              <text x="645" y="62" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">Pour le tap · la SE contient</text>
+              <!-- contents nested like ICC -->
+              <rect x="330" y="20" width="630" height="300" rx="14" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+              <text x="350" y="48" fill="#5a6b7c" font-size="12" font-weight="700" letter-spacing="0.04em">SE · POUR LE TAP</text>
 
-              <text x="360" y="100" fill="#1a2b3c" font-size="14" font-weight="800">Applet card emulation</text>
-              <text x="360" y="120" fill="#5a6b7c" font-size="13">répond aux APDU comme une carte</text>
+              <rect x="350" y="62" width="590" height="240" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="370" y="90" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="800">Applet card emulation</text>
+              <text x="370" y="110" fill="#5a6b7c" font-size="12">répond aux APDU · contient (comme l’appli ICC)&nbsp;:</text>
 
-              <text x="360" y="155" fill="#1a2b3c" font-size="14" font-weight="800">Token / DPAN</text>
-              <text x="360" y="175" fill="#5a6b7c" font-size="13">+ données EMV utiles au kernel</text>
+              <rect x="370" y="125" width="550" height="48" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+              <text x="390" y="147" fill="#1e5f8a" font-size="13" font-weight="800">Token / DPAN (+ données EMV)</text>
+              <text x="390" y="165" fill="#5a6b7c" font-size="11">souvent à la place du PAN plastique</text>
 
-              <text x="360" y="210" fill="#1a2b3c" font-size="14" font-weight="800">Clés crypto</text>
-              <text x="360" y="230" fill="#5a6b7c" font-size="13">pour calculer le cryptogramme (AC)</text>
+              <rect x="370" y="185" width="550" height="58" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2.5"/>
+              <text x="390" y="205" fill="#087a6a" font-size="13" font-weight="800">UDK-AC — secret long / durable</text>
+              <text x="390" y="222" fill="#1a2b3c" font-size="11">dérivée de la clé maître émetteur (IMK-AC) · reste dans la SE</text>
+              <text x="390" y="238" fill="#5a6b7c" font-size="11">calcule ARQC / TC au tap · ne sort pas du coffre</text>
 
-              <text x="360" y="265" fill="#1a2b3c" font-size="14" font-weight="800">Compteurs / profil</text>
-              <text x="700" y="265" fill="#5a6b7c" font-size="13">risque, ATC…</text>
+              <rect x="370" y="255" width="550" height="36" rx="8" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+              <text x="390" y="278" fill="#c45c26" font-size="13" font-weight="800">ATC (+ compteurs / profil)</text>
 
               <!-- tap flow -->
-              <rect x="40" y="310" width="920" height="80" rx="12" fill="#0d9f8a"/>
-              <text x="500" y="345" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="800">Au tap · POS ↔ NFC ↔ SE</text>
-              <text x="500" y="370" text-anchor="middle" fill="#e7f6f3" font-size="13">l’app wallet ne « calcule » pas le crypto</text>
+              <rect x="40" y="350" width="920" height="80" rx="12" fill="#0d9f8a"/>
+              <text x="500" y="385" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="800">Au tap · POS ↔ NFC ↔ SE</text>
+              <text x="500" y="410" text-anchor="middle" fill="#e7f6f3" font-size="13">l’UDK-AC ne sort pas · l’app wallet ne calcule pas le crypto</text>
             </svg>
           </div>
 
@@ -131,63 +407,241 @@
           </h3>
           <p class="definition-full">
             <strong>Host Card Emulation</strong>&nbsp;: le logiciel (OS / app)
-            émule une <strong>carte sans contact</strong> face au POS (répond
-            aux APDU comme une carte). Le <strong>TSP</strong> devient
-            nécessaire pour faire ce que la SE faisait seule.
+            émule une <strong>carte sans contact</strong> face au POS.
           </p>
+          <ul class="topic-list">
+            <li>
+              Pas de coffre matériel&nbsp;: en général
+              <strong>pas</strong> d’<strong>UDK-AC</strong> sur le téléphone
+              (secret long / durable dérivé de la clé maître émetteur)
+            </li>
+            <li>
+              Le <strong>TSP</strong> garde l’UDK-AC chez lui
+            </li>
+            <li>
+              Il n’envoie au téléphone que des
+              <strong>credentials à durée / usage limités</strong> (clés ou
+              jetons courts) pour les taps
+            </li>
+          </ul>
 
           <div class="diagram" id="diagram-hce-detail">
             <div class="diagram-header">
-              <h3>HCE a · Manque vs SE · TSP comble</h3>
-              <p>Sans coffre matériel · le TSP comble le trou</p>
+              <h3>HCE sur le phone · lien TSP</h3>
+              <p>UDK-AC au TSP · credentials courts rechargés sur le HCE</p>
             </div>
-            <svg viewBox="0 0 1000 520" role="img" aria-label="HCE manque vs SE necessite TSP">
-              <!-- phone -->
-              <rect x="40" y="20" width="200" height="200" rx="22" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
-              <text x="140" y="48" text-anchor="middle" fill="#5a6b7c" font-size="11" font-weight="700">TÉLÉPHONE</text>
-              <rect x="60" y="65" width="160" height="50" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-              <text x="140" y="95" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="800">HCE</text>
-              <rect x="60" y="130" width="160" height="32" rx="6" fill="#fff" stroke="#1e5f8a"/>
-              <text x="140" y="151" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Contrôleur NFC</text>
-              <rect x="70" y="175" width="140" height="28" rx="5" fill="#fdf6f2" stroke="#c45c26" stroke-width="2" stroke-dasharray="5 3"/>
-              <text x="140" y="194" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="800">pas de SE</text>
+            <svg viewBox="0 0 1000 520" role="img" aria-label="HCE telephone lie au TSP par recharge">
+              <defs>
+                <marker id="ah-hce-tsp" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+                <marker id="ah-hce-tap" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#2f4858" />
+                </marker>
+              </defs>
 
-              <!-- HCE has -->
-              <rect x="270" y="20" width="330" height="200" rx="14" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-              <text x="435" y="50" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="800">HCE a</text>
-              <text x="295" y="85" fill="#1a2b3c" font-size="13" font-weight="700">• Stack émulation (host)</text>
-              <text x="295" y="115" fill="#1a2b3c" font-size="13" font-weight="700">• Tokens / clés courts</text>
-              <text x="295" y="145" fill="#1a2b3c" font-size="13" font-weight="700">• Souvent TEE (CDCVM)</text>
-              <text x="295" y="185" fill="#5a6b7c" font-size="12">Suffit pour répondre au POS…</text>
+              <!-- TSP -->
+              <rect x="40" y="30" width="260" height="200" rx="14" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="170" y="65" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="800">TSP (J3)</text>
+              <text x="170" y="95" text-anchor="middle" fill="#5a6b7c" font-size="12">coffre distant</text>
+              <rect x="60" y="115" width="220" height="90" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="170" y="145" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="800">UDK-AC</text>
+              <text x="170" y="168" text-anchor="middle" fill="#5a6b7c" font-size="12">secret long / durable</text>
+              <text x="170" y="190" text-anchor="middle" fill="#5a6b7c" font-size="12">reste ici</text>
 
-              <!-- MISSING vs SE - exergue -->
-              <rect x="620" y="20" width="340" height="200" rx="14" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
-              <text x="790" y="50" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="800">Manque vs SE</text>
-              <text x="645" y="85" fill="#1a2b3c" font-size="13" font-weight="800">✗ Puce coffre dédiée</text>
-              <text x="645" y="115" fill="#1a2b3c" font-size="13" font-weight="800">✗ Secrets longs sur device</text>
-              <text x="645" y="145" fill="#1a2b3c" font-size="13" font-weight="800">✗ Clés durables (AC) locales</text>
-              <text x="645" y="175" fill="#c45c26" font-size="12" font-weight="700">…donc pas le même niveau</text>
-              <text x="645" y="195" fill="#c45c26" font-size="12" font-weight="700">de coffre que la SE</text>
+              <!-- lien recharge -->
+              <path d="M310 130 L390 130" stroke="#0d9f8a" stroke-width="3" marker-end="url(#ah-hce-tsp)"/>
+              <text x="350" y="115" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">recharge</text>
+              <text x="350" y="155" text-anchor="middle" fill="#5a6b7c" font-size="11">clés / jetons</text>
+              <text x="350" y="170" text-anchor="middle" fill="#5a6b7c" font-size="11">courts</text>
 
-              <!-- arrow down to TSP necessity -->
-              <text x="500" y="245" text-anchor="middle" fill="#c45c26" font-size="14" font-weight="800">⇒ il faut un acteur hors device qui joue le rôle du coffre</text>
+              <!-- téléphone -->
+              <rect x="400" y="20" width="240" height="220" rx="24" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
+              <text x="520" y="48" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">TÉLÉPHONE</text>
+              <rect x="425" y="65" width="190" height="50" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="520" y="95" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="800">HCE</text>
+              <rect x="425" y="130" width="190" height="40" rx="6" fill="#fff" stroke="#1e5f8a"/>
+              <text x="520" y="155" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">credentials courts</text>
+              <rect x="435" y="185" width="170" height="36" rx="5" fill="#fdf6f2" stroke="#c45c26" stroke-width="2" stroke-dasharray="5 3"/>
+              <text x="520" y="208" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="800">pas d’UDK-AC</text>
 
-              <!-- TSP fills gap -->
-              <rect x="40" y="265" width="920" height="140" rx="14" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-              <text x="500" y="300" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">D’où le TSP (J3) — comble ce que la SE faisait seule</text>
-              <text x="80" y="335" fill="#1a2b3c" font-size="14" font-weight="700">• Vault — garde les secrets longs (à la place de la puce)</text>
-              <text x="80" y="360" fill="#1a2b3c" font-size="14" font-weight="700">• Recharge — pousse des credentials courts sur le HCE avant les taps</text>
-              <text x="80" y="385" fill="#1a2b3c" font-size="14" font-weight="700">• Gouverne — suspend / limite (domain controls) comme en tokenisation J3</text>
+              <!-- lien tap -->
+              <path d="M650 130 L720 130" stroke="#2f4858" stroke-width="3" marker-end="url(#ah-hce-tap)"/>
+              <text x="685" y="115" text-anchor="middle" fill="#2f4858" font-size="12" font-weight="800">tap</text>
 
-              <!-- tap banner -->
-              <rect x="40" y="425" width="920" height="70" rx="12" fill="#0d9f8a"/>
-              <text x="500" y="455" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="800">Au tap · POS ↔ NFC ↔ HCE</text>
-              <text x="500" y="478" text-anchor="middle" fill="#e7f6f3" font-size="13">TSP hors chemin RF — il a compensé l’absence de SE en amont</text>
+              <!-- POS -->
+              <rect x="730" y="55" width="230" height="150" rx="14" fill="#2f4858"/>
+              <text x="845" y="115" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="18" font-weight="800">POS</text>
+              <text x="845" y="145" text-anchor="middle" fill="#c5d3df" font-size="13">parle au HCE</text>
+              <text x="845" y="170" text-anchor="middle" fill="#c5d3df" font-size="12">(pas au TSP)</text>
+
+              <!-- ce que HCE a / manque -->
+              <rect x="40" y="270" width="450" height="140" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="265" y="300" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="800">Sur le HCE (éphémère)</text>
+              <text x="70" y="335" fill="#1a2b3c" font-size="13" font-weight="700">• Stack émulation (host)</text>
+              <text x="70" y="360" fill="#1a2b3c" font-size="13" font-weight="700">• Token / DPAN présenté</text>
+              <text x="70" y="385" fill="#1a2b3c" font-size="13" font-weight="700">• Clés / jetons courts (reçus du TSP)</text>
+
+              <rect x="510" y="270" width="450" height="140" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="2.5"/>
+              <text x="735" y="300" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="800">Manque vs SE / ICC</text>
+              <text x="540" y="335" fill="#1a2b3c" font-size="13" font-weight="800">✗ Puce coffre dédiée</text>
+              <text x="540" y="360" fill="#1a2b3c" font-size="13" font-weight="800">✗ UDK-AC locale</text>
+              <text x="540" y="385" fill="#5a6b7c" font-size="12">→ d’où le lien TSP ci-dessus</text>
+
+              <rect x="40" y="430" width="920" height="70" rx="12" fill="#0d9f8a"/>
+              <text x="500" y="460" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="800">TSP → recharge → HCE ↔ POS</text>
+              <text x="500" y="483" text-anchor="middle" fill="#e7f6f3" font-size="13">UDK-AC ne quitte pas le TSP · le phone n’a que du court</text>
             </svg>
           </div>
 
-          <!-- ===== TEE ===== -->
-          <p class="section-label" style="margin-top: 2rem">3 · TEE</p>
+          <div class="callout" style="margin-top: 1.25rem">
+            <h3>À ce stade</h3>
+            <p style="margin: 0">
+              <strong>SE</strong> = la carte (puce + secrets) ·
+              <strong>HCE</strong> = logiciel <em>sur le téléphone</em> qui
+              joue la carte (+ TSP pour le secret durable). Ensuite&nbsp;:
+              <em>où</em> vit le coffre (SIM · eSE · cloud / TSP).
+            </p>
+          </div>
+        </section>
+
+        <!-- SIM vs eSE vs HCE cloud -->
+        <section class="section">
+          <p class="section-label">Implémentations</p>
+          <h2>SIM · eSE · HCE cloud</h2>
+          <p class="definition-full">
+            Pas un 3ᵉ modèle à côté de SE / HCE&nbsp;:
+            ici on regarde <em>où</em> vit le <strong>coffre</strong>
+            (secret durable) et qui le gouverne.
+          </p>
+          <ul class="topic-list">
+            <li>
+              <strong>SE · HCE</strong> = <em>comment</em> on répond au POS
+            </li>
+            <li>
+              Même modèle <strong>SE</strong>, deux boîtes&nbsp;:
+              <strong>SE dans la SIM</strong>
+              (<em>(Subscriber Identity Module)</em> ou
+              <strong>SE dans l’eSE</strong>
+              (<em>(embedded Secure Element)</em>
+            </li>
+            <li>
+              <strong>HCE cloud</strong> (<em>Cloud-based HCE</em>) =
+              HCE <strong>sur le téléphone</strong> + coffre chez le
+              <strong>TSP</strong> — pas «&nbsp;HCE dans le cloud&nbsp;»
+            </li>
+          </ul>
+
+          <div class="diagram" id="diagram-impl-compare">
+            <div class="diagram-header">
+              <h3>Une grille · trois questions</h3>
+              <p>Coffre · gouvernance · qui répond au POS (HCE = toujours sur le phone)</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 420"
+              role="img"
+              aria-label="Comparaison SIM-SE eSE HCE cloud"
+            >
+              <!-- headers -->
+              <rect x="40" y="20" width="200" height="44" rx="8" fill="#f7f9fb" stroke="#d5e1ea"/>
+              <text x="140" y="48" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Question</text>
+              <rect x="250" y="20" width="230" height="44" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="365" y="48" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="800">1 · SIM-SE</text>
+              <rect x="490" y="20" width="230" height="44" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="605" y="48" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="800">2 · eSE</text>
+              <rect x="730" y="20" width="230" height="44" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+              <text x="845" y="48" text-anchor="middle" fill="#c45c26" font-size="14" font-weight="800">3 · HCE cloud</text>
+
+              <!-- row Où coffre -->
+              <rect x="40" y="76" width="200" height="70" rx="8" fill="#f7f9fb" stroke="#d5e1ea"/>
+              <text x="140" y="108" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="800">Où le coffre&nbsp;?</text>
+              <text x="140" y="128" text-anchor="middle" fill="#5a6b7c" font-size="11">(UDK-AC / secret long)</text>
+              <rect x="250" y="76" width="230" height="70" rx="8" fill="#fff" stroke="#0d9f8a"/>
+              <text x="365" y="108" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Dans la SIM / UICC</text>
+              <text x="365" y="128" text-anchor="middle" fill="#5a6b7c" font-size="12">SE amovible</text>
+              <rect x="490" y="76" width="230" height="70" rx="8" fill="#fff" stroke="#0d9f8a"/>
+              <text x="605" y="108" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Puce soudée device</text>
+              <text x="605" y="128" text-anchor="middle" fill="#5a6b7c" font-size="12">eSE fixe</text>
+              <rect x="730" y="76" width="230" height="70" rx="8" fill="#fff" stroke="#c45c26"/>
+              <text x="845" y="108" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Chez le TSP (cloud)</text>
+              <text x="845" y="128" text-anchor="middle" fill="#5a6b7c" font-size="12">pas de SE locale</text>
+
+              <!-- row Où stack carte -->
+              <rect x="40" y="158" width="200" height="70" rx="8" fill="#f7f9fb" stroke="#d5e1ea"/>
+              <text x="140" y="190" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="800">Où la «&nbsp;carte&nbsp;»&nbsp;?</text>
+              <text x="140" y="210" text-anchor="middle" fill="#5a6b7c" font-size="11">(qui parle NFC)</text>
+              <rect x="250" y="158" width="230" height="70" rx="8" fill="#fff" stroke="#0d9f8a"/>
+              <text x="365" y="190" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">SE dans la SIM</text>
+              <text x="365" y="210" text-anchor="middle" fill="#5a6b7c" font-size="12">sur le téléphone</text>
+              <rect x="490" y="158" width="230" height="70" rx="8" fill="#fff" stroke="#0d9f8a"/>
+              <text x="605" y="190" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">SE = eSE soudée</text>
+              <text x="605" y="210" text-anchor="middle" fill="#5a6b7c" font-size="12">sur le téléphone</text>
+              <rect x="730" y="158" width="230" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="845" y="190" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="800">HCE (OS / app)</text>
+              <text x="845" y="210" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">sur le téléphone</text>
+
+              <!-- row Qui -->
+              <rect x="40" y="240" width="200" height="70" rx="8" fill="#f7f9fb" stroke="#d5e1ea"/>
+              <text x="140" y="281" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="800">Qui gouverne&nbsp;?</text>
+              <rect x="250" y="240" width="230" height="70" rx="8" fill="#fff" stroke="#0d9f8a"/>
+              <text x="365" y="272" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Opérateur (MNO)</text>
+              <text x="365" y="292" text-anchor="middle" fill="#5a6b7c" font-size="12">changer SIM = changer coffre</text>
+              <rect x="490" y="240" width="230" height="70" rx="8" fill="#fff" stroke="#0d9f8a"/>
+              <text x="605" y="272" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Constructeur (OEM)</text>
+              <text x="605" y="292" text-anchor="middle" fill="#5a6b7c" font-size="12">lié au téléphone</text>
+              <rect x="730" y="240" width="230" height="70" rx="8" fill="#fff" stroke="#c45c26"/>
+              <text x="845" y="272" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">TSP / scheme</text>
+              <text x="845" y="292" text-anchor="middle" fill="#5a6b7c" font-size="12">vault + recharges</text>
+
+              <!-- row Tap -->
+              <rect x="40" y="322" width="200" height="70" rx="8" fill="#f7f9fb" stroke="#d5e1ea"/>
+              <text x="140" y="363" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="800">Au tap · qui répond&nbsp;?</text>
+              <rect x="250" y="322" width="230" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="365" y="354" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="800">SE (dans la SIM)</text>
+              <text x="365" y="374" text-anchor="middle" fill="#5a6b7c" font-size="12">UDK-AC dans la puce</text>
+              <rect x="490" y="322" width="230" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="605" y="354" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="800">SE (eSE soudée)</text>
+              <text x="605" y="374" text-anchor="middle" fill="#5a6b7c" font-size="12">UDK-AC dans la puce</text>
+              <rect x="730" y="322" width="230" height="70" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+              <text x="845" y="354" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="800">HCE sur le phone</text>
+              <text x="845" y="374" text-anchor="middle" fill="#5a6b7c" font-size="12">UDK-AC restée au TSP</text>
+            </svg>
+          </div>
+
+          <div class="callout" style="margin-top: 1rem">
+            <h3>Lire la grille</h3>
+            <p style="margin: 0">
+              Colonnes 1 et 2 = <strong>même modèle SE</strong> (applet + token +
+              UDK-AC locale), <em>boîte différente</em>. Colonne 3 =
+              <strong>modèle HCE</strong> déjà vu&nbsp;: le stack qui parle au
+              POS est <strong>sur le téléphone</strong>&nbsp;; «&nbsp;cloud&nbsp;»
+              = uniquement où vit le <strong>secret durable</strong> (TSP).
+            </p>
+          </div>
+        </section>
+
+        <!-- TEE — après qu’on sait qui joue la carte -->
+        <section class="section">
+          <p class="section-label">Confiance device · suite</p>
+          <h2>TEE</h2>
+          <p class="intro">
+            On sait déjà&nbsp;:
+          </p>
+          <ul class="topic-list">
+            <li>
+              <strong>qui</strong> répond au POS — SE ou HCE
+            </li>
+            <li>
+              <strong>où</strong> c’est logé — SIM · eSE · cloud
+            </li>
+          </ul>
+          <p class="definition-full" style="margin-top: 1rem">
+            Le <strong>TEE</strong> n’est <em>pas</em> un 3ᵉ modèle de card
+            emulation&nbsp;: c’est la couche qui
+            <strong>autorise le porteur</strong> (CDCVM) et protège l’usage.
+          </p>
+
+          <p class="section-label" style="margin-top: 1.5rem">Définition</p>
           <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.5rem; font-size: 1.15rem">
             TEE · autorise le porteur · ≠ carte · ≠ SE
           </h3>
@@ -205,8 +659,7 @@
               <h3>TEE · où · ce qu’il fait · ce qu’il n’est pas</h3>
               <p>Partition CPU · preuve porteur · pas le canal RF</p>
             </div>
-            <svg viewBox="0 0 1000 520" role="img" aria-label="TEE detail localisation role vs SE HCE">
-              <!-- phone -->
+            <svg viewBox="0 0 1000 500" role="img" aria-label="TEE detail localisation role vs SE HCE">
               <rect x="40" y="20" width="200" height="220" rx="22" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
               <text x="140" y="48" text-anchor="middle" fill="#5a6b7c" font-size="11" font-weight="700">TÉLÉPHONE</text>
               <rect x="60" y="65" width="160" height="40" rx="8" fill="#e8eef3" stroke="#c5d3df"/>
@@ -216,7 +669,6 @@
               <rect x="75" y="160" width="130" height="45" rx="8" fill="#f0eef8" stroke="#3d5a80" stroke-width="3"/>
               <text x="140" y="188" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="16" font-weight="800">TEE</text>
 
-              <!-- TEE does -->
               <rect x="270" y="20" width="330" height="220" rx="14" fill="#f0eef8" stroke="#3d5a80" stroke-width="3"/>
               <text x="435" y="50" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="14" font-weight="800">TEE fait</text>
               <text x="295" y="85" fill="#1a2b3c" font-size="13" font-weight="800">CDCVM</text>
@@ -226,7 +678,6 @@
               <text x="295" y="195" fill="#1a2b3c" font-size="13" font-weight="800">Attestation device</text>
               <text x="295" y="215" fill="#5a6b7c" font-size="12">device « sain » pour provisioning</text>
 
-              <!-- TEE is NOT -->
               <rect x="620" y="20" width="340" height="220" rx="14" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
               <text x="790" y="50" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="800">TEE n’est pas</text>
               <text x="645" y="90" fill="#1a2b3c" font-size="13" font-weight="800">✗ La carte face au POS</text>
@@ -236,19 +687,63 @@
               <text x="645" y="210" fill="#1a2b3c" font-size="13" font-weight="800">✗ Le canal RF</text>
               <text x="645" y="230" fill="#5a6b7c" font-size="12">(NFC ↔ SE ou HCE)</text>
 
-              <!-- roles triangle -->
-              <rect x="40" y="260" width="920" height="130" rx="14" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+              <rect x="40" y="260" width="920" height="100" rx="14" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
               <text x="500" y="295" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="15" font-weight="800">Qui fait quoi au paiement</text>
               <text x="80" y="330" fill="#087a6a" font-size="14" font-weight="800">SE ou HCE</text>
               <text x="200" y="330" fill="#5a6b7c" font-size="13">= parle au POS (APDU · crypto carte)</text>
-              <text x="80" y="360" fill="#3d5a80" font-size="14" font-weight="800">TEE</text>
-              <text x="200" y="360" fill="#5a6b7c" font-size="13">= déverrouille / prouve le porteur (CDCVM) avant ou pendant</text>
-              <text x="560" y="345" fill="#5a6b7c" font-size="12">Souvent ensemble&nbsp;: TEE + SE · ou TEE + HCE</text>
+              <text x="560" y="330" fill="#3d5a80" font-size="14" font-weight="800">TEE</text>
+              <text x="620" y="330" fill="#5a6b7c" font-size="13">= prouve le porteur (CDCVM)</text>
 
-              <!-- tap banner -->
-              <rect x="40" y="410" width="920" height="80" rx="12" fill="#3d5a80"/>
-              <text x="500" y="445" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="800">Au tap · TEE autorise · SE/HCE répond au POS</text>
-              <text x="500" y="470" text-anchor="middle" fill="#c5d3df" font-size="13">Ex. Secure Enclave (Apple) · TrustZone (Android)</text>
+              <rect x="40" y="380" width="920" height="90" rx="12" fill="#3d5a80"/>
+              <text x="500" y="418" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="800">Au tap · TEE autorise · SE/HCE répond au POS</text>
+              <text x="500" y="445" text-anchor="middle" fill="#c5d3df" font-size="13">Ex. Secure Enclave (Apple) · TrustZone (Android)</text>
+            </svg>
+          </div>
+        </section>
+
+        <!-- Couples SE+TEE / HCE+TEE -->
+        <section class="section">
+          <p class="section-label">Assemblages terrain</p>
+          <h2>Couples · SE + TEE · HCE + TEE</h2>
+          <p class="intro">
+            Le TEE <strong>s’ajoute</strong> à SE ou à HCE pour le CDCVM /
+            la protection&nbsp;: il ne remplace ni l’un ni l’autre.
+          </p>
+
+          <div class="diagram" id="diagram-couples-tee">
+            <div class="diagram-header">
+              <h3>Deux couples produits</h3>
+              <p>Qui joue la carte · qui autorise le porteur</p>
+            </div>
+            <svg viewBox="0 0 1000 320" role="img" aria-label="Couples SE plus TEE et HCE plus TEE">
+              <rect x="40" y="20" width="440" height="220" rx="14" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="260" y="55" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="800">SE + TEE</text>
+              <text x="260" y="85" text-anchor="middle" fill="#5a6b7c" font-size="13">carte = puce · CDCVM = TEE</text>
+              <rect x="70" y="105" width="180" height="70" rx="10" fill="#fff" stroke="#0d9f8a" stroke-width="2.5"/>
+              <text x="160" y="135" text-anchor="middle" fill="#087a6a" font-size="16" font-weight="800">SE</text>
+              <text x="160" y="158" text-anchor="middle" fill="#5a6b7c" font-size="12">répond au POS</text>
+              <rect x="270" y="105" width="180" height="70" rx="10" fill="#f0eef8" stroke="#3d5a80" stroke-width="2.5"/>
+              <text x="360" y="135" text-anchor="middle" fill="#3d5a80" font-size="16" font-weight="800">TEE</text>
+              <text x="360" y="158" text-anchor="middle" fill="#5a6b7c" font-size="12">autorise porteur</text>
+              <text x="260" y="210" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Ex. Apple Pay · eSE + Secure Enclave</text>
+
+              <rect x="520" y="20" width="440" height="220" rx="14" fill="#f7f9fb" stroke="#c45c26" stroke-width="2.5"/>
+              <text x="740" y="55" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="18" font-weight="800">HCE + TEE</text>
+              <text x="740" y="85" text-anchor="middle" fill="#5a6b7c" font-size="13">carte = logiciel · CDCVM = TEE</text>
+              <rect x="550" y="105" width="180" height="70" rx="10" fill="#fff" stroke="#c45c26" stroke-width="2.5"/>
+              <text x="640" y="135" text-anchor="middle" fill="#c45c26" font-size="16" font-weight="800">HCE</text>
+              <text x="640" y="158" text-anchor="middle" fill="#5a6b7c" font-size="12">répond au POS</text>
+              <rect x="750" y="105" width="180" height="70" rx="10" fill="#f0eef8" stroke="#3d5a80" stroke-width="2.5"/>
+              <text x="840" y="135" text-anchor="middle" fill="#3d5a80" font-size="16" font-weight="800">TEE</text>
+              <text x="840" y="158" text-anchor="middle" fill="#5a6b7c" font-size="12">autorise porteur</text>
+              <text x="740" y="210" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">Ex. Google Pay · HCE + TrustZone</text>
+
+              <text x="500" y="280" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">
+                TEE s’ajoute · ne remplace ni SE ni HCE
+              </text>
+              <text x="500" y="305" text-anchor="middle" fill="#5a6b7c" font-size="13">
+                Au tap · TEE déverrouille · SE ou HCE parle au POS
+              </text>
             </svg>
           </div>
 
@@ -258,252 +753,82 @@
               <strong>SE</strong> = la carte (puce + secrets) ·
               <strong>HCE</strong> = logiciel qui joue la carte ·
               <strong>TEE</strong> = isolation CPU pour CDCVM / protection —
-              pas le canal RF. Un device combine souvent TEE + SE, ou TEE + HCE.
+              pas le canal RF. Un device combine souvent
+              <strong>SE + TEE</strong> ou <strong>HCE + TEE</strong>.
             </p>
           </div>
         </section>
 
-        <!-- SIM vs eSE vs HCE cloud -->
+        <!-- Wallets = assemblages produits -->
         <section class="section">
-          <p class="section-label">Implémentations</p>
-          <h2>SIM · eSE · HCE cloud</h2>
+          <p class="section-label">Produits</p>
+          <h2>Wallets · combinaisons</h2>
           <p class="intro">
-            Trois façons de loger (ou non) le coffre SE — même question&nbsp;:
-            où · qui gouverne · quoi pour un tap.
+            Un wallet assemble les briques déjà vues&nbsp;: coffre (où) ·
+            qui répond au POS · TEE pour le CDCVM.
           </p>
 
-          <!-- ===== SIM ===== -->
-          <p class="section-label" style="margin-top: 1.5rem">1 · SIM</p>
-          <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.5rem; font-size: 1.15rem">
-            SIM-based SE
-          </h3>
-          <p class="definition-full">
-            Coffre sur la <strong>carte SIM / UICC</strong> — contrôle
-            <strong>opérateur</strong> (MNO). Changer de SIM = changer de coffre.
-          </p>
-
-          <div class="diagram" id="diagram-sim-detail">
+          <div class="diagram" id="diagram-wallets-combos">
             <div class="diagram-header">
-              <h3>Où&nbsp;? · dans la SIM amovible</h3>
-              <p>Slot SIM · SE à l’intérieur de la carte</p>
+              <h3>Apple Pay · Google Pay</h3>
+              <p>Même geste tap · deux stacks</p>
             </div>
-            <svg viewBox="0 0 1000 280" role="img" aria-label="SIM based SE localisation">
-              <rect x="200" y="20" width="220" height="230" rx="26" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
-              <text x="310" y="48" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">TÉLÉPHONE</text>
-              <rect x="225" y="65" width="170" height="50" rx="8" fill="#e8eef3" stroke="#c5d3df"/>
-              <text x="310" y="95" text-anchor="middle" fill="#8a9aaa" font-size="13">OS + apps</text>
-              <rect x="245" y="140" width="130" height="70" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-              <text x="310" y="170" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">SIM</text>
-              <text x="310" y="192" text-anchor="middle" fill="#0d9f8a" font-size="12">= SE dedans</text>
+            <svg
+              viewBox="0 0 1000 420"
+              role="img"
+              aria-label="Combinaisons wallet Apple Pay et Google Pay"
+            >
+              <!-- Apple Pay -->
+              <rect x="40" y="20" width="440" height="340" rx="16" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="260" y="55" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="20" font-weight="800">Apple Pay</text>
+              <text x="260" y="80" text-anchor="middle" fill="#5a6b7c" font-size="13">wallet · couple SE + TEE</text>
 
-              <line x1="450" y1="175" x2="530" y2="175" stroke="#0d9f8a" stroke-width="2.5"/>
-              <text x="545" y="170" fill="#087a6a" font-size="14" font-weight="800">amovible</text>
-              <text x="545" y="190" fill="#5a6b7c" font-size="12">gouvernance MNO</text>
+              <rect x="70" y="100" width="380" height="50" rx="10" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="90" y="122" fill="#5a6b7c" font-size="12" font-weight="700">Coffre</text>
+              <text x="90" y="142" fill="#087a6a" font-size="14" font-weight="800">eSE (SE soudée OEM)</text>
 
-              <text x="500" y="260" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                Provisioning historique via TSM / opérateur
+              <rect x="70" y="165" width="380" height="50" rx="10" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="90" y="187" fill="#5a6b7c" font-size="12" font-weight="700">Répond au POS</text>
+              <text x="90" y="207" fill="#087a6a" font-size="14" font-weight="800">SE (applet dans l’eSE)</text>
+
+              <rect x="70" y="230" width="380" height="50" rx="10" fill="#f0eef8" stroke="#3d5a80" stroke-width="2"/>
+              <text x="90" y="252" fill="#5a6b7c" font-size="12" font-weight="700">CDCVM / confiance</text>
+              <text x="90" y="272" fill="#3d5a80" font-size="14" font-weight="800">TEE · Secure Enclave</text>
+
+              <rect x="70" y="295" width="380" height="45" rx="10" fill="#2f4858"/>
+              <text x="260" y="323" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">UDK-AC dans l’eSE · token via TSP</text>
+
+              <!-- Google Pay -->
+              <rect x="520" y="20" width="440" height="340" rx="16" fill="#f7f9fb" stroke="#c45c26" stroke-width="2.5"/>
+              <text x="740" y="55" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="20" font-weight="800">Google Pay</text>
+              <text x="740" y="80" text-anchor="middle" fill="#5a6b7c" font-size="13">wallet · couple HCE + TEE</text>
+
+              <rect x="550" y="100" width="380" height="50" rx="10" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+              <text x="570" y="122" fill="#5a6b7c" font-size="12" font-weight="700">Coffre</text>
+              <text x="570" y="142" fill="#c45c26" font-size="14" font-weight="800">TSP cloud (pas de SE locale)</text>
+
+              <rect x="550" y="165" width="380" height="50" rx="10" fill="#fff" stroke="#c45c26" stroke-width="2"/>
+              <text x="570" y="187" fill="#5a6b7c" font-size="12" font-weight="700">Répond au POS</text>
+              <text x="570" y="207" fill="#c45c26" font-size="14" font-weight="800">HCE (OS / app sur le phone)</text>
+
+              <rect x="550" y="230" width="380" height="50" rx="10" fill="#f0eef8" stroke="#3d5a80" stroke-width="2"/>
+              <text x="570" y="252" fill="#5a6b7c" font-size="12" font-weight="700">CDCVM / confiance</text>
+              <text x="570" y="272" fill="#3d5a80" font-size="14" font-weight="800">TEE · TrustZone (souvent)</text>
+
+              <rect x="550" y="295" width="380" height="45" rx="10" fill="#2f4858"/>
+              <text x="740" y="323" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">UDK-AC chez le TSP · credentials courts</text>
+
+              <text x="500" y="395" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">
+                Wallet = UX + orchestration · la combinaison SE/HCE + TEE + coffre fait le stack
               </text>
             </svg>
           </div>
 
-          <p class="section-label" style="margin-top: 1rem">Pour un tap CL, la SIM-SE contient</p>
-          <ul class="topic-list">
-            <li><strong>Applet card emulation</strong> (+ données EMV)</li>
-            <li><strong>Token / DPAN</strong> et <strong>clés crypto</strong></li>
-            <li><strong>Contrôle opérateur</strong> — qui peut provisionner / suspendre</li>
-          </ul>
-          <p class="intro" style="margin-top: 0.5rem">
-            Au tap&nbsp;: POS ↔ NFC ↔ <strong>SE sur SIM</strong> · même logique
-            SE, autre «&nbsp;boîte&nbsp;».
-          </p>
-
-          <!-- ===== eSE ===== -->
-          <p class="section-label" style="margin-top: 2rem">2 · eSE</p>
-          <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.5rem; font-size: 1.15rem">
-            Embedded SE
-          </h3>
-          <p class="definition-full">
-            Coffre <strong>soudé</strong> dans le téléphone — contrôle
-            <strong>constructeur (OEM)</strong>. Lié au device, pas à la SIM.
-          </p>
-
-          <div class="diagram" id="diagram-ese-detail">
-            <div class="diagram-header">
-              <h3>Où&nbsp;? · puce soudée dans le device</h3>
-              <p>Non amovible · reste si on change de SIM</p>
-            </div>
-            <svg viewBox="0 0 1000 280" role="img" aria-label="eSE localisation">
-              <rect x="200" y="20" width="220" height="230" rx="26" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
-              <text x="310" y="48" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">TÉLÉPHONE OEM</text>
-              <rect x="225" y="65" width="170" height="50" rx="8" fill="#e8eef3" stroke="#c5d3df"/>
-              <text x="310" y="95" text-anchor="middle" fill="#8a9aaa" font-size="13">OS + apps</text>
-              <rect x="245" y="140" width="130" height="70" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-              <text x="310" y="170" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">eSE</text>
-              <text x="310" y="192" text-anchor="middle" fill="#0d9f8a" font-size="12">soudée</text>
-
-              <line x1="450" y1="175" x2="530" y2="175" stroke="#0d9f8a" stroke-width="2.5"/>
-              <text x="545" y="170" fill="#087a6a" font-size="14" font-weight="800">fixe</text>
-              <text x="545" y="190" fill="#5a6b7c" font-size="12">gouvernance OEM</text>
-
-              <text x="500" y="260" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                Ex. Apple Pay · eSE + Secure Enclave (TEE) pour CDCVM
-              </text>
-            </svg>
-          </div>
-
-          <p class="section-label" style="margin-top: 1rem">Pour un tap CL, l’eSE contient</p>
-          <ul class="topic-list">
-            <li><strong>Applet card emulation</strong> · token · clés (coffre paiement)</li>
-            <li><strong>Contrôle OEM</strong> — provisioning / lifecycle device</li>
-            <li>Souvent couplé à un <strong>TEE</strong> (biométrie / CDCVM)</li>
-          </ul>
-          <p class="intro" style="margin-top: 0.5rem">
-            Au tap&nbsp;: POS ↔ NFC ↔ <strong>eSE</strong> · CDCVM via TEE / Enclave.
-          </p>
-
-          <!-- ===== HCE cloud ===== -->
-          <p class="section-label" style="margin-top: 2rem">3 · HCE cloud</p>
-          <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.5rem; font-size: 1.15rem">
-            HCE + cloud / TSP
-          </h3>
-          <p class="definition-full">
-            <strong>Pas de coffre SE</strong> paiement sur le device. Secrets
-            longs chez le <strong>TSP / cloud</strong> · tokens courts sur le
-            phone (HCE, souvent + TEE).
-          </p>
-
-          <div class="diagram" id="diagram-hce-cloud-detail">
-            <div class="diagram-header">
-              <h3>Où&nbsp;? · cloud + logiciel host</h3>
-              <p>Long terme au TSP · court terme sur le device</p>
-            </div>
-            <svg viewBox="0 0 1000 280" role="img" aria-label="HCE cloud localisation">
-              <defs>
-                <marker id="ah-hcec2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
-                </marker>
-              </defs>
-              <rect x="80" y="50" width="200" height="100" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-              <text x="180" y="95" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">Cloud / TSP</text>
-              <text x="180" y="120" text-anchor="middle" fill="#5a6b7c" font-size="12">vault · clés longues</text>
-
-              <path d="M290 100 L360 130" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-hcec2)"/>
-              <text x="300" y="105" fill="#087a6a" font-size="11" font-weight="700">push</text>
-
-              <rect x="380" y="40" width="220" height="200" rx="26" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
-              <text x="490" y="70" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">TÉLÉPHONE</text>
-              <rect x="405" y="90" width="170" height="55" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-              <text x="490" y="125" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">HCE</text>
-              <rect x="420" y="165" width="140" height="40" rx="6" fill="#fff" stroke="#c5d3df" stroke-dasharray="5 3"/>
-              <text x="490" y="190" text-anchor="middle" fill="#8a9aaa" font-size="12">pas de SE</text>
-
-              <line x1="620" y1="117" x2="700" y2="117" stroke="#0d9f8a" stroke-width="2.5"/>
-              <text x="715" y="112" fill="#087a6a" font-size="14" font-weight="800">tokens courts</text>
-              <text x="715" y="132" fill="#5a6b7c" font-size="12">+ TEE (CDCVM)</text>
-
-              <text x="500" y="265" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                Ex. Google Pay (Android HCE)
-              </text>
-            </svg>
-          </div>
-
-          <p class="section-label" style="margin-top: 1rem">Pour un tap CL, le modèle HCE cloud fournit</p>
-          <ul class="topic-list">
-            <li><strong>Stack HCE</strong> sur le device — répond aux APDU</li>
-            <li><strong>Tokens / clés courts</strong> rechargeables</li>
-            <li><strong>Vault TSP</strong> — secrets longs hors device</li>
-            <li><strong>TEE</strong> — souvent CDCVM / protection locale</li>
-          </ul>
-          <p class="intro" style="margin-top: 0.5rem">
-            Au tap&nbsp;: POS ↔ NFC ↔ <strong>HCE</strong> · le cloud a
-            préparé · pas de SE paiement.
-          </p>
-
-          <div class="callout warn" style="margin-top: 1.25rem">
-            <h3>Ne pas confondre</h3>
-            <p style="margin: 0">
-              <strong>SIM</strong> et <strong>eSE</strong> = deux endroits pour
-              une <em>SE</em> · <strong>HCE cloud</strong> = pas de SE, autre
-              modèle de confiance (TSP).
-            </p>
-          </div>
           <p class="intro" style="margin-top: 1rem">
-            Lifecycle token / chaîne TSP&nbsp;:
-            <a href="../j3/lifecycle.html">J3 lifecycle</a> ·
-            <a href="../j3/architecture-si.html">J3 architecture SI</a>.
+            Détail flux&nbsp;:
+            <a href="apple-pay.html">Apple Pay</a> ·
+            <a href="google-pay.html">Google Pay</a>.
           </p>
-        </section>
-
-        <!-- Rôle -->
-        <section class="section">
-          <p class="section-label">Rôle</p>
-          <h2>Que retient le SI&nbsp;?</h2>
-          <div class="split-2">
-            <div class="panel">
-              <h3>Wallet apporte</h3>
-              <ul>
-                <li>UX, biométrie, orchestration device</li>
-                <li>Présentation NFC (card emulation)</li>
-                <li>Lien device ↔ token</li>
-              </ul>
-            </div>
-            <div class="panel">
-              <h3>Wallet ne remplace pas</h3>
-              <ul>
-                <li>Émetteur (AuthZ, compte)</li>
-                <li>Scheme / TSP (token network)</li>
-                <li>Clearing / settlement (J1)</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- Ancrage -->
-        <section class="section">
-          <p class="section-label">Ancrage</p>
-          <h2>Cas pratiques</h2>
-          <div class="split-2">
-            <div class="panel ok">
-              <h3>Cas 1 — Téléphone perdu</h3>
-              <ul>
-                <li>Suspendre le token device</li>
-                <li>≠ opposition automatique du PAN</li>
-              </ul>
-            </div>
-            <div class="panel">
-              <h3>Cas 2 — SE vs HCE</h3>
-              <ul>
-                <li>Qui provisionne&nbsp;? Qui audit&nbsp;?</li>
-                <li>Runbooks différents</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- Clarification -->
-        <section class="section">
-          <p class="section-label">Clarification</p>
-          <h2>Ce que le wallet n’est pas</h2>
-          <div class="not-list">
-            <div class="not-item">
-              <strong>≠ L’émetteur</strong>
-              <p>Le wallet orchestre — l’AuthZ reste côté banque / processeur.</p>
-            </div>
-            <div class="not-item">
-              <strong>≠ La tokenisation seule</strong>
-              <p>
-                Le token est le socle (J3) — le wallet y ajoute device, UX,
-                NFC.
-              </p>
-            </div>
-            <div class="not-item">
-              <strong>SE ≠ toujours «&nbsp;mieux&nbsp;»</strong>
-              <p>
-                HCE + gouvernance TSP peut être le modèle cible — comparer
-                responsabilités.
-              </p>
-            </div>
-          </div>
         </section>
 
         <div class="sources-box">

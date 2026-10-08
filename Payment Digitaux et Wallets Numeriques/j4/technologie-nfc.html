@@ -305,45 +305,6 @@
                 <table class="csm-table">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Actif fait</th>
-                      <th scope="col">Passif fait</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Génère le champ 13,56&nbsp;MHz</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Maintient le champ</td>
-                      <td>Entre dans le champ · alimenté (induction)</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Détecte / anticollision</td>
-                      <td>Se signale (ex. UID)</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">4</th>
-                      <td>Sélectionne la cible</td>
-                      <td>Est sélectionné</td>
-                    </tr>
-                    <tr class="is-exergue">
-                      <th scope="row">5–6</th>
-                      <td>Commande APDU → reçoit réponse</td>
-                      <td>Exécute → renvoie réponse</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="csm-table-wrap" style="margin-top: 1.25rem">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
                       <th scope="col">Cas</th>
                       <th scope="col">Actif</th>
                       <th scope="col">Passif</th>
@@ -430,7 +391,14 @@
               </h3>
               <p class="intro">
                 Différence <strong>radio</strong> seulement — pas Visa vs Mastercard.
-                Le lecteur module le champ 13,56&nbsp;MHz&nbsp;: A = fort, B = léger.
+              </p>
+              <p class="intro">
+                Le lecteur module le champ 13,56&nbsp;MHz&nbsp;:
+                <strong>A = fort</strong>, <strong>B = léger</strong>.
+              </p>
+              <p class="definition-full">
+                <strong>ASK</strong> (<em>Amplitude Shift Keying</em>)&nbsp;:
+                modulation par variation d’amplitude du champ radio.
               </p>
 
               <div class="diagram" id="diagram-14443-modulation">
@@ -565,28 +533,6 @@
               <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.75rem; font-size: 1.15rem">
                 Pourquoi le paiement a choisi Type A
               </h3>
-                            <div class="callout" style="margin-top: 0.5rem">
-                <h3>À retenir</h3>
-                <ul class="topic-list" style="margin: 0.35rem 0 0">
-                  <li>
-                    Ce n’est <strong>pas</strong> qu’A est «&nbsp;meilleur&nbsp;»
-                    pour payer — c’est un <strong>effet d’écosystème</strong>.
-                  </li>
-                  <li>
-                    <strong>MIFARE</strong> (Philips / NXP) = famille de puces
-                    sans contact en <strong>Type&nbsp;A</strong>.
-                  </li>
-                  <li>
-                    Déjà partout (métro, badges, titres de transport…)
-                    <strong>avant</strong> le contactless bancaire
-                    <strong>CL</strong> (= EMV Contactless).
-                  </li>
-                  <li>
-                    Quand les banques ont lancé le tap, la radio A était déjà
-                    le standard de fait.
-                  </li>
-                </ul>
-              </div>
 
               <div class="diagram" id="diagram-pourquoi-type-a">
                 <div class="diagram-header">
@@ -645,10 +591,61 @@
                 </svg>
               </div>
               <p class="intro" style="margin-top: 1rem">
-                À retenir en salle&nbsp;: pour le tap carte / wallet au POS,
-                tu raisonnes <strong>Type&nbsp;A</strong>. Le POS gère aussi B
-                pour l’interop, pas parce que B est le chemin principal.
+                Pour le tap carte / wallet au POS, tu raisonnes
+                <strong>Type&nbsp;A</strong>. Le POS gère aussi B pour l’interop,
+                pas parce que B est le chemin principal.
               </p>
+
+              <p class="section-label" style="margin-top: 2rem">Interop radio</p>
+              <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.75rem; font-size: 1.15rem">
+                Quand l’un est A et l’autre B
+              </h3>
+              <p class="intro">
+                A et B ne se comprennent <strong>pas</strong> au niveau radio.
+                Il faut le <strong>même type</strong> des deux côtés
+                (carte / wallet ↔ POS), sinon le tap échoue avant même l’EMV.
+              </p>
+
+              <div class="diagram" id="diagram-ab-match">
+                <div class="diagram-header">
+                  <h3>Carte / wallet × POS · même type ou échec</h3>
+                  <p>Quatre cas · une seule règle</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 300"
+                  role="img"
+                  aria-label="Match Type A Type B carte et POS"
+                >
+                  <text x="320" y="28" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">POS Type A</text>
+                  <text x="740" y="28" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">POS Type B</text>
+
+                  <text x="48" y="100" fill="#5a6b7c" font-size="12" font-weight="700">Carte</text>
+                  <text x="48" y="118" fill="#087a6a" font-size="14" font-weight="800">A</text>
+
+                  <rect x="120" y="48" width="320" height="96" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="280" y="88" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="20" font-weight="800">A ↔ A</text>
+                  <text x="280" y="118" text-anchor="middle" fill="#0d9f8a" font-size="14" font-weight="700">OK · chemin dominant</text>
+
+                  <rect x="580" y="48" width="320" height="96" rx="12" fill="#f7f9fb" stroke="#c45c26" stroke-width="2.5"/>
+                  <text x="740" y="88" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="20" font-weight="800">A ↔ B</text>
+                  <text x="740" y="118" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">Échec · radios incompatibles</text>
+
+                  <text x="48" y="208" fill="#5a6b7c" font-size="12" font-weight="700">Carte</text>
+                  <text x="48" y="226" fill="#1e5f8a" font-size="14" font-weight="800">B</text>
+
+                  <rect x="120" y="164" width="320" height="96" rx="12" fill="#f7f9fb" stroke="#c45c26" stroke-width="2.5"/>
+                  <text x="280" y="204" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="20" font-weight="800">B ↔ A</text>
+                  <text x="280" y="234" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">Échec · radios incompatibles</text>
+
+                  <rect x="580" y="164" width="320" height="96" rx="12" fill="#e7f6f3" stroke="#1e5f8a" stroke-width="2.5"/>
+                  <text x="740" y="204" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="20" font-weight="800">B ↔ B</text>
+                  <text x="740" y="234" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">OK · niche / certains marchés</text>
+
+                  <text x="500" y="288" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">
+                    D’où&nbsp;: le POS certifié CL parle A et B — la carte / le wallet est d’un seul type
+                  </text>
+                </svg>
+              </div>
             </section>
 
             <section class="section">

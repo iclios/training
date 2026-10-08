@@ -8,7 +8,7 @@ Schémas (explicites · steps)
 1. Plateforme — OS / devices-domaines / NFC
 2. Acteurs — Porteur · Wallet · TSP · Issuer · POS · Acquéreur (cartouche chacun)
 3. Confiance — SE · Secure Enclave · PassKit
-4. Provisioning — Wallet → Issuer → TSP → SE
+4. Provisioning — Wallet → TSP → Issuer → TSP → device/SE
 5. Tap NFC — TOKEN jusqu’acquéreur · détokenisation · AuthZ
 6. In-app — PassKit sheet → PSP → Issuer
 7. Lifecycle — suspend / delete / re-provision

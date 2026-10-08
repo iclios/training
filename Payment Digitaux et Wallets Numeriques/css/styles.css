@@ -3867,3 +3867,82 @@ a.bloc-sidebar-item:hover {
   line-height: 1.25;
   color: var(--ink);
 }
+
+/* —— Grilles wallet (vue d’un coup) —— */
+.wallet-glance-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.35rem;
+}
+
+.wallet-glance-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.wallet-glance-grid--6 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .wallet-glance-grid--3,
+  .wallet-glance-grid--6 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wallet-glance-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1rem 1rem 1.1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  min-height: 100%;
+}
+
+.wallet-glance-card.is-accent {
+  border-color: #0d9f8a;
+  background: #f4fbf9;
+}
+
+.wallet-glance-card.is-cool {
+  border-color: #1e5f8a;
+  background: #f4f8fb;
+}
+
+.wallet-glance-card img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.wallet-glance-card h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.wallet-glance-card .glance-kicker {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #087a6a;
+}
+
+.wallet-glance-card p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.wallet-glance-card p.glance-point {
+  color: var(--ink);
+  font-weight: 600;
+}
