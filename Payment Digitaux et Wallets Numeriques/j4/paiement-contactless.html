@@ -90,28 +90,22 @@
                   </tbody>
                 </table>
               </div>
-              <p class="intro" style="margin-top: 0.85rem">
-                Carte plastique sans contact&nbsp;: <strong>14443 + EMV</strong>
-                — pas de NFC Forum. Téléphone wallet&nbsp;: NFC (card emulation)
-                + 14443 + EMV (+ token).
-              </p>
             </section>
 
             <section class="section">
               <p class="section-label">Flux tap</p>
               <h2>Session EMV Contactless au POS</h2>
               <p class="intro">
-                Du geste «&nbsp;tap&nbsp;» à la décision AuthZ — vue
-                simplifiée côté terminal / carte.
+                Du tap à la décision — le détail CVM / online-offline vient après.
               </p>
 
               <div class="diagram" id="diagram-cl-flux">
                 <div class="diagram-header">
-                  <h3>Tap → kernel → cryptogramme → online ?</h3>
-                  <p>Sélection · données · CVM · AC · chaîne J1</p>
+                  <h3>Tap → SELECT → données → CVM → GEN AC → AuthZ&nbsp;?</h3>
+                  <p>Kernel CL orchestre · carte / wallet répond</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 340"
+                  viewBox="0 0 1000 160"
                   role="img"
                   aria-label="Flux paiement sans contact EMV au terminal"
                 >
@@ -122,101 +116,50 @@
                   </defs>
 
                   <g>
-                    <rect x="30" y="50" width="130" height="72" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="95" y="78" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">1 · Tap</text>
-                    <text x="95" y="98" text-anchor="middle" fill="#5a6b7c" font-size="10">14443 · couple RF</text>
+                    <rect x="20" y="40" width="140" height="72" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="90" y="70" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">1 · Tap</text>
+                    <text x="90" y="92" text-anchor="middle" fill="#5a6b7c" font-size="11">RF 14443</text>
                   </g>
-                  <line x1="165" y1="86" x2="195" y2="86" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-clflux)"/>
+                  <line x1="165" y1="76" x2="185" y2="76" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-clflux)"/>
 
                   <g>
-                    <rect x="200" y="50" width="130" height="72" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="265" y="78" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">2 · SELECT</text>
-                    <text x="265" y="98" text-anchor="middle" fill="#5a6b7c" font-size="10">AID · app paiement</text>
+                    <rect x="190" y="40" width="140" height="72" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="260" y="70" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">2 · SELECT</text>
+                    <text x="260" y="92" text-anchor="middle" fill="#5a6b7c" font-size="11">AID paiement</text>
                   </g>
-                  <line x1="335" y1="86" x2="365" y2="86" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-clflux)"/>
+                  <line x1="335" y1="76" x2="355" y2="76" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-clflux)"/>
 
                   <g>
-                    <rect x="370" y="50" width="130" height="72" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="435" y="78" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">3 · GPO / READ</text>
-                    <text x="435" y="98" text-anchor="middle" fill="#5a6b7c" font-size="10">données EMV</text>
+                    <rect x="360" y="40" width="140" height="72" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="430" y="70" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">3 · GPO / READ</text>
+                    <text x="430" y="92" text-anchor="middle" fill="#5a6b7c" font-size="11">données EMV</text>
                   </g>
-                  <line x1="505" y1="86" x2="535" y2="86" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-clflux)"/>
+                  <line x1="505" y1="76" x2="525" y2="76" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-clflux)"/>
 
                   <g>
-                    <rect x="540" y="50" width="130" height="72" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="605" y="78" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">4 · CVM</text>
-                    <text x="605" y="98" text-anchor="middle" fill="#5a6b7c" font-size="10">seuil · PIN / none</text>
+                    <rect x="530" y="40" width="140" height="72" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="600" y="70" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">4 · CVM</text>
+                    <text x="600" y="92" text-anchor="middle" fill="#5a6b7c" font-size="11">selon seuils ↓</text>
                   </g>
-                  <line x1="675" y1="86" x2="705" y2="86" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-clflux)"/>
+                  <line x1="675" y1="76" x2="695" y2="76" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-clflux)"/>
 
                   <g>
-                    <rect x="710" y="50" width="130" height="72" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="775" y="78" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">5 · GEN AC</text>
-                    <text x="775" y="98" text-anchor="middle" fill="#0d9f8a" font-size="10">cryptogramme</text>
+                    <rect x="700" y="40" width="140" height="72" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="770" y="70" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">5 · GEN AC</text>
+                    <text x="770" y="92" text-anchor="middle" fill="#0d9f8a" font-size="11">cryptogramme</text>
                   </g>
-                  <line x1="845" y1="86" x2="875" y2="86" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-clflux)"/>
+                  <line x1="845" y1="76" x2="865" y2="76" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-clflux)"/>
 
                   <g>
-                    <rect x="880" y="50" width="90" height="72" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="925" y="78" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">6 · Online</text>
-                    <text x="925" y="98" text-anchor="middle" fill="#5a6b7c" font-size="10">si requis</text>
+                    <rect x="870" y="40" width="110" height="72" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="925" y="70" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">6 · Online</text>
+                    <text x="925" y="92" text-anchor="middle" fill="#5a6b7c" font-size="11">si requis ↓</text>
                   </g>
 
-                  <rect x="30" y="155" width="940" height="155" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5"/>
-                  <text x="500" y="182" text-anchor="middle" fill="#5a6b7c" font-size="11" font-weight="700" letter-spacing="0.06em">RÔLES</text>
-
-                  <g>
-                    <rect x="50" y="200" width="280" height="88" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="190" y="228" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Terminal / kernel CL</text>
-                    <text x="190" y="250" text-anchor="middle" fill="#5a6b7c" font-size="11">orchestration · risque terminal · online/offline</text>
-                    <text x="190" y="270" text-anchor="middle" fill="#5a6b7c" font-size="11">Visa payWave · MC PayPass · CB…</text>
-                  </g>
-                  <g>
-                    <rect x="360" y="200" width="280" height="88" rx="8" fill="#fff" stroke="#2f4858" stroke-width="2"/>
-                    <text x="500" y="228" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Carte / wallet</text>
-                    <text x="500" y="250" text-anchor="middle" fill="#5a6b7c" font-size="11">répond aux APDU · calcule l’AC</text>
-                    <text x="500" y="270" text-anchor="middle" fill="#5a6b7c" font-size="11">PAN ou token + crypto (J3)</text>
-                  </g>
-                  <g>
-                    <rect x="670" y="200" width="280" height="88" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="810" y="228" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Chaîne J1</text>
-                    <text x="810" y="250" text-anchor="middle" fill="#5a6b7c" font-size="11">acquéreur → réseau → émetteur</text>
-                    <text x="810" y="270" text-anchor="middle" fill="#5a6b7c" font-size="11">AuthZ · clearing · settlement</text>
-                  </g>
+                  <text x="500" y="145" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Cryptogramme = ARQC / TC / AAC · AuthZ = chaîne J1
+                  </text>
                 </svg>
-              </div>
-
-              <div class="csm-table-wrap" style="margin-top: 1.25rem">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Étape</th>
-                      <th scope="col">Contenu</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">SELECT (AID)</th>
-                      <td>Choisir l’application paiement sur la carte / le wallet</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">GPO / READ RECORD</th>
-                      <td>Lire les données EMV nécessaires (montant, profil, limites…)</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">CVM</th>
-                      <td>Décider si PIN, CDCVM, ou «&nbsp;no CVM&nbsp;» selon seuils</td>
-                    </tr>
-                    <tr class="is-exergue">
-                      <th scope="row">GENERATE AC</th>
-                      <td>Produire le <strong>cryptogramme</strong> (ARQC / TC / AAC)</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Online</th>
-                      <td>Si requis → message AuthZ (8583…) · sinon acceptation offline</td>
-                    </tr>
-                  </tbody>
-                </table>
               </div>
             </section>
 
@@ -276,33 +219,151 @@
                 </svg>
               </div>
 
-              <div class="csm-table-wrap" style="margin-top: 1.25rem">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col">Carte plastique</th>
-                      <th scope="col">Mobile NFC</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Présenté</th>
-                      <td>PAN (souvent)</td>
-                      <td>Token (+ crypto) — J3</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Confiance</th>
-                      <td>Puce carte</td>
-                      <td>SE / HCE / TEE + wallet</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Face au POS</th>
-                      <td colspan="2">Même RF 14443 · même famille EMV CL</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <p class="intro" style="margin-top: 1rem">
+                Plastique&nbsp;: <strong>14443 + EMV</strong> (pas de NFC Forum) ·
+                Mobile&nbsp;: NFC card emulation + 14443 + EMV (+ token J3).
+                Confiance&nbsp;: puce carte vs SE / HCE / TEE — détail
+                <a href="architecture-wallets.html">4.3</a>.
+              </p>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Standards</p>
+              <h2>Kernel CL &amp; scheme</h2>
+              <p class="intro">
+                Le <strong>kernel EMV Contactless</strong> vit dans le
+                <strong>terminal</strong>&nbsp;: c’est lui qui orchestre le tap.
+                Le <strong>scheme</strong> fixe les règles produit (seuils,
+                chargeback…) que le kernel applique.
+              </p>
+
+              <div class="diagram" id="diagram-standards">
+                <div class="diagram-header">
+                  <h3>Kernel · dans le POS · scheme autour</h3>
+                  <p>Qui orchestre · qui fixe les règles</p>
+                </div>
+                <svg viewBox="0 0 1000 180" role="img" aria-label="Kernel contactless et schemes">
+                  <rect x="60" y="28" width="420" height="100" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="270" y="68" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">Kernel EMV Contactless</text>
+                  <text x="270" y="94" text-anchor="middle" fill="#5a6b7c" font-size="13">logiciel dans le terminal</text>
+                  <text x="270" y="114" text-anchor="middle" fill="#5a6b7c" font-size="12">orchestre APDU · CVM · online/offline</text>
+
+                  <rect x="520" y="28" width="420" height="100" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="730" y="68" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="800">Scheme / produit</text>
+                  <text x="730" y="94" text-anchor="middle" fill="#5a6b7c" font-size="13">Visa payWave · MC PayPass · CB…</text>
+                  <text x="730" y="114" text-anchor="middle" fill="#5a6b7c" font-size="12">seuils · règles · chargeback</text>
+
+                  <text x="500" y="160" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Kernel = chef d’orchestre du tap · scheme = partition (règles)
+                  </text>
+                </svg>
               </div>
+
+              <div class="diagram" id="diagram-kernel-intervention" style="margin-top: 1.25rem">
+                <div class="diagram-header">
+                  <h3>Où intervient le kernel dans la transaction</h3>
+                  <p>Carte / wallet ↔ Kernel (POS) ↔ chaîne AuthZ</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 480"
+                  role="img"
+                  aria-label="Intervention du kernel EMV Contactless dans le tap"
+                >
+                  <defs>
+                    <marker id="ah-ker" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                    <marker id="ah-ker-back" markerWidth="8" markerHeight="8" refX="2" refY="3" orient="auto">
+                      <path d="M8,0 L0,3 L8,6 Z" fill="#2f4858" />
+                    </marker>
+                    <marker id="ah-ker-auth" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+
+                  <!-- column headers -->
+                  <rect x="40" y="16" width="240" height="36" rx="8" fill="#2f4858"/>
+                  <text x="160" y="40" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="13" font-weight="700">Carte / wallet</text>
+                  <rect x="320" y="16" width="360" height="36" rx="8" fill="#0d9f8a"/>
+                  <text x="500" y="40" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="13" font-weight="700">KERNEL (dans le POS)</text>
+                  <rect x="720" y="16" width="240" height="36" rx="8" fill="#1e5f8a"/>
+                  <text x="840" y="40" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="13" font-weight="700">Chaîne AuthZ</text>
+
+                  <!-- step 1 RF -->
+                  <text x="30" y="88" fill="#8a9aaa" font-size="11" font-weight="700">1</text>
+                  <rect x="50" y="68" width="220" height="44" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5"/>
+                  <text x="160" y="95" text-anchor="middle" fill="#5a6b7c" font-size="12">Tap · champ RF</text>
+                  <rect x="340" y="68" width="320" height="44" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="500" y="95" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Détecte · anticollision · Type A/B</text>
+                  <rect x="740" y="68" width="200" height="44" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1"/>
+                  <text x="840" y="95" text-anchor="middle" fill="#8a9aaa" font-size="12">—</text>
+
+                  <!-- step 2 SELECT -->
+                  <text x="30" y="148" fill="#8a9aaa" font-size="11" font-weight="700">2</text>
+                  <rect x="50" y="128" width="220" height="44" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                  <text x="160" y="155" text-anchor="middle" fill="#1a2b3c" font-size="12">Répond AID</text>
+                  <rect x="340" y="128" width="320" height="44" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="500" y="155" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">SELECT AID · choisit l’appli</text>
+                  <line x1="270" y1="142" x2="330" y2="142" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-ker)"/>
+                  <line x1="330" y1="158" x2="270" y2="158" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-ker-back)"/>
+                  <rect x="740" y="128" width="200" height="44" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1"/>
+                  <text x="840" y="155" text-anchor="middle" fill="#8a9aaa" font-size="12">—</text>
+
+                  <!-- step 3 data -->
+                  <text x="30" y="208" fill="#8a9aaa" font-size="11" font-weight="700">3</text>
+                  <rect x="50" y="188" width="220" height="44" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                  <text x="160" y="215" text-anchor="middle" fill="#1a2b3c" font-size="12">Données EMV</text>
+                  <rect x="340" y="188" width="320" height="44" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="500" y="215" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">GPO / READ · assemble le dossier</text>
+                  <line x1="270" y1="202" x2="330" y2="202" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-ker)"/>
+                  <line x1="330" y1="218" x2="270" y2="218" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-ker-back)"/>
+                  <rect x="740" y="188" width="200" height="44" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1"/>
+                  <text x="840" y="215" text-anchor="middle" fill="#8a9aaa" font-size="12">—</text>
+
+                  <!-- step 4 CVM -->
+                  <text x="30" y="268" fill="#8a9aaa" font-size="11" font-weight="700">4</text>
+                  <rect x="50" y="248" width="220" height="44" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5"/>
+                  <text x="160" y="275" text-anchor="middle" fill="#5a6b7c" font-size="12">PIN / CDCVM / none</text>
+                  <rect x="340" y="248" width="320" height="44" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="500" y="275" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Décide le CVM (seuils scheme)</text>
+                  <rect x="740" y="248" width="200" height="44" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1"/>
+                  <text x="840" y="275" text-anchor="middle" fill="#8a9aaa" font-size="12">—</text>
+
+                  <!-- step 5 GEN AC -->
+                  <text x="30" y="328" fill="#8a9aaa" font-size="11" font-weight="700">5</text>
+                  <rect x="50" y="308" width="220" height="44" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                  <text x="160" y="335" text-anchor="middle" fill="#1a2b3c" font-size="12">Calcule l’AC</text>
+                  <rect x="340" y="308" width="320" height="44" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="500" y="335" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Demande GENERATE AC</text>
+                  <line x1="270" y1="322" x2="330" y2="322" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-ker)"/>
+                  <line x1="330" y1="338" x2="270" y2="338" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-ker-back)"/>
+                  <rect x="740" y="308" width="200" height="44" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1"/>
+                  <text x="840" y="335" text-anchor="middle" fill="#8a9aaa" font-size="12">—</text>
+
+                  <!-- step 6 online decision -->
+                  <text x="30" y="388" fill="#8a9aaa" font-size="11" font-weight="700">6</text>
+                  <rect x="50" y="368" width="220" height="44" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5"/>
+                  <text x="160" y="395" text-anchor="middle" fill="#8a9aaa" font-size="12">attente / fin RF</text>
+                  <rect x="340" y="368" width="320" height="44" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="500" y="395" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Online requis ? → envoie AuthZ</text>
+                  <path d="M670 390 L730 390" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-ker-auth)"/>
+                  <rect x="740" y="368" width="200" height="44" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="840" y="395" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">Acquéreur → émetteur</text>
+
+                  <text x="500" y="450" text-anchor="middle" fill="#5a6b7c" font-size="13">
+                    Le kernel pilote les étapes 1→6 · la carte calcule · la chaîne décide (si online)
+                  </text>
+                  <text x="500" y="470" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">
+                    Seuils &amp; CVM (↓) = paramètres que le kernel applique
+                  </text>
+                </svg>
+              </div>
+
+              <p class="intro" style="margin-top: 1rem">
+                <a href="../j1/standards-emvco.html">J1 organismes</a> ·
+                <a href="../j1/chaine.html">chaîne J1</a> ·
+                <a href="architecture-wallets.html">4.3 wallets</a>.
+              </p>
             </section>
 
             <section class="section">
@@ -324,7 +385,7 @@
                     <rect x="40" y="40" width="280" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
                     <text x="180" y="78" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Sous seuil</text>
                     <text x="180" y="102" text-anchor="middle" fill="#0d9f8a" font-size="12">tap fluide · no CVM possible</text>
-                    <text x="180" y="122" text-anchor="middle" fill="#5a6b7c" font-size="11">offline normal souvent</text>
+                    <text x="180" y="122" text-anchor="middle" fill="#5a6b7c" font-size="11">geste rapide</text>
                   </g>
                   <g>
                     <rect x="360" y="40" width="280" height="110" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
@@ -413,74 +474,10 @@
                 </svg>
               </div>
 
-              <div class="csm-table-wrap" style="margin-top: 1.25rem">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Profil</th>
-                      <th scope="col">Au tap</th>
-                      <th scope="col">Diagnostic</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Online</th>
-                      <td>AuthZ via acquéreur → émetteur</td>
-                      <td>Latence · dispo réseau</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Offline normal</th>
-                      <td>TC local · acceptation prévue</td>
-                      <td>Sous seuil · paramètres carte OK</td>
-                    </tr>
-                    <tr class="is-exergue">
-                      <th scope="row">Offline dégradé</th>
-                      <td>Online requis mais indisponible</td>
-                      <td>≠ decline fonds · incident technique</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Standards</p>
-              <h2>Empilement · kernel · scheme</h2>
-              <div class="diagram" id="diagram-standards">
-                <div class="diagram-header">
-                  <h3>14443 → 7816-4 → EMV CL → AuthZ</h3>
-                  <p>Couches et acteurs au terminal</p>
-                </div>
-                <svg viewBox="0 0 1000 300" role="img" aria-label="Empilement standards contactless">
-                  <g>
-                    <rect x="80" y="40" width="840" height="44" rx="8" fill="#2f4858"/>
-                    <text x="100" y="68" fill="#fff" font-family="Syne, sans-serif" font-size="13" font-weight="700">ISO/IEC 14443</text>
-                    <text x="280" y="68" fill="#c5d3df" font-size="12">RF 13,56 MHz · proximité · anticollision</text>
-                  </g>
-                  <g>
-                    <rect x="80" y="92" width="840" height="44" rx="8" fill="#1e5f8a"/>
-                    <text x="100" y="120" fill="#fff" font-family="Syne, sans-serif" font-size="13" font-weight="700">ISO/IEC 7816-4</text>
-                    <text x="280" y="120" fill="#c5d3df" font-size="12">structure APDU (CLA · INS · P1 · P2 · Lc · Data · Le · SW)</text>
-                  </g>
-                  <g>
-                    <rect x="80" y="144" width="840" height="44" rx="8" fill="#0d9f8a"/>
-                    <text x="100" y="172" fill="#fff" font-family="Syne, sans-serif" font-size="13" font-weight="700">EMV Contactless</text>
-                    <text x="280" y="172" fill="#e7f6f3" font-size="12">kernel terminal · CVM · cryptogrammes · risque</text>
-                  </g>
-                  <g>
-                    <rect x="80" y="196" width="840" height="44" rx="8" fill="#e7f6f3" stroke="#087a6a" stroke-width="2"/>
-                    <text x="100" y="224" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Scheme / produit</text>
-                    <text x="280" y="224" fill="#243447" font-size="12">Visa payWave · MC PayPass · CB — seuils, chargeback, règles locales</text>
-                  </g>
-                  <text x="500" y="275" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                    Puis chaîne AuthZ J1 · token J3 si wallet
-                  </text>
-                </svg>
-              </div>
               <p class="intro" style="margin-top: 1rem">
-                <a href="../j1/standards-emvco.html">J1 organismes</a> ·
-                <a href="../j1/chaine.html">chaîne J1</a> ·
-                <a href="architecture-wallets.html">4.3 wallets</a>.
+                Offline dégradé ≠ decline fonds — c’est un incident technique
+                (timeout / host). Détail profils&nbsp;:
+                <a href="../j1/online-offline.html">J1 online / offline</a>.
               </p>
             </section>
 

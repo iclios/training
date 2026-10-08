@@ -193,6 +193,465 @@
             </section>
 
             <section class="section">
+              <p class="section-label">Rôles RF</p>
+              <h2>Actif / passif</h2>
+
+              <div class="diagram" id="diagram-nfc-actif-passif">
+                <div class="diagram-header">
+                  <h3>Session RF · 6 étapes</h3>
+                  <p>Actif (Initiator) · Passif (Target) — cas carte / wallet au POS</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 620"
+                  role="img"
+                  aria-label="Étapes précises session NFC actif passif"
+                >
+                  <defs>
+                    <marker id="ah-ap" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                    <marker id="ah-ap-back" markerWidth="8" markerHeight="8" refX="2" refY="3" orient="auto">
+                      <path d="M8,0 L0,3 L8,6 Z" fill="#2f4858" />
+                    </marker>
+                  </defs>
+
+                  <!-- En-têtes colonnes -->
+                  <rect x="200" y="20" width="300" height="44" rx="8" fill="#0d9f8a"/>
+                  <text x="350" y="48" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="700">ACTIF · Initiator</text>
+                  <rect x="520" y="20" width="300" height="44" rx="8" fill="#2f4858"/>
+                  <text x="670" y="48" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="700">PASSIF · Target</text>
+
+                  <text x="100" y="48" text-anchor="middle" fill="#5a6b7c" font-size="11" font-weight="700">ÉTAPE</text>
+
+                  <!-- Étape 1 -->
+                  <circle cx="100" cy="110" r="18" fill="#0d9f8a"/>
+                  <text x="100" y="115" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">1</text>
+                  <rect x="200" y="82" width="300" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="350" y="105" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Génère le champ RF</text>
+                  <text x="350" y="125" text-anchor="middle" fill="#5a6b7c" font-size="11">13,56 MHz · antenne POS / lecteur</text>
+                  <rect x="520" y="82" width="300" height="56" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5"/>
+                  <text x="670" y="105" text-anchor="middle" fill="#8a9aaa" font-size="13" font-weight="700">Hors champ</text>
+                  <text x="670" y="125" text-anchor="middle" fill="#8a9aaa" font-size="11">pas encore alimenté / vu</text>
+                  <line x1="500" y1="110" x2="520" y2="110" stroke="#0d9f8a" stroke-width="2" stroke-dasharray="4 3"/>
+
+                  <!-- Étape 2 -->
+                  <circle cx="100" cy="190" r="18" fill="#0d9f8a"/>
+                  <text x="100" y="195" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">2</text>
+                  <rect x="200" y="162" width="300" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="350" y="185" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Maintient le champ</text>
+                  <text x="350" y="205" text-anchor="middle" fill="#5a6b7c" font-size="11">induction continue</text>
+                  <rect x="520" y="162" width="300" height="56" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                  <text x="670" y="185" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Entre dans le champ (tap)</text>
+                  <text x="670" y="205" text-anchor="middle" fill="#5a6b7c" font-size="11">alimenté par induction · « s’allume »</text>
+                  <line x1="500" y1="190" x2="520" y2="190" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ap)"/>
+                  <text x="510" y="178" fill="#c45c26" font-size="10" font-weight="700">énergie</text>
+
+                  <!-- Étape 3 -->
+                  <circle cx="100" cy="270" r="18" fill="#0d9f8a"/>
+                  <text x="100" y="275" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">3</text>
+                  <rect x="200" y="242" width="300" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="350" y="265" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Détection / anticollision</text>
+                  <text x="350" y="285" text-anchor="middle" fill="#5a6b7c" font-size="11">sonde le champ · gère multi-cartes</text>
+                  <rect x="520" y="242" width="300" height="56" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                  <text x="670" y="265" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Se signale (UID…)</text>
+                  <text x="670" y="285" text-anchor="middle" fill="#5a6b7c" font-size="11">répond aux requêtes de présence</text>
+                  <line x1="520" y1="270" x2="500" y2="270" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-ap-back)"/>
+
+                  <!-- Étape 4 -->
+                  <circle cx="100" cy="350" r="18" fill="#0d9f8a"/>
+                  <text x="100" y="355" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">4</text>
+                  <rect x="200" y="322" width="300" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="350" y="345" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Sélection</text>
+                  <text x="350" y="365" text-anchor="middle" fill="#5a6b7c" font-size="11">choisit UNE cible pour la session</text>
+                  <rect x="520" y="322" width="300" height="56" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                  <text x="670" y="345" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Sélectionné / activé</text>
+                  <text x="670" y="365" text-anchor="middle" fill="#5a6b7c" font-size="11">prêt à recevoir des commandes</text>
+                  <line x1="500" y1="350" x2="520" y2="350" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ap)"/>
+
+                  <!-- Étape 5 -->
+                  <circle cx="100" cy="430" r="18" fill="#0d9f8a"/>
+                  <text x="100" y="435" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">5</text>
+                  <rect x="200" y="402" width="300" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="350" y="425" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Envoie commande (APDU)</text>
+                  <text x="350" y="445" text-anchor="middle" fill="#5a6b7c" font-size="11">structure 7816-4 · sur canal 14443</text>
+                  <rect x="520" y="402" width="300" height="56" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                  <text x="670" y="425" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Exécute · calcule</text>
+                  <text x="670" y="445" text-anchor="middle" fill="#5a6b7c" font-size="11">puce carte ou stack wallet</text>
+                  <line x1="500" y1="430" x2="520" y2="430" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ap)"/>
+                  <text x="510" y="418" fill="#087a6a" font-size="10" font-weight="700">cmd</text>
+
+                  <!-- Étape 6 -->
+                  <circle cx="100" cy="510" r="18" fill="#0d9f8a"/>
+                  <text x="100" y="515" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">6</text>
+                  <rect x="200" y="482" width="300" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="350" y="505" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Reçoit la réponse</text>
+                  <text x="350" y="525" text-anchor="middle" fill="#5a6b7c" font-size="11">données + status (SW1/SW2)</text>
+                  <rect x="520" y="482" width="300" height="56" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
+                  <text x="670" y="505" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Renvoie la réponse</text>
+                  <text x="670" y="525" text-anchor="middle" fill="#5a6b7c" font-size="11">modulation dans le champ</text>
+                  <line x1="520" y1="510" x2="500" y2="510" stroke="#2f4858" stroke-width="2.5" marker-end="url(#ah-ap-back)"/>
+                  <text x="510" y="498" fill="#2f4858" font-size="10" font-weight="700">rsp</text>
+
+                  <text x="500" y="580" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Boucle 5↔6 tant que la session dure · puis fin de champ / retrait du support
+                  </text>
+                  <text x="500" y="605" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">
+                    Paiement EMV = contenu des APDU (étape 5–6) — voir 4.2 · ici = rôles RF seulement
+                  </text>
+                </svg>
+              </div>
+
+              <div class="csm-table-wrap" style="margin-top: 1.25rem">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Actif fait</th>
+                      <th scope="col">Passif fait</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Génère le champ 13,56&nbsp;MHz</td>
+                      <td>—</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Maintient le champ</td>
+                      <td>Entre dans le champ · alimenté (induction)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Détecte / anticollision</td>
+                      <td>Se signale (ex. UID)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">4</th>
+                      <td>Sélectionne la cible</td>
+                      <td>Est sélectionné</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">5–6</th>
+                      <td>Commande APDU → reçoit réponse</td>
+                      <td>Exécute → renvoie réponse</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="csm-table-wrap" style="margin-top: 1.25rem">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Cas</th>
+                      <th scope="col">Actif</th>
+                      <th scope="col">Passif</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Carte → POS</th>
+                      <td>Terminal</td>
+                      <td>Carte plastique</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Téléphone → tag</th>
+                      <td>Téléphone (reader)</td>
+                      <td>Tag</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Wallet → POS</th>
+                      <td>Terminal</td>
+                      <td>Téléphone (card emulation)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="intro" style="margin-top: 1rem">
+                «&nbsp;Passif&nbsp;» = rôle RF face au champ, pas «&nbsp;sans
+                batterie&nbsp;». En wallet, le téléphone a de l’énergie, mais
+                le <strong>POS reste l’Initiator</strong>.
+              </p>
+            </section>
+
+            <section class="section">
+              <p class="section-label">ISO/IEC 14443</p>
+              <h2>Type A / Type B</h2>
+
+              <!-- TEMPS 1 -->
+              <p class="section-label" style="margin-top: 0.5rem">Temps 1</p>
+              <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.75rem; font-size: 1.15rem">
+                Une norme, deux déclinaisons
+              </h3>
+              <p class="definition-full">
+                <strong>ISO/IEC 14443</strong> = la norme du
+                <strong>sans contact de proximité</strong> (13,56&nbsp;MHz,
+                carte ↔ lecteur). Elle se décline en
+                <strong>deux types</strong>&nbsp;: A et B.
+              </p>
+
+              <div class="diagram" id="diagram-14443-split">
+                <div class="diagram-header">
+                  <h3>Temps 1 · La norme se divise</h3>
+                  <p>14443 → Type A · Type B</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 260"
+                  role="img"
+                  aria-label="ISO 14443 se décline en Type A et Type B"
+                >
+                  <rect x="250" y="24" width="500" height="64" rx="12" fill="#1e5f8a"/>
+                  <text x="500" y="52" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="18" font-weight="700">ISO/IEC 14443</text>
+                  <text x="500" y="74" text-anchor="middle" fill="#c5d3df" font-size="12">proximité · 13,56 MHz · actif / passif</text>
+
+                  <line x1="500" y1="88" x2="500" y2="120" stroke="#c5d3df" stroke-width="2.5"/>
+                  <line x1="280" y1="120" x2="720" y2="120" stroke="#c5d3df" stroke-width="2.5"/>
+                  <line x1="280" y1="120" x2="280" y2="145" stroke="#c5d3df" stroke-width="2.5"/>
+                  <line x1="720" y1="120" x2="720" y2="145" stroke="#c5d3df" stroke-width="2.5"/>
+                  <text x="500" y="115" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">se décline en</text>
+
+                  <rect x="120" y="145" width="320" height="72" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="280" y="188" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="22" font-weight="800">Type A</text>
+
+                  <rect x="560" y="145" width="320" height="72" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="720" y="188" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="22" font-weight="800">Type B</text>
+
+                  <text x="500" y="245" text-anchor="middle" fill="#5a6b7c" font-size="13">
+                    Même cadre norme · deux façons de faire la radio
+                  </text>
+                </svg>
+              </div>
+
+              <!-- TEMPS 2 -->
+              <p class="section-label" style="margin-top: 2rem">Temps 2</p>
+              <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.75rem; font-size: 1.15rem">
+                Ce qui différencie A et B
+              </h3>
+              <p class="intro">
+                Différence <strong>radio</strong> seulement — pas Visa vs Mastercard.
+                Le lecteur module le champ 13,56&nbsp;MHz&nbsp;: A = fort, B = léger.
+              </p>
+
+              <div class="diagram" id="diagram-14443-modulation">
+                <div class="diagram-header">
+                  <h3>Temps 2 · Comment le signal est modulé</h3>
+                  <p>Lecteur → carte · même fréquence, deux enveloppes</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 340"
+                  role="img"
+                  aria-label="Type A ASK 100 pourcent versus Type B ASK 10 pourcent"
+                >
+                  <!-- Type A -->
+                  <rect x="40" y="20" width="440" height="280" rx="14" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="260" y="56" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="22" font-weight="800">Type A</text>
+                  <text x="260" y="82" text-anchor="middle" fill="#0d9f8a" font-size="14" font-weight="700">ASK 100&nbsp;% · coups nets</text>
+
+                  <line x1="70" y1="220" x2="450" y2="220" stroke="#c5d3df" stroke-width="1.5"/>
+                  <path d="M80,220 L80,130 L140,130 L140,220 L155,220 L155,130 L215,130 L215,220
+                    L240,220 L240,130 L320,130 L320,220 L340,220 L340,130 L400,130 L400,220 L430,220 L430,130 L450,130"
+                    fill="none" stroke="#087a6a" stroke-width="2.5"/>
+                  <text x="110" y="245" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">ON</text>
+                  <text x="147" y="245" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">OFF</text>
+                  <text x="260" y="275" text-anchor="middle" fill="#5a6b7c" font-size="13">Le champ s’éteint presque</text>
+
+                  <!-- Type B -->
+                  <rect x="520" y="20" width="440" height="280" rx="14" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="740" y="56" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="22" font-weight="800">Type B</text>
+                  <text x="740" y="82" text-anchor="middle" fill="#1e5f8a" font-size="14" font-weight="700">ASK 10&nbsp;% · variation légère</text>
+
+                  <line x1="550" y1="220" x2="930" y2="220" stroke="#c5d3df" stroke-width="1.5"/>
+                  <path d="M560,220 L560,135 L620,135 L620,160 L680,160 L680,135 L760,135 L760,160
+                    L820,160 L820,135 L900,135 L900,160 L930,160"
+                    fill="none" stroke="#1e5f8a" stroke-width="2.5"/>
+                  <text x="740" y="275" text-anchor="middle" fill="#5a6b7c" font-size="13">Le champ ne s’éteint jamais</text>
+                </svg>
+              </div>
+
+              <div class="csm-table-wrap" style="margin-top: 1.25rem">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Type A</th>
+                      <th scope="col">Type B</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Modulation lecteur → carte</th>
+                      <td>ASK <strong>100&nbsp;%</strong> (forte)</td>
+                      <td>ASK <strong>10&nbsp;%</strong> (légère)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Compatible&nbsp;?</th>
+                      <td colspan="2"><strong>Non</strong> — A ne parle pas à B</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Terrain</th>
+                      <td>Majoritaire · NFC-A</td>
+                      <td>Minoritaire · NFC-B</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Au-dessus</th>
+                      <td colspan="2">Identique · APDU · EMV Contactless</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="intro" style="margin-top: 1rem">
+                Règle&nbsp;: le POS doit gérer A <strong>et</strong> B.
+                Carte A ↔ POS A · carte B ↔ POS B.
+              </p>
+
+              <!-- Couches -->
+              <p class="section-label" style="margin-top: 2rem">Empilement</p>
+              <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.75rem; font-size: 1.15rem">
+                Où se placent A et B dans les couches
+              </h3>
+              <p class="intro">
+                Type&nbsp;A / Type&nbsp;B = choix <strong>en bas</strong> (radio).
+                Au-dessus, APDU et EMV sont les mêmes — quel que soit le type.
+              </p>
+
+              <div class="diagram" id="diagram-14443-couches">
+                <div class="diagram-header">
+                  <h3>Couches · du bas (RF) vers le haut (paiement)</h3>
+                  <p>A et B = fourche au niveau radio seulement</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 360"
+                  role="img"
+                  aria-label="Empilement couches RF Type A ou B puis APDU puis EMV"
+                >
+                  <!-- Couche EMV -->
+                  <rect x="120" y="24" width="760" height="56" rx="10" fill="#e7f6f3" stroke="#087a6a" stroke-width="2.5"/>
+                  <text x="500" y="48" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">EMV Contactless</text>
+                  <text x="500" y="68" text-anchor="middle" fill="#5a6b7c" font-size="12">logique monétique · risque · CVM · crypto — identique A ou B</text>
+
+                  <!-- Couche APDU -->
+                  <rect x="120" y="92" width="760" height="56" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="500" y="116" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="800">APDU · ISO/IEC 7816-4</text>
+                  <text x="500" y="136" text-anchor="middle" fill="#5a6b7c" font-size="12">commandes / réponses — même format sur A ou B</text>
+
+                  <!-- Fourche Type A / B -->
+                  <rect x="120" y="160" width="360" height="72" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="300" y="190" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="800">Type A</text>
+                  <text x="300" y="214" text-anchor="middle" fill="#0d9f8a" font-size="12" font-weight="700">ASK 100&nbsp;% · NFC-A · dominant paiement</text>
+
+                  <rect x="520" y="160" width="360" height="72" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="700" y="190" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="18" font-weight="800">Type B</text>
+                  <text x="700" y="214" text-anchor="middle" fill="#5a6b7c" font-size="12">ASK 10&nbsp;% · NFC-B · niche</text>
+
+                  <line x1="300" y1="232" x2="300" y2="255" stroke="#c5d3df" stroke-width="2"/>
+                  <line x1="700" y1="232" x2="700" y2="255" stroke="#c5d3df" stroke-width="2"/>
+                  <line x1="300" y1="255" x2="700" y2="255" stroke="#c5d3df" stroke-width="2"/>
+                  <line x1="500" y1="255" x2="500" y2="268" stroke="#c5d3df" stroke-width="2"/>
+
+                  <!-- Physique -->
+                  <rect x="120" y="268" width="760" height="56" rx="10" fill="#2f4858"/>
+                  <text x="500" y="292" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="800">Physique RF · 13,56 MHz</text>
+                  <text x="500" y="312" text-anchor="middle" fill="#c5d3df" font-size="12">induction · antennes · distance courte — socle commun</text>
+
+                  <text x="500" y="348" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    ISO/IEC 14443 = couche radio (A ou B) · EMV = couche au-dessus
+                  </text>
+                </svg>
+              </div>
+
+              <!-- Pourquoi A -->
+              <p class="section-label" style="margin-top: 2rem">Choix marché</p>
+              <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.75rem; font-size: 1.15rem">
+                Pourquoi le paiement a choisi Type A
+              </h3>
+                            <div class="callout" style="margin-top: 0.5rem">
+                <h3>À retenir</h3>
+                <ul class="topic-list" style="margin: 0.35rem 0 0">
+                  <li>
+                    Ce n’est <strong>pas</strong> qu’A est «&nbsp;meilleur&nbsp;»
+                    pour payer — c’est un <strong>effet d’écosystème</strong>.
+                  </li>
+                  <li>
+                    <strong>MIFARE</strong> (Philips / NXP) = famille de puces
+                    sans contact en <strong>Type&nbsp;A</strong>.
+                  </li>
+                  <li>
+                    Déjà partout (métro, badges, titres de transport…)
+                    <strong>avant</strong> le contactless bancaire
+                    <strong>CL</strong> (= EMV Contactless).
+                  </li>
+                  <li>
+                    Quand les banques ont lancé le tap, la radio A était déjà
+                    le standard de fait.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="diagram" id="diagram-pourquoi-type-a">
+                <div class="diagram-header">
+                  <h3>Type A · chemin dominant du paiement</h3>
+                  <p>Masse critique → standard de fait</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 250"
+                  role="img"
+                  aria-label="Pourquoi Type A domine le paiement sans contact"
+                >
+                  <defs>
+                    <marker id="ah-choix-a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <rect x="40" y="24" width="200" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="140" y="52" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="800">1 · Avant le CL</text>
+                  <text x="140" y="78" text-anchor="middle" fill="#5a6b7c" font-size="12">MIFARE = puces Type A</text>
+                  <text x="140" y="98" text-anchor="middle" fill="#5a6b7c" font-size="12">métro · badges · accès</text>
+                  <text x="140" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">déjà massif hors banque</text>
+
+                  <path d="M250 84 L280 84" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-choix-a)"/>
+
+                  <rect x="290" y="24" width="200" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="390" y="52" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="800">2 · Cartes &amp; POS</text>
+                  <text x="390" y="78" text-anchor="middle" fill="#5a6b7c" font-size="12">CL bancaire arrive</text>
+                  <text x="390" y="98" text-anchor="middle" fill="#5a6b7c" font-size="12">émetteurs + caisses</text>
+                  <text x="390" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">reprennent le Type A</text>
+
+                  <path d="M500 84 L530 84" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-choix-a)"/>
+
+                  <rect x="540" y="24" width="200" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="640" y="52" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="800">3 · Téléphones</text>
+                  <text x="640" y="78" text-anchor="middle" fill="#5a6b7c" font-size="12">NFC-A = défaut</text>
+                  <text x="640" y="98" text-anchor="middle" fill="#5a6b7c" font-size="12">Apple / Google Pay</text>
+                  <text x="640" y="118" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">suivent la même radio</text>
+
+                  <path d="M750 84 L780 84" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-choix-a)"/>
+
+                  <rect x="790" y="24" width="170" height="120" rx="10" fill="#0d9f8a"/>
+                  <text x="875" y="52" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="800">4 · De fait</text>
+                  <text x="875" y="78" text-anchor="middle" fill="#e7f6f3" font-size="12">Paiement = A</text>
+                  <text x="875" y="98" text-anchor="middle" fill="#e7f6f3" font-size="12">B = exception</text>
+                  <text x="875" y="118" text-anchor="middle" fill="#e7f6f3" font-size="11" font-weight="700">standard marché</text>
+
+                  <text x="500" y="180" text-anchor="middle" fill="#5a6b7c" font-size="13">
+                    CL = ContactLess bancaire (EMV Contactless) · MIFARE n’est pas EMV, c’est la radio A déjà déployée
+                  </text>
+                  <text x="500" y="205" text-anchor="middle" fill="#5a6b7c" font-size="13">
+                    B reste valide (norme, certains marchés) — hors masse critique caisse + wallet
+                  </text>
+                  <text x="500" y="230" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">
+                    EMV Contactless accepte A et B · le marché a verrouillé A
+                  </text>
+                </svg>
+              </div>
+              <p class="intro" style="margin-top: 1rem">
+                À retenir en salle&nbsp;: pour le tap carte / wallet au POS,
+                tu raisonnes <strong>Type&nbsp;A</strong>. Le POS gère aussi B
+                pour l’interop, pas parce que B est le chemin principal.
+              </p>
+            </section>
+
+            <section class="section">
               <p class="section-label">Modes NFC</p>
               <h2>Trois modes à connaître</h2>
               <p class="intro">
@@ -238,6 +697,257 @@
                     Paiement&nbsp;: contrôleur NFC → émulation carte → le POS voit une carte sans contact EMV
                   </text>
                 </svg>
+              </div>
+
+              <!-- Schéma Reader / writer -->
+              <p class="section-label" style="margin-top: 2rem">Mode 1</p>
+              <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.75rem; font-size: 1.15rem">
+                Reader / writer
+              </h3>
+              <p class="intro">
+                Le téléphone est <strong>actif</strong>&nbsp;: il génère le champ
+                et lit / écrit un tag passif. Pas de paiement.
+              </p>
+              <div class="diagram" id="diagram-mode-rw">
+                <div class="diagram-header">
+                  <h3>Reader / writer · schéma</h3>
+                  <p>Téléphone = lecteur · tag = cible</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 220"
+                  role="img"
+                  aria-label="Mode NFC reader writer telephone lit un tag"
+                >
+                  <defs>
+                    <marker id="ah-rw" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <rect x="60" y="40" width="280" height="120" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2.5"/>
+                  <text x="200" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="800">Téléphone</text>
+                  <text x="200" y="110" text-anchor="middle" fill="#1e5f8a" font-size="13" font-weight="700">ACTIF · Initiator</text>
+                  <text x="200" y="135" text-anchor="middle" fill="#5a6b7c" font-size="12">génère le champ · lit / écrit</text>
+
+                  <path d="M360 100 L480 100" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-rw)"/>
+                  <text x="420" y="88" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">RF 13,56</text>
+
+                  <rect x="500" y="40" width="280" height="120" rx="12" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+                  <text x="640" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="800">Tag NFC</text>
+                  <text x="640" y="110" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">PASSIF · Target</text>
+                  <text x="640" y="135" text-anchor="middle" fill="#5a6b7c" font-size="12">UID · NDEF · pas d’EMV</text>
+
+                  <rect x="820" y="55" width="140" height="90" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="890" y="95" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Atelier</text>
+                  <text x="890" y="118" text-anchor="middle" fill="#5a6b7c" font-size="11">NFC Tools…</text>
+
+                  <text x="500" y="200" text-anchor="middle" fill="#5a6b7c" font-size="13">
+                    Démo / identification — hors AuthZ monétique
+                  </text>
+                </svg>
+              </div>
+
+              <!-- Schéma Peer-to-peer -->
+              <p class="section-label" style="margin-top: 2rem">Mode 2</p>
+              <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.75rem; font-size: 1.15rem">
+                Peer-to-peer
+              </h3>
+              <p class="intro">
+                Deux devices s’échangent des données. Hors parcours
+                carte / wallet au POS.
+              </p>
+              <div class="diagram" id="diagram-mode-p2p">
+                <div class="diagram-header">
+                  <h3>Peer-to-peer · schéma</h3>
+                  <p>Device ↔ device</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 200"
+                  role="img"
+                  aria-label="Mode NFC peer to peer entre deux telephones"
+                >
+                  <defs>
+                    <marker id="ah-p2p" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#3d5a80" />
+                    </marker>
+                    <marker id="ah-p2p-back" markerWidth="8" markerHeight="8" refX="2" refY="3" orient="auto">
+                      <path d="M8,0 L0,3 L8,6 Z" fill="#3d5a80" />
+                    </marker>
+                  </defs>
+                  <rect x="120" y="40" width="260" height="100" rx="12" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="250" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="800">Device A</text>
+                  <text x="250" y="112" text-anchor="middle" fill="#5a6b7c" font-size="12">partage / échange</text>
+
+                  <path d="M400 75 L560 75" stroke="#3d5a80" stroke-width="2.5" marker-end="url(#ah-p2p)"/>
+                  <path d="M560 105 L400 105" stroke="#3d5a80" stroke-width="2.5" marker-end="url(#ah-p2p-back)"/>
+                  <text x="480" y="68" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700">NFC</text>
+
+                  <rect x="580" y="40" width="260" height="100" rx="12" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="710" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="800">Device B</text>
+                  <text x="710" y="112" text-anchor="middle" fill="#5a6b7c" font-size="12">reçoit / répond</text>
+
+                  <text x="500" y="180" text-anchor="middle" fill="#5a6b7c" font-size="13">
+                    Pas le mode du tap paiement au POS
+                  </text>
+                </svg>
+              </div>
+
+              <!-- Card emulation — déroulement détaillé -->
+              <p class="section-label" style="margin-top: 2rem">Mode 3 · central J4</p>
+              <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.75rem; font-size: 1.15rem">
+                Card emulation · déroulement
+              </h3>
+              <p class="intro">
+                Le téléphone se comporte comme une
+                <strong>carte sans contact Type&nbsp;A</strong> face au POS.
+                Le POS ne «&nbsp;voit&nbsp;» pas un smartphone — il voit une carte EMV.
+              </p>
+              <div class="diagram" id="diagram-mode-ce">
+                <div class="diagram-header">
+                  <h3>Card emulation · schéma de rôles</h3>
+                  <p>POS = actif · téléphone = passif (comme une carte)</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 240"
+                  role="img"
+                  aria-label="Mode card emulation POS actif telephone passif"
+                >
+                  <defs>
+                    <marker id="ah-ce" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                    <marker id="ah-ce-back" markerWidth="8" markerHeight="8" refX="2" refY="3" orient="auto">
+                      <path d="M8,0 L0,3 L8,6 Z" fill="#2f4858" />
+                    </marker>
+                  </defs>
+                  <rect x="60" y="36" width="320" height="130" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="220" y="78" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="17" font-weight="800">POS / lecteur</text>
+                  <text x="220" y="105" text-anchor="middle" fill="#0d9f8a" font-size="13" font-weight="700">ACTIF · Initiator</text>
+                  <text x="220" y="130" text-anchor="middle" fill="#5a6b7c" font-size="12">génère le champ · envoie APDU</text>
+
+                  <path d="M400 85 L560 85" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ce)"/>
+                  <text x="480" y="75" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">cmd</text>
+                  <path d="M560 115 L400 115" stroke="#2f4858" stroke-width="2.5" marker-end="url(#ah-ce-back)"/>
+                  <text x="480" y="145" text-anchor="middle" fill="#2f4858" font-size="11" font-weight="700">rsp</text>
+
+                  <rect x="580" y="36" width="360" height="130" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="760" y="72" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="17" font-weight="800">Téléphone wallet</text>
+                  <text x="760" y="98" text-anchor="middle" fill="#0d9f8a" font-size="13" font-weight="700">PASSIF · Card emulation</text>
+                  <text x="760" y="122" text-anchor="middle" fill="#5a6b7c" font-size="12">SE / HCE · Type A · répond comme une carte</text>
+                  <text x="760" y="144" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">+ token (DPAN) · J3</text>
+
+                  <text x="500" y="205" text-anchor="middle" fill="#5a6b7c" font-size="13">
+                    Même tuyau RF qu’une carte plastique · le contenu monétique = EMV CL (+ token)
+                  </text>
+                </svg>
+              </div>
+
+              <div class="diagram" id="diagram-ce-deroulement" style="margin-top: 1.25rem">
+                <div class="diagram-header">
+                  <h3>Card emulation · déroulement du tap</h3>
+                  <p>6 étapes · du champ RF à l’AuthZ</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 560"
+                  role="img"
+                  aria-label="Deroulement card emulation en six etapes"
+                >
+                  <defs>
+                    <marker id="ah-ced" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <!-- col headers -->
+                  <rect x="200" y="16" width="280" height="40" rx="8" fill="#0d9f8a"/>
+                  <text x="340" y="42" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">POS</text>
+                  <rect x="520" y="16" width="340" height="40" rx="8" fill="#2f4858"/>
+                  <text x="690" y="42" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="14" font-weight="700">Téléphone (card emulation)</text>
+
+                  <!-- 1 -->
+                  <circle cx="100" cy="100" r="18" fill="#0d9f8a"/>
+                  <text x="100" y="105" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">1</text>
+                  <rect x="200" y="72" width="280" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="340" y="95" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Génère le champ RF</text>
+                  <text x="340" y="115" text-anchor="middle" fill="#5a6b7c" font-size="11">13,56 MHz · attendre le tap</text>
+                  <rect x="520" y="72" width="340" height="56" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5"/>
+                  <text x="690" y="95" text-anchor="middle" fill="#8a9aaa" font-size="13" font-weight="700">Hors champ</text>
+                  <text x="690" y="115" text-anchor="middle" fill="#8a9aaa" font-size="11">wallet prêt / déverrouillé</text>
+
+                  <!-- 2 -->
+                  <circle cx="100" cy="180" r="18" fill="#0d9f8a"/>
+                  <text x="100" y="185" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">2</text>
+                  <rect x="200" y="152" width="280" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="340" y="175" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Détecte une cible</text>
+                  <text x="340" y="195" text-anchor="middle" fill="#5a6b7c" font-size="11">anticollision · Type A</text>
+                  <rect x="520" y="152" width="340" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="690" y="175" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Tap · entre dans le champ</text>
+                  <text x="690" y="195" text-anchor="middle" fill="#5a6b7c" font-size="11">s’alimente · se signale comme carte</text>
+                  <line x1="500" y1="180" x2="520" y2="180" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ced)"/>
+
+                  <!-- 3 -->
+                  <circle cx="100" cy="260" r="18" fill="#0d9f8a"/>
+                  <text x="100" y="265" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">3</text>
+                  <rect x="200" y="232" width="280" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="340" y="255" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Sélectionne l’appli EMV</text>
+                  <text x="340" y="275" text-anchor="middle" fill="#5a6b7c" font-size="11">SELECT AID (Visa / MC…)</text>
+                  <rect x="520" y="232" width="340" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="690" y="255" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Stack wallet répond</text>
+                  <text x="690" y="275" text-anchor="middle" fill="#5a6b7c" font-size="11">SE (Apple) ou HCE (Google) · Type A</text>
+                  <line x1="500" y1="260" x2="520" y2="260" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ced)"/>
+
+                  <!-- 4 -->
+                  <circle cx="100" cy="340" r="18" fill="#0d9f8a"/>
+                  <text x="100" y="345" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">4</text>
+                  <rect x="200" y="312" width="280" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="340" y="335" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Échange APDU EMV CL</text>
+                  <text x="340" y="355" text-anchor="middle" fill="#5a6b7c" font-size="11">GPO · Read · Generate AC…</text>
+                  <rect x="520" y="312" width="340" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="690" y="335" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Fournit token + crypto</text>
+                  <text x="690" y="355" text-anchor="middle" fill="#5a6b7c" font-size="11">DPAN · cryptogramme (pas le PAN)</text>
+                  <line x1="500" y1="340" x2="520" y2="340" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ced)"/>
+                  <text x="510" y="328" fill="#c45c26" font-size="10" font-weight="700">cœur</text>
+
+                  <!-- 5 -->
+                  <circle cx="100" cy="420" r="18" fill="#0d9f8a"/>
+                  <text x="100" y="425" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">5</text>
+                  <rect x="200" y="392" width="280" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="340" y="415" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Construit l’AuthZ</text>
+                  <text x="340" y="435" text-anchor="middle" fill="#5a6b7c" font-size="11">vers acquéreur / scheme</text>
+                  <rect x="520" y="392" width="340" height="56" rx="8" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5"/>
+                  <text x="690" y="415" text-anchor="middle" fill="#8a9aaa" font-size="13" font-weight="700">Session RF terminée</text>
+                  <text x="690" y="435" text-anchor="middle" fill="#8a9aaa" font-size="11">le porteur peut retirer le phone</text>
+
+                  <!-- 6 -->
+                  <circle cx="100" cy="500" r="18" fill="#0d9f8a"/>
+                  <text x="100" y="505" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">6</text>
+                  <rect x="200" y="472" width="660" height="50" rx="8" fill="#0d9f8a"/>
+                  <text x="530" y="502" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">
+                    AuthZ online · TSP / émetteur · approve / decline — même logique J1 + token J3
+                  </text>
+
+                  <text x="500" y="545" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                    Étapes 1–4 = NFC + 14443 · étape 4 = EMV CL · étapes 5–6 = SI monétique
+                  </text>
+                </svg>
+              </div>
+
+              <div class="callout" style="margin-top: 1.25rem">
+                <h3>À retenir · card emulation</h3>
+                <ul class="topic-list" style="margin: 0.35rem 0 0">
+                  <li>
+                    Le POS traite le téléphone <strong>comme une carte</strong>
+                    Type&nbsp;A (pas comme un «&nbsp;app mobile&nbsp;»).
+                  </li>
+                  <li>
+                    Le mode NFC = le <strong>rôle RF</strong>&nbsp;; EMV CL =
+                    le <strong>contenu</strong> des APDU&nbsp;; le token =
+                    ce qui remplace le PAN (J3).
+                  </li>
+                  <li>
+                    Reader/writer et P2P ne portent <strong>pas</strong> le
+                    paiement wallet.
+                  </li>
+                </ul>
               </div>
 
               <div class="csm-table-wrap" style="margin-top: 1.25rem">
@@ -306,91 +1016,112 @@
             </section>
 
             <section class="section">
-              <p class="section-label">Comparaison</p>
-              <h2>NFC vs QR</h2>
-              <p class="intro">
-                Même intention (payer près du commerçant) — canaux et
-                contraintes différents.
-              </p>
-
-              <div class="csm-table-wrap">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col">NFC</th>
-                      <th scope="col">QR</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Canal</th>
-                      <td>Radio de proximité</td>
-                      <td>Optique (caméra / image)</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Hardware</th>
-                      <td>Chipset + antenne device &amp; lecteur</td>
-                      <td>Peu d’exigence HW côté acceptation</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Geste</th>
-                      <td>Tap (cm)</td>
-                      <td>Scan / affichage</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Force</th>
-                      <td>Fluidité caisse</td>
-                      <td>Déploiement large (J2)</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            <section class="section">
               <p class="section-label">Normes</p>
               <h2>NFC Forum vs ISO 14443</h2>
-              <p class="definition-full">
-                Le <strong>NFC Forum</strong> structure les
-                <em>devices</em> (interop device ↔ infra). Le paiement carte
-                plastique repose d’abord sur <strong>ISO/IEC 14443</strong> +
-                <strong>EMV Contactless</strong> — le Forum n’est pas la
-                spec monétique.
+              <p class="intro">
+                Deux acteurs différents&nbsp;:
+                <strong>ISO/IEC 14443</strong> = tuyau radio carte ↔ lecteur ·
+                <strong>NFC Forum</strong> = comment un
+                <em>device</em> NFC (téléphone, tag…) utilise ce tuyau et
+                interopère. Le Forum <strong>n’est pas</strong> la spec monétique.
               </p>
-              <div class="csm-table-wrap" style="margin-top: 1.1rem">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Couche</th>
-                      <th scope="col">Rôle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">ISO/IEC 14443</th>
-                      <td>RF proximité cartes / lecteurs (A/B)</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">NFC Forum</th>
-                      <td>Device NFC · modes · protocoles «&nbsp;on top of&nbsp;» 14443</td>
-                    </tr>
-                    <tr class="is-exergue">
-                      <th scope="row">EMV Contactless</th>
-                      <td>Logique monétique sur le tuyau RF → <a href="paiement-contactless.html">4.2</a></td>
-                    </tr>
-                  </tbody>
-                </table>
+
+              <div class="diagram" id="diagram-nfc-forum-scope">
+                <div class="diagram-header">
+                  <h3>Ce que fait le NFC Forum</h3>
+                  <p>Consortium · specs device / tags / données — sur socle ISO</p>
+                </div>
+                <svg
+                  viewBox="0 0 1000 420"
+                  role="img"
+                  aria-label="Perimetre NFC Forum liste des domaines"
+                >
+                  <rect x="40" y="20" width="920" height="48" rx="10" fill="#6b5b95"/>
+                  <text x="500" y="50" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="16" font-weight="800">NFC Forum — périmètre</text>
+
+                  <rect x="40" y="84" width="290" height="100" rx="10" fill="#faf6ff" stroke="#6b5b95" stroke-width="2"/>
+                  <text x="185" y="118" text-anchor="middle" fill="#6b5b95" font-family="Syne, sans-serif" font-size="14" font-weight="800">Modes</text>
+                  <text x="185" y="142" text-anchor="middle" fill="#5a6b7c" font-size="12">Card emulation</text>
+                  <text x="185" y="162" text-anchor="middle" fill="#5a6b7c" font-size="12">Reader/writer · P2P</text>
+
+                  <rect x="355" y="84" width="290" height="100" rx="10" fill="#faf6ff" stroke="#6b5b95" stroke-width="2"/>
+                  <text x="500" y="118" text-anchor="middle" fill="#6b5b95" font-family="Syne, sans-serif" font-size="14" font-weight="800">Digital Protocol</text>
+                  <text x="500" y="142" text-anchor="middle" fill="#5a6b7c" font-size="12">NFC-A / B / F / V</text>
+                  <text x="500" y="162" text-anchor="middle" fill="#5a6b7c" font-size="12">frames · débits · commandes</text>
+
+                  <rect x="670" y="84" width="290" height="100" rx="10" fill="#faf6ff" stroke="#6b5b95" stroke-width="2"/>
+                  <text x="815" y="118" text-anchor="middle" fill="#6b5b95" font-family="Syne, sans-serif" font-size="14" font-weight="800">Activity · Profiles</text>
+                  <text x="815" y="142" text-anchor="middle" fill="#5a6b7c" font-size="12">comment démarrer</text>
+                  <text x="815" y="162" text-anchor="middle" fill="#5a6b7c" font-size="12">une session RF</text>
+
+                  <rect x="40" y="200" width="290" height="100" rx="10" fill="#faf6ff" stroke="#6b5b95" stroke-width="2"/>
+                  <text x="185" y="234" text-anchor="middle" fill="#6b5b95" font-family="Syne, sans-serif" font-size="14" font-weight="800">Tags</text>
+                  <text x="185" y="258" text-anchor="middle" fill="#5a6b7c" font-size="12">Types 2 · 3 · 4 · 5…</text>
+                  <text x="185" y="278" text-anchor="middle" fill="#5a6b7c" font-size="12">interop lecture / écriture</text>
+
+                  <rect x="355" y="200" width="290" height="100" rx="10" fill="#faf6ff" stroke="#6b5b95" stroke-width="2"/>
+                  <text x="500" y="234" text-anchor="middle" fill="#6b5b95" font-family="Syne, sans-serif" font-size="14" font-weight="800">NDEF · RTD</text>
+                  <text x="500" y="258" text-anchor="middle" fill="#5a6b7c" font-size="12">format de données</text>
+                  <text x="500" y="278" text-anchor="middle" fill="#5a6b7c" font-size="12">URI · texte · smart poster…</text>
+
+                  <rect x="670" y="200" width="290" height="100" rx="10" fill="#faf6ff" stroke="#6b5b95" stroke-width="2"/>
+                  <text x="815" y="234" text-anchor="middle" fill="#6b5b95" font-family="Syne, sans-serif" font-size="14" font-weight="800">P2P · LLCP · SNEP</text>
+                  <text x="815" y="258" text-anchor="middle" fill="#5a6b7c" font-size="12">lien device ↔ device</text>
+                  <text x="815" y="278" text-anchor="middle" fill="#5a6b7c" font-size="12">échange de messages NDEF</text>
+
+                  <rect x="40" y="316" width="445" height="72" rx="10" fill="#faf6ff" stroke="#6b5b95" stroke-width="2"/>
+                  <text x="262" y="348" text-anchor="middle" fill="#6b5b95" font-family="Syne, sans-serif" font-size="14" font-weight="800">Device Requirements</text>
+                  <text x="262" y="370" text-anchor="middle" fill="#5a6b7c" font-size="12">exigences produit · interop · certification</text>
+
+                  <rect x="505" y="316" width="455" height="72" rx="10" fill="#faf6ff" stroke="#6b5b95" stroke-width="2"/>
+                  <text x="732" y="348" text-anchor="middle" fill="#6b5b95" font-family="Syne, sans-serif" font-size="14" font-weight="800">Analog · Connection Handover</text>
+                  <text x="732" y="370" text-anchor="middle" fill="#5a6b7c" font-size="12">RF device · bascule vers Bluetooth / Wi‑Fi…</text>
+                </svg>
               </div>
+
+              <div class="callout" style="margin-top: 1.25rem">
+                <h3>Ce que le NFC Forum spécifie</h3>
+                <ul class="topic-list" style="margin: 0.35rem 0 0">
+                  <li>
+                    <strong>Modes</strong> · <strong>Digital Protocol</strong>
+                    (NFC-A/B/F/V) · <strong>Activity / Profiles</strong>
+                  </li>
+                  <li>
+                    <strong>Tags</strong> · <strong>NDEF / RTD</strong> ·
+                    <strong>LLCP / SNEP</strong> (P2P)
+                  </li>
+                  <li>
+                    <strong>Device Requirements</strong> · Analog ·
+                    Connection Handover
+                  </li>
+                </ul>
+              </div>
+
+              <div class="callout warn" style="margin-top: 1rem">
+                <h3>Ce que le NFC Forum ne fait pas</h3>
+                <ul class="topic-list" style="margin: 0.35rem 0 0">
+                  <li>
+                    Pas de logique <strong>paiement</strong>&nbsp;: pas de CVM,
+                    seuils, cryptogrammes EMV, AuthZ, tokenisation.
+                  </li>
+                  <li>
+                    Ça, c’est <strong>EMVCo</strong> (EMV Contactless) + schemes
+                    + TSP (J3) — pas le Forum.
+                  </li>
+                </ul>
+              </div>
+
               <p class="intro" style="margin-top: 1rem">
                 Card emulation&nbsp;: le téléphone «&nbsp;ressemble&nbsp;» à une
-                carte face à un POS déjà là — le terminal n’a pas besoin de
-                savoir que c’est un device NFC Forum.
+                carte face à un POS déjà calé sur 14443 + EMV — le terminal n’a
+                pas besoin de connaître tout le catalogue Forum pour accepter
+                le tap.
               </p>
             </section>
 
             <div class="sources-box">
-              <strong>Sources</strong> — NFC Forum Device Requirements ·
+              <strong>Sources</strong> — NFC Forum Digital Protocol · Activity ·
+              NDEF · LLCP · SNEP · Tag Types · Device Requirements ·
               ISO/IEC 14443 ·
               <a href="../j1/standards-emvco.html">J1 organismes</a>.
             </div>

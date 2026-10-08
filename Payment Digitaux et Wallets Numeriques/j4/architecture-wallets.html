@@ -62,338 +62,376 @@
         <section class="section">
           <p class="section-label">Confiance device</p>
           <h2>SE · HCE · TEE</h2>
-          <p class="intro">
-            Où vivent les secrets et l’émulation carte — trois familles à
-            situer.
+
+          <!-- ===== SE ===== -->
+          <p class="section-label" style="margin-top: 1.5rem">1 · SE</p>
+          <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.5rem; font-size: 1.15rem">
+            Secure Element
+          </h3>
+          <p class="definition-full">
+            Une <strong>puce dédiée</strong> qui
+            <strong>est</strong> la carte sans contact face au POS (applet +
+            secrets) — isolée de l’OS. Ce n’est pas l’app wallet qui «&nbsp;joue&nbsp;»
+            la carte&nbsp;: c’est le coffre matériel qui répond aux APDU.
           </p>
 
-          <div class="diagram" id="diagram-se-hce-tee">
+          <div class="diagram" id="diagram-se-detail">
             <div class="diagram-header">
-              <h3>Trois modèles</h3>
-              <p>Secure Element · Host Card Emulation · Trusted Execution</p>
+              <h3>SE · où · quoi pour le tap</h3>
+              <p>Puce dédiée · contenu · flux POS</p>
             </div>
-            <svg
-              viewBox="0 0 1000 280"
-              role="img"
-              aria-label="SE HCE TEE"
-            >
-              <g>
-                <rect x="30" y="40" width="290" height="170" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                <text x="175" y="85" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">SE</text>
-                <text x="175" y="115" text-anchor="middle" fill="#0d9f8a" font-size="13">Secure Element</text>
-                <text x="175" y="145" text-anchor="middle" fill="#5a6b7c" font-size="12">puce dédiée</text>
-                <text x="175" y="170" text-anchor="middle" fill="#5a6b7c" font-size="11">SIM · eSE · embedded</text>
-              </g>
-              <g>
-                <rect x="355" y="40" width="290" height="170" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                <text x="500" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">HCE</text>
-                <text x="500" y="115" text-anchor="middle" fill="#1e5f8a" font-size="13">Host Card Emulation</text>
-                <text x="500" y="145" text-anchor="middle" fill="#5a6b7c" font-size="12">host / cloud</text>
-                <text x="500" y="170" text-anchor="middle" fill="#5a6b7c" font-size="11">tokens courts · TEE souvent</text>
-              </g>
-              <g>
-                <rect x="680" y="40" width="290" height="170" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                <text x="825" y="85" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">TEE</text>
-                <text x="825" y="115" text-anchor="middle" fill="#3d5a80" font-size="13">Trusted Execution</text>
-                <text x="825" y="145" text-anchor="middle" fill="#5a6b7c" font-size="12">enclave OS</text>
-                <text x="825" y="170" text-anchor="middle" fill="#5a6b7c" font-size="11">isolement local</text>
-              </g>
-              <text x="500" y="250" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                Comparer responsabilités — pas opposer «&nbsp;sécurisé&nbsp;» vs «&nbsp;non sécurisé&nbsp;»
-              </text>
+            <svg viewBox="0 0 1000 420" role="img" aria-label="SE localisation contenu et tap">
+              <!-- phone -->
+              <rect x="40" y="30" width="200" height="260" rx="24" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
+              <text x="140" y="58" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">TÉLÉPHONE</text>
+
+              <rect x="60" y="75" width="160" height="50" rx="8" fill="#e8eef3" stroke="#c5d3df"/>
+              <text x="140" y="97" text-anchor="middle" fill="#8a9aaa" font-size="12" font-weight="700">OS + apps</text>
+              <text x="140" y="115" text-anchor="middle" fill="#8a9aaa" font-size="11">pas les secrets</text>
+
+              <rect x="60" y="140" width="160" height="36" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+              <text x="140" y="163" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">Contrôleur NFC</text>
+
+              <rect x="70" y="195" width="140" height="60" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="140" y="230" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="20" font-weight="800">SE</text>
+
+              <text x="140" y="280" text-anchor="middle" fill="#5a6b7c" font-size="11">puce dédiée</text>
+
+              <!-- arrow -->
+              <path d="M255 225 L300 225" stroke="#0d9f8a" stroke-width="2.5"/>
+              <polygon points="300,219 315,225 300,231" fill="#0d9f8a"/>
+
+              <!-- contents -->
+              <rect x="330" y="30" width="630" height="260" rx="14" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="645" y="62" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">Pour le tap · la SE contient</text>
+
+              <text x="360" y="100" fill="#1a2b3c" font-size="14" font-weight="800">Applet card emulation</text>
+              <text x="360" y="120" fill="#5a6b7c" font-size="13">répond aux APDU comme une carte</text>
+
+              <text x="360" y="155" fill="#1a2b3c" font-size="14" font-weight="800">Token / DPAN</text>
+              <text x="360" y="175" fill="#5a6b7c" font-size="13">+ données EMV utiles au kernel</text>
+
+              <text x="360" y="210" fill="#1a2b3c" font-size="14" font-weight="800">Clés crypto</text>
+              <text x="360" y="230" fill="#5a6b7c" font-size="13">pour calculer le cryptogramme (AC)</text>
+
+              <text x="360" y="265" fill="#1a2b3c" font-size="14" font-weight="800">Compteurs / profil</text>
+              <text x="700" y="265" fill="#5a6b7c" font-size="13">risque, ATC…</text>
+
+              <!-- tap flow -->
+              <rect x="40" y="310" width="920" height="80" rx="12" fill="#0d9f8a"/>
+              <text x="500" y="345" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="800">Au tap · POS ↔ NFC ↔ SE</text>
+              <text x="500" y="370" text-anchor="middle" fill="#e7f6f3" font-size="13">l’app wallet ne « calcule » pas le crypto</text>
             </svg>
-            <div class="seq-steps" id="trust-steps">
-              <button type="button" class="seq-step is-active" data-step="1">
-                <span class="n">1</span>
-                <span>
-                  <strong>SE</strong>
-                  <p>
-                    Élément sécurisé matériel — secrets et applets dans une
-                    puce dédiée.
-                  </p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="2">
-                <span class="n">2</span>
-                <span>
-                  <strong>HCE</strong>
-                  <p>
-                    Émulation côté host — souvent appuyée sur cloud / tokens à
-                    durée limitée.
-                  </p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="3">
-                <span class="n">3</span>
-                <span>
-                  <strong>TEE</strong>
-                  <p>
-                    Environnement d’exécution de confiance dans le SoC —
-                    isolement local.
-                  </p>
-                </span>
-              </button>
+          </div>
+
+          <!-- ===== HCE ===== -->
+          <p class="section-label" style="margin-top: 2rem">2 · HCE</p>
+          <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.5rem; font-size: 1.15rem">
+            HCE · ce qui manque vs SE → nécessité du TSP
+          </h3>
+          <p class="definition-full">
+            <strong>Host Card Emulation</strong>&nbsp;: le logiciel (OS / app)
+            émule une <strong>carte sans contact</strong> face au POS (répond
+            aux APDU comme une carte). Le <strong>TSP</strong> devient
+            nécessaire pour faire ce que la SE faisait seule.
+          </p>
+
+          <div class="diagram" id="diagram-hce-detail">
+            <div class="diagram-header">
+              <h3>HCE a · Manque vs SE · TSP comble</h3>
+              <p>Sans coffre matériel · le TSP comble le trou</p>
             </div>
+            <svg viewBox="0 0 1000 520" role="img" aria-label="HCE manque vs SE necessite TSP">
+              <!-- phone -->
+              <rect x="40" y="20" width="200" height="200" rx="22" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
+              <text x="140" y="48" text-anchor="middle" fill="#5a6b7c" font-size="11" font-weight="700">TÉLÉPHONE</text>
+              <rect x="60" y="65" width="160" height="50" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="140" y="95" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="18" font-weight="800">HCE</text>
+              <rect x="60" y="130" width="160" height="32" rx="6" fill="#fff" stroke="#1e5f8a"/>
+              <text x="140" y="151" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Contrôleur NFC</text>
+              <rect x="70" y="175" width="140" height="28" rx="5" fill="#fdf6f2" stroke="#c45c26" stroke-width="2" stroke-dasharray="5 3"/>
+              <text x="140" y="194" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="800">pas de SE</text>
+
+              <!-- HCE has -->
+              <rect x="270" y="20" width="330" height="200" rx="14" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="435" y="50" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="800">HCE a</text>
+              <text x="295" y="85" fill="#1a2b3c" font-size="13" font-weight="700">• Stack émulation (host)</text>
+              <text x="295" y="115" fill="#1a2b3c" font-size="13" font-weight="700">• Tokens / clés courts</text>
+              <text x="295" y="145" fill="#1a2b3c" font-size="13" font-weight="700">• Souvent TEE (CDCVM)</text>
+              <text x="295" y="185" fill="#5a6b7c" font-size="12">Suffit pour répondre au POS…</text>
+
+              <!-- MISSING vs SE - exergue -->
+              <rect x="620" y="20" width="340" height="200" rx="14" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+              <text x="790" y="50" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="800">Manque vs SE</text>
+              <text x="645" y="85" fill="#1a2b3c" font-size="13" font-weight="800">✗ Puce coffre dédiée</text>
+              <text x="645" y="115" fill="#1a2b3c" font-size="13" font-weight="800">✗ Secrets longs sur device</text>
+              <text x="645" y="145" fill="#1a2b3c" font-size="13" font-weight="800">✗ Clés durables (AC) locales</text>
+              <text x="645" y="175" fill="#c45c26" font-size="12" font-weight="700">…donc pas le même niveau</text>
+              <text x="645" y="195" fill="#c45c26" font-size="12" font-weight="700">de coffre que la SE</text>
+
+              <!-- arrow down to TSP necessity -->
+              <text x="500" y="245" text-anchor="middle" fill="#c45c26" font-size="14" font-weight="800">⇒ il faut un acteur hors device qui joue le rôle du coffre</text>
+
+              <!-- TSP fills gap -->
+              <rect x="40" y="265" width="920" height="140" rx="14" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="500" y="300" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">D’où le TSP (J3) — comble ce que la SE faisait seule</text>
+              <text x="80" y="335" fill="#1a2b3c" font-size="14" font-weight="700">• Vault — garde les secrets longs (à la place de la puce)</text>
+              <text x="80" y="360" fill="#1a2b3c" font-size="14" font-weight="700">• Recharge — pousse des credentials courts sur le HCE avant les taps</text>
+              <text x="80" y="385" fill="#1a2b3c" font-size="14" font-weight="700">• Gouverne — suspend / limite (domain controls) comme en tokenisation J3</text>
+
+              <!-- tap banner -->
+              <rect x="40" y="425" width="920" height="70" rx="12" fill="#0d9f8a"/>
+              <text x="500" y="455" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="800">Au tap · POS ↔ NFC ↔ HCE</text>
+              <text x="500" y="478" text-anchor="middle" fill="#e7f6f3" font-size="13">TSP hors chemin RF — il a compensé l’absence de SE en amont</text>
+            </svg>
+          </div>
+
+          <!-- ===== TEE ===== -->
+          <p class="section-label" style="margin-top: 2rem">3 · TEE</p>
+          <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.5rem; font-size: 1.15rem">
+            TEE · autorise le porteur · ≠ carte · ≠ SE
+          </h3>
+          <p class="definition-full">
+            <strong>Trusted Execution Environment</strong>&nbsp;: zone isolée
+            dans le <strong>processeur</strong> (SoC), séparée du rich OS. Elle
+            <strong>n’est pas</strong> la carte sans contact et
+            <strong>n’est pas</strong> la puce SE — elle
+            <strong>autorise</strong> / protège (biométrie, CDCVM) pour que SE
+            ou HCE puisse parler au POS.
+          </p>
+
+          <div class="diagram" id="diagram-tee-detail">
+            <div class="diagram-header">
+              <h3>TEE · où · ce qu’il fait · ce qu’il n’est pas</h3>
+              <p>Partition CPU · preuve porteur · pas le canal RF</p>
+            </div>
+            <svg viewBox="0 0 1000 520" role="img" aria-label="TEE detail localisation role vs SE HCE">
+              <!-- phone -->
+              <rect x="40" y="20" width="200" height="220" rx="22" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
+              <text x="140" y="48" text-anchor="middle" fill="#5a6b7c" font-size="11" font-weight="700">TÉLÉPHONE</text>
+              <rect x="60" y="65" width="160" height="40" rx="8" fill="#e8eef3" stroke="#c5d3df"/>
+              <text x="140" y="90" text-anchor="middle" fill="#8a9aaa" font-size="12" font-weight="700">Rich OS + apps</text>
+              <rect x="60" y="120" width="160" height="100" rx="10" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
+              <text x="140" y="145" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700">PROCESSEUR</text>
+              <rect x="75" y="160" width="130" height="45" rx="8" fill="#f0eef8" stroke="#3d5a80" stroke-width="3"/>
+              <text x="140" y="188" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="16" font-weight="800">TEE</text>
+
+              <!-- TEE does -->
+              <rect x="270" y="20" width="330" height="220" rx="14" fill="#f0eef8" stroke="#3d5a80" stroke-width="3"/>
+              <text x="435" y="50" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="14" font-weight="800">TEE fait</text>
+              <text x="295" y="85" fill="#1a2b3c" font-size="13" font-weight="800">CDCVM</text>
+              <text x="295" y="105" fill="#5a6b7c" font-size="12">biométrie / code — preuve porteur</text>
+              <text x="295" y="140" fill="#1a2b3c" font-size="13" font-weight="800">Clés / code de confiance</text>
+              <text x="295" y="160" fill="#5a6b7c" font-size="12">protéger l’usage (surtout HCE)</text>
+              <text x="295" y="195" fill="#1a2b3c" font-size="13" font-weight="800">Attestation device</text>
+              <text x="295" y="215" fill="#5a6b7c" font-size="12">device « sain » pour provisioning</text>
+
+              <!-- TEE is NOT -->
+              <rect x="620" y="20" width="340" height="220" rx="14" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+              <text x="790" y="50" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="14" font-weight="800">TEE n’est pas</text>
+              <text x="645" y="90" fill="#1a2b3c" font-size="13" font-weight="800">✗ La carte face au POS</text>
+              <text x="645" y="115" fill="#5a6b7c" font-size="12">(ce n’est pas l’émulation carte)</text>
+              <text x="645" y="150" fill="#1a2b3c" font-size="13" font-weight="800">✗ La puce SE</text>
+              <text x="645" y="175" fill="#5a6b7c" font-size="12">(pas le coffre applet + clés longues)</text>
+              <text x="645" y="210" fill="#1a2b3c" font-size="13" font-weight="800">✗ Le canal RF</text>
+              <text x="645" y="230" fill="#5a6b7c" font-size="12">(NFC ↔ SE ou HCE)</text>
+
+              <!-- roles triangle -->
+              <rect x="40" y="260" width="920" height="130" rx="14" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+              <text x="500" y="295" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="15" font-weight="800">Qui fait quoi au paiement</text>
+              <text x="80" y="330" fill="#087a6a" font-size="14" font-weight="800">SE ou HCE</text>
+              <text x="200" y="330" fill="#5a6b7c" font-size="13">= parle au POS (APDU · crypto carte)</text>
+              <text x="80" y="360" fill="#3d5a80" font-size="14" font-weight="800">TEE</text>
+              <text x="200" y="360" fill="#5a6b7c" font-size="13">= déverrouille / prouve le porteur (CDCVM) avant ou pendant</text>
+              <text x="560" y="345" fill="#5a6b7c" font-size="12">Souvent ensemble&nbsp;: TEE + SE · ou TEE + HCE</text>
+
+              <!-- tap banner -->
+              <rect x="40" y="410" width="920" height="80" rx="12" fill="#3d5a80"/>
+              <text x="500" y="445" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="800">Au tap · TEE autorise · SE/HCE répond au POS</text>
+              <text x="500" y="470" text-anchor="middle" fill="#c5d3df" font-size="13">Ex. Secure Enclave (Apple) · TrustZone (Android)</text>
+            </svg>
+          </div>
+
+          <div class="callout warn" style="margin-top: 1.25rem">
+            <h3>Ne pas confondre</h3>
+            <p style="margin: 0">
+              <strong>SE</strong> = la carte (puce + secrets) ·
+              <strong>HCE</strong> = logiciel qui joue la carte ·
+              <strong>TEE</strong> = isolation CPU pour CDCVM / protection —
+              pas le canal RF. Un device combine souvent TEE + SE, ou TEE + HCE.
+            </p>
           </div>
         </section>
 
-        <!-- SIM vs eSE vs HCE -->
+        <!-- SIM vs eSE vs HCE cloud -->
         <section class="section">
           <p class="section-label">Implémentations</p>
           <h2>SIM · eSE · HCE cloud</h2>
           <p class="intro">
-            Où se loge le SE (ou son équivalent logique) selon l’écosystème.
+            Trois façons de loger (ou non) le coffre SE — même question&nbsp;:
+            où · qui gouverne · quoi pour un tap.
           </p>
 
-          <div class="diagram" id="diagram-sim-ese-hce">
+          <!-- ===== SIM ===== -->
+          <p class="section-label" style="margin-top: 1.5rem">1 · SIM</p>
+          <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.5rem; font-size: 1.15rem">
+            SIM-based SE
+          </h3>
+          <p class="definition-full">
+            Coffre sur la <strong>carte SIM / UICC</strong> — contrôle
+            <strong>opérateur</strong> (MNO). Changer de SIM = changer de coffre.
+          </p>
+
+          <div class="diagram" id="diagram-sim-detail">
             <div class="diagram-header">
-              <h3>Où vit la confiance&nbsp;?</h3>
-              <p>Opérateur · constructeur · modèle cloud / host</p>
+              <h3>Où&nbsp;? · dans la SIM amovible</h3>
+              <p>Slot SIM · SE à l’intérieur de la carte</p>
             </div>
-            <svg
-              viewBox="0 0 1000 240"
-              role="img"
-              aria-label="SIM eSE HCE cloud"
-            >
-              <g>
-                <rect x="40" y="50" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-psp.jpg" x="52" y="66" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="122" y="90" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">SIM-based</text>
-                <text x="122" y="112" fill="#5a6b7c" font-size="12">SE sur carte SIM</text>
-                <text x="122" y="134" fill="#5a6b7c" font-size="11">gouvernance opérateur</text>
-              </g>
-              <g>
-                <rect x="360" y="50" width="280" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                <image href="../img/acteurs/acteur-device.jpg" x="372" y="66" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="442" y="90" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">eSE</text>
-                <text x="442" y="112" fill="#0d9f8a" font-size="12">embedded SE</text>
-                <text x="442" y="134" fill="#5a6b7c" font-size="11">dans le device</text>
-              </g>
-              <g>
-                <rect x="680" y="50" width="280" height="120" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-scheme.jpg" x="692" y="66" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="762" y="90" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">HCE / cloud</text>
-                <text x="762" y="112" fill="#5a6b7c" font-size="12">host + TSP</text>
-                <text x="762" y="134" fill="#5a6b7c" font-size="11">tokens / clés limitées</text>
-              </g>
-              <text x="500" y="210" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                Qui provisionne, qui suspend, qui possède les clés&nbsp;? — question SI
+            <svg viewBox="0 0 1000 280" role="img" aria-label="SIM based SE localisation">
+              <rect x="200" y="20" width="220" height="230" rx="26" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
+              <text x="310" y="48" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">TÉLÉPHONE</text>
+              <rect x="225" y="65" width="170" height="50" rx="8" fill="#e8eef3" stroke="#c5d3df"/>
+              <text x="310" y="95" text-anchor="middle" fill="#8a9aaa" font-size="13">OS + apps</text>
+              <rect x="245" y="140" width="130" height="70" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="310" y="170" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">SIM</text>
+              <text x="310" y="192" text-anchor="middle" fill="#0d9f8a" font-size="12">= SE dedans</text>
+
+              <line x1="450" y1="175" x2="530" y2="175" stroke="#0d9f8a" stroke-width="2.5"/>
+              <text x="545" y="170" fill="#087a6a" font-size="14" font-weight="800">amovible</text>
+              <text x="545" y="190" fill="#5a6b7c" font-size="12">gouvernance MNO</text>
+
+              <text x="500" y="260" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Provisioning historique via TSM / opérateur
               </text>
             </svg>
-            <div class="seq-steps" id="impl-steps">
-              <button type="button" class="seq-step is-active" data-step="1">
-                <span class="n">1</span>
-                <span>
-                  <strong>SIM</strong>
-                  <p>SE sur SIM — rôles opérateur / TSM historiques.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="2">
-                <span class="n">2</span>
-                <span>
-                  <strong>eSE</strong>
-                  <p>SE embarqué constructeur — typique wallets OEM.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="3">
-                <span class="n">3</span>
-                <span>
-                  <strong>HCE cloud</strong>
-                  <p>Moins de dépendance SE physique — plus d’orchestration TSP.</p>
-                </span>
-              </button>
-            </div>
           </div>
-        </section>
 
-        <!-- Apple / Google → pages dédiées -->
-        <section class="section">
-          <p class="section-label">Wallets majeurs</p>
-          <h2>Apple Pay · Google Pay</h2>
-          <p class="intro">
-            Deux orchestrations industrielles — mêmes briques token / AuthZ,
-            stacks device différentes. Traitées en
-            <strong>sections dédiées</strong> (éléments majeurs de la
-            formation).
-          </p>
-          <div class="split-2">
-            <div class="panel ok">
-              <h3><a href="apple-pay.html">Apple Pay</a></h3>
-              <ul>
-                <li>SE + Secure Enclave</li>
-                <li>CDCVM · token · tap NFC</li>
-                <li>Enrolment → provision → paiement</li>
-              </ul>
-            </div>
-            <div class="panel">
-              <h3><a href="google-pay.html">Google Pay</a></h3>
-              <ul>
-                <li>HCE / TEE (souvent)</li>
-                <li>CDCVM · token · tap NFC</li>
-                <li>Comparaison Apple (salle)</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- SI wallet → TSP → issuer -->
-        <section class="section" id="schema-si">
-          <p class="section-label">Architecture SI</p>
-          <h2>Wallet → TSP → issuer</h2>
-          <p class="intro">
-            Chaîne minimale pour provisionner et payer — prolongement de la
-            <a href="../j3/architecture-si.html">tokenisation J3</a>.
+          <p class="section-label" style="margin-top: 1rem">Pour un tap CL, la SIM-SE contient</p>
+          <ul class="topic-list">
+            <li><strong>Applet card emulation</strong> (+ données EMV)</li>
+            <li><strong>Token / DPAN</strong> et <strong>clés crypto</strong></li>
+            <li><strong>Contrôle opérateur</strong> — qui peut provisionner / suspendre</li>
+          </ul>
+          <p class="intro" style="margin-top: 0.5rem">
+            Au tap&nbsp;: POS ↔ NFC ↔ <strong>SE sur SIM</strong> · même logique
+            SE, autre «&nbsp;boîte&nbsp;».
           </p>
 
-          <div class="diagram" id="diagram-si-wallet">
+          <!-- ===== eSE ===== -->
+          <p class="section-label" style="margin-top: 2rem">2 · eSE</p>
+          <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.5rem; font-size: 1.15rem">
+            Embedded SE
+          </h3>
+          <p class="definition-full">
+            Coffre <strong>soudé</strong> dans le téléphone — contrôle
+            <strong>constructeur (OEM)</strong>. Lié au device, pas à la SIM.
+          </p>
+
+          <div class="diagram" id="diagram-ese-detail">
             <div class="diagram-header">
-              <h3>Chaîne SI</h3>
-              <p>App wallet · TSP · network token · banque émettrice</p>
+              <h3>Où&nbsp;? · puce soudée dans le device</h3>
+              <p>Non amovible · reste si on change de SIM</p>
             </div>
-            <svg
-              viewBox="0 0 1000 280"
-              role="img"
-              aria-label="Wallet TSP issuer"
-            >
+            <svg viewBox="0 0 1000 280" role="img" aria-label="eSE localisation">
+              <rect x="200" y="20" width="220" height="230" rx="26" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
+              <text x="310" y="48" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">TÉLÉPHONE OEM</text>
+              <rect x="225" y="65" width="170" height="50" rx="8" fill="#e8eef3" stroke="#c5d3df"/>
+              <text x="310" y="95" text-anchor="middle" fill="#8a9aaa" font-size="13">OS + apps</text>
+              <rect x="245" y="140" width="130" height="70" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="310" y="170" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">eSE</text>
+              <text x="310" y="192" text-anchor="middle" fill="#0d9f8a" font-size="12">soudée</text>
+
+              <line x1="450" y1="175" x2="530" y2="175" stroke="#0d9f8a" stroke-width="2.5"/>
+              <text x="545" y="170" fill="#087a6a" font-size="14" font-weight="800">fixe</text>
+              <text x="545" y="190" fill="#5a6b7c" font-size="12">gouvernance OEM</text>
+
+              <text x="500" y="260" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Ex. Apple Pay · eSE + Secure Enclave (TEE) pour CDCVM
+              </text>
+            </svg>
+          </div>
+
+          <p class="section-label" style="margin-top: 1rem">Pour un tap CL, l’eSE contient</p>
+          <ul class="topic-list">
+            <li><strong>Applet card emulation</strong> · token · clés (coffre paiement)</li>
+            <li><strong>Contrôle OEM</strong> — provisioning / lifecycle device</li>
+            <li>Souvent couplé à un <strong>TEE</strong> (biométrie / CDCVM)</li>
+          </ul>
+          <p class="intro" style="margin-top: 0.5rem">
+            Au tap&nbsp;: POS ↔ NFC ↔ <strong>eSE</strong> · CDCVM via TEE / Enclave.
+          </p>
+
+          <!-- ===== HCE cloud ===== -->
+          <p class="section-label" style="margin-top: 2rem">3 · HCE cloud</p>
+          <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.5rem; font-size: 1.15rem">
+            HCE + cloud / TSP
+          </h3>
+          <p class="definition-full">
+            <strong>Pas de coffre SE</strong> paiement sur le device. Secrets
+            longs chez le <strong>TSP / cloud</strong> · tokens courts sur le
+            phone (HCE, souvent + TEE).
+          </p>
+
+          <div class="diagram" id="diagram-hce-cloud-detail">
+            <div class="diagram-header">
+              <h3>Où&nbsp;? · cloud + logiciel host</h3>
+              <p>Long terme au TSP · court terme sur le device</p>
+            </div>
+            <svg viewBox="0 0 1000 280" role="img" aria-label="HCE cloud localisation">
               <defs>
-                <marker id="ah-si" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <marker id="ah-hcec2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                   <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
                 </marker>
               </defs>
-              <g>
-                <rect x="20" y="70" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-wallet.jpg" x="32" y="86" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="100" y="112" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Wallet app</text>
-                <text x="100" y="132" fill="#5a6b7c" font-size="11">device</text>
-              </g>
-              <line class="flow-line" x1="230" y1="120" x2="290" y2="120" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-si)"/>
-              <g>
-                <rect x="290" y="70" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-psp.jpg" x="302" y="86" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="370" y="112" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">TSP</text>
-                <text x="370" y="132" fill="#5a6b7c" font-size="11">token service</text>
-              </g>
-              <line class="flow-line" x1="500" y1="120" x2="560" y2="120" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-si)"/>
-              <g>
-                <rect x="560" y="70" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-scheme.jpg" x="572" y="86" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="640" y="112" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Network</text>
-                <text x="640" y="132" fill="#5a6b7c" font-size="11">tokenisation</text>
-              </g>
-              <line class="flow-line" x1="770" y1="120" x2="830" y2="120" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-si)"/>
-              <g>
-                <rect x="830" y="60" width="150" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                <image href="../img/acteurs/acteur-banque.jpg" x="872" y="78" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="905" y="155" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Issuer</text>
-              </g>
-              <text x="500" y="240" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                Le wallet orchestre — le TSP tokenise — l’émetteur décide
+              <rect x="80" y="50" width="200" height="100" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="180" y="95" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">Cloud / TSP</text>
+              <text x="180" y="120" text-anchor="middle" fill="#5a6b7c" font-size="12">vault · clés longues</text>
+
+              <path d="M290 100 L360 130" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-hcec2)"/>
+              <text x="300" y="105" fill="#087a6a" font-size="11" font-weight="700">push</text>
+
+              <rect x="380" y="40" width="220" height="200" rx="26" fill="#f7f9fb" stroke="#2f4858" stroke-width="3"/>
+              <text x="490" y="70" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">TÉLÉPHONE</text>
+              <rect x="405" y="90" width="170" height="55" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="490" y="125" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">HCE</text>
+              <rect x="420" y="165" width="140" height="40" rx="6" fill="#fff" stroke="#c5d3df" stroke-dasharray="5 3"/>
+              <text x="490" y="190" text-anchor="middle" fill="#8a9aaa" font-size="12">pas de SE</text>
+
+              <line x1="620" y1="117" x2="700" y2="117" stroke="#0d9f8a" stroke-width="2.5"/>
+              <text x="715" y="112" fill="#087a6a" font-size="14" font-weight="800">tokens courts</text>
+              <text x="715" y="132" fill="#5a6b7c" font-size="12">+ TEE (CDCVM)</text>
+
+              <text x="500" y="265" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Ex. Google Pay (Android HCE)
               </text>
             </svg>
-            <div class="seq-steps" id="si-steps">
-              <button type="button" class="seq-step is-active" data-step="1">
-                <span class="n">1</span>
-                <span>
-                  <strong>Wallet app</strong>
-                  <p>UI, biométrie, card emulation NFC sur le device.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="2">
-                <span class="n">2</span>
-                <span>
-                  <strong>TSP / network</strong>
-                  <p>Émet et gouverne le token (vault, domain controls).</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="3">
-                <span class="n">3</span>
-                <span>
-                  <strong>Issuer</strong>
-                  <p>Lien compte / PAN, OK provisioning, AuthZ au paiement.</p>
-                </span>
-              </button>
-            </div>
           </div>
-        </section>
 
-        <!-- Lifecycle flux -->
-        <section class="section">
-          <p class="section-label">Lifecycle</p>
-          <h2>Enrolment → provision → pay → lifecycle</h2>
-          <p class="intro">
-            Quatre temps — le
-            <a href="../j3/lifecycle.html">lifecycle token J3</a> s’applique au
-            wallet.
+          <p class="section-label" style="margin-top: 1rem">Pour un tap CL, le modèle HCE cloud fournit</p>
+          <ul class="topic-list">
+            <li><strong>Stack HCE</strong> sur le device — répond aux APDU</li>
+            <li><strong>Tokens / clés courts</strong> rechargeables</li>
+            <li><strong>Vault TSP</strong> — secrets longs hors device</li>
+            <li><strong>TEE</strong> — souvent CDCVM / protection locale</li>
+          </ul>
+          <p class="intro" style="margin-top: 0.5rem">
+            Au tap&nbsp;: POS ↔ NFC ↔ <strong>HCE</strong> · le cloud a
+            préparé · pas de SE paiement.
           </p>
 
-          <div class="diagram" id="diagram-lifecycle-wallet">
-            <div class="diagram-header">
-              <h3>Parcours bout en bout</h3>
-              <p>De l’ajout carte au gel / suppression du token</p>
-            </div>
-            <svg
-              viewBox="0 0 1000 200"
-              role="img"
-              aria-label="Enrolment provision pay lifecycle"
-            >
-              <g>
-                <rect x="30" y="40" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
-                <text x="130" y="80" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">1 · Enrolment</text>
-                <text x="130" y="104" text-anchor="middle" fill="#5a6b7c" font-size="11">ajout carte / IDV</text>
-              </g>
-              <line x1="240" y1="85" x2="275" y2="85" stroke="#5a6b7c" stroke-width="2"/>
-              <g>
-                <rect x="275" y="40" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#5a6b7c" stroke-width="2"/>
-                <text x="375" y="80" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">2 · Provision</text>
-                <text x="375" y="104" text-anchor="middle" fill="#5a6b7c" font-size="11">token → device</text>
-              </g>
-              <line x1="485" y1="85" x2="520" y2="85" stroke="#5a6b7c" stroke-width="2"/>
-              <g>
-                <rect x="520" y="36" width="200" height="98" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                <text x="620" y="80" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">3 · Pay</text>
-                <text x="620" y="104" text-anchor="middle" fill="#0d9f8a" font-size="11">tap NFC · AuthZ</text>
-              </g>
-              <line x1="730" y1="85" x2="765" y2="85" stroke="#5a6b7c" stroke-width="2"/>
-              <g>
-                <rect x="765" y="40" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#c45c26" stroke-width="2"/>
-                <text x="865" y="80" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">4 · Lifecycle</text>
-                <text x="865" y="104" text-anchor="middle" fill="#5a6b7c" font-size="11">suspend · delete</text>
-              </g>
-              <text x="500" y="175" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                Geler le token ≠ fermer le compte carte — gouvernance distincte
-              </text>
-            </svg>
-            <div class="seq-steps" id="life-steps">
-              <button type="button" class="seq-step is-active" data-step="1">
-                <span class="n">1</span>
-                <span>
-                  <strong>Enrolment</strong>
-                  <p>Ajout instrument, contrôles IDV / émetteur.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="2">
-                <span class="n">2</span>
-                <span>
-                  <strong>Provisioning</strong>
-                  <p>Token (et clés) poussés vers SE / HCE / TEE.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="3">
-                <span class="n">3</span>
-                <span>
-                  <strong>Paiement</strong>
-                  <p>CDCVM + cryptogramme + AuthZ (souvent token, pas PAN).</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="4">
-                <span class="n">4</span>
-                <span>
-                  <strong>Lifecycle</strong>
-                  <p>Suspend, resume, delete — device perdu, opposition…</p>
-                </span>
-              </button>
-            </div>
+          <div class="callout warn" style="margin-top: 1.25rem">
+            <h3>Ne pas confondre</h3>
+            <p style="margin: 0">
+              <strong>SIM</strong> et <strong>eSE</strong> = deux endroits pour
+              une <em>SE</em> · <strong>HCE cloud</strong> = pas de SE, autre
+              modèle de confiance (TSP).
+            </p>
           </div>
+          <p class="intro" style="margin-top: 1rem">
+            Lifecycle token / chaîne TSP&nbsp;:
+            <a href="../j3/lifecycle.html">J3 lifecycle</a> ·
+            <a href="../j3/architecture-si.html">J3 architecture SI</a>.
+          </p>
         </section>
 
         <!-- Rôle -->
