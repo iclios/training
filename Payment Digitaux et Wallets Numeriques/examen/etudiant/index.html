@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Examen — Paiements digitaux &amp; wallets numériques</title>
+    <link rel="stylesheet" href="css/examen.css" />
+  </head>
+  <body>
+    <header class="ex-bar">
+      <div class="wrap ex-bar-inner">
+        <a class="ex-brand" href="index.html"
+          >Paiements digitaux <span>&amp; wallets</span></a
+        >
+        <div class="ex-meta">
+          <span id="student-chip">Étudiant</span>
+          <span id="progress-label">—</span>
+          <div class="ex-progress" aria-hidden="true">
+            <i id="progress-bar"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- START -->
+      <section class="screen is-active" id="screen-start">
+        <div class="wrap">
+          <div class="ex-welcome">
+            <p class="ex-kicker">Bienvenue · Épreuve · 1 heure</p>
+            <h1>Paiements digitaux &amp; wallets numériques</h1>
+            <p class="ex-lead ex-welcome-lead">
+              Bonjour — vous allez passer l’examen de la formation.
+            </p>
+            <p class="ex-stats" aria-label="Composition de l’épreuve">
+              <span><strong id="q-count">—</strong> questions</span>
+              <span class="ex-stats-sep" aria-hidden="true">·</span>
+              <span>~<strong id="q-charge">—</strong>&nbsp;min</span>
+              <span class="ex-stats-sep" aria-hidden="true">·</span>
+              <span>QCM · unique · ordre · libre · schémas · actions (téléphone)</span>
+            </p>
+
+            <div class="ex-evo" aria-label="Évolution des moyens de paiement">
+              <figure class="ex-evo-item">
+                <img
+                  src="img/evolution/evo-cash.svg"
+                  alt=""
+                  width="96"
+                  height="96"
+                />
+                <figcaption>Cash</figcaption>
+              </figure>
+              <span class="ex-evo-arrow" aria-hidden="true">→</span>
+              <figure class="ex-evo-item">
+                <img
+                  src="img/evolution/evo-carte.svg"
+                  alt=""
+                  width="96"
+                  height="96"
+                />
+                <figcaption>Carte</figcaption>
+              </figure>
+              <span class="ex-evo-arrow" aria-hidden="true">→</span>
+              <figure class="ex-evo-item">
+                <img
+                  src="img/evolution/evo-mobile.svg"
+                  alt=""
+                  width="96"
+                  height="96"
+                />
+                <figcaption>Mobile</figcaption>
+              </figure>
+              <span class="ex-evo-arrow" aria-hidden="true">→</span>
+              <figure class="ex-evo-item">
+                <img
+                  src="img/evolution/evo-wallet.svg"
+                  alt=""
+                  width="96"
+                  height="96"
+                />
+                <figcaption>Wallet</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="ex-card">
+            <p class="ex-kicker">Avant de commencer</p>
+            <h2>Consignes</h2>
+            <ul class="ex-list" id="consignes-list"></ul>
+
+            <form id="form-start" class="ex-form">
+              <label>
+                Nom
+                <input name="nom" required autocomplete="family-name" />
+              </label>
+              <label>
+                Prénom
+                <input name="prenom" required autocomplete="given-name" />
+              </label>
+              <div class="btn-row">
+                <button class="btn btn-primary" type="submit">
+                  Commencer l’épreuve
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXAM -->
+      <section class="screen" id="screen-exam">
+        <div class="wrap">
+          <div class="ex-card">
+            <div id="q-mount"></div>
+            <div class="dot-nav" id="dot-nav" aria-label="Navigation questions"></div>
+            <div class="nav-q">
+              <button type="button" class="btn btn-secondary" id="btn-prev">
+                Précédent
+              </button>
+              <button type="button" class="btn btn-primary" id="btn-next">
+                Suivant
+              </button>
+              <button type="button" class="btn btn-primary" id="btn-finish" hidden>
+                Terminer &amp; exporter
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- END -->
+      <section class="screen" id="screen-end">
+        <div class="wrap">
+          <div class="ex-card finish-box">
+            <p class="ex-kicker">Fin de session</p>
+            <h2>Réponses enregistrées</h2>
+            <div class="ex-lead" id="end-summary"></div>
+            <p class="ex-lead">
+              La note finale (/20) sera établie après relecture — notamment des
+              réponses libres et schémas.
+            </p>
+            <div class="btn-row" style="justify-content: center">
+              <button type="button" class="btn btn-primary" id="btn-export">
+                Télécharger JSON
+              </button>
+              <button type="button" class="btn btn-secondary" id="btn-copy">
+                Copier JSON
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/questions.js"></script>
+    <script src="js/examen.js"></script>
+  </body>
+</html>

@@ -1,0 +1,3094 @@
+{
+  "meta": {
+    "title": "Examen — Paiements digitaux & wallets numériques",
+    "version": "2026-10-enrol-clarify",
+    "noteMax": 20,
+    "durationMin": 60,
+    "exportedAt": "2026-10-09T18:04:41.516Z",
+    "startedAt": "2026-10-09T17:01:42.421Z",
+    "endedAt": "2026-10-09T18:04:41.514Z",
+    "questionCount": 55,
+    "answeredCount": 55,
+    "autoScore": {
+      "points": 7.899999999999997,
+      "pointsMax": 10.249999999999998
+    },
+    "teacherReview": {
+      "noteSur20": null,
+      "commentaire": ""
+    }
+  },
+  "student": {
+    "nom": "REMBENDAMBYA OGANDAGA",
+    "prenom": "Noé Alvine"
+  },
+  "questions": [
+    {
+      "id": "j1-acs",
+      "jour": "J1",
+      "theme": "Socle monétique",
+      "diff": "tres-faible",
+      "type": "ordre",
+      "pointsIndicatifs": 0.25,
+      "prompt": "Remettez dans l’ordre la chaîne monétique classique.",
+      "enonce": {
+        "prompt": "Remettez dans l’ordre la chaîne monétique classique.",
+        "hint": "Glissez les étapes (haut = début).",
+        "actionLabel": null,
+        "actionKind": null,
+        "items": [
+          "Settlement",
+          "Authorization (AuthZ)",
+          "Clearing"
+        ]
+      },
+      "answer": {
+        "order": [
+          "Authorization (AuthZ)",
+          "Clearing",
+          "Settlement"
+        ]
+      },
+      "correct": {
+        "mode": "auto",
+        "order": [
+          "Authorization (AuthZ)",
+          "Clearing",
+          "Settlement"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.25,
+        "pointsMax": 0.25
+      }
+    },
+    {
+      "id": "j1-acteur-authz",
+      "jour": "J1",
+      "theme": "Acteurs",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "Qui prend en général la décision d’autorisation (approve / decline) sur le compte porteur ?",
+      "enonce": {
+        "prompt": "Qui prend en général la décision d’autorisation (approve / decline) sur le compte porteur ?",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "L’émetteur (issuer)"
+          },
+          {
+            "id": "b",
+            "label": "Le commerçant"
+          },
+          {
+            "id": "c",
+            "label": "L’acquéreur seul"
+          },
+          {
+            "id": "d",
+            "label": "Le fabricant de terminal"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "a"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "a"
+        ],
+        "labels": [
+          "L’émetteur (issuer)"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j1-pan",
+      "jour": "J1",
+      "theme": "Données carte",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "Le PAN désigne principalement…",
+      "enonce": {
+        "prompt": "Le PAN désigne principalement…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Le code PIN chiffré"
+          },
+          {
+            "id": "b",
+            "label": "Le numéro de compte primaire de la carte"
+          },
+          {
+            "id": "c",
+            "label": "Le montant autorisé"
+          },
+          {
+            "id": "d",
+            "label": "L’identifiant du terminal"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "b"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b"
+        ],
+        "labels": [
+          "Le numéro de compte primaire de la carte"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j1-acquereur",
+      "jour": "J1",
+      "theme": "Acteurs",
+      "diff": "moyen",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "L’acquéreur intervient surtout pour…",
+      "enonce": {
+        "prompt": "L’acquéreur intervient surtout pour…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Remplacer le scheme Visa / Mastercard"
+          },
+          {
+            "id": "b",
+            "label": "Tenir le compte du porteur et décider l’AuthZ finale"
+          },
+          {
+            "id": "c",
+            "label": "Accepter le commerçant et acheminer la transaction vers le réseau / l’émetteur"
+          },
+          {
+            "id": "d",
+            "label": "Émettre la carte plastique"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "c"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "c"
+        ],
+        "labels": [
+          "Accepter le commerçant et acheminer la transaction vers le réseau / l’émetteur"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j1-offline-degrade",
+      "jour": "J1",
+      "theme": "Online / offline",
+      "diff": "moyen",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "En monétique, on distingue notamment l’offline « normal » et l’offline « dégradé ». Quelle affirmation décrit correctement l’offline dégradé ?",
+      "enonce": {
+        "prompt": "En monétique, on distingue notamment l’offline « normal » et l’offline « dégradé ». Quelle affirmation décrit correctement l’offline dégradé ?",
+        "hint": "Pensez à la différence entre mode prévu et mode de secours.",
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "C’est uniquement le scan d’un QR sans montant"
+          },
+          {
+            "id": "b",
+            "label": "C’est le mode prévu au quotidien par le produit (seuils, floor limit…), même quand la chaîne online fonctionne parfaitement"
+          },
+          {
+            "id": "c",
+            "label": "C’est l’étape Settlement, toujours faite sans l’émetteur"
+          },
+          {
+            "id": "d",
+            "label": "C’est un mode de secours : la chaîne online est indisponible (ex. host down), on retombe sur des contrôles locaux / règles de fallback"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "b"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "d"
+        ],
+        "labels": [
+          "C’est un mode de secours : la chaîne online est indisponible (ex. host down), on retombe sur des contrôles locaux / règles de fallback"
+        ]
+      },
+      "autoEval": {
+        "status": "ko",
+        "pointsObtenus": 0,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j1-qcm-chaine",
+      "jour": "J1",
+      "theme": "Socle monétique",
+      "diff": "moyen",
+      "type": "qcm",
+      "pointsIndicatifs": 0.25,
+      "prompt": "Cochez les affirmations correctes après une autorisation approve en caisse.",
+      "enonce": {
+        "prompt": "Cochez les affirmations correctes après une autorisation approve en caisse.",
+        "hint": "Plusieurs réponses possibles — 2 bonnes réponses.",
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Dès l’approve, plus aucune étape n’existe côté réseaux / banques"
+          },
+          {
+            "id": "b",
+            "label": "Il peut encore rester des traitements après la décision d’autorisation (présentation, compensation, règlement…)"
+          },
+          {
+            "id": "c",
+            "label": "Un approve ne signifie pas que le règlement financier entre banques / acteurs est déjà terminé"
+          }
+        ]
+      },
+      "answer": {
+        "choices": [
+          "b",
+          "c"
+        ]
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b",
+          "c"
+        ],
+        "labels": [
+          "Il peut encore rester des traitements après la décision d’autorisation (présentation, compensation, règlement…)",
+          "Un approve ne signifie pas que le règlement financier entre banques / acteurs est déjà terminé"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.25,
+        "pointsMax": 0.25
+      }
+    },
+    {
+      "id": "j1-qcm-acteurs",
+      "jour": "J1",
+      "theme": "Acteurs",
+      "diff": "moyen",
+      "type": "qcm",
+      "pointsIndicatifs": 0.25,
+      "prompt": "Cochez ce qui est correct concernant les acteurs d’une transaction carte.",
+      "enonce": {
+        "prompt": "Cochez ce qui est correct concernant les acteurs d’une transaction carte.",
+        "hint": "Plusieurs réponses possibles.",
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Le commerçant remplace l’émetteur pour l’autorisation finale"
+          },
+          {
+            "id": "b",
+            "label": "Le scheme (réseau) orchestre souvent l’acheminement entre acquéreur et émetteur"
+          },
+          {
+            "id": "c",
+            "label": "L’émetteur tient en général le compte du porteur et décide l’AuthZ"
+          },
+          {
+            "id": "d",
+            "label": "L’acquéreur contractualise / achemine plutôt côté commerçant"
+          }
+        ]
+      },
+      "answer": {
+        "choices": [
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b",
+          "c",
+          "d"
+        ],
+        "labels": [
+          "Le scheme (réseau) orchestre souvent l’acheminement entre acquéreur et émetteur",
+          "L’émetteur tient en général le compte du porteur et décide l’AuthZ",
+          "L’acquéreur contractualise / achemine plutôt côté commerçant"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.25,
+        "pointsMax": 0.25
+      }
+    },
+    {
+      "id": "j1-qcm-organismes",
+      "jour": "J1",
+      "theme": "Normes",
+      "diff": "moyen",
+      "type": "qcm",
+      "pointsIndicatifs": 0.25,
+      "prompt": "Cochez les affirmations correctes sur les organismes / référentiels (ISO, EMVCo, schemes, NFC Forum…).",
+      "enonce": {
+        "prompt": "Cochez les affirmations correctes sur les organismes / référentiels (ISO, EMVCo, schemes, NFC Forum…).",
+        "hint": "Plusieurs réponses possibles.",
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "NFC Forum remplace EMVCo pour l’Authorization et le Settlement"
+          },
+          {
+            "id": "b",
+            "label": "Un scheme (Visa / Mastercard / CB…) fixe surtout les règles métier entre participants — ni norme ISO ni spec EMVCo"
+          },
+          {
+            "id": "c",
+            "label": "EMVCo publie des specs produit paiement (Chip, Contactless, 3DS, QR, Token) — ce n’est pas une norme ISO"
+          },
+          {
+            "id": "d",
+            "label": "ISO publie des normes techniques (ex. 8583, 14443, 20022) : « comment parler / transporter »"
+          }
+        ]
+      },
+      "answer": {
+        "choices": [
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b",
+          "c",
+          "d"
+        ],
+        "labels": [
+          "Un scheme (Visa / Mastercard / CB…) fixe surtout les règles métier entre participants — ni norme ISO ni spec EMVCo",
+          "EMVCo publie des specs produit paiement (Chip, Contactless, 3DS, QR, Token) — ce n’est pas une norme ISO",
+          "ISO publie des normes techniques (ex. 8583, 14443, 20022) : « comment parler / transporter »"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.25,
+        "pointsMax": 0.25
+      }
+    },
+    {
+      "id": "j1-iso-8583",
+      "jour": "J1",
+      "theme": "Normes",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "ISO 8583, dans le socle monétique, sert surtout à…",
+      "enonce": {
+        "prompt": "ISO 8583, dans le socle monétique, sert surtout à…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Décrire la grammaire des messages monétiques (ex. autorisation) entre systèmes"
+          },
+          {
+            "id": "b",
+            "label": "Définir le design graphique des QR EMV"
+          },
+          {
+            "id": "c",
+            "label": "Remplacer le Secure Element du téléphone"
+          },
+          {
+            "id": "d",
+            "label": "Fixer l’interchange Visa / Mastercard"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "a"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "a"
+        ],
+        "labels": [
+          "Décrire la grammaire des messages monétiques (ex. autorisation) entre systèmes"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j1-iso-20022",
+      "jour": "J1",
+      "theme": "Normes",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "Par rapport à ISO 8583, ISO 20022 est surtout…",
+      "enonce": {
+        "prompt": "Par rapport à ISO 8583, ISO 20022 est surtout…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "La norme radio du tap NFC"
+          },
+          {
+            "id": "b",
+            "label": "Un autre cadre de messaging (souvent cité pour SEPA / rails modernes) — distinct de l’ISO 8583"
+          },
+          {
+            "id": "c",
+            "label": "La spec EMVCo de tokenisation réseau"
+          },
+          {
+            "id": "d",
+            "label": "Le standard PCI-DSS de stockage du PAN"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "b"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b"
+        ],
+        "labels": [
+          "Un autre cadre de messaging (souvent cité pour SEPA / rails modernes) — distinct de l’ISO 8583"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j1-wallet-stack",
+      "jour": "J1",
+      "theme": "Normes",
+      "diff": "moyen",
+      "type": "unique",
+      "pointsIndicatifs": 0.15,
+      "prompt": "Un wallet de paiement NFC / tokenisé, côté normes, c’est surtout…",
+      "enonce": {
+        "prompt": "Un wallet de paiement NFC / tokenisé, côté normes, c’est surtout…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Uniquement le NFC Forum, sans EMV"
+          },
+          {
+            "id": "b",
+            "label": "Uniquement ISO 20022"
+          },
+          {
+            "id": "c",
+            "label": "Un empilement (ex. 14443 + EMV Contactless + tokenisation) — pas une norme ISO unique « wallet »"
+          },
+          {
+            "id": "d",
+            "label": "Uniquement PCI-DSS à la place d’EMVCo"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "c"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "c"
+        ],
+        "labels": [
+          "Un empilement (ex. 14443 + EMV Contactless + tokenisation) — pas une norme ISO unique « wallet »"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.15,
+        "pointsMax": 0.15
+      }
+    },
+    {
+      "id": "j1-libre-chaine",
+      "jour": "J1",
+      "theme": "Socle monétique",
+      "diff": "moyen",
+      "type": "libre",
+      "pointsIndicatifs": 2,
+      "prompt": "En 3–5 phrases, expliquez ce que couvrent respectivement l’autorisation, la compensation (clearing) et le règlement (settlement), et pourquoi une acceptation en caisse ne clôt pas tout le cycle côté banque.",
+      "enonce": {
+        "prompt": "En 3–5 phrases, expliquez ce que couvrent respectivement l’autorisation, la compensation (clearing) et le règlement (settlement), et pourquoi une acceptation en caisse ne clôt pas tout le cycle côté banque.",
+        "hint": "Réponse courte, idée principale — pas un cours complet.",
+        "actionLabel": null,
+        "actionKind": null,
+        "placeholder": "Votre réponse…"
+      },
+      "answer": {
+        "text": "L'autorisation sert principalement à verifier si le porteur de la carte a les fonds necessaire pour effectuer un transaction. La compensation permet de verifier les ecartes entre la banque emetrice et celle aquereure qui doit qui. et le reglement est la derniere etape d une transaction monetique celle les banque regles chacunes leurs dettes. l autorisation ne peut pas clore une transaction monetique car il y a la compensation et le reglement juste apres"
+      },
+      "correct": {
+        "mode": "appreciation_enseignant",
+        "note": null,
+        "ideeDirectrice": "AuthZ = décision sur le compte ; clearing = présentation / compensation ; settlement = règlement financier. Un approve en caisse ne clôt pas le cycle banque."
+      },
+      "autoEval": {
+        "status": "a_corriger",
+        "pointsObtenus": null,
+        "pointsMax": 2,
+        "commentaire": "Réponse libre — notation à l’appréciation de l’enseignant."
+      }
+    },
+    {
+      "id": "schema-acs",
+      "jour": "J1",
+      "theme": "Schéma chaîne monétique",
+      "diff": "faible",
+      "type": "schema",
+      "pointsIndicatifs": 0.75,
+      "prompt": "Schéma « chaîne monétique ». Placez les 3 étapes dans l’ordre chronologique, de gauche (début) à droite (fin).",
+      "enonce": {
+        "prompt": "Schéma « chaîne monétique ». Placez les 3 étapes dans l’ordre chronologique, de gauche (début) à droite (fin).",
+        "hint": "Une seule bonne réponse par case · ordre strict.",
+        "actionLabel": null,
+        "actionKind": null,
+        "schemaTitle": "Chaîne monétique · 3 étapes",
+        "schemaSubtitle": "Placez les 3 étiquettes dans l’ordre chronologique (gauche → droite).",
+        "slots": [
+          {
+            "id": "a1",
+            "caption": "① Début"
+          },
+          {
+            "id": "a2",
+            "caption": "② Ensuite"
+          },
+          {
+            "id": "a3",
+            "caption": "③ Fin"
+          }
+        ],
+        "palette": [
+          "Settlement",
+          "Authorization (AuthZ)",
+          "Clearing"
+        ]
+      },
+      "answer": {
+        "slots": {
+          "a1": "Authorization (AuthZ)",
+          "a2": "Settlement",
+          "a3": "Clearing"
+        }
+      },
+      "correct": {
+        "mode": "auto",
+        "slots": {
+          "a1": "Authorization (AuthZ)",
+          "a2": "Clearing",
+          "a3": "Settlement"
+        }
+      },
+      "autoEval": {
+        "status": "ko",
+        "pointsObtenus": 0,
+        "pointsMax": 0.75
+      }
+    },
+    {
+      "id": "j2-qr-entree",
+      "jour": "J2",
+      "theme": "Canal QR",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.15,
+      "prompt": "Dans une plateforme omnicanale, le QR est surtout…",
+      "enonce": {
+        "prompt": "Dans une plateforme omnicanale, le QR est surtout…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Un remplacement du settlement"
+          },
+          {
+            "id": "b",
+            "label": "Un token device stocké en SE"
+          },
+          {
+            "id": "c",
+            "label": "Un scheme qui autorise à la place de l’émetteur"
+          },
+          {
+            "id": "d",
+            "label": "Un rail d’entrée / d’initiation du paiement"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "d"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "d"
+        ],
+        "labels": [
+          "Un rail d’entrée / d’initiation du paiement"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.15,
+        "pointsMax": 0.15
+      }
+    },
+    {
+      "id": "act-qr-url",
+      "jour": "J2",
+      "theme": "Action · téléphone",
+      "diff": "faible",
+      "type": "action",
+      "pointsIndicatifs": 0.5,
+      "prompt": "Qu’observez-vous ? De quel type de payload s’agit-il ? Recopiez le contenu lu.",
+      "enonce": {
+        "prompt": "Qu’observez-vous ? De quel type de payload s’agit-il ? Recopiez le contenu lu.",
+        "hint": null,
+        "actionLabel": "Scannez le QR affiché ci-dessous avec la caméra de votre téléphone.",
+        "actionKind": "scan-qr",
+        "fields": [
+          {
+            "id": "obs",
+            "label": "Qu’observez-vous sur le téléphone ?",
+            "kind": "libre"
+          },
+          {
+            "id": "stype",
+            "label": "Type de payload",
+            "kind": "unique",
+            "choices": [
+              {
+                "id": "a",
+                "label": "URL (lien web)"
+              },
+              {
+                "id": "b",
+                "label": "Fiche contact (MECARD)"
+              },
+              {
+                "id": "c",
+                "label": "Configuration Wi‑Fi"
+              },
+              {
+                "id": "d",
+                "label": "Payload EMV QR de paiement"
+              }
+            ]
+          },
+          {
+            "id": "payload",
+            "label": "Payload / contenu lu (recopiez)",
+            "kind": "libre"
+          }
+        ]
+      },
+      "answer": {
+        "fields": {
+          "obs": "un lien avec un proposition de cliquer",
+          "stype": "a",
+          "payload": "exemple.com\\menu"
+        }
+      },
+      "correct": {
+        "mode": "mixte",
+        "fields": {
+          "obs": {
+            "mode": "appreciation_enseignant",
+            "label": "Qu’observez-vous sur le téléphone ?",
+            "note": null,
+            "indice": null
+          },
+          "stype": {
+            "mode": "auto",
+            "label": "Type de payload",
+            "ids": [
+              "a"
+            ],
+            "labels": [
+              "URL (lien web)"
+            ]
+          },
+          "payload": {
+            "mode": "appreciation_enseignant",
+            "label": "Payload / contenu lu (recopiez)",
+            "note": null,
+            "indice": "https://exemple.com/menu"
+          }
+        },
+        "ideeDirectrice": null
+      },
+      "autoEval": {
+        "status": "partiel_ok_auto",
+        "pointsObtenus": null,
+        "pointsMax": 0.5,
+        "fields": {
+          "obs": "a_corriger",
+          "stype": "ok",
+          "payload": "a_corriger"
+        },
+        "commentaire": "Champs libres à l’appréciation ; champs à choix auto-évalués ci-dessus."
+      }
+    },
+    {
+      "id": "j2-statique-dyn",
+      "jour": "J2",
+      "theme": "Canal QR",
+      "diff": "moyen",
+      "type": "unique",
+      "pointsIndicatifs": 0.15,
+      "prompt": "Quel est l’intérêt principal d’un QR dynamique (montant / TTL) par rapport à un QR statique ?",
+      "enonce": {
+        "prompt": "Quel est l’intérêt principal d’un QR dynamique (montant / TTL) par rapport à un QR statique ?",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Réduit surtout le risque de réutilisation / montant figé"
+          },
+          {
+            "id": "b",
+            "label": "Oblige à utiliser le NFC"
+          },
+          {
+            "id": "c",
+            "label": "Supprime le besoin d’AuthZ"
+          },
+          {
+            "id": "d",
+            "label": "Change le settlement en temps réel"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "a"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "a"
+        ],
+        "labels": [
+          "Réduit surtout le risque de réutilisation / montant figé"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.15,
+        "pointsMax": 0.15
+      }
+    },
+    {
+      "id": "j2-silo",
+      "jour": "J2",
+      "theme": "Intégration QR",
+      "diff": "moyen",
+      "type": "unique",
+      "pointsIndicatifs": 0.15,
+      "prompt": "On ajoute le paiement par QR à côté de la carte. Quelle erreur d’intégration faut-il surtout éviter ?",
+      "enonce": {
+        "prompt": "On ajoute le paiement par QR à côté de la carte. Quelle erreur d’intégration faut-il surtout éviter ?",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Utiliser le même journal de transactions que la carte"
+          },
+          {
+            "id": "b",
+            "label": "Traiter le QR code dans un silo à part"
+          },
+          {
+            "id": "c",
+            "label": "Passer les demandes par un PSP"
+          },
+          {
+            "id": "d",
+            "label": "Garder les mêmes grandes étapes monétiques que pour la carte (décision, compensation, règlement…)"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "d"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b"
+        ],
+        "labels": [
+          "Traiter le QR code dans un silo à part"
+        ]
+      },
+      "autoEval": {
+        "status": "ko",
+        "pointsObtenus": 0,
+        "pointsMax": 0.15
+      }
+    },
+    {
+      "id": "j2-qcm-qr",
+      "jour": "J2",
+      "theme": "Canal QR",
+      "diff": "moyen",
+      "type": "qcm",
+      "pointsIndicatifs": 0.25,
+      "prompt": "Cochez les affirmations correctes sur les QR en paiement / initiation.",
+      "enonce": {
+        "prompt": "Cochez les affirmations correctes sur les QR en paiement / initiation.",
+        "hint": "Plusieurs réponses possibles.",
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Tout QR scanné ouvre forcément un site web https"
+          },
+          {
+            "id": "b",
+            "label": "Un QR de paiement métier peut nécessiter une app compatible pour être interprété"
+          },
+          {
+            "id": "c",
+            "label": "Un QR dynamique (montant / TTL) limite surtout la réutilisation d’un QR figé"
+          },
+          {
+            "id": "d",
+            "label": "Un QR peut transporter différents types de payload (URL, Wi‑Fi, métier paiement…)"
+          }
+        ]
+      },
+      "answer": {
+        "choices": [
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b",
+          "c",
+          "d"
+        ],
+        "labels": [
+          "Un QR de paiement métier peut nécessiter une app compatible pour être interprété",
+          "Un QR dynamique (montant / TTL) limite surtout la réutilisation d’un QR figé",
+          "Un QR peut transporter différents types de payload (URL, Wi‑Fi, métier paiement…)"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.25,
+        "pointsMax": 0.25
+      }
+    },
+    {
+      "id": "j2-emv-qr-vs-chip",
+      "jour": "J2",
+      "theme": "Normes",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.15,
+      "prompt": "EMV QR Code par rapport à EMV « carte à puce / contactless » ?",
+      "enonce": {
+        "prompt": "EMV QR Code par rapport à EMV « carte à puce / contactless » ?",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "EMV QR est une norme ISO, pas une spec EMVCo"
+          },
+          {
+            "id": "b",
+            "label": "EMV QR remplace ISO 14443 pour tous les taps POS"
+          },
+          {
+            "id": "c",
+            "label": "Même famille EMVCo, autre objet : QR = payload / initiation — ce n’est pas la même chose que la puce EMV"
+          },
+          {
+            "id": "d",
+            "label": "EMV QR = uniquement le Settlement SEPA"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "c"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "c"
+        ],
+        "labels": [
+          "Même famille EMVCo, autre objet : QR = payload / initiation — ce n’est pas la même chose que la puce EMV"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.15,
+        "pointsMax": 0.15
+      }
+    },
+    {
+      "id": "act-qr-wifi",
+      "jour": "J2",
+      "theme": "Action · téléphone",
+      "diff": "moyen",
+      "type": "action",
+      "pointsIndicatifs": 0.75,
+      "prompt": "Identifiez le type de payload et les éléments proposés (sécurité, SSID, mot de passe…).",
+      "enonce": {
+        "prompt": "Identifiez le type de payload et les éléments proposés (sécurité, SSID, mot de passe…).",
+        "hint": null,
+        "actionLabel": "Scannez ce QR avec votre téléphone (ne vous connectez pas au réseau).",
+        "actionKind": "scan-qr",
+        "fields": [
+          {
+            "id": "stype",
+            "label": "Type de payload",
+            "kind": "unique",
+            "choices": [
+              {
+                "id": "a",
+                "label": "URL web"
+              },
+              {
+                "id": "b",
+                "label": "Configuration Wi‑Fi"
+              },
+              {
+                "id": "c",
+                "label": "SMS"
+              },
+              {
+                "id": "d",
+                "label": "MECARD (contact)"
+              }
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Que propose le téléphone ? Quels champs voyez-vous ?",
+            "kind": "libre"
+          },
+          {
+            "id": "payload",
+            "label": "Payload brut si visible (ou recopié)",
+            "kind": "libre"
+          }
+        ]
+      },
+      "answer": {
+        "fields": {
+          "stype": "b",
+          "detail": "Proposition de se connecter au reseau wifi",
+          "payload": "Wifi: demo cafe"
+        }
+      },
+      "correct": {
+        "mode": "mixte",
+        "fields": {
+          "stype": {
+            "mode": "auto",
+            "label": "Type de payload",
+            "ids": [
+              "b"
+            ],
+            "labels": [
+              "Configuration Wi‑Fi"
+            ]
+          },
+          "detail": {
+            "mode": "appreciation_enseignant",
+            "label": "Que propose le téléphone ? Quels champs voyez-vous ?",
+            "note": null,
+            "indice": null
+          },
+          "payload": {
+            "mode": "appreciation_enseignant",
+            "label": "Payload brut si visible (ou recopié)",
+            "note": null,
+            "indice": "WIFI:T:WPA;S:CafeDemo;P:demo1234;;"
+          }
+        },
+        "ideeDirectrice": null
+      },
+      "autoEval": {
+        "status": "partiel_ok_auto",
+        "pointsObtenus": null,
+        "pointsMax": 0.75,
+        "fields": {
+          "stype": "ok",
+          "detail": "a_corriger",
+          "payload": "a_corriger"
+        },
+        "commentaire": "Champs libres à l’appréciation ; champs à choix auto-évalués ci-dessus."
+      }
+    },
+    {
+      "id": "j3-dpan",
+      "jour": "J3",
+      "theme": "Tokenisation",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.15,
+      "prompt": "Un token de paiement (ex. DPAN) sert surtout à…",
+      "enonce": {
+        "prompt": "Un token de paiement (ex. DPAN) sert surtout à…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Remplacer l’émetteur"
+          },
+          {
+            "id": "b",
+            "label": "Faire le clearing à la place du scheme"
+          },
+          {
+            "id": "c",
+            "label": "Supprimer le cryptogramme"
+          },
+          {
+            "id": "d",
+            "label": "Remplacer le PAN dans les flux, sans exposer le PAN en clair partout"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "d"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "d"
+        ],
+        "labels": [
+          "Remplacer le PAN dans les flux, sans exposer le PAN en clair partout"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.15,
+        "pointsMax": 0.15
+      }
+    },
+    {
+      "id": "j3-tsp",
+      "jour": "J3",
+      "theme": "Tokenisation",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.15,
+      "prompt": "Le TSP (Token Service Provider) intervient principalement pour…",
+      "enonce": {
+        "prompt": "Le TSP (Token Service Provider) intervient principalement pour…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Gérer le cycle de vie des tokens et le coffre associé (provisioning, suspension, etc.)"
+          },
+          {
+            "id": "b",
+            "label": "Imprimer les cartes plastiques"
+          },
+          {
+            "id": "c",
+            "label": "Remplacer le POS"
+          },
+          {
+            "id": "d",
+            "label": "Tenir le compte courant du porteur"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "a"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "a"
+        ],
+        "labels": [
+          "Gérer le cycle de vie des tokens et le coffre associé (provisioning, suspension, etc.)"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.15,
+        "pointsMax": 0.15
+      }
+    },
+    {
+      "id": "j3-qcm-token",
+      "jour": "J3",
+      "theme": "Tokenisation",
+      "diff": "moyen",
+      "type": "qcm",
+      "pointsIndicatifs": 0.25,
+      "prompt": "Cochez les affirmations correctes sur la tokenisation carte.",
+      "enonce": {
+        "prompt": "Cochez les affirmations correctes sur la tokenisation carte.",
+        "hint": "Plusieurs réponses possibles.",
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Le token peut avoir un domaine d’usage (device, e-com…)"
+          },
+          {
+            "id": "b",
+            "label": "Apple / Google deviennent l’émetteur du compte"
+          },
+          {
+            "id": "c",
+            "label": "La détokenisation côté réseau / TSP permet de retrouver le PAN pour l’AuthZ"
+          },
+          {
+            "id": "d",
+            "label": "Le cryptogramme contribue à l’unicité / fraîcheur de la transaction"
+          }
+        ]
+      },
+      "answer": {
+        "choices": [
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "a",
+          "c",
+          "d"
+        ],
+        "labels": [
+          "Le token peut avoir un domaine d’usage (device, e-com…)",
+          "La détokenisation côté réseau / TSP permet de retrouver le PAN pour l’AuthZ",
+          "Le cryptogramme contribue à l’unicité / fraîcheur de la transaction"
+        ]
+      },
+      "autoEval": {
+        "status": "ko",
+        "pointsObtenus": 0,
+        "pointsMax": 0.25
+      }
+    },
+    {
+      "id": "j3-qcm-pci-sca",
+      "jour": "J3",
+      "theme": "Normes",
+      "diff": "moyen",
+      "type": "qcm",
+      "pointsIndicatifs": 0.25,
+      "prompt": "Cochez les affirmations correctes sur PCI-DSS, SCA/DSP2 et tokenisation.",
+      "enonce": {
+        "prompt": "Cochez les affirmations correctes sur PCI-DSS, SCA/DSP2 et tokenisation.",
+        "hint": "Plusieurs réponses possibles.",
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Dès qu’il y a un token, la SCA / DSP2 n’existe plus et le PAN peut être stocké librement"
+          },
+          {
+            "id": "b",
+            "label": "PCI-DSS porte surtout sur la protection des données de cartes (scope, stockage, transmission…)"
+          },
+          {
+            "id": "c",
+            "label": "Tokeniser peut réduire le scope PCI côté acceptation (moins de PAN) — sans supprimer tous les contrôles"
+          },
+          {
+            "id": "d",
+            "label": "SCA / DSP2 authentifie surtout le porteur — tokeniser ≠ authentifier le porteur"
+          }
+        ]
+      },
+      "answer": {
+        "choices": [
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b",
+          "c",
+          "d"
+        ],
+        "labels": [
+          "PCI-DSS porte surtout sur la protection des données de cartes (scope, stockage, transmission…)",
+          "Tokeniser peut réduire le scope PCI côté acceptation (moins de PAN) — sans supprimer tous les contrôles",
+          "SCA / DSP2 authentifie surtout le porteur — tokeniser ≠ authentifier le porteur"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.25,
+        "pointsMax": 0.25
+      }
+    },
+    {
+      "id": "j3-vts-mdes",
+      "jour": "J3",
+      "theme": "Normes",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.15,
+      "prompt": "VTS et MDES désignent surtout…",
+      "enonce": {
+        "prompt": "VTS et MDES désignent surtout…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Les modes NFC Forum peer-to-peer uniquement"
+          },
+          {
+            "id": "b",
+            "label": "Les services TSP / tokenisation réseau des schemes (Visa / Mastercard)"
+          },
+          {
+            "id": "c",
+            "label": "Les normes radio ISO 14443 Type A et Type B"
+          },
+          {
+            "id": "d",
+            "label": "Les messages ISO 20022 de Settlement SEPA"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "b"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b"
+        ],
+        "labels": [
+          "Les services TSP / tokenisation réseau des schemes (Visa / Mastercard)"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.15,
+        "pointsMax": 0.15
+      }
+    },
+    {
+      "id": "j3-libre-token",
+      "jour": "J3",
+      "theme": "Tokenisation",
+      "diff": "moyen",
+      "type": "libre",
+      "pointsIndicatifs": 1.5,
+      "prompt": "Pourquoi remplace-t-on le PAN par un token dans un wallet ? En 3–5 phrases, expliquez le gain principal (ce qui est exposé au POS / marchand, et ce qui reste côté émetteur).",
+      "enonce": {
+        "prompt": "Pourquoi remplace-t-on le PAN par un token dans un wallet ? En 3–5 phrases, expliquez le gain principal (ce qui est exposé au POS / marchand, et ce qui reste côté émetteur).",
+        "hint": "Réponse courte, idée principale — pas un cours complet.",
+        "actionLabel": null,
+        "actionKind": null,
+        "placeholder": "Votre réponse…"
+      },
+      "answer": {
+        "text": "On remplace le pan par un token pour plus de securité car le pan est une information sensible. il faut donc pour l utiliser sur un wallet le tokeniser. "
+      },
+      "correct": {
+        "mode": "appreciation_enseignant",
+        "note": null,
+        "ideeDirectrice": "Moins de PAN en clair sur la chaîne d’acceptation (POS / marchand) ; le token circule ; l’émetteur garde la décision AuthZ (via détokenisation / TSP)."
+      },
+      "autoEval": {
+        "status": "a_corriger",
+        "pointsObtenus": null,
+        "pointsMax": 1.5,
+        "commentaire": "Réponse libre — notation à l’appréciation de l’enseignant."
+      }
+    },
+    {
+      "id": "schema-token",
+      "jour": "J3",
+      "theme": "Schéma tokenisation",
+      "diff": "moyen",
+      "type": "schema",
+      "pointsIndicatifs": 0.75,
+      "prompt": "Schéma d’une autorisation tokenisée (wallet). Placez ce qui circule ou qui intervient à chaque étape — du device jusqu’à la décision sur le compte.",
+      "enonce": {
+        "prompt": "Schéma d’une autorisation tokenisée (wallet). Placez ce qui circule ou qui intervient à chaque étape — du device jusqu’à la décision sur le compte.",
+        "hint": "Une étiquette par case.",
+        "actionLabel": null,
+        "actionKind": null,
+        "schemaTitle": "Flux tokenisé · device → AuthZ",
+        "schemaSubtitle": "Device · acceptation · coffre / détokenisation · décision émetteur.",
+        "slots": [
+          {
+            "id": "t1",
+            "caption": "① Sur le device"
+          },
+          {
+            "id": "t2",
+            "caption": "② Au POS / acquéreur"
+          },
+          {
+            "id": "t3",
+            "caption": "③ Coffre / détokenisation"
+          },
+          {
+            "id": "t4",
+            "caption": "④ Décision compte"
+          }
+        ],
+        "palette": [
+          "Token / credential (SE ou HCE)",
+          "Token présenté (pas le PAN)",
+          "TSP",
+          "Émetteur (AuthZ)"
+        ]
+      },
+      "answer": {
+        "slots": {
+          "t1": "Token / credential (SE ou HCE)",
+          "t3": "TSP",
+          "t4": "Émetteur (AuthZ)",
+          "t2": "Token présenté (pas le PAN)"
+        }
+      },
+      "correct": {
+        "mode": "auto",
+        "slots": {
+          "t1": "Token / credential (SE ou HCE)",
+          "t2": "Token présenté (pas le PAN)",
+          "t3": "TSP",
+          "t4": "Émetteur (AuthZ)"
+        }
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.75,
+        "pointsMax": 0.75
+      }
+    },
+    {
+      "id": "j4-14443",
+      "jour": "J4",
+      "theme": "NFC / RF",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.15,
+      "prompt": "ISO/IEC 14443, dans le paiement sans contact, c’est surtout…",
+      "enonce": {
+        "prompt": "ISO/IEC 14443, dans le paiement sans contact, c’est surtout…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Le settlement"
+          },
+          {
+            "id": "b",
+            "label": "La logique AuthZ métier"
+          },
+          {
+            "id": "c",
+            "label": "Le tuyau radio de proximité (carte ↔ lecteur)"
+          },
+          {
+            "id": "d",
+            "label": "Le ledger mobile money"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "c"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "c"
+        ],
+        "labels": [
+          "Le tuyau radio de proximité (carte ↔ lecteur)"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.15,
+        "pointsMax": 0.15
+      }
+    },
+    {
+      "id": "j4-type-a",
+      "jour": "J4",
+      "theme": "NFC / RF",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.15,
+      "prompt": "Pour le tap carte / wallet au POS, le chemin radio dominant du paiement est…",
+      "enonce": {
+        "prompt": "Pour le tap carte / wallet au POS, le chemin radio dominant du paiement est…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Type B exclusivement"
+          },
+          {
+            "id": "b",
+            "label": "Uniquement des tags NFC Forum / NDEF"
+          },
+          {
+            "id": "c",
+            "label": "Bluetooth"
+          },
+          {
+            "id": "d",
+            "label": "Type A (les POS sont souvent dual A+B pour l’interopérabilité)"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "b"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "d"
+        ],
+        "labels": [
+          "Type A (les POS sont souvent dual A+B pour l’interopérabilité)"
+        ]
+      },
+      "autoEval": {
+        "status": "ko",
+        "pointsObtenus": 0,
+        "pointsMax": 0.15
+      }
+    },
+    {
+      "id": "j4-qcm-normes",
+      "jour": "J4",
+      "theme": "Normes",
+      "diff": "moyen",
+      "type": "qcm",
+      "pointsIndicatifs": 0.25,
+      "prompt": "Cochez les affirmations correctes sur l’empilement des normes (proximité / paiement).",
+      "enonce": {
+        "prompt": "Cochez les affirmations correctes sur l’empilement des normes (proximité / paiement).",
+        "hint": "Plusieurs réponses possibles.",
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "NFC Forum = spécification complète de l’Authorization bancaire"
+          },
+          {
+            "id": "b",
+            "label": "ISO/IEC 14443 = couche radio de proximité (carte ↔ lecteur)"
+          },
+          {
+            "id": "c",
+            "label": "EMV Contactless = logique métier / application paiement au-dessus de la radio"
+          },
+          {
+            "id": "d",
+            "label": "NFC Forum décrit surtout des usages device / tags sur le tuyau radio — pas l’AuthZ EMV"
+          }
+        ]
+      },
+      "answer": {
+        "choices": [
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b",
+          "c",
+          "d"
+        ],
+        "labels": [
+          "ISO/IEC 14443 = couche radio de proximité (carte ↔ lecteur)",
+          "EMV Contactless = logique métier / application paiement au-dessus de la radio",
+          "NFC Forum décrit surtout des usages device / tags sur le tuyau radio — pas l’AuthZ EMV"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.25,
+        "pointsMax": 0.25
+      }
+    },
+    {
+      "id": "j4-emv-apdu",
+      "jour": "J4",
+      "theme": "Normes",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.15,
+      "prompt": "Dans l’empilement des normes, où se situent les APDU / EMV Contactless par rapport à l’ISO 14443 ?",
+      "enonce": {
+        "prompt": "Dans l’empilement des normes, où se situent les APDU / EMV Contactless par rapport à l’ISO 14443 ?",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Au-dessus de la couche radio 14443 (Type A/B) : la radio transporte, EMV porte le contenu paiement"
+          },
+          {
+            "id": "b",
+            "label": "Uniquement dans le NFC Forum, jamais en EMV"
+          },
+          {
+            "id": "c",
+            "label": "Sous la couche physique 13,56 MHz uniquement, sans lien avec le POS"
+          },
+          {
+            "id": "d",
+            "label": "À la place du Settlement"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "a"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "a"
+        ],
+        "labels": [
+          "Au-dessus de la couche radio 14443 (Type A/B) : la radio transporte, EMV porte le contenu paiement"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.15,
+        "pointsMax": 0.15
+      }
+    },
+    {
+      "id": "act-nfc-reglages",
+      "jour": "J4",
+      "theme": "Action · téléphone",
+      "diff": "faible",
+      "type": "action",
+      "pointsIndicatifs": 0.75,
+      "prompt": "Votre appareil expose-t-il le NFC ? Que pouvez-vous activer / désactiver ? Reliez à ce que permet un paiement de proximité.",
+      "enonce": {
+        "prompt": "Votre appareil expose-t-il le NFC ? Que pouvez-vous activer / désactiver ? Reliez à ce que permet un paiement de proximité.",
+        "hint": "Pas besoin de payer : observation des réglages uniquement.",
+        "actionLabel": "Ouvrez les réglages de votre téléphone et cherchez NFC / Sans contact (ou Connexions).",
+        "actionKind": "phone",
+        "fields": [
+          {
+            "id": "present",
+            "label": "NFC présent sur cet appareil ?",
+            "kind": "unique",
+            "choices": [
+              {
+                "id": "a",
+                "label": "Oui — option visible dans les réglages"
+              },
+              {
+                "id": "b",
+                "label": "Non — aucune option NFC / sans contact trouvée"
+              },
+              {
+                "id": "c",
+                "label": "Incertain — menu différent / droits insuffisants"
+              }
+            ]
+          },
+          {
+            "id": "obs",
+            "label": "Ce que vous voyez (libellés, interrupteur, avertissements…)",
+            "kind": "libre"
+          },
+          {
+            "id": "lien",
+            "label": "Lien avec le paiement de proximité (1–2 phrases)",
+            "kind": "libre"
+          }
+        ]
+      },
+      "answer": {
+        "fields": {
+          "present": "a",
+          "obs": "interrupteur(On/Off)\nUn tuto de la façon dont il faut poser le smartphone sur le terminal\nWallet par defaut et une option other NFC services",
+          "lien": "Pour faire un paiement de proximité avec son smartphone via NFC il faut placer le l'appareil pret du terminal"
+        }
+      },
+      "correct": {
+        "mode": "mixte",
+        "fields": {
+          "present": {
+            "mode": "auto",
+            "label": "NFC présent sur cet appareil ?",
+            "ids": [],
+            "labels": []
+          },
+          "obs": {
+            "mode": "appreciation_enseignant",
+            "label": "Ce que vous voyez (libellés, interrupteur, avertissements…)",
+            "note": null,
+            "indice": null
+          },
+          "lien": {
+            "mode": "appreciation_enseignant",
+            "label": "Lien avec le paiement de proximité (1–2 phrases)",
+            "note": null,
+            "indice": null
+          }
+        },
+        "ideeDirectrice": "NFC = canal RF proximité ; sans NFC (ou désactivé) pas de tap wallet classique."
+      },
+      "autoEval": {
+        "status": "a_corriger",
+        "pointsObtenus": null,
+        "pointsMax": 0.75,
+        "fields": {
+          "present": "ko",
+          "obs": "a_corriger",
+          "lien": "a_corriger"
+        },
+        "commentaire": "Champs libres à l’appréciation ; champs à choix auto-évalués ci-dessus."
+      }
+    },
+    {
+      "id": "j4-ce",
+      "jour": "J4",
+      "theme": "Modes NFC",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "Quel mode NFC porte le paiement wallet au POS ?",
+      "enonce": {
+        "prompt": "Quel mode NFC porte le paiement wallet au POS ?",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Peer-to-peer"
+          },
+          {
+            "id": "b",
+            "label": "Card emulation"
+          },
+          {
+            "id": "c",
+            "label": "Lecture / écriture de tag NDEF uniquement"
+          },
+          {
+            "id": "d",
+            "label": "Reader / writer"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "c"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b"
+        ],
+        "labels": [
+          "Card emulation"
+        ]
+      },
+      "autoEval": {
+        "status": "ko",
+        "pointsObtenus": 0,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j4-se-hce",
+      "jour": "J4",
+      "theme": "Confiance device",
+      "diff": "moyen",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "Différence essentielle SE vs HCE (idée) ?",
+      "enonce": {
+        "prompt": "Différence essentielle SE vs HCE (idée) ?",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "SE interdit le tap NFC"
+          },
+          {
+            "id": "b",
+            "label": "HCE = settlement local sur le téléphone"
+          },
+          {
+            "id": "c",
+            "label": "SE : le secret long est souvent dans une puce sécurisée ; HCE : émulation logicielle, le coffre long est plutôt côté TSP"
+          },
+          {
+            "id": "d",
+            "label": "HCE remplace toujours le POS"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "c"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "c"
+        ],
+        "labels": [
+          "SE : le secret long est souvent dans une puce sécurisée ; HCE : émulation logicielle, le coffre long est plutôt côté TSP"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j4-apple-emetteur",
+      "jour": "J4",
+      "theme": "Wallets",
+      "diff": "moyen",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "Dans le modèle carte tokenisée, quel est le rôle d’Apple Pay / Google Pay ?",
+      "enonce": {
+        "prompt": "Dans le modèle carte tokenisée, quel est le rôle d’Apple Pay / Google Pay ?",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Ils remplacent ISO 14443"
+          },
+          {
+            "id": "b",
+            "label": "Ils sont l’émetteur du compte bancaire"
+          },
+          {
+            "id": "c",
+            "label": "Ils font le clearing à la place du scheme"
+          },
+          {
+            "id": "d",
+            "label": "Ils orchestrent le wallet / device ; l’émetteur reste la banque (AuthZ compte)"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "d"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "d"
+        ],
+        "labels": [
+          "Ils orchestrent le wallet / device ; l’émetteur reste la banque (AuthZ compte)"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j4-qcm-apple",
+      "jour": "J4",
+      "theme": "Apple Pay",
+      "diff": "moyen",
+      "type": "qcm",
+      "pointsIndicatifs": 0.25,
+      "prompt": "Cochez les affirmations correctes sur l’architecture Apple Pay (modèle carte tokenisée).",
+      "enonce": {
+        "prompt": "Cochez les affirmations correctes sur l’architecture Apple Pay (modèle carte tokenisée).",
+        "hint": "Plusieurs réponses possibles.",
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "La Secure Enclave gère surtout le CDCVM (Face ID / Touch ID / code)"
+          },
+          {
+            "id": "b",
+            "label": "Le credential long vit surtout dans l’eSE (Secure Element)"
+          },
+          {
+            "id": "c",
+            "label": "Apple devient l’émetteur du compte et décide l’AuthZ à la place de la banque"
+          },
+          {
+            "id": "d",
+            "label": "Le TSP est le seul provisionneur du token vers le device (PassKit → eSE)"
+          }
+        ]
+      },
+      "answer": {
+        "choices": [
+          "a",
+          "b",
+          "d"
+        ]
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "a",
+          "b",
+          "d"
+        ],
+        "labels": [
+          "La Secure Enclave gère surtout le CDCVM (Face ID / Touch ID / code)",
+          "Le credential long vit surtout dans l’eSE (Secure Element)",
+          "Le TSP est le seul provisionneur du token vers le device (PassKit → eSE)"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.25,
+        "pointsMax": 0.25
+      }
+    },
+    {
+      "id": "j4-apple-enrol-tsp",
+      "jour": "J4",
+      "theme": "Apple Pay",
+      "diff": "moyen",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "Lors de l’enrolment Apple Pay, après l’accord de l’émetteur, qui pousse le token / credential sur le téléphone ?",
+      "enonce": {
+        "prompt": "Lors de l’enrolment Apple Pay, après l’accord de l’émetteur, qui pousse le token / credential sur le téléphone ?",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Le TSP provisionne le device (PassKit → eSE) ; l’émetteur répond au TSP, pas au SE directement"
+          },
+          {
+            "id": "b",
+            "label": "Le POS du commerçant provisionne le wallet"
+          },
+          {
+            "id": "c",
+            "label": "L’émetteur envoie directement le DPAN dans l’eSE (canal Issuer → eSE)"
+          },
+          {
+            "id": "d",
+            "label": "Le scheme fait le Settlement puis provisionne"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "a"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "a"
+        ],
+        "labels": [
+          "Le TSP provisionne le device (PassKit → eSE) ; l’émetteur répond au TSP, pas au SE directement"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j4-qcm-google",
+      "jour": "J4",
+      "theme": "Google Pay",
+      "diff": "moyen",
+      "type": "qcm",
+      "pointsIndicatifs": 0.25,
+      "prompt": "Cochez les affirmations correctes sur l’architecture Google Pay (modèle carte tokenisée).",
+      "enonce": {
+        "prompt": "Cochez les affirmations correctes sur l’architecture Google Pay (modèle carte tokenisée).",
+        "hint": "Plusieurs réponses possibles.",
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Google Pay n’utilise jamais de TSP : le PAN voyage en clair au POS"
+          },
+          {
+            "id": "b",
+            "label": "Côté POS / acquéreur, l’Auth reste tokenisée — le geste métier ne « voit » pas HCE vs SE"
+          },
+          {
+            "id": "c",
+            "label": "Présentation souvent en HCE + TEE (ex. TrustZone) pour CDCVM / protection"
+          },
+          {
+            "id": "d",
+            "label": "Le TSP recharge des credentials courts vers le HCE ; le coffre durable (UDK-AC) reste plutôt côté TSP"
+          }
+        ]
+      },
+      "answer": {
+        "choices": [
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b",
+          "c",
+          "d"
+        ],
+        "labels": [
+          "Côté POS / acquéreur, l’Auth reste tokenisée — le geste métier ne « voit » pas HCE vs SE",
+          "Présentation souvent en HCE + TEE (ex. TrustZone) pour CDCVM / protection",
+          "Le TSP recharge des credentials courts vers le HCE ; le coffre durable (UDK-AC) reste plutôt côté TSP"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.25,
+        "pointsMax": 0.25
+      }
+    },
+    {
+      "id": "j4-apple-vs-google",
+      "jour": "J4",
+      "theme": "Apple / Google",
+      "diff": "moyen",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "Quelle distinction Apple Pay vs Google Pay est la plus juste ?",
+      "enonce": {
+        "prompt": "Quelle distinction Apple Pay vs Google Pay est la plus juste ?",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Google Pay remplace toujours l’émetteur ; Apple Pay ne tokenise jamais"
+          },
+          {
+            "id": "b",
+            "label": "Apple : secret long souvent en eSE, TSP surtout vault token + Auth ; Google : souvent émulation logicielle (HCE), avec recharge de credentials courts côté device"
+          },
+          {
+            "id": "c",
+            "label": "Apple Pay n’utilise pas le NFC ; Google Pay uniquement le QR"
+          },
+          {
+            "id": "d",
+            "label": "Aucune différence : les deux stockent le PAN en clair dans l’app"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "b"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b"
+        ],
+        "labels": [
+          "Apple : secret long souvent en eSE, TSP surtout vault token + Auth ; Google : souvent émulation logicielle (HCE), avec recharge de credentials courts côté device"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j4-apple-tap",
+      "jour": "J4",
+      "theme": "Apple Pay",
+      "diff": "moyen",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "Dans le workflow de tap Apple Pay, quel enchaînement est le plus juste ?",
+      "enonce": {
+        "prompt": "Dans le workflow de tap Apple Pay, quel enchaînement est le plus juste ?",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "PassKit envoie le PAN en clair à l’acquéreur sans TSP"
+          },
+          {
+            "id": "b",
+            "label": "Settlement d’abord → puis CDCVM → puis enrolment"
+          },
+          {
+            "id": "c",
+            "label": "CDCVM (Enclave) → calcul / présentation eSE au POS (ISO 14443 / EMV CL) → Auth tokenisée via TSP → décision émetteur"
+          },
+          {
+            "id": "d",
+            "label": "Le POS détokenise localement le PAN puis appelle Apple"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "c"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "c"
+        ],
+        "labels": [
+          "CDCVM (Enclave) → calcul / présentation eSE au POS (ISO 14443 / EMV CL) → Auth tokenisée via TSP → décision émetteur"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "schema-tap",
+      "jour": "J4",
+      "theme": "Schéma tap wallet",
+      "diff": "moyen",
+      "type": "schema",
+      "pointsIndicatifs": 0.75,
+      "prompt": "Schéma d’un tap wallet NFC en magasin (ex. Apple Pay). Placez le composant ou l’acteur au bon endroit du parcours.",
+      "enonce": {
+        "prompt": "Schéma d’un tap wallet NFC en magasin (ex. Apple Pay). Placez le composant ou l’acteur au bon endroit du parcours.",
+        "hint": "Une étiquette par case · ordre du geste de paiement.",
+        "actionLabel": null,
+        "actionKind": null,
+        "schemaTitle": "Tap wallet · proximité → Auth",
+        "schemaSubtitle": "Authentifier le porteur · présenter au POS · traverser le réseau.",
+        "slots": [
+          {
+            "id": "p1",
+            "caption": "① CDCVM"
+          },
+          {
+            "id": "p2",
+            "caption": "② Présentation NFC"
+          },
+          {
+            "id": "p3",
+            "caption": "③ Acceptation terrain"
+          },
+          {
+            "id": "p4",
+            "caption": "④ Vault / Auth tokenisée"
+          }
+        ],
+        "palette": [
+          "Secure Enclave / biométrie",
+          "eSE (card emulation)",
+          "POS",
+          "TSP"
+        ]
+      },
+      "answer": {
+        "slots": {
+          "p3": "POS",
+          "p2": "eSE (card emulation)",
+          "p1": "Secure Enclave / biométrie",
+          "p4": "TSP"
+        }
+      },
+      "correct": {
+        "mode": "auto",
+        "slots": {
+          "p1": "Secure Enclave / biométrie",
+          "p2": "eSE (card emulation)",
+          "p3": "POS",
+          "p4": "TSP"
+        }
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.75,
+        "pointsMax": 0.75
+      }
+    },
+    {
+      "id": "j4-wallet-compte",
+      "jour": "J4",
+      "theme": "Wallets",
+      "diff": "moyen",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "Orange Money / Wave / M-Pesa (mobile money) stockent surtout…",
+      "enonce": {
+        "prompt": "Orange Money / Wave / M-Pesa (mobile money) stockent surtout…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "La clé IMK-AC de l’émetteur Visa"
+          },
+          {
+            "id": "b",
+            "label": "Un DPAN EMV en Secure Element pour répondre au POS comme Apple Pay"
+          },
+          {
+            "id": "c",
+            "label": "Uniquement un UID de tag NDEF"
+          },
+          {
+            "id": "d",
+            "label": "Un solde / compte sur un ledger opérateur ou fintech"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "d"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "d"
+        ],
+        "labels": [
+          "Un solde / compte sur un ledger opérateur ou fintech"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j4-qcm-wallets",
+      "jour": "J4",
+      "theme": "Wallets",
+      "diff": "moyen",
+      "type": "qcm",
+      "pointsIndicatifs": 0.25,
+      "prompt": "Cochez les affirmations correctes sur les wallets.",
+      "enonce": {
+        "prompt": "Cochez les affirmations correctes sur les wallets.",
+        "hint": "Plusieurs réponses possibles.",
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Un wallet mobile money repose surtout sur un solde / compte opérateur ou fintech"
+          },
+          {
+            "id": "b",
+            "label": "Un wallet carte tokenisée (Apple / Google Pay) s’appuie sur un token / credential device pour le tap"
+          },
+          {
+            "id": "c",
+            "label": "Apple Pay devient l’émetteur du compte bancaire du porteur"
+          },
+          {
+            "id": "d",
+            "label": "CDCVM (biométrie / code) authentifie le porteur sur l’appareil avant / pendant le paiement"
+          }
+        ]
+      },
+      "answer": {
+        "choices": [
+          "a",
+          "b",
+          "d"
+        ]
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "a",
+          "b",
+          "d"
+        ],
+        "labels": [
+          "Un wallet mobile money repose surtout sur un solde / compte opérateur ou fintech",
+          "Un wallet carte tokenisée (Apple / Google Pay) s’appuie sur un token / credential device pour le tap",
+          "CDCVM (biométrie / code) authentifie le porteur sur l’appareil avant / pendant le paiement"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.25,
+        "pointsMax": 0.25
+      }
+    },
+    {
+      "id": "act-wallet-app",
+      "jour": "J4",
+      "theme": "Action · téléphone",
+      "diff": "moyen",
+      "type": "action",
+      "pointsIndicatifs": 1,
+      "prompt": "Observez l’écran d’accueil du wallet (sans initier de paiement). Qu’y a-t-il : cartes / comptes, biométrie, solde, QR… ?",
+      "enonce": {
+        "prompt": "Observez l’écran d’accueil du wallet (sans initier de paiement). Qu’y a-t-il : cartes / comptes, biométrie, solde, QR… ?",
+        "hint": null,
+        "actionLabel": "Ouvrez un wallet ou une app de paiement sur votre téléphone s’il y en a une (Apple Pay / Google Wallet / wallet banque / mobile money). Sinon, décrivez l’absence.",
+        "actionKind": "phone",
+        "fields": [
+          {
+            "id": "dispo",
+            "label": "Situation",
+            "kind": "unique",
+            "choices": [
+              {
+                "id": "a",
+                "label": "J’ai ouvert un wallet carte (Apple / Google / banque…)"
+              },
+              {
+                "id": "b",
+                "label": "J’ai ouvert un wallet / app mobile money"
+              },
+              {
+                "id": "c",
+                "label": "Aucune app wallet / paiement utilisable ici"
+              }
+            ]
+          },
+          {
+            "id": "obs",
+            "label": "Éléments visibles (cartes masquées, solde, QR, empreinte / Face ID…)",
+            "kind": "libre"
+          },
+          {
+            "id": "type",
+            "label": "D’après ce que vous voyez, plutôt…",
+            "kind": "unique",
+            "choices": [
+              {
+                "id": "a",
+                "label": "Wallet « carte » (PAN tokenisé / cartes enrolées, prêt pour le tap)"
+              },
+              {
+                "id": "b",
+                "label": "Wallet compte / mobile money (solde, envoi, parfois QR)"
+              },
+              {
+                "id": "c",
+                "label": "Mixte ou indéterminé / pas d’app"
+              }
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "fields": {
+          "dispo": "b",
+          "obs": "Nom et prenom,\ndifferente option",
+          "type": "b"
+        }
+      },
+      "correct": {
+        "mode": "mixte",
+        "fields": {
+          "dispo": {
+            "mode": "auto",
+            "label": "Situation",
+            "ids": [],
+            "labels": []
+          },
+          "obs": {
+            "mode": "appreciation_enseignant",
+            "label": "Éléments visibles (cartes masquées, solde, QR, empreinte / Face ID…)",
+            "note": null,
+            "indice": null
+          },
+          "type": {
+            "mode": "auto",
+            "label": "D’après ce que vous voyez, plutôt…",
+            "ids": [],
+            "labels": []
+          }
+        },
+        "ideeDirectrice": "Distinguer wallet carte (token/tap) vs wallet compte / mobile money (solde, transfert, QR)."
+      },
+      "autoEval": {
+        "status": "a_corriger",
+        "pointsObtenus": null,
+        "pointsMax": 1,
+        "fields": {
+          "dispo": "ko",
+          "obs": "a_corriger",
+          "type": "ko"
+        },
+        "commentaire": "Champs libres à l’appréciation ; champs à choix auto-évalués ci-dessus."
+      }
+    },
+    {
+      "id": "j4-qcm-modes",
+      "jour": "J4",
+      "theme": "Modes NFC",
+      "diff": "moyen",
+      "type": "qcm",
+      "pointsIndicatifs": 0.25,
+      "prompt": "Cochez les affirmations correctes sur les modes NFC.",
+      "enonce": {
+        "prompt": "Cochez les affirmations correctes sur les modes NFC.",
+        "hint": "Plusieurs réponses possibles.",
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "NFC Forum = spécification complète de l’AuthZ EMV"
+          },
+          {
+            "id": "b",
+            "label": "Le rôle radio « target / passif » décrit la communication NFC — ce n’est pas synonyme de « appareil sans batterie »"
+          },
+          {
+            "id": "c",
+            "label": "Card emulation : le téléphone se comporte comme une carte face au POS"
+          },
+          {
+            "id": "d",
+            "label": "Reader/writer : le téléphone lit/écrit un tag — pas le paiement POS classique"
+          }
+        ]
+      },
+      "answer": {
+        "choices": [
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b",
+          "c",
+          "d"
+        ],
+        "labels": [
+          "Le rôle radio « target / passif » décrit la communication NFC — ce n’est pas synonyme de « appareil sans batterie »",
+          "Card emulation : le téléphone se comporte comme une carte face au POS",
+          "Reader/writer : le téléphone lit/écrit un tag — pas le paiement POS classique"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.25,
+        "pointsMax": 0.25
+      }
+    },
+    {
+      "id": "act-biometrie",
+      "jour": "J4",
+      "theme": "Action · téléphone",
+      "diff": "moyen",
+      "type": "action",
+      "pointsIndicatifs": 0.5,
+      "prompt": "Quel mécanisme CDCVM-like voyez-vous (empreinte, visage, code) ? À quoi sert-il côté paiement mobile ?",
+      "enonce": {
+        "prompt": "Quel mécanisme CDCVM-like voyez-vous (empreinte, visage, code) ? À quoi sert-il côté paiement mobile ?",
+        "hint": null,
+        "actionLabel": "Dans les réglages (ou le wallet), repérez l’authentification biométrique / code pour déverrouiller ou valider un paiement.",
+        "actionKind": "phone",
+        "fields": [
+          {
+            "id": "mech",
+            "label": "Mécanisme observé (ou « aucun / non trouvé »)",
+            "kind": "libre"
+          },
+          {
+            "id": "role",
+            "label": "Rôle dans un paiement NFC / wallet",
+            "kind": "unique",
+            "choices": [
+              {
+                "id": "a",
+                "label": "Remplacer le POS et le commerçant"
+              },
+              {
+                "id": "b",
+                "label": "Générer le PAN en clair pour le commerçant"
+              },
+              {
+                "id": "c",
+                "label": "Authentifier le porteur sur l’appareil (CDCVM) avant / pendant le paiement"
+              },
+              {
+                "id": "d",
+                "label": "Faire le settlement vers la banque centrale"
+              }
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "fields": {
+          "mech": "Le mecanisme CDCVM-like sert authentifier le porteur via l'emprunte digital avant d'effectuer une transaction",
+          "role": "c"
+        }
+      },
+      "correct": {
+        "mode": "mixte",
+        "fields": {
+          "mech": {
+            "mode": "appreciation_enseignant",
+            "label": "Mécanisme observé (ou « aucun / non trouvé »)",
+            "note": null,
+            "indice": null
+          },
+          "role": {
+            "mode": "auto",
+            "label": "Rôle dans un paiement NFC / wallet",
+            "ids": [
+              "c"
+            ],
+            "labels": [
+              "Authentifier le porteur sur l’appareil (CDCVM) avant / pendant le paiement"
+            ]
+          }
+        },
+        "ideeDirectrice": null
+      },
+      "autoEval": {
+        "status": "partiel_ok_auto",
+        "pointsObtenus": null,
+        "pointsMax": 0.5,
+        "fields": {
+          "mech": "a_corriger",
+          "role": "ok"
+        },
+        "commentaire": "Champs libres à l’appréciation ; champs à choix auto-évalués ci-dessus."
+      }
+    },
+    {
+      "id": "j4-libre-wallet",
+      "jour": "J4",
+      "theme": "Wallets",
+      "diff": "difficile",
+      "type": "libre",
+      "pointsIndicatifs": 2,
+      "prompt": "Distinguez « wallet carte tokenisée » (Apple/Google) et « wallet compte / mobile money ». Que stocke chacun, et pourquoi le tap EMV n’est pas le même sujet ?",
+      "enonce": {
+        "prompt": "Distinguez « wallet carte tokenisée » (Apple/Google) et « wallet compte / mobile money ». Que stocke chacun, et pourquoi le tap EMV n’est pas le même sujet ?",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "placeholder": "Votre réponse…"
+      },
+      "answer": {
+        "text": "Le wallet carte stock le jeton lié a une carte. le wallet compte mobile money donne accès à un compte et à son solde\n"
+      },
+      "correct": {
+        "mode": "appreciation_enseignant",
+        "note": null,
+        "ideeDirectrice": "Wallet carte tokenisée : credential / token device pour le tap EMV. Wallet compte / mobile money : solde ledger opérateur — pas le même objet que le tap carte tokenisée."
+      },
+      "autoEval": {
+        "status": "a_corriger",
+        "pointsObtenus": null,
+        "pointsMax": 2,
+        "commentaire": "Réponse libre — notation à l’appréciation de l’enseignant."
+      }
+    },
+    {
+      "id": "j5-omni-def",
+      "jour": "J5",
+      "theme": "Omnicanal",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "L’omnicanal SI, c’est surtout…",
+      "enonce": {
+        "prompt": "L’omnicanal SI, c’est surtout…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Un backend / journal unique sous plusieurs canaux d’entrée"
+          },
+          {
+            "id": "b",
+            "label": "Avoir plusieurs moyens sans journal commun"
+          },
+          {
+            "id": "c",
+            "label": "Remplacer toute la chaîne monétique par une seule étape « omnicanal »"
+          },
+          {
+            "id": "d",
+            "label": "Uniquement une UX mobile jolie"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "c"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "a"
+        ],
+        "labels": [
+          "Un backend / journal unique sous plusieurs canaux d’entrée"
+        ]
+      },
+      "autoEval": {
+        "status": "ko",
+        "pointsObtenus": 0,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j5-gateway",
+      "jour": "J5",
+      "theme": "Omnicanal",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "Le PSP, dans une architecture omnicanale, sert surtout de…",
+      "enonce": {
+        "prompt": "Le PSP, dans une architecture omnicanale, sert surtout de…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Secure Element du téléphone"
+          },
+          {
+            "id": "b",
+            "label": "Façade d’acceptation : normaliser et router les demandes de paiement"
+          },
+          {
+            "id": "c",
+            "label": "Émetteur du compte"
+          },
+          {
+            "id": "d",
+            "label": "Settlement final"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "b"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "b"
+        ],
+        "labels": [
+          "Façade d’acceptation : normaliser et router les demandes de paiement"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "j5-normes-rappel",
+      "jour": "J5",
+      "theme": "Normes",
+      "diff": "faible",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "Sur une plateforme omnicanale (QR + NFC + wallet), les normes ISO / EMV / token / PCI…",
+      "enonce": {
+        "prompt": "Sur une plateforme omnicanale (QR + NFC + wallet), les normes ISO / EMV / token / PCI…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Ne concernent que le cash"
+          },
+          {
+            "id": "b",
+            "label": "Disparaissent dès qu’on a un PSP"
+          },
+          {
+            "id": "c",
+            "label": "Restent le socle (messaging, radio/EMV, token, PCI/SCA) : l’omnicanal orchestre, il ne remplace pas ces référentiels"
+          },
+          {
+            "id": "d",
+            "label": "Sont toutes remplacées par une seule norme « omnicanal ISO »"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "c"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "c"
+        ],
+        "labels": [
+          "Restent le socle (messaging, radio/EMV, token, PCI/SCA) : l’omnicanal orchestre, il ne remplace pas ces référentiels"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "act-qr-inconnu",
+      "jour": "J2",
+      "theme": "Action · téléphone",
+      "diff": "moyen",
+      "type": "action",
+      "pointsIndicatifs": 0.75,
+      "prompt": "Comparez avec un QR « lien web » : même comportement ? Pourquoi une app métier peut être nécessaire ?",
+      "enonce": {
+        "prompt": "Comparez avec un QR « lien web » : même comportement ? Pourquoi une app métier peut être nécessaire ?",
+        "hint": null,
+        "actionLabel": "Scannez ce QR (payload métier). Notez ce que propose — ou non — votre téléphone / apps.",
+        "actionKind": "scan-qr",
+        "fields": [
+          {
+            "id": "diff",
+            "label": "Différence avec un QR URL ?",
+            "kind": "unique",
+            "choices": [
+              {
+                "id": "a",
+                "label": "Ce QR ne peut être lu que par NFC"
+              },
+              {
+                "id": "b",
+                "label": "Aucun : tout QR ouvre toujours un site web"
+              },
+              {
+                "id": "c",
+                "label": "Ce QR configure uniquement le Wi‑Fi"
+              },
+              {
+                "id": "d",
+                "label": "Payload métier : il faut une app compatible pour l’interpréter — ce n’est pas forcément une URL"
+              }
+            ]
+          },
+          {
+            "id": "obs",
+            "label": "Ce que votre téléphone affiche / propose (ou « rien de clair »)",
+            "kind": "libre"
+          }
+        ]
+      },
+      "answer": {
+        "fields": {
+          "diff": "d",
+          "obs": "Un payload mais lorsque je clique dessus un message d'erreur disant que mon phone ne dispose pas de l application"
+        }
+      },
+      "correct": {
+        "mode": "mixte",
+        "fields": {
+          "diff": {
+            "mode": "auto",
+            "label": "Différence avec un QR URL ?",
+            "ids": [
+              "d"
+            ],
+            "labels": [
+              "Payload métier : il faut une app compatible pour l’interpréter — ce n’est pas forcément une URL"
+            ]
+          },
+          "obs": {
+            "mode": "appreciation_enseignant",
+            "label": "Ce que votre téléphone affiche / propose (ou « rien de clair »)",
+            "note": null,
+            "indice": null
+          }
+        },
+        "ideeDirectrice": null
+      },
+      "autoEval": {
+        "status": "partiel_ok_auto",
+        "pointsObtenus": null,
+        "pointsMax": 0.75,
+        "fields": {
+          "diff": "ok",
+          "obs": "a_corriger"
+        },
+        "commentaire": "Champs libres à l’appréciation ; champs à choix auto-évalués ci-dessus."
+      }
+    },
+    {
+      "id": "syn-forum",
+      "jour": "J4",
+      "theme": "Normes",
+      "diff": "moyen",
+      "type": "unique",
+      "pointsIndicatifs": 0.1,
+      "prompt": "NFC Forum vs ISO 14443 — formulation la plus juste ?",
+      "enonce": {
+        "prompt": "NFC Forum vs ISO 14443 — formulation la plus juste ?",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "NFC Forum remplace EMVCo pour l’autorisation"
+          },
+          {
+            "id": "b",
+            "label": "14443 = settlement"
+          },
+          {
+            "id": "c",
+            "label": "Les deux sont synonymes stricts"
+          },
+          {
+            "id": "d",
+            "label": "14443 = tuyau radio ; NFC Forum = usages device/tags sur ce tuyau — pas l’AuthZ EMV"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "d"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "d"
+        ],
+        "labels": [
+          "14443 = tuyau radio ; NFC Forum = usages device/tags sur ce tuyau — pas l’AuthZ EMV"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.1,
+        "pointsMax": 0.1
+      }
+    },
+    {
+      "id": "syn-push",
+      "jour": "J4",
+      "theme": "Wallets",
+      "diff": "moyen",
+      "type": "unique",
+      "pointsIndicatifs": 0.15,
+      "prompt": "« Ajouter à Apple / Google Wallet » depuis l’app banque, c’est surtout…",
+      "enonce": {
+        "prompt": "« Ajouter à Apple / Google Wallet » depuis l’app banque, c’est surtout…",
+        "hint": null,
+        "actionLabel": null,
+        "actionKind": null,
+        "choices": [
+          {
+            "id": "a",
+            "label": "Push provisioning : l’app banque initie l’enrolment ; le tap au POS passe ensuite par le wallet OEM"
+          },
+          {
+            "id": "b",
+            "label": "L’app banque répond elle-même au POS à chaque tap"
+          },
+          {
+            "id": "c",
+            "label": "Le settlement immédiat"
+          },
+          {
+            "id": "d",
+            "label": "Un paiement in-app marchand"
+          }
+        ]
+      },
+      "answer": {
+        "choice": "a"
+      },
+      "correct": {
+        "mode": "auto",
+        "ids": [
+          "a"
+        ],
+        "labels": [
+          "Push provisioning : l’app banque initie l’enrolment ; le tap au POS passe ensuite par le wallet OEM"
+        ]
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.15,
+        "pointsMax": 0.15
+      }
+    },
+    {
+      "id": "schema-acteurs",
+      "jour": "J1",
+      "theme": "Schéma acteurs",
+      "diff": "moyen",
+      "type": "schema",
+      "pointsIndicatifs": 0.75,
+      "prompt": "Schéma « qui fait quoi » sur une transaction carte. Placez chaque acteur dans le rôle indiqué sous la case.",
+      "enonce": {
+        "prompt": "Schéma « qui fait quoi » sur une transaction carte. Placez chaque acteur dans le rôle indiqué sous la case.",
+        "hint": "Une étiquette par rôle.",
+        "actionLabel": null,
+        "actionKind": null,
+        "schemaTitle": "Acteurs de la transaction carte",
+        "schemaSubtitle": "Chaque case a déjà son rôle : choisissez l’acteur qui correspond.",
+        "slots": [
+          {
+            "id": "r1",
+            "caption": "Paie avec la carte"
+          },
+          {
+            "id": "r2",
+            "caption": "Accepte le paiement en magasin"
+          },
+          {
+            "id": "r3",
+            "caption": "Banque du commerçant / acceptation"
+          },
+          {
+            "id": "r4",
+            "caption": "Banque du porteur · AuthZ compte"
+          }
+        ],
+        "palette": [
+          "Porteur",
+          "Commerçant",
+          "Acquéreur",
+          "Émetteur"
+        ]
+      },
+      "answer": {
+        "slots": {
+          "r1": "Porteur",
+          "r2": "Commerçant",
+          "r3": "Acquéreur",
+          "r4": "Émetteur"
+        }
+      },
+      "correct": {
+        "mode": "auto",
+        "slots": {
+          "r1": "Porteur",
+          "r2": "Commerçant",
+          "r3": "Acquéreur",
+          "r4": "Émetteur"
+        }
+      },
+      "autoEval": {
+        "status": "ok",
+        "pointsObtenus": 0.75,
+        "pointsMax": 0.75
+      }
+    },
+    {
+      "id": "schema-enrol",
+      "jour": "J4",
+      "theme": "Schéma enrolment wallet",
+      "diff": "moyen",
+      "type": "schema",
+      "pointsIndicatifs": 0.75,
+      "prompt": "Cas « Ajouter à Apple / Google Wallet » depuis l’app banque (push provisioning) : l’app banque tire le wallet OEM pour lancer la demande. Placez les acteurs dans l’ordre du parcours, de gauche à droite. Ce n’est pas le tap au POS, ni un ajout lancé uniquement depuis le wallet.",
+      "enonce": {
+        "prompt": "Cas « Ajouter à Apple / Google Wallet » depuis l’app banque (push provisioning) : l’app banque tire le wallet OEM pour lancer la demande. Placez les acteurs dans l’ordre du parcours, de gauche à droite. Ce n’est pas le tap au POS, ni un ajout lancé uniquement depuis le wallet.",
+        "hint": "Glissez une étiquette par case.",
+        "actionLabel": null,
+        "actionKind": null,
+        "schemaTitle": "Push provisioning · app banque → wallet OEM",
+        "schemaSubtitle": "Enrolment initié depuis l’app banque (pas le paiement au POS).",
+        "slots": [
+          {
+            "id": "e1",
+            "caption": "① Départ"
+          },
+          {
+            "id": "e2",
+            "caption": "② Ensuite"
+          },
+          {
+            "id": "e3",
+            "caption": "③ Puis"
+          },
+          {
+            "id": "e4",
+            "caption": "④ Arrivée device"
+          }
+        ],
+        "palette": [
+          "App banque",
+          "Wallet OEM (Apple / Google)",
+          "TSP",
+          "Credential sur le device (SE ou HCE)"
+        ]
+      },
+      "answer": {
+        "slots": {
+          "e1": "App banque",
+          "e3": "Credential sur le device (SE ou HCE)",
+          "e2": "TSP",
+          "e4": "Wallet OEM (Apple / Google)"
+        }
+      },
+      "correct": {
+        "mode": "auto",
+        "slots": {
+          "e1": "App banque",
+          "e2": "Wallet OEM (Apple / Google)",
+          "e3": "TSP",
+          "e4": "Credential sur le device (SE ou HCE)"
+        }
+      },
+      "autoEval": {
+        "status": "ko",
+        "pointsObtenus": 0,
+        "pointsMax": 0.75
+      }
+    }
+  ]
+}

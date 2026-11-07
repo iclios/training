@@ -1,0 +1,4 @@
+JOUR 5 — Support
+Remise étudiants = PDF uniquement :
+supports/J5-support-etudiant-omnicanal-si.pdf
+Règles polycopié J1–J4 : couverture BBS/A2M · pas seq-steps (→ print-expand) · pas sources-box · pas contrôle/atelier · CSS support-etudiant print · HTML build non publié.

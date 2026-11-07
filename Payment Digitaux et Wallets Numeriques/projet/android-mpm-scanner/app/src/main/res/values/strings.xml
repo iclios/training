@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PDWN MPM Scanner</string>
+    <string name="title_config">Configuration</string>
+    <string name="config_help">Scannez le QR config affiché en haut du navigateur PC (pas un QR de paiement).</string>
+    <string name="btn_scan_config">Scanner le QR config</string>
+    <string name="gateway_label">URL du kit</string>
+    <string name="title_pay">Paiement</string>
+    <string name="tab_qr">QR MPM</string>
+    <string name="tab_wallet">Wallet token</string>
+    <string name="btn_scan">Scanner</string>
+    <string name="btn_pay">Payer</string>
+    <string name="btn_reconfig">Changer le serveur / rescanner config</string>
+    <string name="decoded_placeholder">Scannez un QR MPM pour décoder.</string>
+    <string name="wallet_help">Scannez un QR wallet (PDWNWALLET) — ou saisissez DPAN + crypto.</string>
+    <string name="dpan_label">DPAN</string>
+    <string name="crypt_label">Cryptogramme</string>
+    <string name="amount_label">Montant (€)</string>
+</resources>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>README — Projet PDWN</title>
+<style>
+  :root {
+    --ink: #0c1b2a;
+    --muted: #5a6b7c;
+    --line: #c5d3df;
+    --paper: #f4f7fa;
+    --teal: #087a6a;
+    --teal-soft: #e5f6f1;
+    --blue: #1e5f8a;
+    --warn: #c45c26;
+    --warn-bg: #fff8f3;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", "DejaVu Sans", sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink);
+    background: linear-gradient(180deg, #eef3f7, #f7fafc 40%);
+  }
+  .wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 3rem;
+  }
+  header.hero {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 3px solid var(--teal);
+  }
+  header.hero p.kicker {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--teal);
+  }
+  h1 {
+    margin: 0.35rem 0 0.4rem;
+    font-size: 1.75rem;
+    color: var(--ink);
+  }
+  .sub { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+  nav.toc {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1rem 1.15rem;
+    margin-bottom: 1.75rem;
+  }
+  nav.toc h2 {
+    margin: 0 0 0.6rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    border: none;
+  }
+  nav.toc ol {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+  nav.toc a {
+    color: var(--blue);
+    text-decoration: none;
+  }
+  nav.toc a:hover { text-decoration: underline; }
+
+  section.part {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1.15rem 1.25rem 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  section.part > h2 {
+    margin: 0 0 0.85rem;
+    padding: 0 0 0.5rem;
+    font-size: 1.2rem;
+    color: var(--teal);
+    border-bottom: 2px solid var(--teal-soft);
+  }
+  h3 {
+    margin: 1rem 0 0.4rem;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+  section.part > h3:first-of-type { margin-top: 0.25rem; }
+  p, li { margin: 0.3rem 0; }
+  ul, ol { margin: 0.35rem 0 0.6rem; padding-left: 1.25rem; }
+
+  .callout {
+    border-radius: 8px;
+    padding: 0.75rem 0.9rem;
+    margin: 0.75rem 0;
+    border: 1px solid var(--line);
+    background: var(--paper);
+  }
+  .callout.warn {
+    border-color: #e0b48a;
+    background: var(--warn-bg);
+  }
+  .callout.ok {
+    border-color: #9fd4c8;
+    background: var(--teal-soft);
+  }
+  .callout strong.label {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--warn);
+  }
+  .callout.ok strong.label { color: var(--teal); }
+  .note-red {
+    margin: 0.55rem 0 0;
+    padding: 0.55rem 0.7rem;
+    border-radius: 6px;
+    border: 1px solid #e0a0a0;
+    background: #fff0f0;
+    color: #b00020;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+
+  code, .path {
+    font-family: Consolas, "DejaVu Sans Mono", monospace;
+    font-size: 0.88em;
+    background: #e8eef3;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  pre {
+    font-family: Consolas, "DejaVu Sans Mono", monospace;
+    font-size: 0.85rem;
+    background: var(--ink);
+    color: #e8f5f2;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5rem 0 0.25rem;
+    font-size: 0.92rem;
+  }
+  th, td {
+    border: 1px solid var(--line);
+    padding: 0.45rem 0.55rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: var(--teal-soft); }
+  .step {
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--teal);
+    border-radius: 10px;
+    background: var(--paper);
+    padding: 0.85rem 1rem 0.9rem;
+    margin: 0.85rem 0;
+  }
+  .step h3 {
+    margin: 0 0 0.5rem;
+    color: var(--teal);
+    font-size: 1rem;
+  }
+  .step ol { margin-bottom: 0; }
+  footer {
+    margin-top: 1.5rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker">Formation · Paiements digitaux &amp; wallets numériques</p>
+  <h1>README — Projet omnicanal (mock)</h1>
+  <p class="sub">Durée indicative : 2 à 3 jours · Sans lecteur NFC · Kit Node.js + APK Android</p>
+</header>
+
+<nav class="toc" aria-label="Sommaire">
+  <h2>Sommaire</h2>
+  <ol>
+    <li><a href="#objectif">Objectif</a></li>
+    <li><a href="#prerequis">Prérequis</a></li>
+    <li><a href="#installer-nodejs">Installer Node.js</a></li>
+    <li><a href="#mise-en-route">Mise en route</a></li>
+    <li><a href="#parcours">Parcours pratique</a></li>
+    <li><a href="#livrable">Livrable (export)</a></li>
+    <li><a href="#depannage">Dépannage</a></li>
+  </ol>
+</nav>
+
+<!-- ========== 1 ========== -->
+<section class="part" id="objectif">
+  <h2>1 · Objectif</h2>
+  <p>Faire fonctionner une mini passerelle de paiement omnicanale :</p>
+  <ul>
+    <li>3 canaux : <strong>QR EMV MPM</strong>, <strong>carte</strong>, <strong>wallet token</strong></li>
+    <li>1 <strong>journal unique</strong></li>
+    <li>lien avec le cours (AuthZ, QR, tokenisation, omnicanal)</li>
+  </ul>
+  <div class="callout ok">
+    <strong class="label">En pratique</strong>
+    <p>Ce n’est pas inventer un PSP réel : c’est <strong>utiliser le kit</strong>, enchaîner les 3 canaux, répondre aux questions sur les logs, puis <strong>exporter le fichier de logs</strong> (notation).</p>
+  </div>
+  <p class="sub">Sans NFC : le wallet illustre le modèle tokenisé (DPAN + crypto), pas le tap physique.</p>
+</section>
+
+<!-- ========== 2 ========== -->
+<section class="part" id="prerequis">
+  <h2>2 · Prérequis</h2>
+  <ul>
+    <li>PC Windows avec navigateur et accès réseau</li>
+    <li><strong>Node.js LTS</strong> installé — voir <a href="#installer-nodejs">§3 Installer Node.js</a></li>
+    <li>Navigateur récent (Firefox, Chrome, Edge…)</li>
+    <li>Téléphone : <strong>Android</strong> (APK) et/ou <strong>iPhone</strong> (Appareil photo pour scanner / copier)</li>
+    <li>Même réseau local entre PC et téléphone (Wi‑Fi ou câblé)</li>
+  </ul>
+
+  <h3>Dossiers du projet</h3>
+  <table>
+    <tr><th>Chemin</th><th>Rôle</th></tr>
+    <tr><td><span class="path">kit/</span></td><td>Serveur + interface (à lancer)</td></tr>
+    <tr><td><span class="path">apk/pdwn-mpm-scanner.apk</span></td><td>App Android (QR MPM + wallet)</td></tr>
+  </table>
+</section>
+
+<!-- ========== 3 ========== -->
+<section class="part" id="installer-nodejs">
+  <h2>3 · Installer Node.js</h2>
+
+  <div class="callout">
+    <p>Node.js n’est <strong>pas</strong> un fichier <code>.js</code> — c’est un <strong>logiciel</strong> qui exécute du JavaScript hors navigateur.</p>
+    <p>Le fichier <code>server.js</code> = script du kit. Sans Node.js (logiciel), <code>start.bat</code> ne démarre pas.</p>
+  </div>
+
+  <h3>Windows Installer (.msi)</h3>
+  <ol>
+    <li>Aller sur <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer"><span class="path">https://nodejs.org</span></a></li>
+    <li>Télécharger <strong>LTS</strong> → <strong>Windows Installer (.msi)</strong> (ex. <code>node-v22.x.x-x64.msi</code>)</li>
+    <li>Double-cliquer le <code>.msi</code> → suivre l’assistant d’installation</li>
+    <li>Laisser <strong>« Add to PATH »</strong> coché si l’option apparaît</li>
+    <li>Si une case du type <strong>« Automatically install the necessary tools »</strong> apparaît : <strong>inutile pour ce projet</strong> — la décocher</li>
+    <li>Terminer (Finish) — aucun terminal à ouvrir</li>
+  </ol>
+</section>
+
+<!-- ========== 4 ========== -->
+<section class="part" id="mise-en-route">
+  <h2>4 · Mise en route</h2>
+
+  <div class="step">
+    <h3>Démarrer le serveur</h3>
+    <ol>
+      <li>Ouvrir le dossier <span class="path">projet/kit/</span></li>
+      <li>Double-clic sur <span class="path">start.bat</span></li>
+      <li>Si <strong>CRITICAL</strong> : mettre le PC en réseau, relancer</li>
+      <li>Sinon : noter l’URL affichée</li>
+    </ol>
+  </div>
+
+  <div class="step">
+    <h3>Ouvrir le kit sur le PC</h3>
+    <ol>
+      <li>Ouvrir un navigateur</li>
+      <li>Saisir l’URL indiquée par le serveur</li>
+      <li>En haut de page : bannière « Serveur prêt » + <strong>QR config</strong> (pour l’APK)</li>
+    </ol>
+  </div>
+
+  <div class="step">
+    <h3>Télécharger l’APK (Android)</h3>
+    <ol>
+      <li>Sur le téléphone : ouvrir le lien de partage (Drive)</li>
+      <li>Télécharger <span class="path">pdwn-mpm-scanner.apk</span></li>
+    </ol>
+  </div>
+
+  <div class="step">
+    <h3>Installer l’application Android</h3>
+    <ol>
+      <li>Ouvrir le fichier <span class="path">.apk</span></li>
+      <li>Autoriser l’installation si demandé (<strong>source inconnue</strong> / installer via cette app)</li>
+      <li>Lancer l’app</li>
+    </ol>
+    <p class="note-red">Après le projet : remettre ce paramètre à sa valeur initiale (désactiver l’installation depuis des sources inconnues).</p>
+  </div>
+
+  <div class="step">
+    <h3>Relier l’APK au serveur</h3>
+    <ol>
+      <li>Sur le PC : en haut de la page, repérer le <strong>QR config</strong></li>
+      <li>Dans l’app (écran Configuration) → <strong>Scanner le QR config</strong></li>
+      <li>L’app enregistre le serveur puis ouvre l’écran paiement (2 onglets)</li>
+    </ol>
+  </div>
+
+  <div class="step">
+    <h3>Revenir à la config APK (rescanner)</h3>
+    <p>Si l’IP du PC a changé, ou pour retenter le QR config&nbsp;:</p>
+    <ol>
+      <li>Sur l’écran paiement, juste <strong>sous l’URL du serveur</strong> (au-dessus des onglets) : bouton <strong>Changer le serveur / rescanner config</strong></li>
+      <li>L’écran Configuration réapparaît</li>
+      <li><strong>Scanner le QR config</strong> affiché en haut du navigateur PC</li>
+      <li>L’app reteste la connexion puis revient à l’écran paiement</li>
+    </ol>
+  </div>
+
+  <div class="step">
+    <h3>Payer avec l’APK</h3>
+    <ol>
+      <li>Onglets : <strong>QR MPM</strong> · <strong>Wallet token</strong></li>
+      <li>Un seul bouton <strong>Scanner</strong> : le type de QR ouvre le bon onglet</li>
+      <li>Un seul bouton <strong>Payer</strong> (selon l’onglet actif)</li>
+    </ol>
+  </div>
+
+  <div class="step">
+    <h3>iPhone (sans APK)</h3>
+    <ol>
+      <li>Pas de config téléphone : l’URL du kit s’ouvre <strong>uniquement sur le PC</strong></li>
+      <li>Appareil photo <strong>seulement pour le parcours</strong> (QR MPM / wallet) — pas pour un QR config</li>
+      <li>Copier le texte scanné → coller dans le navigateur du PC → Payer</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== 5 ========== -->
+<section class="part" id="parcours">
+  <h2>5 · Parcours pratique</h2>
+  <p>Suivre les étapes dans l’ordre. Chaque canal produit des traces dans le journal (notation).</p>
+
+  <div class="step" id="etape-a">
+    <h3>A — Prise en main</h3>
+    <ol>
+      <li>Lancer le kit et ouvrir l’URL</li>
+      <li>Observer le « Journal unique »</li>
+      <li>Repérer les 3 canaux</li>
+    </ol>
+  </div>
+
+  <div class="step" id="etape-b">
+    <h3>B — Canal QR EMV MPM · cours J2</h3>
+    <ol>
+      <li>« Générer QR MPM » (payload masqué à l’écran)</li>
+      <li><strong>Android</strong> : Scanner → onglet QR MPM → Payer</li>
+      <li><strong>iPhone</strong> : Appareil photo → copier le texte → coller dans le kit <em>sur le PC</em> → Payer</li>
+      <li>Retenir : marchand présente · téléphone scanne = <strong>MPM</strong></li>
+    </ol>
+  </div>
+
+  <div class="step" id="etape-c">
+    <h3>C — Canal carte + quiz · cours J1</h3>
+    <ol>
+      <li>« Autoriser (mock) » → lire le log (path + stages)</li>
+      <li>Répondre au quiz → <strong>Enregistrer la réponse</strong></li>
+      <li>Tester aussi une carte qui decline · enregistrer une 2ᵉ réponse</li>
+    </ol>
+  </div>
+
+  <div class="step" id="etape-d">
+    <h3>D — Wallet token · cours J3–J4</h3>
+    <ol>
+      <li>« Provisionner » → QR credentials (DPAN + crypto masqués)</li>
+      <li><strong>Android</strong> : Scanner → onglet Wallet → Payer</li>
+      <li><strong>iPhone</strong> : Appareil photo → copier <code>PDWNWALLET|…</code> → coller dans le kit <em>sur le PC</em> → Appliquer → Payer</li>
+      <li>Pas de quiz : le paiement suffit (voir le journal)</li>
+    </ol>
+    <p class="sub"><strong>DPAN</strong> = Device Primary Account Number · <strong>Cryptogramme</strong> = preuve dynamique (mock ARQC).</p>
+  </div>
+
+  <div class="step" id="etape-e">
+    <h3>E — Synthèse + export · cours J5</h3>
+    <ol>
+      <li>Vérifier 1 QR + 1 carte (+ réponses quiz) + 1 wallet</li>
+      <li>Expliquer le journal unique</li>
+      <li><strong>Exporter les logs</strong> → envoyer le fichier au formateur</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== 5 ========== -->
+<section class="part" id="livrable">
+  <h2>6 · Livrable</h2>
+  <div class="callout ok">
+    <strong class="label">Un seul livrable pour la notation</strong>
+    <p>Le fichier produit par le bouton <strong>« Exporter les logs »</strong> dans le kit.</p>
+    <p>Saisir votre nom / binôme → télécharger → envoyer au formateur.</p>
+  </div>
+  <p>Le fichier contient (entre autres) :</p>
+  <ul>
+    <li><strong>date / heure</strong> d’export (<code>exportedAt</code> + <code>exportedAtLocal</code>)</li>
+    <li><strong>contentHash</strong> (empreinte SHA-256 du journal)</li>
+    <li>les transactions du journal (QR · carte · wallet)</li>
+    <li>vos réponses quiz carte (<code>studentAnswer</code>)</li>
+    <li>l’historique d’activité (<code>events</code>)</li>
+    <li>les tokens provisionnés</li>
+  </ul>
+  <p class="sub">Exportez en fin de projet, avant un reset éventuel du journal.</p>
+</section>
+
+<!-- ========== 6 ========== -->
+<section class="part" id="depannage">
+  <h2>7 · Dépannage</h2>
+  <table>
+    <tr><th>Symptôme</th><th>Action</th></tr>
+    <tr><td>« node introuvable »</td><td>Installer le MSI Node.js LTS (§3), fermer l’ancienne fenêtre noire, relancer <code>start.bat</code></td></tr>
+    <tr><td>Port 3789 occupé</td><td>Fermer l’autre instance du kit</td></tr>
+    <tr><td>CRITICAL : PC pas en réseau</td><td>Mettre l’ordinateur en réseau (Wi‑Fi / câble) · relancer <code>start.bat</code></td></tr>
+    <tr><td>« Impossible de joindre le serveur » au « Payer le QR »</td><td><strong>Changer le serveur</strong> → rescanner le QR config · même Wi‑Fi · <code>start.bat</code> ouvert · pare-feu Windows autoriser Node.js / port 3789</td></tr>
+    <tr><td>Besoin de rescanner le QR config</td><td>Écran paiement → <strong>Changer le serveur</strong> → Scanner le QR config (haut de page PC)</td></tr>
+    <tr><td>Téléphone ne joint pas</td><td>Même réseau que le PC · URL IP affichée au démarrage</td></tr>
+    <tr><td>Journal vide</td><td>« Rafraîchir journal »</td></tr>
+    <tr><td>Windows bloque le .bat</td><td>Informations complémentaires → Exécuter quand même</td></tr>
+  </table>
+</section>
+
+<footer>
+  README projet PDWN · <span class="path">kit/</span> · <span class="path">apk/pdwn-mpm-scanner.apk</span>
+</footer>
+
+</div>
+</body>
+</html>

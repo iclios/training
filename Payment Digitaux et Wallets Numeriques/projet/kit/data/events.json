@@ -1,0 +1,30 @@
+[
+  {
+    "id": "EV_mveti2k8_d52mg",
+    "at": "2026-10-19T05:32:20.984Z",
+    "type": "http_api",
+    "method": "POST",
+    "path": "/api/qr/create",
+    "client": "192.168.1.182"
+  },
+  {
+    "id": "EV_mv0rvam6_iq8io",
+    "at": "2026-10-09T09:37:52.255Z",
+    "type": "export_logs",
+    "student": "Test",
+    "counts": {
+      "journal": 12,
+      "events": 1,
+      "tokens": 3,
+      "answers": 2
+    }
+  },
+  {
+    "id": "EV_mv0rvam3_xscua",
+    "at": "2026-10-09T09:37:52.251Z",
+    "type": "http_api",
+    "method": "GET",
+    "path": "/api/export",
+    "client": "127.0.0.1"
+  }
+]

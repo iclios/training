@@ -1,0 +1,10 @@
+{
+  "name": "pdwn-projet-omnicanal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mock passerelle omnicanale — projet formation PDWN",
+  "scripts": {
+    "start": "node server.js",
+    "reset": "node tools/reset-journal.js"
+  }
+}

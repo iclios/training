@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correction — Examen PDWN</title>
+    <link rel="stylesheet" href="css/examen.css" />
+    <link rel="stylesheet" href="css/correction.css" />
+  </head>
+  <body class="corr-body">
+    <header class="ex-bar">
+      <div class="wrap ex-bar-inner">
+        <a class="ex-brand" href="index.html"
+          >Paiements digitaux <span>&amp; wallets</span></a
+        >
+        <div class="ex-meta">
+          <span>Relecture formateur</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap corr-main">
+      <section class="ex-card corr-load" id="panel-load">
+        <p class="ex-kicker">Correction</p>
+        <h1>Charger une copie JSON</h1>
+        <p class="ex-lead">
+          Sélectionnez le fichier exporté par l’étudiant
+          (<code>examen-pdwn-….json</code> pour le lire sous forme de fiche.
+        </p>
+        <label class="corr-drop">
+          <input type="file" id="file-json" accept="application/json,.json" />
+          <span>Choisir un fichier JSON</span>
+        </label>
+        <p class="corr-error" id="load-error" hidden></p>
+      </section>
+
+      <section class="corr-review" id="panel-review" hidden>
+        <div class="ex-card corr-summary">
+          <div class="corr-summary-top">
+            <div>
+              <p class="ex-kicker">Copie</p>
+              <h2 id="student-name">—</h2>
+              <p class="corr-meta" id="export-meta"></p>
+            </div>
+            <div class="corr-scores">
+              <div>
+                <span class="corr-score-label">Auto (QCU/QCM/…)</span>
+                <strong id="auto-score">—</strong>
+              </div>
+              <div>
+                <span class="corr-score-label">Note /20</span>
+                <input
+                  type="number"
+                  id="note-sur-20"
+                  min="0"
+                  max="20"
+                  step="0.25"
+                  placeholder="—"
+                />
+              </div>
+            </div>
+          </div>
+          <label class="corr-comment">
+            Commentaire formateur
+            <textarea id="teacher-comment" rows="2" placeholder="Appréciation globale…"></textarea>
+          </label>
+          <div class="btn-row">
+            <button type="button" class="btn btn-secondary" id="btn-reload">
+              Autre fichier
+            </button>
+            <button type="button" class="btn btn-primary" id="btn-filter-todo">
+              Voir à corriger
+            </button>
+            <button type="button" class="btn btn-secondary" id="btn-filter-all">
+              Tout voir
+            </button>
+            <button type="button" class="btn btn-secondary" id="btn-export-ko" title="Q · RE · RA pour les questions KO uniquement">
+              Extraire KO
+            </button>
+          </div>
+        </div>
+
+        <div class="corr-filters" id="status-filters" aria-label="Filtres"></div>
+        <div id="questions-list"></div>
+      </section>
+    </main>
+
+    <script src="js/correction.js"></script>
+  </body>
+</html>

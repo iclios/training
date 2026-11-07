@@ -1,0 +1,278 @@
+[
+  {
+    "id": "TX_mv0r3zpf_srpve",
+    "at": "2026-10-09T09:16:38.403Z",
+    "channel": "wallet_token",
+    "amount": 9,
+    "currency": "EUR",
+    "auth": "approve",
+    "presented": {
+      "type": "token",
+      "dpan": "DPAN11118139",
+      "walletId": "wallet-demo-01",
+      "brand": "VISA-DEMO"
+    },
+    "stages": {
+      "authorization": "approve",
+      "clearing": "pending",
+      "settlement": "pending"
+    },
+    "path": [
+      "Wallet / device présente un token (DPAN)",
+      "TSP / token requestor (mock)",
+      "Scheme",
+      "Émetteur (AuthZ approve)",
+      "Retour → acceptation",
+      "Clearing (pending) → Settlement (pending)"
+    ],
+    "note": "Canal wallet tokenisé — DPAN présenté ; pas de PAN en clair côté acceptation · lire path + presented"
+  },
+  {
+    "id": "TX_mv0r024m_uqbp3",
+    "at": "2026-10-09T09:13:34.918Z",
+    "channel": "wallet_token",
+    "amount": 9,
+    "currency": "EUR",
+    "auth": "approve",
+    "presented": {
+      "type": "token",
+      "dpan": "DPAN11118139",
+      "walletId": "wallet-demo-01",
+      "brand": "VISA-DEMO"
+    },
+    "stages": {
+      "authorization": "approve",
+      "clearing": "pending",
+      "settlement": "pending"
+    },
+    "note": "Canal wallet tokenisé — DPAN présenté ; pas de PAN en clair côté acceptation"
+  },
+  {
+    "id": "TX_mv0qx2jp_o5hj1",
+    "at": "2026-10-09T09:11:15.493Z",
+    "channel": "card",
+    "amount": 10,
+    "currency": "EUR",
+    "auth": "approve",
+    "presented": {
+      "type": "pan_masked",
+      "brand": "VISA-DEMO",
+      "masked": "**** **** **** 1111"
+    },
+    "stages": {
+      "authorization": "approve",
+      "clearing": "pending",
+      "settlement": "pending"
+    },
+    "path": [
+      "POS / caisse (mock)",
+      "Acquéreur / PSP",
+      "Scheme",
+      "Émetteur (AuthZ approve)",
+      "Retour réponse → POS",
+      "Clearing (pending) → Settlement (pending)"
+    ],
+    "note": "Canal carte — PAN masqué en journal ; AuthZ approve · lire path + stages",
+    "studentAnswer": {
+      "at": "2026-10-09T09:11:15.544Z",
+      "auth": "approve",
+      "clearing": "pending",
+      "settlement": "pending",
+      "path": "pos-psp-scheme-issuer",
+      "expected": {
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer"
+      }
+    }
+  },
+  {
+    "id": "TX_mv0qwi5i_ix8s0",
+    "at": "2026-10-09T09:10:49.062Z",
+    "channel": "card",
+    "amount": 10,
+    "currency": "EUR",
+    "auth": "approve",
+    "presented": {
+      "type": "pan_masked",
+      "brand": "VISA-DEMO",
+      "masked": "**** **** **** 1111"
+    },
+    "stages": {
+      "authorization": "approve",
+      "clearing": "pending",
+      "settlement": "pending"
+    },
+    "note": "Canal carte — PAN masqué en journal ; AuthZ approve"
+  },
+  {
+    "id": "TX_mv0qv5u6_b1dzk",
+    "at": "2026-10-09T09:09:46.446Z",
+    "channel": "card",
+    "amount": 10,
+    "currency": "EUR",
+    "auth": "approve",
+    "presented": {
+      "type": "pan_masked",
+      "brand": "VISA-DEMO",
+      "masked": "**** **** **** 1111"
+    },
+    "stages": {
+      "authorization": "approve",
+      "clearing": "pending",
+      "settlement": "pending"
+    },
+    "note": "Canal carte — PAN masqué en journal ; AuthZ approve",
+    "studentAnswer": {
+      "at": "2026-10-09T09:11:30.081Z",
+      "auth": "timeout",
+      "clearing": "settled",
+      "settlement": "done",
+      "path": "pos-issuer-scheme",
+      "expected": {
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer"
+      }
+    }
+  },
+  {
+    "id": "TX_mv0qrfo8_xqpen",
+    "at": "2026-10-09T09:06:52.568Z",
+    "channel": "card",
+    "amount": 10,
+    "currency": "EUR",
+    "auth": "approve",
+    "presented": {
+      "type": "pan_masked",
+      "brand": "VISA-DEMO",
+      "masked": "**** **** **** 1111"
+    },
+    "stages": {
+      "authorization": "approve",
+      "clearing": "pending",
+      "settlement": "pending"
+    },
+    "note": "Canal carte — PAN masqué en journal ; AuthZ approve"
+  },
+  {
+    "id": "TX_mv0qm78c_v9ve5",
+    "at": "2026-10-09T09:02:48.348Z",
+    "channel": "card",
+    "amount": 25,
+    "currency": "EUR",
+    "auth": "approve",
+    "presented": {
+      "type": "pan_masked",
+      "brand": "VISA-DEMO",
+      "masked": "**** **** **** 1111"
+    },
+    "stages": {
+      "authorization": "approve",
+      "clearing": "pending",
+      "settlement": "pending"
+    },
+    "note": "Canal carte — PAN masqué en journal ; AuthZ approve"
+  },
+  {
+    "id": "TX_mv0qi707_mxmyy",
+    "at": "2026-10-09T08:59:41.432Z",
+    "channel": "card",
+    "amount": 25,
+    "currency": "EUR",
+    "auth": "approve",
+    "presented": {
+      "type": "pan_masked",
+      "brand": "VISA-DEMO",
+      "masked": "**** **** **** 1111"
+    },
+    "stages": {
+      "authorization": "approve",
+      "clearing": "pending",
+      "settlement": "pending"
+    },
+    "note": "Canal carte — PAN masqué en journal ; AuthZ approve"
+  },
+  {
+    "id": "TX_mv0qf60v_oc1sp",
+    "at": "2026-10-09T08:57:20.191Z",
+    "channel": "card",
+    "amount": 25,
+    "currency": "EUR",
+    "auth": "approve",
+    "presented": {
+      "type": "pan_masked",
+      "brand": "VISA-DEMO",
+      "masked": "**** **** **** 1111"
+    },
+    "stages": {
+      "authorization": "approve",
+      "clearing": "pending",
+      "settlement": "pending"
+    },
+    "note": "Canal carte — PAN masqué en journal ; AuthZ approve"
+  },
+  {
+    "id": "TX_mv0qak0w_7vqvy",
+    "at": "2026-10-09T08:53:45.056Z",
+    "channel": "qr",
+    "amount": 12.5,
+    "currency": "EUR",
+    "auth": "approve",
+    "presented": {
+      "type": "emv_mpm",
+      "mode": "MPM",
+      "poiMethod": "12",
+      "guid": "fr.pdwn.formation",
+      "merchantName": "PDWN DEMO",
+      "billNumber": "QR_mv0qa4gz_9c1pv",
+      "payload": "00020101021226350017fr.pdwn.formation0110MERCHANT01520454115303978540512.505802FR5909PDWN DEMO6005PARIS62210117QR_mv0qa4gz_9c1pv63045588"
+    },
+    "stages": {
+      "authorization": "approve",
+      "clearing": "pending",
+      "settlement": "pending"
+    },
+    "note": "Canal QR MPM — marchand présente · AuthZ mock approve (PSP client pédagogique)"
+  },
+  {
+    "id": "TX_mv0p6jlc_ssf4q",
+    "at": "2026-10-09T08:22:38.256Z",
+    "channel": "qr",
+    "amount": 12.5,
+    "currency": "EUR",
+    "auth": "approve",
+    "presented": {
+      "type": "qr_payload",
+      "ref": "QR_mv0p6bdl_xl8tf",
+      "payload": "PDWNQR|v1|amount=12.50|currency=EUR|ref=QR_mv0p6bdl_xl8tf|ttl=600"
+    },
+    "stages": {
+      "authorization": "approve",
+      "clearing": "pending",
+      "settlement": "pending"
+    },
+    "note": "Canal QR — initiation ; AuthZ mock approve"
+  },
+  {
+    "id": "TX_mv0naqi9_c4i9u",
+    "at": "2026-10-09T07:29:54.609Z",
+    "channel": "card",
+    "amount": 10,
+    "currency": "EUR",
+    "auth": "decline",
+    "presented": {
+      "type": "pan_masked",
+      "brand": "VISA-DEMO",
+      "masked": "**** **** **** 0002"
+    },
+    "stages": {
+      "authorization": "decline",
+      "clearing": "n/a",
+      "settlement": "n/a"
+    },
+    "note": "Canal carte — AuthZ decline (carte de démo prévue pour ça)"
+  }
+]

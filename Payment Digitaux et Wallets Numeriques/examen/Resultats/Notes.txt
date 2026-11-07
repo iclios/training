@@ -1,0 +1,116 @@
+Notes   : Noé Alvine REMBENDAMBYA
+-----
+QCM/QCU ==> Ok : 38  ,  KO : 8
+
+A corriger 
+-----------
+Q12 : 2/2
+Q26 : 1/2
+Q32 : 0.75/0.75
+Q44 : 1/1
+Q47 : 2/2
+Q15 : 0.25/0.50
+Q20 : 0.4/0.75
+Q46 : 0.50/0.50
+Q51 : 0.75/0.75
+
+Note = 7.8999 + 2 + 1 + 0.75 + 1 + 2 + 0.25 + 0.4 + 0.5+ 0.75 = 16.5/20
+
+
+
+Corrections
+-----------
+
+Q5 :  En monétique, on distingue notamment l’offline « normal » et l’offline « dégradé ». Quelle affirmation décrit correctement l’offline dégradé ?
+RE :  b C’est le mode prévu au quotidien par le produit (seuils, floor limit…), même quand la chaîne online fonctionne parfaitement
+R  :  C’est un mode de secours : la chaîne online est indisponible (ex. host down), on retombe sur des contrôles locaux / règles de fallback 
+
+Q13 :  Schéma « chaîne monétique ». Placez les 3 étapes dans l’ordre chronologique, de gauche (début) à droite (fin).
+       Chaîne monétique · 3 étapes
+
+RE :
+① Début → Authorization (AuthZ)
+② Ensuite → Settlement
+③ Fin → Clearing
+
+RA: Authorization -> clearing -> Settlement 
+       
+Q17         :   On ajoute le paiement par QR à côté de la carte. Quelle erreur d’intégration faut-il surtout éviter ?
+R Etudiant  :   Garder les mêmes grandes étapes monétiques que pour la carte (décision, compensation, règlement…)
+R Attendue  :   Traiter le QR code dans un silo à part
+
+Q23         :   Cochez les affirmations correctes sur la tokenisation carte.
+
+R etudiant :
+b Apple / Google deviennent l’émetteur du compte                   
+c La détokenisation côté réseau / TSP permet de retrouver le PAN pour l’AuthZ
+d Le cryptogramme contribue à l’unicité / fraîcheur de la transaction
+
+Reponse attendue :
+a Le token peut avoir un domaine d’usage (device, e-com…)
+c La détokenisation côté réseau / TSP permet de retrouver le PAN pour l’AuthZ
+d Le cryptogramme contribue à l’unicité / fraîcheur de la transaction
+
+
+
+Q29 : Pour le tap carte / wallet au POS, le chemin radio dominant du paiement est…
+
+R etudiant : b Uniquement des tags NFC Forum / NDEF
+R attendue : d Type A (les POS sont souvent dual A+B pour l’interopérabilité)
+
+
+Q33 : Quel mode NFC porte le paiement wallet au POS ?
+
+R etudiant : c Lecture / écriture de tag NDEF uniquement
+R attendue : b Card emulation
+
+
+Q48 :  L’omnicanal SI, c’est surtout…
+
+R etudiant : c Remplacer toute la chaîne monétique par une seule étape « omnicanal »
+R attendue : a Un backend / journal unique sous plusieurs canaux d’entrée 
+
+
+Q55 ; Cas « Ajouter à Apple / Google Wallet » depuis l’app banque (push provisioning) : l’app banque tire le wallet OEM pour lancer la demande. Placez les acteurs dans l’ordre du parcours, de gauche à droite. Ce n’est pas le tap au POS, ni un ajout lancé uniquement depuis le wallet.
+
+
+Réponse étudiant
+① Départ → App banque
+③ Puis → Credential sur le device (SE ou HCE)
+② Ensuite → TSP
+④ Arrivée device → Wallet OEM (Apple / Google)
+
+Réponse  attendue
+
+① Départ → App banque
+② Ensuite → Wallet OEM (Apple / Google)
+③ Puis → TSP
+④ Arrivée device → Credential sur le device (SE ou HCE)
+
+
+A corriger : 9 
+
+
+
+
+Notes : Calvin LOUMA 
+
+OK 29
+KO 17
+
+
+QCM/QCU ==> Ok : 29  ,  KO : 17
+
+À corriger 9
+Q12 : 1.5/2
+Q15 : 0.25
+Q20 : 0.75/0.75
+Q26 : 1/1.5
+Q32 : 0.4/0.75
+Q44 : 0/1
+Q46 : 0.5/0.5
+Q47 : 2/2
+Q51 : 0.75/0.75
+
+
+Notes = 5.74 + 1.5 + 0.25 + 0.75 + 1 + 0.4 + 0 + 0.5 + 2 +0.75 = 12.89/20 ==> 13/20

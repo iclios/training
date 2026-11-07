@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lecture logs projet — Formateur PDWN</title>
+    <style>
+      :root {
+        --ink: #0c1b2a;
+        --muted: #5a6b7c;
+        --paper: #eef3f7;
+        --line: #c5d3df;
+        --accent: #0d9f8a;
+        --accent-deep: #087a6a;
+        --warn: #c45c26;
+        --ok: #087a6a;
+        --ko: #a33;
+        --font: "Segoe UI", system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: var(--font);
+        color: var(--ink);
+        line-height: 1.5;
+        background:
+          radial-gradient(ellipse 70% 40% at 0% 0%, #d4ece7, transparent 50%),
+          linear-gradient(180deg, var(--paper), #f7fafc);
+      }
+      .wrap { width: min(100% - 2rem, 960px); margin-inline: auto; }
+      header {
+        position: sticky; top: 0; z-index: 10;
+        background: rgba(238, 243, 247, 0.94);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(8px);
+      }
+      header .inner {
+        display: flex; flex-wrap: wrap; align-items: center;
+        justify-content: space-between; gap: 0.75rem; padding: 0.75rem 0;
+      }
+      .brand { font-weight: 800; text-decoration: none; color: var(--ink); }
+      .brand span { color: var(--accent-deep); }
+      .badge {
+        font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em;
+        text-transform: uppercase; color: var(--warn);
+        border: 1px solid #e8c4b0; background: #fdf6f2; padding: 0.25rem 0.55rem; border-radius: 999px;
+      }
+      main { padding: 1.5rem 0 3rem; }
+      .card {
+        background: #fff; border: 1px solid var(--line); border-radius: 12px;
+        padding: 1.25rem 1.35rem; margin-bottom: 1rem;
+      }
+      h1 { margin: 0 0 0.35rem; font-size: 1.55rem; }
+      h2 { margin: 0 0 0.75rem; font-size: 1.15rem; }
+      h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+      .lead { color: var(--muted); margin: 0 0 1rem; }
+      .drop {
+        display: flex; align-items: center; justify-content: center;
+        min-height: 7rem; border: 2px dashed var(--line); border-radius: 12px;
+        cursor: pointer; font-weight: 700; color: var(--accent-deep); background: #f8fbfc;
+      }
+      .drop:hover, .drop.is-drag { border-color: var(--accent); background: #f3fbf9; }
+      .drop input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+      .err { color: var(--ko); margin-top: 0.75rem; }
+      .meta { color: var(--muted); font-size: 0.9rem; margin: 0.25rem 0 0; }
+      .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.85rem; }
+      .chip {
+        font-size: 0.8rem; font-weight: 700; padding: 0.25rem 0.55rem;
+        border-radius: 999px; background: #eef4fa; color: #1e5f8a; border: 1px solid #c5d3df;
+      }
+      .chip.is-ok { background: #e7f6f3; color: var(--ok); border-color: #9fd5cb; }
+      .chip.is-warn { background: #fdf6f2; color: var(--warn); border-color: #e8c4b0; }
+      .filters { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.75rem 0 1rem; }
+      .filters button {
+        border: 1px solid var(--line); background: #fff; border-radius: 8px;
+        padding: 0.4rem 0.7rem; font-weight: 700; cursor: pointer; font-size: 0.85rem;
+      }
+      .filters button.is-on { background: var(--accent); color: #fff; border-color: var(--accent); }
+      .btn-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+      .btn {
+        border: 1px solid var(--line); background: #fff; border-radius: 8px;
+        padding: 0.5rem 0.85rem; font-weight: 700; cursor: pointer;
+      }
+      .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+      .tx {
+        border: 1px solid var(--line); border-radius: 10px; padding: 0.9rem 1rem;
+        margin-bottom: 0.75rem; background: #fafcfd;
+      }
+      .tx-head { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; margin-bottom: 0.5rem; }
+      .tx .path { margin: 0.4rem 0 0; padding-left: 1.1rem; color: var(--muted); font-size: 0.9rem; }
+      .tx pre, .answer pre {
+        margin: 0.4rem 0 0; padding: 0.65rem 0.75rem; background: #0c1b2a; color: #e8f0f5;
+        border-radius: 8px; overflow: auto; font-size: 0.8rem; white-space: pre-wrap;
+      }
+      .answer {
+        margin-top: 0.65rem; padding: 0.65rem 0.75rem; border-radius: 8px;
+        background: #e7f6f3; border: 1px solid #9fd5cb;
+      }
+      .answer strong { color: var(--accent-deep); }
+      .no-answer { color: var(--warn); font-size: 0.9rem; margin: 0.5rem 0 0; }
+      .grid-2 { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+      .muted { color: var(--muted); font-size: 0.9rem; }
+      .hash { font-family: ui-monospace, monospace; font-size: 0.85rem; word-break: break-all; }
+      .checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.45rem; }
+      .checklist li {
+        display: flex; gap: 0.65rem; align-items: flex-start;
+        padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--line); background: #fff;
+      }
+      .checklist li.is-done { border-color: #9fd5cb; background: #e7f6f3; }
+      .checklist li.is-miss { border-color: #e8c4b0; background: #fdf6f2; }
+      .mark {
+        flex: 0 0 1.4rem; width: 1.4rem; height: 1.4rem; border-radius: 50%;
+        display: grid; place-items: center; font-weight: 800; font-size: 0.75rem; margin-top: 0.1rem;
+      }
+      .is-done .mark { background: var(--ok); color: #fff; }
+      .is-miss .mark { background: var(--warn); color: #fff; }
+      .check-body { flex: 1; min-width: 0; }
+      .check-body strong { display: block; }
+      .check-body span { color: var(--muted); font-size: 0.88rem; }
+      .timeline { list-style: none; padding: 0; margin: 0.5rem 0 0; border-left: 2px solid var(--line); }
+      .timeline li { position: relative; padding: 0.55rem 0 0.55rem 1rem; }
+      .timeline li::before {
+        content: ""; position: absolute; left: -5px; top: 0.85rem;
+        width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+      }
+      .timeline .t-time { font-size: 0.78rem; color: var(--muted); font-weight: 700; }
+      .timeline .t-title { font-weight: 700; }
+      .timeline .t-detail { font-size: 0.88rem; color: var(--muted); }
+      .quiz-ok { color: var(--ok); font-weight: 800; }
+      .quiz-ko { color: var(--ko); font-weight: 800; }
+      [hidden] { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap inner">
+        <a class="brand" href="#">PDWN · <span>Lecture logs</span></a>
+        <span class="badge">Formateur only</span>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="card" id="panel-load">
+        <h1>Importer un export projet</h1>
+        <p class="lead">
+          Fichier <code>pdwn-logs-….json</code> exporté depuis le kit étudiant.
+          Page hors kit — ne pas distribuer.
+        </p>
+        <label class="drop" id="drop">
+          <input type="file" id="file" accept="application/json,.json" />
+          <span>Choisir / glisser un JSON</span>
+        </label>
+        <p class="err" id="err" hidden></p>
+      </section>
+
+      <section id="panel-review" hidden>
+        <div class="card">
+          <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:flex-start">
+            <div>
+              <p class="muted" style="margin:0;text-transform:uppercase;font-size:0.75rem;font-weight:700;letter-spacing:0.04em">Binôme / étudiant</p>
+              <h1 id="student-name" style="margin-top:0.2rem">—</h1>
+              <p class="meta" id="export-meta"></p>
+              <p class="meta hash" id="content-hash"></p>
+            </div>
+            <div class="chips" id="count-chips"></div>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn" id="btn-reload">Autre fichier</button>
+            <button type="button" class="btn btn-primary" id="btn-answers">Voir réponses quiz</button>
+            <button type="button" class="btn" id="btn-all">Tout le journal</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Actions pour noter</h2>
+          <p class="muted" style="margin-top:0">Checklist parcours projet (B · C · D) + frise chronologique.</p>
+          <ul class="checklist" id="action-checklist"></ul>
+          <h3 style="margin-top:1.1rem">Frise des actions</h3>
+          <ol class="timeline" id="action-timeline"></ol>
+        </div>
+
+        <div class="card">
+          <h2>Filtres journal</h2>
+          <div class="filters" id="filters">
+            <button type="button" class="is-on" data-f="all">Tous</button>
+            <button type="button" data-f="card">Carte</button>
+            <button type="button" data-f="qr">QR</button>
+            <button type="button" data-f="wallet">Wallet</button>
+            <button type="button" data-f="answer">Avec studentAnswer</button>
+            <button type="button" data-f="decline">Decline / KO auth</button>
+          </div>
+          <div id="journal-list"></div>
+        </div>
+
+        <div class="card">
+          <h2>Tokens provisionnés</h2>
+          <div id="tokens-list" class="grid-2"></div>
+        </div>
+
+        <div class="card">
+          <h2>Events (notation / API)</h2>
+          <div id="events-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        "use strict";
+
+        const el = {
+          load: document.getElementById("panel-load"),
+          review: document.getElementById("panel-review"),
+          file: document.getElementById("file"),
+          drop: document.getElementById("drop"),
+          err: document.getElementById("err"),
+          student: document.getElementById("student-name"),
+          meta: document.getElementById("export-meta"),
+          hash: document.getElementById("content-hash"),
+          chips: document.getElementById("count-chips"),
+          filters: document.getElementById("filters"),
+          journal: document.getElementById("journal-list"),
+          tokens: document.getElementById("tokens-list"),
+          events: document.getElementById("events-list"),
+          checklist: document.getElementById("action-checklist"),
+          timeline: document.getElementById("action-timeline"),
+          reload: document.getElementById("btn-reload"),
+          answers: document.getElementById("btn-answers"),
+          all: document.getElementById("btn-all"),
+        };
+
+        let data = null;
+        let filter = "all";
+
+        function esc(s) {
+          return String(s ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+        }
+
+        function fmtDate(iso) {
+          if (!iso) return "—";
+          try {
+            return new Date(iso).toLocaleString("fr-FR");
+          } catch (_) {
+            return iso;
+          }
+        }
+
+        function channelLabel(ch) {
+          if (ch === "card") return "Carte";
+          if (ch === "qr" || ch === "qr_mpm") return "QR MPM";
+          if (ch === "wallet_token" || ch === "wallet") return "Wallet";
+          return ch || "—";
+        }
+
+        function isApprove(auth) {
+          const a = String(auth || "").toLowerCase();
+          return a.includes("approve");
+        }
+
+        function isQr(ch) {
+          return String(ch || "").includes("qr");
+        }
+
+        function isWallet(ch) {
+          return String(ch || "").includes("wallet");
+        }
+
+        function quizScore(sa) {
+          if (!sa || !sa.expected) return null;
+          const keys = ["auth", "clearing", "settlement", "path"];
+          const ok = keys.every(
+            (k) =>
+              String(sa[k] ?? "").toLowerCase() ===
+              String(sa.expected[k] ?? "").toLowerCase()
+          );
+          return ok;
+        }
+
+        function buildActions() {
+          const journal = data.journal || [];
+          const tokens = data.tokens || [];
+          const events = data.events || [];
+
+          const qrPays = journal.filter((t) => isQr(t.channel));
+          const cardPays = journal.filter((t) => t.channel === "card");
+          const cardOk = cardPays.filter((t) => isApprove(t.auth));
+          const cardKo = cardPays.filter((t) => !isApprove(t.auth));
+          const answers = journal.filter((t) => t.studentAnswer);
+          const answersOk = answers.filter((t) => quizScore(t.studentAnswer) === true);
+          const answersKo = answers.filter((t) => quizScore(t.studentAnswer) === false);
+          const walletPays = journal.filter((t) => isWallet(t.channel));
+          const provisions =
+            tokens.length ||
+            events.filter((e) => e.type === "token_provision").length;
+
+          const checks = [
+            {
+              id: "qr",
+              title: "B · Paiement QR MPM",
+              done: qrPays.length > 0,
+              detail: qrPays.length
+                ? `${qrPays.length} paiement(s) QR`
+                : "Aucun paiement QR dans le journal",
+            },
+            {
+              id: "card-ok",
+              title: "C · Paiement carte (approve)",
+              done: cardOk.length > 0,
+              detail: cardOk.length
+                ? `${cardOk.length} approve`
+                : "Pas de carte approve",
+            },
+            {
+              id: "card-ko",
+              title: "C · Paiement carte (decline) — recommandé",
+              done: cardKo.length > 0,
+              detail: cardKo.length
+                ? `${cardKo.length} decline / autre`
+                : "Pas de decline testé",
+              soft: true,
+            },
+            {
+              id: "quiz",
+              title: "C · Quiz carte enregistré",
+              done: answers.length > 0,
+              detail: answers.length
+                ? `${answers.length} réponse(s)` +
+                  (answersOk.length || answersKo.length
+                    ? ` · ${answersOk.length} OK auto / ${answersKo.length} à revoir`
+                    : "")
+                : "Aucune studentAnswer",
+            },
+            {
+              id: "provision",
+              title: "D · Provision token wallet",
+              done: provisions > 0,
+              detail: tokens.length
+                ? `${tokens.length} token(s) · ${tokens
+                    .map((t) => t.dpan)
+                    .filter(Boolean)
+                    .join(", ")}`
+                : provisions
+                  ? "Event provision présent"
+                  : "Pas de provision",
+            },
+            {
+              id: "wallet",
+              title: "D · Paiement wallet (DPAN)",
+              done: walletPays.length > 0,
+              detail: walletPays.length
+                ? `${walletPays.length} paiement(s) wallet`
+                : "Aucun paiement wallet",
+            },
+          ];
+
+          el.checklist.innerHTML = checks
+            .map((c) => {
+              const cls = c.done ? "is-done" : c.soft ? "is-miss" : "is-miss";
+              const mark = c.done ? "✓" : c.soft ? "·" : "!";
+              return `<li class="${cls}">
+                <span class="mark">${mark}</span>
+                <div class="check-body">
+                  <strong>${esc(c.title)}</strong>
+                  <span>${esc(c.detail)}</span>
+                </div>
+              </li>`;
+            })
+            .join("");
+
+          const timeline = [];
+
+          journal.forEach((tx) => {
+            const auth = tx.auth || tx.stages?.authorization || "—";
+            timeline.push({
+              at: tx.at,
+              title: `Paiement ${channelLabel(tx.channel)} · ${auth}`,
+              detail: `${tx.amount ?? "—"} ${tx.currency || ""} · ${tx.id || ""}`,
+              kind: "pay",
+            });
+            if (tx.studentAnswer) {
+              const qok = quizScore(tx.studentAnswer);
+              const label =
+                qok === true
+                  ? "Quiz OK (vs expected)"
+                  : qok === false
+                    ? "Quiz à revoir (≠ expected)"
+                    : "Quiz enregistré";
+              timeline.push({
+                at: tx.studentAnswer.at || tx.at,
+                title: label,
+                detail: `auth=${tx.studentAnswer.auth || "—"} · path=${
+                  tx.studentAnswer.path || "—"
+                } · tx ${tx.id || ""}`,
+                kind: "quiz",
+              });
+            }
+          });
+
+          tokens.forEach((t) => {
+            timeline.push({
+              at: t.provisionedAt,
+              title: "Provision token",
+              detail: `${t.dpan || "—"} · ${t.brand || ""} · ${t.walletId || ""}`,
+              kind: "token",
+            });
+          });
+
+          events.forEach((e) => {
+            if (e.type === "http_api" || e.type === "journal_tx") return;
+            if (e.type === "token_provision" && tokens.length) return;
+            timeline.push({
+              at: e.at,
+              title: `Event · ${e.type || "—"}`,
+              detail: e.student
+                ? `student=${e.student}`
+                : e.message || e.path || "",
+              kind: "event",
+            });
+          });
+
+          timeline.sort((a, b) => {
+            const ta = a.at ? new Date(a.at).getTime() : 0;
+            const tb = b.at ? new Date(b.at).getTime() : 0;
+            return ta - tb;
+          });
+
+          if (!timeline.length) {
+            el.timeline.innerHTML =
+              '<li><div class="t-title">Aucune action détectée</div></li>';
+            return;
+          }
+
+          el.timeline.innerHTML = timeline
+            .map(
+              (a) => `<li>
+              <div class="t-time">${esc(fmtDate(a.at))}</div>
+              <div class="t-title">${esc(a.title)}</div>
+              <div class="t-detail">${esc(a.detail)}</div>
+            </li>`
+            )
+            .join("");
+        }
+
+        function matchFilter(tx) {
+          const ch = String(tx.channel || "");
+          if (filter === "all") return true;
+          if (filter === "card") return ch === "card";
+          if (filter === "qr") return ch.includes("qr");
+          if (filter === "wallet") return ch.includes("wallet");
+          if (filter === "answer") return !!tx.studentAnswer;
+          if (filter === "decline") {
+            const a = String(tx.auth || tx.stages?.authorization || "").toLowerCase();
+            return a && a !== "approve" && a !== "approved";
+          }
+          return true;
+        }
+
+        function presentedHtml(p) {
+          if (!p) return "";
+          return `<pre>${esc(JSON.stringify(p, null, 2))}</pre>`;
+        }
+
+        function renderJournal() {
+          const rows = (data.journal || []).filter(matchFilter);
+          if (!rows.length) {
+            el.journal.innerHTML =
+              '<p class="muted">Aucune transaction pour ce filtre.</p>';
+            return;
+          }
+          el.journal.innerHTML = rows
+            .map((tx, i) => {
+              const auth = tx.auth || tx.stages?.authorization || "—";
+              const ok = String(auth).toLowerCase().includes("approve");
+              const path = Array.isArray(tx.path)
+                ? `<ol class="path">${tx.path
+                    .map((s) => `<li>${esc(s)}</li>`)
+                    .join("")}</ol>`
+                : "";
+              let answer = "";
+              if (tx.studentAnswer) {
+                const qok = quizScore(tx.studentAnswer);
+                const verdict =
+                  qok === true
+                    ? '<span class="quiz-ok">Quiz OK vs expected</span>'
+                    : qok === false
+                      ? '<span class="quiz-ko">Quiz ≠ expected</span>'
+                      : "<strong>studentAnswer</strong>";
+                answer = `<div class="answer">${verdict}<pre>${esc(
+                  JSON.stringify(tx.studentAnswer, null, 2)
+                )}</pre></div>`;
+              } else if (tx.channel === "card") {
+                answer = `<p class="no-answer">aucune réponse quiz</p>`;
+              }
+              return `<article class="tx">
+                <div class="tx-head">
+                  <span class="chip">#${i + 1}</span>
+                  <span class="chip">${esc(channelLabel(tx.channel))}</span>
+                  <span class="chip ${ok ? "is-ok" : "is-warn"}">${esc(auth)}</span>
+                  <span class="chip">${esc(tx.amount ?? "—")} ${esc(
+                tx.currency || ""
+              )}</span>
+                  <span class="chip">${esc(fmtDate(tx.at))}</span>
+                  <span class="chip">${esc(tx.id || "")}</span>
+                </div>
+                ${tx.note ? `<p class="muted">${esc(tx.note)}</p>` : ""}
+                ${presentedHtml(tx.presented)}
+                ${path}
+                ${answer}
+              </article>`;
+            })
+            .join("");
+        }
+
+        function renderTokens() {
+          const toks = data.tokens || [];
+          if (!toks.length) {
+            el.tokens.innerHTML = '<p class="muted">Aucun token.</p>';
+            return;
+          }
+          el.tokens.innerHTML = toks
+            .map(
+              (t) => `<div class="tx">
+              <h3>${esc(t.dpan || "—")} · ${esc(t.brand || "")}</h3>
+              <p class="muted">${esc(t.walletId || "")} · ${esc(
+                t.status || ""
+              )} · ${esc(t.panMasked || "")}</p>
+              <p class="muted">Provision ${esc(fmtDate(t.provisionedAt))} · lastPaid ${esc(
+                fmtDate(t.lastPaidAt)
+              )}</p>
+            </div>`
+            )
+            .join("");
+        }
+
+        function renderEvents() {
+          const evs = data.events || [];
+          if (!evs.length) {
+            el.events.innerHTML = '<p class="muted">Aucun event.</p>';
+            return;
+          }
+          el.events.innerHTML = `<pre>${esc(
+            JSON.stringify(evs.slice(0, 40), null, 2)
+          )}</pre>
+          ${
+            evs.length > 40
+              ? `<p class="muted">… ${evs.length - 40} events non affichés</p>`
+              : ""
+          }`;
+        }
+
+        function showReview(pack) {
+          data = pack;
+          filter = "all";
+          [...el.filters.querySelectorAll("button")].forEach((b) => {
+            b.classList.toggle("is-on", b.dataset.f === "all");
+          });
+
+          const student =
+            typeof pack.student === "string"
+              ? pack.student
+              : pack.student && typeof pack.student === "object"
+                ? [pack.student.prenom, pack.student.nom]
+                    .filter(Boolean)
+                    .join(" ")
+                : "";
+          el.student.textContent = student || "(sans nom)";
+
+          const c = pack.counts || {};
+          el.meta.textContent = [
+            pack.exportedAtLocal || fmtDate(pack.exportedAt),
+            pack.format || "",
+            pack.exportId || "",
+          ]
+            .filter(Boolean)
+            .join(" · ");
+
+          el.hash.textContent = pack.contentHash
+            ? `contentHash : ${pack.contentHash}`
+            : "contentHash : —";
+
+          el.chips.innerHTML = [
+            ["Journal", c.journal ?? (pack.journal || []).length],
+            ["Réponses", c.answers ?? "—"],
+            ["Tokens", c.tokens ?? (pack.tokens || []).length],
+            ["Events", c.events ?? (pack.events || []).length],
+          ]
+            .map(
+              ([lab, n]) =>
+                `<span class="chip is-ok">${esc(lab)} ${esc(n)}</span>`
+            )
+            .join("");
+
+          buildActions();
+          renderJournal();
+          renderTokens();
+          renderEvents();
+
+          el.load.hidden = true;
+          el.review.hidden = false;
+        }
+
+        function showLoad(msg) {
+          data = null;
+          el.review.hidden = true;
+          el.load.hidden = false;
+          el.file.value = "";
+          if (msg) {
+            el.err.hidden = false;
+            el.err.textContent = msg;
+          } else {
+            el.err.hidden = true;
+            el.err.textContent = "";
+          }
+        }
+
+        async function readFile(file) {
+          const text = await file.text();
+          const json = JSON.parse(text);
+          if (!json.journal && !Array.isArray(json)) {
+            throw new Error("JSON invalide : pas de clé « journal ».");
+          }
+          if (Array.isArray(json)) {
+            showReview({
+              format: "journal-brut",
+              student: null,
+              journal: json,
+              tokens: [],
+              events: [],
+              counts: { journal: json.length },
+            });
+            return;
+          }
+          showReview(json);
+        }
+
+        el.file.addEventListener("change", async () => {
+          const f = el.file.files?.[0];
+          if (!f) return;
+          try {
+            await readFile(f);
+          } catch (e) {
+            showLoad(e.message || "Lecture impossible");
+          }
+        });
+
+        ["dragenter", "dragover"].forEach((ev) => {
+          el.drop.addEventListener(ev, (e) => {
+            e.preventDefault();
+            el.drop.classList.add("is-drag");
+          });
+        });
+        ["dragleave", "drop"].forEach((ev) => {
+          el.drop.addEventListener(ev, (e) => {
+            e.preventDefault();
+            el.drop.classList.remove("is-drag");
+          });
+        });
+        el.drop.addEventListener("drop", async (e) => {
+          const f = e.dataTransfer?.files?.[0];
+          if (!f) return;
+          try {
+            await readFile(f);
+          } catch (err) {
+            showLoad(err.message || "Lecture impossible");
+          }
+        });
+
+        el.filters.addEventListener("click", (e) => {
+          const b = e.target.closest("button[data-f]");
+          if (!b || !data) return;
+          filter = b.dataset.f;
+          [...el.filters.querySelectorAll("button")].forEach((x) =>
+            x.classList.toggle("is-on", x === b)
+          );
+          renderJournal();
+        });
+
+        el.reload.addEventListener("click", () => showLoad());
+        el.answers.addEventListener("click", () => {
+          filter = "answer";
+          [...el.filters.querySelectorAll("button")].forEach((x) =>
+            x.classList.toggle("is-on", x.dataset.f === "answer")
+          );
+          renderJournal();
+        });
+        el.all.addEventListener("click", () => {
+          filter = "all";
+          [...el.filters.querySelectorAll("button")].forEach((x) =>
+            x.classList.toggle("is-on", x.dataset.f === "all")
+          );
+          renderJournal();
+        });
+      })();
+    </script>
+  </body>
+</html>

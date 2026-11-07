@@ -1,0 +1,1369 @@
+{
+  "format": "pdwn-projet-logs-v2",
+  "exportedAt": "2026-10-19T21:39:39.911Z",
+  "exportedAtLocal": "19/10/2026 22:39:39 UTC+1",
+  "exportId": "EXP_mvfs21ou_2nj38",
+  "contentHash": "6e736951da59ad30468b34fa5237242bdf5d11eb5a2240fcce8b9f0c04bbea4c",
+  "student": "Calvin_LOUMA_19102026_22h38",
+  "port": 3789,
+  "lanAddresses": [
+    {
+      "iface": "Wi-Fi",
+      "address": "192.168.1.250"
+    }
+  ],
+  "journal": [
+    {
+      "id": "TX_mvfrv5sk_5x922",
+      "at": "2026-10-19T21:34:18.644Z",
+      "channel": "wallet_token",
+      "amount": 9,
+      "currency": "EUR",
+      "auth": "decline",
+      "presented": {
+        "type": "token",
+        "dpan": "DPAN11118903",
+        "cryptogram": "F8AE…",
+        "walletId": "wallet-demo-01",
+        "brand": "VISA-DEMO",
+        "source": "browser"
+      },
+      "stages": {
+        "authorization": "decline",
+        "clearing": "n/a",
+        "settlement": "n/a"
+      },
+      "path": [
+        "Wallet / device présente DPAN + cryptogramme",
+        "TSP / token requestor (mock)",
+        "Scheme",
+        "Émetteur (AuthZ decline — crypto invalide / rejoué)",
+        "Retour decline → acceptation",
+        "Pas de clearing / settlement"
+      ],
+      "note": "Canal wallet — cryptogramme refusé (mock) · lire path + stages"
+    },
+    {
+      "id": "TX_mvfrv51b_03ltq",
+      "at": "2026-10-19T21:34:17.663Z",
+      "channel": "wallet_token",
+      "amount": 9,
+      "currency": "EUR",
+      "auth": "decline",
+      "presented": {
+        "type": "token",
+        "dpan": "DPAN11118903",
+        "cryptogram": "F8AE…",
+        "walletId": "wallet-demo-01",
+        "brand": "VISA-DEMO",
+        "source": "browser"
+      },
+      "stages": {
+        "authorization": "decline",
+        "clearing": "n/a",
+        "settlement": "n/a"
+      },
+      "path": [
+        "Wallet / device présente DPAN + cryptogramme",
+        "TSP / token requestor (mock)",
+        "Scheme",
+        "Émetteur (AuthZ decline — crypto invalide / rejoué)",
+        "Retour decline → acceptation",
+        "Pas de clearing / settlement"
+      ],
+      "note": "Canal wallet — cryptogramme refusé (mock) · lire path + stages"
+    },
+    {
+      "id": "TX_mvfrv401_kv9um",
+      "at": "2026-10-19T21:34:16.321Z",
+      "channel": "wallet_token",
+      "amount": 9,
+      "currency": "EUR",
+      "auth": "decline",
+      "presented": {
+        "type": "token",
+        "dpan": "DPAN11118903",
+        "cryptogram": "F8AE…",
+        "walletId": "wallet-demo-01",
+        "brand": "VISA-DEMO",
+        "source": "browser"
+      },
+      "stages": {
+        "authorization": "decline",
+        "clearing": "n/a",
+        "settlement": "n/a"
+      },
+      "path": [
+        "Wallet / device présente DPAN + cryptogramme",
+        "TSP / token requestor (mock)",
+        "Scheme",
+        "Émetteur (AuthZ decline — crypto invalide / rejoué)",
+        "Retour decline → acceptation",
+        "Pas de clearing / settlement"
+      ],
+      "note": "Canal wallet — cryptogramme refusé (mock) · lire path + stages"
+    },
+    {
+      "id": "TX_mvfrut2z_oz5v6",
+      "at": "2026-10-19T21:34:02.171Z",
+      "channel": "wallet_token",
+      "amount": 9,
+      "currency": "EUR",
+      "auth": "decline",
+      "presented": {
+        "type": "token",
+        "dpan": "DPAN11118903",
+        "cryptogram": "F8AE…",
+        "walletId": "wallet-demo-01",
+        "brand": "VISA-DEMO",
+        "source": "browser"
+      },
+      "stages": {
+        "authorization": "decline",
+        "clearing": "n/a",
+        "settlement": "n/a"
+      },
+      "path": [
+        "Wallet / device présente DPAN + cryptogramme",
+        "TSP / token requestor (mock)",
+        "Scheme",
+        "Émetteur (AuthZ decline — crypto invalide / rejoué)",
+        "Retour decline → acceptation",
+        "Pas de clearing / settlement"
+      ],
+      "note": "Canal wallet — cryptogramme refusé (mock) · lire path + stages"
+    },
+    {
+      "id": "TX_mvfru83z_fd2r0",
+      "at": "2026-10-19T21:33:34.991Z",
+      "channel": "wallet_token",
+      "amount": 9,
+      "currency": "EUR",
+      "auth": "approve",
+      "presented": {
+        "type": "token",
+        "dpan": "DPAN11119724",
+        "cryptogram": "97E1…",
+        "walletId": "wallet-demo-01",
+        "brand": "VISA-DEMO",
+        "source": "android_apk"
+      },
+      "stages": {
+        "authorization": "approve",
+        "clearing": "pending",
+        "settlement": "pending"
+      },
+      "path": [
+        "Wallet / device présente DPAN + cryptogramme",
+        "TSP / token requestor (mock)",
+        "Scheme",
+        "Émetteur (AuthZ approve — crypto OK)",
+        "Retour → acceptation",
+        "Clearing (pending) → Settlement (pending)"
+      ],
+      "note": "Canal wallet — DPAN + crypto présentés ; pas de PAN en clair · lire path + presented"
+    },
+    {
+      "id": "TX_mvfrrnqf_eehn6",
+      "at": "2026-10-19T21:31:35.271Z",
+      "channel": "card",
+      "amount": 25,
+      "currency": "EUR",
+      "auth": "approve",
+      "presented": {
+        "type": "pan_masked",
+        "brand": "MC-DEMO",
+        "masked": "**** **** **** 4444"
+      },
+      "stages": {
+        "authorization": "approve",
+        "clearing": "pending",
+        "settlement": "pending"
+      },
+      "path": [
+        "POS / caisse (mock)",
+        "Acquéreur / PSP",
+        "Scheme",
+        "Émetteur (AuthZ approve)",
+        "Retour réponse → POS",
+        "Clearing (pending) → Settlement (pending)"
+      ],
+      "note": "Canal carte — PAN masqué en journal ; AuthZ approve · lire path + stages",
+      "studentAnswer": {
+        "quiz": "card",
+        "at": "2026-10-19T21:32:12.066Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "TX_mvfrpvi4_1dz8q",
+      "at": "2026-10-19T21:30:12.028Z",
+      "channel": "card",
+      "amount": 25,
+      "currency": "EUR",
+      "auth": "approve",
+      "presented": {
+        "type": "pan_masked",
+        "brand": "VISA-DEMO",
+        "masked": "**** **** **** 1111"
+      },
+      "stages": {
+        "authorization": "approve",
+        "clearing": "pending",
+        "settlement": "pending"
+      },
+      "path": [
+        "POS / caisse (mock)",
+        "Acquéreur / PSP",
+        "Scheme",
+        "Émetteur (AuthZ approve)",
+        "Retour réponse → POS",
+        "Clearing (pending) → Settlement (pending)"
+      ],
+      "note": "Canal carte — PAN masqué en journal ; AuthZ approve · lire path + stages",
+      "studentAnswer": {
+        "quiz": "card",
+        "at": "2026-10-19T21:31:06.971Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "TX_mvfrns7m_qao0b",
+      "at": "2026-10-19T21:28:34.450Z",
+      "channel": "qr",
+      "amount": 12.5,
+      "currency": "EUR",
+      "auth": "approve",
+      "presented": {
+        "type": "emv_mpm",
+        "mode": "MPM",
+        "poiMethod": "12",
+        "guid": "fr.pdwn.formation",
+        "merchantName": "PDWN DEMO",
+        "billNumber": "QR_mvet67k1_79bmv",
+        "payload": "00020101021226350017fr.pdwn.formation0110MERCHANT01520454115303978540512.505802FR5909PDWN DEMO6005PARIS62210117QR_mvet67k1_79bmv63047299"
+      },
+      "stages": {
+        "authorization": "approve",
+        "clearing": "pending",
+        "settlement": "pending"
+      },
+      "note": "Canal QR MPM — marchand présente · AuthZ mock approve (PSP client pédagogique)"
+    },
+    {
+      "id": "TX_mvfrjcv6_a26wc",
+      "at": "2026-10-19T21:25:07.938Z",
+      "channel": "qr",
+      "amount": 12.5,
+      "currency": "EUR",
+      "auth": "approve",
+      "presented": {
+        "type": "emv_mpm",
+        "mode": "MPM",
+        "poiMethod": "12",
+        "guid": "fr.pdwn.formation",
+        "merchantName": "PDWN DEMO",
+        "billNumber": "QR_mvfqwia9_801i3",
+        "payload": "00020101021226350017fr.pdwn.formation0110MERCHANT01520454115303978540512.505802FR5909PDWN DEMO6005PARIS62210117QR_mvfqwia9_801i363044F0B"
+      },
+      "stages": {
+        "authorization": "approve",
+        "clearing": "pending",
+        "settlement": "pending"
+      },
+      "note": "Canal QR MPM — marchand présente · AuthZ mock approve (PSP client pédagogique)"
+    }
+  ],
+  "events": [
+    {
+      "id": "EV_mvfs21ol_v8bh7",
+      "at": "2026-10-19T21:39:39.909Z",
+      "type": "http_api",
+      "method": "GET",
+      "path": "/api/export",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrv5sm_7rtx7",
+      "at": "2026-10-19T21:34:18.646Z",
+      "type": "journal_tx",
+      "channel": "wallet_token",
+      "txId": "TX_mvfrv5sk_5x922",
+      "auth": "decline",
+      "amount": 9,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvfrv5sj_ybkg1",
+      "at": "2026-10-19T21:34:18.643Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/wallet",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrv51d_2e4q1",
+      "at": "2026-10-19T21:34:17.665Z",
+      "type": "journal_tx",
+      "channel": "wallet_token",
+      "txId": "TX_mvfrv51b_03ltq",
+      "auth": "decline",
+      "amount": 9,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvfrv50n_q72g9",
+      "at": "2026-10-19T21:34:17.639Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/wallet",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrv403_zei7s",
+      "at": "2026-10-19T21:34:16.323Z",
+      "type": "journal_tx",
+      "channel": "wallet_token",
+      "txId": "TX_mvfrv401_kv9um",
+      "auth": "decline",
+      "amount": 9,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvfrv400_kiwfy",
+      "at": "2026-10-19T21:34:16.320Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/wallet",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrut31_bh8ha",
+      "at": "2026-10-19T21:34:02.173Z",
+      "type": "journal_tx",
+      "channel": "wallet_token",
+      "txId": "TX_mvfrut2z_oz5v6",
+      "auth": "decline",
+      "amount": 9,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvfrut2x_npyqi",
+      "at": "2026-10-19T21:34:02.169Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/wallet",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfru841_s2ju8",
+      "at": "2026-10-19T21:33:34.993Z",
+      "type": "journal_tx",
+      "channel": "wallet_token",
+      "txId": "TX_mvfru83z_fd2r0",
+      "auth": "approve",
+      "amount": 9,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvfru83x_ri3cf",
+      "at": "2026-10-19T21:33:34.989Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/wallet",
+      "client": "192.168.1.73"
+    },
+    {
+      "id": "EV_mvfrtuc5_e1jix",
+      "at": "2026-10-19T21:33:17.141Z",
+      "type": "token_provision",
+      "dpan": "DPAN11119724",
+      "walletId": "wallet-demo-01",
+      "brand": "VISA-DEMO",
+      "panMasked": "**** **** **** 1111"
+    },
+    {
+      "id": "EV_mvfrtuc2_lu0mq",
+      "at": "2026-10-19T21:33:17.138Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/token/provision",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrsg4j_3jdfh",
+      "at": "2026-10-19T21:32:12.067Z",
+      "type": "student_answer",
+      "quiz": "card",
+      "txId": "TX_mvfrrnqf_eehn6",
+      "channel": "card",
+      "answer": {
+        "quiz": "card",
+        "at": "2026-10-19T21:32:12.066Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "EV_mvfrsg4g_ey90k",
+      "at": "2026-10-19T21:32:12.064Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/answer",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrscav_08qd1",
+      "at": "2026-10-19T21:32:07.111Z",
+      "type": "student_answer",
+      "quiz": "card",
+      "txId": "TX_mvfrrnqf_eehn6",
+      "channel": "card",
+      "answer": {
+        "quiz": "card",
+        "at": "2026-10-19T21:32:07.110Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "EV_mvfrscas_foquk",
+      "at": "2026-10-19T21:32:07.108Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/answer",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrs97i_0hobs",
+      "at": "2026-10-19T21:32:03.102Z",
+      "type": "student_answer",
+      "quiz": "card",
+      "txId": "TX_mvfrrnqf_eehn6",
+      "channel": "card",
+      "answer": {
+        "quiz": "card",
+        "at": "2026-10-19T21:32:03.101Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "EV_mvfrs97g_5fa5v",
+      "at": "2026-10-19T21:32:03.100Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/answer",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrs6v4_x6cqh",
+      "at": "2026-10-19T21:32:00.064Z",
+      "type": "student_answer",
+      "quiz": "card",
+      "txId": "TX_mvfrrnqf_eehn6",
+      "channel": "card",
+      "answer": {
+        "quiz": "card",
+        "at": "2026-10-19T21:32:00.063Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "EV_mvfrs6v1_jgmpw",
+      "at": "2026-10-19T21:32:00.061Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/answer",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrrnqh_7qtpp",
+      "at": "2026-10-19T21:31:35.273Z",
+      "type": "journal_tx",
+      "channel": "card",
+      "txId": "TX_mvfrrnqf_eehn6",
+      "auth": "approve",
+      "amount": 25,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvfrrnqe_kgz6e",
+      "at": "2026-10-19T21:31:35.270Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/card",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrr1wc_jvddx",
+      "at": "2026-10-19T21:31:06.972Z",
+      "type": "student_answer",
+      "quiz": "card",
+      "txId": "TX_mvfrpvi4_1dz8q",
+      "channel": "card",
+      "answer": {
+        "quiz": "card",
+        "at": "2026-10-19T21:31:06.971Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "EV_mvfrr1w9_p4ul5",
+      "at": "2026-10-19T21:31:06.969Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/answer",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrr1nb_g5arc",
+      "at": "2026-10-19T21:31:06.647Z",
+      "type": "student_answer",
+      "quiz": "card",
+      "txId": "TX_mvfrpvi4_1dz8q",
+      "channel": "card",
+      "answer": {
+        "quiz": "card",
+        "at": "2026-10-19T21:31:06.646Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "EV_mvfrr1n9_9h9qt",
+      "at": "2026-10-19T21:31:06.645Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/answer",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrr0j1_g03uw",
+      "at": "2026-10-19T21:31:05.197Z",
+      "type": "student_answer",
+      "quiz": "card",
+      "txId": "TX_mvfrpvi4_1dz8q",
+      "channel": "card",
+      "answer": {
+        "quiz": "card",
+        "at": "2026-10-19T21:31:05.195Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "EV_mvfrr0iy_zi3sq",
+      "at": "2026-10-19T21:31:05.194Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/answer",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrqdz9_eka7o",
+      "at": "2026-10-19T21:30:35.973Z",
+      "type": "student_answer",
+      "quiz": "card",
+      "txId": "TX_mvfrpvi4_1dz8q",
+      "channel": "card",
+      "answer": {
+        "quiz": "card",
+        "at": "2026-10-19T21:30:35.972Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "EV_mvfrqdz6_w8vsh",
+      "at": "2026-10-19T21:30:35.970Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/answer",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrpvi6_25t0a",
+      "at": "2026-10-19T21:30:12.030Z",
+      "type": "journal_tx",
+      "channel": "card",
+      "txId": "TX_mvfrpvi4_1dz8q",
+      "auth": "approve",
+      "amount": 25,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvfrpvi3_savdv",
+      "at": "2026-10-19T21:30:12.027Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/card",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrns85_ogl9n",
+      "at": "2026-10-19T21:28:34.469Z",
+      "type": "journal_tx",
+      "channel": "qr",
+      "txId": "TX_mvfrns7m_qao0b",
+      "auth": "approve",
+      "amount": 12.5,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvfrns7l_fzu5r",
+      "at": "2026-10-19T21:28:34.449Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/qr",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrmeai_azupl",
+      "at": "2026-10-19T21:27:29.754Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/qr/create",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrlx16_r6vxb",
+      "at": "2026-10-19T21:27:07.386Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/qr",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrlpg4_9a8i4",
+      "at": "2026-10-19T21:26:57.556Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/qr",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrjcva_rw3bq",
+      "at": "2026-10-19T21:25:07.942Z",
+      "type": "journal_tx",
+      "channel": "qr",
+      "txId": "TX_mvfrjcv6_a26wc",
+      "auth": "approve",
+      "amount": 12.5,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvfrjcv4_nsj25",
+      "at": "2026-10-19T21:25:07.936Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/qr",
+      "client": "192.168.1.73"
+    },
+    {
+      "id": "EV_mvfrgskj_g6iai",
+      "at": "2026-10-19T21:23:08.323Z",
+      "type": "journal_reset"
+    },
+    {
+      "id": "EV_mvfrgskh_gtloa",
+      "at": "2026-10-19T21:23:08.321Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/reset",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfrgh0g_7k2lt",
+      "at": "2026-10-19T21:22:53.344Z",
+      "type": "export_logs",
+      "student": "Calvin LOUMA_19102026_22h22",
+      "counts": {
+        "journal": 10,
+        "events": 55,
+        "tokens": 5,
+        "answers": 1
+      },
+      "contentHash": "3b274c3ba3350bf77d62dcbb2e4c5729c695e32f2654257a101b2acc58e68892",
+      "exportId": "EXP_mvfrgh0b_0vs0g"
+    },
+    {
+      "id": "EV_mvfrgglz_m3gso",
+      "at": "2026-10-19T21:22:52.823Z",
+      "type": "http_api",
+      "method": "GET",
+      "path": "/api/export",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfr1jzm_8txb6",
+      "at": "2026-10-19T21:11:17.362Z",
+      "type": "journal_tx",
+      "channel": "wallet_token",
+      "txId": "TX_mvfr1jzk_8ncs0",
+      "auth": "approve",
+      "amount": 9,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvfr1jzi_9mlji",
+      "at": "2026-10-19T21:11:17.358Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/wallet",
+      "client": "192.168.1.73"
+    },
+    {
+      "id": "EV_mvfr0meb_1fxy7",
+      "at": "2026-10-19T21:10:33.827Z",
+      "type": "journal_tx",
+      "channel": "qr",
+      "txId": "TX_mvfr0me9_5l82v",
+      "auth": "approve",
+      "amount": 12.5,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvfr0me8_98g41",
+      "at": "2026-10-19T21:10:33.824Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/qr",
+      "client": "192.168.1.73"
+    },
+    {
+      "id": "EV_mvfr0ha9_rc2bn",
+      "at": "2026-10-19T21:10:27.201Z",
+      "type": "journal_tx",
+      "channel": "qr",
+      "txId": "TX_mvfr0ha2_zdbcy",
+      "auth": "approve",
+      "amount": 12.5,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvfr0ha0_3snai",
+      "at": "2026-10-19T21:10:27.192Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/qr",
+      "client": "192.168.1.73"
+    },
+    {
+      "id": "EV_mvfqzsa0_fk0i5",
+      "at": "2026-10-19T21:09:54.792Z",
+      "type": "journal_tx",
+      "channel": "qr",
+      "txId": "TX_mvfqzs9i_nvqpw",
+      "auth": "approve",
+      "amount": 12.5,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvfqzs9f_1un3i",
+      "at": "2026-10-19T21:09:54.771Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/qr",
+      "client": "192.168.1.73"
+    },
+    {
+      "id": "EV_mvfqx8qg_b969v",
+      "at": "2026-10-19T21:07:56.152Z",
+      "type": "token_provision",
+      "dpan": "DPAN11116694",
+      "walletId": "wallet-demo-01",
+      "brand": "VISA-DEMO",
+      "panMasked": "**** **** **** 1111"
+    },
+    {
+      "id": "EV_mvfqx8ot_mp2x6",
+      "at": "2026-10-19T21:07:56.093Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/token/provision",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvfqwi9l_oc9g0",
+      "at": "2026-10-19T21:07:21.858Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/qr/create",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mveu174w_ddk7r",
+      "at": "2026-10-19T05:47:13.376Z",
+      "type": "journal_tx",
+      "channel": "wallet_token",
+      "txId": "TX_mveu174u_je7vi",
+      "auth": "decline",
+      "amount": 9,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mveu174t_kpw1f",
+      "at": "2026-10-19T05:47:13.373Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/wallet",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mveu00vz_md1rp",
+      "at": "2026-10-19T05:46:18.623Z",
+      "type": "student_answer",
+      "quiz": "card",
+      "txId": "TX_mvetz2bh_399c0",
+      "channel": "card",
+      "answer": {
+        "quiz": "card",
+        "at": "2026-10-19T05:46:18.622Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "EV_mveu00vx_p87nl",
+      "at": "2026-10-19T05:46:18.621Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/answer",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvetz2bi_j1o2g",
+      "at": "2026-10-19T05:45:33.822Z",
+      "type": "journal_tx",
+      "channel": "card",
+      "txId": "TX_mvetz2bh_399c0",
+      "auth": "approve",
+      "amount": 25,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvetz2bg_huz4p",
+      "at": "2026-10-19T05:45:33.820Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/card",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvetyo2t_fzqua",
+      "at": "2026-10-19T05:45:15.365Z",
+      "type": "journal_tx",
+      "channel": "qr",
+      "txId": "TX_mvetyo2s_8fpt5",
+      "auth": "approve",
+      "amount": 12.5,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvetyo2r_unp2v",
+      "at": "2026-10-19T05:45:15.363Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/qr",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvetxrsv_3lfhd",
+      "at": "2026-10-19T05:44:33.535Z",
+      "type": "journal_tx",
+      "channel": "wallet_token",
+      "txId": "TX_mvetxrst_pcpz3",
+      "auth": "approve",
+      "amount": 9,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvetxrss_azurj",
+      "at": "2026-10-19T05:44:33.532Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/wallet",
+      "client": "192.168.1.73"
+    },
+    {
+      "id": "EV_mvetwuz6_9stuh",
+      "at": "2026-10-19T05:43:50.994Z",
+      "type": "journal_tx",
+      "channel": "qr",
+      "txId": "TX_mvetwuz4_ld3l6",
+      "auth": "approve",
+      "amount": 12.5,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvetwuz4_er110",
+      "at": "2026-10-19T05:43:50.992Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/qr",
+      "client": "192.168.1.73"
+    },
+    {
+      "id": "EV_mvetwf44_3t5am",
+      "at": "2026-10-19T05:43:30.436Z",
+      "type": "journal_tx",
+      "channel": "qr",
+      "txId": "TX_mvetwf43_iey71",
+      "auth": "approve",
+      "amount": 12.5,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvetwf42_aneb5",
+      "at": "2026-10-19T05:43:30.434Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/qr",
+      "client": "192.168.1.73"
+    },
+    {
+      "id": "EV_mvetugre_sd19e",
+      "at": "2026-10-19T05:41:59.258Z",
+      "type": "journal_reset"
+    },
+    {
+      "id": "EV_mvetugrd_6ak77",
+      "at": "2026-10-19T05:41:59.257Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/reset",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvetufi3_9p4vy",
+      "at": "2026-10-19T05:41:57.627Z",
+      "type": "journal_reset"
+    },
+    {
+      "id": "EV_mvetufi1_9fbvc",
+      "at": "2026-10-19T05:41:57.625Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/reset",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvetu5x9_4f7vd",
+      "at": "2026-10-19T05:41:45.213Z",
+      "type": "export_logs",
+      "student": "calvin matin",
+      "counts": {
+        "journal": 17,
+        "events": 24,
+        "tokens": 4,
+        "answers": 4
+      },
+      "contentHash": "beb4991109fbf9820198258282ed42c9d57c83072743ddd772fea5b2581e40e9",
+      "exportId": "EXP_mvetu5x4_vr1e5"
+    },
+    {
+      "id": "EV_mvetu5w7_uforv",
+      "at": "2026-10-19T05:41:45.175Z",
+      "type": "http_api",
+      "method": "GET",
+      "path": "/api/export",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvetonuc_ji9r4",
+      "at": "2026-10-19T05:37:28.500Z",
+      "type": "student_answer",
+      "quiz": "card",
+      "txId": "TX_mvetj1kk_okcfj",
+      "channel": "card",
+      "answer": {
+        "quiz": "card",
+        "at": "2026-10-19T05:37:28.499Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-issuer-scheme",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "EV_mvetonua_6vhiz",
+      "at": "2026-10-19T05:37:28.498Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/answer",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mveto604_apwie",
+      "at": "2026-10-19T05:37:05.380Z",
+      "type": "student_answer",
+      "quiz": "card",
+      "txId": "TX_mvetj1kk_okcfj",
+      "channel": "card",
+      "answer": {
+        "quiz": "card",
+        "at": "2026-10-19T05:37:05.378Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-scheme-psp-issuer",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "EV_mveto600_aslup",
+      "at": "2026-10-19T05:37:05.376Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/answer",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvetj1km_jo2uu",
+      "at": "2026-10-19T05:33:06.358Z",
+      "type": "journal_tx",
+      "channel": "card",
+      "txId": "TX_mvetj1kk_okcfj",
+      "auth": "approve",
+      "amount": 25,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvetj1kj_35w00",
+      "at": "2026-10-19T05:33:06.355Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/card",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mveti3fy_yg0md",
+      "at": "2026-10-19T05:32:22.126Z",
+      "type": "journal_tx",
+      "channel": "qr",
+      "txId": "TX_mveti3fx_aldla",
+      "auth": "approve",
+      "amount": 12.5,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mveti3fw_p7jye",
+      "at": "2026-10-19T05:32:22.124Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/qr",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvethiq1_vcztx",
+      "at": "2026-10-19T05:31:55.273Z",
+      "type": "journal_tx",
+      "channel": "wallet_token",
+      "txId": "TX_mvethiq0_yoh3b",
+      "auth": "approve",
+      "amount": 9,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvethipz_3x3pi",
+      "at": "2026-10-19T05:31:55.271Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/wallet",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvet89yc_2jjj8",
+      "at": "2026-10-19T05:24:44.004Z",
+      "type": "token_provision",
+      "dpan": "DPAN11118903",
+      "walletId": "wallet-demo-01",
+      "brand": "VISA-DEMO",
+      "panMasked": "**** **** **** 1111"
+    },
+    {
+      "id": "EV_mvet89xp_wyl6c",
+      "at": "2026-10-19T05:24:43.981Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/token/provision",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvet7te8_et8o7",
+      "at": "2026-10-19T05:24:22.544Z",
+      "type": "student_answer",
+      "quiz": "card",
+      "txId": "TX_mvet77fa_s8rkw",
+      "channel": "card",
+      "answer": {
+        "quiz": "card",
+        "at": "2026-10-19T05:24:22.543Z",
+        "auth": "approve",
+        "clearing": "pending",
+        "settlement": "pending",
+        "path": "pos-psp-scheme-issuer",
+        "expected": {
+          "auth": "approve",
+          "clearing": "pending",
+          "settlement": "pending",
+          "path": "pos-psp-scheme-issuer"
+        }
+      }
+    },
+    {
+      "id": "EV_mvet7te5_whz9h",
+      "at": "2026-10-19T05:24:22.541Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/journal/answer",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvet77fc_ctpxi",
+      "at": "2026-10-19T05:23:54.072Z",
+      "type": "journal_tx",
+      "channel": "card",
+      "txId": "TX_mvet77fa_s8rkw",
+      "auth": "approve",
+      "amount": 25,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvet77fa_f6lhg",
+      "at": "2026-10-19T05:23:54.070Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/card",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvet6u28_wdv71",
+      "at": "2026-10-19T05:23:36.752Z",
+      "type": "journal_tx",
+      "channel": "card",
+      "txId": "TX_mvet6u26_wr6nj",
+      "auth": "approve",
+      "amount": 25,
+      "hasStudentAnswer": false
+    },
+    {
+      "id": "EV_mvet6u26_coano",
+      "at": "2026-10-19T05:23:36.750Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/pay/card",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvet67k1_2erwm",
+      "at": "2026-10-19T05:23:07.585Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/qr/create",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvet66r2_ih556",
+      "at": "2026-10-19T05:23:06.542Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/qr/create",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mvet65ei_yf9q6",
+      "at": "2026-10-19T05:23:04.794Z",
+      "type": "http_api",
+      "method": "POST",
+      "path": "/api/qr/create",
+      "client": "192.168.1.250"
+    },
+    {
+      "id": "EV_mv0rvam6_iq8io",
+      "at": "2026-10-09T09:37:52.255Z",
+      "type": "export_logs",
+      "student": "Test",
+      "counts": {
+        "journal": 12,
+        "events": 1,
+        "tokens": 3,
+        "answers": 2
+      }
+    },
+    {
+      "id": "EV_mv0rvam3_xscua",
+      "at": "2026-10-09T09:37:52.251Z",
+      "type": "http_api",
+      "method": "GET",
+      "path": "/api/export",
+      "client": "127.0.0.1"
+    }
+  ],
+  "tokens": [
+    {
+      "dpan": "DPAN11118139",
+      "walletId": "wallet-demo-01",
+      "brand": "VISA-DEMO",
+      "panMasked": "**** **** **** 1111",
+      "status": "active",
+      "provisionedAt": "2026-10-09T09:12:09.636Z",
+      "lastPaidAt": null
+    },
+    {
+      "dpan": "DPAN11112078",
+      "walletId": "wallet-demo-01",
+      "brand": "VISA-DEMO",
+      "panMasked": "**** **** **** 1111",
+      "status": "active",
+      "provisionedAt": "2026-10-09T09:16:29.175Z",
+      "lastPaidAt": null
+    },
+    {
+      "dpan": "DPAN11117626",
+      "walletId": "wallet-demo-01",
+      "brand": "VISA-DEMO",
+      "panMasked": "**** **** **** 1111",
+      "status": "active",
+      "provisionedAt": "2026-10-09T09:24:22.034Z",
+      "lastPaidAt": null
+    },
+    {
+      "dpan": "DPAN11118903",
+      "walletId": "wallet-demo-01",
+      "brand": "VISA-DEMO",
+      "panMasked": "**** **** **** 1111",
+      "status": "active",
+      "provisionedAt": "2026-10-19T05:24:44.003Z",
+      "lastPaidAt": "2026-10-19T05:44:33.535Z"
+    },
+    {
+      "dpan": "DPAN11116694",
+      "walletId": "wallet-demo-01",
+      "brand": "VISA-DEMO",
+      "panMasked": "**** **** **** 1111",
+      "status": "active",
+      "provisionedAt": "2026-10-19T21:07:56.141Z",
+      "lastPaidAt": "2026-10-19T21:11:17.362Z"
+    },
+    {
+      "dpan": "DPAN11119724",
+      "walletId": "wallet-demo-01",
+      "brand": "VISA-DEMO",
+      "panMasked": "**** **** **** 1111",
+      "status": "active",
+      "provisionedAt": "2026-10-19T21:33:17.140Z",
+      "lastPaidAt": "2026-10-19T21:33:34.993Z"
+    }
+  ],
+  "counts": {
+    "journal": 9,
+    "events": 98,
+    "tokens": 6,
+    "answers": 2
+  }
+}

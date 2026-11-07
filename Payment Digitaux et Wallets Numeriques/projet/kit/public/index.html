@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projet PDWN — Mock omnicanal</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div>
+        <p class="kicker">Projet formation · Mock passerelle</p>
+        <h1>Paiements omnicanaux</h1>
+      </div>
+      <div class="top-actions">
+        <button type="button" class="btn ghost" id="btn-refresh">Rafraîchir journal</button>
+        <button type="button" class="btn primary" id="btn-export">Exporter les logs</button>
+        <button type="button" class="btn ghost" id="btn-reset">Reset journal</button>
+      </div>
+    </header>
+
+    <div id="lan-banner" class="lan-banner" hidden>
+      <div id="lan-banner-text"></div>
+      <div id="lan-config-qr-wrap" class="lan-config-qr-wrap" hidden>
+        <p class="lan-config-hint"><strong>APK :</strong> scanner ce QR pour renseigner l’URL du kit (ou coller l’URL à la main).</p>
+        <div id="lan-config-qr" class="qr-canvas" aria-label="QR config URL kit"></div>
+        <p class="hint" id="lan-config-url"></p>
+      </div>
+    </div>
+
+    <main class="grid">
+      <section class="card">
+        <h2>1 · Canal QR</h2>
+        <ul class="howto">
+          <li><strong>Android</strong> scanner → Payer dans l’app</li>
+          <li><strong>iPhone</strong> scanner → coller ici → Payer</li>
+        </ul>
+        <label>
+          Montant (€)
+          <input type="number" id="qr-amount" min="0.5" step="0.5" value="12.5" />
+        </label>
+        <button type="button" class="btn primary" id="btn-qr-create">Générer QR MPM</button>
+        <div id="qr-box" class="qr-box" hidden>
+          <div id="qr-img" class="qr-canvas" aria-label="QR code EMV MPM"></div>
+          <p class="hint">Scanner le QR</p>
+          <pre id="qr-decoded" class="qr-decoded"></pre>
+          <label class="paste-label">
+            Coller (iPhone)
+            <textarea id="qr-paste" rows="3" placeholder="Texte scanné…"></textarea>
+          </label>
+          <button type="button" class="btn primary" id="btn-qr-pay">Payer (payload collé)</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2 · Canal carte</h2>
+        <ul class="howto">
+          <li><strong>Action</strong> Autoriser → lire le log</li>
+          <li><strong>Quiz</strong> répondre → Enregistrer</li>
+        </ul>
+        <label>
+          Montant (€)
+          <input type="number" id="card-amount" min="0.5" step="0.5" value="25" />
+        </label>
+        <label>
+          PAN de démo
+          <select id="card-pan"></select>
+        </label>
+        <button type="button" class="btn primary" id="btn-card-pay">Autoriser (mock)</button>
+        <button type="button" class="btn ghost" id="btn-card-open-quiz" hidden>
+          Analyser le log / répondre
+        </button>
+        <p class="hint" id="card-hint"></p>
+      </section>
+
+      <section class="card">
+        <h2>3 · Wallet token</h2>
+        <ul class="howto">
+          <li><strong>Android</strong> scanner → Payer dans l’app</li>
+          <li><strong>iPhone</strong> scanner → coller ici → Payer</li>
+        </ul>
+        <label>
+          PAN source
+          <select id="token-pan"></select>
+        </label>
+        <label>
+          Wallet id
+          <input type="text" id="wallet-id" value="wallet-demo-01" />
+        </label>
+        <button type="button" class="btn primary" id="btn-provision">Provisionner token</button>
+
+        <div id="wallet-creds" class="creds-box" hidden>
+          <p class="hint">DPAN + crypto masqués — scanner le QR</p>
+          <div id="wallet-cred-qr" class="qr-canvas" aria-label="QR credentials wallet"></div>
+          <label class="paste-label">
+            Coller (iPhone)
+            <textarea
+              id="wallet-cred-paste"
+              rows="2"
+              placeholder="PDWNWALLET|…"
+            ></textarea>
+          </label>
+          <button type="button" class="btn ghost" id="btn-wallet-apply-scan">
+            Appliquer le scan
+          </button>
+          <p class="hint" id="wallet-scan-status" hidden></p>
+          <input type="hidden" id="wallet-dpan-input" />
+          <input type="hidden" id="wallet-crypt-input" />
+          <label>
+            Montant (€)
+            <input type="number" id="wallet-amount" min="0.5" step="0.5" value="9" />
+          </label>
+          <button type="button" class="btn primary" id="btn-wallet-pay">
+            Payer (iPhone / navigateur)
+          </button>
+        </div>
+      </section>
+
+      <section class="card journal-card">
+        <h2>Journal unique</h2>
+        <p class="lead">Une seule vérité transactionnelle pour QR · carte · wallet.</p>
+        <div id="journal" class="journal"></div>
+      </section>
+    </main>
+
+    <div id="card-modal" class="modal" hidden>
+      <div class="modal-backdrop" id="card-modal-backdrop"></div>
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="card-modal-title">
+        <header class="modal-head">
+          <h2 id="card-modal-title">Analyse du log carte</h2>
+          <button type="button" class="btn ghost" id="btn-card-modal-close">Fermer</button>
+        </header>
+        <div class="modal-grid">
+          <div>
+            <h3>Log</h3>
+            <pre id="card-log"></pre>
+          </div>
+          <div>
+            <h3>Question</h3>
+            <p class="quiz-q">
+              D’après ce log, renseignez AuthZ, clearing, settlement et le chemin des acteurs.
+            </p>
+            <label>
+              auth (stages.authorization)
+              <select id="q-auth">
+                <option value="">— choisir —</option>
+                <option value="approve">approve</option>
+                <option value="decline">decline</option>
+                <option value="timeout">timeout</option>
+                <option value="referral">referral</option>
+                <option value="partial">partial</option>
+                <option value="captured">captured</option>
+              </select>
+            </label>
+            <label>
+              clearing (stages.clearing)
+              <select id="q-clearing">
+                <option value="">— choisir —</option>
+                <option value="pending">pending</option>
+                <option value="n/a">n/a</option>
+                <option value="settled">settled</option>
+                <option value="rejected">rejected</option>
+                <option value="batched">batched</option>
+                <option value="reversed">reversed</option>
+              </select>
+            </label>
+            <label>
+              settlement (stages.settlement)
+              <select id="q-settlement">
+                <option value="">— choisir —</option>
+                <option value="pending">pending</option>
+                <option value="n/a">n/a</option>
+                <option value="done">done</option>
+                <option value="failed">failed</option>
+                <option value="postponed">postponed</option>
+                <option value="reconciled">reconciled</option>
+              </select>
+            </label>
+            <label>
+              Chemin (ordre des acteurs)
+              <select id="q-path">
+                <option value="">— choisir —</option>
+                <option value="pos-psp-scheme-issuer">
+                  POS → Acquéreur/PSP → Scheme → Émetteur → retour POS
+                </option>
+                <option value="pos-issuer-scheme">
+                  POS → Émetteur → Scheme → Acquéreur
+                </option>
+                <option value="scheme-pos-psp">
+                  Scheme → POS → Acquéreur/PSP → Émetteur
+                </option>
+                <option value="psp-pos-issuer-scheme">
+                  Acquéreur/PSP → POS → Émetteur → Scheme
+                </option>
+                <option value="issuer-scheme-psp-pos">
+                  Émetteur → Scheme → Acquéreur/PSP → POS
+                </option>
+                <option value="pos-scheme-psp-issuer">
+                  POS → Scheme → Acquéreur/PSP → Émetteur → retour POS
+                </option>
+                <option value="wallet-tsp-issuer">
+                  Wallet → TSP → Émetteur (sans scheme)
+                </option>
+              </select>
+            </label>
+            <button type="button" class="btn primary" id="btn-card-quiz">Enregistrer la réponse</button>
+            <p class="quiz-feedback" id="card-quiz-feedback" hidden></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p id="toast" class="toast" hidden></p>
+    <script src="vendor/qrcode.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
