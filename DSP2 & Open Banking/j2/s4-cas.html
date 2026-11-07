@@ -47,7 +47,7 @@
             <div class="fil-rouge">
               <span class="fil-rouge-label">Fil rouge</span>
               <p>
-                L’application de Léa («&nbsp;FinanceApp&nbsp;») demande à Banque
+                L’application de Lyam («&nbsp;FinanceApp&nbsp;») demande à Banque
                 Est un accès en lecture à ses deux comptes. Vous êtes l’équipe
                 technique de Banque Est&nbsp;: il faut le brancher
                 proprement — et en sécurité.
@@ -74,7 +74,7 @@
                   </thead>
                   <tbody>
                     <tr><th scope="row">TPP</th><td>FinanceApp — agrément AISP</td></tr>
-                    <tr><th scope="row">Client</th><td>Léa — 2 comptes (courant + épargne)</td></tr>
+                    <tr><th scope="row">Client</th><td>Lyam — 2 comptes (courant + épargne)</td></tr>
                     <tr><th scope="row">Service demandé</th><td>Account Information (lecture seule)</td></tr>
                     <tr><th scope="row">Fréquence</th><td>Jusqu’à 4 consultations/jour</td></tr>
                     <tr class="is-exergue"><th scope="row">Durée</th><td>Consentement 90 jours, re-SCA aux 90 jours</td></tr>
@@ -94,7 +94,7 @@
                 </li>
                 <li>
                   <strong>Flux d’authentification</strong> — décrire les étapes
-                  OAuth2&nbsp;: demande, redirection, SCA de Léa, consentement,
+                  OAuth2&nbsp;: demande, redirection, SCA de Lyam, consentement,
                   code, échange contre jeton, appel API.
                 </li>
                 <li>
@@ -133,7 +133,7 @@
                   </thead>
                   <tbody>
                     <tr><th scope="row">1. Demande du TPP</th><td>mTLS + vérification registre EBA</td><td>identité TPP, horodatage</td></tr>
-                    <tr><th scope="row">2. Redirection / SCA</th><td>authentification forte de Léa</td><td>résultat SCA, horodatage</td></tr>
+                    <tr><th scope="row">2. Redirection / SCA</th><td>authentification forte de Lyam</td><td>résultat SCA, horodatage</td></tr>
                     <tr><th scope="row">3. Consentement</th><td>affichage périmètre + validation</td><td>périmètre, durée, statut</td></tr>
                     <tr><th scope="row">4. Échange du jeton</th><td>code + certificat → access token</td><td>émission du jeton, expiration</td></tr>
                     <tr><th scope="row">5. Appels API</th><td>Bearer JWT + scopes + consentement + throttling</td><td>chaque requête : endpoint, résultat, latence</td></tr>

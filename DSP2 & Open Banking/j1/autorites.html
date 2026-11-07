@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Les autorités européennes — Jour 1 | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="autorites">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a class="is-active" href="intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · Cadre réglementaire</span>
+                <span class="tag tag-accent">45 min</span>
+              </div>
+              <p class="day-kicker">Qui écrit la règle, qui la précise, qui la fait appliquer</p>
+              <h1>Les autorités européennes</h1>
+              <p class="lead">
+                La DSP2 n’est pas tombée du ciel. Elle est le produit d’un
+                processus à trois étages&nbsp;: la <em>décision politique</em>,
+                la <em>traduction technique</em> et la <em>supervision</em>. Chaque
+                étage a ses institutions — et certaines ont joué un rôle décisif
+                bien avant 2015.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <!-- 1. LES TROIS ÉTAGES -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Le principe</p>
+              <h2>Trois étages, pas une institution unique</h2>
+              <p class="intro">
+                Une confusion fréquente&nbsp;: «&nbsp;c’est Bruxelles qui décide
+                tout&nbsp;». En réalité, l’EBA a traduit politiquement le texte
+                en normes techniques opposables, et les superviseurs nationaux
+                agréent au quotidien.
+              </p>
+
+              <figure class="fig-illus">
+                <svg viewBox="0 0 1000 215" role="img" aria-label="Trois étages du processus : décision politique, traduction technique, supervision nationale">
+                  <defs>
+                    <marker id="ah-au-1" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+                      <path d="M0,0 L7,3.5 L0,7 Z" fill="#3d5a80" />
+                    </marker>
+                  </defs>
+
+                  <g>
+                    <rect x="30" y="34" width="280" height="130" rx="12" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="170" y="60" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="800" letter-spacing="0.08em">ÉTAGE 1 · POLITIQUE</text>
+                    <text x="170" y="88" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Commission,</text>
+                    <text x="170" y="106" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Parlement, Conseil</text>
+                    <text x="170" y="132" text-anchor="middle" fill="#5a6b7c" font-size="11">propose · amende · adopte</text>
+                    <text x="170" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">le texte de directive</text>
+                  </g>
+
+                  <line x1="318" y1="99" x2="348" y2="99" stroke="#3d5a80" stroke-width="2.5" marker-end="url(#ah-au-1)"/>
+
+                  <g>
+                    <rect x="358" y="34" width="280" height="130" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                    <text x="498" y="60" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="800" letter-spacing="0.08em">ÉTAGE 2 · TECHNIQUE</text>
+                    <text x="498" y="88" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">EBA</text>
+                    <text x="498" y="106" text-anchor="middle" fill="#5a6b7c" font-size="11">(Autorité bancaire européenne)</text>
+                    <text x="498" y="132" text-anchor="middle" fill="#5a6b7c" font-size="11">RTS, orientations, registre</text>
+                    <text x="498" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">central des PSP</text>
+                  </g>
+
+                  <line x1="646" y1="99" x2="676" y2="99" stroke="#3d5a80" stroke-width="2.5" marker-end="url(#ah-au-1)"/>
+
+                  <g>
+                    <rect x="686" y="34" width="284" height="130" rx="12" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
+                    <text x="828" y="60" text-anchor="middle" fill="#4b3480" font-size="10" font-weight="800" letter-spacing="0.08em">ÉTAGE 3 · SUPERVISION</text>
+                    <text x="828" y="88" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Autorités nationales</text>
+                    <text x="828" y="106" text-anchor="middle" fill="#5a6b7c" font-size="11">(ACPR en France, Bafin,</text>
+                    <text x="828" y="124" text-anchor="middle" fill="#5a6b7c" font-size="11">DNB, FCA…)</text>
+                    <text x="828" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">agrément et contrôles</text>
+                  </g>
+
+                  <text x="500" y="196" text-anchor="middle" fill="#5a6b7c" font-size="11">La directive fixe le cadre ; la norme technique le rend applicable ; le superviseur l’applique au terrain.</text>
+                </svg>
+                <figcaption>
+                  Figure — le même texte passe par trois étages&nbsp;:
+                  décision politique, traduction technique, application
+                  territoriale.
+                </figcaption>
+              </figure>
+
+              <div class="key-idea">
+                <p class="label">À retenir</p>
+                <p>
+                  Ne jamais mélanger <strong>qui écrit</strong> et <strong>qui
+                  applique</strong>. L’EBA écrit les RTS&nbsp;; l’ACPR agrée et
+                  contrôle. Les deux sont indispensables, mais sur le terrain, ce
+                  n’est pas la même personne à qui vous vous adressez.
+                </p>
+              </div>
+            </section>
+
+            <!-- 2. QUI A FAIT DSP1 -->
+            <section class="section">
+              <p class="section-label">DSP1 · 2007</p>
+              <h2>Les acteurs de la première directive</h2>
+              <p class="intro">
+                En 2007, le paysage institutionnel est différent&nbsp;: l’EBA
+                n’existe pas encore. La DSP1 est négociée et adoptée dans le
+                cadre classique du «&nbsp;trilogue&nbsp;» — mais les superviseurs
+                nationaux jouent déjà un rôle moteur dans la conception.
+              </p>
+
+              <figure class="fig-acteurs">
+                <svg class="fig-illus is-compact" viewBox="0 0 1000 130" role="img" aria-label="Acteurs de la DSP1 : Commission, Parlement et Conseil, CEBS consultatif, EBA absente car créée en 2011. Cliquez sur un bloc pour voir son rôle.">
+                  <g data-acteur="commission">
+                    <rect x="20" y="16" width="220" height="96" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="130" y="40" text-anchor="middle" fill="#1e5f8a" font-size="9" font-weight="800" letter-spacing="0.08em">PROPOSE</text>
+                    <text x="130" y="66" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Commission</text>
+                    <text x="130" y="88" text-anchor="middle" fill="#5a6b7c" font-size="11">proposition 2005</text>
+                    <text x="130" y="105" text-anchor="middle" fill="#5a6b7c" font-size="10">DG FISMA</text>
+                  </g>
+                  <g data-acteur="legislateurs">
+                    <rect x="266" y="16" width="220" height="96" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="376" y="40" text-anchor="middle" fill="#1e5f8a" font-size="9" font-weight="800" letter-spacing="0.08em">CO-LÉGISLATEURS</text>
+                    <text x="376" y="66" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Parlement &amp; Conseil</text>
+                    <text x="376" y="88" text-anchor="middle" fill="#5a6b7c" font-size="11">codécision</text>
+                    <text x="376" y="105" text-anchor="middle" fill="#5a6b7c" font-size="10">ECON · ECOFIN</text>
+                  </g>
+                  <g data-acteur="cebs">
+                    <rect x="512" y="16" width="220" height="96" rx="10" fill="#f7f9fb" stroke="#8a9aaa" stroke-width="2" stroke-dasharray="7 5"/>
+                    <text x="622" y="40" text-anchor="middle" fill="#8a9aaa" font-size="9" font-weight="800" letter-spacing="0.08em">CONSULTATIF</text>
+                    <text x="622" y="66" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">CEBS</text>
+                    <text x="622" y="88" text-anchor="middle" fill="#5a6b7c" font-size="11">précurseur de l’EBA</text>
+                    <text x="622" y="105" text-anchor="middle" fill="#5a6b7c" font-size="10">avis seulement</text>
+                  </g>
+                  <g data-acteur="eba">
+                    <rect x="758" y="16" width="222" height="96" rx="10" fill="#fff" stroke="#c45c26" stroke-width="2" stroke-dasharray="7 5"/>
+                    <text x="869" y="40" text-anchor="middle" fill="#c45c26" font-size="9" font-weight="800" letter-spacing="0.08em">ABSENTE EN 2007</text>
+                    <text x="869" y="66" text-anchor="middle" fill="#a4572c" font-family="Syne, sans-serif" font-size="14" font-weight="700">EBA</text>
+                    <text x="869" y="88" text-anchor="middle" fill="#8a9aaa" font-size="11">créée en 2011</text>
+                    <text x="869" y="105" text-anchor="middle" fill="#8a9aaa" font-size="10">aucun rôle en DSP1</text>
+                  </g>
+                </svg>
+                <p class="fig-acteurs-hint">Cliquez sur un bloc pour afficher le détail de son rôle.</p>
+
+                <div class="acteur-detail" data-acteur-panel="commission">
+                  <h3>Commission européenne</h3>
+                  <p class="acteur-full">DG FISMA · Marchés financiers</p>
+                  <ul>
+                    <li><strong>Propose</strong> le texte en 2005, après l’échec de l’harmonisation a minima du début des années 2000.</li>
+                    <li><strong>Porte</strong> le projet de «&nbsp;révision unique&nbsp;» des paiements transfrontaliers.</li>
+                    <li><strong>Accompagne</strong> la négociation jusqu’à l’adoption et défend le compromis final.</li>
+                    <li><strong>Joue ensuite</strong> le rôle d’adoptant pour les actes délégués de la DSP2.</li>
+                  </ul>
+                </div>
+
+                <div class="acteur-detail" data-acteur-panel="legislateurs">
+                  <h3>Parlement européen et Conseil des ministres</h3>
+                  <p class="acteur-full">Co-législateurs · procédure de codécision</p>
+                  <ul>
+                    <li><strong>Parlement</strong> (commission ECON) et <strong>Conseil</strong> (ECOFIN) amendent et adoptent le texte à égalité.</li>
+                    <li><strong>Le Parlement</strong> impose les garanties de transparence tarifaire et les délais d’exécution maximaux.</li>
+                    <li><strong>Le Conseil</strong> porte les intérêts bancaires nationaux&nbsp;: compromis prudent, pas de rupture.</li>
+                    <li><strong>Le trilogue</strong> (Commission-Parlement-Conseil) produit la version définitive de 2007.</li>
+                  </ul>
+                </div>
+
+                <div class="acteur-detail" data-acteur-panel="cebs">
+                  <h3>CEBS</h3>
+                  <p class="acteur-full">Comité européen des superviseurs bancaires · précurseur de l’EBA</p>
+                  <ul>
+                    <li><strong>Conseille</strong> les législateurs sur les exigences de fonds propres et le périmètre des services.</li>
+                    <li><strong>Produit</strong> des avis et recommandations non contraignants.</li>
+                    <li><strong>Ne peut pas</strong> édicter de normes techniques&nbsp;: ce pouvoir n’existera qu’avec l’EBA.</li>
+                    <li><strong>Disparaît</strong> en 2011, absorbé par la création de l’Autorité bancaire européenne.</li>
+                  </ul>
+                </div>
+
+                <div class="acteur-detail" data-acteur-panel="eba">
+                  <h3>EBA — l’absente de 2007</h3>
+                  <p class="acteur-full">Autorité bancaire européenne · créée en 2011</p>
+                  <ul>
+                    <li><strong>Aucun rôle</strong> dans la DSP1&nbsp;: l’autorité n’existait pas lors de la négociation.</li>
+                    <li><strong>Créée</strong> en 2011 avec l’ESMA et l’EIOPA, dans l’élan de la réforme de la supervision européenne post-crise.</li>
+                    <li><strong>Hérite</strong> du CEBS et gagne un pouvoir normatif que son prédécesseur n’avait pas.</li>
+                    <li><strong>Deviendra centrale</strong> pour la DSP2&nbsp;: RTS, orientations, registre des PSP agréés.</li>
+                  </ul>
+                </div>
+              </figure>
+
+              <div class="callout info">
+                <h3>Pourquoi l’EBA n’apparaît pas</h3>
+                <p>
+                  L’<strong>EBA</strong> a été créée en <strong>2011</strong>, en
+                  même temps que les deux autres autorités européennes de
+                  supervision. La DSP1 (2007) est donc antérieure à sa création.
+                  Ce sont ses prédécesseurs (CEBS) qui ont conseillé les
+                  législateurs, sans capacité normative.
+                </p>
+              </div>
+            </section>
+
+            <!-- 3. QUI A FAIT DSP2 -->
+            <section class="section">
+              <p class="section-label">DSP2 · 2015</p>
+              <h2>Les acteurs de la seconde directive</h2>
+              <p class="intro">
+                En 2015, l’architecture institutionnelle est en place. L’EBA
+                existe, la Commission s’appuie sur elle, et la Banque centrale
+                européenne intervient en arrière-plan sur les aspects
+                prudentiels. Quatre institutions font la DSP2.
+              </p>
+
+              <figure class="fig-illus">
+                <svg viewBox="0 0 1000 260" role="img" aria-label="Quatre acteurs clés de la DSP2 : Commission, Parlement et Conseil, EBA, BCE">
+                  <g>
+                    <rect x="18" y="24" width="226" height="212" rx="12" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="131" y="50" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="800" letter-spacing="0.08em">PROPOSE</text>
+                    <text x="131" y="80" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Commission</text>
+                    <text x="131" y="100" text-anchor="middle" fill="#5a6b7c" font-size="11">européenne</text>
+                    <text x="131" y="130" text-anchor="middle" fill="#5a6b7c" font-size="11">Proposition de</text>
+                    <text x="131" y="147" text-anchor="middle" fill="#5a6b7c" font-size="11">révision de 2013</text>
+                    <text x="131" y="180" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">Adoption des RTS</text>
+                    <text x="131" y="197" text-anchor="middle" fill="#5a6b7c" font-size="10">par acte délégué</text>
+                  </g>
+
+                  <g>
+                    <rect x="258" y="24" width="238" height="212" rx="12" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="377" y="50" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="800" letter-spacing="0.08em">ADOPTE</text>
+                    <text x="377" y="80" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Parlement &amp; Conseil</text>
+                    <text x="377" y="100" text-anchor="middle" fill="#5a6b7c" font-size="11">co-législateurs</text>
+                    <text x="377" y="130" text-anchor="middle" fill="#5a6b7c" font-size="11">Trilogue 2015</text>
+                    <text x="377" y="147" text-anchor="middle" fill="#5a6b7c" font-size="11">version finale</text>
+                    <text x="377" y="180" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">ECON · Conseil ECOFIN</text>
+                    <text x="377" y="197" text-anchor="middle" fill="#5a6b7c" font-size="10">compromis politique</text>
+                  </g>
+
+                  <g>
+                    <rect x="510" y="14" width="238" height="232" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3.5"/>
+                    <rect x="510" y="14" width="238" height="30" rx="12" fill="#0d9f8a"/>
+                    <text x="629" y="34" text-anchor="middle" fill="#fff" font-size="10" font-weight="800" letter-spacing="0.08em">RÔLE DÉCISIF</text>
+                    <text x="629" y="76" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="800">EBA</text>
+                    <text x="629" y="96" text-anchor="middle" fill="#5a6b7c" font-size="11">Paris · depuis 2011</text>
+                    <text x="629" y="126" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">RTS 2018/389</text>
+                    <text x="629" y="143" text-anchor="middle" fill="#5a6b7c" font-size="11">SCA &amp; sécurité</text>
+                    <text x="629" y="168" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Orientations</text>
+                    <text x="629" y="185" text-anchor="middle" fill="#5a6b7c" font-size="11">interfaces dédiées</text>
+                    <text x="629" y="210" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Registre central</text>
+                    <text x="629" y="227" text-anchor="middle" fill="#5a6b7c" font-size="11">des PSP agréés</text>
+                  </g>
+
+                  <g>
+                    <rect x="762" y="24" width="220" height="212" rx="12" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2.5"/>
+                    <text x="872" y="50" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="800" letter-spacing="0.08em">SUPERVISE</text>
+                    <text x="872" y="80" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">BCE</text>
+                    <text x="872" y="100" text-anchor="middle" fill="#5a6b7c" font-size="11">Banque centrale européenne</text>
+                    <text x="872" y="130" text-anchor="middle" fill="#5a6b7c" font-size="11">Avis sur le texte</text>
+                    <text x="872" y="147" text-anchor="middle" fill="#5a6b7c" font-size="11">(paiements &amp; risques)</text>
+                    <text x="872" y="180" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="700">Supervision prudentielle</text>
+                    <text x="872" y="197" text-anchor="middle" fill="#5a6b7c" font-size="10">des banques (MUS)</text>
+                  </g>
+                </svg>
+                <figcaption>
+                  Figure — quatre institutions pour la DSP2.
+                  L’<strong>EBA</strong> occupe le rôle le plus structurant&nbsp;:
+                  c’est elle qui transforme un article de directive en norme
+                  opérationnelle.
+                </figcaption>
+              </figure>
+            </section>
+
+            <!-- 4. LA PLACE DE L'EBA -->
+            <section class="section">
+              <p class="section-label">Focus EBA</p>
+              <h2>Pourquoi l’EBA est l’autorité centrale</h2>
+              <p class="intro">
+                La DSP2 renvoie <strong>explicitement</strong> à l’EBA une
+                dizaine de fois. Ce n’est pas un hasard&nbsp;: la directive pose
+                le principe, l’EBA écrit le mode d’emploi.
+              </p>
+
+              <div class="panel tpp" style="margin-bottom: 1rem">
+                <h3>Trois productions qui changent tout</h3>
+                <ul>
+                  <li>
+                    <strong>RTS SCA &amp; CSC</strong> (règlement délégué
+                    2018/389)&nbsp;: ce qui compte comme authentification forte,
+                    les exemptions, la communication sécurisée entre ASPSP et
+                    TPP. Adopté par la Commission sur proposition de l’EBA.
+                  </li>
+                  <li>
+                    <strong>Orientations</strong> (guidelines)&nbsp;: interprétation
+                    des obstacles à l’accès, des interfaces dédiées, des parcours
+                    de redirection. Non contraignantes en théorie, applicables
+                    en pratique.
+                  </li>
+                  <li>
+                    <strong>Registre central</strong> des PSP agréés&nbsp;:
+                    l’annuaire officiel des TPP. Sans lui, aucune banque ne peut
+                    vérifier qu’un TPP est bien agréé — composant de sécurité
+                    traité en S3.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le piège classique</h3>
+                <p>
+                  Beaucoup assimilent «&nbsp;EBA&nbsp;» et «&nbsp;BCE&nbsp;».
+                  Ce sont deux institutions distinctes&nbsp;: l’EBA est une
+                  <strong>autorité de supervision bancaire</strong> qui écrit des
+                  normes&nbsp;; la BCE est la
+                  <strong>banque centrale de la zone euro</strong> qui mène la
+                  politique monétaire et supervise les grandes banques. Les deux
+                  ne sont pas interchangeables.
+                </p>
+              </div>
+            </section>
+
+            <!-- 5. AUTRES AUTORITÉS -->
+            <section class="section">
+              <p class="section-label">Écosystème</p>
+              <h2>Les autres acteurs qui comptent</h2>
+              <p class="intro">
+                Au-delà du quatuor central, plusieurs institutions interviennent
+                sur des terrains adjacents&nbsp;: protection des données,
+                concurrence, normalisation technique.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Institution</th>
+                      <th scope="col">Rôle pour la DSP2</th>
+                      <th scope="col">Lien avec le cours</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">CEPD / EDPB</th>
+                      <td>Comité européen de la protection des données</td>
+                      <td>Articulation DSP2 / RGPD — consentement &amp; finalité</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">ESMA</th>
+                      <td>Autorité européenne des marchés financiers</td>
+                      <td>Sujets de transparence et d’investissement</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">EIOPA</th>
+                      <td>Autorité européenne des assurances et pensions</td>
+                      <td>Périphérique pour la DSP2, utile pour l’Open Finance</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">ACPR + Banque de France</th>
+                      <td>Agrément et supervision des PSP en France</td>
+                      <td>Registre national, contrôles, sanctions — S2 et S4</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Berlin Group / OBIE</th>
+                      <td>Organismes de standardisation technique (non publics)</td>
+                      <td>Standards d’API, S3</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Les trois autorités européennes de supervision (ESA)</h3>
+                <p>
+                  L’<strong>EBA</strong>, l’<strong>ESMA</strong> et
+                  l’<strong>EIOPA</strong> forment le trio des
+                  <em>European Supervisory Authorities</em>. Elles partagent un
+                  comité conjoint pour les sujets transverses. C’est ce trio qui
+                  portera une grande partie de la future
+                  <strong>DSP3</strong> et de l’<em>Open Finance</em> (J5).
+                </p>
+              </div>
+            </section>
+
+            <!-- 6. SYNTHÈSE -->
+            <section class="section" style="border-bottom: none">
+              <p class="section-label">Synthèse</p>
+              <h2>Qui a fait quoi, en un tableau</h2>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Institution</th>
+                      <th scope="col">DSP1 (2007)</th>
+                      <th scope="col">DSP2 (2015)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Commission</th>
+                      <td>Propose le texte</td>
+                      <td>Propose la révision (2013) et adopte les RTS</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Parlement + Conseil</th>
+                      <td>Co-législateurs (trilogue)</td>
+                      <td>Co-législateurs (trilogue 2015)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">CEBS (précurseur)</th>
+                      <td>Avis consultatifs</td>
+                      <td>—</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">EBA</th>
+                      <td>— (créée en 2011)</td>
+                      <td>RTS, orientations, registre central — rôle central</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">BCE</th>
+                      <td>Avis sur les paiements</td>
+                      <td>Avis + supervision prudentielle</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">ACPR / nationales</th>
+                      <td>Transposition &amp; agrément</td>
+                      <td>Agrément TPP, registre national, contrôles</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Le parcours narratif</h2>
+                <p>
+                  Le décor réglementaire est posé&nbsp;: ce que la DSP1 n’avait
+                  pas prévu, ce que la DSP2 a ajouté, et qui l’a fait. Reste à
+                  raconter l’histoire — celle de Lyam, et de son application de
+                  budget.
+                </p>
+              </div>
+
+            </section>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a> · Les autorités européennes
+      </div>
+    </footer>
+    <script src="../js/nav-j1.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+    <script src="../js/acteurs.js"></script>
+  </body>
+</html>

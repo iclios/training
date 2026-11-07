@@ -38,7 +38,7 @@
               <h1>Le problème</h1>
               <p class="lead">
                 Avant de comprendre la solution, il faut comprendre ce qui ne
-                marchait pas. Cette séquence suit une cliente, Léa, puis
+                marchait pas. Cette séquence suit un client, Lyam, puis
                 remonte au cadre réglementaire qui a rendu la DSP2 nécessaire.
               </p>
             </div>
@@ -49,9 +49,9 @@
             <div class="fil-rouge">
               <span class="fil-rouge-label">Fil rouge</span>
               <p>
-                <strong>Léa, 28 ans</strong>, chef de projet. Deux comptes&nbsp;:
+                <strong>Lyam, 28 ans</strong>, chef de projet. Deux comptes&nbsp;:
                 un compte courant dans une banque traditionnelle,
-                «&nbsp;Banque Est&nbsp;», et un compte dans une néobanque. Elle
+                «&nbsp;Banque Est&nbsp;», et un compte dans une néobanque. Il
                 veut simplement <em>voir tout son argent au même endroit</em>.
               </p>
             </div>
@@ -59,27 +59,27 @@
             <!-- 1. RÉCIT -->
             <section class="section" style="border-top: none; padding-top: 1.5rem">
               <p class="section-label">Récit · 2017</p>
-              <h2>Léa installe une application de budget</h2>
+              <h2>Lyam installe une application de budget</h2>
               <p>
-                Léa télécharge <em>MonBuddy</em>, une application qui promet de
+                Lyam télécharge <em>MonBuddy</em>, une application qui promet de
                 «&nbsp;ranger vos dépenses, sans effort&nbsp;». Pour fonctionner,
-                elle lui demande trois choses&nbsp;: son nom, son numéro de
+                il lui demande trois choses&nbsp;: son nom, son numéro de
                 téléphone… et <strong>ses identifiants de banque en ligne</strong>.
               </p>
               <p>
-                Léa hésite deux secondes, lit les conditions (cinq lignes
+                Lyam hésite deux secondes, lit les conditions (cinq lignes
                 minuscules), clique sur «&nbsp;Accepter&nbsp;». L’application
                 fonctionne&nbsp;: toutes ses dépenses apparaissent, classées par
-                catégorie. Elle est ravie.
+                catégorie. Il est ravi.
               </p>
               <p>
-                Ce que Léa ne voit pas, c’est l’envers du décor. Et cet envers du
+                Ce que Lyam ne voit pas, c’est l’envers du décor. Et cet envers du
                 décor est précisément ce qui a rendu la DSP2 nécessaire.
               </p>
 
               <div class="story-card">
                 <div class="story-col">
-                  <p class="story-card-q">Ce que Léa croit</p>
+                  <p class="story-card-q">Ce que Lyam croit</p>
                   <p>
                     «&nbsp;MonBuddy se connecte à ma banque, comme n’importe
                     quelle appli.&nbsp;»
@@ -89,7 +89,7 @@
                   <p class="story-card-q">Ce qui se passe réellement</p>
                   <p>
                     MonBuddy ne «&nbsp;se connecte&nbsp;» pas&nbsp;: elle se
-                    <strong>fait passer pour Léa</strong>. Elle utilise ses
+                    <strong>fait passer pour Lyam</strong>. Elle utilise ses
                     identifiants pour ouvrir sa vraie session bancaire — et les
                     conserve.
                   </p>
@@ -106,13 +106,13 @@
                 connexion, un clic, un tableau de bord. MonBuddy ne peut pas
                 «&nbsp;parler&nbsp;» à la banque autrement&nbsp;: elle simule un
                 navigateur, remplit le formulaire et <em>lit les pages</em> à la
-                place de Léa.
+                place de Lyam.
               </p>
 
               <div class="diagram">
                 <div class="diagram-header">
                   <h3>Le screen scraping en trois acteurs</h3>
-                  <p>Flux animé — l’application se fait passer pour Léa</p>
+                  <p>Flux animé — l’application se fait passer pour Lyam</p>
                 </div>
                 <svg viewBox="0 0 1000 360" role="img" aria-label="Schéma animé du screen scraping">
                   <defs>
@@ -126,8 +126,8 @@
 
                   <g>
                     <rect x="40" y="120" width="160" height="80" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
-                    <text x="120" y="155" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="14" font-weight="700">Léa</text>
-                    <text x="120" y="176" text-anchor="middle" fill="#5a6b7c" font-size="11">cliente</text>
+                    <text x="120" y="155" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="14" font-weight="700">Lyam</text>
+                    <text x="120" y="176" text-anchor="middle" fill="#5a6b7c" font-size="11">client</text>
                   </g>
                   <g>
                     <rect x="420" y="120" width="160" height="80" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
@@ -146,9 +146,9 @@
                   <text x="308" y="135" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700">1 · identifiants saisis</text>
 
                   <line x1="580" y1="145" x2="796" y2="145" stroke="#c45c26" stroke-width="2.5" class="stream" marker-end="url(#ah-s1w)"/>
-                  <text x="688" y="135" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">2 · se fait passer pour Léa</text>
+                  <text x="688" y="135" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">2 · se fait passer pour Lyam</text>
 
-                  <text x="880" y="230" text-anchor="middle" fill="#087a6a" font-size="11">session ouverte au nom de Léa</text>
+                  <text x="880" y="230" text-anchor="middle" fill="#087a6a" font-size="11">session ouverte au nom de Lyam</text>
 
                   <line x1="796" y1="200" x2="580" y2="200" stroke="#c45c26" stroke-width="2" stroke-dasharray="2 4" marker-end="url(#ah-s1w)"/>
                   <text x="688" y="222" text-anchor="middle" fill="#c45c26" font-size="10">4 · lecture des pages HTML</text>
@@ -167,7 +167,7 @@
                   <div>
                     <strong>Rejouer la connexion</strong>
                     <p>
-                      MonBuddy envoie les identifiants de Léa au site de Banque
+                      MonBuddy envoie les identifiants de Lyam au site de Banque
                       Est, comme le ferait son navigateur. Aucune règle ne
                       l’arrête&nbsp;: la banque ne fait pas la différence.
                     </p>
@@ -201,7 +201,7 @@
                     <strong>Stocker les identifiants</strong>
                     <p>
                       Pour pouvoir se reconnecter demain, MonBuddy conserve les
-                      identifiants de Léa. C’est là que tout devient grave.
+                      identifiants de Lyam. C’est là que tout devient grave.
                     </p>
                   </div>
                 </div>
@@ -210,10 +210,10 @@
               <div class="callout warn">
                 <h3>Trois problèmes pour le prix d’un</h3>
                 <p>
-                  <strong>Pour Léa</strong>&nbsp;: si MonBuddy est piratée, ses
+                  <strong>Pour Lyam</strong>&nbsp;: si MonBuddy est piratée, ses
                   identifiants bancaires le sont aussi. Et en cas de fraude, la
-                  banque peut refuser de rembourser&nbsp;: la cliente a
-                  elle-même communiqué ses codes.
+                  banque peut refuser de rembourser&nbsp;: le client a
+                  lui-même communiqué ses codes.
                 </p>
                 <p>
                   <strong>Pour Banque Est</strong>&nbsp;: des centaines de
@@ -250,28 +250,28 @@
             <!-- 3. INCIDENT -->
             <section class="section">
               <p class="section-label">Récit · l’incident</p>
-              <h2>Le jour où Léa a compris</h2>
+              <h2>Le jour où Lyam a compris</h2>
               <p>
-                Un matin, Léa reçoit un SMS de sa banque&nbsp;: «&nbsp;Paiement
+                Un matin, Lyam reçoit un SMS de sa banque&nbsp;: «&nbsp;Paiement
                 suspect de 900&nbsp;€ sur votre compte. Confirmez-vous cette
-                opération&nbsp;?&nbsp;» Elle n’y est pour rien. La banque gèle la
+                opération&nbsp;?&nbsp;» Il n’y est pour rien. La banque gèle la
                 carte, ouvre une procédure. On lui demande alors&nbsp;:
                 «&nbsp;Avez-vous communiqué vos identifiants à un
                 tiers&nbsp;?&nbsp;»
               </p>
               <p>
-                Léa répond oui. La banque lui explique qu’elle devra porter une
-                partie du préjudice&nbsp;: en communiquant ses codes, elle a
-                elle-même levé la protection. Ce jour-là, Léa désinstalle
-                MonBuddy. Et perd l’usage qu’elle aimait.
+                Lyam répond oui. La banque lui explique qu’il devra porter une
+                partie du préjudice&nbsp;: en communiquant ses codes, il a
+                lui-même levé la protection. Ce jour-là, Lyam désinstalle
+                MonBuddy. Et perd l’usage qu’il aimait.
               </p>
 
               <div class="callout info">
                 <h3>Ce que révèle ce cas</h3>
                 <p>
-                  Le problème n’est pas que Léa voulait voir ses comptes&nbsp;:
-                  <em>c’est légitime</em>. Le problème est qu’elle n’avait
-                  aucun moyen <strong>sûr</strong> de le faire. Ni elle, ni la
+                  Le problème n’est pas que Lyam voulait voir ses comptes&nbsp;:
+                  <em>c’est légitime</em>. Le problème est qu’il n’avait
+                  aucun moyen <strong>sûr</strong> de le faire. Ni lui, ni la
                   banque, ni l’application n’avaient de cadre pour organiser
                   proprement un accès délégué.
                 </p>
@@ -281,9 +281,9 @@
             <!-- 4. LES QUATRE VERROUS -->
             <section class="section">
               <p class="section-label">Analyse</p>
-              <h2>Les quatre verrous, vus par Léa</h2>
+              <h2>Les quatre verrous, vus par Lyam</h2>
               <p class="intro">
-                Derrière l’histoire de Léa, il y a quatre verrous structurels.
+                Derrière l’histoire de Lyam, il y a quatre verrous structurels.
                 Ils ne sont pas techniques par hasard&nbsp;: ils protégeaient le
                 modèle économique de la banque.
               </p>
@@ -348,7 +348,7 @@
                   <span class="verrou-num">1</span>
                   <h3>Verrou sur les données</h3>
                   <p class="verrou-lea">
-                    Léa n’a aucun moyen <em>officiel</em> de partager ses comptes
+                    Lyam n’a aucun moyen <em>officiel</em> de partager ses comptes
                     avec une application qui lui plaît.
                   </p>
                   <p>
@@ -374,8 +374,8 @@
                   <span class="verrou-num">2</span>
                   <h3>Verrou sur le paiement</h3>
                   <p class="verrou-lea">
-                    Léa paie chez un marchand&nbsp;: par carte, ou en saisissant
-                    elle-même un virement. Rien d’autre.
+                    Lyam paie chez un marchand&nbsp;: par carte, ou en saisissant
+                    lui-même un virement. Rien d’autre.
                   </p>
                   <p>
                     Payer depuis son compte suppose de passer par le canal de la
@@ -399,7 +399,7 @@
                   <span class="verrou-num">3</span>
                   <h3>Verrou sur la concurrence</h3>
                   <p class="verrou-lea">
-                    Léa veut comparer Banque Est et sa néobanque&nbsp;:
+                    Lyam veut comparer Banque Est et sa néobanque&nbsp;:
                     impossible autrement qu’à la main, capture d’écran par
                     capture d’écran.
                   </p>
@@ -425,7 +425,7 @@
                   <span class="verrou-num">4</span>
                   <h3>Verrou sur la sécurité</h3>
                   <p class="verrou-lea">
-                    Quand Léa partage ses identifiants, personne ne peut dire
+                    Quand Lyam partage ses identifiants, personne ne peut dire
                     <em>qui</em> a accédé à son compte, ni <em>pour faire
                     quoi</em>.
                   </p>
@@ -586,7 +586,7 @@
               <p class="section-label">Bascule</p>
               <h2>Avant / Après&nbsp;: la même intention, deux chemins</h2>
               <p class="intro">
-                Léa veut toujours voir ses comptes au même endroit. Ce qui
+                Lyam veut toujours voir ses comptes au même endroit. Ce qui
                 change, ce n’est pas son besoin&nbsp;: c’est le chemin emprunté.
               </p>
 
@@ -609,7 +609,7 @@
                   <rect x="20" y="45" width="440" height="235" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="1.5"/>
                   <g>
                     <rect x="45" y="95" width="95" height="55" rx="8" fill="#fff" stroke="#6b4fa0" stroke-width="1.5"/>
-                    <text x="92" y="128" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">Léa</text>
+                    <text x="92" y="128" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">Lyam</text>
                   </g>
                   <g>
                     <rect x="185" y="95" width="105" height="55" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
@@ -634,7 +634,7 @@
                   <rect x="540" y="45" width="440" height="235" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5"/>
                   <g>
                     <rect x="565" y="95" width="95" height="55" rx="8" fill="#fff" stroke="#6b4fa0" stroke-width="1.5"/>
-                    <text x="612" y="128" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">Léa</text>
+                    <text x="612" y="128" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">Lyam</text>
                   </g>
                   <g>
                     <rect x="705" y="95" width="115" height="55" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
@@ -660,7 +660,7 @@
                 <h2>Que change la DSP2&nbsp;?</h2>
                 <p>
                   La DSP2 va répondre à trois questions, traitées en S2&nbsp;:
-                  <strong>qui</strong> peut accéder aux comptes de Léa (les
+                  <strong>qui</strong> peut accéder aux comptes de Lyam (les
                   nouveaux acteurs), <strong>comment</strong> l’accès est
                   organisé (consentement, authentification), et
                   <strong>à quelles conditions</strong> (accès libre pour les
@@ -675,18 +675,18 @@
               <div class="cours-note-body">
                 <ol>
                   <li>
-                    Reprenez l’histoire de Léa et identifiez
+                    Reprenez l’histoire de Lyam et identifiez
                     <strong>les trois acteurs</strong> en jeu avant la DSP2. Qui
                     protège quoi&nbsp;?
                   </li>
                   <li>
-                    Le cas de Léa est-il <strong>un cas de fraude</strong>&nbsp;?
+                    Le cas de Lyam est-il <strong>un cas de fraude</strong>&nbsp;?
                     Justifiez en distinguant trois choses&nbsp;: la sécurité de
                     la donnée, la responsabilité, la qualité de service.
                   </li>
                   <li>
                     Proposez <strong>une mesure</strong> qui aurait évité
-                    l’incident de Léa, sans l’empêcher d’utiliser MonBuddy.
+                    l’incident de Lyam, sans l’empêcher d’utiliser MonBuddy.
                   </li>
                   <li>
                     Un consentement recueilli par MonBuddy suffirait-il au regard
@@ -700,51 +700,6 @@
                 </p>
               </div>
             </details>
-
-            <details class="trainer-notes">
-              <summary>Notes formateur — S1</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>
-                    <strong>Ouvrir par le récit, pas par la réglementation.</strong>
-                    Tenir Léa à l’écran 3 à 4 minutes avant d’introduire le mot
-                    «&nbsp;DSP2&nbsp;».
-                  </li>
-                  <li>
-                    <strong>Bascule possible à tout moment.</strong> Les encarts
-                    «&nbsp;Cours&nbsp;» maintiennent la matière académique. Si le
-                    groupe décroche, on repasse en mode frontal via ces encarts.
-                  </li>
-                  <li>
-                    <strong>Piège à anticiper.</strong> Les étudiants vont
-                    d’abord dire «&nbsp;MonBuddy est un escroc&nbsp;». Corriger&nbsp;:
-                    l’application répondait à un besoin réel dans un cadre
-                    absurde.
-                  </li>
-                  <li>
-                    <strong>DSP2 / RGPD.</strong> Ne pas les confondre&nbsp;: la DSP2
-                    dit le canal, le RGPD dit le traitement. Exemple concret&nbsp;:
-                    durée de conservation d’un historique de transactions.
-                  </li>
-                  <li>
-                    <strong>Ne pas anticiper S2.</strong> Résister à la tentation
-                    de parler des TPP ou de la SCA ici. Le problème doit être
-                    posé avant qu’on nomme les solutions.
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Points de sortie de S1</h3>
-              <ul>
-                <li>Je sais expliquer le screen scraping sans jargon.</li>
-                <li>Je peux nommer les quatre verrous et les illustrer par Léa.</li>
-                <li>Je comprends pourquoi la DSP1 ne suffisait plus.</li>
-                <li>Je distingue ce que la DSP2 apporte et ce que le RGPD ajoute.</li>
-                <li>Je sais formuler la question à laquelle la DSP2 répond.</li>
-              </ul>
-            </div>
 
             <div class="sources-box">
               <strong>Références</strong> — Directive (UE) 2015/2366 (DSP2)&nbsp;;

@@ -1,0 +1,190 @@
+/* ============================================================
+   Mise en page du polycopié A4 — génération PDF
+   Utilisée uniquement en impression (headless Chrome)
+   ============================================================ */
+
+@page {
+  size: A4;
+  margin: 18mm 16mm 20mm 16mm;
+}
+
+@page :first {
+  margin: 0;
+}
+
+html, body {
+  background: #fff !important;
+  font-size: 10.5pt;
+}
+
+/* Ne jamais imprimer la chrome du site */
+.site-bar,
+.bloc-sidebar,
+.site-foot,
+.bloc-pager,
+.rail,
+.seq-steps,
+button,
+.fiche-shell > aside {
+  display: none !important;
+}
+
+.fiche-shell,
+.fiche-main,
+.wrap {
+  display: block !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+}
+
+.support-doc {
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+/* ---------- Couverture pleine page ---------- */
+.sup-cover {
+  page-break-after: always;
+  height: 253mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 20mm !important;
+}
+
+.sup-cover .kick {
+  font-size: 10pt;
+  letter-spacing: 0.35em;
+  margin-bottom: 18mm;
+}
+
+.sup-cover h1 {
+  font-size: 34pt;
+  line-height: 1.05;
+  margin-bottom: 14mm;
+}
+
+.sup-cover .day {
+  font-size: 14pt;
+  margin-bottom: 30mm;
+}
+
+.sup-cover .who {
+  font-size: 10pt;
+  line-height: 1.9;
+}
+
+/* ---------- Diapositives ---------- */
+.sup-slide {
+  border: none !important;
+  border-top: 1pt solid #0c1b2a !important;
+  border-radius: 0 !important;
+  padding: 6mm 0 0 !important;
+  margin: 0 0 7mm !important;
+  page-break-inside: avoid;
+}
+
+.sup-toc {
+  page-break-after: always;
+  border: none !important;
+  padding: 6mm 0 0 !important;
+}
+
+.sup-head {
+  margin-bottom: 4mm !important;
+}
+
+.sup-head .num {
+  font-size: 8pt;
+}
+
+.sup-head .name {
+  font-size: 18pt;
+}
+
+.sup-slide h3 {
+  font-size: 12pt;
+}
+
+.sup-def {
+  font-size: 10pt;
+  padding: 3mm 4mm !important;
+  background: #f3f6f9 !important;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.sup-ex {
+  font-size: 9.5pt;
+  padding: 2.5mm 4mm !important;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.sup-fil {
+  font-size: 9pt;
+  padding: 2mm 3mm !important;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.sup-tag {
+  font-size: 7.5pt;
+  margin: 4mm 0 1.5mm !important;
+}
+
+.sup-note {
+  font-size: 9pt;
+  padding: 2mm 3.5mm !important;
+}
+
+.sup-grid {
+  gap: 3mm !important;
+  margin: 2mm 0 4mm !important;
+}
+
+.sup-card {
+  padding: 3mm 3.5mm !important;
+  font-size: 9.5pt;
+  page-break-inside: avoid;
+}
+
+.sup-card .t { font-size: 10pt; }
+.sup-card p { font-size: 9pt; }
+
+.sup-tbl {
+  font-size: 9pt;
+  page-break-inside: avoid;
+}
+
+.sup-tbl th, .sup-tbl td {
+  padding: 2mm 2.5mm !important;
+}
+
+.sup-tbl thead th { font-size: 7.5pt; }
+
+.sup-grid.g3 { grid-template-columns: repeat(3, 1fr) !important; }
+.sup-grid.g4 { grid-template-columns: repeat(4, 1fr) !important; }
+
+.sup-fig svg {
+  min-width: 0 !important;
+  width: 100% !important;
+}
+
+.sup-footslide {
+  margin-top: 5mm !important;
+  padding-top: 2mm !important;
+  font-size: 7.5pt;
+}
+
+/* Numérotation des pages imprimées par Chrome */
+sup { font-size: 0; }
+
+/* Éviter les veuves et orphelines */
+p, li { orphans: 3; widows: 3; }

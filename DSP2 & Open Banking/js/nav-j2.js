@@ -5,9 +5,7 @@ window.OB_BLOCS = [
   { id: "s2-auth", title: "S2 · Authentification & autorisation", href: "s2-auth.html", group: "Parcours" },
   { id: "s3-securite", title: "S3 · Sécurité & conformité", href: "s3-securite.html", group: "Parcours" },
   { id: "s4-cas", title: "S4 · Cas pratique", href: "s4-cas.html", group: "Parcours" },
-  // Clôture
-  { id: "syllabus-coverage", title: "Couverture du syllabus", href: "syllabus-coverage.html", group: "Clôture" },
-  { id: "support", title: "Support & ressources", href: "support.html", group: "Clôture" },
+  { id: "support", title: "Support & ressources", href: "support.html", group: "Parcours narratif" },
 ];
 
 (function initObNav() {

@@ -36,7 +36,7 @@
               <p class="day-kicker">Architecture cible et standardisation</p>
               <h1>La machine</h1>
               <p class="lead">
-                Comment l’application de Léa parle-t-elle à Banque Est sans
+                Comment l’application de Lyam parle-t-elle à Banque Est sans
                 jamais toucher au core banking&nbsp;? Cette séquence ouvre le
                 capot et suit l’appel, maillon par maillon.
               </p>
@@ -47,7 +47,7 @@
             <div class="fil-rouge">
               <span class="fil-rouge-label">Fil rouge</span>
               <p>
-                Samedi, 9 h 12. Léa rouvre l’application. Son téléphone envoie
+                Samedi, 9 h 12. Lyam rouvre l’application. Son téléphone envoie
                 une requête à Banque Est. Que se passe-t-il avant que le solde
                 apparaisse à l’écran&nbsp;?
               </p>
@@ -81,7 +81,7 @@
               <p class="intro">
                 Le pré-syllabus liste précisément cinq couches. Chacune a un
                 rôle unique, et l’on retrouve leur enchaînement dans le parcours
-                de Léa.
+                de Lyam.
               </p>
 
               <div class="layer-stack">
@@ -103,7 +103,7 @@
                     <h3>Consent management</h3>
                     <p>
                       <strong>Le registre des autorisations.</strong> Stocke le
-                      consentement de Léa&nbsp;: quels comptes, jusqu’à quand,
+                      consentement de Lyam&nbsp;: quels comptes, jusqu’à quand,
                       quel périmètre. À chaque appel, vérifie que la demande est
                       bien couverte.
                     </p>
@@ -115,7 +115,7 @@
                     <h3>Identity &amp; Access Management (IAM)</h3>
                     <p>
                       <strong>Le contrôle des identités.</strong> Gère
-                      l’authentification de Léa (SCA), les jetons OAuth2, et
+                      l’authentification de Lyam (SCA), les jetons OAuth2, et
                       l’identité technique du TPP. C’est ici que l’on s’assure
                       que l’application est bien celle qu’elle prétend être.
                     </p>
@@ -200,7 +200,7 @@
 
                   <g class="step-panel" data-step="1">
                     <rect x="30" y="150" width="940" height="250" rx="12" fill="#f1edfa" stroke="#6b4fa0" stroke-width="3"/>
-                    <text x="60" y="186" fill="#4b3480" font-family="Syne, sans-serif" font-size="16" font-weight="700">Le TPP (application de Léa)</text>
+                    <text x="60" y="186" fill="#4b3480" font-family="Syne, sans-serif" font-size="16" font-weight="700">Le TPP (application de Lyam)</text>
                     <text x="60" y="218" fill="#1a2b3c" font-size="13">N’a aucun accès direct au SI de Banque Est. Il s’identifie par certificat (mTLS) et jeton OAuth2.</text>
                     <text x="60" y="244" fill="#1a2b3c" font-size="13">Respecte les formats et les limites de débit imposés par le contrat d’interface.</text>
                     <text x="60" y="286" fill="#4b3480" font-size="13" font-weight="700">À construire côté banque&nbsp;: portail développeur, sandbox, contrat d’API, gestion des versions.</text>
@@ -215,21 +215,21 @@
                   <g class="step-panel" data-step="3">
                     <rect x="30" y="150" width="940" height="250" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
                     <text x="60" y="186" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Consent management</text>
-                    <text x="60" y="218" fill="#1a2b3c" font-size="13">Garde la preuve du consentement de Léa&nbsp;: identifiant, comptes, périmètre, expiration, statut.</text>
+                    <text x="60" y="218" fill="#1a2b3c" font-size="13">Garde la preuve du consentement de Lyam&nbsp;: identifiant, comptes, périmètre, expiration, statut.</text>
                     <text x="60" y="244" fill="#1a2b3c" font-size="13">Refuse tout appel qui dépasse le périmètre&nbsp;; gère la révocation à chaud.</text>
                     <text x="60" y="286" fill="#1e5f8a" font-size="13" font-weight="700">C’est le composant le plus souvent sous-dimensionné dans les projets réels.</text>
                   </g>
                   <g class="step-panel" data-step="4">
                     <rect x="30" y="150" width="940" height="250" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
                     <text x="60" y="186" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">IAM — Identity &amp; Access Management</text>
-                    <text x="60" y="218" fill="#1a2b3c" font-size="13">Authentifie Léa (SCA) et délivre les jetons OAuth2 qui autorisent les appels suivants.</text>
+                    <text x="60" y="218" fill="#1a2b3c" font-size="13">Authentifie Lyam (SCA) et délivre les jetons OAuth2 qui autorisent les appels suivants.</text>
                     <text x="60" y="244" fill="#1a2b3c" font-size="13">Distingue trois identités&nbsp;: le client, le TPP, et la session d’accès aux données.</text>
                     <text x="60" y="286" fill="#1e5f8a" font-size="13" font-weight="700">Séparation clé&nbsp;: authentification du client ≠ authentification du TPP ≠ autorisation d’accès.</text>
                   </g>
                   <g class="step-panel" data-step="5">
                     <rect x="30" y="150" width="940" height="250" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
                     <text x="60" y="186" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Core banking</text>
-                    <text x="60" y="218" fill="#1a2b3c" font-size="13">Tient le compte de Léa&nbsp;: solde, écritures, position. Reçoit des appels internes déjà contrôlés.</text>
+                    <text x="60" y="218" fill="#1a2b3c" font-size="13">Tient le compte de Lyam&nbsp;: solde, écritures, position. Reçoit des appels internes déjà contrôlés.</text>
                     <text x="60" y="244" fill="#1a2b3c" font-size="13">Ne connaît pas les TPP&nbsp;: c’est la façade qui porte cette complexité.</text>
                     <text x="60" y="286" fill="#087a6a" font-size="13" font-weight="700">Attention&nbsp;: sans cache en amont, les lectures AIS répétées mettent le core à genoux.</text>
                   </g>
@@ -266,14 +266,14 @@
             <!-- 3. LE PARCOURS -->
             <section class="section">
               <p class="section-label">Déroulé</p>
-              <h2>Le parcours de Léa, maillon par maillon</h2>
+              <h2>Le parcours de Lyam, maillon par maillon</h2>
               <ol class="steps-list">
                 <li><strong>Gateway</strong> — l’application se présente avec son certificat&nbsp;; la Gateway vérifie qu’elle est connue et l’agrément est contrôlé.</li>
-                <li><strong>Consent management</strong> — la Gateway demande si Léa a bien autorisé ce périmètre&nbsp;; réponse oui, jusqu’au 12 mars.</li>
+                <li><strong>Consent management</strong> — la Gateway demande si Lyam a bien autorisé ce périmètre&nbsp;; réponse oui, jusqu’au 12 mars.</li>
                 <li><strong>IAM</strong> — si la session en cours est valide (jeton OAuth2), on passe&nbsp;; sinon, redirection pour une SCA.</li>
                 <li><strong>Core banking</strong> — l’appel filtré est traduit en lecture de solde et d’opérations.</li>
                 <li><strong>Monitoring</strong> — un événement complet est enregistré, y compris le temps de réponse.</li>
-                <li><strong>Retour</strong> — la réponse sort par la Gateway et s’affiche dans l’application de Léa.</li>
+                <li><strong>Retour</strong> — la réponse sort par la Gateway et s’affiche dans l’application de Lyam.</li>
               </ol>
 
               <details class="cours-note">
@@ -361,7 +361,7 @@
                     <tr>
                       <th scope="col">Indicateur</th>
                       <th scope="col">Cible usuelle</th>
-                      <th scope="col">Pourquoi c’est critique pour Léa</th>
+                      <th scope="col">Pourquoi c’est critique pour Lyam</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -415,7 +415,7 @@
                 <p>
                   La standardisation est un enjeu de
                   <strong>modèle d’affaires</strong>, pas seulement de
-                  technique. Pour l’application de Léa qui veut couvrir 200
+                  technique. Pour l’application de Lyam qui veut couvrir 200
                   banques, une API propriétaire par banque, c’est 200
                   intégrations à maintenir.
                 </p>
@@ -532,44 +532,6 @@
                 </p>
               </div>
             </section>
-
-            <details class="trainer-notes">
-              <summary>Notes formateur — S3</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>
-                    <strong>Dessiner la chaîne au tableau</strong> avec les
-                    étudiants, couche par couche. À chaque couche, demander
-                    «&nbsp;que se passe-t-il si elle manque&nbsp;?&nbsp;».
-                  </li>
-                  <li>
-                    <strong>Insister sur le Monitoring</strong>, que tout le monde
-                    oublie&nbsp;: sans traçabilité, pas d’audit, pas de gestion de
-                    litige.
-                  </li>
-                  <li>
-                    <strong>Time-to-market</strong>&nbsp;: c’est l’argument business
-                    qui transforme l’Open Banking de «&nbsp;obligation&nbsp;» en
-                    «&nbsp;opportunité&nbsp;».
-                  </li>
-                  <li>
-                    <strong>Ne pas entrer dans OAuth2/mTLS</strong> — c’est le
-                    cœur du J2. Ici on ne fait que nommer les couches.
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Points de sortie de S3</h3>
-              <ul>
-                <li>Je sais nommer les cinq couches du syllabus et leur rôle.</li>
-                <li>Je peux décrire le parcours de la requête de Léa.</li>
-                <li>Je distingue AIS et PIS.</li>
-                <li>Je peux donner les trois raisons de standardiser.</li>
-                <li>Je connais OBIE et le Berlin Group, et je sais que l’un n’est pas obligatoire en France.</li>
-              </ul>
-            </div>
 
             <div class="sources-box">
               <strong>Références</strong> — RTS EBA 2018/389, art. 30-36

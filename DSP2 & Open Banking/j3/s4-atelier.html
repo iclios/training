@@ -47,7 +47,7 @@
             <div class="fil-rouge">
               <span class="fil-rouge-label">Fil rouge</span>
               <p>
-                Léa finalise sa commande chez <strong>Atelier Verre &amp; Cie</strong>.
+                Lyam finalise sa commande chez <strong>Atelier Verre &amp; Cie</strong>.
                 Le site propose «&nbsp;Payer par virement&nbsp;» via un PISP. Vous
                 êtes l’équipe qui doit modéliser ce paiement de bout en bout&nbsp;:
                 qui parle, dans quel ordre, avec quels messages.
@@ -62,7 +62,7 @@
                 <strong>Atelier Verre &amp; Cie</strong> vend des objets en verre
                 artisanal en ligne. Le marchand utilise le PISP
                 <strong>PayFlow</strong> pour proposer un paiement par virement.
-                Léa paie une commande de <strong>89,90 €</strong> depuis son compte
+                Lyam paie une commande de <strong>89,90 €</strong> depuis son compte
                 courant à Banque Est.
               </p>
 
@@ -77,7 +77,7 @@
                   <tbody>
                     <tr><th scope="row">Marchand</th><td>Atelier Verre &amp; Cie — e-commerce</td></tr>
                     <tr><th scope="row">PISP</th><td>PayFlow — agrément PISP</td></tr>
-                    <tr><th scope="row">Client</th><td>Léa — compte courant Banque Est</td></tr>
+                    <tr><th scope="row">Client</th><td>Lyam — compte courant Banque Est</td></tr>
                     <tr><th scope="row">Montant</th><td>89,90 € — référence CMD-20458</td></tr>
                     <tr class="is-exergue"><th scope="row">Rail</th><td>SCT instantané (livraison immédiate)</td></tr>
                   </tbody>
@@ -91,7 +91,7 @@
               <h2>Ce qu’il faut produire</h2>
               <ol class="steps-list">
                 <li>
-                  <strong>Diagramme de séquence</strong> — du clic de Léa jusqu’à
+                  <strong>Diagramme de séquence</strong> — du clic de Lyam jusqu’à
                   la livraison&nbsp;: acteurs en colonnes, messages numérotés,
                   étapes 1 à 5.
                 </li>
@@ -134,9 +134,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><th scope="row">1</th><td>Léa → PISP (via marchand)</td><td>Choix «&nbsp;Payer par virement&nbsp;», montant, référence CMD-20458</td><td>Consentement PIS créé</td></tr>
+                    <tr><th scope="row">1</th><td>Lyam → PISP (via marchand)</td><td>Choix «&nbsp;Payer par virement&nbsp;», montant, référence CMD-20458</td><td>Consentement PIS créé</td></tr>
                     <tr><th scope="row">2</th><td>PISP → Banque</td><td>Redirection pour SCA, identifiant de consentement</td><td>SCA en attente</td></tr>
-                    <tr><th scope="row">3</th><td>Léa → Banque</td><td>Authentification forte + validation du détail (89,90 €, bénéficiaire)</td><td>SCA réussie</td></tr>
+                    <tr><th scope="row">3</th><td>Lyam → Banque</td><td>Authentification forte + validation du détail (89,90 €, bénéficiaire)</td><td>SCA réussie</td></tr>
                     <tr><th scope="row">4</th><td>Banque → PISP</td><td>Code d’autorisation + accord sur le consentement PIS</td><td>Code valide</td></tr>
                     <tr><th scope="row">5</th><td>PISP → Banque</td><td><code>POST /payments</code> idempotent (X-Request-ID)</td><td>202 RCVD + identifiant paiement</td></tr>
                     <tr><th scope="row">6</th><td>PISP → Banque</td><td><code>GET /payments/{id}/status</code></td><td>ACSC / ACCP</td></tr>
@@ -150,7 +150,7 @@
                 <ul>
                   <li>Qui voit le montant à quel moment&nbsp;?</li>
                   <li>Quelle étape peut produire un double paiement&nbsp;?</li>
-                  <li>Que se passe-t-il si Léa ferme l’onglet après la SCA&nbsp;?</li>
+                  <li>Que se passe-t-il si Lyam ferme l’onglet après la SCA&nbsp;?</li>
                   <li>Que reçoit le marchand en cas de rejet&nbsp;?</li>
                 </ul>
               </div>

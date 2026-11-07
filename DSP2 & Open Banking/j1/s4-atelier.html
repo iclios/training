@@ -47,7 +47,7 @@
             <div class="fil-rouge">
               <span class="fil-rouge-label">Fil rouge</span>
               <p>
-                Léa a désormais une application qui fonctionne. Mais Banque Est
+                Lyam a désormais une application qui fonctionne. Mais Banque Est
                 ne reçoit pas qu’une demande&nbsp;: elle en reçoit trois, en même
                 temps. Vous êtes l’équipe Open Banking de Banque Est.
               </p>
@@ -241,50 +241,6 @@
                 </table>
               </div>
             </section>
-
-            <details class="trainer-notes">
-              <summary>Corrigé formateur</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>
-                    <strong>Budgetly</strong> = AISP pur (lecture). SCA initiale
-                    puis consultations sans nouvelle SCA (jusqu’à 4/jour) pendant
-                    90 jours. Couches clés&nbsp;: Consent, IAM (validation toutes
-                    les 90 jours), Monitoring. Risque&nbsp;: sur-collecte de
-                    données → périmètre strict + audit d’accès.
-                  </li>
-                  <li>
-                    <strong>ShopFast</strong> = PISP. Un consentement = un
-                    paiement, SCA à chaque paiement (sauf exemption).
-                    Couches&nbsp;: Gateway (mTLS), IAM (SCA), Consent (par
-                    paiement), Core (exécution). Risque&nbsp;: fraude au parcours →
-                    contrôle du bénéficiaire + signature de la requête.
-                  </li>
-                  <li>
-                    <strong>TrésoriPro</strong> = AISP multi-banques. Risque&nbsp;:
-                    indisponibilité des APIs → cache, mode dégradé, affichage de
-                    la fraîcheur des données. SLA négocié et surveillé côté
-                    Monitoring.
-                  </li>
-                  <li>
-                    <strong>Piège fréquent</strong>&nbsp;: appliquer le modèle
-                    «&nbsp;consentement 90 jours&nbsp;» à un PISP. Rappeler&nbsp;:
-                    PIS&nbsp;: un paiement = un consentement.
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Bilan du Jour 1</h3>
-              <ul>
-                <li>Le problème (S1) et la réponse (S2) sont compris.</li>
-                <li>La machine (S3) est reconstituée&nbsp;: cinq couches.</li>
-                <li>Les trois partenaires sont correctement qualifiés.</li>
-                <li>Les standards et leurs raisons sont maîtrisés.</li>
-                <li>Rien du pré-syllabus n’a été laissé de côté.</li>
-              </ul>
-            </div>
 
             <div class="sources-box">
               <strong>Pour prolonger</strong> — Rejouer l’atelier avec un cas

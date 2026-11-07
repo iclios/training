@@ -1,14 +1,17 @@
 window.OB_BLOCS = [
   { id: "intro", title: "Intro & objectifs", href: "intro.html", group: "Ouverture" },
-  { id: "cadre", title: "Le cadre", href: "cadre.html", group: "Ouverture" },
+  // Cadre réglementaire
+  { id: "modele-ferme", title: "Le modèle bancaire fermé", href: "modele-ferme.html", group: "Cadre réglementaire" },
+  { id: "dsp1", title: "DSP1 · D’où l’on vient", href: "dsp1.html", group: "Cadre réglementaire" },
+  { id: "cadre", title: "La DSP2 en fiche", href: "cadre.html", group: "Cadre réglementaire" },
+  { id: "autorites", title: "Les autorités européennes", href: "autorites.html", group: "Cadre réglementaire" },
+  { id: "directives-monde", title: "L’Open Banking hors d’Europe", href: "directives-monde.html", group: "Cadre réglementaire" },
   // Parcours narratif (principal)
   { id: "s1-probleme", title: "S1 · Le problème", href: "s1-probleme.html", group: "Parcours narratif" },
   { id: "s2-reponse", title: "S2 · La réponse", href: "s2-reponse.html", group: "Parcours narratif" },
   { id: "s3-machine", title: "S3 · La machine", href: "s3-machine.html", group: "Parcours narratif" },
   { id: "s4-atelier", title: "S4 · L’atelier", href: "s4-atelier.html", group: "Parcours narratif" },
-  // Clôture
-  { id: "syllabus-coverage", title: "Couverture du syllabus", href: "syllabus-coverage.html", group: "Clôture" },
-  { id: "support", title: "Support étudiant", href: "support.html", group: "Clôture" },
+  { id: "support", title: "Support étudiant", href: "support-etudiant.html", group: "Parcours narratif" },
 ];
 
 (function initObNav() {
@@ -38,6 +41,10 @@ window.OB_BLOCS = [
       const el = document.createElement(bloc.href ? "a" : "span");
       el.className = "bloc-sidebar-item";
       if (!bloc.href) el.classList.add("is-disabled");
+      if (bloc.soon) {
+        el.classList.add("is-soon");
+        el.title = "Section à venir";
+      }
       if (bloc.id === currentId) el.classList.add("is-current");
       if (bloc.href) el.href = bloc.href;
 
@@ -48,6 +55,12 @@ window.OB_BLOCS = [
       const label = document.createElement("span");
       label.className = "bloc-sidebar-label";
       label.textContent = bloc.title;
+      if (bloc.soon) {
+        const tag = document.createElement("span");
+        tag.className = "bloc-soon-tag";
+        tag.textContent = "à venir";
+        label.append(" ", tag);
+      }
 
       el.append(num, label);
       list.appendChild(el);

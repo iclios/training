@@ -5,9 +5,7 @@ window.OB_BLOCS = [
   { id: "s2-flux", title: "S2 · Flux AIS & consentement", href: "s2-flux.html", group: "Parcours" },
   { id: "s3-architecture", title: "S3 · Architecture SI AISP", href: "s3-architecture.html", group: "Parcours" },
   { id: "s4-atelier", title: "S4 · Atelier data banking", href: "s4-atelier.html", group: "Parcours" },
-  // Clôture
-  { id: "syllabus-coverage", title: "Couverture du syllabus", href: "syllabus-coverage.html", group: "Clôture" },
-  { id: "support", title: "Support & ressources", href: "support.html", group: "Clôture" },
+  { id: "support", title: "Support & ressources", href: "support.html", group: "Parcours narratif" },
 ];
 
 (function initObNav() {

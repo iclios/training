@@ -1,0 +1,76 @@
+/* ============================================================
+   Forçage du format A4 pour la génération PDF du support
+   Chargée en dernier — elle gagne la cascade.
+   ============================================================ */
+@page {
+  size: A4 portrait !important;
+  margin: 12mm 13mm 15mm 13mm !important;
+}
+
+html, body.support-doc {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #fff !important;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+/* Couverture : une page pleine, sans débordement */
+.support-doc .support-title-page {
+  height: 265mm !important;
+  min-height: 265mm !important;
+  max-height: 265mm !important;
+  page-break-after: always;
+  break-after: page;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 10mm !important;
+}
+
+.support-doc .support-title-page h1 {
+  font-size: 30pt !important;
+  line-height: 1.1 !important;
+}
+
+.support-doc .support-title-day {
+  font-size: 13pt !important;
+}
+
+/* Chaque bloc commence sur une nouvelle page */
+.support-doc .support-bloc {
+  page-break-before: auto;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.support-doc .support-bloc-content > .section,
+.support-doc .support-bloc-body .section {
+  page-break-inside: auto;
+}
+
+/* Pas de lignes coupées en deux */
+.support-doc .panel,
+.support-doc .callout,
+.support-doc .csm-table-wrap,
+.support-doc table,
+.support-doc figure,
+.support-doc .split-2,
+.support-doc .role-grid,
+.support-doc .verrou-card,
+.support-doc .objectif {
+  page-break-inside: avoid;
+}
+
+.support-doc h1, .support-doc h2, .support-doc h3 {
+  page-break-after: avoid;
+}
+
+/* Corps de texte plus compact pour le papier */
+body.support-doc {
+  font-size: 9.5pt !important;
+  line-height: 1.42 !important;
+}
+
+/* Les toggles / panneaux interactifs sont déjà masqués par @media print */

@@ -47,9 +47,9 @@
             <div class="fil-rouge">
               <span class="fil-rouge-label">Fil rouge</span>
               <p>
-                Quand l’application de Léa appelle Banque Est, trois choses
+                Quand l’application de Lyam appelle Banque Est, trois choses
                 doivent être vraies&nbsp;: <strong>l’appel vient d’un TPP
-                agréé</strong>, <strong>Léa s’est authentifiée</strong>, et
+                agréé</strong>, <strong>Lyam s’est authentifiée</strong>, et
                 <strong>l’accès demandé est bien couvert par son
                 consentement</strong>. Un seul mécanisme ne suffit pas.
               </p>
@@ -67,7 +67,7 @@
                   <p class="role-desc">
                     Cadre d’<strong>autorisation</strong>. Il permet à un TPP
                     d’obtenir un <strong>jeton d’accès</strong> sans jamais
-                    connaître les identifiants de Léa.
+                    connaître les identifiants de Lyam.
                   </p>
                   <details class="cours-note small">
                     <summary>Cours — à retenir</summary>
@@ -96,7 +96,7 @@
                       <p>
                         OIDC répond à «&nbsp;qui est cet utilisateur&nbsp;?&nbsp;»,
                         là où OAuth2 répond à «&nbsp;à quoi a-t-il droit&nbsp;?&nbsp;».
-                        En Open Banking, l’ID token prouve l’identité de Léa côté
+                        En Open Banking, l’ID token prouve l’identité de Lyam côté
                         TPP.
                       </p>
                     </div>
@@ -178,8 +178,8 @@
                 <div class="panel">
                   <h3>Identification du client</h3>
                   <p>
-                    <strong>Léa prouve qui elle est</strong> auprès de sa banque
-                    (SCA). C’est elle, physiquement et juridiquement, qui est à
+                    <strong>Lyam prouve qui il est</strong> auprès de sa banque
+                    (SCA). C’est lui, physiquement et juridiquement, qui est à
                     l’origine de la demande.
                   </p>
                 </div>
@@ -252,7 +252,7 @@
                     <rect x="400" y="20" width="200" height="40" rx="6" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
                     <text x="500" y="45" text-anchor="middle" fill="#1a2b3c">ASPSP (autorisation)</text>
                     <rect x="770" y="20" width="150" height="40" rx="6" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="845" y="45" text-anchor="middle" fill="#087a6a">Léa</text>
+                    <text x="845" y="45" text-anchor="middle" fill="#087a6a">Lyam</text>
                   </g>
                   <line x1="150" y1="60" x2="150" y2="450" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
                   <line x1="500" y1="60" x2="500" y2="450" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
@@ -262,7 +262,7 @@
                   <text x="325" y="88" text-anchor="middle" fill="#2f4858" font-size="11">1 · demande + certificat (mTLS)</text>
 
                   <line x1="500" y1="130" x2="840" y2="130" stroke="#0d9f8a" stroke-width="2.5" class="stream" marker-end="url(#ah-oauthg)"/>
-                  <text x="670" y="123" text-anchor="middle" fill="#087a6a" font-size="11">2 · SCA (authentification de Léa)</text>
+                  <text x="670" y="123" text-anchor="middle" fill="#087a6a" font-size="11">2 · SCA (authentification de Lyam)</text>
 
                   <line x1="845" y1="165" x2="505" y2="165" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-oauthg)"/>
                   <text x="670" y="158" text-anchor="middle" fill="#087a6a" font-size="11">3 · consentement accordé</text>

@@ -5,9 +5,7 @@ window.OB_BLOCS = [
   { id: "s2-projet", title: "S2 · Concevoir un projet SI ouvert", href: "s2-projet.html", group: "Parcours" },
   { id: "s3-synthese", title: "S3 · Synthèse des quatre rôles", href: "s3-synthese.html", group: "Parcours" },
   { id: "s4-atelier", title: "S4 · Atelier projet final", href: "s4-atelier.html", group: "Parcours" },
-  // Clôture
-  { id: "syllabus-coverage", title: "Couverture du syllabus", href: "syllabus-coverage.html", group: "Clôture" },
-  { id: "support", title: "Support & ressources", href: "support.html", group: "Clôture" },
+  { id: "support", title: "Support & ressources", href: "support.html", group: "Parcours narratif" },
 ];
 
 (function initObNav() {

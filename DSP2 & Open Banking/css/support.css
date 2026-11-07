@@ -1,0 +1,307 @@
+/* ============================================================
+   SUPPORT ÉTUDIANT — reproduction de la charte
+   « Paiements Digitaux et Wallets numériques »
+   Diapositives : en-tête N.N · SECTION / titre / étiquette / contenu
+   ============================================================ */
+
+.support-doc {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 0 4rem;
+  font-family: var(--font-body);
+  color: #0c1b2a;
+  line-height: 1.5;
+}
+
+/* ---------- SLIDE ---------- */
+.sup-slide {
+  position: relative;
+  padding: 1.6rem 2.4rem 2rem;
+  margin: 0 0 1.1rem;
+  background: #fff;
+  border: 1px solid #dfe7ee;
+  border-radius: 3px;
+  page-break-inside: avoid;
+}
+
+/* ---------- EN-TÊTE DE SECTION (bandeau en haut) ---------- */
+.sup-head {
+  border-left: 3px solid #0c1b2a;
+  padding-left: 0.7rem;
+  margin: 0 0 1rem;
+}
+
+.sup-head .num {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #1e5f8a;
+  margin: 0 0 0.15rem;
+}
+
+.sup-head .name {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+  margin: 0;
+  color: #0c1b2a;
+}
+
+/* ---------- TITRE DE DIAPO ---------- */
+.sup-slide h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  color: #243447;
+}
+
+.sup-slide .chapeau {
+  font-size: 0.88rem;
+  color: #5a6b7c;
+  margin: 0 0 1rem;
+  max-width: 62ch;
+}
+
+/* ---------- ÉTIQUETTE DE TYPE ---------- */
+.sup-tag {
+  display: block;
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #5a6b7c;
+  margin: 1.2rem 0 0.4rem;
+}
+
+.sup-tag--def { color: #6b4fa0; }
+.sup-tag--ex { color: #0d9f8a; }
+.sup-tag--rel { color: #1e5f8a; }
+
+/* ---------- ENCADRÉ DÉFINITION (gros bloc gris) ---------- */
+.sup-def {
+  margin: 0.4rem 0 1rem;
+  padding: 0.85rem 1.1rem;
+  background: #f3f6f9;
+  border: 1px solid #e0e8ef;
+  border-radius: 2px;
+  font-size: 0.95rem;
+}
+
+/* ---------- « En une phrase » ---------- */
+.sup-phrase {
+  margin: 0.4rem 0 0.9rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+/* ---------- BLOC EXEMPLE ---------- */
+.sup-ex {
+  margin: 0.4rem 0 1rem;
+  padding: 0.6rem 1rem;
+  background: #f1f9f7;
+  border-left: 3px solid #0d9f8a;
+  font-size: 0.88rem;
+}
+
+/* ---------- BANDEAU FIL ---------- */
+.sup-fil {
+  margin: 1.1rem 0 0;
+  padding: 0.55rem 0.9rem;
+  background: #fdf6f2;
+  border-top: 1px solid #f0d9cc;
+  border-bottom: 1px solid #f0d9cc;
+  font-size: 0.84rem;
+  color: #7a4a2c;
+}
+
+.sup-fil b {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c45c26;
+  margin-right: 0.5rem;
+}
+
+/* ---------- GRILLE DE CARTES ---------- */
+.sup-grid {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.sup-grid.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.sup-grid.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sup-grid.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+@media (max-width: 720px) {
+  .sup-grid.g3, .sup-grid.g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 520px) {
+  .sup-grid.g2, .sup-grid.g3, .sup-grid.g4 { grid-template-columns: 1fr; }
+}
+
+.sup-card {
+  padding: 0.65rem 0.8rem;
+  background: #fafcfd;
+  border: 1px solid #dfe7ee;
+  border-radius: 2px;
+}
+
+.sup-card .n {
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: #1e5f8a;
+  letter-spacing: 0.1em;
+}
+
+.sup-card .t {
+  display: block;
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin: 0.1rem 0 0.2rem;
+}
+
+.sup-card p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #5a6b7c;
+}
+
+/* ---------- TABLEAU ---------- */
+.sup-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.85rem;
+}
+
+.sup-tbl th, .sup-tbl td {
+  padding: 0.45rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #e3eaf0;
+}
+
+.sup-tbl thead th {
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5a6b7c;
+  border-bottom: 1.5px solid #0c1b2a;
+}
+
+/* ---------- SCHÉMA ---------- */
+.sup-fig {
+  margin: 0.6rem 0 0.2rem;
+  overflow-x: auto;
+}
+.sup-fig svg { width: 100%; height: auto; min-width: 560px; display: block; }
+
+.sup-cap {
+  font-size: 0.76rem;
+  color: #8a9aaa;
+  font-style: italic;
+  margin: 0.4rem 0 0;
+}
+
+/* ---------- NOTE LATÉRALE ---------- */
+.sup-note {
+  margin: 0.7rem 0;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.8rem;
+  color: #5a6b7c;
+  background: #fbfcfd;
+  border: 1px dashed #d5dfe8;
+}
+
+/* ---------- PIED DE DIAPO ---------- */
+.sup-footslide {
+  margin: 1.6rem 0 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e3eaf0;
+  font-size: 0.68rem;
+  color: #98a6b3;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ---------- COUVERTURE ---------- */
+.sup-cover {
+  text-align: center;
+  padding: 3.5rem 2rem 3rem;
+  margin: 0 0 1.1rem;
+  background: #fff;
+  border: 1px solid #dfe7ee;
+  border-top: 4px solid #0c1b2a;
+}
+
+.sup-cover .kick {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #1e5f8a;
+  margin: 0 0 1.5rem;
+}
+
+.sup-cover h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  margin: 0 0 1.6rem;
+}
+
+.sup-cover .day {
+  font-size: 1.05rem;
+  color: #43566b;
+  margin: 0 0 2.4rem;
+}
+
+.sup-cover .who {
+  font-size: 0.85rem;
+  color: #5a6b7c;
+  line-height: 1.8;
+}
+.sup-cover .who strong { color: #0c1b2a; }
+
+/* ---------- SOMMAIRE ---------- */
+.sup-toc {
+  padding: 1.2rem 2.4rem;
+  margin: 0 0 1.1rem;
+  background: #fff;
+  border: 1px solid #dfe7ee;
+}
+
+.sup-toc h2 {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5a6b7c;
+  margin: 0 0 0.7rem;
+}
+
+.sup-toc ol {
+  margin: 0;
+  padding-left: 1.3rem;
+  font-size: 0.87rem;
+  line-height: 2;
+}
+
+.sup-toc a { color: #0c1b2a; text-decoration: none; }
+.sup-toc a:hover { color: #1e5f8a; text-decoration: underline; }
+
+@media print {
+  .sup-slide, .sup-cover, .sup-toc { border-color: #ccc; }
+  .sup-footslide { display: none; }
+}

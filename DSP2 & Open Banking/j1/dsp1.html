@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DSP1 · D’où l’on vient — Jour 1 | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="dsp1">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a class="is-active" href="intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · Cadre réglementaire</span>
+                <span class="tag tag-accent">20 min</span>
+              </div>
+              <p class="day-kicker">Première réponse, incomplète</p>
+              <h1>DSP1 · D’où l’on vient</h1>
+              <p class="lead">
+                En 2007, l’Europe crée le marché unique des paiements. C’est une
+                vraie réussite — mais elle s’arrête au <em>paiement</em>. L’accès
+                aux comptes, lui, reste hors du texte. Ce que la DSP1 n’a pas
+                prévu, c’est exactement ce qui va poser problème huit ans plus
+                tard.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <!-- 1. CARTE D'IDENTITÉ -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Identité</p>
+              <h2>La fiche d’identité de la DSP1</h2>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Élément</th>
+                      <th scope="col">Valeur</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Nom complet</th><td>Directive sur les services de paiement dans le marché intérieur (en anglais&nbsp;: <em>Payment Services Directive</em>, PSD)</td></tr>
+                    <tr><th scope="row">Référence</th><td>Directive 2007/64/CE</td></tr>
+                    <tr><th scope="row">Adoption</th><td>13 novembre 2007</td></tr>
+                    <tr><th scope="row">Entrée en application</th><td>1<sup>er</sup> novembre 2009</td></tr>
+                    <tr><th scope="row">Remplacée par</th><td>DSP2 — directive (UE) 2015/2366</td></tr>
+                    <tr class="is-exergue"><th scope="row">Objet</th><td>Construire un marché unique des paiements&nbsp;: harmoniser, agréer, abolir les frontières</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="key-idea">
+                <p class="label">À retenir</p>
+                <p>
+                  La DSP1 est le <strong>socle</strong> de la DSP2. Tout ce que la
+                  DSP2 ajoute suppose le marché unique construit par la DSP1 —
+                  mais rien de ce qu’elle ajoute n’était prévu en 2007.
+                </p>
+              </div>
+            </section>
+
+            <!-- 2. LA SPÉCIALITÉ DSP1 : LE PSP -->
+            <section class="section">
+              <p class="section-label">Le vrai apport</p>
+              <h2>Le «&nbsp;PSP&nbsp;»&nbsp;: une catégorie à la place d’un métier</h2>
+              <p class="intro">
+                L’apport conceptuel de la DSP1 n’est pas technique&nbsp;: c’est
+                une <strong>catégorie juridique</strong>. Avant 2007, seuls les
+                établissements de crédit pouvaient émettre des moyens de paiement.
+                La DSP1 casse ce monopole en créant le statut de
+                <em>Prestataire de Services de Paiement</em> (PSP).
+              </p>
+
+              <figure class="fig-illus">
+                <svg viewBox="0 0 1000 235" role="img" aria-label="Le statut PSP regroupe établissements de crédit, établissements de paiement et établissements de monnaie électronique">
+                  <defs>
+                    <marker id="ah-d1-psp" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+                      <path d="M0,0 L7,3.5 L0,7 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+
+                  <!-- Avant -->
+                  <text x="150" y="24" text-anchor="middle" fill="#8a9aaa" font-size="10" font-weight="800" letter-spacing="0.1em">AVANT 2007</text>
+                  <rect x="40" y="38" width="220" height="76" rx="10" fill="#f7f9fb" stroke="#8a9aaa" stroke-width="2" stroke-dasharray="6 4"/>
+                  <text x="150" y="68" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Banque</text>
+                  <text x="150" y="90" text-anchor="middle" fill="#8a9aaa" font-size="11">seule habilitée</text>
+                  <text x="150" y="140" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">✕ aucun concurrent</text>
+                  <text x="150" y="158" text-anchor="middle" fill="#a4572c" font-size="10">possible</text>
+
+                  <!-- Flèche -->
+                  <line x1="276" y1="76" x2="360" y2="76" stroke="#1e5f8a" stroke-width="3" class="stream" marker-end="url(#ah-d1-psp)"/>
+                  <text x="318" y="62" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">LA DSP1</text>
+
+                  <!-- PSP conteneur -->
+                  <rect x="374" y="30" width="580" height="176" rx="14" fill="#eff6fb" stroke="#1e5f8a" stroke-width="3"/>
+                  <text x="664" y="56" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="14" font-weight="800">PRESTATAIRE DE SERVICES DE PAIEMENT (PSP)</text>
+                  <text x="664" y="74" text-anchor="middle" fill="#5a6b7c" font-size="10">un statut unique, une licence, un passeport européen</text>
+
+                  <g>
+                    <rect x="396" y="92" width="168" height="92" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="480" y="118" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">DÉJÀ LÀ</text>
+                    <text x="480" y="140" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Établissement</text>
+                    <text x="480" y="157" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">de crédit</text>
+                    <text x="480" y="175" text-anchor="middle" fill="#5a6b7c" font-size="10">la banque</text>
+                  </g>
+                  <g>
+                    <rect x="580" y="92" width="168" height="92" rx="8" fill="#fff" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="664" y="118" text-anchor="middle" fill="#4b3480" font-size="10" font-weight="700">CRÉÉ EN 2007</text>
+                    <text x="664" y="140" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Établissement</text>
+                    <text x="664" y="157" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">de paiement</text>
+                    <text x="664" y="175" text-anchor="middle" fill="#5a6b7c" font-size="10">non-banque agréée</text>
+                  </g>
+                  <g>
+                    <rect x="764" y="92" width="168" height="92" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="848" y="118" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="700">RÉGIME ASSIMILÉ</text>
+                    <text x="848" y="140" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Monnaie</text>
+                    <text x="848" y="157" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">électronique</text>
+                    <text x="848" y="175" text-anchor="middle" fill="#5a6b7c" font-size="10">wallets, cartes prépayées</text>
+                  </g>
+                </svg>
+                <figcaption>
+                  Figure — la DSP1 ne crée pas les services&nbsp;: elle crée la
+                  <em>catégorie</em> qui les rend possibles. Être PSP, c’est avoir
+                  le droit d’exercer, sans forcément être une banque.
+                </figcaption>
+              </figure>
+
+              <div class="callout info">
+                <h3>Pourquoi c’est décisif</h3>
+                <p>
+                  Sans la notion de PSP, il n’y a pas de cadre pour agréer un
+                  non-banquier. Et sans cadre d’agrément, la DSP2 n’aurait pas pu
+                  inventer les AISP et les PISP — qui sont, juridiquement, des
+                  <em>PSP</em> de nouvelle espèce.
+                </p>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le sigle recouvre deux niveaux</h3>
+                <p>
+                  Dans le e-commerce, «&nbsp;PSP&nbsp;» désigne le prestataire qui
+                  encaisse pour un marchand sur son site. Dans la DSP1, c’est une
+                  <strong>catégorie juridique</strong>. Ce n’est pas une
+                  opposition&nbsp;: c’est un <strong>rapport d’inclusion</strong>.
+                  Un <em>statut large</em>, un <em>rôle étroit</em>.
+                </p>
+
+                <figure class="fig-illus">
+                  <svg viewBox="0 0 860 250" role="img" aria-label="Le statut PSP contient trois familles agréées ; le PSP e-commerce n’est qu’un rôle dans la famille des établissements de paiement">
+                    <defs>
+                      <marker id="ah-psp-inc" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+                        <path d="M0,0 L7,3.5 L0,7 Z" fill="#c45c26" />
+                      </marker>
+                    </defs>
+
+                    <!-- Conteneur : statut large -->
+                    <rect x="12" y="14" width="520" height="222" rx="12" fill="#eff6fb" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="272" y="42" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="800">STATUT LARGE</text>
+                    <text x="272" y="62" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="600">PSP au sens DSP1 — être agréé</text>
+
+                    <!-- Famille 1 -->
+                    <rect x="32" y="80" width="146" height="132" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="105" y="104" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="800" letter-spacing="0.05em">CRÉDIT</text>
+                    <text x="105" y="134" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Établissement</text>
+                    <text x="105" y="151" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">de crédit</text>
+                    <line x1="52" y1="166" x2="158" y2="166" stroke="#e3ebf1" stroke-width="1.5"/>
+                    <text x="105" y="186" text-anchor="middle" fill="#5a6b7c" font-size="11">la banque</text>
+                    <text x="105" y="202" text-anchor="middle" fill="#8a9aaa" font-size="10">tous services</text>
+
+                    <!-- Famille 2 : celle du PSP e-commerce -->
+                    <rect x="193" y="80" width="160" height="132" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+                    <text x="273" y="104" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="800" letter-spacing="0.05em">PAIEMENT</text>
+                    <text x="273" y="134" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Établissement</text>
+                    <text x="273" y="151" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">de paiement</text>
+                    <line x1="213" y1="166" x2="333" y2="166" stroke="#eccbb8" stroke-width="1.5"/>
+                    <text x="273" y="186" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">le PSP e-commerce</text>
+                    <text x="273" y="202" text-anchor="middle" fill="#a4572c" font-size="10">est ici</text>
+
+                    <!-- Famille 3 -->
+                    <rect x="368" y="80" width="146" height="132" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="441" y="104" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="800" letter-spacing="0.05em">MONNAIE ÉLEC.</text>
+                    <text x="441" y="134" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Monnaie</text>
+                    <text x="441" y="151" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">électronique</text>
+                    <line x1="388" y1="166" x2="494" y2="166" stroke="#e3ebf1" stroke-width="1.5"/>
+                    <text x="441" y="186" text-anchor="middle" fill="#5a6b7c" font-size="11">wallets</text>
+                    <text x="441" y="202" text-anchor="middle" fill="#8a9aaa" font-size="10">cartes prépayées</text>
+
+                    <!-- Flèche -->
+                    <line x1="548" y1="125" x2="596" y2="125" stroke="#c45c26" stroke-width="3" marker-end="url(#ah-psp-inc)"/>
+                    <text x="572" y="112" text-anchor="middle" fill="#c45c26" font-size="9" font-weight="700">rôle</text>
+
+                    <!-- Rôle étroit -->
+                    <rect x="608" y="46" width="240" height="158" rx="12" fill="#fff" stroke="#c45c26" stroke-width="3"/>
+                    <text x="728" y="74" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="16" font-weight="800">RÔLE ÉTROIT</text>
+                    <text x="728" y="94" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="600">PSP «&nbsp;e-commerce&nbsp;»</text>
+                    <line x1="628" y1="106" x2="828" y2="106" stroke="#eccbb8" stroke-width="1.5"/>
+                    <text x="728" y="128" text-anchor="middle" fill="#5a6b7c" font-size="11">encaisser pour un</text>
+                    <text x="728" y="144" text-anchor="middle" fill="#5a6b7c" font-size="11">marchand, sur son site</text>
+                    <line x1="628" y1="156" x2="828" y2="156" stroke="#eccbb8" stroke-width="1.5"/>
+                    <text x="728" y="178" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Stripe · Adyen · Payplug</text>
+                  </svg>
+                  <figcaption>
+                    Le PSP e-commerce est un rôle <em>à l’intérieur</em> du statut
+                    PSP, pas une catégorie concurrente.
+                  </figcaption>
+                </figure>
+
+                <p>
+                  <strong>Avant la DSP1, ce rôle n'était pas ouvert.</strong> Il
+                  fallait une licence bancaire pour détenir les fonds d’un
+                  marchand, et le règlement restait chez la banque acquéreuse. En
+                  créant le statut PSP, la directive de 2007 a rendu possibles des
+                  acteurs non bancaires — d’où Stripe (2010) et Adyen (2006),
+                  nés <em>grâce</em> à ce statut.
+                </p>
+
+                <p>
+                  Ne pas confondre non plus avec le <strong>PISP</strong> de la
+                  DSP2&nbsp;: le PSP e-commerce fait de l'<em>acquisition
+                  carte</em>, le PISP <em>initie un virement</em> à la place du
+                  client. Deux façons différentes de faire passer un paiement —
+                  détail en S2.
+                </p>
+              </div>
+            </section>
+
+            <!-- 3. LES TROIS APPORTS -->
+            <section class="section">
+              <p class="section-label">Les apports</p>
+              <h2>Trois apports concrets</h2>
+
+              <div class="split-3">
+                <div class="panel tpp">
+                  <h3>Le passeport européen</h3>
+                  <p>
+                    Une licence obtenue dans un État membre vaut dans les 27.
+                    Un établissement de paiement peut servir des clients partout
+                    dans l’EEE sans redemander une autorisation pays par pays.
+                  </p>
+                </div>
+                <div class="panel tpp">
+                  <h3>La fin du réseau obligatoire</h3>
+                  <p>
+                    Virements et prélèvements SEPA ne passent plus
+                    nécessairement par les réseaux de cartes. Les frais
+                    interbancaires sont encadrés, les délais plafonnés.
+                  </p>
+                </div>
+                <div class="panel tpp">
+                  <h3>La transparence tarifaire</h3>
+                  <p>
+                    Les frais doivent être connus avant l’opération. Fin des
+                    commissions cachées&nbsp;: le prix devient une information
+                    du contrat, pas une découverte.
+                  </p>
+                </div>
+              </div>
+
+              <div class="cours-note-banner">
+                <p>
+                  <strong>Le bilan de la DSP1 est un succès de marché.</strong>
+                  Le SEPA devient un standard mondial, les paiements européens
+                  deviennent une commodité. Mais toute la valeur ajoutée créée
+                  reste <em>à l’intérieur</em> des canaux bancaires.
+                </p>
+              </div>
+            </section>
+
+            <!-- 4. LES LIMITES -->
+            <section class="section">
+              <p class="section-label">Limites</p>
+              <h2>Trois angles morts</h2>
+              <p class="intro">
+                Ce que la DSP1 n’a pas fait n’est pas un oubli&nbsp;: en 2007, le
+                problème ne se posait pas encore. Mais les trois angles morts
+                vont devenir des verrous.
+              </p>
+
+              <figure class="fig-illus">
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Trois angles morts de la DSP1 : accès aux comptes, tiers non prévus, authentification libre">
+                  <g>
+                    <rect x="30" y="20" width="300" height="160" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="180" y="48" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="800" letter-spacing="0.08em">ANGLE MORT 1</text>
+                    <text x="180" y="76" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Aucun accès aux comptes</text>
+                    <text x="180" y="102" text-anchor="middle" fill="#5a6b7c" font-size="11">La directive encadre le paiement.</text>
+                    <text x="180" y="120" text-anchor="middle" fill="#5a6b7c" font-size="11">Elle ne dit rien sur la lecture</text>
+                    <text x="180" y="138" text-anchor="middle" fill="#5a6b7c" font-size="11">des données de compte.</text>
+                    <text x="180" y="164" text-anchor="middle" fill="#a4572c" font-size="10" font-style="italic">→ la banque reste seule maîtresse</text>
+                  </g>
+                  <g>
+                    <rect x="350" y="20" width="300" height="160" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="500" y="48" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="800" letter-spacing="0.08em">ANGLE MORT 2</text>
+                    <text x="500" y="76" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Les tiers n’existent pas</text>
+                    <text x="500" y="102" text-anchor="middle" fill="#5a6b7c" font-size="11">La catégorie PSP sert à agréer</text>
+                    <text x="500" y="120" text-anchor="middle" fill="#5a6b7c" font-size="11">celui qui émet ou exécute, pas</text>
+                    <text x="500" y="138" text-anchor="middle" fill="#5a6b7c" font-size="11">celui qui accède pour un tiers.</text>
+                    <text x="500" y="164" text-anchor="middle" fill="#a4572c" font-size="10" font-style="italic">→ ni AISP, ni PISP avant 2015</text>
+                  </g>
+                  <g>
+                    <rect x="670" y="20" width="300" height="160" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="820" y="48" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="800" letter-spacing="0.08em">ANGLE MORT 3</text>
+                    <text x="820" y="76" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Authentification libre</text>
+                    <text x="820" y="102" text-anchor="middle" fill="#5a6b7c" font-size="11">Aucune méthode imposée.</text>
+                    <text x="820" y="120" text-anchor="middle" fill="#5a6b7c" font-size="11">Le mot de passe suffit, et le</text>
+                    <text x="820" y="138" text-anchor="middle" fill="#5a6b7c" font-size="11">secret partagé reste la norme.</text>
+                    <text x="820" y="164" text-anchor="middle" fill="#a4572c" font-size="10" font-style="italic">→ pas de SCA, pas de révocation</text>
+                  </g>
+                </svg>
+                <figcaption>
+                  Figure — les trois angles morts de la DSP1. Chacun deviendra un
+                  chantier de la DSP2, et correspond à un verrou du modèle fermé.
+                </figcaption>
+              </figure>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Angle mort DSP1</th>
+                      <th scope="col">Verrou du modèle fermé</th>
+                      <th scope="col">Réponse DSP2</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Pas d’accès aux comptes</th>
+                      <td>Donnée captive</td>
+                      <td>Service AIS</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Tiers non prévus</th>
+                      <td>Canal de paiement unique</td>
+                      <td>Service PIS</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Authentification libre</th>
+                      <td>Sécurité par le secret</td>
+                      <td>SCA obligatoire</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- 5. LE SCREEN SCRAPING -->
+            <section class="section">
+              <p class="section-label">Conséquence</p>
+              <h2>Le vide juridique, et ce qu’il a laissé faire</h2>
+              <p class="intro">
+                Entre 2009 et 2015, les usages numériques explosent plus vite que
+                le droit. Des applications veulent lire les comptes et déclencher
+                des paiements&nbsp;— et rien ne l’interdit, mais rien ne
+                l’encadre.
+              </p>
+
+              <figure class="fig-illus">
+                <svg viewBox="0 0 1000 250" role="img" aria-label="Chronologie : DSP1 en 2007, apparition des usages numériques, DSP2 en 2015">
+                  <defs>
+                    <marker id="ah-d1-tl" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+                      <path d="M0,0 L7,3.5 L0,7 Z" fill="#3d5a80" />
+                    </marker>
+                  </defs>
+                  <line x1="60" y1="130" x2="940" y2="130" stroke="#3d5a80" stroke-width="3" marker-end="url(#ah-d1-tl)"/>
+
+                  <g>
+                    <circle cx="150" cy="130" r="9" fill="#0d9f8a" stroke="#fff" stroke-width="3"/>
+                    <text x="150" y="106" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="800">2007</text>
+                    <text x="150" y="160" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">DSP1 adoptée</text>
+                    <text x="150" y="178" text-anchor="middle" fill="#5a6b7c" font-size="10">marché unique</text>
+                  </g>
+                  <g>
+                    <circle cx="380" cy="130" r="9" fill="#6b4fa0" stroke="#fff" stroke-width="3"/>
+                    <text x="380" y="106" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="800">2009</text>
+                    <text x="380" y="160" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Application</text>
+                    <text x="380" y="178" text-anchor="middle" fill="#5a6b7c" font-size="10">entrée en vigueur</text>
+                  </g>
+                  <rect x="560" y="60" width="220" height="56" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                  <circle cx="670" cy="130" r="9" fill="#c45c26" stroke="#fff" stroke-width="3"/>
+                  <text x="670" y="50" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="800">LE VIDE JURIDIQUE</text>
+                  <text x="670" y="85" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">screen scraping</text>
+                  <text x="670" y="103" text-anchor="middle" fill="#5a6b7c" font-size="10">agrégateurs, wallets, budget</text>
+                  <text x="670" y="162" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">2010 – 2015</text>
+                  <text x="670" y="180" text-anchor="middle" fill="#5a6b7c" font-size="10">usages sans cadre</text>
+                  <g>
+                    <circle cx="870" cy="130" r="11" fill="#0d9f8a" stroke="#fff" stroke-width="3"/>
+                    <text x="870" y="106" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="800">2015</text>
+                    <text x="870" y="160" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">DSP2</text>
+                    <text x="870" y="178" text-anchor="middle" fill="#5a6b7c" font-size="10">l’accès est organisé</text>
+                  </g>
+                </svg>
+                <figcaption>
+                  Figure — huit ans entre les deux directives. Le vide juridique
+                  n’a pas empêché les usages&nbsp;: il les a laissés se développer
+                  sans garde-fou.
+                </figcaption>
+              </figure>
+
+              <div class="callout warn">
+                <h3>Le paradoxe de la DSP1</h3>
+                <p>
+                  La DSP1 a réussi son objectif&nbsp;: rendre le paiement
+                  européen fluide et peu coûteux. Mais elle a laissé dehors la
+                  question qui allait devenir centrale — <strong>qui a le droit
+                  de lire le compte pour le compte du client&nbsp;?</strong>
+                </p>
+                <p class="q">
+                  C’est précisément cette question que traite la DSP2, et c’est
+                  le point de départ du récit de Lyam.
+                </p>
+              </div>
+            </section>
+
+            <!-- 6. TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <p class="section-label">Synthèse</p>
+              <h2>Ce que la DSP1 lègue à la DSP2</h2>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Ce qu’elle a construit</h3>
+                  <ul>
+                    <li>La notion de <strong>PSP</strong>&nbsp;: agréer sans être une banque.</li>
+                    <li>Le <strong>passeport européen</strong>&nbsp;: une licence pour 27 pays.</li>
+                    <li>Le <strong>SEPA</strong>&nbsp;: virement et prélèvement comme commodités.</li>
+                    <li>La <strong>transparence</strong>&nbsp;: les frais avant l’opération.</li>
+                  </ul>
+                </div>
+                <div class="panel ko">
+                  <h3>Ce qu’elle a laissé ouvert</h3>
+                  <ul>
+                    <li>L’accès aux comptes par un tiers&nbsp;: <strong>non prévu</strong>.</li>
+                    <li>Les services d’initiation et d’information&nbsp;: <strong>inexistants</strong>.</li>
+                    <li>L’authentification forte&nbsp;: <strong>non imposée</strong>.</li>
+                    <li>Le consentement révocable&nbsp;: <strong>hors champ</strong>.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>La DSP2 en fiche</h2>
+                <p>
+                  Huit ans après, la directive (UE) 2015/2366 vient combler les
+                  trois angles morts. Sa fiche d’identité donne le décor complet
+                  avant d’en dérouler les mécanismes.
+                </p>
+              </div>
+
+            </section>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a> · DSP1 · D’où l’on vient
+      </div>
+    </footer>
+    <script src="../js/nav-j1.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>
