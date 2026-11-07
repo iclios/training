@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Intro &amp; objectifs — Jour 5 | Paiements digitaux</title>
+    <title>Intro &amp; fil conducteur — Jour 5 | Paiements digitaux</title>
     <link rel="stylesheet" href="../css/styles.css?v=present6" />
   </head>
   <body data-bloc="intro">
@@ -33,50 +33,197 @@
           <div class="fiche-meta">
             <span class="tag">Jour 5 · Omnicanal</span>
           </div>
-          <p class="day-kicker">Accueil</p>
-          <h1>Intro &amp; objectifs</h1>
+          <p class="day-kicker">Accueil · 4 h</p>
+          <h1>Intro &amp; fil conducteur</h1>
         </div>
       </section>
 
       <div class="wrap">
         <section class="section" style="border-top: none; padding-top: 0">
-          <p class="section-label">Fil de séance</p>
-          <h2>Blocs du Jour 5</h2>
-          <nav
-            class="block-map"
-            id="block-map"
-            aria-label="Blocs du jour 5"
-          ></nav>
-        </section>
-
-        <section class="section">
-          <p class="section-label">Synthèse</p>
-          <h2>Pourquoi J5 maintenant</h2>
-          <p class="intro">
-            Auth / Clearing / Settlement (J1), QR (J2), token (J3), NFC /
-            wallet (J4) deviennent les briques d’une
-            <strong>plateforme SI omnicanale</strong> — défendable en comité
-            banque.
+          <p class="section-label">Synthèse J1–J4</p>
+          <h2>Du rail isolé à la plateforme SI</h2>
+          <p class="definition-full">
+            Aujourd’hui on assemble QR (J2), token (J3) et NFC / wallet (J4)
+            dans une <strong>plateforme de paiement unique</strong>&nbsp;:
+            plusieurs portes, une intention métier, un
+            <strong>payment_id</strong>, un cycle d’autorisation formel.
           </p>
-          <div class="timeline-evo">
-            <span class="step">J1 Flux</span><span class="arrow">→</span>
-            <span class="step">J2 QR</span><span class="arrow">→</span>
-            <span class="step">J3 Token</span><span class="arrow">→</span>
-            <span class="step">J4 NFC</span><span class="arrow">→</span>
-            <span class="step">J5 Omnicanal</span>
+
+          <div class="diagram" id="diagram-synthese-j5">
+            <div class="diagram-header">
+              <h3>Trajectoire module → Jour 5</h3>
+              <p>Socle · QR · token · NFC → omnicanal SI</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 200"
+              role="img"
+              aria-label="J1 à J4 faits, Jour 5 plateforme omnicanale"
+            >
+              <defs>
+                <marker id="ah-j5-intro" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="18" y="36" width="150" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+                <text x="93" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700">FAIT</text>
+                <text x="93" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J1</text>
+                <text x="93" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Socle</text>
+                <text x="93" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">Auth · Clear · Sett.</text>
+              </g>
+              <line x1="176" y1="96" x2="196" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j5-intro)"/>
+              <g>
+                <rect x="204" y="36" width="150" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+                <text x="279" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700">FAIT</text>
+                <text x="279" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J2</text>
+                <text x="279" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">QR</text>
+                <text x="279" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">canal soft</text>
+              </g>
+              <line x1="362" y1="96" x2="382" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j5-intro)"/>
+              <g>
+                <rect x="390" y="36" width="150" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+                <text x="465" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700">FAIT</text>
+                <text x="465" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J3</text>
+                <text x="465" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Token</text>
+                <text x="465" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">PAN → token</text>
+              </g>
+              <line x1="548" y1="96" x2="568" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j5-intro)"/>
+              <g>
+                <rect x="576" y="36" width="150" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+                <text x="651" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700">FAIT</text>
+                <text x="651" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J4</text>
+                <text x="651" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">NFC</text>
+                <text x="651" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">wallets</text>
+              </g>
+              <line x1="734" y1="96" x2="754" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j5-intro)"/>
+              <g>
+                <rect x="762" y="36" width="220" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <text x="872" y="72" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">AUJOURD’HUI</text>
+                <text x="872" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="22" font-weight="700">J5</text>
+                <text x="872" y="128" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Omnicanal SI</text>
+                <text x="872" y="148" text-anchor="middle" fill="#0d9f8a" font-size="11">1 plateforme · N portes</text>
+              </g>
+            </svg>
           </div>
         </section>
 
         <section class="section">
           <p class="section-label">Objectifs</p>
-          <h2>Ce que les participants sauront faire</h2>
-          <ul class="topic-list">
-            <li>Définir l’omnicanal (backend unique, orchestration, UX)</li>
-            <li>Situer les briques d’une plateforme cible</li>
-            <li>Exprimer les exigences SI (dispo, latence, réconciliation…)</li>
-            <li>Relier gouvernance / KPIs / runbooks aux rejets J1</li>
-            <li>Concevoir et pitcher une architecture argumentée</li>
-          </ul>
+          <h2>Ce que vous devez savoir en fin de journée</h2>
+          <div class="split-2">
+            <div class="panel ok">
+              <h3>Concepts</h3>
+              <ul>
+                <li>Multicanal ≠ omnicanal (une vérité SI)</li>
+                <li>Intention métier → <strong>payment_id</strong></li>
+                <li>Cycle Auth request → AuthZ → journal → clear / sett.</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>SI</h3>
+              <ul>
+                <li>Composants plateforme &amp; orchestration</li>
+                <li>Exigences transverses (dispo, latence, sécu…)</li>
+                <li>Critères mesurables, sans silo par canal</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Fil monétique</p>
+          <h2>Intention · id · autorisation · vérité</h2>
+          <p class="intro">
+            Repère unique du jour&nbsp;: chaque transaction a une
+            <strong>intention métier claire</strong>, un
+            <strong>payment_id</strong>, et un cycle d’autorisation
+            <strong>formel</strong>. Deux intentions = deux ids — même si le
+            canal change.
+          </p>
+          <div class="diagram" id="diagram-fil-mono">
+            <div class="diagram-header">
+              <h3>Fil conducteur transactionnel</h3>
+              <p>Intention → payment_id → AuthZ → journal</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 220"
+              role="img"
+              aria-label="Chaîne intention payment_id AuthZ journal"
+            >
+              <defs>
+                <marker id="ah-fil" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <rect x="30" y="50" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+              <text x="130" y="90" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">① Intention</text>
+              <text x="130" y="115" text-anchor="middle" fill="#5a6b7c" font-size="11">ordre / panier métier</text>
+
+              <line x1="240" y1="100" x2="280" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fil)"/>
+
+              <rect x="290" y="50" width="200" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="390" y="90" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">② payment_id</text>
+              <text x="390" y="115" text-anchor="middle" fill="#0d9f8a" font-size="11">1 id / intention</text>
+
+              <line x1="500" y1="100" x2="540" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fil)"/>
+
+              <rect x="550" y="50" width="200" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+              <text x="650" y="90" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">③ AuthZ</text>
+              <text x="650" y="115" text-anchor="middle" fill="#5a6b7c" font-size="11">Auth request → OK / KO</text>
+
+              <line x1="760" y1="100" x2="800" y2="100" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fil)"/>
+
+              <rect x="810" y="50" width="160" height="100" rx="10" fill="#f7f9fb" stroke="#087a6a" stroke-width="2"/>
+              <text x="890" y="90" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">④ Journal</text>
+              <text x="890" y="115" text-anchor="middle" fill="#5a6b7c" font-size="11">1 vérité SI</text>
+
+              <text x="500" y="190" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Clear / Settlement suivent le même id — quel que soit le canal d’entrée
+              </text>
+            </svg>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Timing 4 h</p>
+          <h2>Fil de séance</h2>
+          <div class="diagram" id="diagram-timing">
+            <div class="diagram-header">
+              <h3>Répartition indicative</h3>
+              <p>Sans atelier · sans contrôle continu</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 160"
+              role="img"
+              aria-label="Timing des blocs du Jour 5 sur 4 heures"
+            >
+              <rect x="40" y="40" width="140" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="110" y="70" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Intro</text>
+              <text x="110" y="92" text-anchor="middle" fill="#5a6b7c" font-size="12">~20 min</text>
+
+              <rect x="200" y="40" width="220" height="70" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+              <text x="310" y="70" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">5.1 Omnicanal</text>
+              <text x="310" y="92" text-anchor="middle" fill="#5a6b7c" font-size="12">~55 min</text>
+
+              <rect x="440" y="40" width="260" height="70" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+              <text x="570" y="70" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">5.2a Architecture</text>
+              <text x="570" y="92" text-anchor="middle" fill="#5a6b7c" font-size="12">~90 min</text>
+
+              <rect x="720" y="40" width="240" height="70" rx="8" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="840" y="70" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">5.2b Exigences</text>
+              <text x="840" y="92" text-anchor="middle" fill="#5a6b7c" font-size="12">~55 min</text>
+
+              <text x="500" y="140" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Pause intégrée · clôture dans le dernier bloc
+              </text>
+            </svg>
+          </div>
+          <nav
+            class="block-map"
+            id="block-map"
+            aria-label="Blocs du jour 5"
+            style="margin-top: 1rem"
+          ></nav>
         </section>
 
         <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>

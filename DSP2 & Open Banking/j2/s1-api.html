@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S1 — Architecture API | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s1-api">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a class="is-active" href="intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Séquence 1</span>
+                <span class="tag tag-accent">50 min</span>
+              </div>
+              <p class="day-kicker">Les briques exposées</p>
+              <h1>Architecture API</h1>
+              <p class="lead">
+                Une API Open Banking n’est pas un seul service&nbsp;: c’est un
+                ensemble de types d’API spécialisés, exposés derrière des
+                composants qui en assurent l’accès, le contrôle et la
+                traçabilité.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                L’application de Léa n’utilise pas «&nbsp;une API&nbsp;»&nbsp;:
+                elle appelle une API de <strong>lecture de comptes</strong>.
+                Demain, si Léa paie un marchand par virement, elle utilisera une
+                API d’<strong>initiation de paiement</strong>. Ce ne sont pas les
+                mêmes services.
+              </p>
+            </div>
+
+            <!-- 1. TYPES D'API -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Types</p>
+              <h2 id="types">Les trois types d’API</h2>
+              <p class="intro">
+                La DSP2 définit trois familles de services qui correspondent à
+                trois types d’API. Chacune a un périmètre strict.
+              </p>
+
+              <div class="role-grid">
+                <article class="role-card aisp">
+                  <h3>Account Information API</h3>
+                  <p class="role-full">Lecture des comptes · AIS</p>
+                  <p class="role-desc">
+                    Expose soldes, opérations et détails de comptes à un AISP.
+                    <strong>Lecture seule</strong>&nbsp;: aucun mouvement de
+                    fonds n’est possible.
+                  </p>
+                  <details class="cours-note small">
+                    <summary>Cours — périmètre</summary>
+                    <div class="cours-note-body">
+                      <p>
+                        Endpoints typiques&nbsp;: liste des comptes, détail d’un
+                        compte, liste des transactions, solde. Accès conditionné
+                        par un consentement AIS et une SCA initiale.
+                      </p>
+                    </div>
+                  </details>
+                </article>
+
+                <article class="role-card pisp">
+                  <h3>Payment Initiation API</h3>
+                  <p class="role-full">Initiation de paiement · PIS</p>
+                  <p class="role-desc">
+                    Permet à un PISP de <strong>déclencher un virement</strong>
+                    au nom du client, sans jamais détenir les fonds.
+                  </p>
+                  <details class="cours-note small">
+                    <summary>Cours — périmètre</summary>
+                    <div class="cours-note-body">
+                      <p>
+                        Endpoints&nbsp;: création d’une demande de paiement,
+                        statut du paiement. Chaque paiement est authentifié par
+                        une SCA&nbsp;; le montant et le bénéficiaire ne peuvent
+                        plus être modifiés après la SCA.
+                      </p>
+                    </div>
+                  </details>
+                </article>
+
+                <article class="role-card">
+                  <h3>Confirmation of Funds API</h3>
+                  <p class="role-full">Vérification de fonds · CBPII</p>
+                  <p class="role-desc">
+                    Permet à un CBPII de savoir si des <strong>fonds sont
+                    disponibles</strong> sur un compte, sans exposer les soldes.
+                  </p>
+                  <details class="cours-note small">
+                    <summary>Cours — périmètre</summary>
+                    <div class="cours-note-body">
+                      <p>
+                        Réponse binaire&nbsp;: «&nbsp;fonds suffisants&nbsp;» ou
+                        non, pour un montant donné. Aucune donnée de solde ni
+                        d’opération n’est renvoyée.
+                      </p>
+                    </div>
+                  </details>
+                </article>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">API</th>
+                      <th scope="col">Service</th>
+                      <th scope="col">Lit les comptes</th>
+                      <th scope="col">Déplace des fonds</th>
+                      <th scope="col">Expose des soldes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Account Information</th><td>AIS</td><td>Oui</td><td>Non</td><td>Oui</td></tr>
+                    <tr><th scope="row">Payment Initiation</th><td>PIS</td><td>Non</td><td>Oui</td><td>Non</td></tr>
+                    <tr class="is-exergue"><th scope="row">Confirmation of Funds</th><td>CBPII</td><td>Non</td><td>Non</td><td>Non</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Une API, un usage</h3>
+                <p>
+                  Une banque peut exposer les trois types, mais un TPP n’accède
+                  qu’aux types couverts par son agrément. Un AISP n’obtient
+                  jamais le droit d’appeler l’API de paiement&nbsp;: la
+                  séparation est technique <em>et</em> réglementaire.
+                </p>
+              </div>
+            </section>
+
+            <!-- 2. COMPOSANTS -->
+            <section class="section">
+              <p class="section-label">Composants</p>
+              <h2 id="composants">Les composants qui exposent l’API</h2>
+              <p class="intro">
+                Derrière chaque type d’API, une même infrastructure. On retrouve
+                ici les couches du Jour 1, vues cette fois du côté de
+                l’exposition.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>De l’appel TPP au service métier</h3>
+                  <p>Les composants d’exposition de l’API</p>
+                </div>
+                <svg viewBox="0 0 1000 360" role="img" aria-label="Architecture d'exposition API">
+                  <defs>
+                    <marker id="ah-s1j2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="130" width="150" height="80" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="95" y="165" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">TPP</text>
+                    <text x="95" y="187" text-anchor="middle" fill="#5a6b7c" font-size="11">appel HTTPS</text>
+                  </g>
+                  <g>
+                    <rect x="210" y="110" width="170" height="120" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="295" y="145" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">API Gateway</text>
+                    <text x="295" y="168" text-anchor="middle" fill="#5a6b7c" font-size="10">TLS · mTLS</text>
+                    <text x="295" y="185" text-anchor="middle" fill="#5a6b7c" font-size="10">routage</text>
+                    <text x="295" y="202" text-anchor="middle" fill="#5a6b7c" font-size="10">rejet des abus</text>
+                  </g>
+                  <g>
+                    <rect x="420" y="110" width="170" height="120" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="505" y="145" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">API Management</text>
+                    <text x="505" y="168" text-anchor="middle" fill="#5a6b7c" font-size="10">quotas</text>
+                    <text x="505" y="185" text-anchor="middle" fill="#5a6b7c" font-size="10">throttling</text>
+                    <text x="505" y="202" text-anchor="middle" fill="#5a6b7c" font-size="10">versionnement</text>
+                  </g>
+                  <g>
+                    <rect x="630" y="110" width="170" height="120" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="715" y="145" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Services API</text>
+                    <text x="715" y="168" text-anchor="middle" fill="#5a6b7c" font-size="10">AIS · PIS · CBPII</text>
+                    <text x="715" y="185" text-anchor="middle" fill="#5a6b7c" font-size="10">contrôle consentement</text>
+                    <text x="715" y="202" text-anchor="middle" fill="#5a6b7c" font-size="10">validation métier</text>
+                  </g>
+                  <g>
+                    <rect x="840" y="130" width="140" height="80" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="910" y="165" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Core</text>
+                    <text x="910" y="187" text-anchor="middle" fill="#087a6a" font-size="11">banking</text>
+                  </g>
+
+                  <line x1="170" y1="170" x2="206" y2="170" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s1j2)"/>
+                  <line x1="380" y1="170" x2="416" y2="170" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s1j2)"/>
+                  <line x1="590" y1="170" x2="626" y2="170" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s1j2)"/>
+                  <line x1="800" y1="170" x2="836" y2="170" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s1j2)"/>
+
+                  <rect x="210" y="270" width="590" height="60" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="505" y="295" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Logs &amp; traçabilité</text>
+                  <text x="505" y="315" text-anchor="middle" fill="#5a6b7c" font-size="10">chaque appel : identifiant, TPP, endpoint, latence, résultat</text>
+                  <line x1="295" y1="230" x2="295" y2="266" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="505" y1="230" x2="505" y2="266" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="715" y1="230" x2="715" y2="266" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                </svg>
+              </div>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>API Gateway</strong>
+                    <p>
+                      Point d’entrée unique. Termine le chiffrement, vérifie le
+                      certificat du TPP (mTLS), route vers le bon service et
+                      rejette les appels malformés ou abusifs.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>API Management</strong>
+                    <p>
+                      Gère le catalogue d’API, les quotas par TPP, le
+                      <em>throttling</em> (limitation de débit) et le
+                      versionnement. C’est l’endroit où l’on décide qui a le droit
+                      d’appeler quoi, à quelle fréquence.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Services API métier</strong>
+                    <p>
+                      Implémentent réellement AIS, PIS, CBPII&nbsp;: vérification
+                      du consentement, contrôle du périmètre, validation des
+                      règles métier avant d’appeler le core banking.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">4</span>
+                  <div>
+                    <strong>Logs &amp; traçabilité</strong>
+                    <p>
+                      Chaque appel est journalisé&nbsp;: qui (TPP), quoi
+                      (endpoint), quand (horodatage), résultat (code), et combien
+                      de temps. Indispensable à l’audit, aux litiges et au
+                      monitoring.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Throttling&nbsp;: pourquoi c’est une exigence, pas une option</h3>
+                <p>
+                  Les RTS imposent des plafonds de consultation. Sans limitation
+                  de débit, un TPP mal codé peut saturer l’API et faire tomber,
+                  pour tous les autres, l’accès aux comptes. Le throttling protège
+                  la disponibilité du service — donc la qualité pour Léa.
+                </p>
+              </div>
+            </section>
+
+            <!-- 3. TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Mais qui a le droit d’appeler&nbsp;?</h2>
+                <p>
+                  On a les briques et les composants. Reste la question
+                  centrale&nbsp;: comment prouve-t-on qu’un appel vient bien d’un
+                  TPP agréé, au nom d’un client qui a consenti&nbsp;? C’est tout
+                  l’objet de l’authentification et de l’autorisation (S2).
+                </p>
+              </div>
+            </section>
+
+            <details class="cours-note">
+              <summary>Cours — récapitulatif du bloc</summary>
+              <div class="cours-note-body">
+                <ul>
+                  <li><strong>Trois types d’API</strong>&nbsp;: AIS (lecture), PIS (paiement), CBPII (vérification de fonds).</li>
+                  <li><strong>Composants</strong>&nbsp;: Gateway (entrée), API Management (quotas, throttling, versionnement), Services métier, Logs.</li>
+                  <li><strong>Principe</strong>&nbsp;: un seul type par agrément, séparation technique et réglementaire.</li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Points de sortie de S1</h3>
+              <ul>
+                <li>Je nomme les trois types d’API et leur périmètre.</li>
+                <li>Je distingue Gateway et API Management.</li>
+                <li>Je sais pourquoi le throttling est obligatoire.</li>
+                <li>Je comprends ce que doit contenir un log d’appel.</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Références</strong> — RTS EBA 2018/389 (interfaces dédiées,
+              limites de performance)&nbsp;; orientations EBA sur les interfaces
+              dédiées&nbsp;; Berlin Group NextGenPSD2 (structures AIS/PIS/CBPII).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 2</a> · S1 Architecture API
+      </div>
+    </footer>
+    <script src="../js/nav-j2.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Couverture du syllabus — Jour 3 | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="syllabus-coverage">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a class="is-active" href="intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Clôture</span>
+                <span class="tag tag-accent">Contrôle</span>
+              </div>
+              <p class="day-kicker">Traçabilité</p>
+              <h1>Couverture du syllabus</h1>
+              <p class="lead">
+                Chaque point du syllabus J3 (3.1 à 3.4) est rattaché à une
+                séquence. On ajoute aussi les notions complémentaires introduites
+                pour la pratique.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Bloc 3.1</p>
+              <h2>Principe du paiement par initiation</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Point du syllabus</th>
+                      <th scope="col">Où</th>
+                      <th scope="col">Statut</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Définition du paiement initié</th><td><a href="s1-principe.html#acteurs">S1 · Principe</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Acteurs&nbsp;: Client → PISP → Banque → Marchand</th><td><a href="s1-principe.html#acteurs">S1 · Acteurs</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Transfert compte à compte</th><td><a href="s1-principe.html#acteurs">S1 · Mécanique</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr class="is-exergue"><th scope="row">Alternative à la carte</th><td><a href="s1-principe.html#alternative">S1 · Positionnement</a></td><td class="cov-ok">Couvert</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="cov-note">
+                <strong>Complément ajouté&nbsp;:</strong> distinction PSP / PISP /
+                ASPSP, disjonction avec le modèle carte, limites du PISP
+                (irréversibilité, dépendance API).
+              </p>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Bloc 3.2</p>
+              <h2>Flux PISP détaillé</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Point du syllabus</th>
+                      <th scope="col">Où</th>
+                      <th scope="col">Statut</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">1. Consentement</th><td><a href="s2-flux.html#consentement">S2 · Étape 1</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">2. Redirection SCA</th><td><a href="s2-flux.html#redirection">S2 · Étape 2</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">3. Initiation du paiement</th><td><a href="s2-flux.html#initiation">S2 · Étape 3</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">4. Confirmation</th><td><a href="s2-flux.html#confirmation">S2 · Étape 4</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">5. Règlement</th><td><a href="s2-flux.html#reglement">S2 · Étape 5</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Comparaison PISP/carte/wallet</th><td><a href="s2-flux.html#comparaison">S2 · Comparaisons</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr class="is-exergue"><th scope="row">Diagramme de séquence</th><td><a href="s2-flux.html#sequence">S2 · Synthèse</a></td><td class="cov-ok">Couvert</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="cov-note">
+                <strong>Complément ajouté&nbsp;:</strong> les trois modèles de SCA
+                (redirection, intégration, découplée), idempotence, statuts PIS
+                (RCVD/PDNG/ACSC/RJCT/CANC), rails SCT vs SCT instantané.
+              </p>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Bloc 3.3</p>
+              <h2>Architecture SI PISP</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Point du syllabus</th>
+                      <th scope="col">Où</th>
+                      <th scope="col">Statut</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Frontend marchand</th><td><a href="s3-architecture.html#composants">S3 · Composants</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Backend PISP</th><td><a href="s3-architecture.html#composants">S3 · Composants</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">API bancaire</th><td><a href="s3-architecture.html#composants">S3 · Composants</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Core payment engine</th><td><a href="s3-architecture.html#composants">S3 · Composants</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Disponibilité</th><td><a href="s3-architecture.html#contraintes">S3 · Contraintes</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Latence</th><td><a href="s3-architecture.html#contraintes">S3 · Contraintes</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr class="is-exergue"><th scope="row">Gestion des rejets</th><td><a href="s3-architecture.html#contraintes">S3 · Contraintes</a></td><td class="cov-ok">Couvert</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="cov-note">
+                <strong>Complément ajouté&nbsp;:</strong> idempotence end-to-end,
+                réconciliation des flux, anti-fraude, sécurité by design,
+                disponibilité de l’API bancaire (circuit breaker, file, bascule).
+              </p>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Bloc 3.4</p>
+              <h2>Atelier de modélisation</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Point du syllabus</th>
+                      <th scope="col">Où</th>
+                      <th scope="col">Statut</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Modéliser le parcours de paiement</th><td><a href="s4-atelier.html#modele">S4 · Modèle</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Diagramme de séquence</th><td><a href="s4-atelier.html#modele">S4 · Modèle</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Rôle des acteurs</th><td><a href="s4-atelier.html#modele">S4 · Modèle</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr class="is-exergue"><th scope="row">Messages échangés</th><td><a href="s4-atelier.html#modele">S4 · Modèle</a></td><td class="cov-ok">Couvert</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="cov-note">
+                <strong>Complément ajouté&nbsp;:</strong> cas de rejet modélisé,
+                livraison sous réserve selon le rail, rejeu idempotent.
+              </p>
+            </section>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 3</a> · Couverture du syllabus
+      </div>
+    </footer>
+    <script src="../js/nav-j3.js"></script>
+    <script src="../js/present.js"></script>
+  </body>
+</html>

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S2 — La réponse | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s2-reponse">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a class="is-active" href="intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · Séquence 2</span>
+                <span class="tag tag-accent">55 min</span>
+              </div>
+              <p class="day-kicker">La directive et ses nouveaux acteurs</p>
+              <h1>La réponse</h1>
+              <p class="lead">
+                La DSP2 apporte une réponse au problème de Léa&nbsp;: un cadre
+                qui autorise l’accès aux comptes par des tiers, avec le
+                consentement du client — et qui fait entrer de nouveaux rôles
+                dans l’écosystème.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Léa ne change pas de banque. Elle veut toujours voir ses comptes
+                au même endroit — mais cette fois, <em>sans donner ses
+                identifiants</em>. La DSP2 est ce qui rend cela possible.
+              </p>
+            </div>
+
+            <!-- 1. LA DIRECTIVE -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Le texte</p>
+              <h2>La DSP2 en une définition</h2>
+              <div class="definition-full">
+                La <strong>directive (UE) 2015/2366</strong>, dite
+                <strong>DSP2</strong> (Revised Payment Services Directive),
+                adoptée le <strong>25 novembre 2015</strong>, remplace et étend
+                la DSP1. Elle impose aux banques une
+                <strong>interface dédiée</strong> aux tiers agréés, encadre
+                l’authentification forte et interdit l’accès par identifiants
+                partagés.
+              </div>
+              <p>
+                Transposée en droit français par l’
+                <strong>ordonnance n° 2017-1252 du 9 août 2017</strong>, elle est
+                entrée en application le <strong>13 janvier 2018</strong> pour
+                les nouveaux services, et les exigences d’authentification forte
+                ont pris leur forme opérationnelle le
+                <strong>14 septembre 2019</strong>.
+              </p>
+
+              <details class="cours-note">
+                <summary>Cours — repères chronologiques</summary>
+                <div class="cours-note-body">
+                  <div class="csm-table-wrap" style="margin:0.7rem 0 0">
+                    <table class="csm-table">
+                      <thead>
+                        <tr><th scope="col">Jalon</th><th scope="col">Date</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><th scope="row">Publication DSP2</th><td>25 nov. 2015</td></tr>
+                        <tr><th scope="row">Transposition FR</th><td>9 août 2017</td></tr>
+                        <tr><th scope="row">Entrée en application</th><td>13 janv. 2018</td></tr>
+                        <tr><th scope="row">RTS SCA</th><td>14 sept. 2019</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+            </section>
+
+            <!-- 2. LES NOUVEAUX ACTEURS VIA SCÉNARIO -->
+            <section class="section">
+              <p class="section-label">Scénario</p>
+              <h2 id="roles">Qui fait quoi&nbsp;? Suivons Léa, un samedi matin</h2>
+              <p class="intro">
+                Avant de nommer les rôles, regardons ce qui se passe quand Léa
+                utilise l’application. Chaque nouveau mot correspond à un rôle
+                qui agit dans le scénario.
+              </p>
+
+              <div class="scenario">
+                <div class="scenario-step">
+                  <span class="scenario-who lea">Léa</span>
+                  <p>
+                    ouvre l’application pour voir ses deux comptes au même
+                    endroit. Elle choisit sa banque et clique «&nbsp;connecter&nbsp;».
+                  </p>
+                </div>
+                <div class="scenario-step">
+                  <span class="scenario-who tpp">L’application</span>
+                  <p>
+                    demande à Léa l’autorisation de lire ses comptes — en
+                    précisant <em>quels</em> comptes et <em>pendant combien de
+                    temps</em>. Ce n’est plus un partage d’identifiants.
+                  </p>
+                </div>
+                <div class="scenario-step">
+                  <span class="scenario-who bank">La banque</span>
+                  <p>
+                    affiche elle-même l’écran de connexion. Léa s’authentifie
+                    <em>chez sa banque</em>, jamais chez l’application. La banque
+                    vérifie aussi que l’application est bien agréée.
+                  </p>
+                </div>
+                <div class="scenario-step">
+                  <span class="scenario-who lea">Léa</span>
+                  <p>
+                    valide l’accès en lecture pour 90 jours. Elle voit ses
+                    comptes. Elle peut, à tout moment, révoquer cet accès depuis
+                    sa banque.
+                  </p>
+                </div>
+              </div>
+
+              <p>
+                Ce scénario à quatre actes contient tous les rôles de la DSP2.
+                Nommons-les maintenant.
+              </p>
+
+              <figure class="fig-illus">
+                <svg viewBox="0 0 1000 340" role="img" aria-label="Carte radiale des acteurs DSP2, flux animé">
+                  <defs>
+                    <marker id="ah-rad" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
+                    </marker>
+                  </defs>
+                  <circle cx="500" cy="170" r="58" fill="#2f4858" stroke="#1a2b3c" stroke-width="3"/>
+                  <text x="500" y="164" text-anchor="middle" fill="#fff" font-family="Syne, sans-serif" font-size="15" font-weight="800">Client</text>
+                  <text x="500" y="184" text-anchor="middle" fill="#c9d6e2" font-size="11">(Léa)</text>
+                  <line x1="442" y1="170" x2="300" y2="170" stroke="#0d9f8a" stroke-width="2.5" class="stream" marker-end="url(#ah-rad)"/>
+                  <rect x="30" y="130" width="270" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="165" y="158" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="800">ASPSP</text>
+                  <text x="165" y="178" text-anchor="middle" fill="#1a2b3c" font-size="11">tient le compte</text>
+                  <text x="165" y="196" text-anchor="middle" fill="#5a6b7c" font-size="10">Banque Est</text>
+                  <line x1="558" y1="170" x2="700" y2="170" stroke="#6b4fa0" stroke-width="2.5" class="stream" marker-end="url(#ah-rad)"/>
+                  <rect x="700" y="130" width="270" height="80" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
+                  <text x="835" y="158" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="14" font-weight="800">TPP</text>
+                  <text x="835" y="178" text-anchor="middle" fill="#1a2b3c" font-size="11">accède au compte</text>
+                  <text x="835" y="196" text-anchor="middle" fill="#5a6b7c" font-size="10">avec consentement</text>
+                  <line x1="835" y1="210" x2="680" y2="270" stroke="#5a6b7c" stroke-width="1.6" marker-end="url(#ah-rad)"/>
+                  <line x1="835" y1="210" x2="835" y2="270" stroke="#5a6b7c" stroke-width="1.6" marker-end="url(#ah-rad)"/>
+                  <line x1="835" y1="210" x2="960" y2="270" stroke="#5a6b7c" stroke-width="1.6" marker-end="url(#ah-rad)"/>
+                  <rect x="620" y="272" width="120" height="44" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                  <text x="680" y="290" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">AISP</text>
+                  <text x="680" y="306" text-anchor="middle" fill="#5a6b7c" font-size="9">lit</text>
+                  <rect x="776" y="272" width="120" height="44" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="1.5"/>
+                  <text x="836" y="290" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">PISP</text>
+                  <text x="836" y="306" text-anchor="middle" fill="#5a6b7c" font-size="9">paie</text>
+                  <rect x="918" y="272" width="62" height="44" rx="8" fill="#fff" stroke="#087a6a" stroke-width="1.5"/>
+                  <text x="949" y="290" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">CBPII</text>
+                  <text x="949" y="306" text-anchor="middle" fill="#5a6b7c" font-size="8">fonds</text>
+                </svg>
+                <figcaption>Figure — le client au centre&nbsp;; l’ASPSP tient le compte, le TPP y accède. Les trois services TPP (AISP, PISP, CBPII) en sont les déclinaisons.</figcaption>
+              </figure>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Diagramme de séquence — le parcours de Léa</h3>
+                  <p>Les trois acteurs et les messages échangés</p>
+                </div>
+                <svg viewBox="0 0 1000 470" role="img" aria-label="Diagramme de séquence du parcours de Léa">
+                  <defs>
+                    <marker id="ah-s2a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#2f4858" />
+                    </marker>
+                    <marker id="ah-s2g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <g font-family="Syne, sans-serif" font-size="12" font-weight="700">
+                    <rect x="70" y="20" width="150" height="40" rx="6" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="145" y="45" text-anchor="middle" fill="#4b3480">TPP (application)</text>
+                    <rect x="400" y="20" width="200" height="40" rx="6" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="500" y="45" text-anchor="middle" fill="#1a2b3c">ASPSP (Banque Est)</text>
+                    <rect x="760" y="20" width="150" height="40" rx="6" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="835" y="45" text-anchor="middle" fill="#087a6a">Léa</text>
+                  </g>
+                  <line x1="145" y1="60" x2="145" y2="450" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
+                  <line x1="500" y1="60" x2="500" y2="450" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
+                  <line x1="835" y1="60" x2="835" y2="450" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+                  <line x1="835" y1="95" x2="152" y2="95" stroke="#6b4fa0" stroke-width="2" marker-end="url(#ah-s2a)"/>
+                  <text x="480" y="88" text-anchor="middle" fill="#4b3480" font-size="11">1 · Léa demande à connecter ses comptes</text>
+
+                  <line x1="145" y1="130" x2="493" y2="130" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-s2a)"/>
+                  <text x="320" y="123" text-anchor="middle" fill="#2f4858" font-size="11">2 · redirection + certificat (mTLS)</text>
+
+                  <line x1="500" y1="165" x2="828" y2="165" stroke="#0d9f8a" stroke-width="2.5" class="stream" marker-end="url(#ah-s2g)"/>
+                  <text x="665" y="158" text-anchor="middle" fill="#087a6a" font-size="11">3 · SCA sur l’écran de la banque</text>
+
+                  <line x1="835" y1="200" x2="508" y2="200" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-s2g)"/>
+                  <text x="665" y="193" text-anchor="middle" fill="#087a6a" font-size="11">4 · authentification réussie</text>
+
+                  <line x1="500" y1="235" x2="152" y2="235" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-s2a)"/>
+                  <text x="320" y="228" text-anchor="middle" fill="#2f4858" font-size="11">5 · code d’autorisation</text>
+
+                  <line x1="145" y1="270" x2="493" y2="270" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-s2a)"/>
+                  <text x="320" y="263" text-anchor="middle" fill="#2f4858" font-size="11">6 · échange du jeton (token)</text>
+
+                  <line x1="145" y1="305" x2="493" y2="305" stroke="#2f4858" stroke-width="2.5" class="stream" marker-end="url(#ah-s2a)"/>
+                  <text x="320" y="298" text-anchor="middle" fill="#2f4858" font-size="11">7 · lecture des comptes + soldes</text>
+
+                  <line x1="500" y1="340" x2="152" y2="340" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-s2a)"/>
+                  <text x="320" y="333" text-anchor="middle" fill="#2f4858" font-size="11">8 · données agrégées</text>
+
+                  <line x1="835" y1="375" x2="508" y2="375" stroke="#c45c26" stroke-width="2" marker-end="url(#ah-s2a)"/>
+                  <text x="665" y="368" text-anchor="middle" fill="#c45c26" font-size="11">9 · révocation possible à tout moment</text>
+                </svg>
+              </div>
+
+              <div class="role-grid">
+                <article class="role-card aspsp">
+                  <h3>ASPSP</h3>
+                  <p class="role-full">Account Servicing Payment Service Provider</p>
+                  <p class="role-desc">
+                    La banque qui <strong>tient le compte</strong>. Ici&nbsp;:
+                    Banque Est. Elle ouvre une interface aux tiers, gère les
+                    consentements et authentifie Léa.
+                  </p>
+                  <details class="cours-note small">
+                    <summary>Cours — obligations &amp; interdits</summary>
+                    <div class="cours-note-body">
+                      <p>
+                        <strong>Obligations</strong>&nbsp;: ouvrir une interface
+                        dédiée conforme (RTS)&nbsp;; garantir la disponibilité et
+                        la performance&nbsp;; authentifier l’accès aux comptes
+                        sans discriminer un TPP agréé&nbsp;; vérifier l’agrément
+                        des TPP (registre EBA).
+                      </p>
+                      <p>
+                        <strong>Interdits</strong>&nbsp;: exiger des TPP une
+                        autre voie d’accès que l’interface dédiée (hors dispositif
+                        de contingence)&nbsp;; imposer un contrat bilatéral comme
+                        condition d’accès&nbsp;; bloquer un TPP agréé sans motif
+                        objectif.
+                      </p>
+                    </div>
+                  </details>
+                </article>
+                <article class="role-card tpp">
+                  <h3>TPP</h3>
+                  <p class="role-full">Third Party Provider</p>
+                  <p class="role-desc">
+                    Le <strong>tiers agréé</strong> qui accède au compte au nom
+                    de Léa. Ici&nbsp;: l’application. Elle est autorisée, mais ne
+                    détient jamais l’argent ni les identifiants.
+                  </p>
+                  <details class="cours-note small">
+                    <summary>Cours — le statut PSP</summary>
+                    <div class="cours-note-body">
+                      <p>
+                        Un TPP est un <strong>prestataire de services de
+                        paiement (PSP)</strong> agréé par une autorité nationale
+                        (en France, l’ACPR). Sans agrément, aucun droit d’accès.
+                        L’agrément couvre un service précis&nbsp;: AIS, PIS ou
+                        CBPII.
+                      </p>
+                    </div>
+                  </details>
+                </article>
+                <article class="role-card aisp">
+                  <h3>AISP</h3>
+                  <p class="role-full">Account Information Service Provider</p>
+                  <p class="role-desc">
+                    Le TPP qui <strong>lit les comptes</strong>&nbsp;: soldes,
+                    opérations. Ici&nbsp;: c’est le service utilisé par Léa le
+                    samedi matin.
+                  </p>
+                  <details class="cours-note small">
+                    <summary>Cours — modèle d’affaires &amp; limites</summary>
+                    <div class="cours-note-body">
+                      <p>
+                        <strong>Modèle d’affaires</strong>&nbsp;: abonnement,
+                        freemium, données agrégées enrichies, scoring pour des
+                        partenaires (avec base légale RGPD).
+                      </p>
+                      <p>
+                        <strong>Ce qu’il ne peut pas faire</strong>&nbsp;:
+                        initier un paiement (c’est le PISP), modifier le compte,
+                        ni détenir les fonds. Il n’a qu’une vue en lecture.
+                      </p>
+                    </div>
+                  </details>
+                </article>
+                <article class="role-card pisp">
+                  <h3>PISP</h3>
+                  <p class="role-full">Payment Initiation Service Provider</p>
+                  <p class="role-desc">
+                    Le TPP qui <strong>déclenche un virement</strong> au nom du
+                    client, sans détenir les fonds. Même Léa, plus tard, quand
+                    elle paiera un marchand par virement.
+                  </p>
+                  <details class="cours-note small">
+                    <summary>Cours — non-détention des fonds</summary>
+                    <div class="cours-note-body">
+                      <p>
+                        <strong>La règle d’or</strong>&nbsp;: le PISP ne détient
+                        <em>jamais</em> les fonds du client, à aucun moment du
+                        flux. Il ne peut pas modifier le montant ni le
+                        bénéficiaire une fois la SCA effectuée. Il ne lit pas
+                        l’historique (ce n’est pas un AISP).
+                      </p>
+                      <p>
+                        <strong>Usages</strong>&nbsp;: paiement e-commerce par
+                        virement, paiement de facture, recharge de wallet.
+                      </p>
+                    </div>
+                  </details>
+                </article>
+              </div>
+
+              <details class="cours-note">
+                <summary>Cours — le quatrième service&nbsp;: CBPII</summary>
+                <div class="cours-note-body">
+                  <p>
+                    Le <strong>CBPII</strong> (Card-Based Payment Instrument
+                    Issuer) confirme à un émetteur de carte la
+                    <em>disponibilité des fonds</em> sur un compte, sans exposer
+                    les soldes. C’est le plus rare des services TPP&nbsp;: il
+                    <em>vérifie</em> des fonds, là où le PISP <em>déclenche</em>
+                    un paiement.
+                  </p>
+                  <div class="csm-table-wrap" style="margin:0.6rem 0 0">
+                    <table class="csm-table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Service</th>
+                          <th scope="col">Lit le compte</th>
+                          <th scope="col">Déclenche un paiement</th>
+                          <th scope="col">Vérifie des fonds</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th scope="row">AISP</th><td>Oui</td><td>Non</td><td>Non</td></tr>
+                        <tr><th scope="row">PISP</th><td>Non</td><td>Oui</td><td>Non</td></tr>
+                        <tr class="is-exergue"><th scope="row">CBPII</th><td>Non (soldes non exposés)</td><td>Non</td><td>Oui</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+
+              <div class="callout info">
+                <h3>Les deux mots à ne jamais confondre</h3>
+                <p>
+                  <strong>ASPSP</strong> = celui qui tient le compte et le sert.
+                  <strong>TPP</strong> = celui qui y accède avec l’autorisation de
+                  Léa. Tous les AISP, PISP et CBPII sont des TPP — mais l’ASPSP
+                  n’en est pas un.
+                </p>
+              </div>
+            </section>
+
+            <!-- 3. LES TROIS RELATIONS -->
+            <section class="section">
+              <p class="section-label">Relations</p>
+              <h2 id="relations">Trois relations structurantes</h2>
+              <p class="intro">
+                Le syllabus insiste sur trois relations. Dans le scénario de Léa,
+                elles sont toutes visibles.
+              </p>
+
+              <div class="relation-list">
+                <div class="relation-item">
+                  <span class="rel-tag">1</span>
+                  <div>
+                    <h3>Banque ↔ fintech</h3>
+                    <p>
+                      Banque Est et l’application ne sont pas concurrentes sur le
+                      compte, mais <strong>partenaires obligés</strong> par la
+                      directive. La banque doit laisser l’application agréée
+                      accéder au compte&nbsp;; l’application doit se conformer aux
+                      règles d’accès.
+                    </p>
+                  </div>
+                </div>
+                <div class="relation-item">
+                  <span class="rel-tag">2</span>
+                  <div>
+                    <h3>Banque ↔ API</h3>
+                    <p>
+                      La banque n’expose pas son SI, mais une
+                      <strong>interface dédiée</strong> (API) aux tiers. C’est ce
+                      canal qui remplace le «&nbsp;je passe par le site comme un
+                      humain&nbsp;» du screen scraping.
+                    </p>
+                  </div>
+                </div>
+                <div class="relation-item">
+                  <span class="rel-tag">3</span>
+                  <div>
+                    <h3>Client ↔ consentement</h3>
+                    <p>
+                      Léa n’autorise plus «&nbsp;un accès&nbsp;»&nbsp;: elle
+                      donne un <strong>consentement explicite</strong>, borné dans
+                      le temps et le périmètre, qu’elle peut révoquer. C’est le
+                      nouveau point de contrôle de toute la relation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- 4. LES TROIS OBJECTIFS -->
+            <section class="section">
+              <p class="section-label">Objectifs</p>
+              <h2>Ce que la DSP2 cherche à obtenir</h2>
+              <p class="intro">
+                Derrière les acteurs et les relations, la directive poursuit
+                trois objectifs. On peut les rattacher directement à l’histoire
+                de Léa.
+              </p>
+
+              <div class="objectif-list">
+                <article class="objectif" id="objectif-concurrence">
+                  <span class="obj-num">01</span>
+                  <h3>Stimuler la concurrence</h3>
+                  <p class="obj-lea">Pour Léa&nbsp;: elle peut enfin comparer ses deux banques dans une seule application.</p>
+                  <p>
+                    En rendant les comptes accessibles aux tiers agréés, la DSP2
+                    casse la rente du verrouillage. Des offreurs
+                    <strong>non bancaires</strong> peuvent se placer dans la
+                    relation client sans créer une banque.
+                  </p>
+                </article>
+                <article class="objectif" id="objectif-innovation">
+                  <span class="obj-num">02</span>
+                  <h3>Favoriser l’innovation</h3>
+                  <p class="obj-lea">Pour Léa&nbsp;: l’application peut proposer bien plus que «&nbsp;voir ses comptes&nbsp;».</p>
+                  <p>
+                    Des <strong>interfaces normalisées</strong> et des API
+                    dédiées permettent des services nouveaux&nbsp;: gestion
+                    budgétaire, trésorerie, scoring. On remplace
+                    l’automatisation d’écrans, fragile, par un socle stable.
+                  </p>
+                </article>
+                <article class="objectif" id="objectif-protection">
+                  <span class="obj-num">03</span>
+                  <h3>Protéger le consommateur</h3>
+                  <p class="obj-lea">Pour Léa&nbsp;: plus jamais de partage d’identifiants, et un accès révocable.</p>
+                  <p>
+                    L’authentification forte (<strong>SCA</strong>) devient la
+                    règle. Le client donne un consentement explicite, peut le
+                    révoquer, et les tiers sont
+                    <strong>agréés et supervisés</strong>.
+                  </p>
+                </article>
+              </div>
+
+              <figure class="fig-illus">
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Les trois objectifs de la DSP2 en pictogrammes">
+                  <!-- Concurrence -->
+                  <g>
+                    <rect x="30" y="20" width="300" height="160" rx="12" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <g transform="translate(150,72)">
+                      <line x1="-30" y1="0" x2="30" y2="0" stroke="#3d5a80" stroke-width="3"/>
+                      <polygon points="-30,0 -18,-8 -18,8" fill="#3d5a80"/>
+                      <polygon points="30,0 18,-8 18,8" fill="#3d5a80"/>
+                      <line x1="0" y1="-18" x2="0" y2="18" stroke="#3d5a80" stroke-width="2" stroke-dasharray="3 2"/>
+                    </g>
+                    <text x="180" y="118" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Concurrence</text>
+                    <text x="180" y="140" text-anchor="middle" fill="#5a6b7c" font-size="11">comparer, choisir</text>
+                    <text x="180" y="160" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="700">01</text>
+                  </g>
+                  <!-- Innovation -->
+                  <g>
+                    <rect x="350" y="20" width="300" height="160" rx="12" fill="#f7f9fb" stroke="#6b4fa0" stroke-width="2"/>
+                    <g transform="translate(500,70)">
+                      <path d="M-14,6 a16 16 0 1 1 28 0 a12 12 0 0 0 0 12 h-28 a12 12 0 0 0 0 -12 z" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
+                      <line x1="-8" y1="20" x2="8" y2="20" stroke="#6b4fa0" stroke-width="2.5"/>
+                      <line x1="-6" y1="26" x2="6" y2="26" stroke="#6b4fa0" stroke-width="2.5"/>
+                    </g>
+                    <text x="500" y="118" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Innovation</text>
+                    <text x="500" y="140" text-anchor="middle" fill="#5a6b7c" font-size="11">nouveaux services</text>
+                    <text x="500" y="160" text-anchor="middle" fill="#6b4fa0" font-size="10" font-weight="700">02</text>
+                  </g>
+                  <!-- Protection -->
+                  <g>
+                    <rect x="670" y="20" width="300" height="160" rx="12" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                    <g transform="translate(820,72)">
+                      <path d="M0,-22 L20,-14 v14 c0 14 -12 22 -20 26 c-8 -4 -20 -12 -20 -26 v-14 z" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                      <path d="M-8,0 L-2,6 L10,-6" fill="none" stroke="#087a6a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <text x="820" y="118" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Protection</text>
+                    <text x="820" y="140" text-anchor="middle" fill="#5a6b7c" font-size="11">SCA, consentement</text>
+                    <text x="820" y="160" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">03</text>
+                  </g>
+                </svg>
+                <figcaption>Figure — les trois objectifs de la DSP2&nbsp;: concurrence, innovation, protection du consommateur.</figcaption>
+              </figure>
+
+              <div class="callout warn">
+                <h3>Nuance à ne pas rater</h3>
+                <p>
+                  La DSP2 n’impose pas aux banques de donner gratuitement leurs
+                  données à n’importe qui. Elle impose de laisser
+                  <strong>un tiers agréé</strong> accéder aux comptes
+                  <strong>d’un client qui l’a autorisé</strong>. C’est une
+                  ouverture régulée, pas un libre-service.
+                </p>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Objectif</th>
+                      <th scope="col">Levier réglementaire</th>
+                      <th scope="col">Impact SI</th>
+                      <th scope="col">Indicateur d’échec</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Concurrence</th>
+                      <td>Ouverture des comptes aux TPP agréés</td>
+                      <td>APIs de comptes (AIS) et de paiement (PIS)</td>
+                      <td>APIs instables, contournées par screen scraping</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Innovation</th>
+                      <td>Interfaces dédiées, suppression du screen scraping</td>
+                      <td>API Gateway, portail développeur, sandbox</td>
+                      <td>Plus de 6 mois pour mettre en ligne un nouveau service</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Protection</th>
+                      <td>SCA, consentement, supervision</td>
+                      <td>IAM, consent management, orchestration SCA</td>
+                      <td>Fraude en hausse, consentements non révocables</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- 5. BANQUE PLATEFORME -->
+            <section class="section">
+              <p class="section-label">Modèle</p>
+              <h2 id="banque-plateforme">La banque plateforme</h2>
+              <p>
+                Si Banque Est ne fait que le minimum, elle «&nbsp;subit&nbsp;» la
+                DSP2. Si elle prend le virage, elle devient une
+                <strong>plateforme</strong>&nbsp;: elle expose ses capacités
+                (comptes, paiements, identité) à des partenaires, et reste au
+                centre du flux.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Trois états de la banque</h3>
+                  <p>Cliquez pour détailler chaque état</p>
+                </div>
+                <svg viewBox="0 0 1000 400" role="img" aria-label="Banque silo, banque API, banque plateforme">
+                  <g data-step="1">
+                    <rect x="40" y="25" width="280" height="95" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="180" y="62" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">1 · Banque silo</text>
+                    <text x="180" y="86" text-anchor="middle" fill="#5a6b7c" font-size="12">canaux propriétaires</text>
+                    <text x="180" y="104" text-anchor="middle" fill="#5a6b7c" font-size="12">aucun accès tiers</text>
+                  </g>
+                  <g data-step="2">
+                    <rect x="360" y="25" width="280" height="95" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="500" y="62" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">2 · Banque API</text>
+                    <text x="500" y="86" text-anchor="middle" fill="#5a6b7c" font-size="12">expose des services</text>
+                    <text x="500" y="104" text-anchor="middle" fill="#5a6b7c" font-size="12">côté réglementaire</text>
+                  </g>
+                  <g data-step="3">
+                    <rect x="680" y="25" width="280" height="95" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="820" y="62" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="15" font-weight="700">3 · Banque plateforme</text>
+                    <text x="820" y="86" text-anchor="middle" fill="#5a6b7c" font-size="12">écosystème de partenaires</text>
+                    <text x="820" y="104" text-anchor="middle" fill="#5a6b7c" font-size="12">valeur partagée</text>
+                  </g>
+                  <g class="step-panel" data-step="1">
+                    <rect x="40" y="150" width="920" height="220" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="70" y="188" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Banque silo — avant DSP2</text>
+                    <text x="70" y="222" fill="#1a2b3c" font-size="13">Léa accède à Banque Est via l’appli ou le site de sa banque uniquement.</text>
+                    <text x="70" y="250" fill="#1a2b3c" font-size="13">Aucun tiers admis dans le SI — toute intégration est un projet interne long et coûteux.</text>
+                    <text x="70" y="278" fill="#1a2b3c" font-size="13">Le compte est une forteresse&nbsp;: on protège le client… en l’enfermant.</text>
+                    <text x="70" y="316" fill="#087a6a" font-size="13" font-weight="700">Valeur : maîtrise totale — mais innovation lente et expérience cloisonnée.</text>
+                  </g>
+                  <g class="step-panel" data-step="2">
+                    <rect x="40" y="150" width="920" height="220" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="70" y="188" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="700">Banque API — le minimum DSP2</text>
+                    <text x="70" y="222" fill="#1a2b3c" font-size="13">La banque expose des APIs pour se conformer : comptes, soldes, initiations de paiement.</text>
+                    <text x="70" y="250" fill="#1a2b3c" font-size="13">L’objectif est la conformité réglementaire, pas encore la création de valeur.</text>
+                    <text x="70" y="278" fill="#1a2b3c" font-size="13">Les APIs sont souvent un habillage du core banking (silo exposé).</text>
+                    <text x="70" y="316" fill="#1e5f8a" font-size="13" font-weight="700">Valeur : conformité atteinte — mais APIs fragiles et peu attractives.</text>
+                  </g>
+                  <g class="step-panel" data-step="3">
+                    <rect x="40" y="150" width="920" height="220" rx="12" fill="#f1edfa" stroke="#6b4fa0" stroke-width="3"/>
+                    <text x="70" y="188" fill="#4b3480" font-family="Syne, sans-serif" font-size="16" font-weight="700">Banque plateforme — cible Open Banking</text>
+                    <text x="70" y="222" fill="#1a2b3c" font-size="13">La banque traite les APIs comme un produit : SLA, versionnement, documentation, sandbox, support.</text>
+                    <text x="70" y="250" fill="#1a2b3c" font-size="13">Elle ouvre ses capacités à des partenaires (fintechs, marchands, ERP) et monétise l’accès.</text>
+                    <text x="70" y="278" fill="#1a2b3c" font-size="13">Elle reste au centre du flux&nbsp;: c’est elle qui tient le compte et exécute.</text>
+                    <text x="70" y="316" fill="#4b3480" font-size="13" font-weight="700">Valeur : la banque devient fournisseur d’infrastructure, pas simple fournisseur de compte.</text>
+                  </g>
+                </svg>
+                <div class="seq-steps">
+                  <button type="button" class="seq-step is-active" data-step="1">
+                    <span class="n">1</span><span><strong>Silo</strong><p>Aucun accès tiers.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="2">
+                    <span class="n">2</span><span><strong>API</strong><p>Conformité minimale.</p></span>
+                  </button>
+                  <button type="button" class="seq-step" data-step="3">
+                    <span class="n">3</span><span><strong>Plateforme</strong><p>Écosystème de partenaires.</p></span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- 6. AUTORITÉS -->
+            <section class="section">
+              <p class="section-label">Gouvernance</p>
+              <h2 id="autorites">Qui fait appliquer la DSP2&nbsp;?</h2>
+              <p>
+                La directive n’est pas appliquée par une seule institution. Le
+                syllabus insiste sur le rôle des autorités européennes, en
+                particulier l’<strong>EBA</strong>.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Institution</th>
+                      <th scope="col">Rôle</th>
+                      <th scope="col">Production utile</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Commission européenne</th>
+                      <td>Propose et révise les directives</td>
+                      <td>Texte DSP2, travaux DSP3</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">EBA</th>
+                      <td>Normes techniques et orientations</td>
+                      <td>RTS SCA, registre central des PSP</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">ACPR (France)</th>
+                      <td>Agrément et supervision des PSP</td>
+                      <td>Agréments, registre national, contrôles</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout reg">
+                <h3>Ce que l’EBA fait concrètement</h3>
+                <p>
+                  L’EBA produit les <strong>RTS</strong> (exigences
+                  d’authentification forte), les <strong>orientations</strong>
+                  sur les interfaces, et le <strong>registre central</strong> qui
+                  permet à une banque de vérifier qu’un TPP est bien agréé — point
+                  crucial que l’on retrouvera au bloc 1.3.
+                </p>
+              </div>
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>RTS — normes techniques</h3>
+                  <p>
+                    Force obligatoire dès adoption&nbsp;: authentification
+                    forte, exemptions, communication sécurisée entre ASPSP et
+                    TPP. C’est le socle opérationnel de la DSP2.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>Orientations (guidelines)</h3>
+                  <p>
+                    Interprétations sur les obstacles à l’accès, les interfaces
+                    dédiées, les parcours de redirection. Non contraignantes en
+                    théorie, suivies en pratique.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Le registre central, un composant de sécurité</h3>
+                <p>
+                  Une architecture Open Banking sérieuse ne vérifie pas un TPP
+                  «&nbsp;à la main&nbsp;». Elle interroge le
+                  <strong>registre EBA</strong> (ou national) à chaque nouvel
+                  appairage, puis met le résultat en cache avec une durée de
+                  validité. C’est un mécanisme de sécurité à part entière, pas un
+                  détail administratif.
+                </p>
+              </div>
+            </section>
+
+            <!-- 7. TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Comment ça marche, concrètement&nbsp;?</h2>
+                <p>
+                  On sait <em>qui</em> agit et <em>pourquoi</em>. Reste le
+                  <em>comment</em>&nbsp;: la chaîne technique qui relie l’application
+                  de Léa au core banking de Banque Est, et la façon dont la
+                  banque protège chaque maillon. C’est l’objet de la S3.
+                </p>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Notes formateur — S2</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>
+                    <strong>Le scénario avant le vocabulaire.</strong> Faire vivre
+                    les quatre actes de Léa avant de nommer ASPSP/TPP/AISP/PISP.
+                    Le vocabulaire vient comme une étiquette.
+                  </li>
+                  <li>
+                    <strong>Le piège des rôles.</strong> Beaucoup confondent TPP et
+                    PISP. Rappeler&nbsp;: AISP, PISP, CBPII sont trois
+                    <em>services</em> d’un TPP.
+                  </li>
+                  <li>
+                    <strong>Relations.</strong> Le syllabus insiste sur les trois
+                    relations&nbsp;: les faire verbaliser par les étudiants à partir
+                    du scénario, pas en les dictant.
+                  </li>
+                  <li>
+                    <strong>Ne pas plonger dans la SCA ici.</strong> La protection
+                    est présentée comme un objectif&nbsp;; les mécanismes
+                    (OAuth2, mTLS, redirection) relèvent du J2 et du J3.
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Points de sortie de S2</h3>
+              <ul>
+                <li>Je peux raconter le scénario de Léa et nommer chaque rôle.</li>
+                <li>Je distingue ASPSP, TPP et les trois services TPP.</li>
+                <li>Je cite les trois relations et les trois objectifs.</li>
+                <li>Je sais ce que signifie «&nbsp;banque plateforme&nbsp;».</li>
+                <li>Je sais à quoi sert le registre EBA.</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Références</strong> — Directive (UE) 2015/2366, art. 4
+              (définitions), 66-67 (accès), 97-98 (authentification)&nbsp;;
+              ordonnance n° 2017-1252&nbsp;; RTS EBA 2018/389&nbsp;; orientations
+              EBA sur les interfaces&nbsp;; registre central EBA.
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a> · S2 La réponse
+      </div>
+    </footer>
+    <script src="../js/nav-j1.js"></script>
+    <script src="../js/fiche.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

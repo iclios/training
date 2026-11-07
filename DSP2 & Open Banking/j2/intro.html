@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Intro &amp; objectifs — Jour 2 | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="intro">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a class="is-active" href="intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Ouverture</span>
+                <span class="tag tag-accent">4 h</span>
+              </div>
+              <p class="day-kicker">Accueil</p>
+              <h1>Intro &amp; objectifs</h1>
+              <p class="lead">
+                Le Jour 1 a posé le pourquoi et le qui. Le Jour 2 passe au
+                comment technique&nbsp;: de quoi est faite une API bancaire, par
+                quels mécanismes un tiers est autorisé, et comment l’ensemble
+                reste sûr et conforme.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Samedi, 9 h 12. L’application de Léa prépare sa requête. Elle
+                doit <strong>prouver qui elle est</strong> (le TPP), obtenir une
+                <strong>autorisation</strong> (le consentement de Léa), puis
+                présenter un <strong>jeton</strong> à chaque appel. Le Jour 2
+                ouvre ce capot.
+              </p>
+            </div>
+
+            <!-- RAPPEL DU SIGLE -->
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Rappel</p>
+              <h2>Ce que l’on a fixé au Jour 1</h2>
+              <p>
+                <strong>DSP2</strong> = <strong>Deuxième Directive sur les
+                Services de Paiement</strong> (directive (UE) 2015/2366).
+                <strong>Open Banking</strong> = l’ouverture des données de compte
+                et des paiements à des tiers agréés, avec le consentement du
+                client. La DSP2 est la règle, l’Open Banking la pratique, et
+                l’<strong>API</strong> en est l’outil technique — celui que l’on
+                étudie aujourd’hui.
+              </p>
+
+              <div class="callout info">
+                <h3>Le fil conducteur du Jour 2</h3>
+                <p>
+                  Une API Open Banking protège trois choses en même temps&nbsp;:
+                  l’<strong>identité du tiers</strong>, l’<strong>autorisation
+                  du client</strong> et l’<strong>intégrité de chaque
+                  appel</strong>. Chaque bloc du jour correspond à l’une de ces
+                  protections.
+                </p>
+              </div>
+            </section>
+
+            <!-- APERÇU -->
+            <section class="section">
+              <p class="section-label">Aperçu</p>
+              <h2>Le parcours du Jour 2, en une image</h2>
+              <p class="intro">
+                Quatre séquences, du composant au cas concret. On part de la
+                brique API, on monte jusqu’aux mécanismes d’authentification,
+                puis aux exigences de sécurité, pour finir par une mise en
+                situation complète.
+              </p>
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>S1 — Architecture API</h3>
+                  <p>
+                    Les types d’API (AIS, PIS, CBPII) et les composants qui les
+                    exposent&nbsp;: Gateway, API Management, throttling, logs.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>S2 — Authentification &amp; autorisation</h3>
+                  <p>
+                    OAuth2, OpenID Connect, mTLS, JWT&nbsp;: qui prouve son
+                    identité, et comment l’accès aux données est-il borné&nbsp;?
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>S3 — Sécurité &amp; conformité</h3>
+                  <p>
+                    Exigences DSP2&nbsp;: SCA, exemptions, non-répudiation,
+                    horodatage. Et les risques&nbsp;: usurpation, attaques API,
+                    fuites.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>S4 — Cas pratique</h3>
+                  <p>
+                    Ouvrir une API à un TPP de bout en bout&nbsp;: schéma
+                    d’architecture, flux OAuth, points de contrôle de sécurité.
+                  </p>
+                </div>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Fil du Jour 2</h3>
+                  <p>Architecture → Authentification → Sécurité → Mise en œuvre</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Chaîne pédagogique du jour 2">
+                  <defs>
+                    <marker id="ah-j2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="50" width="220" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="130" y="80" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">2.1</text>
+                    <text x="130" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Architecture API</text>
+                    <text x="130" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">types · composants</text>
+                  </g>
+                  <line x1="248" y1="105" x2="278" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j2)"/>
+                  <g>
+                    <rect x="286" y="50" width="220" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="396" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">2.2</text>
+                    <text x="396" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Auth &amp; autorisation</text>
+                    <text x="396" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">OAuth2 · mTLS · JWT</text>
+                  </g>
+                  <line x1="514" y1="105" x2="544" y2="105" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-j2)"/>
+                  <g>
+                    <rect x="552" y="50" width="220" height="110" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="662" y="80" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">2.3</text>
+                    <text x="662" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Sécurité &amp; conformité</text>
+                    <text x="662" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">SCA · risques</text>
+                  </g>
+                  <line x1="780" y1="105" x2="810" y2="105" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-j2)"/>
+                  <g>
+                    <rect x="818" y="50" width="166" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="901" y="80" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700" letter-spacing="0.08em">2.4</text>
+                    <text x="901" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Cas pratique</text>
+                    <text x="901" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">mise en œuvre</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <!-- OBJECTIFS -->
+            <section class="section">
+              <p class="section-label">Objectifs pédagogiques</p>
+              <h2>À l’issue du Jour 2, l’étudiant sait…</h2>
+              <ul class="topic-list">
+                <li>
+                  <span>
+                    <strong>Distinguer</strong> les trois types d’API Open
+                    Banking — Account Information (AIS), Payment Initiation
+                    (PIS), Confirmation of Funds (CBPII) — et leurs composants
+                    (Gateway, API Management, throttling).
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Expliquer</strong> les mécanismes d’authentification
+                    et d’autorisation&nbsp;: OAuth2, OpenID Connect, mTLS, JWT,
+                    et la séparation entre identité du client, identité du TPP et
+                    autorisation d’accès.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Relier</strong> les exigences DSP2 de sécurité (SCA,
+                    exemptions, non-répudiation, horodatage) aux mécanismes
+                    techniques qui les mettent en œuvre.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Identifier</strong> les risques propres aux API
+                    (usurpation d’identité, attaques API, fuites de données) et
+                    les contre-mesures associées.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Concevoir</strong> l’ouverture sécurisée d’une API
+                    bancaire à un TPP&nbsp;: schéma d’architecture, flux OAuth et
+                    points de contrôle de sécurité.
+                  </span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- DÉROULÉ -->
+            <section class="section">
+              <p class="section-label">Organisation</p>
+              <h2>Déroulé des 4 heures</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Temps</th>
+                      <th scope="col">Bloc</th>
+                      <th scope="col">Modalité</th>
+                      <th scope="col">Livrable</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">0 h 00 – 0 h 10</th>
+                      <td>Intro &amp; objectifs</td>
+                      <td>Plénière</td>
+                      <td>Vision d’ensemble</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">0 h 10 – 1 h 00</th>
+                      <td>2.1 Architecture API</td>
+                      <td>Exposé + schéma</td>
+                      <td>Carte des types d’API</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1 h 00 – 1 h 55</th>
+                      <td>2.2 Authentification &amp; autorisation</td>
+                      <td>Exposé + démonstration</td>
+                      <td>Flux OAuth annoté</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1 h 55 – 2 h 05</th>
+                      <td>Pause</td>
+                      <td>—</td>
+                      <td>—</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2 h 05 – 2 h 55</th>
+                      <td>2.3 Sécurité &amp; conformité</td>
+                      <td>Exposé + discussion</td>
+                      <td>Tableau exigences / risques</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">2 h 55 – 4 h 00</th>
+                      <td>2.4 Cas pratique</td>
+                      <td>Travaux de groupe</td>
+                      <td>Schéma + flux + contrôles</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Ce qu’il faut avoir retenu du Jour 1</h3>
+                <p>
+                  Les rôles ASPSP / TPP, la chaîne Gateway → consentement → IAM →
+                  core banking, et le parcours de redirection. Ces acquis sont
+                  réutilisés en permanence&nbsp;: on ne les redéfinit plus, on les
+                  approfondit.
+                </p>
+              </div>
+            </section>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 2</a> · Intro &amp; objectifs
+      </div>
+    </footer>
+    <script src="../js/nav-j2.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

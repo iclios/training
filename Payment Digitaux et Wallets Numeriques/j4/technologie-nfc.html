@@ -343,9 +343,9 @@
                 </table>
               </div>
               <p class="intro" style="margin-top: 1rem">
-                «&nbsp;Passif&nbsp;» = rôle RF face au champ, pas «&nbsp;sans
-                batterie&nbsp;». En wallet, le téléphone a de l’énergie, mais
-                le <strong>POS reste l’Initiator</strong>.
+                «&nbsp;Passif&nbsp;» = <strong>rôle radio</strong> (répond au
+                champ du POS). En wallet aussi&nbsp;: le téléphone répond, le
+                <strong>POS reste l’Initiator</strong>.
               </p>
             </section>
 
@@ -354,7 +354,7 @@
               <h2>Type A / Type B</h2>
 
               <!-- TEMPS 1 -->
-              <p class="section-label" style="margin-top: 0.5rem">Temps 1</p>
+              <p class="section-label print-break-before" style="margin-top: 0.5rem">Temps 1</p>
               <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.75rem; font-size: 1.15rem">
                 Une norme, deux déclinaisons
               </h3>
@@ -403,7 +403,7 @@
                 Ce qui différencie A et B
               </h3>
               <p class="intro">
-                Différence <strong>radio</strong> seulement — pas Visa vs Mastercard.
+                Différence <strong>radio</strong> seulement (modulation du champ).
               </p>
               <p class="intro">
                 Le lecteur module le champ 13,56&nbsp;MHz&nbsp;:
@@ -526,8 +526,8 @@
                       <td colspan="2">
                         A = radio «&nbsp;tranchée&nbsp;» (lisible, mais
                         coupures) · B = radio «&nbsp;continue&nbsp;» (stable
-                        en énergie, mais signal plus fin) — ni A ni B
-                        interopérables entre eux
+                        en énergie, mais signal plus fin) — A et B ne
+                        s’entendent pas entre endpoints mono-type
                       </td>
                     </tr>
                   </tbody>
@@ -539,13 +539,13 @@
                   Type&nbsp;A quasi exclusif.
                 </li>
                 <li>
-                  <strong>POS certifié contactless</strong>&nbsp;: A
-                  <strong>et</strong> B (interop 14443) — filet pour les
-                  cartes B rares, pas le chemin courant.
+                  <strong>POS certifié contactless</strong>&nbsp;: dual
+                  <strong>A+B</strong> (interop 14443) — peut parler aux
+                  deux radios.
                 </li>
                 <li>
-                  <strong>Match</strong>&nbsp;: carte A ↔ POS A ·
-                  carte B ↔ POS B.
+                  <strong>Incompatibilité A↔B</strong>&nbsp;: seulement si
+                  <em>un</em> des deux côtés n’implémente qu’un seul type.
                 </li>
               </ul>
 
@@ -667,65 +667,77 @@
               </div>
               <p class="intro" style="margin-top: 1rem">
                 Pour le tap carte / wallet au POS, on raisonne
-                <strong>Type&nbsp;A</strong>. Le POS gère aussi B pour
-                l’interop 14443 (carte B rare),
+                <strong>Type&nbsp;A</strong>. Le POS est dual
+                <strong>A+B</strong> pour l’interop 14443 —
                 <strong>pas</strong> parce que B est le chemin principal du
                 paiement.
               </p>
 
-              <p class="section-label" style="margin-top: 2rem">Interop radio</p>
+              <p class="section-label" style="margin-top: 2rem">Interop radio vs métier</p>
               <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.75rem; font-size: 1.15rem">
-                Quand l’un est A et l’autre B
+                POS dual · et le cas mono-type
               </h3>
               <p class="intro">
-                A et B ne se comprennent <strong>pas</strong> au niveau radio.
-                Il faut le <strong>même type</strong> des deux côtés
-                (carte / wallet ↔ POS), sinon le tap échoue avant même l’EMV.
+                A↔B incompatible en radio
+                <strong>seulement si un côté est mono-type</strong>.
+                POS réel = <strong>A+B</strong>&nbsp;: une carte B peut
+                monter en radio, le paiement échoue souvent ensuite (pas d’EMV).
               </p>
 
               <div class="diagram" id="diagram-ab-match">
                 <div class="diagram-header">
-                  <h3>Carte / wallet × POS · même type ou échec</h3>
-                  <p>Quatre cas · une seule règle</p>
+                  <h3>Carte × POS · radio puis métier</h3>
+                  <p>Cas réel (POS A+B) · puis exception mono-type</p>
                 </div>
                 <svg
-                  viewBox="0 0 1000 300"
+                  viewBox="0 0 1000 420"
                   role="img"
-                  aria-label="Match Type A Type B carte et POS"
+                  aria-label="POS dual A plus B versus incompatibilite radio mono-type"
                 >
-                  <text x="320" y="28" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">POS Type A</text>
-                  <text x="740" y="28" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">POS Type B</text>
+                  <text x="500" y="28" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700" letter-spacing="0.06em">CAS REEL · POS CONTACTLESS = A + B</text>
 
-                  <text x="48" y="100" fill="#5a6b7c" font-size="12" font-weight="700">Carte</text>
-                  <text x="48" y="118" fill="#087a6a" font-size="14" font-weight="800">A</text>
+                  <!-- three cards under dual POS -->
+                  <rect x="40" y="48" width="290" height="130" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="185" y="78" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="800">Carte / wallet A</text>
+                  <text x="185" y="104" text-anchor="middle" fill="#0c1b2a" font-size="13" font-weight="700">Radio OK</text>
+                  <text x="185" y="128" text-anchor="middle" fill="#0d9f8a" font-size="13" font-weight="700">Paiement = chemin dominant</text>
+                  <text x="185" y="154" text-anchor="middle" fill="#5a6b7c" font-size="12">EMV CL sur Type A</text>
 
-                  <rect x="120" y="48" width="320" height="96" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                  <text x="280" y="88" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="20" font-weight="800">A ↔ A</text>
-                  <text x="280" y="118" text-anchor="middle" fill="#0d9f8a" font-size="14" font-weight="700">OK · chemin dominant</text>
+                  <rect x="355" y="48" width="290" height="130" rx="12" fill="#eef3f7" stroke="#1e5f8a" stroke-width="2.5"/>
+                  <text x="500" y="78" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="800">Carte B paiement</text>
+                  <text x="500" y="104" text-anchor="middle" fill="#0c1b2a" font-size="13" font-weight="700">Radio OK (POS dual)</text>
+                  <text x="500" y="128" text-anchor="middle" fill="#1e5f8a" font-size="13" font-weight="700">Paiement = niche / rare</text>
+                  <text x="500" y="154" text-anchor="middle" fill="#5a6b7c" font-size="12">EMV possible mais exception</text>
 
-                  <rect x="580" y="48" width="320" height="96" rx="12" fill="#f7f9fb" stroke="#c45c26" stroke-width="2.5"/>
-                  <text x="740" y="88" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="20" font-weight="800">A ↔ B</text>
-                  <text x="740" y="118" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">Échec · radios incompatibles</text>
+                  <rect x="670" y="48" width="290" height="130" rx="12" fill="#f7f9fb" stroke="#c45c26" stroke-width="2.5"/>
+                  <text x="815" y="78" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="16" font-weight="800">Carte B hors paiement</text>
+                  <text x="815" y="104" text-anchor="middle" fill="#0c1b2a" font-size="13" font-weight="700">Radio OK possible</text>
+                  <text x="815" y="128" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">Pas de paiement</text>
+                  <text x="815" y="154" text-anchor="middle" fill="#5a6b7c" font-size="12">~99% · acces / transport / badge</text>
 
-                  <text x="48" y="208" fill="#5a6b7c" font-size="12" font-weight="700">Carte</text>
-                  <text x="48" y="226" fill="#1e5f8a" font-size="14" font-weight="800">B</text>
+                  <text x="500" y="210" text-anchor="middle" fill="#5a6b7c" font-size="13">
+                    Echec paiement ≠ echec radio · souvent absence d'application EMV (AID)
+                  </text>
 
-                  <rect x="120" y="164" width="320" height="96" rx="12" fill="#f7f9fb" stroke="#c45c26" stroke-width="2.5"/>
-                  <text x="280" y="204" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="20" font-weight="800">B ↔ A</text>
-                  <text x="280" y="234" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">Échec · radios incompatibles</text>
+                  <!-- mono-type exception -->
+                  <text x="500" y="250" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700" letter-spacing="0.06em">EXCEPTION · UN COTE MONO-TYPE SEULEMENT</text>
 
-                  <rect x="580" y="164" width="320" height="96" rx="12" fill="#e7f6f3" stroke="#1e5f8a" stroke-width="2.5"/>
-                  <text x="740" y="204" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="20" font-weight="800">B ↔ B</text>
-                  <text x="740" y="234" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">OK · niche / certains marchés</text>
+                  <rect x="120" y="270" width="360" height="90" rx="12" fill="#f7f9fb" stroke="#c45c26" stroke-width="2.5"/>
+                  <text x="300" y="308" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="18" font-weight="800">A ↔ B-only</text>
+                  <text x="300" y="336" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Echec radio · avant EMV</text>
 
-                  <text x="500" y="288" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">
-                    POS CL = A+B (filet interop) · carte / wallet paiement = presque toujours A
+                  <rect x="520" y="270" width="360" height="90" rx="12" fill="#f7f9fb" stroke="#c45c26" stroke-width="2.5"/>
+                  <text x="700" y="308" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="18" font-weight="800">B ↔ A-only</text>
+                  <text x="700" y="336" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Echec radio · avant EMV</text>
+
+                  <text x="500" y="398" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">
+                    POS reel = A+B · incompatibilite A/B radio = cas mono-type seulement
                   </text>
                 </svg>
               </div>
             </section>
 
-            <section class="section">
+            <section class="section print-break-before">
               <p class="section-label">Modes NFC</p>
               <h2>Trois modes à connaître</h2>
               <p class="intro">
@@ -866,17 +878,15 @@
               </div>
 
               <!-- Card emulation — déroulement détaillé -->
-              <p class="section-label" style="margin-top: 2rem">Mode 3 · central J4</p>
+              <p class="section-label print-break-before" style="margin-top: 2rem">Mode 3 · central J4</p>
               <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.75rem; font-size: 1.15rem">
                 Card emulation · déroulement
               </h3>
               <p class="intro">
-                Face au POS, le déroulement est
-                <strong>le même qu’une carte sans contact</strong>
-                (champ → Type&nbsp;A → APDU EMV CL → AuthZ).
-                Ce qui change = le <strong>card emulation</strong>&nbsp;:
-                le téléphone <strong>joue le rôle de la carte</strong>
-                (SE / HCE + token), le POS ne voit pas un «&nbsp;app&nbsp;».
+                Même enchaînement qu’une carte CL
+                (champ → Type&nbsp;A → EMV → AuthZ).
+                Différence&nbsp;: le téléphone
+                <strong>émule la carte</strong> (SE / HCE + token).
               </p>
               <div class="diagram" id="diagram-mode-ce">
                 <div class="diagram-header">
@@ -1089,15 +1099,13 @@
               </p>
             </section>
 
-            <section class="section">
+            <section class="section print-break-before">
               <p class="section-label">Normes</p>
               <h2>NFC Forum vs ISO 14443</h2>
               <p class="intro">
-                Deux acteurs différents&nbsp;:
-                <strong>ISO/IEC 14443</strong> = tuyau radio carte ↔ lecteur ·
-                <strong>NFC Forum</strong> = comment un
-                <em>device</em> NFC (téléphone, tag…) utilise ce tuyau et
-                interopère. Le Forum <strong>n’est pas</strong> la spec monétique.
+                <strong>ISO 14443</strong> = tuyau radio ·
+                <strong>NFC Forum</strong> = usage device (téléphone, tag…)
+                sur ce tuyau — pas la spec monétique.
               </p>
 
               <div class="diagram" id="diagram-nfc-forum-scope">

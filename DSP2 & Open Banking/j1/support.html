@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>1.6 Ressources — Jour 1 | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="support">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a class="is-active" href="intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · Fondements</span>
+                <span class="tag tag-accent">1.6</span>
+              </div>
+              <p class="day-kicker">Textes, orientations, standards</p>
+              <h1>Ressources &amp; références</h1>
+              <p class="lead">
+                Les textes à connaître pour travailler sérieusement sur un
+                projet DSP2 / Open Banking, classés par nature.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Textes fondateurs</p>
+              <h2>Le socle réglementaire</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Texte</th>
+                      <th scope="col">Nature</th>
+                      <th scope="col">À retenir</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Directive 2007/64/CE (DSP1)</th>
+                      <td>Directive</td>
+                      <td>Marché unique des paiements, notion de PSP</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Directive (UE) 2015/2366 (DSP2)</th>
+                      <td>Directive</td>
+                      <td>Trois services TPP, SCA, accès aux comptes</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Ordonnance n° 2017-1252</th>
+                      <td>Transposition FR</td>
+                      <td>Intégration de la DSP2 en droit français</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Règlement délégué (UE) 2018/389 (RTS)</th>
+                      <td>Règlement</td>
+                      <td>SCA et communication sécurisée</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Proposition DSP3 / FIDA</th>
+                      <td>En cours</td>
+                      <td>Élargissement de l’accès aux données financières</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Orientations</p>
+              <h2>Documents EBA et ACPR</h2>
+              <ul class="topic-list">
+                <li>
+                  <span>
+                    <strong>Orientations EBA sur les interfaces dédiées</strong>
+                    — interprétation des obligations d’interface, contingence et
+                    parcours de redirection.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Orientations EBA sur la coopération et l’échange
+                    d’informations</strong> — modalités pratiques entre ASPSP et
+                    TPP.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Questions &amp; réponses EBA</strong> — précisions
+                    opérationnelles sur les points non tranchés.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Registre central EBA des PSP</strong> — source de
+                    vérité pour la vérification d’agrément.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>ACPR</strong> — agréments des EP/EME, registre
+                    national, contrôles et communiqués.
+                  </span>
+                </li>
+              </ul>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Standards techniques</p>
+              <h2>Spécifications d’API</h2>
+              <div class="split-2">
+                <div class="panel">
+                  <h3>Berlin Group</h3>
+                  <p>
+                    <strong>NextGenPSD2</strong>&nbsp;: framework REST JSON pour
+                    AIS, PIS, CBPII et consentements. Le plus utilisé en zone
+                    euro.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>OBIE / Open Banking</h3>
+                  <p>
+                    <strong>Open Banking Standards</strong>&nbsp;: référentiel
+                    britannique, très détaillé, avec tests de conformité
+                    obligatoires.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>À lire en priorité</h3>
+                <p>
+                  Pour un débutant&nbsp;: le résumé de la DSP2 (articles 4, 66,
+                  67, 97), puis les RTS (articles 30 à 36), puis la
+                  documentation NextGenPSD2. Cela couvre 80&nbsp;% de ce qu’un
+                  architecte doit savoir.
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Glossaire</p>
+              <h2>Les sigles du jour</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Sigle</th>
+                      <th scope="col">Signification</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">PSP</th><td>Payment Service Provider</td></tr>
+                    <tr><th scope="row">ASPSP</th><td>Account Servicing PSP (la banque)</td></tr>
+                    <tr><th scope="row">TPP</th><td>Third Party Provider</td></tr>
+                    <tr><th scope="row">AISP</th><td>Account Information Service Provider</td></tr>
+                    <tr><th scope="row">PISP</th><td>Payment Initiation Service Provider</td></tr>
+                    <tr><th scope="row">CBPII</th><td>Card-Based Payment Instrument Issuer</td></tr>
+                    <tr><th scope="row">SCA</th><td>Strong Customer Authentication</td></tr>
+                    <tr class="is-exergue"><th scope="row">RTS</th><td>Regulatory Technical Standards</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Usage de cette page</summary>
+              <div class="notes-body">
+                <p>
+                  Fiche de référence à distribuer en fin de journée. Elle sert
+                  de point d’entrée pour la préparation du Jour 2 (acteurs
+                  opérationnels, cas concrets) et évite que les participants
+                  notent les sigles à la volée.
+                </p>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Fin du Jour 1</h3>
+              <ul>
+                <li>Je sais où trouver les textes officiels.</li>
+                <li>Je distingue orientations et règlements.</li>
+                <li>Je connais les deux standards d’API principaux.</li>
+                <li>Je maîtrise les sigles du domaine.</li>
+              </ul>
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a> · 1.6 Ressources
+      </div>
+    </footer>
+    <script src="../js/nav-j1.js"></script>
+    <script src="../js/fiche.js"></script>
+    <script src="../js/present.js"></script>
+  </body>
+</html>

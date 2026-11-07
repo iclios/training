@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S1 — Principe du paiement initié | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s1-principe">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a class="is-active" href="intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Séquence 1</span>
+                <span class="tag tag-accent">45 min</span>
+              </div>
+              <p class="day-kicker">Qu’est-ce qu’un paiement initié&nbsp;?</p>
+              <h1>Principe du paiement initié</h1>
+              <p class="lead">
+                Avant de plonger dans les flux et l’architecture, il faut
+                comprendre <em>ce qu’est</em> un paiement initié par un tiers,
+                en quoi il diffère d’un paiement par carte, et pourquoi il
+                existe.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Léa a trop souvent vu sa carte refusée pour des plafonds atteints
+                ou des authentifications ratées. Pour ce paiement, le marchand lui
+                propose une autre voie&nbsp;: <strong>un virement direct depuis son
+                compte</strong>, validé dans l’application de sa banque. Pas de
+                numéro de carte à saisir.
+              </p>
+            </div>
+
+            <!-- DÉFINITION -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Définition</p>
+              <h2>Le paiement par initiation, mot à mot</h2>
+
+              <div class="definition-full">
+                <strong>Paiement par initiation</strong> (en anglais
+                <em>Payment Initiation</em>)&nbsp;: un paiement dans lequel un
+                <strong>tiers agréé (le PISP)</strong> déclenche, <strong>au nom et
+                pour le compte du client</strong>, un <strong>virement d’un compte
+                de paiement vers un bénéficiaire</strong>, sur ordre du client,
+                avec l’intervention authentifiée de la banque qui tient le compte.
+              </div>
+
+              <p>
+                Trois mots de la définition portent tout le sens&nbsp;:
+              </p>
+
+              <div class="split-3">
+                <div class="panel">
+                  <h3>«&nbsp;Au nom du client&nbsp;»</h3>
+                  <p>
+                    Le PISP <strong>n’agit jamais pour lui-même</strong>&nbsp;: il
+                    exécute la volonté de Léa. Il ne détient jamais les fonds, ne
+                    décide pas seul, ne peut pas modifier l’ordre une fois validé.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>«&nbsp;Virement&nbsp;»</h3>
+                  <p>
+                    Ce n’est <strong>pas un paiement carte</strong>&nbsp;: les
+                    fonds quittent un compte à vue par un virement (SCT, SCT inst).
+                    On reste dans le monde des <em>virements</em>, pas de la
+                    monétique.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>«&nbsp;Sur ordre du client&nbsp;»</h3>
+                  <p>
+                    L’<strong>authentification forte du client</strong> est la
+                    contrepartie. Le PISP déclenche, la banque authentifie, le
+                    client valide. Sans SCA, pas d’initiation valide.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Le PISP et la carte&nbsp;: deux mondes</h3>
+                <p>
+                  Un paiement carte passe par un <strong>réseau de cartes</strong>
+                  (Visa, Mastercard) avec autorisation, clearing et settlement. Un
+                  paiement PISP passe par un <strong>système de virements</strong>
+                  (SEPA&nbsp;: SCT et SCT instantané). C’est la première distinction
+                  à fixer&nbsp;: le PISP est un canal de paiement de compte à compte,
+                  pas un substitut technique à la carte sur le même rail.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRANSFERT COMPTE À COMPTE -->
+            <section class="section">
+              <p class="section-label">Mécanique</p>
+              <h2>Un virement, trois acteurs additionnels</h2>
+              <p class="intro">
+                Un virement «&nbsp;classique&nbsp;» est déjà un transfert compte à
+                compte. Ce que le PISP ajoute, c’est la capacité de le déclencher
+                <em>depuis le site du marchand</em>, sans que Léa quitte son
+                parcours d’achat pour aller faire un virement manuel.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Acteur</th>
+                      <th scope="col">Rôle dans un virement manuel</th>
+                      <th scope="col">Rôle avec un PISP</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Client (Léa)</th><td>Saisit le virement dans son appli bancaire</td><td>Clique «&nbsp;payer&nbsp;» chez le marchand, valide la SCA</td></tr>
+                    <tr><th scope="row">Banque (ASPSP)</th><td>Reçoit l’ordre de Léa</td><td>Authentifie Léa, exécute le virement ordonné par le PISP</td></tr>
+                    <tr><th scope="row">Bénéficiaire (marchand)</th><td>Attend un virement sans lien direct</td><td>Reçoit un virement rattaché à une commande</td></tr>
+                    <tr class="is-exergue"><th scope="row">PISP</th><td>N’existe pas</td><td>Déclenche l’ordre au nom de Léa, sans toucher aux fonds</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="key-idea">
+                <p class="label">Idée directrice</p>
+                <p>
+                  Le PISP ne crée pas d’argent, ne détient pas d’argent, ne
+                  transporte pas d’argent. Il crée un <em>ordre de virement
+                  authentifié</em> que la banque du payeur exécute.
+                </p>
+              </div>
+
+              <div class="callout warn">
+                <h3>Ne pas confondre PISP, PSP et ASPSP</h3>
+                <p>
+                  Le <strong>PISP</strong> est un <em>type</em> de PSP (comme
+                  l’AISP et le CBPII). L’<strong>ASPSP</strong> est la banque qui
+                  tient le compte. Un établissement peut cumuler plusieurs
+                  agréments, mais chaque service qu’il rend relève d’un rôle
+                  précis. Cette clarté est la clé de tous les audits.
+                </p>
+              </div>
+            </section>
+
+            <!-- ACTEURS : CLIENT -> PISP -> BANQUE -> MARCHAND -->
+            <section class="section">
+              <p class="section-label">Acteurs</p>
+              <h2 id="acteurs">Le quadruple&nbsp;: Client → PISP → Banque → Marchand</h2>
+              <p class="intro">
+                Le syllabus retient une chaîne à quatre&nbsp;: le client, le
+                PISP, la banque et le marchand. Chacun a un intérêt propre — et
+                c’est la divergence ou la convergence de ces intérêts qui
+                structure le modèle.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Chaîne des acteurs d’un paiement initié</h3>
+                  <p>Client → PISP → Banque → Marchand (et le retour)</p>
+                </div>
+                <svg viewBox="0 0 1000 300" role="img" aria-label="Chaîne des acteurs PISP">
+                  <defs>
+                    <marker id="ah-s1j3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                    <marker id="ah-s1j3b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#6b4fa0" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="90" width="200" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
+                    <text x="120" y="126" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="15" font-weight="700">Client</text>
+                    <text x="120" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">Léa</text>
+                    <text x="120" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">veut payer, vite et sûrement</text>
+                  </g>
+                  <line x1="224" y1="145" x2="270" y2="145" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-s1j3)"/>
+                  <text x="247" y="132" text-anchor="middle" fill="#087a6a" font-size="9">ordre</text>
+                  <g>
+                    <rect x="276" y="90" width="200" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="376" y="126" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">PISP</text>
+                    <text x="376" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">tiers initiateur</text>
+                    <text x="376" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">agrégé, jamais détenteur</text>
+                  </g>
+                  <line x1="480" y1="145" x2="526" y2="145" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-s1j3)"/>
+                  <text x="503" y="132" text-anchor="middle" fill="#087a6a" font-size="9">API PIS</text>
+                  <g>
+                    <rect x="532" y="90" width="200" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="632" y="126" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Banque</text>
+                    <text x="632" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">ASPSP</text>
+                    <text x="632" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">authentifie · exécute</text>
+                  </g>
+                  <line x1="736" y1="145" x2="782" y2="145" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-s1j3)"/>
+                  <text x="759" y="132" text-anchor="middle" fill="#087a6a" font-size="9">virement</text>
+                  <g>
+                    <rect x="788" y="90" width="192" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="884" y="126" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="15" font-weight="700">Marchand</text>
+                    <text x="884" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">bénéficiaire</text>
+                    <text x="884" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">livre la commande</text>
+                  </g>
+
+                  <path d="M 376 200 L 376 240 L 884 240 L 884 200" fill="none" stroke="#6b4fa0" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ah-s1j3b)"/>
+                  <text x="620" y="232" text-anchor="middle" fill="#6b4fa0" font-size="10">confirmation du statut de paiement (accusé)</text>
+                  <text x="500" y="278" text-anchor="middle" fill="#5a6b7c" font-size="11">La banque est le seul nœud qui touche réellement l’argent de Léa.</text>
+                </svg>
+              </div>
+
+              <div class="role-grid">
+                <article class="role-card tpp">
+                  <h3>Le client</h3>
+                  <p class="role-full">Payeur</p>
+                  <p class="role-desc">
+                    Donne un ordre de paiement, réalise la SCA chez sa banque. S’il
+                    ne valide pas, rien ne part. Il garde la main à chaque étape.
+                  </p>
+                </article>
+                <article class="role-card pisp">
+                  <h3>Le PISP</h3>
+                  <p class="role-full">Payment Initiation Service Provider</p>
+                  <p class="role-desc">
+                    Relie marchand et banque, prépare l’ordre, déclenche l’API de
+                    paiement, propose le parcours de SCA. <strong>Jamais
+                    détenteur</strong> des fonds.
+                  </p>
+                </article>
+                <article class="role-card aspsp">
+                  <h3>La banque</h3>
+                  <p class="role-full">ASPSP · tient le compte</p>
+                  <p class="role-desc">
+                    Authentifie le client, vérifie le compte et la provision,
+                    exécute le virement. Elle est responsable de la tenue de
+                    compte.
+                  </p>
+                </article>
+                <article class="role-card">
+                  <h3>Le marchand</h3>
+                  <p class="role-full">Bénéficiaire · commerçant</p>
+                  <p class="role-desc">
+                    Propose le bouton de paiement, reçoit le paiement sur son
+                    compte (directement ou via un compte de collecte), livre la
+                    commande selon le statut.
+                  </p>
+                </article>
+              </div>
+            </section>
+
+            <!-- ALTERNATIVE CARTE -->
+            <section class="section">
+              <p class="section-label">Positionnement</p>
+              <h2 id="alternative">Une alternative à la carte — pas un doublon</h2>
+              <p class="intro">
+                Le paiement initié n’a pas été conçu pour tuer la carte, mais pour
+                couvrir des cas où la carte est coûteuse, refusée ou inadaptée.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Cas d’usage</th>
+                      <th scope="col">Pourquoi le PISP est pertinent</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Plafond carte atteint</th><td>Le compte a de la provision&nbsp;: le virement passe là où la carte bloque</td></tr>
+                    <tr><th scope="row">Client sans carte</th><td>Non bancarisé en carte, mais titulaire d’un compte de paiement</td></tr>
+                    <tr><th scope="row">Panier très élevé</th><td>Pas de limite assimilable au plafond carte</td></tr>
+                    <tr><th scope="row">Marchand à faible marge</th><td>Le virement peut coûter moins cher que la commission carte</td></tr>
+                    <tr class="is-exergue"><th scope="row">Réduction du risque de fraude</th><td>La SCA a lieu chez la banque du payeur, dans son appli habituelle</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>Mais aussi&nbsp;: des limites réelles</h3>
+                <p>
+                  Le paiement initié <strong>n’est pas réversible</strong> comme
+                  un paiement carte contesté&nbsp;: la protection
+                  <em>chargeback</em> n’existe pas nativement. Il exige une SCA à
+                  chaque paiement, ce qui ajoute de la friction. Et il dépend de
+                  la disponibilité de l’API bancaire. Un marchand doit donc
+                  garder plusieurs moyens de paiement&nbsp;: le PISP complète, il
+                  ne remplace pas.
+                </p>
+              </div>
+
+              <details class="cours-note">
+                <summary>Cours — PISP vs carte&nbsp;: l’écart en profondeur</summary>
+                <div class="cours-note-body">
+                  <div class="csm-table-wrap" style="margin:0.7rem 0 0">
+                    <table class="csm-table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Critère</th>
+                          <th scope="col">Carte</th>
+                          <th scope="col">PISP</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th scope="row">Rail</th><td>Réseau carte (Visa/MC)</td><td>Virements SEPA (SCT / SCT inst)</td></tr>
+                        <tr><th scope="row">Porteur</th><td>Instrument («&nbsp;la carte&nbsp;»)</td><td>Compte de paiement (IBAN)</td></tr>
+                        <tr><th scope="row">Rails de traitement</th><td>Autorisation · clearing · settlement</td><td>Exécution · compensation · règlement SEPA</td></tr>
+                        <tr><th scope="row">Contestation</th><td>Chargeback / impayé</td><td>Recours SEPA, pas de chargeback «&nbsp;à la carte&nbsp;»</td></tr>
+                        <tr><th scope="row">Coût marchand</th><td>Commission interbancaire + réseau</td><td>Souvent plus faible (virement)</td></tr>
+                        <tr class="is-exergue"><th scope="row">Friction</th><td>Faible (enregistrement, tokenisation)</td><td>SCA par paiement&nbsp;: plus de friction</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>
+                    Cette comparaison annonce la question de la comparaison avec le
+                    <strong>wallet</strong> (S2)&nbsp;: le wallet est une
+                    <em>enveloppe</em> qui peut contenir une carte <em>ou</em>
+                    déclencher un paiement de compte. Le PISP est l’un des rails
+                    qu’un wallet peut utiliser.
+                  </p>
+                </div>
+              </details>
+            </section>
+
+            <!-- POURQUOI ÇA EXISTE -->
+            <section class="section">
+              <p class="section-label">Rationnel</p>
+              <h2>Pourquoi la DSP2 a-t-elle créé le PISP&nbsp;?</h2>
+              <p>
+                La DSP2 poursuit trois objectifs (vus au Jour 1&nbsp;: concurrence,
+                innovation, protection). Le PISP les incarne tous les trois&nbsp;:
+              </p>
+
+              <div class="objectif-list">
+                <div class="objectif">
+                  <span class="obj-num">01</span>
+                  <h3>Concurrence</h3>
+                  <p class="obj-lea">
+                    «&nbsp;Pourquoi devrais-je passer par un terminal carte ou
+                    une appli bancaire pour payer un marchand&nbsp;?&nbsp;»
+                  </p>
+                  <p>
+                    Le PISP ouvre un canal de paiement alternatif, en dehors des
+                    réseaux cartes, avec ses propres acteurs et sa propre
+                    concurrence.
+                  </p>
+                </div>
+                <div class="objectif">
+                  <span class="obj-num">02</span>
+                  <h3>Innovation</h3>
+                  <p class="obj-lea">
+                    «&nbsp;Payer en un clic depuis un site, sans saisir de
+                    carte&nbsp;: c’est nouveau&nbsp;?&nbsp;»
+                  </p>
+                  <p>
+                    Le PISP rend le virement utilisable dans un parcours
+                    e-commerce, ce qui ouvre des modèles (paiement par lien,
+                    paiement de facture, collecte).
+                  </p>
+                </div>
+                <div class="objectif">
+                  <span class="obj-num">03</span>
+                  <h3>Protection</h3>
+                  <p class="obj-lea">
+                    «&nbsp;Le marchand ne verra jamais mes identifiants ni ma
+                    carte.&nbsp;»
+                  </p>
+                  <p>
+                    Le client reste authentifié chez sa banque, dans son
+                    environnement habituel&nbsp;: le tiers n’accède jamais aux
+                    secrets d’authentification.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Maintenant, déroulons le flux</h2>
+                <p>
+                  On sait ce qu’est un paiement initié et qui y participe. La S2
+                  suit le paiement dans le temps, du consentement au règlement,
+                  et compare PISP, carte et wallet.
+                </p>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Notes formateur — S1</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>
+                    <strong>Faire émerger la définition</strong> des étudiants
+                    avant de la donner&nbsp;: «&nbsp;en quoi un PISP n’est-il pas une
+                    carte&nbsp;?&nbsp;»
+                  </li>
+                  <li>
+                    <strong>Insister sur «&nbsp;jamais détenteur&nbsp;»</strong>&nbsp;: c’est
+                    le point qui distingue un PISP d’un établissement de monnaie
+                    électronique ou d’un agrégateur qui détiendrait des fonds.
+                  </li>
+                  <li>
+                    <strong>Ne pas confondre PISP et virement instantané</strong>&nbsp;:
+                    un paiement PISP peut s’exécuter par SCT classique (J+1) ou par
+                    SCT inst. Le PISP est le <em>canal</em>, pas le <em>rail de
+                    règlement</em>.
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Points de sortie de S1</h3>
+              <ul>
+                <li>Je définis un paiement initié sans hésiter.</li>
+                <li>Je nomme les quatre acteurs et leur rôle.</li>
+                <li>Je distingue PISP, PSP et ASPSP.</li>
+                <li>Je sais pourquoi le PISP existe&nbsp;: coût, plafonds, client sans carte, SCA chez la banque.</li>
+                <li>Je connais les limites du PISP face à la carte.</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2, annexe I, point 7 (service
+              d’initiation de paiement)&nbsp;; article 4 §15&nbsp;; RTS EBA
+              2018/389 (SCA du PISP)&nbsp;; Berlin Group NextGenPSD2 (structures
+              PIS et consentements de paiement).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 3</a> · S1 Principe du paiement initié
+      </div>
+    </footer>
+    <script src="../js/nav-j3.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

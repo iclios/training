@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Exigences SI — Jour 5 | Paiements digitaux</title>
+    <title>Exigences SI &amp; conformité — Jour 5 | Paiements digitaux</title>
     <link rel="stylesheet" href="../css/styles.css?v=present6" />
   </head>
   <body data-bloc="exigences">
@@ -33,7 +33,7 @@
           <div class="fiche-meta">
             <span class="tag">Jour 5 · Omnicanal</span>
           </div>
-          <p class="day-kicker">5.2 · Exigences</p>
+          <p class="day-kicker">5.2b · Exigences &amp; conformité</p>
           <h1>Exigences SI transverses</h1>
         </div>
       </section>
@@ -41,216 +41,184 @@
       <div class="wrap">
         <section class="section" style="border-top: none; padding-top: 0">
           <p class="section-label">Définition monétique</p>
-          <h2>Qu’est-ce qu’une exigence SI de plateforme&nbsp;?</h2>
+          <h2>Qu’est-ce qu’une exigence SI omnicanale&nbsp;?</h2>
           <p class="definition-full">
-            Contrainte de <strong>conception et d’exploitation</strong> que la
-            plateforme doit tenir quel que soit le canal&nbsp;:
-            <strong>disponibilité</strong>, <strong>latence</strong>,
-            <strong>réconciliation</strong>, <strong>sécurité</strong>,
-            <strong>auditabilité</strong>, interopérabilité et gouvernance —
-            dès l’architecture, pas en patch.
+            Contrainte que la <strong>passerelle omnicanale</strong> doit tenir
+            <strong>quelle que soit la porte</strong> (in-store · e-com ·
+            mobile · in-app)&nbsp;: parce que les canaux partagent le
+            <strong>même cœur SI</strong>, pas quatre stacks.
           </p>
           <p class="intro" style="margin-top: 1.1rem">
-            Sans elles, les canaux s’empilent et la supervision se fragmente.
+            Six axes transverses&nbsp;; chaque exigence a un
+            <strong>critère mesurable</strong> et un
+            <strong>impact</strong> si elle est ratée. La traçabilité s’appuie
+            sur le <strong>payment_id</strong> et le cycle Auth formel.
           </p>
+          <div class="diagram" id="diagram-def-exi">
+            <div class="diagram-header">
+              <h3>Exigence = contrainte transversale</h3>
+              <p>1 cœur · 4 portes · mêmes critères</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 160"
+              role="img"
+              aria-label="Quatre portes sous les memes exigences SI"
+            >
+              <rect x="40" y="30" width="120" height="50" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+              <text x="100" y="60" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">In-store</text>
+              <rect x="180" y="30" width="120" height="50" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+              <text x="240" y="60" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">E-com</text>
+              <rect x="320" y="30" width="120" height="50" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+              <text x="380" y="60" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Mobile</text>
+              <rect x="460" y="30" width="120" height="50" rx="8" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="520" y="60" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">In-app</text>
+              <rect x="620" y="25" width="340" height="110" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="790" y="65" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">6 axes transverses</text>
+              <text x="790" y="90" text-anchor="middle" fill="#0d9f8a" font-size="12">dispo · latence · sécu · audit</text>
+              <text x="790" y="112" text-anchor="middle" fill="#5a6b7c" font-size="11">interop · scalabilité</text>
+            </svg>
+          </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="six-axes">
           <p class="section-label">Cartographie</p>
-          <h2>Familles d’exigences</h2>
+          <h2>Six axes d’exigences transverses</h2>
           <p class="intro">
-            Six axes à arbitrer en comité SI — liés aux rejets / timeouts de
-            J1.
+            Ordres de grandeur <strong>pédagogiques</strong> (à adapter marché /
+            scheme) — pas des SLA contractuels figés.
           </p>
 
           <div class="diagram" id="diagram-exigences">
             <div class="diagram-header">
-              <h3>Dispo · Latence · Réconciliation · Sécurité · Audit · Interop</h3>
-              <p>Exigences transverses · plateforme omnicanale</p>
+              <h3>Dispo · Latence · Sécu · Audit · Interop · Scale</h3>
+              <p>Exigences transverses · 4 portes · 1 SI</p>
             </div>
             <svg
               viewBox="0 0 1000 320"
               role="img"
-              aria-label="Six familles d exigences SI"
+              aria-label="Six axes d exigences SI omnicanales"
             >
               <g>
                 <rect x="30" y="40" width="300" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                <image href="../img/acteurs/acteur-psp.jpg" x="48" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="120" y="80" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Disponibilité</text>
-                <text x="120" y="105" fill="#5a6b7c" font-size="12">SLA · redondance · fallback</text>
+                <text x="180" y="78" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Disponibilité &amp; résilience</text>
+                <text x="180" y="105" text-anchor="middle" fill="#5a6b7c" font-size="12">cœur SI · SLA type 99,99&nbsp;%</text>
               </g>
               <g>
                 <rect x="350" y="40" width="300" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-device.jpg" x="368" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="440" y="80" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Latence</text>
-                <text x="440" y="105" fill="#5a6b7c" font-size="12">p95 / timeouts · hop-by-hop</text>
+                <text x="500" y="78" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Latence (p95)</text>
+                <text x="500" y="105" text-anchor="middle" fill="#5a6b7c" font-size="12">in-store / NFC · passerelle</text>
               </g>
               <g>
-                <rect x="670" y="40" width="300" height="100" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-scheme.jpg" x="688" y="58" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="760" y="80" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Réconciliation</text>
-                <text x="760" y="105" fill="#5a6b7c" font-size="12">journal · écarts · settlement</text>
+                <rect x="670" y="40" width="300" height="100" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                <text x="820" y="78" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Sécurité &amp; conformité</text>
+                <text x="820" y="105" text-anchor="middle" fill="#5a6b7c" font-size="12">HSM · vault · PCI DSS / PIN</text>
               </g>
               <g>
-                <rect x="30" y="170" width="300" height="100" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-banque.jpg" x="48" y="188" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="120" y="210" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Sécurité</text>
-                <text x="120" y="235" fill="#5a6b7c" font-size="12">PCI · token · crypto · accès</text>
+                <rect x="30" y="170" width="300" height="100" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <text x="180" y="208" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Auditabilité &amp; traçabilité</text>
+                <text x="180" y="235" text-anchor="middle" fill="#5a6b7c" font-size="12">journal · payment_id</text>
               </g>
               <g>
-                <rect x="350" y="170" width="300" height="100" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-commercant.jpg" x="368" y="188" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="440" y="210" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Auditabilité</text>
-                <text x="440" y="235" fill="#5a6b7c" font-size="12">traces · non-répudiation</text>
+                <rect x="350" y="170" width="300" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <text x="500" y="208" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Interopérabilité</text>
+                <text x="500" y="235" text-anchor="middle" fill="#5a6b7c" font-size="12">EMVCo · ISO 20022 · EMV QR</text>
               </g>
               <g>
-                <rect x="670" y="170" width="300" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-wallet.jpg" x="688" y="188" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="760" y="210" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Interop / scale</text>
-                <text x="760" y="235" fill="#5a6b7c" font-size="12">standards · capacité</text>
+                <rect x="670" y="170" width="300" height="100" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <text x="820" y="208" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Scalabilité</text>
+                <text x="820" y="235" text-anchor="middle" fill="#5a6b7c" font-size="12">pics multi-canaux</text>
               </g>
             </svg>
-            <div class="seq-steps" id="exi-steps">
-              <button type="button" class="seq-step is-active" data-step="1">
-                <span class="n">1</span>
-                <span>
-                  <strong>Runtime</strong>
-                  <p>Dispo + latence — sinon rejets techniques (J1 famille 3).</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="2">
-                <span class="n">2</span>
-                <span>
-                  <strong>Intégrité financière</strong>
-                  <p>Réconciliation &amp; audit — écarts post-transaction.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="3">
-                <span class="n">3</span>
-                <span>
-                  <strong>Confiance &amp; ouverture</strong>
-                  <p>Sécurité, interop, scalabilité pour de nouveaux moyens.</p>
-                </span>
-              </button>
-            </div>
           </div>
         </section>
 
-        <section class="section">
-          <p class="section-label">Panels</p>
-          <h2>Ce que le SI doit pouvoir dire</h2>
-          <div class="split-2">
-            <div class="panel ok">
-              <h3>Disponibilité &amp; latence</h3>
-              <ul>
-                <li>SLA par hop (gateway, scheme, host)</li>
-                <li>Politique timeout / retry / abort</li>
-                <li>Mode dégradé explicite (J1 offline dégradé)</li>
-              </ul>
-            </div>
-            <div class="panel">
-              <h3>Réconciliation</h3>
-              <ul>
-                <li>Auth ↔ présentation ↔ settlement</li>
-                <li>Écarts multi-canaux sur un journal</li>
-                <li>Cut-offs et calendriers connus</li>
-              </ul>
-            </div>
-          </div>
-          <div class="split-2" style="margin-top: 1rem">
-            <div class="panel">
-              <h3>Sécurité</h3>
-              <ul>
-                <li>Token / cryptogrammes (J3–J4)</li>
-                <li>PCI, clés, segmentation</li>
-                <li>Fraude en ligne de traitement</li>
-              </ul>
-            </div>
-            <div class="panel">
-              <h3>Auditabilité &amp; interop</h3>
-              <ul>
-                <li>Traces bout en bout (ID unique)</li>
-                <li>Standards QR / EMV / scheme</li>
-                <li>Contrats d’interface &amp; certification</li>
-              </ul>
-            </div>
-          </div>
-        </section>
+        <section class="section" id="criteres">
+          <p class="section-label">Évaluation</p>
+          <h2>Exigence → critère · impact si défaillance</h2>
+          <p class="intro">
+            Grille d’évaluation&nbsp;: ce qu’on mesure, ce qui casse si on rate
+            (ordres de grandeur pédagogiques).
+          </p>
 
-        <section class="section">
-          <p class="section-label">Rôle</p>
-          <h2>Pourquoi les traiter tôt&nbsp;?</h2>
-          <div class="split-2">
-            <div class="panel ok">
-              <h3>Avec exigences</h3>
-              <ul>
-                <li>Plateforme extensible</li>
-                <li>Runbooks alignés sur les familles de rejet</li>
-                <li>Comité SI défendable</li>
-              </ul>
-            </div>
-            <div class="panel ko">
-              <h3>Sans elles</h3>
-              <ul>
-                <li>Silos de données et de supervision</li>
-                <li>Timeouts « flous »</li>
-                <li>Réconciliation impossible multi-canaux</li>
-              </ul>
-            </div>
+          <div class="csm-table-wrap" style="margin-top: 1rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Exigence</th>
+                  <th scope="col">Critère mesurable</th>
+                  <th scope="col">Impact en cas de défaillance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Disponibilité &amp; résilience</th>
+                  <td>
+                    Cœur SI joignable pour toutes les portes&nbsp;; SLA type
+                    <strong>99,99&nbsp;%</strong> (ordre de grandeur pédagogique)
+                  </td>
+                  <td>
+                    Rejet technique <strong>simultané</strong> sur tous les
+                    canaux · file · canal mort
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Latence (p95)</th>
+                  <td>
+                    p95 passerelle <strong>&lt;&nbsp;500&nbsp;ms</strong> pour
+                    in-store / NFC&nbsp;; AuthZ bout-en-bout suivie séparément
+                  </td>
+                  <td>Timeout · abandon UX · file caisse / tap raté</td>
+                </tr>
+                <tr>
+                  <th scope="row">Sécurité &amp; conformité</th>
+                  <td>
+                    Chiffrement <strong>HSM</strong>&nbsp;; vault PAN isolé&nbsp;;
+                    <strong>PCI DSS</strong> + <strong>PCI PIN</strong>&nbsp;;
+                    pas de PAN en clair hors vault
+                  </td>
+                  <td>Non-conformité · fraude · suspension d’acceptation</td>
+                </tr>
+                <tr class="is-exergue">
+                  <th scope="row">Auditabilité &amp; traçabilité</th>
+                  <td>
+                    Journal <strong>immuable</strong>&nbsp;; chaque événement
+                    rattaché à un <strong>payment_id</strong> (1 id /
+                    intention)&nbsp;; AuthZ / Clear / Sett. rattachables
+                  </td>
+                  <td>Litige non rattachable · réconciliation manuelle · silos</td>
+                </tr>
+                <tr>
+                  <th scope="row">Interopérabilité</th>
+                  <td>
+                    Standards <strong>EMVCo</strong> ·
+                    <strong>ISO 20022</strong> (selon rail) ·
+                    <strong>EMV QR Specs</strong>
+                  </td>
+                  <td>Porte bloquée · intégration propriétaire · lock-in</td>
+                </tr>
+                <tr>
+                  <th scope="row">Scalabilité</th>
+                  <td>
+                    Capacité pic <strong>multi-canaux</strong> (ex.&nbsp;flash
+                    e-com + flux magasins) sans saturation du cœur
+                  </td>
+                  <td>Saturation · files · dégradation latence / dispo</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </section>
-
-        <section class="section">
-          <p class="section-label">Ancrage</p>
-          <h2>Cas pratiques</h2>
-          <div class="split-2">
-            <div class="panel ok">
-              <h3>Cas 1 — Pic Black Friday</h3>
-              <ul>
-                <li>Latence gateway vs scheme</li>
-                <li>Capacité et file d’attente</li>
-              </ul>
-            </div>
-            <div class="panel">
-              <h3>Cas 2 — Écart QR vs carte</h3>
-              <ul>
-                <li>Même montant, deux rails</li>
-                <li>Réconciliation sur ID unique</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <p class="section-label">Clarification</p>
-          <h2>Ce que ce n’est pas</h2>
-          <div class="not-list">
-            <div class="not-item">
-              <strong>≠ Checklist compliance seule</strong>
-              <p>
-                Les exigences sont aussi d’exploitation (dispo, latence,
-                réconciliation).
-              </p>
-            </div>
-            <div class="not-item">
-              <strong>≠ « On verra en prod »</strong>
-              <p>
-                Timeouts et modes dégradés se conçoivent avec l’architecture.
-              </p>
-            </div>
-            <div class="not-item">
-              <strong>≠ Remplacer la gouvernance</strong>
-              <p>
-                Qui certifie / arbitre / supervise = bloc Contrôle.
-              </p>
-            </div>
-          </div>
+          <p class="montage-example" style="margin-top: 0.85rem">
+            <strong>Repère</strong>&nbsp;: chaque exigence a un propriétaire
+            module (gateway · fraude · journal / vault…) — sinon non pilotable
+            en run.
+          </p>
         </section>
 
         <div class="sources-box">
-          <strong>Sources normes / specs</strong> — à affiner&nbsp;: PCI DSS,
-          politiques timeout processeur, guides réconciliation scheme, ISO
-          20022 / EMV selon rail.
+          <strong>Sources normes / specs</strong> — PCI DSS · PCI PIN ·
+          politiques timeout processeur / scheme · EMV Contactless / QR ·
+          EMV Payment Tokenisation · ISO 20022 (selon rail) · guides
+          réconciliation.
         </div>
 
         <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>

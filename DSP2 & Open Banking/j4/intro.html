@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Intro &amp; objectifs — Jour 4 | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="intro">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a class="is-active" href="intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 4 · Ouverture</span>
+                <span class="tag tag-accent">4 h</span>
+              </div>
+              <p class="day-kicker">Accueil</p>
+              <h1>Intro &amp; objectifs</h1>
+              <p class="lead">
+                Le Jour 3 a fait <em>écrire</em> de l’argent (le PISP). Le Jour 4
+                fait <em>lire</em> l’argent&nbsp;: le tiers agrège les comptes du
+                client, avec son consentement, pour en tirer un service — du
+                récapitulatif de budget au scoring de crédit.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Léa a deux comptes&nbsp;: Banque Est et une néobanque. Elle
+                installe <strong>MonBuddy</strong>, l’application de gestion de
+                budget. Cette fois, plus d’identifiants à saisir&nbsp;: elle
+                choisit ses banques, donne un consentement daté, et voit tous ses
+                soldes au même endroit. Ce que la DSP2 a rendu possible, contre
+                le <em>screen scraping</em> du Jour 1.
+              </p>
+            </div>
+
+            <!-- RAPPEL -->
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Rappel</p>
+              <h2>Là où l’on en est</h2>
+              <p>
+                Au Jour 1, on a posé les trois rôles de tiers&nbsp;: <strong>AISP</strong>
+                (lecture), <strong>PISP</strong> (initiation), <strong>CBPII</strong>
+                (confirmation de fonds). Au Jour 2, on a vu l’authentification
+                (mTLS, OAuth2) et le consentement. Au Jour 3, on a fait un
+                paiement (PISP). On attaque maintenant le rôle <em>le plus utilisé</em>
+                et le plus sous-estimé&nbsp;: la lecture de comptes.
+              </p>
+
+              <div class="callout info">
+                <h3>Pourquoi l’AIS est «&nbsp;la porte d’entrée&nbsp;»</h3>
+                <p>
+                  L’AIS ne déplace pas d’argent&nbsp;: une erreur lit simplement un
+                  mauvais solde. Mais c’est <strong>le service le plus répandu</strong>
+                  (budget, agrégation, scoring, onboarding, KYC) et le plus exposé
+                  à la donnée personnelle. C’est donc le terrain idéal pour parler de
+                  consentement, de minimisation et de gouvernance de la donnée&nbsp;—
+                  le <em>data banking</em>.
+                </p>
+              </div>
+            </section>
+
+            <!-- APERÇU -->
+            <section class="section">
+              <p class="section-label">Aperçu</p>
+              <h2>Le parcours du Jour 4, en une image</h2>
+              <p class="intro">
+                On part du principe de l’agrégation (lire plusieurs banques),
+                on suit le consentement AIS et son cycle de vie, on descend dans
+                l’architecture d’un agrégateur, puis on conçoit un service de
+                data banking en atelier.
+              </p>
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>S1 — Principe de l’agrégation</h3>
+                  <p>
+                    Qu’est-ce qu’un AISP&nbsp;? Lire un compte, agréger plusieurs
+                    banques, le tiers détenteur de données. AIS vs scraping.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>S2 — Flux AIS &amp; consentement</h3>
+                  <p>
+                    Création du consentement, SCA initiale, lecture des soldes et
+                    transactions, raffraîchissements, durée (90&nbsp;jours),
+                    révocation.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>S3 — Architecture SI AISP</h3>
+                  <p>
+                    Collecteurs multi-banques, normalisation, stockage, API
+                    exposée. Contraintes&nbsp;: volumétrie, fraîcheur, sécurité de
+                    la donnée.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>S4 — Atelier data banking</h3>
+                  <p>
+                    Concevoir un service fondé sur la donnée de compte&nbsp;:
+                    parcours, consentement, données lues, valeur produite.
+                  </p>
+                </div>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Fil du Jour 4</h3>
+                  <p>Principe → Consentement → Architecture → Data banking</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Chaîne pédagogique du jour 4">
+                  <defs>
+                    <marker id="ah-j4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="50" width="220" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="130" y="80" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">4.1</text>
+                    <text x="130" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Agrégation</text>
+                    <text x="130" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">lire plusieurs banques</text>
+                  </g>
+                  <line x1="248" y1="105" x2="278" y2="105" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-j4)"/>
+                  <g>
+                    <rect x="286" y="50" width="220" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="396" y="80" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">4.2</text>
+                    <text x="396" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Consentement</text>
+                    <text x="396" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">SCA · 90 jours · révocable</text>
+                  </g>
+                  <line x1="514" y1="105" x2="544" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j4)"/>
+                  <g>
+                    <rect x="552" y="50" width="220" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="662" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">4.3</text>
+                    <text x="662" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Architecture AISP</text>
+                    <text x="662" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">collecte · normalisation</text>
+                  </g>
+                  <line x1="780" y1="105" x2="810" y2="105" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-j4)"/>
+                  <g>
+                    <rect x="818" y="50" width="166" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="901" y="80" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700" letter-spacing="0.08em">4.4</text>
+                    <text x="901" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Data banking</text>
+                    <text x="901" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">service &amp; valeur</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <!-- OBJECTIFS -->
+            <section class="section">
+              <p class="section-label">Objectifs pédagogiques</p>
+              <h2>À l’issue du Jour 4, l’étudiant sait…</h2>
+              <ul class="topic-list">
+                <li>
+                  <span>
+                    <strong>Définir</strong> un service d’information sur les
+                    comptes (AIS)&nbsp;: la lecture de comptes du client par un
+                    tiers agréé, avec son consentement, sans les identifiants.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Expliquer</strong> l’agrégation multi-banques&nbsp;:
+                    pourquoi un tiers collecte plusieurs ASPSP et ce qu’il doit
+                    normaliser.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Décrire</strong> le cycle de vie d’un consentement
+                    AIS&nbsp;: création, SCA, lecture, fréquence, durée (90 jours),
+                    révocation.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Cartographier</strong> l’architecture SI d’un
+                    AISP&nbsp;: collecteurs, normalisation, stockage, API exposée,
+                    et leurs contraintes (volumétrie, fraîcheur, sécurité).
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Distinguer</strong> donnée brute et donnée enrichie&nbsp;:
+                    catégorisation, scoring, restituer de la valeur au client.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Concevoir</strong> un service de data banking dans le
+                    respect du consentement, de la minimisation et du RGPD.
+                  </span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- DÉROULÉ -->
+            <section class="section">
+              <p class="section-label">Organisation</p>
+              <h2>Déroulé des 4 heures</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Temps</th>
+                      <th scope="col">Bloc</th>
+                      <th scope="col">Modalité</th>
+                      <th scope="col">Livrable</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">0 h 00 – 0 h 10</th>
+                      <td>Intro &amp; objectifs</td>
+                      <td>Plénière</td>
+                      <td>Vision d’ensemble</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">0 h 10 – 0 h 55</th>
+                      <td>4.1 Principe de l’agrégation</td>
+                      <td>Exposé + discussion</td>
+                      <td>Carte des acteurs AIS</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">0 h 55 – 1 h 55</th>
+                      <td>4.2 Flux AIS &amp; consentement</td>
+                      <td>Exposé + schéma</td>
+                      <td>Cycle de vie du consentement</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1 h 55 – 2 h 05</th>
+                      <td>Pause</td>
+                      <td>—</td>
+                      <td>—</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2 h 05 – 2 h 55</th>
+                      <td>4.3 Architecture SI AISP</td>
+                      <td>Exposé + schéma</td>
+                      <td>Schéma des composants</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">2 h 55 – 4 h 00</th>
+                      <td>4.4 Atelier data banking</td>
+                      <td>Travaux de groupe</td>
+                      <td>Fiche de service</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Ce qu’il faut avoir retenu des jours précédents</h3>
+                <p>
+                  Les rôles ASPSP / AISP / PISP / CBPII, la chaîne Gateway →
+                  consentement → IAM → core, mTLS / OAuth2 / JWT, et la SCA. Le
+                  Jour 4 réutilise tout&nbsp;: l’AIS, c’est le même consentement et
+                  la même sécurité que le PISP, mais en <em>lecture seule</em>.
+                </p>
+              </div>
+            </section>
+
+            <!-- CURSUS -->
+            <section class="section">
+              <p class="section-label">Cursus</p>
+              <h2>Trajectoire des 5 jours</h2>
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Programme module</h3>
+                  <p>Fondements → API &amp; sécurité → PISP → AISP → synthèse</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Programme module sur 5 jours">
+                  <defs>
+                    <marker id="ah-prog4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="18" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="104" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="104" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J1</text>
+                    <text x="104" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Fondements</text>
+                    <text x="104" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">DSP2 · acteurs</text>
+                  </g>
+                  <line x1="198" y1="96" x2="218" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog4)"/>
+                  <g>
+                    <rect x="226" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="312" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="312" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J2</text>
+                    <text x="312" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">API &amp; sécurité</text>
+                    <text x="312" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">OAuth2 · SCA</text>
+                  </g>
+                  <line x1="406" y1="96" x2="426" y2="96" stroke="#c5d3df" stroke-width="2.5" marker-end="url(#ah-prog4)"/>
+                  <g>
+                    <rect x="434" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="520" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="520" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J3</text>
+                    <text x="520" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Paiement PISP</text>
+                    <text x="520" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">initiation · flux</text>
+                  </g>
+                  <line x1="614" y1="96" x2="634" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-prog4)"/>
+                  <g>
+                    <rect x="642" y="36" width="172" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="728" y="68" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.06em">AUJOURD’HUI</text>
+                    <text x="728" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="22" font-weight="700">J4</text>
+                    <text x="728" y="128" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Agrégation AISP</text>
+                    <text x="728" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">data banking</text>
+                  </g>
+                  <line x1="822" y1="96" x2="842" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog4)"/>
+                  <g>
+                    <rect x="850" y="36" width="132" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="916" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="916" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="20" font-weight="700">J5</text>
+                    <text x="916" y="128" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">Open Finance</text>
+                    <text x="916" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">synthèse</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 4</a> · Intro &amp; objectifs
+      </div>
+    </footer>
+    <script src="../js/nav-j4.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

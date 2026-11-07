@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Intro &amp; objectifs — Jour 3 | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="intro">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a class="is-active" href="intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Ouverture</span>
+                <span class="tag tag-accent">4 h</span>
+              </div>
+              <p class="day-kicker">Accueil</p>
+              <h1>Intro &amp; objectifs</h1>
+              <p class="lead">
+                Le Jour 1 a posé les fondements, le Jour 2 a démonté l’API et sa
+                sécurité. Le Jour 3 met tout en mouvement&nbsp;: le paiement
+                lui-même, celui qu’un tiers initie au nom du client, sans carte
+                bancaire.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Mardi, 20 h 40. Léa finalise une commande sur le site d’un
+                marchand. Le bouton ne dit plus «&nbsp;carte bancaire&nbsp;» mais
+                <strong>«&nbsp;Payer par virement&nbsp;»</strong>. Elle choisit
+                Banque Est, valide dans son application bancaire, et la commande
+                est payée. <strong>Aucune carte n’a été saisie.</strong> Le Jour 3
+                explique ce qui vient de se passer.
+              </p>
+            </div>
+
+            <!-- RAPPEL -->
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Rappel</p>
+              <h2>Là où l’on en est</h2>
+              <p>
+                Au Jour 1, on a défini trois rôles de tiers&nbsp;: l’<strong>AISP</strong>
+                (lecture des comptes), le <strong>PISP</strong> (initiation de
+                paiement) et le <strong>CBPII</strong> (confirmation de fonds).
+                Au Jour 2, on a vu comment un de ces tiers s’authentifie
+                (mTLS, OAuth2), obtient une autorisation (consentement) et
+                présente un jeton à chaque appel. On a étudié l’AIS, le cas le
+                plus simple.
+              </p>
+
+              <div class="callout info">
+                <h3>Pourquoi le PISP est «&nbsp;le plus délicat&nbsp;»</h3>
+                <p>
+                  L’AIS lit&nbsp;: une erreur affiche un mauvais solde. Le PISP
+                  <strong>écrit</strong>&nbsp;: une erreur déplace de l’argent.
+                  La conséquence change tout&nbsp;— la SCA est obligatoire à
+                  chaque paiement, l’idempotence devient critique, la
+                  réconciliation avec le règlement ne pardonne pas. C’est ce qui
+                  rend le PISP un excellent terrain d’architecture.
+                </p>
+              </div>
+            </section>
+
+            <!-- APERÇU -->
+            <section class="section">
+              <p class="section-label">Aperçu</p>
+              <h2>Le parcours du Jour 3, en une image</h2>
+              <p class="intro">
+                On part du principe économique (pourquoi un tel paiement
+                existe), on suit un flux complet du clic au règlement, on
+                descend dans le SI qui le rend possible, puis on modélise un
+                cas réel en atelier.
+              </p>
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>S1 — Principe du paiement initié</h3>
+                  <p>
+                    Qu’est-ce qu’un paiement initié par un tiers&nbsp;?
+                    Transfert compte à compte, alternative à la carte, acteurs
+                    Client → PISP → Banque → Marchand.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>S2 — Flux PISP détaillé</h3>
+                  <p>
+                    Cinq étapes&nbsp;: consentement, redirection SCA, initiation,
+                    confirmation, règlement. Et les comparaisons
+                    PISP vs carte, PISP vs wallet.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>S3 — Architecture SI PISP</h3>
+                  <p>
+                    Frontend marchand, backend PISP, API bancaire, core payment
+                    engine. Contraintes de disponibilité, latence, gestion des
+                    rejets.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>S4 — Atelier de modélisation</h3>
+                  <p>
+                    Modéliser un paiement e-commerce via PISP&nbsp;: diagramme de
+                    séquence, rôles des acteurs, messages échangés.
+                  </p>
+                </div>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Fil du Jour 3</h3>
+                  <p>Principe → Flux → Architecture → Modélisation</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Chaîne pédagogique du jour 3">
+                  <defs>
+                    <marker id="ah-j3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="50" width="220" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="130" y="80" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">3.1</text>
+                    <text x="130" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Principe</text>
+                    <text x="130" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">initié par un tiers</text>
+                  </g>
+                  <line x1="248" y1="105" x2="278" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j3)"/>
+                  <g>
+                    <rect x="286" y="50" width="220" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="396" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">3.2</text>
+                    <text x="396" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Flux PISP</text>
+                    <text x="396" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">consent · SCA · règlement</text>
+                  </g>
+                  <line x1="514" y1="105" x2="544" y2="105" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-j3)"/>
+                  <g>
+                    <rect x="552" y="50" width="220" height="110" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="662" y="80" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">3.3</text>
+                    <text x="662" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Architecture SI</text>
+                    <text x="662" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">frontend · engine</text>
+                  </g>
+                  <line x1="780" y1="105" x2="810" y2="105" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-j3)"/>
+                  <g>
+                    <rect x="818" y="50" width="166" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="901" y="80" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700" letter-spacing="0.08em">3.4</text>
+                    <text x="901" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Atelier</text>
+                    <text x="901" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">modélisation</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <!-- OBJECTIFS -->
+            <section class="section">
+              <p class="section-label">Objectifs pédagogiques</p>
+              <h2>À l’issue du Jour 3, l’étudiant sait…</h2>
+              <ul class="topic-list">
+                <li>
+                  <span>
+                    <strong>Définir</strong> un paiement par initiation&nbsp;: un
+                    transfert compte à compte déclenché par un tiers agréé, au
+                    nom et avec l’authentification du client, sans carte.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Décrire</strong> le flux PISP complet&nbsp;:
+                    consentement, redirection SCA, initiation, confirmation,
+                    règlement — et nommer les messages échangés à chaque étape.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Comparer</strong> PISP, carte bancaire et wallet&nbsp;:
+                    coût, garantie, sécurité, expérience, cas d’usage.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Cartographier</strong> l’architecture SI d’un
+                    PISP&nbsp;: frontend marchand, backend, API bancaire, core
+                    payment engine, et leurs contraintes (disponibilité, latence,
+                    rejets).
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Modéliser</strong> un paiement e-commerce en diagramme
+                    de séquence, avec les rôles et les messages exacts.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Identifier</strong> les notions critiques du PISP&nbsp;:
+                    idempotence, statut de paiement, gestion des rejets, anti-fraude,
+                    réconciliation.
+                  </span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- DÉROULÉ -->
+            <section class="section">
+              <p class="section-label">Organisation</p>
+              <h2>Déroulé des 4 heures</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Temps</th>
+                      <th scope="col">Bloc</th>
+                      <th scope="col">Modalité</th>
+                      <th scope="col">Livrable</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">0 h 00 – 0 h 10</th>
+                      <td>Intro &amp; objectifs</td>
+                      <td>Plénière</td>
+                      <td>Vision d’ensemble</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">0 h 10 – 0 h 55</th>
+                      <td>3.1 Principe du paiement initié</td>
+                      <td>Exposé + discussion</td>
+                      <td>Carte des acteurs</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">0 h 55 – 1 h 55</th>
+                      <td>3.2 Flux PISP détaillé</td>
+                      <td>Exposé + schéma animé</td>
+                      <td>Flux en 5 étapes</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1 h 55 – 2 h 05</th>
+                      <td>Pause</td>
+                      <td>—</td>
+                      <td>—</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2 h 05 – 2 h 55</th>
+                      <td>3.3 Architecture SI PISP</td>
+                      <td>Exposé + schéma</td>
+                      <td>Schéma des composants</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">2 h 55 – 4 h 00</th>
+                      <td>3.4 Atelier de modélisation</td>
+                      <td>Travaux de groupe</td>
+                      <td>Diagramme de séquence</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Ce qu’il faut avoir retenu des jours 1 et 2</h3>
+                <p>
+                  Les rôles ASPSP / TPP / PISP, la chaîne Gateway → consentement →
+                  IAM → core, le parcours de redirection, et les mécanismes
+                  OAuth2 / mTLS / SCA. Le PISP réutilise tout&nbsp;: on ne
+                  redéfinit plus, on applique à un paiement.
+                </p>
+              </div>
+            </section>
+
+            <!-- CURSUS -->
+            <section class="section">
+              <p class="section-label">Cursus</p>
+              <h2>Trajectoire des 5 jours</h2>
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Programme module</h3>
+                  <p>Fondements → API &amp; sécurité → PISP → AISP → synthèse</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Programme module sur 5 jours">
+                  <defs>
+                    <marker id="ah-prog3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="18" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="104" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="104" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J1</text>
+                    <text x="104" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Fondements</text>
+                    <text x="104" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">DSP2 · acteurs</text>
+                  </g>
+                  <line x1="198" y1="96" x2="218" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog3)"/>
+                  <g>
+                    <rect x="226" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="312" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="312" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J2</text>
+                    <text x="312" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">API &amp; sécurité</text>
+                    <text x="312" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">OAuth2 · SCA</text>
+                  </g>
+                  <line x1="406" y1="96" x2="426" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-prog3)"/>
+                  <g>
+                    <rect x="434" y="36" width="172" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="520" y="68" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.06em">AUJOURD’HUI</text>
+                    <text x="520" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="22" font-weight="700">J3</text>
+                    <text x="520" y="128" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Paiement PISP</text>
+                    <text x="520" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">initiation · flux</text>
+                  </g>
+                  <line x1="614" y1="96" x2="634" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog3)"/>
+                  <g>
+                    <rect x="642" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="728" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="728" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J4</text>
+                    <text x="728" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Agrégation AISP</text>
+                    <text x="728" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">data banking</text>
+                  </g>
+                  <line x1="822" y1="96" x2="842" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog3)"/>
+                  <g>
+                    <rect x="850" y="36" width="132" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="916" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="916" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="20" font-weight="700">J5</text>
+                    <text x="916" y="128" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">Open Finance</text>
+                    <text x="916" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">synthèse</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 3</a> · Intro &amp; objectifs
+      </div>
+    </footer>
+    <script src="../js/nav-j3.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

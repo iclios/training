@@ -511,6 +511,37 @@
     page-break-before: avoid !important;
   }
 
+  /* Bloc titre (label + h2/h3 + intro) : reste ensemble et suit le 1er contenu */
+  .support-doc .print-head {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .support-doc .print-head + *,
+  .support-doc .print-head + .diagram,
+  .support-doc .print-head + .csm-table-wrap,
+  .support-doc .print-head + .panel,
+  .support-doc .print-head + .montage-example {
+    break-before: avoid !important;
+    page-break-before: avoid !important;
+  }
+
+  /* Titre + 1er schéma : une unité ; saut de page si trop haut pour la fin de page */
+  .support-doc .print-keep-unit {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .support-doc .print-break-before,
+  .support-doc section.print-break-before,
+  .support-doc .section-label.print-break-before,
+  .support-doc .print-keep-unit.print-break-before {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
   .support-doc p,
   .support-doc li {
     orphans: 3;
@@ -873,9 +904,15 @@
 
   .support-doc .section:has(.diagram--tall) > .section-label,
   .support-doc .section:has(.diagram--tall) > h2,
-  .support-doc .section:has(.diagram--tall) > .intro {
+  .support-doc .section:has(.diagram--tall) > .intro,
+  .support-doc .section:has(.diagram--tall) > .print-head {
     break-after: avoid !important;
     page-break-after: avoid !important;
+  }
+
+  .support-doc .section:has(.diagram--tall) > .print-head + .diagram {
+    break-before: avoid !important;
+    page-break-before: avoid !important;
   }
 
   /* Quatre notions (Cash/Carte/Mobile/Wallet) : titre + grille ensemble */

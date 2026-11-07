@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S3 — Synthèse des quatre rôles | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s3-synthese">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a class="is-active" href="intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 5 · Séquence 3</span>
+                <span class="tag tag-accent">35 min</span>
+              </div>
+              <p class="day-kicker">Qui fait quoi, qui détient quoi</p>
+              <h1>Synthèse des quatre rôles</h1>
+              <p class="lead">
+                ASPSP, AISP, PISP, CBPII&nbsp;: quatre rôles, un même socle de
+                sécurité. Cette synthèse fixe une fois pour toutes ce qui les
+                distingue et comment ils coopèrent dans un parcours client.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Dans un même parcours, Léa peut&nbsp;: connecter ses comptes
+                (AISP), payer chez un marchand (PISP), et faire vérifier ses fonds
+                par un site (CBPII). Trois rôles tiers, un acteur pivot&nbsp;: la
+                banque (ASPSP), qui détient le compte et réalise toujours la SCA.
+              </p>
+            </div>
+
+            <!-- LES QUATRE ROLES -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Les rôles</p>
+              <h2 id="roles">Quatre rôles en un coup d’œil</h2>
+              <p class="intro">
+                Le socle est identique&nbsp;: consentement, SCA chez la banque,
+                API officielle. Ce qui change, c’est le <strong>pouvoir</strong>
+                du tiers.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Rôle</th>
+                      <th scope="col">Signification</th>
+                      <th scope="col">Pouvoir</th>
+                      <th scope="col">Impact d’erreur</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">ASPSP</th><td>Banque&nbsp;: détient le compte</td><td>Expose l’API, réalise la SCA</td><td>Refuse l’accès</td></tr>
+                    <tr><th scope="row">AISP</th><td>Information sur les comptes</td><td>Lit les comptes</td><td>Mauvais affichage</td></tr>
+                    <tr><th scope="row">PISP</th><td>Initiation de paiement</td><td>Initie un virement</td><td>Argent déplacé</td></tr>
+                    <tr class="is-exergue"><th scope="row">CBPII</th><td>Confirmation de disponibilité de fonds</td><td>Vérifie les fonds</td><td>Garantie mal interprétée</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Un seul ASPSP, trois rôles tiers</h3>
+                <p>
+                  La banque (ASPSP) est l’<strong>acteur pivot</strong>&nbsp;: elle
+                  détient le compte, expose l’API et réalise toujours la SCA. Les
+                  trois autres rôles — AISP, PISP, CBPII — sont des
+                  <strong>tiers</strong> qui accèdent via consentement. Un même
+                  établissement peut porter plusieurs rôles, mais chacun garde son
+                  périmètre.
+                </p>
+              </div>
+            </section>
+
+            <!-- TABLEAU COMPARE -->
+            <section class="section">
+              <p class="section-label">Comparaison</p>
+              <h2 id="compare">La grille de comparaison</h2>
+              <p>
+                La question à se poser face à un projet&nbsp;: «&nbsp;qu’est-ce que
+                le tiers peut <em>faire</em> avec ce consentement&nbsp;?&nbsp;»
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">AISP</th>
+                      <th scope="col">PISP</th>
+                      <th scope="col">CBPII</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Action</th><td>Lire</td><td>Écrire</td><td>Vérifier</td></tr>
+                    <tr><th scope="row">Mouvement d’argent</th><td>Non</td><td>Oui</td><td>Non</td></tr>
+                    <tr><th scope="row">Durée du consentement</th><td>Jusqu’à 90 j</td><td>Par paiement</td><td>Par demande</td></tr>
+                    <tr><th scope="row">SCA</th><td>Au consentement</td><td>À chaque paiement</td><td>À la demande</td></tr>
+                    <tr class="is-exergue"><th scope="row">Idempotence</th><td>Utile</td><td>Critique</td><td>Utile</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Les quatre rôles autour du compte</h3>
+                  <p>La banque au centre, les tiers en périphérie</p>
+                </div>
+                <svg viewBox="0 0 1000 360" role="img" aria-label="Les quatre rôles DSP2 autour du compte">
+                  <defs>
+                    <marker id="ah-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
+                    </marker>
+                  </defs>
+                  <circle cx="500" cy="180" r="80" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                  <text x="500" y="172" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="14" font-weight="700">ASPSP</text>
+                  <text x="500" y="194" text-anchor="middle" fill="#5a6b7c" font-size="11">Banque · compte</text>
+                  <text x="500" y="212" text-anchor="middle" fill="#5a6b7c" font-size="11">API · SCA</text>
+
+                  <g>
+                    <rect x="60" y="60" width="180" height="70" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="150" y="90" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">AISP</text>
+                    <text x="150" y="112" text-anchor="middle" fill="#5a6b7c" font-size="10">lit les comptes</text>
+                  </g>
+                  <g>
+                    <rect x="60" y="230" width="180" height="70" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="150" y="260" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">PISP</text>
+                    <text x="150" y="282" text-anchor="middle" fill="#5a6b7c" font-size="10">initie le virement</text>
+                  </g>
+                  <g>
+                    <rect x="760" y="60" width="180" height="70" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="850" y="90" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="13" font-weight="700">CBPII</text>
+                    <text x="850" y="112" text-anchor="middle" fill="#5a6b7c" font-size="10">vérifie les fonds</text>
+                  </g>
+                  <g>
+                    <rect x="760" y="230" width="180" height="70" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="850" y="260" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">Client</text>
+                    <text x="850" y="282" text-anchor="middle" fill="#5a6b7c" font-size="10">consent · SCA</text>
+                  </g>
+
+                  <line x1="240" y1="100" x2="430" y2="150" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-r)"/>
+                  <line x1="240" y1="265" x2="430" y2="215" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-r)"/>
+                  <line x1="760" y1="100" x2="575" y2="150" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-r)"/>
+                  <line x1="760" y1="265" x2="575" y2="215" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-r)"/>
+                </svg>
+              </div>
+            </section>
+
+            <!-- PARCOURS COMMUN -->
+            <section class="section">
+              <p class="section-label">Coopération</p>
+              <h2 id="parcours">Un parcours, plusieurs rôles</h2>
+              <p>
+                Les rôles ne vivent pas isolés. Dans un même parcours, ils
+                s’enchaînent, chacun avec son consentement et sa SCA.
+              </p>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>AISP — Léa branche ses comptes</strong>
+                    <p>
+                      Consentement récurrent, lecture des soldes et opérations.
+                      Une SCA initiale, puis rafraîchissements encadrés.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>PISP — Léa paie un marchand</strong>
+                    <p>
+                      Un nouveau consentement, une SCA pour ce paiement. Le PISP
+                      initie le virement&nbsp;: l’argent bouge.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>CBPII — un site vérifie les fonds</strong>
+                    <p>
+                      Un consentement de confirmation, une SCA. La banque répond
+                      oui/non sur la disponibilité, à un instant donné.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">4</span>
+                  <div>
+                    <strong>ASPSP — la banque, toujours pivot</strong>
+                    <p>
+                      Détient le compte, réalise chaque SCA, tient la preuve.
+                      Aucun tiers ne voit les identifiants.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Ne pas cumuler les pouvoirs dans un même consentement</h3>
+                <p>
+                  Un tiers qui porterait AISP + PISP lirait <em>et</em> écrirait.
+                  Ce n’est pas interdit, mais chaque opération doit relever d’un
+                  consentement et d’un jeton distincts. Un consentement AIS ne doit
+                  <strong>jamais</strong> pouvoir initier un paiement&nbsp;: c’est la
+                  séparation qui protège le client.
+                </p>
+              </div>
+            </section>
+
+            <!-- QUI DETIENT QUOI -->
+            <section class="section">
+              <p class="section-label">Données</p>
+              <h2 id="detient">Qui détient quoi</h2>
+              <div class="split-3">
+                <div class="panel">
+                  <h3>La banque</h3>
+                  <p>
+                    Détient le compte, l’argent et les données sources. Expose
+                    l’API, réalise la SCA, conserve la preuve d’authentification.
+                    C’est la <strong>source de vérité</strong>.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>Le tiers</h3>
+                  <p>
+                    Détient ce que le consentement lui donne le droit de lire ou
+                    initier. Ne détient <strong>jamais</strong> les identifiants.
+                    Doit minimiser et conserver selon le RGPD.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>Le client</h3>
+                  <p>
+                    Propriétaire de ses données et de son argent. Donne et révoque
+                    chaque consentement. Garde le contrôle&nbsp;: c’est lui, au
+                    centre.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Place au projet final</h2>
+                <p>
+                  Les quatre rôles sont posés, les flux compris. En S4, place au
+                  <strong>projet final</strong>&nbsp;: un projet SI ouvert complet,
+                  présenté et défendu devant la promo et le formateur.
+                </p>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Notes formateur — S3</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>
+                    <strong>La table des rôles</strong>&nbsp;: faire remplir une
+                    grille vide par les étudiants. C’est le meilleur test de mémoire.
+                  </li>
+                  <li>
+                    <strong>Un rôle = un consentement</strong>&nbsp;: le message
+                    central de la synthèse. Rappeler J2 et le cumul trompeur.
+                  </li>
+                  <li>
+                    <strong>CBPII ≠ garantie</strong>&nbsp;: encore une fois. Le
+                    distinguer du PISP.
+                  </li>
+                  <li>
+                    <strong>La banque pivot</strong>&nbsp;: insister&nbsp;: aucun
+                    tiers ne réalise la SCA à sa place.
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Points de sortie de S3</h3>
+              <ul>
+                <li>Je définis les quatre rôles (ASPSP, AISP, PISP, CBPII).</li>
+                <li>J’explique le pouvoir de chacun (lire, écrire, vérifier).</li>
+                <li>Je sais qu’un rôle = un consentement et une SCA distincts.</li>
+                <li>Je distingue CBPII d’une garantie.</li>
+                <li>Je situe la banque comme pivot (source de vérité, SCA).</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2 (UE) 2015/2366 (rôles)&nbsp;; RTS EBA
+              2018/389 (SCA, accès)&nbsp;; Berlin Group NextGenPSD2 (AIS, PISP,
+              CBPII)&nbsp;; RGPD (UE) 2016/679 (minimisation, conservation).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 5</a> · S3 Synthèse des quatre rôles
+      </div>
+    </footer>
+    <script src="../js/nav-j5.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

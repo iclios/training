@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S4 — Atelier projet final | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s4-atelier">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a class="is-active" href="intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 5 · Séquence 4</span>
+                <span class="tag tag-accent">75 min · atelier</span>
+              </div>
+              <p class="day-kicker">Le rendu de fin de module</p>
+              <h1>Atelier — Projet final</h1>
+              <p class="lead">
+                Vous présentez et défendez un projet SI ouvert complet, mobilisant
+                tout le module&nbsp;: rôles, paiement, agrégation, consentement,
+                architecture, gouvernance. Le jury évalue la cohérence, pas le
+                jargon.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Léa a vécu les quatre jours. Aujourd’hui, vous êtes l’équipe qui
+                conçoit <em>son prochain service</em>. Vous devez prouver que vous
+                savez assembler les briques — et assumer les choix.
+              </p>
+            </div>
+
+            <!-- BRIEF -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Brief</p>
+              <h2 id="brief">La commande finale</h2>
+              <p>
+                Vous avez <strong>75 minutes</strong> (préparation + présentation).
+                Vous produisez un <strong>projet SI ouvert</strong>, présenté en
+                <strong>10 minutes</strong> puis défendu en questions. Format libre
+                (slides, schéma, one-pager), mais les six preuves doivent être
+                présentes.
+              </p>
+
+              <div class="callout info">
+                <h3>Règle d’or du rendu</h3>
+                <p>
+                  Chaque choix doit être <strong>justifié</strong>&nbsp;: pourquoi
+                  ce rôle, pourquoi cette donnée, pourquoi cette durée, pourquoi
+                  cette architecture. Un projet «&nbsp;démo&nbsp;» sans
+                  justifications ne passe pas. Un projet sobre, argumenté, passe.
+                </p>
+              </div>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Livrable</h3>
+                  <ul>
+                    <li>Un projet SI ouvert décrit en 6 preuves&nbsp;;</li>
+                    <li>Un schéma des flux et des rôles&nbsp;;</li>
+                    <li>Un one-pager de consentement&nbsp;;</li>
+                    <li>Une soutenance de 10 min + questions.</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Contraintes</h3>
+                  <ul>
+                    <li>Rôles DSP2 justifiés (AISP / PISP / CBPII)&nbsp;;</li>
+                    <li>Consentement par rôle, révocation prévue&nbsp;;</li>
+                    <li>Minimisation RGPD&nbsp;;</li>
+                    <li>Réutilisation explicite des acquis du module.</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- SIX PREUVES -->
+            <section class="section">
+              <p class="section-label">Grille</p>
+              <h2 id="preuves">Les six preuves du projet</h2>
+              <p class="intro">
+                Le jury ne lit pas un mémoire&nbsp;: il cherche six preuves. Les
+                voici, avec la question qui déclenche la note.
+              </p>
+
+              <div class="verrou-grid">
+                <article class="verrou-card" style="border-top-color: var(--issuer)">
+                  <span class="verrou-num" style="background: var(--issuer)">01</span>
+                  <h3>Besoin &amp; valeur</h3>
+                  <p class="verrou-lea">«&nbsp;Quel problème, pour qui, quelle valeur&nbsp;?&nbsp;»</p>
+                  <p>Cas concret, persona, bénéfice mesurable. Pas de «&nbsp;plateforme open banking&nbsp;» sans usage.</p>
+                </article>
+                <article class="verrou-card" style="border-top-color: var(--tpp)">
+                  <span class="verrou-num" style="background: var(--tpp)">02</span>
+                  <h3>Rôles justifiés</h3>
+                  <p class="verrou-lea">«&nbsp;Pourquoi AISP et/ou PISP et/ou CBPII&nbsp;?&nbsp;»</p>
+                  <p>Le bon rôle pour le bon besoin, et pourquoi les autres ne servent pas. Chaque rôle = un consentement.</p>
+                </article>
+                <article class="verrou-card" style="border-top-color: var(--warn)">
+                  <span class="verrou-num" style="background: var(--warn)">03</span>
+                  <h3>Flux &amp; sécurité</h3>
+                  <p class="verrou-lea">«&nbsp;Qui parle à qui, et qui fait la SCA&nbsp;?&nbsp;»</p>
+                  <p>Diagramme client → tiers → banque. SCA chez la banque, jeton côté tiers, jamais d’identifiants partagés.</p>
+                </article>
+                <article class="verrou-card" style="border-top-color: var(--accent)">
+                  <span class="verrou-num" style="background: var(--accent)">04</span>
+                  <h3>Consentement &amp; RGPD</h3>
+                  <p class="verrou-lea">«&nbsp;Quelles données, quelle durée, quelle révocation&nbsp;?&nbsp;»</p>
+                  <p>One-pager clair, minimisation, conservation, effacement. Le volet qui sépare un projet crédible d’une démo.</p>
+                </article>
+                <article class="verrou-card" style="border-top-color: var(--network)">
+                  <span class="verrou-num" style="background: var(--network)">05</span>
+                  <h3>Architecture</h3>
+                  <p class="verrou-lea">«&nbsp;Comment ça tient en production&nbsp;?&nbsp;»</p>
+                  <p>Collecte, normalisation, stockage, exposition (J4 S3). Résilience, fraîcheur, observabilité.</p>
+                </article>
+                <article class="verrou-card" style="border-top-color: var(--warn)">
+                  <span class="verrou-num" style="background: var(--warn)">06</span>
+                  <h3>Risques &amp; zones grises</h3>
+                  <p class="verrou-lea">«&nbsp;Qu’est-ce qui peut mal tourner&nbsp;?&nbsp;»</p>
+                  <p>Risques identifiés, mitigations, zones grises assumées (Open Finance non réglementé, responsabilité).</p>
+                </article>
+              </div>
+            </section>
+
+            <!-- EXEMPLES DE PROJETS -->
+            <section class="section">
+              <p class="section-label">Inspiration</p>
+              <h2 id="exemples">Trois pistes de projet</h2>
+              <p class="intro">
+                Pour éviter le syndrome de la page blanche, trois pistes qui
+                mobilisent différemment les rôles. À adapter, pas à recopier.
+              </p>
+
+              <div class="objectif-list">
+                <div class="objectif">
+                  <span class="obj-num">A</span>
+                  <h3>Épargne augmentée (AISP)</h3>
+                  <p class="obj-lea">«&nbsp;Je vois mes comptes et mes objectifs d’épargne.&nbsp;»</p>
+                  <p>
+                    Lecture multi-banques, catégorisation, projection. Un seul
+                    rôle&nbsp;: AISP. Le bon terrain pour la minimisation et la
+                    valeur (J4).
+                  </p>
+                </div>
+                <div class="objectif">
+                  <span class="obj-num">B</span>
+                  <h3>Checkout PME (PISP + CBPII)</h3>
+                  <p class="obj-lea">«&nbsp;Payer en ligne et vérifier les fonds.&nbsp;»</p>
+                  <p>
+                    Paiement initié et confirmation de disponibilité. Deux rôles,
+                    deux consentements. Le bon terrain pour l’idempotence et le
+                    risque (J3).
+                  </p>
+                </div>
+                <div class="objectif">
+                  <span class="obj-num">C</span>
+                  <h3>Scoring alternatif (AISP)</h3>
+                  <p class="obj-lea">«&nbsp;Évaluer un dossier sans banque traditionnelle.&nbsp;»</p>
+                  <p>
+                    Lecture de données de compte pour un crédit. Fort enjeu RGPD et
+                    éthique&nbsp;: minimisation, finalité, équité. Le bon terrain
+                    pour débattre des zones grises.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>La piste C est un piège délibéré</h3>
+                <p>
+                  Un scoring construit sur des données de compte pose des
+                  questions d’éthique et de finalité&nbsp;: consentement
+                  réellement libre&nbsp;? biais&nbsp;? durée de conservation&nbsp;?
+                  Un groupe qui choisit C doit démontrer qu’il maîtrise ces
+                  questions — pas les ignorer.
+                </p>
+              </div>
+            </section>
+
+            <!-- GRILLE EVAL -->
+            <section class="section">
+              <p class="section-label">Évaluation</p>
+              <h2 id="grille">La grille du jury</h2>
+              <p>
+                Six dimensions, sur 10 chacune. La note globale n’est pas une
+                moyenne&nbsp;: une incohérence majeure (rôle inadapté, consentement
+                absent) plafonne le projet.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Preuve</th>
+                      <th scope="col">Ce qu’on regarde</th>
+                      <th scope="col">Poids</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Besoin &amp; valeur</th><td>Usage concret, bénéfice</td><td>10</td></tr>
+                    <tr><th scope="row">Rôles justifiés</th><td>Bon rôle, exclusion des autres</td><td>10</td></tr>
+                    <tr><th scope="row">Flux &amp; sécurité</th><td>Diagramme, SCA, jetons</td><td>10</td></tr>
+                    <tr><th scope="row">Consentement &amp; RGPD</th><td>One-pager, minimisation, révocation</td><td>10</td></tr>
+                    <tr><th scope="row">Architecture</th><td>Quatre briques, résilience</td><td>10</td></tr>
+                    <tr class="is-exergue"><th scope="row">Risques &amp; zones grises</th><td>Mitigations, honnêteté</td><td>10</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Le critère qui départage</h3>
+                <p>
+                  À valeur égale, on privilégie le projet qui
+                  <strong>mobilise le moins de rôles et lit le moins de
+                  données</strong> pour produire la même valeur. La sobriété est un
+                  signal de maîtrise&nbsp;: elle prouve qu’on a compris la
+                  minimisation et la séparation des consentements.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Clôture</p>
+                <h2>Fin du module</h2>
+                <p>
+                  Cinq jours, quatre rôles, un fil rouge. Le projet final est
+                  l’occasion de montrer que vous savez assembler les briques — et
+                  que vous assumez vos choix. La page <strong>Couverture du
+                  syllabus</strong> vérifie que tout le référentiel est traité.
+                </p>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Notes formateur — S4 atelier final</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>
+                    <strong>Pression douce</strong>&nbsp;: 75 min pour préparer et
+                    présenter, c’est serré. Rappeler la grille des six preuves dès
+                    le départ.
+                  </li>
+                  <li>
+                    <strong>La règle d’or</strong>&nbsp;: justifier chaque choix.
+                    Couper court aux «&nbsp;on va faire de l’Open Banking&nbsp;» sans
+                    besoin.
+                  </li>
+                  <li>
+                    <strong>La piste C</strong>&nbsp;: si un groupe la prend, exiger
+                    la discussion éthique. C’est le meilleur sujet de jury.
+                  </li>
+                  <li>
+                    <strong>Départage sur la sobriété</strong>&nbsp;: faire voter le
+                    jury sur «&nbsp;qui lit le moins pour la même valeur&nbsp;».
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Points de sortie de S4</h3>
+              <ul>
+                <li>Je présente un projet SI ouvert cohérent en 10 minutes.</li>
+                <li>Je justifie les rôles DSP2 choisis (et les autres exclus).</li>
+                <li>Je montre un flux avec consentement et SCA distincts par rôle.</li>
+                <li>Je couvre minimisation, conservation et zones grises.</li>
+                <li>Je défends mes choix d’architecture et de conformité.</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Références</strong> — tout le module&nbsp;: DSP2 (UE) 2015/2366&nbsp;;
+              RTS EBA 2018/389&nbsp;; Berlin Group NextGenPSD2&nbsp;; RGPD (UE)
+              2016/679&nbsp;; projet FIDA (Open Finance).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 5</a> · S4 Atelier projet final
+      </div>
+    </footer>
+    <script src="../js/nav-j5.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Architecture plateforme — Jour 5 | Paiements digitaux</title>
+    <title>Architecture · composants &amp; orchestration — Jour 5 | Paiements digitaux</title>
     <link rel="stylesheet" href="../css/styles.css?v=present6" />
   </head>
   <body data-bloc="architecture-plateforme">
@@ -33,7 +33,7 @@
           <div class="fiche-meta">
             <span class="tag">Jour 5 · Omnicanal</span>
           </div>
-          <p class="day-kicker">5.2 · Plateforme</p>
+          <p class="day-kicker">5.2a · Composants &amp; orchestration</p>
           <h1>Architecture d’une plateforme de paiement</h1>
         </div>
       </section>
@@ -43,138 +43,223 @@
           <p class="section-label">Définition monétique</p>
           <h2>Qu’est-ce qu’une plateforme de paiement digitale&nbsp;?</h2>
           <p class="definition-full">
-            Ensemble de <strong>composants SI</strong> qui orchestrent
-            l’acceptation multi-canaux, la <strong>tokenisation</strong>, les
-            rails <strong>QR / NFC / wallet</strong>, le lien
-            <strong>émetteur / acquéreur</strong>, la fraude, puis la
-            <strong>réconciliation &amp; settlement</strong> — avec un journal
-            de vérité unique.
+            Ensemble de <strong>cinq composants cœurs</strong> qui orchestrent
+            l’acceptation multi-canaux&nbsp;: <strong>Payment Gateway</strong>,
+            <strong>Wallet Manager</strong>, <strong>Tokenization (TSP)</strong>,
+            <strong>Fraud Engine</strong>,
+            <strong>Reconciliation &amp; Settlement</strong> — autour d’une
+            intention métier, d’un <strong>payment_id</strong> et d’un cycle
+            Auth formel.
           </p>
           <p class="intro" style="margin-top: 1.1rem">
-            J1 = logique monétique · J2–J4 = rails · J5 = assemblage cible.
+            Schéma cible à quatre niveaux&nbsp;; séquence d’échanges sur le
+            chemin critique Auth&nbsp;; puis workflows par canal.
           </p>
+        </section>
+
+        <section class="section" id="cinq-composants">
+          <p class="section-label">Composants cœurs</p>
+          <h2>Cinq briques fonctionnelles</h2>
+          <p class="intro">
+            Chaque composant a une responsabilité SI claire. Le
+            <strong>Wallet Manager</strong> est hors chemin critique de
+            l’autorisation immédiate (enrolment / cycle de vie).
+          </p>
+
+          <div class="diagram" id="diagram-cinq">
+            <div class="diagram-header">
+              <h3>Gateway · Wallet · TSP · Fraud · Clôture</h3>
+              <p>Cinq cœurs · une plateforme</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 160"
+              role="img"
+              aria-label="Cinq composants coeurs de la plateforme"
+            >
+              <rect x="20" y="30" width="180" height="100" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+              <text x="110" y="70" text-anchor="middle" fill="#1e5f8a" font-size="13" font-weight="700">Payment Gateway</text>
+              <text x="110" y="95" text-anchor="middle" fill="#5a6b7c" font-size="11">façade API / POS</text>
+              <rect x="215" y="30" width="180" height="100" rx="10" fill="#f0eef8" stroke="#3d5a80" stroke-width="2"/>
+              <text x="305" y="70" text-anchor="middle" fill="#3d5a80" font-size="13" font-weight="700">Wallet Manager</text>
+              <text x="305" y="95" text-anchor="middle" fill="#5a6b7c" font-size="11">enrol · hors Auth</text>
+              <rect x="410" y="30" width="180" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="500" y="70" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">TSP</text>
+              <text x="500" y="95" text-anchor="middle" fill="#0d9f8a" font-size="11">PAN ↔ token</text>
+              <rect x="605" y="30" width="180" height="100" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+              <text x="695" y="70" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="700">Fraud Engine</text>
+              <text x="695" y="95" text-anchor="middle" fill="#5a6b7c" font-size="11">score · vélocité</text>
+              <rect x="800" y="30" width="180" height="100" rx="10" fill="#e7f6f3" stroke="#087a6a" stroke-width="2"/>
+              <text x="890" y="70" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Reconcil. &amp; Sett.</text>
+              <text x="890" y="95" text-anchor="middle" fill="#5a6b7c" font-size="11">Auth / Clear / Sett.</text>
+            </svg>
+          </div>
+
+          <div class="csm-table-wrap" style="margin-top: 1.1rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Composant</th>
+                  <th scope="col">Rôle fonctionnel</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Payment Gateway</th>
+                  <td>
+                    Point d’entrée <strong>façade API / POS</strong>&nbsp;;
+                    normalisation des requêtes omnicanales&nbsp;; attribution
+                    du <strong>payment_id</strong> selon l’intention&nbsp;;
+                    orchestration des appels.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Wallet Manager</th>
+                  <td>
+                    Enrôlement et <strong>cycle de vie</strong> des cartes
+                    enrôlées (provisioning, suspend, delete) —
+                    <strong>hors chemin critique</strong> de l’autorisation
+                    immédiate.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Tokenization Service (TSP)</th>
+                  <td>
+                    Conversion <strong>PAN → Token</strong> (EMVCo / MDES /
+                    VTS) et <strong>détokenisation</strong> pour le réseau /
+                    l’émetteur.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Fraud Engine</th>
+                  <td>
+                    Évaluation dynamique du <strong>risque contextuel</strong>
+                    (scoring en ligne, règles de vélocité) avant / autour de
+                    l’AuthZ.
+                  </td>
+                </tr>
+                <tr class="is-exergue">
+                  <th scope="row">Reconciliation &amp; Settlement</th>
+                  <td>
+                    Clôture financière automatisée&nbsp;: rapprochement
+                    <strong>AuthZ / Clearing / Règlement</strong> sur le
+                    journal unique (1 vérité SI).
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section class="section" id="schema-archi">
           <p class="section-label">Vue d’ensemble</p>
           <h2>Schéma d’architecture cible</h2>
           <p class="intro">
-            Gateway en façade&nbsp;; cœur (wallet, token, QR, fraude)&nbsp;;
-            rails vers émetteur / acquéreur&nbsp;; clôture financière.
+            Quatre niveaux de haut en bas&nbsp;: canaux → Gateway &amp; cœur SI
+            → rails externes → clôture. Séquence critique&nbsp;:
+            Gateway → TSP/QR → Fraud → Issuer AuthZ → écriture journal.
           </p>
 
           <div class="diagram" id="diagram-plateforme">
             <div class="diagram-header">
-              <h3>Plateforme omnicanale</h3>
+              <h3>Quatre niveaux · séquence ①→⑤</h3>
               <p>Canaux · Cœur SI · Rails · Clôture</p>
             </div>
             <svg
-              viewBox="0 0 1000 560"
+              viewBox="0 0 1000 620"
               role="img"
-              aria-label="Architecture plateforme paiement digitale"
+              aria-label="Architecture plateforme quatre niveaux avec sequence Auth"
             >
               <defs>
                 <marker id="ah-pl" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                   <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
                 </marker>
+                <marker id="ah-pl-o" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#c45c26" />
+                </marker>
+                <marker id="ah-pl-b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                </marker>
               </defs>
 
-              <!-- Canaux -->
-              <text x="500" y="28" text-anchor="middle" fill="#5a6b7c" font-size="12" font-family="Syne, sans-serif" font-weight="700">CANAUX</text>
-              <g>
-                <rect x="40" y="40" width="150" height="70" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-commercant.jpg" x="52" y="50" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-                <text x="105" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">In-store</text>
-              </g>
-              <g>
-                <rect x="210" y="40" width="150" height="70" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-device.jpg" x="222" y="50" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-                <text x="275" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">E-com</text>
-              </g>
-              <g>
-                <rect x="380" y="40" width="150" height="70" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-porteur.jpg" x="392" y="50" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-                <text x="445" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Mobile</text>
-              </g>
-              <g>
-                <rect x="550" y="40" width="150" height="70" rx="8" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-wallet.jpg" x="562" y="50" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-                <text x="615" y="72" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">In-app</text>
-              </g>
-              <g>
-                <rect x="720" y="40" width="240" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                <image href="../img/acteurs/acteur-psp.jpg" x="736" y="50" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-                <text x="790" y="68" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Payment gateway</text>
-                <text x="790" y="88" fill="#0d9f8a" font-size="11">façade / API</text>
-              </g>
+              <!-- N1 Canaux -->
+              <text x="40" y="28" fill="#5a6b7c" font-size="12" font-family="Syne, sans-serif" font-weight="700">① CANAUX D’ENTRÉE</text>
+              <rect x="40" y="40" width="130" height="55" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+              <text x="105" y="72" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">In-store</text>
+              <rect x="185" y="40" width="130" height="55" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+              <text x="250" y="72" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">E-com</text>
+              <rect x="330" y="40" width="130" height="55" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+              <text x="395" y="72" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Mobile</text>
+              <rect x="475" y="40" width="130" height="55" rx="8" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="540" y="72" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">In-app</text>
 
-              <line x1="115" y1="110" x2="840" y2="140" stroke="#0d9f8a" stroke-width="1.5" opacity="0.5"/>
-              <line x1="285" y1="110" x2="840" y2="140" stroke="#0d9f8a" stroke-width="1.5" opacity="0.5"/>
-              <line x1="455" y1="110" x2="840" y2="140" stroke="#0d9f8a" stroke-width="1.5" opacity="0.5"/>
-              <line x1="625" y1="110" x2="840" y2="140" stroke="#0d9f8a" stroke-width="1.5" opacity="0.5"/>
-              <line x1="840" y1="110" x2="840" y2="140" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-pl)"/>
+              <line x1="105" y1="95" x2="200" y2="130" stroke="#0d9f8a" stroke-width="1.5" opacity="0.6"/>
+              <line x1="250" y1="95" x2="250" y2="130" stroke="#0d9f8a" stroke-width="1.5" opacity="0.6"/>
+              <line x1="395" y1="95" x2="300" y2="130" stroke="#0d9f8a" stroke-width="1.5" opacity="0.6"/>
+              <line x1="540" y1="95" x2="350" y2="130" stroke="#0d9f8a" stroke-width="1.5" opacity="0.6"/>
 
-              <!-- Cœur -->
-              <text x="500" y="165" text-anchor="middle" fill="#5a6b7c" font-size="12" font-family="Syne, sans-serif" font-weight="700">CŒUR SI</text>
-              <g>
-                <rect x="40" y="175" width="220" height="100" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-wallet.jpg" x="56" y="195" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                <text x="124" y="215" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Wallet manager</text>
-                <text x="124" y="238" fill="#5a6b7c" font-size="11">provisioning · cycle</text>
-              </g>
-              <g>
-                <rect x="280" y="175" width="220" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                <image href="../img/acteurs/acteur-scheme.jpg" x="296" y="195" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                <text x="364" y="215" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Tokenization</text>
-                <text x="364" y="238" fill="#0d9f8a" font-size="11">TSP · J3</text>
-              </g>
-              <g>
-                <rect x="520" y="175" width="220" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-device.jpg" x="536" y="195" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                <text x="604" y="215" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">QR engine</text>
-                <text x="604" y="238" fill="#5a6b7c" font-size="11">statique / dyn · J2</text>
-              </g>
-              <g>
-                <rect x="760" y="175" width="200" height="100" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
-                <text x="860" y="220" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Fraud engine</text>
-                <text x="860" y="245" text-anchor="middle" fill="#c45c26" font-size="11">scoring · règles</text>
-              </g>
+              <!-- N2 Gateway & Cœur -->
+              <text x="40" y="125" fill="#5a6b7c" font-size="12" font-family="Syne, sans-serif" font-weight="700">② GATEWAY &amp; CŒUR SI</text>
+              <rect x="40" y="135" width="560" height="150" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <rect x="60" y="155" width="200" height="55" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+              <text x="160" y="178" text-anchor="middle" fill="#1e5f8a" font-size="13" font-weight="800">① Payment Gateway</text>
+              <text x="160" y="198" text-anchor="middle" fill="#5a6b7c" font-size="10">orchestre · normalise · payment_id</text>
 
-              <!-- Rails -->
-              <text x="500" y="310" text-anchor="middle" fill="#5a6b7c" font-size="12" font-family="Syne, sans-serif" font-weight="700">RAILS · LIENS</text>
-              <g>
-                <rect x="80" y="320" width="280" height="90" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-device.jpg" x="96" y="338" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                <text x="160" y="360" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Rails NFC / wallet</text>
-                <text x="160" y="382" fill="#5a6b7c" font-size="11">HCE · SE · contactless · J4</text>
-              </g>
-              <g>
-                <rect x="400" y="320" width="240" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-banque.jpg" x="416" y="338" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                <text x="480" y="360" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Acquéreur</text>
-                <text x="480" y="382" fill="#5a6b7c" font-size="11">acceptation · J1</text>
-              </g>
-              <g>
-                <rect x="680" y="320" width="240" height="90" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-banque.jpg" x="696" y="338" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                <text x="760" y="360" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Émetteur</text>
-                <text x="760" y="382" fill="#5a6b7c" font-size="11">AuthZ · scheme</text>
-              </g>
+              <rect x="280" y="155" width="140" height="55" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="350" y="178" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">② TSP / QR</text>
+              <text x="350" y="198" text-anchor="middle" fill="#5a6b7c" font-size="10">token · payload</text>
 
-              <line x1="150" y1="275" x2="220" y2="320" stroke="#0d9f8a" stroke-width="1.5" marker-end="url(#ah-pl)"/>
-              <line x1="390" y1="275" x2="520" y2="320" stroke="#0d9f8a" stroke-width="1.5" marker-end="url(#ah-pl)"/>
-              <line x1="630" y1="275" x2="800" y2="320" stroke="#0d9f8a" stroke-width="1.5" marker-end="url(#ah-pl)"/>
+              <rect x="440" y="155" width="140" height="55" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+              <text x="510" y="178" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="800">③ Fraud</text>
+              <text x="510" y="198" text-anchor="middle" fill="#5a6b7c" font-size="10">score · vélocité</text>
 
-              <!-- Clôture -->
-              <g>
-                <rect x="200" y="450" width="600" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                <image href="../img/acteurs/acteur-scheme.jpg" x="230" y="464" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
-                <text x="300" y="485" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Réconciliation &amp; settlement</text>
-                <text x="300" y="508" fill="#0d9f8a" font-size="12">journal unique · positions · règlement (J1)</text>
-              </g>
-              <line x1="220" y1="410" x2="350" y2="450" stroke="#0d9f8a" stroke-width="1.5"/>
-              <line x1="520" y1="410" x2="500" y2="450" stroke="#0d9f8a" stroke-width="1.5"/>
-              <line x1="800" y1="410" x2="650" y2="450" stroke="#0d9f8a" stroke-width="1.5"/>
+              <rect x="60" y="225" width="200" height="45" rx="8" fill="#f0eef8" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="5 3"/>
+              <text x="160" y="252" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">Wallet Manager (hors Auth)</text>
+
+              <line x1="260" y1="182" x2="280" y2="182" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pl)"/>
+              <line x1="420" y1="182" x2="440" y2="182" stroke="#c45c26" stroke-width="2.5" marker-end="url(#ah-pl-o)"/>
+
+              <!-- Panneau séquence -->
+              <rect x="640" y="40" width="320" height="245" rx="12" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+              <text x="800" y="70" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="800">Séquence Auth</text>
+              <text x="660" y="105" fill="#1e5f8a" font-size="13" font-weight="700">①</text>
+              <text x="690" y="105" fill="#5a6b7c" font-size="13">Gateway (entrée · id)</text>
+              <text x="660" y="135" fill="#087a6a" font-size="13" font-weight="700">②</text>
+              <text x="690" y="135" fill="#5a6b7c" font-size="13">TSP / QR Engine</text>
+              <text x="660" y="165" fill="#c45c26" font-size="13" font-weight="700">③</text>
+              <text x="690" y="165" fill="#5a6b7c" font-size="13">Fraud Engine</text>
+              <text x="660" y="195" fill="#c45c26" font-size="13" font-weight="700">④</text>
+              <text x="690" y="195" fill="#5a6b7c" font-size="13">Issuer AuthZ</text>
+              <text x="660" y="225" fill="#087a6a" font-size="13" font-weight="700">⑤</text>
+              <text x="690" y="225" fill="#5a6b7c" font-size="13">Écriture Journal</text>
+              <text x="800" y="260" text-anchor="middle" fill="#5a6b7c" font-size="11">Wallet Manager ≠ chemin ①–⑤</text>
+
+              <!-- N3 Rails -->
+              <text x="40" y="320" fill="#5a6b7c" font-size="12" font-family="Syne, sans-serif" font-weight="700">③ RAILS &amp; LIENS EXTERNES</text>
+              <rect x="40" y="335" width="200" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+              <text x="140" y="370" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Acquéreur</text>
+              <text x="140" y="392" text-anchor="middle" fill="#5a6b7c" font-size="11">acceptation · J1</text>
+              <rect x="260" y="335" width="200" height="80" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+              <text x="360" y="365" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="800">④ Émetteur</text>
+              <text x="360" y="388" text-anchor="middle" fill="#5a6b7c" font-size="11">AuthZ OK / decline</text>
+              <rect x="480" y="335" width="200" height="80" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+              <text x="580" y="370" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Schemes</text>
+              <text x="580" y="392" text-anchor="middle" fill="#5a6b7c" font-size="11">réseau · règles</text>
+
+              <line x1="510" y1="210" x2="360" y2="335" stroke="#c45c26" stroke-width="2.5" marker-end="url(#ah-pl-o)"/>
+              <text x="480" y="290" fill="#c45c26" font-size="11" font-weight="700">④ Auth request</text>
+
+              <!-- N4 Clôture -->
+              <text x="40" y="450" fill="#5a6b7c" font-size="12" font-family="Syne, sans-serif" font-weight="700">④ CLÔTURE FINANCIÈRE</text>
+              <rect x="40" y="465" width="640" height="90" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="360" y="505" text-anchor="middle" fill="#087a6a" font-size="16" font-weight="800">⑤ Journal unique &amp; Réconciliation</text>
+              <text x="360" y="530" text-anchor="middle" fill="#0d9f8a" font-size="12">AuthZ · Clearing · Settlement · 1 vérité SI</text>
+
+              <line x1="360" y1="415" x2="360" y2="465" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-pl-b)"/>
+              <text x="380" y="445" fill="#1e5f8a" font-size="11" font-weight="700">⑤ écriture</text>
+
+              <text x="500" y="590" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">
+                ① Gateway → ② TSP/QR → ③ Fraud → ④ Issuer AuthZ → ⑤ Journal
+              </text>
             </svg>
 
             <div class="seq-steps" id="archi-steps">
@@ -182,192 +267,827 @@
                 <span class="n">1</span>
                 <span>
                   <strong>Gateway</strong>
-                  <p>Point d’entrée API / terminaux — normalise les demandes.</p>
+                  <p>Entrée façade · normalise · crée / rattache le payment_id.</p>
                 </span>
               </button>
               <button type="button" class="seq-step" data-step="2">
                 <span class="n">2</span>
                 <span>
-                  <strong>Cœur</strong>
-                  <p>Wallet manager, tokenization, QR engine, fraud.</p>
+                  <strong>TSP / QR</strong>
+                  <p>Tokenisation / détokenisation ou résolution payload QR.</p>
                 </span>
               </button>
               <button type="button" class="seq-step" data-step="3">
                 <span class="n">3</span>
                 <span>
-                  <strong>Rails</strong>
-                  <p>NFC/wallet + liens acquéreur / émetteur / scheme.</p>
+                  <strong>Fraud</strong>
+                  <p>Scoring contextuel et règles de vélocité.</p>
                 </span>
               </button>
               <button type="button" class="seq-step" data-step="4">
                 <span class="n">4</span>
                 <span>
-                  <strong>Clôture</strong>
-                  <p>Réconciliation et settlement — même vérité que l’auth.</p>
+                  <strong>Issuer AuthZ</strong>
+                  <p>Décision OK / decline sur le rail émetteur / scheme.</p>
+                </span>
+              </button>
+              <button type="button" class="seq-step" data-step="5">
+                <span class="n">5</span>
+                <span>
+                  <strong>Journal</strong>
+                  <p>Écriture vérité SI · base de la réconciliation / settlement.</p>
                 </span>
               </button>
             </div>
             <p class="diagram-hint">
-              Chaque brique = responsabilité SI claire (qui opère, qui certifie,
-              qui supervise).
+              Wallet Manager = enrolment / cycle de vie — flèche en pointillés,
+              pas sur le chemin ①–⑤ de l’Auth immédiate.
             </p>
           </div>
+          <p class="montage-example" style="margin-top: 0.85rem">
+            <strong>Repère</strong>&nbsp;: quatre niveaux empilés&nbsp;; la
+            séquence ①→⑤ est le chemin critique Auth&nbsp;; la clôture lit le
+            même journal que l’AuthZ.
+          </p>
         </section>
 
-        <section class="section">
-          <p class="section-label">Flux</p>
-          <h2>Un paiement traverse la plateforme</h2>
+        <section class="section" id="cas-canaux">
+          <p class="section-label">Cas · canaux</p>
+          <h2>Comment chaque canal traverse la plateforme</h2>
           <p class="intro">
-            Exemple&nbsp;: wallet NFC in-store — du terminal au settlement.
+            Chaque cas = <strong>une porte</strong> vers la
+            <strong>même plateforme</strong> (gateway · fraude · journal).
+            Deux achats distincts = <strong>deux payment_id</strong>&nbsp;;
+            un seul id seulement si c’est la <em>même</em> intention
+            (même panier / ordre).
           </p>
-
-          <div class="diagram" id="diagram-flux-pl">
+          <div class="diagram" id="diagram-canaux-traverse">
             <div class="diagram-header">
-              <h3>Parcours type (wallet NFC)</h3>
-              <p>Terminal → gateway → token → scheme → émetteur → journal</p>
+              <h3>Porte → gateway → AuthZ → vérité SI</h3>
+              <p>Même cycle formel · quel que soit le canal</p>
             </div>
             <svg
-              viewBox="0 0 1000 240"
+              viewBox="0 0 1000 180"
               role="img"
-              aria-label="Flux wallet NFC à travers la plateforme"
+              aria-label="Cycle commun Auth request AuthZ journal pour chaque canal"
             >
               <defs>
-                <marker id="ah-fx" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <marker id="ah-trav" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                   <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
                 </marker>
               </defs>
-              <g>
-                <rect x="20" y="60" width="140" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-commercant.jpg" x="32" y="74" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                <text x="90" y="100" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">POS</text>
-              </g>
-              <line class="flow-line" x1="170" y1="105" x2="210" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fx)"/>
-              <g>
-                <rect x="210" y="60" width="140" height="90" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                <image href="../img/acteurs/acteur-psp.jpg" x="222" y="74" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                <text x="280" y="100" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Gateway</text>
-              </g>
-              <line class="flow-line" x1="360" y1="105" x2="400" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fx)"/>
-              <g>
-                <rect x="400" y="60" width="140" height="90" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-scheme.jpg" x="412" y="74" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                <text x="470" y="100" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Token</text>
-              </g>
-              <line class="flow-line" x1="550" y1="105" x2="590" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fx)"/>
-              <g>
-                <rect x="590" y="60" width="140" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-banque.jpg" x="602" y="74" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                <text x="660" y="100" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">AuthZ</text>
-              </g>
-              <line class="flow-line" x1="740" y1="105" x2="780" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fx)"/>
-              <g>
-                <rect x="780" y="60" width="180" height="90" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                <text x="870" y="95" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Journal</text>
-                <text x="870" y="115" text-anchor="middle" fill="#5a6b7c" font-size="11">→ clearing / sett.</text>
-              </g>
-              <text x="500" y="200" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                Même chaîne pour un QR ou une carte — seuls gateway / moteur d’entrée changent
+              <rect x="30" y="40" width="160" height="80" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+              <text x="110" y="75" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Porte</text>
+              <text x="110" y="98" text-anchor="middle" fill="#5a6b7c" font-size="11">in-store · e-com…</text>
+              <line x1="200" y1="80" x2="240" y2="80" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-trav)"/>
+              <rect x="250" y="40" width="160" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="330" y="75" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Gateway</text>
+              <text x="330" y="98" text-anchor="middle" fill="#0d9f8a" font-size="11">Auth request · id</text>
+              <line x1="420" y1="80" x2="460" y2="80" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-trav)"/>
+              <rect x="470" y="40" width="160" height="80" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+              <text x="550" y="75" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">AuthZ</text>
+              <text x="550" y="98" text-anchor="middle" fill="#5a6b7c" font-size="11">OK / decline</text>
+              <line x1="640" y1="80" x2="680" y2="80" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-trav)"/>
+              <rect x="690" y="40" width="280" height="80" rx="10" fill="#e7f6f3" stroke="#087a6a" stroke-width="2"/>
+              <text x="830" y="75" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Vérité SI</text>
+              <text x="830" y="98" text-anchor="middle" fill="#5a6b7c" font-size="11">journal · Clear · Sett.</text>
+              <text x="500" y="155" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Les 4 workflows ci-dessous = ce cycle, porte par porte
               </text>
             </svg>
-            <div class="seq-steps" id="flux-pl-steps">
-              <button type="button" class="seq-step is-active" data-step="1">
-                <span class="n">1</span>
-                <span>
-                  <strong>Acceptation</strong>
-                  <p>POS / app envoie la demande via la gateway.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="2">
-                <span class="n">2</span>
-                <span>
-                  <strong>Confiance</strong>
-                  <p>Token / cryptogramme (J3–J4), contrôles fraude.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="3">
-                <span class="n">3</span>
-                <span>
-                  <strong>Décision &amp; clôture</strong>
-                  <p>AuthZ puis journal → clearing / settlement (J1).</p>
-                </span>
-              </button>
+          </div>
+
+          <p class="intro" style="margin-top: 1.1rem">
+            Les 5 briques (<strong>Gateway</strong>, <strong>Wallet Manager</strong>,
+            <strong>TSP</strong>, <strong>Fraud</strong>,
+            <strong>Reconciliation</strong>) = <strong>responsabilités SI</strong>
+            dans la chaîne omnicanale. Elles peuvent être
+            <strong>réparties entre acteurs</strong> — ce n’est pas un seul
+            acteur qui assure tous les modules.
+          </p>
+          <div class="csm-table-wrap" style="margin-top: 0.85rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Module</th>
+                  <th scope="col">Souvent chez…</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Payment Gateway</th>
+                  <td>PSP / plateforme d’acceptation / switch</td>
+                </tr>
+                <tr>
+                  <th scope="row">Wallet Manager</th>
+                  <td>OEM wallet + banque (enrolment) — hors Auth</td>
+                </tr>
+                <tr>
+                  <th scope="row">TSP</th>
+                  <td>Scheme / réseau (VTS, MDES…)</td>
+                </tr>
+                <tr>
+                  <th scope="row">Fraud Engine</th>
+                  <td>PSP, acquéreur, ou service dédié</td>
+                </tr>
+                <tr>
+                  <th scope="row">Reconciliation &amp; Settlement</th>
+                  <td>Plateforme + rails acquéreur / scheme / banques</td>
+                </tr>
+                <tr class="is-exergue">
+                  <th scope="row">AuthZ (hors « cœur » plateforme)</th>
+                  <td>Émetteur — décide, ne « vit » pas dans le gateway</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="montage-example" style="margin-top: 0.85rem">
+            <strong>Repère</strong>&nbsp;: les canaux = portes d’entrée&nbsp;;
+            les modules = fonctions de la chaîne&nbsp;; les acteurs les
+            opèrent de façon répartie.
+          </p>
+        </section>
+
+        <section class="section" id="cas-instore">
+          <p class="section-label">Cas · 1 · Porte in-store</p>
+          <h2>Workflow · in-store</h2>
+          <p class="intro">
+            Porte magasin (tap)&nbsp;: même plateforme que le web — pas
+            forcément le même achat. Un tap «&nbsp;au hasard&nbsp;» = nouvel
+            id&nbsp;; un click &amp; collect = reprise du panier existant.
+          </p>
+          <p class="intro" style="margin-top: 0.5rem">
+            <strong>Use case A</strong>&nbsp;: achat spontané en caisse.
+            <strong>Use case B</strong>&nbsp;: retrait d’un panier web (même
+            ordre).
+          </p>
+
+          <div class="diagram" id="diagram-cas-instore">
+            <div class="diagram-header">
+              <h3>Architecture fléchée · porte in-store</h3>
+              <p>Porte active · 3 autres · 1 journal</p>
             </div>
+            <svg
+              viewBox="0 0 1000 640"
+              role="img"
+              aria-label="Workflow omnicanal in-store avec quatre portes"
+            >
+              <defs>
+                <marker id="ah-is" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+                <marker id="ah-is-b" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                </marker>
+                <marker id="ah-is-o" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#c45c26" />
+                </marker>
+              </defs>
+
+                            <text x="250" y="22" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">4 portes · 1 plateforme SI</text>
+              <rect x="40" y="32" width="90" height="36" rx="7" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+              <text x="85" y="55" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="800">In-store</text>
+              <rect x="145" y="32" width="90" height="36" rx="7" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="190" y="55" text-anchor="middle" fill="#8a9aab" font-size="11" font-weight="700">E-com</text>
+              <path d="M190 68 L190 88" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <rect x="250" y="32" width="90" height="36" rx="7" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="295" y="55" text-anchor="middle" fill="#8a9aab" font-size="11" font-weight="700">Mobile</text>
+              <path d="M295 68 L295 88" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <rect x="355" y="32" width="90" height="36" rx="7" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="400" y="55" text-anchor="middle" fill="#8a9aab" font-size="11" font-weight="700">In-app</text>
+              <path d="M400 68 L400 88" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <text x="250" y="98" text-anchor="middle" fill="#5a6b7c" font-size="10">porte active · autres portes = même plateforme (pas auto. même achat)</text>
+
+              <rect x="40" y="120" width="140" height="60" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+              <text x="110" y="145" text-anchor="middle" fill="#3d5a80" font-size="13" font-weight="800">Device</text>
+              <text x="110" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">SE / HCE · tap</text>
+
+              <path d="M185 150 L225 150" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-is)"/>
+              <text x="205" y="138" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">①</text>
+
+              <rect x="230" y="120" width="140" height="60" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+              <text x="300" y="145" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="800">POS / TPE</text>
+              <text x="300" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">EMV CL · TOKEN</text>
+
+              <path d="M375 150 L415 150" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-is)"/>
+              <text x="395" y="138" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">②</text>
+
+              <rect x="420" y="110" width="200" height="80" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+              <text x="520" y="140" text-anchor="middle" fill="#1e5f8a" font-size="14" font-weight="800">Gateway</text>
+              <text x="520" y="162" text-anchor="middle" fill="#5a6b7c" font-size="11">cœur plateforme</text>
+              <text x="520" y="178" text-anchor="middle" fill="#5a6b7c" font-size="10">toutes les portes</text>
+
+              <path d="M520 190 L520 230" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-is)"/>
+              <text x="540" y="218" fill="#087a6a" font-size="10" font-weight="700">③</text>
+
+              <rect x="420" y="230" width="95" height="55" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+              <text x="467" y="255" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="800">Fraude</text>
+              <text x="467" y="273" text-anchor="middle" fill="#5a6b7c" font-size="10">engine</text>
+
+              <rect x="525" y="230" width="95" height="55" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="572" y="255" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">TSP</text>
+              <text x="572" y="273" text-anchor="middle" fill="#5a6b7c" font-size="10">si wallet</text>
+
+              <rect x="40" y="230" width="150" height="55" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+              <text x="115" y="255" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="800">Issuer</text>
+              <text x="115" y="273" text-anchor="middle" fill="#5a6b7c" font-size="11">AuthZ OK/KO</text>
+
+              <path d="M420 257 L195 257" stroke="#c45c26" stroke-width="2.5" marker-end="url(#ah-is-o)"/>
+              <text x="310" y="248" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">④ Auth</text>
+
+              <path d="M520 285 L520 330 L280 330 L280 360" stroke="#1e5f8a" stroke-width="2.5" fill="none" marker-end="url(#ah-is-b)"/>
+              <text x="400" y="320" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">⑤ → journal plateforme</text>
+
+              <!-- Journal + lien omni des autres portes -->
+              <path d="M190 68 L190 360" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+              <path d="M295 68 L295 360" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+              <path d="M400 68 L400 360" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+
+              <rect x="160" y="360" width="320" height="70" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="320" y="390" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="800">Journal SI (1 id / paiement)</text>
+              <text x="320" y="412" text-anchor="middle" fill="#5a6b7c" font-size="12">même SI · chaque paiement a son id</text>
+
+              <rect x="700" y="30" width="270" height="420" rx="12" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+              <text x="835" y="58" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="800">Échanges</text>
+              <text x="720" y="90" fill="#087a6a" font-size="12" font-weight="700">①</text>
+              <text x="745" y="90" fill="#5a6b7c" font-size="12">Device → POS (TOKEN)</text>
+              <text x="720" y="120" fill="#087a6a" font-size="12" font-weight="700">②</text>
+              <text x="745" y="120" fill="#5a6b7c" font-size="12">POS → Gateway omni</text>
+              <text x="720" y="150" fill="#087a6a" font-size="12" font-weight="700">③</text>
+              <text x="745" y="150" fill="#5a6b7c" font-size="12">Fraude (+ TSP)</text>
+              <text x="720" y="180" fill="#c45c26" font-size="12" font-weight="700">④</text>
+              <text x="745" y="180" fill="#5a6b7c" font-size="12">Issuer AuthZ</text>
+              <text x="720" y="210" fill="#1e5f8a" font-size="12" font-weight="700">⑤</text>
+              <text x="745" y="210" fill="#5a6b7c" font-size="12">→ Journal plateforme</text>
+              <text x="720" y="260" fill="#087a6a" font-size="12" font-weight="800">Omnicanal</text>
+              <text x="720" y="285" fill="#5a6b7c" font-size="12">Si même ordre (ex. C&amp;C)</text>
+              <text x="720" y="308" fill="#5a6b7c" font-size="12">→ même id · sinon nouvel id</text>
+              <text x="720" y="340" fill="#c45c26" font-size="12" font-weight="800">≠ flux magasin isolé</text>
+              <text x="720" y="365" fill="#5a6b7c" font-size="12">Pointillés = même SI,</text>
+              <text x="720" y="388" fill="#5a6b7c" font-size="12">pas le même achat auto.</text>
+              <text x="720" y="425" fill="#5a6b7c" font-size="11">APDU / CDCVM = détail J4</text>
+
+              <text x="500" y="480" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">
+                Porte in-store · même SI que les autres · pas un silo POS
+              </text>
+              <text x="500" y="510" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Achat caisse = nouvel id · C&amp;C = reprise d’ordre (même id)
+              </text>
+              <text x="500" y="540" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Wallet manager = enrolment avant le tap · hors chemin AuthZ
+              </text>
+              <text x="500" y="570" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Clearing / Settlement après OK · rail de clôture commun
+              </text>
+            </svg>
           </div>
         </section>
 
-        <section class="section">
-          <p class="section-label">Rôle</p>
-          <h2>Que fait chaque brique&nbsp;?</h2>
-          <div class="split-2">
-            <div class="panel">
-              <h3>Façade &amp; confiance</h3>
-              <ul>
-                <li>Gateway&nbsp;: entrée, normalisation</li>
-                <li>Wallet manager&nbsp;: cycle de vie</li>
-                <li>Tokenization&nbsp;: PAN → token</li>
-              </ul>
+        <section class="section" id="cas-ecom">
+          <p class="section-label">Cas · 2 · Porte e-com</p>
+          <h2>Workflow · e-commerce</h2>
+          <p class="intro">
+            Porte web&nbsp;: chaque checkout crée son
+            <strong>payment_id</strong>. Continuité vers in-app / magasin
+            seulement si on reprend <em>cet</em> ordre — sinon nouvel achat.
+          </p>
+          <p class="intro" style="margin-top: 0.5rem">
+            <strong>Use case</strong>&nbsp;: panier navigateur (CNP / token
+            e-com) sur la plateforme commune.
+          </p>
+
+          <div class="diagram" id="diagram-cas-ecom">
+            <div class="diagram-header">
+              <h3>Architecture fléchée · porte e-com</h3>
+              <p>Porte active · 3 autres · 1 journal</p>
             </div>
-            <div class="panel">
-              <h3>Rails &amp; clôture</h3>
-              <ul>
-                <li>QR engine · NFC / wallet</li>
-                <li>Liens émetteur / acquéreur</li>
-                <li>Réconciliation &amp; settlement</li>
-              </ul>
-            </div>
+            <svg
+              viewBox="0 0 1000 640"
+              role="img"
+              aria-label="Workflow omnicanal e-commerce avec quatre portes"
+            >
+              <defs>
+                <marker id="ah-ec" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+                <marker id="ah-ec-b" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                </marker>
+                <marker id="ah-ec-o" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#c45c26" />
+                </marker>
+              </defs>
+
+                            <text x="250" y="22" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">4 portes · 1 plateforme SI</text>
+              <rect x="40" y="32" width="90" height="36" rx="7" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="85" y="55" text-anchor="middle" fill="#8a9aab" font-size="11" font-weight="700">In-store</text>
+              <path d="M85 68 L85 88" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <rect x="145" y="32" width="90" height="36" rx="7" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+              <text x="190" y="55" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="800">E-com</text>
+              <rect x="250" y="32" width="90" height="36" rx="7" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="295" y="55" text-anchor="middle" fill="#8a9aab" font-size="11" font-weight="700">Mobile</text>
+              <path d="M295 68 L295 88" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <rect x="355" y="32" width="90" height="36" rx="7" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="400" y="55" text-anchor="middle" fill="#8a9aab" font-size="11" font-weight="700">In-app</text>
+              <path d="M400 68 L400 88" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <text x="250" y="98" text-anchor="middle" fill="#5a6b7c" font-size="10">porte active · autres portes = même plateforme (pas auto. même achat)</text>
+
+              <rect x="40" y="120" width="140" height="60" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+              <text x="110" y="145" text-anchor="middle" fill="#3d5a80" font-size="13" font-weight="800">Checkout</text>
+              <text x="110" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">navigateur · panier</text>
+
+              <path d="M185 150 L225 150" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ec)"/>
+              <text x="205" y="138" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">①</text>
+
+              <rect x="230" y="110" width="190" height="80" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+              <text x="325" y="140" text-anchor="middle" fill="#1e5f8a" font-size="14" font-weight="800">Gateway</text>
+              <text x="325" y="162" text-anchor="middle" fill="#5a6b7c" font-size="11">crée un payment_id</text>
+              <text x="325" y="178" text-anchor="middle" fill="#5a6b7c" font-size="10">cœur plateforme</text>
+
+              <path d="M425 150 L465 150" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ec)"/>
+              <text x="445" y="138" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">②</text>
+
+              <rect x="470" y="120" width="150" height="60" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="545" y="145" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="800">3DS / TSP</text>
+              <text x="545" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">challenge · token</text>
+
+              <path d="M545 180 L545 210 L325 210 L325 190" stroke="#1e5f8a" stroke-width="2.5" fill="none" marker-end="url(#ah-ec-b)"/>
+              <text x="440" y="202" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">③ SCA → gateway</text>
+
+              <path d="M325 190 L325 245" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ec)"/>
+              <text x="345" y="230" fill="#087a6a" font-size="10" font-weight="700">④</text>
+
+              <rect x="240" y="245" width="170" height="55" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+              <text x="325" y="270" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="800">Fraud engine</text>
+              <text x="325" y="288" text-anchor="middle" fill="#5a6b7c" font-size="10">risque CNP</text>
+
+              <path d="M415 272 L480 272" stroke="#c45c26" stroke-width="2.5" marker-end="url(#ah-ec-o)"/>
+              <text x="448" y="260" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">⑤</text>
+
+              <rect x="485" y="245" width="135" height="55" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+              <text x="552" y="270" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="800">Issuer</text>
+              <text x="552" y="288" text-anchor="middle" fill="#5a6b7c" font-size="11">AuthZ OK/KO</text>
+
+              <path d="M85 68 L85 360" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+              <path d="M295 68 L295 360" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+              <path d="M400 68 L400 360" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+
+              <path d="M552 300 L552 330 L280 330 L280 360" stroke="#1e5f8a" stroke-width="2.5" fill="none" marker-end="url(#ah-ec-b)"/>
+              <text x="420" y="322" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">⑥ → journal plateforme</text>
+
+              <rect x="160" y="360" width="320" height="70" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="320" y="390" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="800">Journal SI (1 id / paiement)</text>
+              <text x="320" y="412" text-anchor="middle" fill="#5a6b7c" font-size="12">même SI · id partagé seulement si même ordre</text>
+
+              <rect x="700" y="30" width="270" height="420" rx="12" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+              <text x="835" y="58" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="800">Échanges</text>
+              <text x="720" y="90" fill="#087a6a" font-size="12" font-weight="700">①</text>
+              <text x="745" y="90" fill="#5a6b7c" font-size="12">Checkout → Gateway</text>
+              <text x="720" y="120" fill="#087a6a" font-size="12" font-weight="700">②</text>
+              <text x="745" y="120" fill="#5a6b7c" font-size="12">Gateway → 3DS / TSP</text>
+              <text x="720" y="150" fill="#1e5f8a" font-size="12" font-weight="700">③</text>
+              <text x="745" y="150" fill="#5a6b7c" font-size="12">SCA → gateway</text>
+              <text x="720" y="180" fill="#087a6a" font-size="12" font-weight="700">④–⑤</text>
+              <text x="760" y="180" fill="#5a6b7c" font-size="12">Fraude → Issuer</text>
+              <text x="720" y="210" fill="#1e5f8a" font-size="12" font-weight="700">⑥</text>
+              <text x="745" y="210" fill="#5a6b7c" font-size="12">→ Journal plateforme</text>
+              <text x="720" y="260" fill="#087a6a" font-size="12" font-weight="800">Omnicanal</text>
+              <text x="720" y="285" fill="#5a6b7c" font-size="12">Id / paiement créé ici</text>
+              <text x="720" y="308" fill="#5a6b7c" font-size="12">Reprise ailleurs = option</text>
+              <text x="720" y="340" fill="#c45c26" font-size="12" font-weight="800">≠ checkout web isolé</text>
+              <text x="720" y="365" fill="#5a6b7c" font-size="12">Pointillés = même SI</text>
+              <text x="720" y="388" fill="#5a6b7c" font-size="12">≠ même intention auto.</text>
+              <text x="720" y="425" fill="#5a6b7c" font-size="11">3DS = SCA · ≠ AuthZ issuer</text>
+
+              <text x="500" y="480" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">
+                Porte e-com · même SI · chaque checkout a son payment_id
+              </text>
+              <text x="500" y="510" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Token e-com ≠ token NFC · reprise d’ordre = même id (option)
+              </text>
+              <text x="500" y="540" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                APM (PayPal…) = autre moyen sur la même plateforme
+              </text>
+              <text x="500" y="570" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Abandon web + reprise in-app = continuité d’intention (cas B)
+              </text>
+            </svg>
           </div>
         </section>
 
-        <section class="section">
-          <p class="section-label">Ancrage</p>
-          <h2>Cas pratiques</h2>
-          <div class="split-2">
-            <div class="panel ok">
-              <h3>Cas 1 — Brancher un nouveau canal</h3>
-              <ul>
-                <li>Nouveau front → même gateway</li>
-                <li>Pas de nouveau silo settlement</li>
-              </ul>
+        <section class="section" id="cas-mobile">
+          <p class="section-label">Cas · 3 · Porte mobile</p>
+          <h2>Workflow · mobile</h2>
+          <p class="intro">
+            Porte QR&nbsp;: rail soft (J2) dans le même cœur SI — pas une app
+            avec son propre journal. Nouvel achat QR = nouvel id.
+          </p>
+          <p class="intro" style="margin-top: 0.5rem">
+            <strong>Use case</strong>&nbsp;: payer un marchand via QR MPM /
+            CPM — même plateforme que le web / le tap.
+          </p>
+
+          <div class="diagram" id="diagram-cas-mobile">
+            <div class="diagram-header">
+              <h3>Architecture fléchée · porte mobile</h3>
+              <p>Porte active · 3 autres · 1 journal</p>
             </div>
-            <div class="panel">
-              <h3>Cas 2 — TSP hors périmètre</h3>
-              <ul>
-                <li>Token chez scheme / TSP externe</li>
-                <li>Gateway reste le point d’orchestration</li>
-              </ul>
-            </div>
+            <svg
+              viewBox="0 0 1000 640"
+              role="img"
+              aria-label="Workflow omnicanal mobile QR avec quatre portes"
+            >
+              <defs>
+                <marker id="ah-mo" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+                <marker id="ah-mo-b" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                </marker>
+                <marker id="ah-mo-o" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#c45c26" />
+                </marker>
+              </defs>
+
+                            <text x="250" y="22" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">4 portes · 1 plateforme SI</text>
+              <rect x="40" y="32" width="90" height="36" rx="7" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="85" y="55" text-anchor="middle" fill="#8a9aab" font-size="11" font-weight="700">In-store</text>
+              <path d="M85 68 L85 88" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <rect x="145" y="32" width="90" height="36" rx="7" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="190" y="55" text-anchor="middle" fill="#8a9aab" font-size="11" font-weight="700">E-com</text>
+              <path d="M190 68 L190 88" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <rect x="250" y="32" width="90" height="36" rx="7" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+              <text x="295" y="55" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="800">Mobile</text>
+              <rect x="355" y="32" width="90" height="36" rx="7" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="400" y="55" text-anchor="middle" fill="#8a9aab" font-size="11" font-weight="700">In-app</text>
+              <path d="M400 68 L400 88" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <text x="250" y="98" text-anchor="middle" fill="#5a6b7c" font-size="10">porte active · autres portes = même plateforme (pas auto. même achat)</text>
+
+              <rect x="40" y="120" width="140" height="60" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+              <text x="110" y="145" text-anchor="middle" fill="#3d5a80" font-size="13" font-weight="800">App mobile</text>
+              <text x="110" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">scan / affiche QR</text>
+
+              <path d="M185 150 L225 150" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-mo)"/>
+              <text x="205" y="138" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">①</text>
+
+              <rect x="230" y="110" width="190" height="80" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+              <text x="325" y="140" text-anchor="middle" fill="#1e5f8a" font-size="14" font-weight="800">QR engine</text>
+              <text x="325" y="162" text-anchor="middle" fill="#5a6b7c" font-size="11">payload · TTL</text>
+              <text x="325" y="178" text-anchor="middle" fill="#5a6b7c" font-size="10">résout → gateway</text>
+
+              <path d="M425 150 L465 150" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-mo)"/>
+              <text x="445" y="138" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">②</text>
+
+              <rect x="470" y="120" width="150" height="60" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="545" y="145" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="800">Gateway</text>
+              <text x="545" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">cœur plateforme</text>
+
+              <path d="M545 180 L545 240" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-mo)"/>
+              <text x="565" y="218" fill="#087a6a" font-size="10" font-weight="700">③</text>
+
+              <rect x="470" y="240" width="150" height="55" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+              <text x="545" y="265" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="800">Fraud engine</text>
+              <text x="545" y="283" text-anchor="middle" fill="#5a6b7c" font-size="10">contexte QR</text>
+
+              <rect x="40" y="240" width="150" height="55" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+              <text x="115" y="265" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="800">Issuer</text>
+              <text x="115" y="283" text-anchor="middle" fill="#5a6b7c" font-size="11">AuthZ OK/KO</text>
+
+              <path d="M470 267 L195 267" stroke="#c45c26" stroke-width="2.5" marker-end="url(#ah-mo-o)"/>
+              <text x="340" y="258" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">④ Auth</text>
+
+              <path d="M85 68 L85 360" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+              <path d="M190 68 L190 360" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+              <path d="M400 68 L400 360" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+
+              <path d="M115 295 L115 330 L280 330 L280 360" stroke="#1e5f8a" stroke-width="2.5" fill="none" marker-end="url(#ah-mo-b)"/>
+              <text x="200" y="322" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">⑤ → journal plateforme</text>
+
+              <rect x="160" y="360" width="320" height="70" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="320" y="390" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="800">Journal SI (1 id / paiement)</text>
+              <text x="320" y="412" text-anchor="middle" fill="#5a6b7c" font-size="12">même SI · id neuf sauf reprise d’ordre</text>
+
+              <rect x="700" y="30" width="270" height="420" rx="12" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+              <text x="835" y="58" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="800">Échanges</text>
+              <text x="720" y="90" fill="#087a6a" font-size="12" font-weight="700">①</text>
+              <text x="745" y="90" fill="#5a6b7c" font-size="12">App → QR engine</text>
+              <text x="720" y="120" fill="#087a6a" font-size="12" font-weight="700">②</text>
+              <text x="745" y="120" fill="#5a6b7c" font-size="12">QR → Gateway omni</text>
+              <text x="720" y="150" fill="#087a6a" font-size="12" font-weight="700">③</text>
+              <text x="745" y="150" fill="#5a6b7c" font-size="12">Gateway → Fraude</text>
+              <text x="720" y="180" fill="#c45c26" font-size="12" font-weight="700">④</text>
+              <text x="745" y="180" fill="#5a6b7c" font-size="12">Issuer AuthZ</text>
+              <text x="720" y="210" fill="#1e5f8a" font-size="12" font-weight="700">⑤</text>
+              <text x="745" y="210" fill="#5a6b7c" font-size="12">→ Journal plateforme</text>
+              <text x="720" y="260" fill="#087a6a" font-size="12" font-weight="800">Omnicanal</text>
+              <text x="720" y="285" fill="#5a6b7c" font-size="12">Même plateforme que</text>
+              <text x="720" y="308" fill="#5a6b7c" font-size="12">web / tap / in-app</text>
+              <text x="720" y="340" fill="#c45c26" font-size="12" font-weight="800">≠ app QR en silo</text>
+              <text x="720" y="365" fill="#5a6b7c" font-size="12">MPM / CPM = sens scan</text>
+              <text x="720" y="388" fill="#5a6b7c" font-size="12">même bas après résolution</text>
+              <text x="720" y="425" fill="#5a6b7c" font-size="11">HCE = autre porte device</text>
+
+              <text x="500" y="480" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">
+                Porte mobile · rail QR · même cœur Auth / journal SI
+              </text>
+              <text x="500" y="510" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                TTL / payload = J2 · nouvel achat QR = nouvel payment_id
+              </text>
+              <text x="500" y="540" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Changer de porte sans changer de SI · id selon l’intention
+              </text>
+              <text x="500" y="570" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Pointillés = même plateforme · pas auto. même panier
+              </text>
+            </svg>
           </div>
         </section>
 
-        <section class="section">
-          <p class="section-label">Clarification</p>
-          <h2>Ce que ce n’est pas</h2>
-          <div class="not-list">
-            <div class="not-item">
-              <strong>≠ Un seul éditeur « magique »</strong>
-              <p>
-                La plateforme peut être assemblée (PSP + TSP + switch + banque).
-              </p>
+        <section class="section" id="cas-inapp">
+          <p class="section-label">Cas · 4 · Porte in-app</p>
+          <h2>Workflow · in-app</h2>
+          <p class="intro">
+            Porte feuille wallet&nbsp;: même plateforme. Si l’app
+            <em>reprend</em> un panier web → même id&nbsp;; si nouvel achat
+            in-app → nouvel id.
+          </p>
+          <p class="intro" style="margin-top: 0.5rem">
+            <strong>Use case</strong>&nbsp;: bouton Apple / Google Pay dans
+            l’app — canal différent, intention à préciser (reprise ou neuf).
+          </p>
+
+          <div class="diagram" id="diagram-cas-inapp">
+            <div class="diagram-header">
+              <h3>Architecture fléchée · porte in-app</h3>
+              <p>Porte active · 3 autres · 1 journal</p>
             </div>
-            <div class="not-item">
-              <strong>≠ Remplacer Auth / Clearing / Settlement</strong>
-              <p>
-                Elle les orchestre — elle ne les invente pas.
-              </p>
-            </div>
-            <div class="not-item">
-              <strong>≠ Architecture figée</strong>
-              <p>
-                Les frontières gateway / TSP / fraude varient selon le pays et
-                le modèle opératoire.
-              </p>
-            </div>
+            <svg
+              viewBox="0 0 1000 640"
+              role="img"
+              aria-label="Workflow omnicanal in-app avec quatre portes"
+            >
+              <defs>
+                <marker id="ah-ia" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+                <marker id="ah-ia-b" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                </marker>
+                <marker id="ah-ia-o" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#c45c26" />
+                </marker>
+              </defs>
+
+                            <text x="250" y="22" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">4 portes · 1 plateforme SI</text>
+              <rect x="40" y="32" width="90" height="36" rx="7" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="85" y="55" text-anchor="middle" fill="#8a9aab" font-size="11" font-weight="700">In-store</text>
+              <path d="M85 68 L85 88" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <rect x="145" y="32" width="90" height="36" rx="7" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="190" y="55" text-anchor="middle" fill="#8a9aab" font-size="11" font-weight="700">E-com</text>
+              <path d="M190 68 L190 88" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <rect x="250" y="32" width="90" height="36" rx="7" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="295" y="55" text-anchor="middle" fill="#8a9aab" font-size="11" font-weight="700">Mobile</text>
+              <path d="M295 68 L295 88" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <rect x="355" y="32" width="90" height="36" rx="7" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+              <text x="400" y="55" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="800">In-app</text>
+              <text x="250" y="98" text-anchor="middle" fill="#5a6b7c" font-size="10">porte active · autres portes = même plateforme (pas auto. même achat)</text>
+
+              <rect x="40" y="120" width="140" height="60" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+              <text x="110" y="145" text-anchor="middle" fill="#3d5a80" font-size="13" font-weight="800">App marchand</text>
+              <text x="110" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">checkout in-app</text>
+
+              <path d="M185 150 L225 150" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ia)"/>
+              <text x="205" y="138" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">①</text>
+
+              <rect x="230" y="120" width="150" height="60" rx="10" fill="#f0eef8" stroke="#3d5a80" stroke-width="2"/>
+              <text x="305" y="145" text-anchor="middle" fill="#3d5a80" font-size="13" font-weight="800">Feuille wallet</text>
+              <text x="305" y="165" text-anchor="middle" fill="#5a6b7c" font-size="11">CDCVM · TOKEN</text>
+
+              <path d="M385 150 L425 150" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ia)"/>
+              <text x="405" y="138" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">②</text>
+
+              <rect x="430" y="110" width="190" height="80" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+              <text x="525" y="140" text-anchor="middle" fill="#1e5f8a" font-size="14" font-weight="800">Gateway</text>
+              <text x="525" y="162" text-anchor="middle" fill="#5a6b7c" font-size="11">payment_id (si reprise)</text>
+              <text x="525" y="178" text-anchor="middle" fill="#5a6b7c" font-size="10">cœur plateforme</text>
+
+              <path d="M525 190 L525 240" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ia)"/>
+              <text x="545" y="222" fill="#087a6a" font-size="10" font-weight="700">③</text>
+
+              <rect x="430" y="240" width="90" height="55" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+              <text x="475" y="265" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="800">Fraude</text>
+              <text x="475" y="283" text-anchor="middle" fill="#5a6b7c" font-size="10">engine</text>
+
+              <rect x="530" y="240" width="90" height="55" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="575" y="265" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">TSP</text>
+              <text x="575" y="283" text-anchor="middle" fill="#5a6b7c" font-size="10">détokenise</text>
+
+              <rect x="40" y="240" width="150" height="55" rx="10" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+              <text x="115" y="265" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="800">Issuer</text>
+              <text x="115" y="283" text-anchor="middle" fill="#5a6b7c" font-size="11">AuthZ OK/KO</text>
+
+              <path d="M430 267 L195 267" stroke="#c45c26" stroke-width="2.5" marker-end="url(#ah-ia-o)"/>
+              <text x="320" y="258" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">④ Auth</text>
+
+              <path d="M85 68 L85 360" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+              <path d="M190 68 L190 360" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+              <path d="M295 68 L295 360" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+
+              <path d="M115 295 L115 330 L280 330 L280 360" stroke="#1e5f8a" stroke-width="2.5" fill="none" marker-end="url(#ah-ia-b)"/>
+              <text x="200" y="322" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">⑤ → journal plateforme</text>
+
+              <rect x="160" y="360" width="320" height="70" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="320" y="390" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="800">Journal SI (1 id / paiement)</text>
+              <text x="320" y="412" text-anchor="middle" fill="#5a6b7c" font-size="12">même SI · reprise d’ordre ou nouvel achat</text>
+
+              <rect x="700" y="30" width="270" height="420" rx="12" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+              <text x="835" y="58" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="800">Échanges</text>
+              <text x="720" y="90" fill="#087a6a" font-size="12" font-weight="700">①</text>
+              <text x="745" y="90" fill="#5a6b7c" font-size="12">App → feuille</text>
+              <text x="720" y="120" fill="#087a6a" font-size="12" font-weight="700">②</text>
+              <text x="745" y="120" fill="#5a6b7c" font-size="12">TOKEN → Gateway</text>
+              <text x="720" y="150" fill="#087a6a" font-size="12" font-weight="700">③</text>
+              <text x="745" y="150" fill="#5a6b7c" font-size="12">Fraude + TSP</text>
+              <text x="720" y="180" fill="#c45c26" font-size="12" font-weight="700">④</text>
+              <text x="745" y="180" fill="#5a6b7c" font-size="12">Issuer AuthZ</text>
+              <text x="720" y="210" fill="#1e5f8a" font-size="12" font-weight="700">⑤</text>
+              <text x="745" y="210" fill="#5a6b7c" font-size="12">→ Journal plateforme</text>
+              <text x="720" y="260" fill="#087a6a" font-size="12" font-weight="800">Omnicanal</text>
+              <text x="720" y="285" fill="#5a6b7c" font-size="12">Reprise panier = 1 id</text>
+              <text x="720" y="308" fill="#5a6b7c" font-size="12">Nouvel achat = nouvel id</text>
+              <text x="720" y="340" fill="#c45c26" font-size="12" font-weight="800">≠ wallet sheet isolée</text>
+              <text x="720" y="365" fill="#5a6b7c" font-size="12">Pointillés = même SI ·</text>
+              <text x="720" y="388" fill="#5a6b7c" font-size="12">pas auto. même panier</text>
+              <text x="720" y="425" fill="#5a6b7c" font-size="11">PassKit détail = J4</text>
+
+              <text x="500" y="480" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">
+                Porte in-app · même SI · reprise d’ordre ou nouvel achat
+              </text>
+              <text x="500" y="510" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Reprise web → même id · achat neuf in-app → nouvel id
+              </text>
+              <text x="500" y="540" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Fraude / settlement sur le journal plateforme commun
+              </text>
+              <text x="500" y="570" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                CDCVM sur device · AuthZ chez Issuer
+              </text>
+            </svg>
           </div>
+        </section>
+
+        <section class="section" id="synthese-omnicanal">
+          <p class="section-label">Rappel · omnicanal</p>
+          <h2>Quatre portes · une plateforme</h2>
+          <p class="intro">
+            Omnicanal = <strong>une plateforme</strong> pour toutes les
+            portes — pas «&nbsp;un seul paiement pour tout le monde&nbsp;».
+            Continuité d’id = cas particulier (même intention / même ordre).
+          </p>
+          <p class="intro" style="margin-top: 0.5rem">
+            <strong>Ex.</strong>&nbsp;: deux achats distincts (web + magasin)
+            = 2 payment_id sur le même journal&nbsp;; click &amp; collect =
+            1 id repris sur 2 portes.
+          </p>
+
+          <div class="diagram" id="diagram-omni-convergence">
+            <div class="diagram-header">
+              <h3>Architecture fléchée · convergence omnicanale</h3>
+              <p>4 entrées → 1 cœur → 1 journal SI · id par paiement</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 560"
+              role="img"
+              aria-label="Convergence omnicanale des quatre canaux vers un journal unique"
+            >
+              <defs>
+                <marker id="ah-oc" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+                <marker id="ah-oc-b" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                </marker>
+                <marker id="ah-oc-o" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#c45c26" />
+                </marker>
+              </defs>
+
+              <!-- 4 portes -->
+              <text x="280" y="28" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700" letter-spacing="0.06em">PORTES (entrées canal)</text>
+
+              <rect x="40" y="45" width="130" height="55" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="105" y="70" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">In-store</text>
+              <text x="105" y="88" text-anchor="middle" fill="#5a6b7c" font-size="10">POS · tap</text>
+
+              <rect x="185" y="45" width="130" height="55" rx="8" fill="#f0f6fb" stroke="#1e5f8a" stroke-width="2"/>
+              <text x="250" y="70" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="800">E-com</text>
+              <text x="250" y="88" text-anchor="middle" fill="#5a6b7c" font-size="10">checkout web</text>
+
+              <rect x="330" y="45" width="130" height="55" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+              <text x="395" y="70" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="800">Mobile</text>
+              <text x="395" y="88" text-anchor="middle" fill="#5a6b7c" font-size="10">QR · app</text>
+
+              <rect x="475" y="45" width="130" height="55" rx="8" fill="#eef8f5" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="540" y="70" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">In-app</text>
+              <text x="540" y="88" text-anchor="middle" fill="#5a6b7c" font-size="10">feuille wallet</text>
+
+              <!-- flèches vers cœur -->
+              <path d="M105 100 L105 140 L340 180" stroke="#0d9f8a" stroke-width="2" fill="none" marker-end="url(#ah-oc)"/>
+              <path d="M250 100 L250 150 L340 180" stroke="#0d9f8a" stroke-width="2" fill="none" marker-end="url(#ah-oc)"/>
+              <path d="M395 100 L395 150 L380 180" stroke="#0d9f8a" stroke-width="2" fill="none" marker-end="url(#ah-oc)"/>
+              <path d="M540 100 L540 140 L400 180" stroke="#0d9f8a" stroke-width="2" fill="none" marker-end="url(#ah-oc)"/>
+              <text x="320" y="130" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">① ② ③ ④ — même façade</text>
+
+              <!-- Cœur unique -->
+              <rect x="200" y="185" width="320" height="100" rx="12" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+              <text x="360" y="220" text-anchor="middle" fill="#1e5f8a" font-size="15" font-weight="800">Cœur plateforme</text>
+              <text x="360" y="245" text-anchor="middle" fill="#5a6b7c" font-size="12">Gateway · Fraude · TSP (si besoin)</text>
+              <text x="360" y="268" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">orchestration multi-moyens</text>
+
+              <path d="M360 285 L360 320" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-oc)"/>
+              <text x="385" y="310" fill="#087a6a" font-size="10" font-weight="700">⑤ AuthZ</text>
+
+              <rect x="230" y="320" width="120" height="50" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+              <text x="290" y="350" text-anchor="middle" fill="#c45c26" font-size="13" font-weight="800">Issuer</text>
+
+              <path d="M360 345 L360 385" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-oc-b)"/>
+              <text x="385" y="375" fill="#1e5f8a" font-size="10" font-weight="700">⑥</text>
+
+              <rect x="200" y="385" width="320" height="55" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="360" y="410" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="800">Journal unique (plateforme)</text>
+              <text x="360" y="430" text-anchor="middle" fill="#5a6b7c" font-size="11">1 journal SI · N paiements</text>
+
+              <!-- Scénario latéral -->
+              <rect x="700" y="30" width="270" height="400" rx="12" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2"/>
+              <text x="835" y="58" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="800">Deux lectures</text>
+              <text x="720" y="90" fill="#087a6a" font-size="12" font-weight="700">A</text>
+              <text x="745" y="90" fill="#5a6b7c" font-size="12">2 canaux · 2 intentions</text>
+              <text x="720" y="115" fill="#1e5f8a" font-size="12" font-weight="700">→</text>
+              <text x="745" y="115" fill="#5a6b7c" font-size="12">2 payment_id · 1 SI</text>
+              <text x="720" y="150" fill="#087a6a" font-size="12" font-weight="700">B</text>
+              <text x="745" y="150" fill="#5a6b7c" font-size="12">Même ordre (C&amp;C…)</text>
+              <text x="720" y="175" fill="#1e5f8a" font-size="12" font-weight="700">→</text>
+              <text x="745" y="175" fill="#5a6b7c" font-size="12">1 payment_id · 2 portes</text>
+              <text x="720" y="215" fill="#5a6b7c" font-size="12">Fraude / Auth / settle</text>
+              <text x="720" y="238" fill="#5a6b7c" font-size="12">= règles du même SI</text>
+              <text x="720" y="290" fill="#c45c26" font-size="12" font-weight="800">≠ Multicanal</text>
+              <text x="720" y="315" fill="#5a6b7c" font-size="12">4 stacks · 4 journaux</text>
+              <text x="720" y="340" fill="#5a6b7c" font-size="12">réconciliation manuelle</text>
+              <text x="720" y="380" fill="#087a6a" font-size="12" font-weight="800">= Omnicanal</text>
+              <text x="720" y="405" fill="#5a6b7c" font-size="12">1 SI pour toutes les</text>
+              <text x="720" y="425" fill="#5a6b7c" font-size="12">portes · id selon l’achat</text>
+
+              <text x="500" y="480" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">
+                Omnicanal = mêmes portes sur un SI commun · pas «&nbsp;toujours le même paiement&nbsp;»
+              </text>
+              <text x="500" y="510" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Même intention (même ordre) → même payment_id · sinon nouvel id sur le même journal
+              </text>
+              <text x="500" y="540" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Clearing / Settlement J1 après AuthZ OK · rail de clôture commun
+              </text>
+            </svg>
+          </div>
+
+          <div class="csm-table-wrap" style="margin-top: 1.25rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Signal omnicanal</th>
+                  <th scope="col">Ce qu’on vérifie</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="is-exergue">
+                  <th scope="row">Plateforme unique</th>
+                  <td>4 portes · 1 gateway · 1 journal SI</td>
+                </tr>
+                <tr>
+                  <th scope="row">1 payment_id / paiement</th>
+                  <td>Deux intentions = deux ids · même SI</td>
+                </tr>
+                <tr>
+                  <th scope="row">Continuité (option)</th>
+                  <td>Même ordre repris sur une autre porte</td>
+                </tr>
+                <tr>
+                  <th scope="row">≠ Multicanal</th>
+                  <td>Pas 4 stacks / 4 journaux juxtaposés</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="montage-example" style="margin-top: 0.85rem">
+            <strong>Repère</strong>&nbsp;: 4 silos = multicanal&nbsp;;
+            1 SI pour 4 portes = omnicanal&nbsp;; 1 id partagé = seulement
+            si même intention.
+          </p>
         </section>
 
         <div class="sources-box">
-          <strong>Sources normes / specs</strong> — à affiner&nbsp;: architectures
-          référence PSP / switch nationaux, EMVCo, PCI, règles scheme.
+          <strong>Sources normes / specs</strong> — EMV Payment Tokenisation ·
+          PCI DSS / PCI PIN · règles scheme (Visa / Mastercard) · architectures
+          type PSP / switch nationaux · ISO 20022 (settlement selon marché).
         </div>
 
         <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>

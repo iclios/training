@@ -1,2 +1,2 @@
-JOUR 5 — Intro & objectifs
-Synthèse J1–J4 → plateforme SI omnicanale. Objectifs : omnicanal, briques, exigences, contrôle, atelier conception.
+JOUR 5 — Intro & fil conducteur
+Synthèse J1–J4 → plateforme SI omnicanale. Objectifs : omnicanal, briques, exigences. Fil 4h (sans atelier / sans contrôle continu). Fil monétique : intention → payment_id → AuthZ → vérité SI.

@@ -1,2 +1,0 @@
-JOUR 5 — Atelier conception plateforme
-Réutiliser Postman J1 · mock gateway 3 canaux · mur post-its (consommable salle) · aucun achat matériel métier · pitch comité SI.

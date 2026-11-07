@@ -403,11 +403,13 @@
           <!-- ===== HCE ===== -->
           <p class="section-label" style="margin-top: 2rem">2 · HCE</p>
           <h3 style="font-family: var(--font-display); margin: 0.35rem 0 0.5rem; font-size: 1.15rem">
-            HCE · ce qui manque vs SE → nécessité du TSP
+            HCE · émulation logicielle · secret long au TSP
           </h3>
           <p class="definition-full">
             <strong>Host Card Emulation</strong>&nbsp;: le logiciel (OS / app)
-            émule une <strong>carte sans contact</strong> face au POS.
+            émule une <strong>carte sans contact</strong> face au POS —
+            <strong>sans coffre SE</strong> sur le téléphone. D’où l’UDK-AC
+            qui reste chez le <strong>TSP</strong>.
           </p>
           <ul class="topic-list">
             <li>
@@ -550,16 +552,6 @@
               </tbody>
             </table>
           </div>
-
-<div class="callout" style="margin-top: 1.25rem">
-            <h3>À ce stade</h3>
-            <p style="margin: 0">
-              <strong>SE</strong> = la carte (puce + secrets) ·
-              <strong>HCE</strong> = logiciel <em>sur le téléphone</em> qui
-              joue la carte (+ TSP pour le secret durable). Ensuite&nbsp;:
-              <em>où</em> vit le coffre (SIM · eSE · cloud / TSP).
-            </p>
-          </div>
         </section>
 
         <!-- SIM vs eSE vs HCE cloud -->
@@ -583,9 +575,9 @@
               (<em>(embedded Secure Element)</em>
             </li>
             <li>
-              <strong>HCE cloud</strong> (<em>Cloud-based HCE</em>) =
-              HCE <strong>sur le téléphone</strong> + coffre chez le
-              <strong>TSP</strong> — pas «&nbsp;HCE dans le cloud&nbsp;»
+              <strong>HCE cloud</strong>&nbsp;: le téléphone émule toujours
+              en local (HCE) · seul le <strong>coffre</strong> (UDK-AC) est
+              chez le <strong>TSP</strong>
             </li>
           </ul>
 
@@ -893,83 +885,149 @@
           </p>
         </section>
 
+        <!-- Autres wallets -->
         <section class="section print-keep">
-          <p class="section-label">Synthèse</p>
-          <h2>Question clé · Apple / Google ne sont pas émetteurs</h2>
+          <p class="section-label">Panorama</p>
+          <h2>Autres wallets · panorama</h2>
           <p class="intro">
-            Comment, avec la saisie de la carte, mettent-ils un sans-contact
-            <strong>interopérable</strong>&nbsp;? Et où naissent les secrets&nbsp;?
+            Même mot «&nbsp;wallet&nbsp;», deux objets&nbsp;:
+            <strong>wallet carte</strong> (token EMV dans SE/HCE) vs
+            <strong>wallet compte</strong> (solde mobile money sur un
+            ledger — pas de DPAN pour parler au POS).
           </p>
 
           <div class="csm-table-wrap" style="margin-top: 1rem">
             <table class="csm-table">
               <thead>
                 <tr>
-                  <th scope="col">Point</th>
-                  <th scope="col">Réponse</th>
+                  <th scope="col">Wallet</th>
+                  <th scope="col">Ce qui est stocké</th>
+                  <th scope="col">Stack / canal</th>
+                  <th scope="col">Tap NFC EMV</th>
+                  <th scope="col">Portée</th>
+                  <th scope="col">Réseau / scheme</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">Rôle Apple / Google</th>
-                  <td>
-                    Pas émetteurs · pas de copie du PAN · UX + présentation NFC
-                    (SE ou HCE)
-                  </td>
+                <tr class="is-exergue">
+                  <th scope="row" colspan="6">
+                    A · Wallet carte tokenisée — credentials carte (DPAN…)
+                    pour répondre au POS
+                  </th>
                 </tr>
                 <tr>
-                  <th scope="row">Enrolment</th>
-                  <td>
-                    Saisie carte → <strong>TSP</strong> →
-                    <strong>émetteur autorise</strong> → token (DPAN)
-                  </td>
+                  <th scope="row">Apple Pay</th>
+                  <td>Token carte (DPAN) + clés en eSE</td>
+                  <td>eSE + TEE · tap / in-app</td>
+                  <td>Oui</td>
+                  <td>International</td>
+                  <td>Visa · Mastercard · Amex… via TSP</td>
                 </tr>
                 <tr>
-                  <th scope="row">Interop POS</th>
-                  <td>
-                    Même tuyau qu’une carte CL (14443 Type&nbsp;A + EMV) —
-                    le terminal voit une carte
-                  </td>
+                  <th scope="row">Google Pay</th>
+                  <td>Credentials courts · UDK-AC au TSP</td>
+                  <td>HCE + TEE · tap / in-app</td>
+                  <td>Oui</td>
+                  <td>International</td>
+                  <td>Visa · Mastercard · Amex… via TSP</td>
                 </tr>
                 <tr>
-                  <th scope="row">AuthZ</th>
-                  <td>
-                    Scheme → TSP (détokenisation) →
-                    <strong>émetteur décide</strong>
-                  </td>
+                  <th scope="row">Samsung Wallet</th>
+                  <td>Token carte (souvent en SE)</td>
+                  <td>SE / Knox + TEE</td>
+                  <td>Oui</td>
+                  <td>International</td>
+                  <td>Visa · Mastercard… via TSP</td>
                 </tr>
                 <tr>
-                  <th scope="row">Naissance des secrets</th>
-                  <td>
-                    Couple <strong>émetteur + TSP</strong> (cadré scheme) —
-                    génère / dérive UDK-AC · ni Apple ni Google ne les inventent
-                  </td>
+                  <th scope="row">Garmin Pay · Fitbit Pay</th>
+                  <td>Token carte en SE wearable</td>
+                  <td>SE embarquée · tap</td>
+                  <td>Oui</td>
+                  <td>International (marchés couverts)</td>
+                  <td>Visa · Mastercard… via TSP</td>
                 </tr>
                 <tr>
-                  <th scope="row">Apple (SE)</th>
-                  <td>
-                    Même naissance réseau → secret long
-                    <strong>injecté dans l’eSE</strong> · Apple = coffre
-                  </td>
+                  <th scope="row">Mir Pay</th>
+                  <td>Credentials carte · coffre côté Mir</td>
+                  <td>HCE · tap</td>
+                  <td>Oui</td>
+                  <td>National (Russie)</td>
+                  <td>Mir</td>
                 </tr>
                 <tr>
-                  <th scope="row">Android (HCE)</th>
-                  <td>
-                    Pas de coffre local digne → UDK-AC
-                    <strong>reste au TSP</strong> · phone = credentials courts
-                  </td>
+                  <th scope="row">Huawei · Xiaomi…</th>
+                  <td>Token carte (SE ou HCE)</td>
+                  <td>SE ou HCE · tap</td>
+                  <td>Oui (marchés ciblés)</td>
+                  <td>Surtout Asie</td>
+                  <td>UnionPay · schemes locaux</td>
                 </tr>
                 <tr class="is-exergue">
-                  <th scope="row">À retenir</th>
-                  <td>
-                    Secrets = émetteur / TSP · Apple/Google = NFC + coffre ou
-                    HCE · seule différence =
-                    <em>où on range</em> le secret long
-                  </td>
+                  <th scope="row" colspan="6">
+                    B · Wallet compte (mobile money) — solde / ledger,
+                    pas de token carte EMV
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="row">M-Pesa</th>
+                  <td>Solde compte lié au n° (ledger opérateur)</td>
+                  <td>App / USSD · pas SE/HCE carte</td>
+                  <td>Émergent (annoncé)</td>
+                  <td>Afrique de l’Est (KE…)</td>
+                  <td>Scheme M-Pesa (Safaricom…)</td>
+                </tr>
+                <tr>
+                  <th scope="row">Wave</th>
+                  <td>Solde compte Wave (ledger)</td>
+                  <td>App / QR</td>
+                  <td>Non</td>
+                  <td>Afrique de l’Ouest (SN · CI…)</td>
+                  <td>Scheme Wave</td>
+                </tr>
+                <tr>
+                  <th scope="row">Orange Money</th>
+                  <td>Solde compte opérateur (ledger)</td>
+                  <td>USSD / app / QR · pilotes NFC hors stack carte</td>
+                  <td>Rare / pilotes</td>
+                  <td>Afrique francophone</td>
+                  <td>Scheme Orange Money</td>
+                </tr>
+                <tr>
+                  <th scope="row">MTN MoMo</th>
+                  <td>Solde compte opérateur (ledger)</td>
+                  <td>USSD / app / QR</td>
+                  <td>Non</td>
+                  <td>Afrique Ouest / Centre</td>
+                  <td>Scheme MTN MoMo</td>
+                </tr>
+                <tr>
+                  <th scope="row">Airtel Money</th>
+                  <td>Solde compte opérateur (ledger)</td>
+                  <td>USSD / app / QR</td>
+                  <td>Non</td>
+                  <td>Afrique Est / Centre / Ouest</td>
+                  <td>Scheme Airtel Money</td>
                 </tr>
               </tbody>
             </table>
           </div>
+
+          <p class="montage-example" style="margin-top: 0.85rem">
+            <strong>Légende</strong>&nbsp;:
+            <strong>ledger opérateur</strong> = grand livre comptable de
+            l’opérateur / fintech (Orange, MTN, Safaricom, Wave…) où est
+            enregistré le <em>solde</em> de chaque compte mobile money.
+            L’app / USSD / QR ne stocke pas l’argent&nbsp;: elle ordonne un
+            débit / crédit sur ce registre serveur.
+          </p>
+          <p class="montage-example" style="margin-top: 0.5rem">
+            <strong>Repère</strong>&nbsp;: A stocke une
+            <strong>carte tokenisée</strong> (répond au POS). B stocke un
+            <strong>compte / solde</strong> (débite un ledger) — wallet
+            numérique oui, wallet NFC carte non. Le tap EMV reste
+            secondaire ou émergent en Afrique.
+          </p>
         </section>
 
         <div class="sources-box">

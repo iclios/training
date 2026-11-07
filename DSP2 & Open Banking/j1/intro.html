@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Intro &amp; objectifs — Jour 1 | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="intro">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a class="is-active" href="intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · Ouverture</span>
+                <span class="tag tag-accent">4 h</span>
+              </div>
+              <p class="day-kicker">Accueil</p>
+              <h1>Intro &amp; objectifs</h1>
+              <p class="lead">
+                Avant d’entrer dans le détail, cette ouverture pose les mots&nbsp;:
+                qu’est-ce que la DSP2, que recouvre l’appellation «&nbsp;Open
+                Banking&nbsp;», et que va-t-on construire ensemble pendant ces
+                cinq jours&nbsp;?
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <!-- DÉFINITION DU SIGLE -->
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">De quoi parle-t-on&nbsp;?</p>
+              <h2>DSP2 et Open Banking — deux sigles à fixer d’entrée</h2>
+
+              <div class="definition-full">
+                <strong>DSP2</strong> signifie
+                <strong>Deuxième Directive sur les Services de Paiement</strong>
+                (en anglais&nbsp;: <em>Payment Services Directive 2</em>, abrégé
+                <em>PSD2</em>). C’est une directive européenne, la
+                <strong>directive (UE) 2015/2366</strong>, adoptée le
+                <strong>25 novembre 2015</strong>. Elle remplace et complète la
+                première directive sur les services de paiement (DSP1,
+                2007/64/CE).
+              </div>
+
+              <div class="definition-full">
+                <strong>Open Banking</strong> — littéralement
+                «&nbsp;banque ouverte&nbsp;» — désigne le fait, pour une banque,
+                d’ouvrir l’accès à ses <strong>données de comptes</strong> et à
+                ses <strong>capacités de paiement</strong> à des tiers agréés,
+                <strong>avec le consentement explicite du client</strong>. La
+                DSP2 est le texte européen qui rend cette ouverture obligatoire
+                et encadrée.
+              </div>
+
+              <p>
+                Retenons la nuance qui structure tout le module&nbsp;:
+                <strong>la DSP2 est la règle</strong>, <strong>l’Open Banking est
+                la pratique</strong>. La directive dit ce qui est permis,
+                obligatoire et interdit&nbsp;; l’Open Banking, ce sont les
+                interfaces, les applications et les usages qui en découlent pour
+                les clients et les établissements.
+              </p>
+
+              <div class="callout info">
+                <h3>Trois mots à ne pas confondre</h3>
+                <p>
+                  <strong>DSP1 / DSP2</strong> sont des textes européens
+                  successifs. <strong>Open Banking</strong> est le modèle
+                  d’ouverture rendu possible par ces textes.
+                  <strong>API</strong> (Application Programming Interface) est
+                  l’outil technique par lequel l’ouverture se réalise. On peut
+                  faire de l’Open Banking sans le nommer, et l’on confond souvent
+                  les trois.
+                </p>
+              </div>
+            </section>
+
+            <!-- APERÇU DU COURS -->
+            <section class="section">
+              <p class="section-label">Aperçu</p>
+              <h2>Ce que vous allez apprendre, en une image</h2>
+              <p class="intro">
+                Le module suit une histoire&nbsp;: celle de Léa, une cliente qui
+                veut simplement voir tous ses comptes au même endroit.                 De son
+                histoire découle toute la logique de la DSP2 et de l’Open
+                Banking.
+              </p>
+
+              <figure class="fig-illus">
+                <svg viewBox="0 0 1000 180" role="img" aria-label="Parcours de Léa dans le temps, flux animé">
+                  <defs>
+                    <marker id="ah-tl" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+                      <path d="M0,0 L7,3.5 L0,7 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <line x1="50" y1="90" x2="940" y2="90" stroke="#0d9f8a" stroke-width="3" class="stream" marker-end="url(#ah-tl)"/>
+                  <!-- Étape 1 -->
+                  <g>
+                    <circle cx="130" cy="90" r="14" fill="#c45c26" stroke="#fff" stroke-width="3"/>
+                    <text x="130" y="46" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="12" font-weight="700">2017</text>
+                    <text x="130" y="128" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Le problème</text>
+                    <text x="130" y="146" text-anchor="middle" fill="#5a6b7c" font-size="10">identifiants partagés</text>
+                  </g>
+                  <!-- Étape 2 -->
+                  <g>
+                    <circle cx="370" cy="90" r="14" fill="#6b4fa0" stroke="#fff" stroke-width="3"/>
+                    <text x="370" y="46" text-anchor="middle" fill="#6b4fa0" font-family="Syne, sans-serif" font-size="12" font-weight="700">Incident</text>
+                    <text x="370" y="128" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Perte de confiance</text>
+                    <text x="370" y="146" text-anchor="middle" fill="#5a6b7c" font-size="10">fraude, responsabilité</text>
+                  </g>
+                  <!-- Étape 3 -->
+                  <g>
+                    <circle cx="610" cy="90" r="14" fill="#1e5f8a" stroke="#fff" stroke-width="3"/>
+                    <text x="610" y="46" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">La réponse</text>
+                    <text x="610" y="128" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">DSP2</text>
+                    <text x="610" y="146" text-anchor="middle" fill="#5a6b7c" font-size="10">accès encadré</text>
+                  </g>
+                  <!-- Étape 4 -->
+                  <g>
+                    <circle cx="850" cy="90" r="14" fill="#0d9f8a" stroke="#fff" stroke-width="3"/>
+                    <text x="850" y="46" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Aujourd’hui</text>
+                    <text x="850" y="128" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Open Banking</text>
+                    <text x="850" y="146" text-anchor="middle" fill="#5a6b7c" font-size="10">consentement, API</text>
+                  </g>
+                </svg>
+                <figcaption>Figure — le parcours de Léa&nbsp;: le problème, l’incident, la réponse DSP2, l’usage aujourd’hui.</figcaption>
+              </figure>
+
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>Le problème</h3>
+                  <p>
+                    Avant la DSP2, pour accéder aux comptes de Léa, une
+                    application devait emprunter ses identifiants. Fragile,
+                    dangereux, sans cadre.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>La réponse</h3>
+                  <p>
+                    La DSP2 crée de nouveaux rôles (AISP, PISP…), impose une
+                    interface dédiée aux banques et protège le consentement du
+                    client.
+                  </p>
+                </div>
+              </div>
+
+              <div class="split-3">
+                <div class="panel ok">
+                  <h3>La machine</h3>
+                  <p>
+                    Côté banque, une chaîne de couches (Gateway, consentement,
+                    IAM, core) fait la médiation entre le tiers et le système
+                    de compte.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>Les standards</h3>
+                  <p>
+                    Deux grandes familles d’API (OBIE, Berlin Group) organisent
+                    l’interopérabilité entre banques et applications.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>La pratique</h3>
+                  <p>
+                    Un atelier de clôture met les étudiants en situation&nbsp;:
+                    qualifier des partenaires, tracer un flux, choisir un
+                    standard.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout">
+                <h3>Fil rouge du module</h3>
+                <p>
+                  <strong>Léa</strong> traverse les cinq jours. Elle commence par
+                  perdre confiance dans son application de budget, puis découvre
+                  qu’un accès encadré existe. Chaque séquence répond à une
+                  question qu’elle se pose.
+                </p>
+              </div>
+
+              <div class="callout info">
+                <h3>Avant de raconter l’histoire&nbsp;: la fiche d’identité</h3>
+                <p>
+                  La page suivante, <a href="cadre.html"><strong>« Le
+                  cadre »</strong></a>, donne le décor réglementaire sans entrer
+                  dans le récit&nbsp;: où la DSP2 s’applique, ce qu’elle couvre,
+                  quelles obligations elle impose, et ce qu’elle change par
+                  rapport à la DSP1. C’est la référence à garder sous les yeux
+                  pendant tout le module.
+                </p>
+              </div>
+            </section>
+
+            <!-- POSITIONNEMENT -->
+            <section class="section">
+              <p class="section-label">Positionnement</p>
+              <h2>Du texte réglementaire à l’architecture SI</h2>
+              <p class="intro">
+                La DSP2 (directive (UE) 2015/2366, dite « DSP2 ») n’est pas un
+                sujet juridique isolé&nbsp;: elle impose à un SI bancaire
+                d’exposer des <strong>interfaces</strong>, de gérer des
+                <strong>consentements</strong> et d’authentifier des
+                <strong>tiers non bancaires</strong>. Le fil de cette journée
+                suit exactement ce chemin&nbsp;: le <em>pourquoi</em> (origine),
+                le <em>qui</em> (acteurs), le <em>comment</em> (architecture) et
+                le <em>avec quoi</em> (standardisation).
+              </p>
+
+              <div class="key-idea">
+                <p class="label">Idée directrice du jour</p>
+                <p>
+                  La DSP2 transforme la banque d’un silo fermé en
+                  <em>plateforme</em> exposant des données et des capacités de
+                  paiement à des tiers agréés — sous consentement explicite du
+                  client.
+                </p>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Fil de la journée</h3>
+                  <p>Origine → Acteurs → Architecture → Standardisation</p>
+                </div>
+                <svg viewBox="0 0 1000 230" role="img" aria-label="Chaîne pédagogique du jour 1">
+                  <defs>
+                    <marker id="ah-fil" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="50" width="210" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="125" y="82" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">1.1</text>
+                    <text x="125" y="112" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Origine</text>
+                    <text x="125" y="136" text-anchor="middle" fill="#5a6b7c" font-size="12">Pourquoi la directive</text>
+                    <text x="125" y="154" text-anchor="middle" fill="#5a6b7c" font-size="12">concurrence · protection</text>
+                  </g>
+                  <line x1="238" y1="110" x2="268" y2="110" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-fil)"/>
+                  <g>
+                    <rect x="276" y="50" width="210" height="120" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="381" y="82" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">1.2</text>
+                    <text x="381" y="112" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Acteurs</text>
+                    <text x="381" y="136" text-anchor="middle" fill="#5a6b7c" font-size="12">ASPSP · AISP · PISP</text>
+                    <text x="381" y="154" text-anchor="middle" fill="#5a6b7c" font-size="12">banque ↔ fintech</text>
+                  </g>
+                  <line x1="494" y1="110" x2="524" y2="110" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-fil)"/>
+                  <g>
+                    <rect x="532" y="50" width="210" height="120" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="637" y="82" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">1.3</text>
+                    <text x="637" y="112" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Architecture</text>
+                    <text x="637" y="136" text-anchor="middle" fill="#5a6b7c" font-size="12">Gateway · consentement</text>
+                    <text x="637" y="154" text-anchor="middle" fill="#5a6b7c" font-size="12">IAM · core banking</text>
+                  </g>
+                  <line x1="750" y1="110" x2="780" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-fil)"/>
+                  <g>
+                    <rect x="788" y="50" width="196" height="120" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="886" y="82" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700" letter-spacing="0.08em">1.4</text>
+                    <text x="886" y="112" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="16" font-weight="700">Standards</text>
+                    <text x="886" y="136" text-anchor="middle" fill="#5a6b7c" font-size="12">OBIE · interopérabilité</text>
+                    <text x="886" y="154" text-anchor="middle" fill="#5a6b7c" font-size="12">API propriétaire ?</text>
+                  </g>
+                  <text x="500" y="205" text-anchor="middle" fill="#5a6b7c" font-size="12">Chaque bloc prépare le suivant — l’atelier de clôture les réunit.</text>
+                </svg>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Objectifs pédagogiques</p>
+              <h2>À l’issue du Jour 1, l’étudiant sait…</h2>
+              <ul class="topic-list">
+                <li>
+                  <span>
+                    <strong>Situer</strong> la DSP2&nbsp;: périmètre
+                    géographique (EEE), services couverts, grandes obligations
+                    et ce qu’elle change par rapport à la DSP1.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Expliquer</strong> les limites du modèle bancaire
+                    fermé et les trois objectifs de la DSP2 (concurrence,
+                    innovation, protection du consommateur).
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Distinguer</strong> les statuts réglementaires
+                    ASPSP et TPP, et les rôles AISP / PISP / CBPII au sein des
+                    TPP.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Décrire</strong> l’architecture logique d’une
+                    exposition Open Banking, de la requête du TPP jusqu’au core
+                    banking, couche par couche.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Identifier</strong> les rôles du consentement et de
+                    la SCA (Strong Customer Authentication) dans un flux de
+                    paiement initié par un tiers.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Argumenter</strong> un choix entre API propriétaire
+                    et API standardisée (OBIE / Berlin Group).
+                  </span>
+                </li>
+              </ul>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Organisation</p>
+              <h2>Déroulé des 4 heures</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Temps</th>
+                      <th scope="col">Bloc</th>
+                      <th scope="col">Modalité</th>
+                      <th scope="col">Livrable</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">0 h 00 – 0 h 10</th>
+                      <td>Intro &amp; objectifs</td>
+                      <td>Plénière</td>
+                      <td>Vision d’ensemble</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">0 h 10 – 0 h 25</th>
+                      <td>Le cadre (DSP2 / DSP1)</td>
+                      <td>Exposé express</td>
+                      <td>Fiche d’identité</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">0 h 25 – 1 h 15</th>
+                      <td>1.1 Origine &amp; objectifs</td>
+                      <td>Exposé + discussion</td>
+                      <td>3 objectifs argumentés</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1 h 15 – 2 h 10</th>
+                      <td>1.2 Nouveaux acteurs</td>
+                      <td>Exposé + mini-cas</td>
+                      <td>Carte des rôles</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2 h 10 – 2 h 20</th>
+                      <td>Pause</td>
+                      <td>—</td>
+                      <td>—</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2 h 20 – 3 h 15</th>
+                      <td>1.3 Architecture cible</td>
+                      <td>Exposé + schéma au tableau</td>
+                      <td>Schéma couches annoté</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3 h 15 – 3 h 45</th>
+                      <td>1.4 Standardisation</td>
+                      <td>Exposé + débat</td>
+                      <td>Grille d’arbitrage</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">3 h 45 – 4 h 00</th>
+                      <td>Atelier de fin de session</td>
+                      <td>Travaux de groupe</td>
+                      <td>Scénario complet présenté</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Prérequis utiles</h3>
+                <p>
+                  Notions de SI bancaire (compte, payment order, core banking),
+                  bases HTTP/REST, et connaissance superficielle de la
+                  réglementation européenne des services de paiement. Aucun
+                  accès à un environnement bancaire réel n’est nécessaire.
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Fil de séance</p>
+              <h2>Parcours</h2>
+              <nav class="block-map" id="block-map" aria-label="Blocs du jour 1"></nav>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Cursus</p>
+              <h2>Trajectoire des 5 jours</h2>
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Programme module</h3>
+                  <p>Fondements → API &amp; sécurité → PISP → AISP → synthèse</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Programme module sur 5 jours">
+                  <defs>
+                    <marker id="ah-prog" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="18" y="36" width="172" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="104" y="68" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.06em">AUJOURD’HUI</text>
+                    <text x="104" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="22" font-weight="700">J1</text>
+                    <text x="104" y="128" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Fondements</text>
+                    <text x="104" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">DSP2 · acteurs</text>
+                  </g>
+                  <line x1="198" y1="96" x2="218" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-prog)"/>
+                  <g>
+                    <rect x="226" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="312" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="312" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J2</text>
+                    <text x="312" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">API &amp; sécurité</text>
+                    <text x="312" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">OAuth2 · SCA</text>
+                  </g>
+                  <line x1="406" y1="96" x2="426" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog)"/>
+                  <g>
+                    <rect x="434" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="520" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="520" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J3</text>
+                    <text x="520" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Paiement PISP</text>
+                    <text x="520" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">initiation · flux</text>
+                  </g>
+                  <line x1="614" y1="96" x2="634" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog)"/>
+                  <g>
+                    <rect x="642" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="728" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="728" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J4</text>
+                    <text x="728" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Agrégation AISP</text>
+                    <text x="728" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">data banking</text>
+                  </g>
+                  <line x1="822" y1="96" x2="842" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog)"/>
+                  <g>
+                    <rect x="850" y="36" width="132" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="916" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="916" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="20" font-weight="700">J5</text>
+                    <text x="916" y="128" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">SI &amp; cas d’usage</text>
+                    <text x="916" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">synthèse</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a> · Intro &amp; objectifs
+      </div>
+    </footer>
+    <script src="../js/nav-j1.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

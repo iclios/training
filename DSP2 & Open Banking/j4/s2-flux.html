@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S2 — Flux AIS &amp; consentement | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s2-flux">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a class="is-active" href="intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 4 · Séquence 2</span>
+                <span class="tag tag-accent">60 min</span>
+              </div>
+              <p class="day-kicker">Du consentement à la revue des comptes</p>
+              <h1>Flux AIS &amp; consentement</h1>
+              <p class="lead">
+                Un consentement AIS a un cycle de vie&nbsp;: on le crée par SCA, on
+                lit les comptes qu’il couvre, on rafraîchit selon des règles, et on
+                peut le révoquer. On suit ce cycle du début à la fin.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Léa a connecté Banque Est et sa néobanque. Elle a validé deux
+                authentifications fortes. Pendant 90 jours, MonBuddy pourra lire ses
+                soldes et opérations — puis il faudra reconfirmer. Et si Léa
+                retire son consentement, l’accès s’arrête net.
+              </p>
+            </div>
+
+            <!-- VUE D'ENSEMBLE -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Vue d’ensemble</p>
+              <h2 id="cinq-etapes">Le cycle de vie en quatre temps</h2>
+              <p class="intro">
+                L’AIS a un rythme&nbsp;: une fois mis en place, il vit et meurt.
+                Quatre moments structurent ce cycle.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Étape</th>
+                      <th scope="col">Acteur principal</th>
+                      <th scope="col">Résultat</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">1</th><td>Création du consentement</td><td>AISP + client</td><td>Contrat de lecture&nbsp;: comptes, données, durée</td></tr>
+                    <tr><th scope="row">2</th><td>SCA &amp; autorisation</td><td>Banque (ASPSP)</td><td>Jeton d’accès accordé à l’AISP</td></tr>
+                    <tr><th scope="row">3</th><td>Lecture des comptes</td><td>AISP</td><td>Soldes et transactions récupérés</td></tr>
+                    <tr class="is-exergue"><th scope="row">4</th><td>Rafraîchissement &amp; révocation</td><td>AISP / client</td><td>Donnée à jour, ou accès coupé</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Cycle de vie du consentement AIS</h3>
+                  <p>Création → SCA → lecture → rafraîchissement → révocation</p>
+                </div>
+                <svg viewBox="0 0 1000 220" role="img" aria-label="Chronologie du consentement AIS">
+                  <defs>
+                    <marker id="ah-cv" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <line x1="60" y1="80" x2="940" y2="80" stroke="#c5d3df" stroke-width="3" marker-end="url(#ah-cv)"/>
+                  <g>
+                    <circle cx="150" cy="80" r="16" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="150" y="85" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="800">1</text>
+                    <text x="150" y="130" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Création</text>
+                    <text x="150" y="148" text-anchor="middle" fill="#5a6b7c" font-size="10">comptes + données</text>
+                    <text x="150" y="163" text-anchor="middle" fill="#5a6b7c" font-size="10">durée choisie</text>
+                  </g>
+                  <g>
+                    <circle cx="380" cy="80" r="16" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="380" y="85" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">2</text>
+                    <text x="380" y="130" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">SCA</text>
+                    <text x="380" y="148" text-anchor="middle" fill="#5a6b7c" font-size="10">authentification</text>
+                    <text x="380" y="163" text-anchor="middle" fill="#5a6b7c" font-size="10">forte chez la banque</text>
+                  </g>
+                  <g>
+                    <circle cx="610" cy="80" r="16" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="610" y="85" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">3</text>
+                    <text x="610" y="130" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Lecture</text>
+                    <text x="610" y="148" text-anchor="middle" fill="#5a6b7c" font-size="10">soldes, opérations</text>
+                    <text x="610" y="163" text-anchor="middle" fill="#5a6b7c" font-size="10">autorisés</text>
+                  </g>
+                  <g>
+                    <circle cx="840" cy="80" r="16" fill="#f1edfa" stroke="#6b4fa0" stroke-width="3"/>
+                    <text x="840" y="85" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="800">4</text>
+                    <text x="840" y="130" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Maintien / fin</text>
+                    <text x="840" y="148" text-anchor="middle" fill="#5a6b7c" font-size="10">refresh jusqu’à 90 j</text>
+                    <text x="840" y="163" text-anchor="middle" fill="#5a6b7c" font-size="10">puis révocation</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <!-- ÉTAPE 1 -->
+            <section class="section">
+              <p class="section-label">Étape 1</p>
+              <h2 id="creation">Le consentement&nbsp;: un contrat de lecture</h2>
+              <p>
+                Le consentement AIS n’est pas un «&nbsp;ok&nbsp;» vague&nbsp;: c’est
+                une autorisation <strong>délimitée</strong>. Il dit
+                <em>quels comptes</em>, <em>quelles données</em>, <em>pendant
+                combien de temps</em>, et <em>pour quelle finalité</em>.
+              </p>
+
+              <div class="callout info">
+                <h3>Ce que précise un consentement AIS</h3>
+                <ul>
+                  <li><strong>Comptes</strong> couverts (un, plusieurs ou «&nbsp;tous&nbsp;»)&nbsp;;</li>
+                  <li><strong>Données</strong>&nbsp;: soldes, opérations, bénéficiaires, etc.&nbsp;;</li>
+                  <li><strong>Fréquence</strong> d’accès (rafraîchissements autorisés)&nbsp;;</li>
+                  <li><strong>Durée</strong> (typiquement jusqu’à 90&nbsp;jours, reconductible par re-SCA)&nbsp;;</li>
+                  <li><strong>Finalité</strong> au sens RGPD, et révocabilité à tout moment.</li>
+                </ul>
+              </div>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Sélection des comptes</strong>
+                    <p>
+                      MonBuddy propose à Léa de choisir ses banques. Chaque banque
+                      sera interrogée séparément.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>Consentement explicite</strong>
+                    <p>
+                      Léa valide une liste de données et une durée. Ce n’est pas
+                      une case pré-cochée&nbsp;: c’est un acte positif, lisible.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Information RGPD</strong>
+                    <p>
+                      Finalité, minimisation, durée de conservation côté AISP. Le
+                      consentement DSP2 doit aussi tenir debout face au RGPD
+                      (Jour 1).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ÉTAPE 2 -->
+            <section class="section">
+              <p class="section-label">Étape 2</p>
+              <h2 id="sca">La SCA&nbsp;: l’autorisation chez la banque</h2>
+              <p>
+                Comme pour le PISP, c’est la <strong>banque (ASPSP)</strong> qui
+                authentifie fortement le client et délivre l’accès. L’AISP ne
+                collecte jamais les secrets&nbsp;: il obtient un <strong>jeton</strong>
+                lié au consentement.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Ce que fait la banque</h3>
+                  <ul>
+                    <li>Affiche le consentement (comptes, données, durée)&nbsp;;</li>
+                    <li>Réalise la SCA (code, push, biométrie)&nbsp;;</li>
+                    <li>Émet un jeton d’accès à durée courte, renouvelable&nbsp;;</li>
+                    <li>Conserve la preuve de la SCA pour l’audit.</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Ce que fait l’AISP</h3>
+                  <ul>
+                    <li>Redirige vers la banque (redirection SCA)&nbsp;;</li>
+                    <li>Stocke le jeton, jamais les identifiants&nbsp;;</li>
+                    <li>Utilise le jeton pour lire les comptes&nbsp;;</li>
+                    <li>Le renouvelle selon les règles de la banque.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le jeton n’est pas un chèque en blanc</h3>
+                <p>
+                  Le jeton AIS n’autorise que la <strong>lecture</strong> des
+                  comptes couverts par <em>ce</em> consentement. Il ne permet pas
+                  d’initier un paiement (ça, c’est le PISP), et il expire. Un jeton
+                  volé sans le consentement associé ne sert à rien&nbsp;— c’est
+                  tout l’intérêt du modèle.
+                </p>
+              </div>
+            </section>
+
+            <!-- ÉTAPE 3 -->
+            <section class="section">
+              <p class="section-label">Étape 3</p>
+              <h2 id="lecture">La lecture des comptes</h2>
+              <p>
+                L’AISP appelle les endpoints AIS&nbsp;: liste des comptes, soldes,
+                transactions. Chaque appel est authentifié par le jeton. On lit
+                <em>uniquement</em> ce que le consentement couvre.
+              </p>
+
+              <figure class="code-block">
+                <figcaption>Exemple — lecture des comptes et transactions (illustratif)</figcaption>
+                <pre><code>GET /v1/accounts
+Authorization: Bearer eyJhbGciOi...
+Consent-ID: 7d2a-consentement-8823
+
+GET /v1/accounts/{account-id}/balances
+Authorization: Bearer eyJhbGciOi...
+
+GET /v1/accounts/{account-id}/transactions?dateFrom=2025-01-01
+Authorization: Bearer eyJhbGciOi...</code></pre>
+              </figure>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Ressource AIS</th>
+                      <th scope="col">Contenu</th>
+                      <th scope="col">Usage type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Comptes</th><td>IBAN masqué, type, titulaire</td><td>Afficher les comptes agrégés</td></tr>
+                    <tr><th scope="row">Soldes</th><td>Solde comptable, disponible</td><td>Vue consolidée</td></tr>
+                    <tr><th scope="row">Transactions</th><td>Date, montant, libellé, contrepartie</td><td>Budget, catégorisation, scoring</td></tr>
+                    <tr class="is-exergue"><th scope="row">Bénéficiaires</th><td>Liste des bénéficiaires enregistrés</td><td>Pré-remplissage, anti-fraude</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>La qualité des libellés</h3>
+                <p>
+                  Un libellé «&nbsp;CB CARREFOUR 12/03&nbsp;» chez une banque peut être
+                  «&nbsp;PAIEMENT CARTE&nbsp;» chez une autre. <strong>Normaliser</strong>
+                  et <strong>catégoriser</strong> sont l’essentiel du travail d’un
+                  agrégateur&nbsp;: sans ça, la donnée consolidée est inutilisable.
+                </p>
+              </div>
+            </section>
+
+            <!-- ÉTAPE 4 -->
+            <section class="section">
+              <p class="section-label">Étape 4</p>
+              <h2 id="refresh">Rafraîchissement et révocation</h2>
+              <p>
+                Le consentement vit&nbsp;: il faut rafraîchir la donnée, sans
+                marteler l’API de la banque, et pouvoir l’arrêter.
+              </p>
+
+              <div class="verrou-grid">
+                <article class="verrou-card" style="border-top-color: var(--issuer)">
+                  <span class="verrou-num" style="background: var(--issuer)">01</span>
+                  <h3>Rafraîchissement</h3>
+                  <p class="verrou-lea">
+                    «&nbsp;Mon solde doit être à jour&nbsp;: je ne peux pas lire
+                    l’ancien.&nbsp;»
+                  </p>
+                  <p>
+                    Les RTS encadrent la fréquence&nbsp;: par exemple, pas de
+                    rafraîchissement automatique plus d’une fois par jour sans
+                    nouvelle SCA. L’AISP doit respecter ces règles.
+                  </p>
+                </article>
+                <article class="verrou-card" style="border-top-color: var(--tpp)">
+                  <span class="verrou-num" style="background: var(--tpp)">02</span>
+                  <h3>Durée</h3>
+                  <p class="verrou-lea">
+                    «&nbsp;Mon consentement va durer combien de temps&nbsp;?&nbsp;»
+                  </p>
+                  <p>
+                    Jusqu’à 90 jours&nbsp;: au-delà, l’AISP doit obtenir une
+                    nouvelle SCA (re-consentement). C’est un garde-fou qui oblige à
+                    revoir la délégation.
+                  </p>
+                </article>
+                <article class="verrou-card" style="border-top-color: var(--warn)">
+                  <span class="verrou-num" style="background: var(--warn)">03</span>
+                  <h3>Révocation</h3>
+                  <p class="verrou-lea">
+                    «&nbsp;Je ne veux plus que MonBuddy lise mes comptes, tout de
+                    suite.&nbsp;»
+                  </p>
+                  <p>
+                    Le client peut révoquer côté banque ou côté AISP. Le jeton
+                    devient invalide&nbsp;: plus aucune lecture n’est possible, sans
+                    changer ses identifiants.
+                  </p>
+                </article>
+              </div>
+
+              <div class="callout warn">
+                <h3>La révocation n’efface pas tout</h3>
+                <p>
+                  Couper l’accès stoppe les <em>lectures futures</em>. Mais les
+                  données déjà collectées&nbsp;? Le RGPD impose des durées de
+                  conservation et un droit à l’effacement. Révoquer côté DSP2 ne
+                  supprime pas magiquement l’historique stocké côté AISP&nbsp;: ce
+                  sont deux mécanismes distincts, à expliquer clairement au client.
+                </p>
+              </div>
+            </section>
+
+            <!-- DIAGRAMME -->
+            <section class="section">
+              <p class="section-label">Synthèse</p>
+              <h2 id="sequence">Le flux complet en un diagramme</h2>
+              <p class="intro">
+                Création, SCA, lecture, rafraîchissement et révocation&nbsp;:
+                les acteurs et les messages qui font vivre un consentement AIS.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Diagramme de séquence — consentement AIS</h3>
+                  <p>Client · AISP · Banque (ASPSP)</p>
+                </div>
+                <svg viewBox="0 0 1000 520" role="img" aria-label="Diagramme de séquence du consentement AIS">
+                  <defs>
+                    <marker id="ah-seq4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                    <marker id="ah-seq4g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 4">
+                    <line x1="180" y1="70" x2="180" y2="500"/>
+                    <line x1="500" y1="70" x2="500" y2="500"/>
+                    <line x1="820" y1="70" x2="820" y2="500"/>
+                  </g>
+                  <g>
+                    <rect x="100" y="40" width="160" height="34" rx="6" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="180" y="62" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">Client (Léa)</text>
+                    <rect x="420" y="40" width="160" height="34" rx="6" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="500" y="62" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">AISP (MonBuddy)</text>
+                    <rect x="740" y="40" width="160" height="34" rx="6" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="820" y="62" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">Banque (ASPSP)</text>
+                  </g>
+                  <line x1="184" y1="100" x2="496" y2="100" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-seq4)"/>
+                  <text x="340" y="94" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">1. choix comptes + consentement</text>
+                  <line x1="500" y1="135" x2="816" y2="135" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-seq4)"/>
+                  <text x="658" y="129" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">2. redirection vers la banque (SCA)</text>
+                  <line x1="184" y1="170" x2="816" y2="170" stroke="#5a6b7c" stroke-width="1.5" stroke-dasharray="3 3"/>
+                  <text x="500" y="164" text-anchor="middle" fill="#5a6b7c" font-size="9">3. Léa s’authentifie fortement chez la banque</text>
+                  <line x1="820" y1="205" x2="504" y2="205" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-seq4g)"/>
+                  <text x="662" y="199" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">4. jeton d’accès + consentement validé</text>
+                  <line x1="500" y1="245" x2="816" y2="245" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-seq4)"/>
+                  <text x="658" y="239" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">5. GET /accounts · /balances · /transactions</text>
+                  <line x1="820" y1="280" x2="504" y2="280" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-seq4g)"/>
+                  <text x="662" y="274" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">données de compte (JSON)</text>
+                  <line x1="184" y1="320" x2="496" y2="320" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-seq4)"/>
+                  <text x="340" y="314" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">6. vue consolidée affichée à Léa</text>
+                  <line x1="500" y1="365" x2="816" y2="365" stroke="#1e5f8a" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ah-seq4)"/>
+                  <text x="658" y="359" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">7. rafraîchissement (règles RTS)</text>
+                  <line x1="820" y1="400" x2="504" y2="400" stroke="#0d9f8a" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ah-seq4g)"/>
+                  <text x="662" y="394" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">données à jour (jusqu’à 90 j)</text>
+                  <line x1="184" y1="450" x2="504" y2="450" stroke="#c45c26" stroke-width="2" marker-end="url(#ah-seq4)"/>
+                  <text x="340" y="444" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">8. révocation du consentement</text>
+                  <line x1="500" y1="485" x2="816" y2="485" stroke="#c45c26" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ah-seq4)"/>
+                  <text x="658" y="479" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">accès coupé · jeton invalidé</text>
+                  <text x="20" y="103" fill="#6b4fa0" font-size="10" font-weight="800">1</text>
+                  <text x="20" y="173" fill="#6b4fa0" font-size="10" font-weight="800">2-3</text>
+                  <text x="20" y="248" fill="#6b4fa0" font-size="10" font-weight="800">4-5</text>
+                  <text x="20" y="368" fill="#6b4fa0" font-size="10" font-weight="800">6-7</text>
+                  <text x="20" y="453" fill="#6b4fa0" font-size="10" font-weight="800">8</text>
+                </svg>
+              </div>
+
+              <div class="callout warn">
+                <h3>Rafraîchir n’est pas interroger</h3>
+                <p>
+                  Une implémentation naïve appelle l’API de la banque à chaque
+                  affichage d’écran. C’est coûteux, lent, et interdit par les RTS
+                  au-delà des seuils. Un AISP mature <strong>met en cache</strong>,
+                  rafraîchit selon les règles, et sert la donnée stockée le reste du
+                  temps.
+                </p>
+              </div>
+            </section>
+
+            <!-- COMPARAISON PISP -->
+            <section class="section">
+              <p class="section-label">Comparaison</p>
+              <h2 id="comparaison">AIS vs PISP&nbsp;: même socle, deux pouvoirs</h2>
+              <p class="intro">
+                L’AIS et le PISP partagent la sécurité du Jour 2 mais ne donnent pas
+                le même pouvoir. Cette grille fixe la distinction.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">AIS</th>
+                      <th scope="col">PISP</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Action</th><td>Lit</td><td>Écrit (initie un virement)</td></tr>
+                    <tr><th scope="row">Consentement</th><td>Récurrent, jusqu’à 90 j</td><td>Un paiement = un consentement</td></tr>
+                    <tr><th scope="row">SCA</th><td>Au consentement, puis refresh encadré</td><td>À chaque paiement</td></tr>
+                    <tr><th scope="row">Impact d’erreur</th><td>Mauvais affichage</td><td>Argent déplacé</td></tr>
+                    <tr class="is-exergue"><th scope="row">Idempotence</th><td>Utile (lectures doublées)</td><td>Critique (double débit)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Un même tiers peut-il être les deux&nbsp;?</h3>
+                <p>
+                  Oui&nbsp;: un établissement peut détenir les deux agréments. Mais
+                  chaque opération relève d’un rôle, d’un consentement et d’un
+                  jeton distincts. Un consentement AIS ne permet
+                  <strong>jamais</strong> d’initier un paiement — la séparation est
+                  au cœur de la sécurité du modèle.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Comment on industrialise tout ça&nbsp;?</h2>
+                <p>
+                  Le consentement et la lecture sont posés. La S3 ouvre la boîte
+                  de l’AISP&nbsp;: collecteurs multi-banques, normalisation,
+                  stockage, API exposée, et les contraintes de volumétrie, de
+                  fraîcheur et de sécurité de la donnée.
+                </p>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Notes formateur — S2</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>
+                    <strong>Le point le plus raté</strong>&nbsp;: le rafraîchissement.
+                    Faire dire aux étudiants «&nbsp;combien de fois par jour peut-on
+                    lire&nbsp;?&nbsp;» et pointer les RTS.
+                  </li>
+                  <li>
+                    <strong>La révocation ≠ effacement</strong>&nbsp;: insister. C’est
+                    un grand classique du RGPD bancaire.
+                  </li>
+                  <li>
+                    <strong>Rejouer le diagramme</strong>&nbsp;: les étudiants
+                    nomment les messages et distinguent lecture / rafraîchissement /
+                    révocation.
+                  </li>
+                  <li>
+                    <strong>Ne pas refaire le J2</strong>&nbsp;: la SCA est connue.
+                    Ici, on la replace dans un cycle de vie long (90 jours).
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Points de sortie de S2</h3>
+              <ul>
+                <li>Je décris les quatre temps du cycle de vie AIS.</li>
+                <li>Je sais ce que contient un consentement AIS.</li>
+                <li>Je distingue rafraîchissement et lecture à la demande.</li>
+                <li>Je sais que la durée est bornée (90 jours) et révocable.</li>
+                <li>Je distingue révocation DSP2 et effacement RGPD.</li>
+                <li>Je compare AIS et PISP sans les confondre.</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2 art. 97 (SCA)&nbsp;; RTS EBA
+              2018/389 art. 10-13, 28-33 (accès AISP, fréquence de rafraîchissement,
+              révocation)&nbsp;; Berlin Group NextGenPSD2 (AIS, consentements,
+              jetons)&nbsp;; RGPD (UE) 2016/679 (durée de conservation, effacement).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 4</a> · S2 Flux AIS &amp; consentement
+      </div>
+    </footer>
+    <script src="../js/nav-j4.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

@@ -1,2 +1,2 @@
-JOUR 5 — Contrôle & gouvernance
-Opérer / certifier / superviser · KPIs · runbooks alignés familles de rejet J1 (métier, AuthN, technique, clearing).
+JOUR 5 — Contrôle & atelier : HORS PARCOURS
+Retiré du fil de séance (nav-j5). Fichier j5/controle.html conservé hors navigation — ne pas présenter.

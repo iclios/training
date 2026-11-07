@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S4 — Atelier de modélisation | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s4-atelier">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a class="is-active" href="intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Séquence 4</span>
+                <span class="tag tag-accent">65 min · atelier</span>
+              </div>
+              <p class="day-kicker">Mise en pratique · travaux de groupe</p>
+              <h1>Atelier de modélisation</h1>
+              <p class="lead">
+                Modéliser un paiement e-commerce via PISP&nbsp;: diagramme de
+                séquence, rôles des acteurs, messages échangés. C’est la synthèse
+                du Jour 3 en un livrable concret.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Léa finalise sa commande chez <strong>Atelier Verre &amp; Cie</strong>.
+                Le site propose «&nbsp;Payer par virement&nbsp;» via un PISP. Vous
+                êtes l’équipe qui doit modéliser ce paiement de bout en bout&nbsp;:
+                qui parle, dans quel ordre, avec quels messages.
+              </p>
+            </div>
+
+            <!-- ÉNONCÉ -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Énoncé</p>
+              <h2>Le cas</h2>
+              <p>
+                <strong>Atelier Verre &amp; Cie</strong> vend des objets en verre
+                artisanal en ligne. Le marchand utilise le PISP
+                <strong>PayFlow</strong> pour proposer un paiement par virement.
+                Léa paie une commande de <strong>89,90 €</strong> depuis son compte
+                courant à Banque Est.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Élément</th>
+                      <th scope="col">Valeur</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Marchand</th><td>Atelier Verre &amp; Cie — e-commerce</td></tr>
+                    <tr><th scope="row">PISP</th><td>PayFlow — agrément PISP</td></tr>
+                    <tr><th scope="row">Client</th><td>Léa — compte courant Banque Est</td></tr>
+                    <tr><th scope="row">Montant</th><td>89,90 € — référence CMD-20458</td></tr>
+                    <tr class="is-exergue"><th scope="row">Rail</th><td>SCT instantané (livraison immédiate)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- CONSIGNE -->
+            <section class="section">
+              <p class="section-label">Consigne</p>
+              <h2>Ce qu’il faut produire</h2>
+              <ol class="steps-list">
+                <li>
+                  <strong>Diagramme de séquence</strong> — du clic de Léa jusqu’à
+                  la livraison&nbsp;: acteurs en colonnes, messages numérotés,
+                  étapes 1 à 5.
+                </li>
+                <li>
+                  <strong>Rôle des acteurs</strong> — une ligne par acteur sur ce
+                  qu’il décide, transmet et ne fait jamais.
+                </li>
+                <li>
+                  <strong>Messages échangés</strong> — pour chaque flèche&nbsp;: émetteur,
+                  destinataire, contenu (données), et le statut attendu.
+                </li>
+                <li>
+                  <strong>Un cas de rejet</strong> — raconter ce qui se passe si la
+                  provision est insuffisante, et le comportement attendu du marchand
+                  et du PISP.
+                </li>
+              </ol>
+
+              <div class="callout">
+                <h3>Livrable attendu</h3>
+                <p>
+                  Une page par groupe&nbsp;: le diagramme + le tableau des messages
+                  + le cas de rejet. Restitution 5 min par groupe, synthèse 10 min.
+                </p>
+              </div>
+            </section>
+
+            <!-- MODÈLE -->
+            <section class="section">
+              <p class="section-label">Modèle</p>
+              <h2 id="modele">Tableau des messages — à compléter</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">De → Vers</th>
+                      <th scope="col">Message / contenu</th>
+                      <th scope="col">Statut attendu</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">1</th><td>Léa → PISP (via marchand)</td><td>Choix «&nbsp;Payer par virement&nbsp;», montant, référence CMD-20458</td><td>Consentement PIS créé</td></tr>
+                    <tr><th scope="row">2</th><td>PISP → Banque</td><td>Redirection pour SCA, identifiant de consentement</td><td>SCA en attente</td></tr>
+                    <tr><th scope="row">3</th><td>Léa → Banque</td><td>Authentification forte + validation du détail (89,90 €, bénéficiaire)</td><td>SCA réussie</td></tr>
+                    <tr><th scope="row">4</th><td>Banque → PISP</td><td>Code d’autorisation + accord sur le consentement PIS</td><td>Code valide</td></tr>
+                    <tr><th scope="row">5</th><td>PISP → Banque</td><td><code>POST /payments</code> idempotent (X-Request-ID)</td><td>202 RCVD + identifiant paiement</td></tr>
+                    <tr><th scope="row">6</th><td>PISP → Banque</td><td><code>GET /payments/{id}/status</code></td><td>ACSC / ACCP</td></tr>
+                    <tr class="is-exergue"><th scope="row">7</th><td>PISP → Marchand</td><td>Statut «&nbsp;payé&nbsp;» + référence</td><td>Livraison déclenchée</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Les questions à se poser en groupe</h3>
+                <ul>
+                  <li>Qui voit le montant à quel moment&nbsp;?</li>
+                  <li>Quelle étape peut produire un double paiement&nbsp;?</li>
+                  <li>Que se passe-t-il si Léa ferme l’onglet après la SCA&nbsp;?</li>
+                  <li>Que reçoit le marchand en cas de rejet&nbsp;?</li>
+                </ul>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Modèle de diagramme de séquence (à reproduire)</h3>
+                  <p>Client · PISP · Banque · Marchand</p>
+                </div>
+                <svg viewBox="0 0 1000 360" role="img" aria-label="Modèle de diagramme de séquence">
+                  <defs>
+                    <marker id="ah-atj3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <g stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 4">
+                    <line x1="130" y1="60" x2="130" y2="330"/>
+                    <line x1="400" y1="60" x2="400" y2="330"/>
+                    <line x1="670" y1="60" x2="670" y2="330"/>
+                    <line x1="900" y1="60" x2="900" y2="330"/>
+                  </g>
+                  <g>
+                    <rect x="60" y="30" width="140" height="30" rx="6" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="130" y="50" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700">Client</text>
+                    <rect x="330" y="30" width="140" height="30" rx="6" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="400" y="50" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">PISP</text>
+                    <rect x="600" y="30" width="140" height="30" rx="6" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="670" y="50" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Banque</text>
+                    <rect x="830" y="30" width="140" height="30" rx="6" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="900" y="50" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700">Marchand</text>
+                  </g>
+                  <line x1="134" y1="90" x2="396" y2="90" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-atj3)"/>
+                  <text x="265" y="84" text-anchor="middle" fill="#5a6b7c" font-size="9">1 · choix + panier</text>
+                  <line x1="400" y1="130" x2="666" y2="130" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-atj3)"/>
+                  <text x="533" y="124" text-anchor="middle" fill="#5a6b7c" font-size="9">2 · redirection SCA</text>
+                  <line x1="134" y1="170" x2="666" y2="170" stroke="#5a6b7c" stroke-width="1.5" stroke-dasharray="3 3"/>
+                  <text x="400" y="164" text-anchor="middle" fill="#5a6b7c" font-size="9">3 · authentification</text>
+                  <line x1="670" y1="210" x2="404" y2="210" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-atj3)"/>
+                  <text x="537" y="204" text-anchor="middle" fill="#5a6b7c" font-size="9">4 · code + accord</text>
+                  <line x1="400" y1="250" x2="666" y2="250" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-atj3)"/>
+                  <text x="533" y="244" text-anchor="middle" fill="#5a6b7c" font-size="9">5 · POST /payments</text>
+                  <line x1="400" y1="290" x2="666" y2="290" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-atj3)"/>
+                  <text x="533" y="284" text-anchor="middle" fill="#5a6b7c" font-size="9">6 · GET statut → ACSC</text>
+                  <line x1="400" y1="320" x2="896" y2="320" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-atj3)"/>
+                  <text x="648" y="314" text-anchor="middle" fill="#5a6b7c" font-size="9">7 · «&nbsp;payé&nbsp;» → livraison</text>
+                </svg>
+              </div>
+            </section>
+
+            <!-- GRILLE -->
+            <section class="section">
+              <p class="section-label">Évaluation</p>
+              <h2>Grille</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">Points</th>
+                      <th scope="col">Indice d’un bon travail</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Diagramme de séquence</th><td>4</td><td>Les cinq étapes, dans l’ordre, avec les bons acteurs</td></tr>
+                    <tr><th scope="row">Rôles des acteurs</th><td>3</td><td>Chacun sait ce qu’il décide, transmet, ne fait jamais</td></tr>
+                    <tr><th scope="row">Messages échangés</th><td>4</td><td>Contenu + statut cohérents par flèche</td></tr>
+                    <tr><th scope="row">Cas de rejet</th><td>3</td><td>Rejet RJCT distingué d’une erreur technique, alternative proposée</td></tr>
+                    <tr class="is-exergue"><th scope="row">Idempotence</th><td>2</td><td>Référence unique, pas de double débit en cas de rejeu</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Corrigé formateur</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>
+                    <strong>Le point qui bloque souvent</strong>&nbsp;: les groupes
+                    oublient l’étape 6 (statut). Ils s’arrêtent au <code>202</code>.
+                    Faire relire à voix haute&nbsp;: «&nbsp;reçu, c’est payé&nbsp;?&nbsp;»
+                  </li>
+                  <li>
+                    <strong>Le cas de rejet</strong>&nbsp;: la bonne réponse ne dit
+                    pas «&nbsp;erreur&nbsp;». Elle dit «&nbsp;provision
+                    insuffisante&nbsp;», propose de recharger ou de payer par carte,
+                    et laisse la commande en attente.
+                  </li>
+                  <li>
+                    <strong>Référence CMD-20458</strong> doit circuler jusqu’au
+                    virement&nbsp;: c’est la preuve de bout en bout que le
+                    rapprochement est possible.
+                  </li>
+                  <li>
+                    <strong>Piège SCT vs SCT inst</strong>&nbsp;: avec un SCT
+                    classique, la livraison immédiate n’est pas safe. Faire
+                    argumenter le choix de rail.
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Bilan du Jour 3</h3>
+              <ul>
+                <li>Je modélise un paiement PISP de bout en bout.</li>
+                <li>Je distingue les cinq étapes et leur statut.</li>
+                <li>Je sais placer les quatre composants du SI PISP.</li>
+                <li>Je traite un rejet comme un résultat, pas comme une erreur.</li>
+                <li>Je prends en compte idempotence, référence et réconciliation.</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Pour prolonger</strong> — Rejouer l’atelier avec un paiement
+              de facture&nbsp;; ajouter un cas de timeout au statut et montrer le
+              rejeu idempotent&nbsp;; comparer le même flux en SCT classique (livraison
+              différée).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 3</a> · S4 Atelier de modélisation
+      </div>
+    </footer>
+    <script src="../js/nav-j3.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

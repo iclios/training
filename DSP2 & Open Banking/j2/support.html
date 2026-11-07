@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Support &amp; ressources — Jour 2 | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="support">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a class="is-active" href="intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Clôture</span>
+                <span class="tag tag-accent">Ressources</span>
+              </div>
+              <p class="day-kicker">Spécifications, sécurité, outillage</p>
+              <h1>Support &amp; ressources</h1>
+              <p class="lead">
+                Tout ce qu’il faut pour travailler sur une API Open Banking et sa
+                sécurité&nbsp;: spécifications d’API, documents sur la SCA, base
+                de connaissance OWASP, et un glossaire des sigles du Jour 2.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Spécifications d’API</p>
+              <h2>Les standards à ouvrir en premier</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Ressource</th>
+                      <th scope="col">Nature</th>
+                      <th scope="col">À retenir</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Berlin Group — NextGenPSD2</th>
+                      <td>Framework REST JSON</td>
+                      <td>Structures AIS, PIS, CBPII, consentements, erreurs</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Open Banking Standards (OBIE)</th>
+                      <td>Référentiel UK</td>
+                      <td>Read/write API, tests de conformité, non obligatoire en FR</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">STET PSD2 API</th>
+                      <td>Framework</td>
+                      <td>Origine française, utilisé par plusieurs acteurs de la zone euro</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">OpenAPI / Swagger</th>
+                      <td>Langage de description</td>
+                      <td>Contrat d’API, génération de documentation et de tests</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Authentification</p>
+              <h2>OAuth2, OIDC, mTLS, JWT</h2>
+              <ul class="topic-list">
+                <li>
+                  <span>
+                    <strong>RFC 6749 (OAuth2)</strong> — le socle des
+                    autorisations&nbsp;; <code>authorization_code</code>,
+                    <code>refresh_token</code>, <code>scope</code>,
+                    <code>PKCE</code>.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>RFC 7636 (PKCE)</strong> — protection du flux code
+                    contre l’interception&nbsp;; recommandé, souvent obligatoire
+                    en Open Banking.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>OpenID Connect Core 1.0</strong> — identité au-dessus
+                    d’OAuth2 (<code>id_token</code>), pour authentifier Léa.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>RFC 7519 (JWT)</strong> — format du jeton portant les
+                    <code>scope</code>, l’émetteur, l’audience et l’expiration.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>RFC 8705 (mTLS / OAuth 2.0 mTLS)</strong> —
+                    authentification mutuelle par certificat, exigée pour
+                    identifier le TPP.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>eIDAS &amp; QWAC</strong> — cadre des certificats
+                    qualifiés utilisés pour le mTLS en Europe.
+                  </span>
+                </li>
+              </ul>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Sécurité &amp; conformité</p>
+              <h2>SCA, RTS et référentiels</h2>
+              <div class="split-2">
+                <div class="panel">
+                  <h3>Textes DSP2</h3>
+                  <p>
+                    <strong>DSP2</strong> art. 97 (SCA) et art. 98 (RTS)&nbsp;;
+                    <strong>RTS (UE) 2018/389</strong> sur l’authentification
+                    forte et la communication sécurisée. À lire avec les
+                    <strong>Q&amp;A EBA</strong> sur les exemptions.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>Référentiels sécurité</h3>
+                  <p>
+                    <strong>OWASP API Security Top 10</strong> — BOLA, broken
+                    auth, excessive data exposure&nbsp;: la grille de lecture des
+                    risques API. Et le
+                    <strong>RGPD</strong> pour les données personnelles.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>À lire en priorité</h3>
+                <p>
+                  Pour un architecte débutant sur le sujet&nbsp;: le résumé du
+                  flux OAuth2 (RFC 6749 §4.1) + PKCE (RFC 7636), puis la
+                  documentation NextGenPSD2 sur les consentements, puis l’OWASP
+                  API Security Top 10. Cela couvre l’essentiel du Jour 2.
+                </p>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Menace OWASP API</th>
+                      <th scope="col">Traduction Open Banking</th>
+                      <th scope="col">Contre-mesure</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">API1 — BOLA</th><td>Un TPP accède aux comptes d’un autre client</td><td>Contrôle d’accès au niveau de l’objet&nbsp;; consentement par compte</td></tr>
+                    <tr><th scope="row">API2 — Broken auth</th><td>Jeton volé ou mTLS contourné</td><td>mTLS, jetons courts, rotation, anti-rejeu</td></tr>
+                    <tr><th scope="row">API3 — Excessive data exposure</th><td>Réponse AIS avec trop de champs</td><td>Filtrage par scope, minimisation des données</td></tr>
+                    <tr class="is-exergue"><th scope="row">API4 — Lack of rate limiting</th><td>Un TPP sature l’API</td><td>Throttling, quotas par TPP</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Glossaire</p>
+              <h2>Les sigles du Jour 2</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Sigle</th>
+                      <th scope="col">Signification</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">AIS / AISP</th><td>Account Information Service (Provider)</td></tr>
+                    <tr><th scope="row">PIS / PISP</th><td>Payment Initiation Service (Provider)</td></tr>
+                    <tr><th scope="row">CBPII</th><td>Card-Based Payment Instrument Issuer (confirmation of funds)</td></tr>
+                    <tr><th scope="row">OAuth2</th><td>Open Authorization 2.0 — framework d’autorisation</td></tr>
+                    <tr><th scope="row">OIDC</th><td>OpenID Connect — identité au-dessus d’OAuth2</td></tr>
+                    <tr><th scope="row">mTLS</th><td>Mutual TLS — authentification par certificat des deux côtés</td></tr>
+                    <tr><th scope="row">JWT</th><td>JSON Web Token — jeton signé portant les scopes</td></tr>
+                    <tr><th scope="row">SCA</th><td>Strong Customer Authentication</td></tr>
+                    <tr><th scope="row">PKCE</th><td>Proof Key for Code Exchange — protection du flux code</td></tr>
+                    <tr><th scope="row">QWAC</th><td>Qualified Website Authentication Certificate</td></tr>
+                    <tr class="is-exergue"><th scope="row">BOLA</th><td>Broken Object Level Authorization (OWASP API1)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Usage de cette page</summary>
+              <div class="notes-body">
+                <p>
+                  Fiche de référence à distribuer en fin de Jour 2. Elle sert de
+                  point d’appui pour préparer la mise en pratique du Jour 3 (le
+                  PISP réutilise OAuth2, mTLS et SCA vus aujourd’hui) et évite
+                  que les participants notent les sigles à la volée.
+                </p>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Fin du Jour 2</h3>
+              <ul>
+                <li>Je sais où lire les spécifications d’API (Berlin Group, OBIE, STET).</li>
+                <li>Je distingue OAuth2, OIDC, mTLS et JWT.</li>
+                <li>Je relie les menaces OWASP API aux contre-mesures Open Banking.</li>
+                <li>Je maîtrise les sigles du domaine.</li>
+              </ul>
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 2</a> · Support &amp; ressources
+      </div>
+    </footer>
+    <script src="../js/nav-j2.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

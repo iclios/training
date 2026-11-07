@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S3 — Sécurité &amp; conformité | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s3-securite">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a class="is-active" href="intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Séquence 3</span>
+                <span class="tag tag-accent">50 min</span>
+              </div>
+              <p class="day-kicker">Exigences DSP2 et risques API</p>
+              <h1>Sécurité &amp; conformité</h1>
+              <p class="lead">
+                La DSP2 ne dit pas seulement «&nbsp;protégez&nbsp;»&nbsp;: elle
+                impose des mécanismes précis (SCA, exemptions, non-répudiation,
+                horodatage) et laisse aux banques la responsabilité de tenir
+                leurs APIs contre des menaces concrètes.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Léa s’est authentifiée et l’application a son jeton. Mais que se
+                passe-t-il si quelqu’un usurpe le TPP&nbsp;? Si un appel est
+                rejoué&nbsp;? Si des données fuitent&nbsp;? Cette séquence
+                répond à ces menaces.
+              </p>
+            </div>
+
+            <!-- 1. SCA -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">SCA</p>
+              <h2 id="sca">La Strong Customer Authentication</h2>
+              <div class="definition-full">
+                La <strong>SCA</strong> (authentification forte du client) exige
+                au moins <strong>deux facteurs indépendants</strong> parmi trois
+                catégories&nbsp;: <strong>connaissance</strong> (mot de passe,
+                code), <strong>possession</strong> (téléphone, token),
+                <strong>inhérence</strong> (empreinte, visage). Les deux facteurs
+                doivent être de catégories différentes et leur compromission
+                isolée ne doit pas suffire à contourner l’authentification.
+              </div>
+
+              <div class="split-3">
+                <div class="panel">
+                  <h3>Connaissance</h3>
+                  <p>Quelque chose que Léa <strong>sait</strong>&nbsp;: mot de passe, code PIN.</p>
+                </div>
+                <div class="panel">
+                  <h3>Possession</h3>
+                  <p>Quelque chose que Léa <strong>possède</strong>&nbsp;: son téléphone, une carte.</p>
+                </div>
+                <div class="panel">
+                  <h3>Inhérence</h3>
+                  <p>Quelque chose que Léa <strong>est</strong>&nbsp;: empreinte digitale, reconnaissance faciale.</p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Quand la SCA s’applique</h3>
+                <p>
+                  À l’accès initial aux comptes (AIS), puis lors des
+                  re-authentifications périodiques (au moins tous les 90 jours en
+                  AIS), et <strong>à chaque paiement</strong> initié par un PISP,
+                  sauf exemption applicable. Deux mots de passe ne font pas une
+                  SCA&nbsp;: il faut deux catégories différentes.
+                </p>
+              </div>
+            </section>
+
+            <!-- 2. EXEMPTIONS -->
+            <section class="section">
+              <p class="section-label">Exemptions</p>
+              <h2 id="exemptions">Les exemptions à la SCA</h2>
+              <p class="intro">
+                La SCA systématique serait insupportable pour le client. Les RTS
+                prévoient des exemptions, mais chacune est bornée et surveillée
+                (fraude). La banque doit pouvoir justifier leur usage.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Exemption</th>
+                      <th scope="col">Principe</th>
+                      <th scope="col">Garde-fou</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Faible montant</th>
+                      <td>Paiements de faible valeur sous un plafond</td>
+                      <td>Compteur (nombre / cumul sur une période)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Bénéficiaire de confiance</th>
+                      <td>Paiement vers un bénéficiaire déjà validé</td>
+                      <td>SCA initiale à la création du bénéficiaire</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Transaction récurrente</th>
+                      <td>Paiements récurrents d’un même mandat</td>
+                      <td>Premier paiement authentifié</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Analyse du risque</th>
+                      <td>Décision de l’ASPSP selon son propre scoring</td>
+                      <td>Plafonds et taux de fraude surveillés</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Accès aux soldes AIS</th>
+                      <td>Consultation après la SCA initiale</td>
+                      <td>Jusqu’à 4 consultations/jour, SCA au moins tous les 90 jours</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>Exemption ≠ absence de contrôle</h3>
+                <p>
+                  Une exemption ne supprime pas la vérification&nbsp;: elle
+                  déplace la SCA à un autre moment (création du bénéficiaire,
+                  re-authentification périodique) et s’accompagne d’une
+                  surveillance de la fraude. Abuser d’une exemption entraîne son
+                  retrait.
+                </p>
+              </div>
+            </section>
+
+            <!-- 3. NON-RÉPUDIATION & HORODATAGE -->
+            <section class="section">
+              <p class="section-label">Preuve</p>
+              <h2 id="preuve">Non-répudiation et horodatage</h2>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Non-répudiation</h3>
+                  <p>
+                    La banque doit pouvoir <strong>prouver qu’un paiement ou un
+                    accès a bien eu lieu</strong> et dans quelles conditions&nbsp;:
+                    qui, quel montant, quel bénéficiaire, à quel moment. Un
+                    client ne doit pas pouvoir nier un paiement qu’il a autorisé,
+                    et le TPP ne doit pas pouvoir contester un appel reçu.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>Horodatage</h3>
+                  <p>
+                    Chaque événement porte une <strong>date et heure de
+                    référence</strong> fiable, conservée et cohérente entre les
+                    acteurs. C’est la base du contrôle&nbsp;: durée de validité
+                    d’un jeton, période de consentement, décompte des exemptions.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Ce que cela impose techniquement</h3>
+                <p>
+                  Journalisation horodatée de chaque appel
+                  (requête/réponse), signature des messages pour garantir leur
+                  intégrité et leur origine (non-répudiation), conservation
+                  conforme aux délais légaux. Sans ces preuves, un litige ne peut
+                  être tranché.
+                </p>
+              </div>
+            </section>
+
+            <!-- 4. RISQUES -->
+            <section class="section">
+              <p class="section-label">Risques</p>
+              <h2 id="risques">Trois familles de risques API</h2>
+
+              <div class="split-3">
+                <div class="panel ko">
+                  <h3>Usurpation d’identité</h3>
+                  <p>
+                    Un attaquant se fait passer pour un TPP agréé ou pour le
+                    client.
+                  </p>
+                  <p><strong>Contre-mesures&nbsp;:</strong> mTLS strict, vérification du registre EBA, contrôle de cohérence certificat/agrément, SCA robuste.</p>
+                </div>
+                <div class="panel ko">
+                  <h3>Attaques API</h3>
+                  <p>
+                    Rejeu de requêtes, injection, déni de service, abus de quota.
+                  </p>
+                  <p><strong>Contre-mesures&nbsp;:</strong> anti-rejeu (nonce, horodatage), validation des entrées, throttling, quotas par TPP, surveillance d’anomalies.</p>
+                </div>
+                <div class="panel ko">
+                  <h3>Fuites de données</h3>
+                  <p>
+                    Exposition de soldes ou d’opérations au-delà du périmètre
+                    consenti, ou interception.
+                  </p>
+                  <p><strong>Contre-mesures&nbsp;:</strong> scopes minimaux, chiffrement en transit, contrôle de périmètre à chaque appel, pas de données sensibles dans les JWT.</p>
+                </div>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Risque</th>
+                      <th scope="col">Point de contrôle</th>
+                      <th scope="col">Mécanisme du Jour 2</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Usurpation</th><td>Entrée de la chaîne</td><td>mTLS + registre EBA</td></tr>
+                    <tr><th scope="row">Attaque API</th><td>Gateway &amp; API Management</td><td>Throttling, anti-rejeu, validation</td></tr>
+                    <tr class="is-exergue"><th scope="row">Fuite de données</th><td>Services métier</td><td>Scopes + contrôle de consentement</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- 5. TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>On met tout ensemble</h2>
+                <p>
+                  Types d’API, composants, mécanismes d’authentification,
+                  exigences et risques&nbsp;: place au cas pratique. Ouvrir une
+                  API à un TPP, de bout en bout, avec le schéma, le flux OAuth et
+                  les points de contrôle.
+                </p>
+              </div>
+            </section>
+
+            <details class="cours-note">
+              <summary>Cours — récapitulatif du bloc</summary>
+              <div class="cours-note-body">
+                <ul>
+                  <li><strong>SCA</strong>&nbsp;: deux facteurs de catégories différentes (savoir / posséder / être).</li>
+                  <li><strong>Exemptions</strong>&nbsp;: faible montant, bénéficiaire de confiance, récurrent, analyse de risque, AIS après SCA initiale — toutes bornées.</li>
+                  <li><strong>Non-répudiation + horodatage</strong>&nbsp;: la preuve des opérations.</li>
+                  <li><strong>Risques</strong>&nbsp;: usurpation, attaques API, fuites — chacun a son point de contrôle.</li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Points de sortie de S3</h3>
+              <ul>
+                <li>Je définis la SCA et ses trois catégories de facteurs.</li>
+                <li>Je cite au moins trois exemptions et leur garde-fou.</li>
+                <li>J’explique la non-répudiation et l’horodatage.</li>
+                <li>Je relie chaque risque à un point de contrôle.</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Références</strong> — RTS EBA 2018/389, art. 4-18 (SCA et
+              exemptions), art. 29 (limites d’accès AIS)&nbsp;; orientations EBA sur
+              l’authentification forte&nbsp;; DSP2, art. 97-98.
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 2</a> · S3 Sécurité &amp; conformité
+      </div>
+    </footer>
+    <script src="../js/nav-j2.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

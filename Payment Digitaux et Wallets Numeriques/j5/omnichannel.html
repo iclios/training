@@ -33,7 +33,7 @@
           <div class="fiche-meta">
             <span class="tag">Jour 5 · Omnicanal</span>
           </div>
-          <p class="day-kicker">5.1 · Canaux</p>
+          <p class="day-kicker">5.1 · Cas d’usage &amp; concepts</p>
           <h1>Paiement omnicanal</h1>
         </div>
       </section>
@@ -47,21 +47,24 @@
             <strong>quel que soit le canal</strong> (magasin, web, mobile,
             in-app) via un <strong>backend de paiement unique</strong>, une
             <strong>orchestration multi-moyens</strong> et une
-            <strong>expérience / donnée cohérentes</strong> — sans silos
-            produit juxtaposés.
+            <strong>expérience unifiée</strong> — sans silos produit
+            juxtaposés.
           </p>
           <p class="intro" style="margin-top: 1.1rem">
-            Plusieurs moyens ≠ omnicanal si les flux, le journal et la
-            gouvernance restent séparés.
+            Plusieurs moyens ≠ omnicanal si les flux, la vérité SI et les
+            règles restent séparés par canal. Chaque transaction a une
+            <strong>intention métier</strong>, un <strong>payment_id</strong>
+            et un cycle <strong>Auth request → AuthZ → journal</strong>.
           </p>
         </section>
 
-        <section class="section">
-          <p class="section-label">Synthèse J1–J4</p>
-          <h2>Quatre canaux, une logique monétique</h2>
+        <section class="section" id="cas-usage">
+          <p class="section-label">Canaux d’acceptation</p>
+          <h2>Quatre cas d’usage</h2>
           <p class="intro">
-            Auth → Clearing → Settlement (J1) reste vrai&nbsp;; seuls le
-            point d’entrée et le moyen changent (QR, token, NFC/wallet).
+            Quatre portes d’entrée. Même cœur SI&nbsp;; l’intention métier
+            décide si c’est le même <strong>payment_id</strong> ou un nouvel
+            id.
           </p>
 
           <div class="diagram" id="diagram-canaux">
@@ -83,25 +86,25 @@
                 <rect x="30" y="30" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
                 <image href="../img/acteurs/acteur-commercant.jpg" x="42" y="44" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
                 <text x="112" y="68" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">In-store</text>
-                <text x="112" y="88" fill="#5a6b7c" font-size="11">POS · NFC · QR</text>
+                <text x="112" y="88" fill="#5a6b7c" font-size="11">NFC CL · QR TPE</text>
               </g>
               <g>
                 <rect x="270" y="30" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
                 <image href="../img/acteurs/acteur-device.jpg" x="282" y="44" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
                 <text x="352" y="68" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">E-commerce</text>
-                <text x="352" y="88" fill="#5a6b7c" font-size="11">web · 3DS · token</text>
+                <text x="352" y="88" fill="#5a6b7c" font-size="11">CNP · 3DS · token</text>
               </g>
               <g>
                 <rect x="510" y="30" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
                 <image href="../img/acteurs/acteur-porteur.jpg" x="522" y="44" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
                 <text x="592" y="68" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Mobile</text>
-                <text x="592" y="88" fill="#5a6b7c" font-size="11">app · QR · HCE</text>
+                <text x="592" y="88" fill="#5a6b7c" font-size="11">QR MPM / CPM</text>
               </g>
               <g>
                 <rect x="750" y="30" width="200" height="90" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
                 <image href="../img/acteurs/acteur-wallet.jpg" x="762" y="44" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
                 <text x="832" y="68" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">In-app</text>
-                <text x="832" y="88" fill="#5a6b7c" font-size="11">wallet embarqué</text>
+                <text x="832" y="88" fill="#5a6b7c" font-size="11">SDK · feuille wallet</text>
               </g>
               <line class="flow-line" x1="130" y1="120" x2="500" y2="175" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-omni)"/>
               <line class="flow-line" x1="370" y1="120" x2="500" y2="175" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-omni)"/>
@@ -111,206 +114,643 @@
                 <rect x="280" y="175" width="440" height="70" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
                 <image href="../img/acteurs/acteur-psp.jpg" x="300" y="183" width="52" height="52" preserveAspectRatio="xMidYMid slice"/>
                 <text x="370" y="208" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Single payment backend</text>
-                <text x="370" y="228" fill="#0d9f8a" font-size="12">journal · orchestration · réconciliation</text>
+                <text x="370" y="228" fill="#0d9f8a" font-size="12">Auth request · AuthZ · 1 vérité SI</text>
               </g>
             </svg>
-            <div class="seq-steps" id="canaux-steps">
-              <button type="button" class="seq-step is-active" data-step="1">
-                <span class="n">1</span>
-                <span>
-                  <strong>In-store</strong>
-                  <p>POS, NFC (J4), QR magasin (J2) — même demande d’auth.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="2">
-                <span class="n">2</span>
-                <span>
-                  <strong>E-com / mobile / in-app</strong>
-                  <p>Card-not-present, token (J3), wallet — autre UX, même chaîne.</p>
-                </span>
-              </button>
-              <button type="button" class="seq-step" data-step="3">
-                <span class="n">3</span>
-                <span>
-                  <strong>Backend unique</strong>
-                  <p>Un journal, une orchestration, une clôture financière.</p>
-                </span>
-              </button>
-            </div>
+          </div>
+
+          <div class="csm-table-wrap" style="margin-top: 1.1rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Canal</th>
+                  <th scope="col">Intention &amp; moyens</th>
+                  <th scope="col">Cycle Auth</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">In-store</th>
+                  <td>
+                    Achat en magasin&nbsp;: tap <strong>NFC EMV Contactless</strong>
+                    ou <strong>QR</strong> affiché au TPE / caisse.
+                  </td>
+                  <td>Auth request POS → AuthZ → journal</td>
+                </tr>
+                <tr>
+                  <th scope="row">E-commerce</th>
+                  <td>
+                    Paiement web <strong>Card-Not-Present (CNP)</strong> avec
+                    <strong>3-D Secure</strong> et / ou <strong>token e-com</strong>
+                    (J3).
+                  </td>
+                  <td>AuthN 3DS puis AuthZ émetteur</td>
+                </tr>
+                <tr>
+                  <th scope="row">Mobile</th>
+                  <td>
+                    Scan <strong>QR MPM / CPM</strong> via application bancaire
+                    ou wallet (J2).
+                  </td>
+                  <td>Payload QR → Auth request → AuthZ</td>
+                </tr>
+                <tr class="is-exergue">
+                  <th scope="row">In-app</th>
+                  <td>
+                    SDK / <strong>feuille wallet</strong> (Apple Pay, Google Pay)
+                    dans l’app commerçant (J4).
+                  </td>
+                  <td>Token device → AuthZ → journal</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="seq-steps" id="canaux-steps" style="margin-top: 1rem">
+            <button type="button" class="seq-step is-active" data-step="1">
+              <span class="n">1</span>
+              <span>
+                <strong>In-store</strong>
+                <p>EMV CL ou QR caisse — même Auth request normalisée vers le backend.</p>
+              </span>
+            </button>
+            <button type="button" class="seq-step" data-step="2">
+              <span class="n">2</span>
+              <span>
+                <strong>E-com / Mobile</strong>
+                <p>CNP + 3DS / token, ou scan MPM·CPM — autre UX, même chaîne formelle.</p>
+              </span>
+            </button>
+            <button type="button" class="seq-step" data-step="3">
+              <span class="n">3</span>
+              <span>
+                <strong>In-app</strong>
+                <p>Feuille wallet native — token device, même AuthZ et même vérité SI.</p>
+              </span>
+            </button>
           </div>
         </section>
 
-        <section class="section" id="schema-orchestration">
-          <p class="section-label">Orchestration</p>
-          <h2>Multi-moyens, une décision</h2>
+        <section class="section" id="multi-vs-omni">
+          <p class="section-label">Parallèle</p>
+          <h2>Multicanal vs omnicanal</h2>
           <p class="intro">
-            Le canal choisit le <strong>rail d’entrée</strong>&nbsp;; le backend
-            choisit le <strong>moyen / processeur</strong> et renvoie un
-            statut unifié.
+            Les deux exposent plusieurs canaux. La différence&nbsp;:
+            <strong>silos juxtaposés</strong> (plusieurs journaux) ou
+            <strong>1 backend partagé</strong> (1 journal SI).
+          </p>
+
+          <div class="diagram" id="diagram-multi-omni">
+            <div class="diagram-header">
+              <h3>Schéma comparatif</h3>
+              <p>Même surface client · architecture opposée</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 420"
+              role="img"
+              aria-label="Comparaison multicanal et omnicanal"
+            >
+              <defs>
+                <marker id="ah-multi" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+                  <path d="M0,0 L5,3 L0,6 Z" fill="#8a6a4a" />
+                </marker>
+                <marker id="ah-omni2" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+                  <path d="M0,0 L5,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+
+              <text x="250" y="28" text-anchor="middle" fill="#8a6a4a" font-family="Syne, sans-serif" font-size="16" font-weight="700">MULTICANAL</text>
+              <text x="250" y="48" text-anchor="middle" fill="#5a6b7c" font-size="11">silos juxtaposés · 3 journaux</text>
+
+              <rect x="40" y="70" width="130" height="48" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+              <text x="105" y="100" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Magasin</text>
+              <rect x="185" y="70" width="130" height="48" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+              <text x="250" y="100" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Web</text>
+              <rect x="330" y="70" width="130" height="48" rx="8" fill="#fff8f4" stroke="#c45c26" stroke-width="2"/>
+              <text x="395" y="100" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">App</text>
+
+              <line x1="105" y1="118" x2="105" y2="155" stroke="#c45c26" stroke-width="2" marker-end="url(#ah-multi)"/>
+              <line x1="250" y1="118" x2="250" y2="155" stroke="#c45c26" stroke-width="2" marker-end="url(#ah-multi)"/>
+              <line x1="395" y1="118" x2="395" y2="155" stroke="#c45c26" stroke-width="2" marker-end="url(#ah-multi)"/>
+
+              <rect x="40" y="160" width="130" height="70" rx="8" fill="#f7f9fb" stroke="#8a6a4a" stroke-width="2"/>
+              <text x="105" y="188" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Stack POS</text>
+              <text x="105" y="208" text-anchor="middle" fill="#5a6b7c" font-size="10">journal A</text>
+              <rect x="185" y="160" width="130" height="70" rx="8" fill="#f7f9fb" stroke="#8a6a4a" stroke-width="2"/>
+              <text x="250" y="188" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Stack e-com</text>
+              <text x="250" y="208" text-anchor="middle" fill="#5a6b7c" font-size="10">journal B</text>
+              <rect x="330" y="160" width="130" height="70" rx="8" fill="#f7f9fb" stroke="#8a6a4a" stroke-width="2"/>
+              <text x="395" y="188" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Stack mobile</text>
+              <text x="395" y="208" text-anchor="middle" fill="#5a6b7c" font-size="10">journal C</text>
+
+              <text x="250" y="265" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="700">3 vérités · pas de parcours unifié</text>
+              <text x="250" y="285" text-anchor="middle" fill="#5a6b7c" font-size="11">réconciliation manuelle · UX cassée</text>
+
+              <line x1="500" y1="60" x2="500" y2="300" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+
+              <text x="750" y="28" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="16" font-weight="700">OMNICANAL</text>
+              <text x="750" y="48" text-anchor="middle" fill="#5a6b7c" font-size="11">1 backend partagé · 1 journal SI</text>
+
+              <rect x="540" y="70" width="130" height="48" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="605" y="100" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Magasin</text>
+              <rect x="685" y="70" width="130" height="48" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="750" y="100" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Web</text>
+              <rect x="830" y="70" width="130" height="48" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="895" y="100" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">App</text>
+
+              <line x1="605" y1="118" x2="750" y2="165" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-omni2)"/>
+              <line x1="750" y1="118" x2="750" y2="165" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-omni2)"/>
+              <line x1="895" y1="118" x2="750" y2="165" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-omni2)"/>
+
+              <rect x="580" y="170" width="340" height="70" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="750" y="200" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">Backend paiement unique</text>
+              <text x="750" y="220" text-anchor="middle" fill="#0d9f8a" font-size="11">orchestration · AuthZ · 1 journal SI</text>
+
+              <text x="750" y="265" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">1 SI · N payment_id</text>
+              <text x="750" y="285" text-anchor="middle" fill="#5a6b7c" font-size="11">mêmes règles · id par intention</text>
+
+              <rect x="40" y="310" width="920" height="90" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5"/>
+              <text x="80" y="340" fill="#5a6b7c" font-size="11" font-weight="700">Critère</text>
+              <text x="280" y="340" fill="#8a6a4a" font-size="11" font-weight="700">Multicanal</text>
+              <text x="620" y="340" fill="#087a6a" font-size="11" font-weight="700">Omnicanal</text>
+              <line x1="60" y1="350" x2="940" y2="350" stroke="#c5d3df" stroke-width="1"/>
+              <text x="80" y="372" fill="#1a2b3c" font-size="11">Backend</text>
+              <text x="280" y="372" fill="#5a6b7c" font-size="11">1 stack / canal</text>
+              <text x="620" y="372" fill="#5a6b7c" font-size="11">1 backend partagé</text>
+              <text x="80" y="392" fill="#1a2b3c" font-size="11">Journal</text>
+              <text x="280" y="392" fill="#5a6b7c" font-size="11">3 journaux (A · B · C)</text>
+              <text x="620" y="392" fill="#5a6b7c" font-size="11">1 journal SI</text>
+            </svg>
+          </div>
+
+          <div class="csm-table-wrap" style="margin-top: 1rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Dimension</th>
+                  <th scope="col">Multicanal</th>
+                  <th scope="col">Omnicanal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Présence</th>
+                  <td>Plusieurs canaux ouverts</td>
+                  <td>Plusieurs canaux ouverts</td>
+                </tr>
+                <tr>
+                  <th scope="row">Architecture</th>
+                  <td>Silos juxtaposés (POS ≠ e-com ≠ app)</td>
+                  <td><strong>1 backend partagé</strong> · orchestration unique</td>
+                </tr>
+                <tr class="is-exergue">
+                  <th scope="row">Mémoire transactionnelle</th>
+                  <td><strong>3 journaux</strong> (une vérité par canal)</td>
+                  <td><strong>1 journal SI</strong> (une vérité transactionnelle)</td>
+                </tr>
+                <tr>
+                  <th scope="row">payment_id</th>
+                  <td>Local au silo · pas de continuité</td>
+                  <td>1 id / intention · portable entre canaux</td>
+                </tr>
+                <tr>
+                  <th scope="row">Expérience</th>
+                  <td>Canal = parcours isolé</td>
+                  <td>Continuité (C&amp;C, reprise mobile) si même intention</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="montage-example" style="margin-top: 0.85rem">
+            <strong>Repère</strong>&nbsp;: avoir web + magasin + app = multicanal.
+            Les faire converger sur le même SI paiement = omnicanal.
+          </p>
+        </section>
+
+        <section class="section" id="trois-piliers">
+          <p class="section-label">Concepts piliers</p>
+          <h2>Trois piliers de l’omnicanal</h2>
+          <p class="intro">
+            Backend unique · orchestration · UX unifiée — les trois
+            s’appuient sur le même cycle Auth et le même
+            <strong>payment_id</strong> par intention.
+          </p>
+
+          <div class="diagram" id="diagram-piliers">
+            <div class="diagram-header">
+              <h3>Backend · Orchestration · UX</h3>
+              <p>Trois piliers · une vérité SI</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 180"
+              role="img"
+              aria-label="Trois piliers omnicanal"
+            >
+              <rect x="40" y="30" width="280" height="120" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="180" y="75" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">① Single backend</text>
+              <text x="180" y="105" text-anchor="middle" fill="#5a6b7c" font-size="12">logique métier centrale</text>
+              <text x="180" y="128" text-anchor="middle" fill="#0d9f8a" font-size="12">1 journal de vérité SI</text>
+              <rect x="360" y="30" width="280" height="120" rx="12" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+              <text x="500" y="75" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">② Orchestration</text>
+              <text x="500" y="105" text-anchor="middle" fill="#5a6b7c" font-size="12">adaptateurs · routage</text>
+              <text x="500" y="128" text-anchor="middle" fill="#1e5f8a" font-size="12">AuthZ centralisée</text>
+              <rect x="680" y="30" width="280" height="120" rx="12" fill="#f7f9fb" stroke="#087a6a" stroke-width="2"/>
+              <text x="820" y="75" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">③ UX unifiée</text>
+              <text x="820" y="105" text-anchor="middle" fill="#5a6b7c" font-size="12">continuité de parcours</text>
+              <text x="820" y="128" text-anchor="middle" fill="#087a6a" font-size="12">payment_id = lien</text>
+            </svg>
+          </div>
+        </section>
+
+        <section class="section" id="pilier-backend">
+          <p class="section-label">Pilier 1</p>
+          <h2>Single payment backend</h2>
+          <p class="definition-full">
+            <strong>Centralisation</strong> de la logique métier et
+            unification de la <strong>mémoire de transaction</strong>&nbsp;:
+            un seul journal de vérité SI pour toutes les portes — pas un
+            export POS, un export e-com et un export app à recoller.
+          </p>
+          <div class="diagram" id="diagram-journal">
+            <div class="diagram-header">
+              <h3>N portes · 1 journal SI</h3>
+              <p>AuthZ → Clear → Sett. sous le même payment_id</p>
+            </div>
+            <svg
+              viewBox="0 0 1000 300"
+              role="img"
+              aria-label="Entrees canaux vers une verite SI unique"
+            >
+              <defs>
+                <marker id="ah-jnl" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="40" y="40" width="200" height="70" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+                <text x="140" y="70" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">① NFC tap</text>
+                <text x="140" y="92" text-anchor="middle" fill="#5a6b7c" font-size="11">in-store · EMV CL</text>
+              </g>
+              <g>
+                <rect x="40" y="125" width="200" height="70" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+                <text x="140" y="155" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">② QR scan</text>
+                <text x="140" y="177" text-anchor="middle" fill="#5a6b7c" font-size="11">MPM / CPM · J2</text>
+              </g>
+              <g>
+                <rect x="40" y="210" width="200" height="70" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                <text x="140" y="240" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">③ Token e-com</text>
+                <text x="140" y="262" text-anchor="middle" fill="#5a6b7c" font-size="11">CNP · 3DS · J3</text>
+              </g>
+              <line x1="250" y1="75" x2="380" y2="160" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-jnl)"/>
+              <line x1="250" y1="160" x2="380" y2="160" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-jnl)"/>
+              <line x1="250" y1="245" x2="380" y2="160" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-jnl)"/>
+              <g>
+                <rect x="380" y="100" width="240" height="120" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <text x="500" y="145" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Backend unique</text>
+                <text x="500" y="170" text-anchor="middle" fill="#0d9f8a" font-size="12">Auth request</text>
+                <text x="500" y="195" text-anchor="middle" fill="#5a6b7c" font-size="11">id = intention métier</text>
+              </g>
+              <line x1="630" y1="160" x2="700" y2="160" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-jnl)"/>
+              <g>
+                <rect x="700" y="90" width="260" height="140" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                <text x="830" y="140" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">1 journal SI</text>
+                <text x="830" y="168" text-anchor="middle" fill="#5a6b7c" font-size="12">AuthZ → Clear → Sett.</text>
+                <text x="830" y="195" text-anchor="middle" fill="#0d9f8a" font-size="12" font-weight="700">mémoire unifiée</text>
+              </g>
+            </svg>
+          </div>
+        </section>
+
+        <section class="section" id="pilier-orch">
+          <p class="section-label">Pilier 2</p>
+          <h2>Orchestration multi-moyens</h2>
+          <p class="definition-full">
+            <strong>Routage intelligent</strong>, gestion des
+            <strong>adaptateurs</strong> (carte / QR / wallet) et
+            <strong>décision d’autorisation centralisée</strong>&nbsp;: une
+            Auth request normalisée, une AuthZ, un statut — pas trois moteurs
+            de règles concurrents.
           </p>
 
           <div class="diagram" id="diagram-orch">
             <div class="diagram-header">
-              <h3>Orchestration multi-moyens</h3>
-              <p>Canal → gateway → moyen → Auth → statut unique</p>
+              <h3>Adaptateurs → cœur → AuthZ</h3>
+              <p>Canaux → même plateforme → une décision</p>
             </div>
             <svg
-              viewBox="0 0 1000 320"
+              viewBox="0 0 1000 380"
               role="img"
-              aria-label="Orchestration multi-moyens vers autorisation"
+              aria-label="Orchestration multi-moyens et decision AuthZ"
             >
               <defs>
                 <marker id="ah-orch" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                   <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
                 </marker>
               </defs>
-              <g>
-                <rect x="40" y="80" width="180" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-device.jpg" x="52" y="96" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
-                <text x="120" y="120" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Canal</text>
-                <text x="120" y="140" fill="#5a6b7c" font-size="11">UX locale</text>
-              </g>
-              <line class="flow-line" x1="230" y1="130" x2="300" y2="130" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-orch)"/>
-              <g>
-                <rect x="300" y="60" width="220" height="140" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                <image href="../img/acteurs/acteur-psp.jpg" x="318" y="88" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
-                <text x="400" y="110" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Orchestrateur</text>
-                <text x="400" y="134" fill="#0d9f8a" font-size="12">routing · règles</text>
-                <text x="400" y="156" fill="#5a6b7c" font-size="11">fraude · retry</text>
-              </g>
-              <line class="flow-line" x1="530" y1="100" x2="600" y2="70" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-orch)"/>
-              <line class="flow-line" x1="530" y1="130" x2="600" y2="130" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-orch)"/>
-              <line class="flow-line" x1="530" y1="160" x2="600" y2="190" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-orch)"/>
-              <g>
-                <rect x="600" y="30" width="160" height="55" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
-                <text x="680" y="55" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Carte / token</text>
-                <text x="680" y="72" text-anchor="middle" fill="#5a6b7c" font-size="10">J1 · J3 · J4</text>
-              </g>
-              <g>
-                <rect x="600" y="100" width="160" height="55" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                <text x="680" y="125" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">QR</text>
-                <text x="680" y="142" text-anchor="middle" fill="#5a6b7c" font-size="10">J2</text>
-              </g>
-              <g>
-                <rect x="600" y="170" width="160" height="55" rx="8" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
-                <text x="680" y="195" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="12" font-weight="700">Wallet NFC</text>
-                <text x="680" y="212" text-anchor="middle" fill="#5a6b7c" font-size="10">J4</text>
-              </g>
-              <line class="flow-line" x1="770" y1="130" x2="840" y2="130" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-orch)"/>
-              <g>
-                <rect x="840" y="80" width="130" height="100" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
-                <image href="../img/acteurs/acteur-banque.jpg" x="862" y="96" width="48" height="48" preserveAspectRatio="xMidYMid slice"/>
-                <text x="905" y="160" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">AuthZ</text>
-                <text x="905" y="178" text-anchor="middle" fill="#5a6b7c" font-size="10">OK / decline</text>
-              </g>
-              <text x="500" y="280" text-anchor="middle" fill="#5a6b7c" font-size="12">
-                Statut unifié remonte au canal — UX cohérente, runbooks partagés
+
+              <rect x="30" y="40" width="120" height="50" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+              <text x="90" y="70" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Magasin</text>
+              <rect x="30" y="110" width="120" height="50" rx="8" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+              <text x="90" y="140" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Web</text>
+              <rect x="30" y="180" width="120" height="50" rx="8" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+              <text x="90" y="210" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">App</text>
+
+              <line class="flow-line" x1="150" y1="65" x2="220" y2="140" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-orch)"/>
+              <line class="flow-line" x1="150" y1="135" x2="220" y2="150" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-orch)"/>
+              <line class="flow-line" x1="150" y1="205" x2="220" y2="160" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-orch)"/>
+
+              <rect x="220" y="30" width="540" height="250" rx="14" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="490" y="58" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Plateforme paiement unique</text>
+
+              <text x="280" y="88" fill="#5a6b7c" font-size="11" font-weight="700">Adaptateurs d’entrée (pas des silos)</text>
+              <rect x="250" y="100" width="130" height="44" rx="6" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+              <text x="315" y="127" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Carte / token</text>
+              <rect x="400" y="100" width="110" height="44" rx="6" fill="#fff" stroke="#3d5a80" stroke-width="1.5"/>
+              <text x="455" y="127" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">QR</text>
+              <rect x="530" y="100" width="130" height="44" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+              <text x="595" y="127" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Wallet NFC</text>
+
+              <line x1="315" y1="144" x2="400" y2="180" stroke="#0d9f8a" stroke-width="1.5"/>
+              <line x1="455" y1="144" x2="455" y2="180" stroke="#0d9f8a" stroke-width="1.5"/>
+              <line x1="595" y1="144" x2="510" y2="180" stroke="#0d9f8a" stroke-width="1.5"/>
+
+              <rect x="280" y="185" width="200" height="70" rx="8" fill="#fff" stroke="#087a6a" stroke-width="2"/>
+              <text x="380" y="215" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Routage · fraude · retry</text>
+              <text x="380" y="235" text-anchor="middle" fill="#5a6b7c" font-size="11">1 moteur de décision</text>
+
+              <rect x="500" y="185" width="200" height="70" rx="8" fill="#fff" stroke="#087a6a" stroke-width="2"/>
+              <text x="600" y="215" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">Vérité SI</text>
+              <text x="600" y="235" text-anchor="middle" fill="#5a6b7c" font-size="11">1 payment_id / intention</text>
+
+              <line class="flow-line" x1="760" y1="155" x2="820" y2="155" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-orch)"/>
+              <rect x="820" y="100" width="150" height="110" rx="10" fill="#f7f9fb" stroke="#0d9f8a" stroke-width="2"/>
+              <image href="../img/acteurs/acteur-banque.jpg" x="865" y="112" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>
+              <text x="895" y="185" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">AuthZ</text>
+              <text x="895" y="202" text-anchor="middle" fill="#5a6b7c" font-size="10">OK / decline</text>
+
+              <text x="500" y="320" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">
+                Statut normalisé remonte au canal d’origine
+              </text>
+              <text x="500" y="342" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Même codes · pas de stack « carte » vs « QR » séparée
               </text>
             </svg>
             <div class="seq-steps" id="orch-steps">
               <button type="button" class="seq-step is-active" data-step="1">
                 <span class="n">1</span>
                 <span>
-                  <strong>Entrée canal</strong>
-                  <p>Le front capture montant, moyen, contexte (magasin / web…).</p>
+                  <strong>Auth request</strong>
+                  <p>Canal → demande normalisée (montant, moyen, contexte, intention).</p>
                 </span>
               </button>
               <button type="button" class="seq-step" data-step="2">
                 <span class="n">2</span>
                 <span>
-                  <strong>Routing</strong>
-                  <p>Règles&nbsp;: rail QR, token wallet, carte — + fraude / retry.</p>
+                  <strong>Adaptateur + règles</strong>
+                  <p>Carte / QR / wallet + routage + attribution payment_id.</p>
                 </span>
               </button>
               <button type="button" class="seq-step" data-step="3">
                 <span class="n">3</span>
                 <span>
-                  <strong>Auth &amp; retour</strong>
-                  <p>Décision émetteur / scheme → statut normalisé vers le canal.</p>
+                  <strong>AuthZ centralisée</strong>
+                  <p>Décision unique, écriture journal, statut unifié au canal.</p>
                 </span>
               </button>
             </div>
             <p class="diagram-hint">
-              UX unifiée ≠ même écran&nbsp;: mêmes codes, même journal, mêmes
-              familles de rejet (J1).
+              Les boîtes « Carte / QR / Wallet » = <strong>connecteurs</strong>
+              dans le même SI, pas des backends concurrents.
             </p>
           </div>
         </section>
 
-        <section class="section">
-          <p class="section-label">Rôle</p>
-          <h2>Que retient le SI&nbsp;?</h2>
-          <div class="split-2">
-            <div class="panel">
-              <h3>Backend unique</h3>
-              <ul>
-                <li>Journal / ID transaction transverses</li>
-                <li>Réconciliation et settlement communs</li>
-                <li>Supervision multi-canaux</li>
-              </ul>
+        <section class="section" id="pilier-ux">
+          <p class="section-label">Pilier 3</p>
+          <h2>Expérience utilisateur unifiée</h2>
+          <p class="definition-full">
+            <strong>Continuité de parcours</strong>&nbsp;: click &amp; collect,
+            abandon web et reprise mobile, panier magasin lié à un ordre
+            e-com. Le <strong>payment_id</strong> garantit le lien avec la
+            <strong>même intention d’achat</strong> — pas un nouvel id à
+            chaque porte.
+          </p>
+          <div class="diagram" id="diagram-ux">
+            <div class="diagram-header">
+              <h3>Même intention · même payment_id</h3>
+              <p>Changer de canal sans casser le paiement</p>
             </div>
-            <div class="panel">
-              <h3>Orchestration &amp; UX</h3>
-              <ul>
-                <li>Choix du rail selon contexte</li>
-                <li>Statuts normalisés (OK / decline / technique)</li>
-                <li>Parcours porteur cohérent</li>
-              </ul>
-            </div>
+            <svg
+              viewBox="0 0 1000 220"
+              role="img"
+              aria-label="Continuité parcours via payment_id"
+            >
+              <defs>
+                <marker id="ah-ux" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <rect x="40" y="40" width="200" height="80" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+              <text x="140" y="75" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Web · panier</text>
+              <text x="140" y="98" text-anchor="middle" fill="#5a6b7c" font-size="11">intention créée</text>
+              <line x1="250" y1="80" x2="300" y2="80" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ux)"/>
+              <rect x="310" y="40" width="220" height="80" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="420" y="75" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">payment_id = P-42</text>
+              <text x="420" y="98" text-anchor="middle" fill="#0d9f8a" font-size="11">même intention</text>
+              <line x1="540" y1="80" x2="590" y2="80" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-ux)"/>
+              <rect x="600" y="40" width="200" height="80" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+              <text x="700" y="75" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Magasin · C&amp;C</text>
+              <text x="700" y="98" text-anchor="middle" fill="#5a6b7c" font-size="11">reprise P-42</text>
+              <rect x="830" y="40" width="140" height="80" rx="10" fill="#f7f9fb" stroke="#087a6a" stroke-width="2"/>
+              <text x="900" y="75" text-anchor="middle" fill="#087a6a" font-size="13" font-weight="700">AuthZ</text>
+              <text x="900" y="98" text-anchor="middle" fill="#5a6b7c" font-size="11">OK / KO</text>
+              <text x="500" y="160" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Abandon web → reprise mobile = même id · nouvel achat = nouvel id
+              </text>
+              <text x="500" y="185" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">
+                Deux intentions distinctes = deux payment_id sur le même journal SI
+              </text>
+            </svg>
           </div>
+          <p class="montage-example" style="margin-top: 0.85rem">
+            <strong>Repère</strong>&nbsp;: le canal change&nbsp;; l’intention
+            et le <strong>payment_id</strong> ne changent que si c’est un
+            nouvel achat.
+          </p>
         </section>
 
-        <section class="section">
-          <p class="section-label">Ancrage</p>
-          <h2>Cas pratiques</h2>
-          <div class="split-2">
-            <div class="panel ok">
-              <h3>Cas 1 — Même panier, 3 canaux</h3>
-              <ul>
-                <li>Magasin NFC, site web token, app QR</li>
-                <li>Trois entrées, un journal</li>
-              </ul>
-            </div>
-            <div class="panel ko">
-              <h3>Cas 2 — Silos « multi-produits »</h3>
-              <ul>
-                <li>Trois PSP, trois réconciliations</li>
-                <li>≠ omnicanal SI</li>
-              </ul>
-            </div>
+        <section class="section" id="payment-id-intention">
+          <p class="section-label">Repère monétique</p>
+          <h2>payment_id = une intention d’achat</h2>
+          <p class="definition-full">
+            Un <strong>payment_id</strong> identifie
+            <strong>une intention d’achat</strong>&nbsp;: le «&nbsp;quoi
+            payer&nbsp;» métier (panier / commande / ordre) — pas un canal, ni
+            un geste technique (tap, scan, checkout).
+          </p>
+          <p class="intro" style="margin-top: 0.85rem">
+            Ce qui change (NFC, QR, carte, wallet) = le
+            <strong>moyen / la porte</strong>. Le
+            <strong>payment_id</strong> ne change que si c’est un
+            <strong>nouvel achat</strong>.
+          </p>
+          <div class="csm-table-wrap" style="margin-top: 1rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Situation</th>
+                  <th scope="col">Intention</th>
+                  <th scope="col">payment_id</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Achat spontané en caisse</th>
+                  <td>Nouvelle</td>
+                  <td>Nouvel id</td>
+                </tr>
+                <tr>
+                  <th scope="row">Panier web, puis paiement</th>
+                  <td>Une</td>
+                  <td>Un id créé au checkout</td>
+                </tr>
+                <tr class="is-exergue">
+                  <th scope="row">Click &amp; collect : même commande, payée / reprise en magasin</th>
+                  <td><strong>La même</strong></td>
+                  <td><strong>Le même</strong> id</td>
+                </tr>
+                <tr>
+                  <th scope="row">Deux achats le même jour (web + magasin)</th>
+                  <td>Deux</td>
+                  <td>Deux ids</td>
+                </tr>
+                <tr>
+                  <th scope="row">Abandon web, reprise mobile du même panier</th>
+                  <td>La même</td>
+                  <td>Le même id</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </section>
+          <p class="montage-example" style="margin-top: 0.85rem">
+            <strong>En une phrase</strong>&nbsp;: le
+            <strong>payment_id</strong> suit l’achat que le client veut
+            finaliser — ce n’est pas un nouvel id à chaque fois qu’il change
+            de canal.
+          </p>
 
-        <section class="section">
-          <p class="section-label">Clarification</p>
-          <h2>Ce que l’omnicanal n’est pas</h2>
-          <div class="not-list">
-            <div class="not-item">
-              <strong>≠ Multi-moyens juxtaposés</strong>
-              <p>
-                Avoir carte + QR + wallet sans backend / gouvernance communs.
-              </p>
+          <div class="diagram" id="diagram-exemple-pid" style="margin-top: 1.1rem">
+            <div class="diagram-header">
+              <h3>Exemple concret · Click &amp; Collect</h3>
+              <p>Même intention · même payment_id · deux portes</p>
             </div>
-            <div class="not-item">
-              <strong>≠ UX seule</strong>
-              <p>
-                L’omnicanal est aussi journal, risque, réconciliation,
-                supervision.
-              </p>
-            </div>
-            <div class="not-item">
-              <strong>≠ Nouvelle monétique</strong>
-              <p>
-                Auth / Clearing / Settlement et familles de rejet restent ceux
-                de J1.
-              </p>
-            </div>
+            <svg
+              viewBox="0 0 1000 280"
+              role="img"
+              aria-label="Exemple click and collect meme payment_id"
+            >
+              <defs>
+                <marker id="ah-pid" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                </marker>
+              </defs>
+              <rect x="40" y="30" width="220" height="100" rx="10" fill="#f7f9fb" stroke="#1e5f8a" stroke-width="2"/>
+              <text x="150" y="60" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">① Web · 10:12</text>
+              <text x="150" y="85" text-anchor="middle" fill="#5a6b7c" font-size="11">Panier : casque 89 €</text>
+              <text x="150" y="108" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Retrait magasin</text>
+
+              <line x1="270" y1="80" x2="320" y2="80" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pid)"/>
+
+              <rect x="330" y="30" width="340" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+              <text x="500" y="60" text-anchor="middle" fill="#087a6a" font-size="14" font-weight="700">payment_id = ORD-7841</text>
+              <text x="500" y="85" text-anchor="middle" fill="#0d9f8a" font-size="12">Intention créée · statut « à retirer »</text>
+              <text x="500" y="108" text-anchor="middle" fill="#5a6b7c" font-size="11">Journal SI · 1 ligne</text>
+
+              <line x1="680" y1="80" x2="730" y2="80" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-pid)"/>
+
+              <rect x="740" y="30" width="220" height="100" rx="10" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+              <text x="850" y="60" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">② Magasin · 16:40</text>
+              <text x="850" y="85" text-anchor="middle" fill="#5a6b7c" font-size="11">Scan retrait / tap NFC</text>
+              <text x="850" y="108" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">AuthZ sur ORD-7841</text>
+
+              <rect x="40" y="160" width="920" height="90" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5"/>
+              <text x="500" y="195" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">
+                Même intention = même id · le canal change, pas l’achat
+              </text>
+              <text x="500" y="222" text-anchor="middle" fill="#5a6b7c" font-size="12">
+                Si le client achète aussi une boisson en caisse → nouvel payment_id (autre intention)
+              </text>
+            </svg>
           </div>
+          <p class="intro" style="margin-top: 0.85rem">
+            <strong>Cas</strong>&nbsp;: Léa commande un casque à 89&nbsp;€ sur le
+            site (retrait en magasin). Le SI crée
+            <strong>payment_id = ORD-7841</strong>. L’après-midi, en magasin,
+            le vendeur scanne le bon / Léa tape NFC&nbsp;: l’AuthZ et le
+            journal portent toujours <strong>ORD-7841</strong> — ce n’est pas
+            un second paiement inventé par le POS.
+          </p>
+
+          <div class="csm-table-wrap" style="margin-top: 1.1rem">
+            <table class="csm-table">
+              <thead>
+                <tr>
+                  <th scope="col">Étape</th>
+                  <th scope="col">Multicanal (silos)</th>
+                  <th scope="col">Omnicanal (même SI)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">① Web · commande casque</th>
+                  <td>
+                    Export / journal <strong>e-com</strong>&nbsp;:
+                    id <code>WEB-9912</code> (stack web seule)
+                  </td>
+                  <td>
+                    Journal SI&nbsp;:
+                    <strong>ORD-7841</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">② Magasin · retrait / paiement</th>
+                  <td>
+                    Export / journal <strong>POS</strong>&nbsp;:
+                    nouvel id <code>POS-448</code> — le TPE ne «&nbsp;voit&nbsp;»
+                    pas <code>WEB-9912</code>
+                  </td>
+                  <td>
+                    Même ligne&nbsp;:
+                    <strong>ORD-7841</strong> (reprise d’intention)
+                  </td>
+                </tr>
+                <tr class="is-exergue">
+                  <th scope="row">Conséquence</th>
+                  <td>
+                    Deux dossiers à <strong>recoller</strong> (export e-com +
+                    export POS)&nbsp;; risque double débit / litige /
+                    «&nbsp;déjà payé web&nbsp;» vs «&nbsp;à encaisser en caisse&nbsp;»
+                  </td>
+                  <td>
+                    Une intention, un id, une timeline&nbsp;; AuthZ et clôture
+                    sur la <strong>même</strong> vérité SI
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="montage-example" style="margin-top: 0.85rem">
+            <strong>Différence</strong>&nbsp;: en multicanal, changer de canal
+            = souvent <strong>changer de mémoire</strong> (nouvel id, autre
+            export). En omnicanal, changer de canal = continuer
+            <strong>la même intention</strong> sous le même
+            <code>payment_id</code>.
+          </p>
         </section>
 
         <div class="sources-box">
-          <strong>Sources normes / specs</strong> — à affiner&nbsp;: guides PSP
-          omnicanal, EMV QR, VTS/MDES, règles scheme contactless.
+          <strong>Sources normes / specs</strong> — EMV Contactless · EMV QR /
+          QR Code Specification · EMV Payment Tokenisation · 3-D Secure ·
+          VTS / MDES · guides PSP omnicanal.
         </div>
 
         <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>

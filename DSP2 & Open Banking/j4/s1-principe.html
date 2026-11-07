@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S1 — Principe de l’agrégation | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s1-principe">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a class="is-active" href="intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 4 · Séquence 1</span>
+                <span class="tag tag-accent">45 min</span>
+              </div>
+              <p class="day-kicker">Qu’est-ce qu’un tiers agrégateur&nbsp;?</p>
+              <h1>Principe de l’agrégation</h1>
+              <p class="lead">
+                Lire les comptes du client, chez plusieurs banques, avec son
+                consentement. On définit le rôle AISP, on montre ce que
+                «&nbsp;agréger&nbsp;» ajoute à une simple lecture, et en quoi cela
+                change tout par rapport au <em>screen scraping</em>.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Léa ouvre <strong>MonBuddy</strong>. L’application lui demande
+                <em>quelles banques</em> elle veut connecter. Elle coche Banque Est
+                et sa néobanque. Elle s’authentifie chez chacune, valide un
+                consentement, et revient sur MonBuddy&nbsp;: ses deux soldes
+                s’affichent. <strong>Aucun identifiant n’a été transmis à
+                MonBuddy.</strong>
+              </p>
+            </div>
+
+            <!-- DÉFINITION -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Définition</p>
+              <h2>L’AIS, mot à mot</h2>
+
+              <div class="definition-full">
+                <strong>Service d’information sur les comptes</strong> (en anglais
+                <em>Account Information Service</em>, AIS)&nbsp;: service en ligne
+                consistant à fournir des <strong>informations consolidées</strong>
+                sur un ou plusieurs comptes de paiement du client, détenus chez
+                différents établissements, <strong>avec le consentement explicite
+                du client</strong> et via les <strong>interfaces dédiées</strong>
+                des banques.
+              </div>
+
+              <p>
+                Trois mots portent le sens&nbsp;:
+              </p>
+
+              <div class="split-3">
+                <div class="panel">
+                  <h3>«&nbsp;Informations&nbsp;»</h3>
+                  <p>
+                    L’AIS <strong>lit</strong> seulement&nbsp;: soldes, opérations,
+                    libellés. Il ne déclenche <strong>aucun paiement</strong>. C’est
+                    la différence de nature avec le PISP du Jour 3.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>«&nbsp;Consolidées&nbsp;»</h3>
+                  <p>
+                    La valeur vient de l’<strong>agrégation</strong>&nbsp;: réunir
+                    plusieurs banques en une vue. Un seul compte, c’est une appli
+                    bancaire&nbsp;; plusieurs, c’est un service.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>«&nbsp;Consentement&nbsp;»</h3>
+                  <p>
+                    Le client <strong>autorise explicitement</strong>, pour une
+                    durée bornée, une liste de comptes et de données. Révocable à
+                    tout moment.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>AIS ≠ consultation d’un compte isolé</h3>
+                <p>
+                  La lecture d’un compte par l’appli de <em>sa propre</em> banque
+                  n’est pas un service AIS&nbsp;: c’est l’ASPSP lui-même. L’AIS
+                  commence quand un <strong>tiers</strong> lit les comptes du
+                  client, chez <strong>une ou plusieurs banques</strong>, sur
+                  autorisation. C’est cette délégation encadrée que la DSP2 a
+                  créée.
+                </p>
+              </div>
+            </section>
+
+            <!-- AGRÉGATION MULTI-BANQUES -->
+            <section class="section">
+              <p class="section-label">Mécanique</p>
+              <h2 id="agregation">Agréger&nbsp;: lire plusieurs banques en une vue</h2>
+              <p class="intro">
+                Agréger, c’est interroger plusieurs banques et présenter un
+                résultat unique. Le tiers devient un <strong>point de collecte</strong>&nbsp;:
+                une seule application, plusieurs sources.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Agrégation multi-banques</h3>
+                  <p>Un AISP, plusieurs ASPSP, une vue consolidée</p>
+                </div>
+                <svg viewBox="0 0 1000 380" role="img" aria-label="Schéma d’agrégation multi-banques">
+                  <defs>
+                    <marker id="ah-agr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                    <marker id="ah-agrb" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#6b4fa0" />
+                    </marker>
+                  </defs>
+                  <!-- Client -->
+                  <g>
+                    <rect x="40" y="150" width="150" height="80" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
+                    <text x="115" y="186" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="14" font-weight="700">Léa</text>
+                    <text x="115" y="206" text-anchor="middle" fill="#5a6b7c" font-size="11">le client</text>
+                  </g>
+                  <line x1="194" y1="190" x2="290" y2="190" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-agrb)"/>
+                  <text x="242" y="180" text-anchor="middle" fill="#6b4fa0" font-size="9">consentement</text>
+                  <!-- AISP -->
+                  <g>
+                    <rect x="296" y="120" width="180" height="140" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="386" y="158" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">AISP</text>
+                    <text x="386" y="180" text-anchor="middle" fill="#5a6b7c" font-size="11">MonBuddy</text>
+                    <text x="386" y="204" text-anchor="middle" fill="#5a6b7c" font-size="10">collecte</text>
+                    <text x="386" y="220" text-anchor="middle" fill="#5a6b7c" font-size="10">normalise</text>
+                    <text x="386" y="236" text-anchor="middle" fill="#5a6b7c" font-size="10">consolide</text>
+                  </g>
+                  <!-- 3 banks -->
+                  <g>
+                    <rect x="660" y="40" width="300" height="70" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="810" y="72" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Banque Est (ASPSP)</text>
+                    <text x="810" y="92" text-anchor="middle" fill="#5a6b7c" font-size="10">compte courant · API AIS</text>
+                  </g>
+                  <g>
+                    <rect x="660" y="140" width="300" height="70" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="810" y="172" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Néobanque (ASPSP)</text>
+                    <text x="810" y="192" text-anchor="middle" fill="#5a6b7c" font-size="10">compte · API AIS</text>
+                  </g>
+                  <g>
+                    <rect x="660" y="240" width="300" height="70" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="810" y="272" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Banque Sud (ASPSP)</text>
+                    <text x="810" y="292" text-anchor="middle" fill="#5a6b7c" font-size="10">compte épargne · API AIS</text>
+                  </g>
+                  <line x1="480" y1="150" x2="656" y2="85" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-agr)"/>
+                  <line x1="480" y1="190" x2="656" y2="175" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-agr)"/>
+                  <line x1="480" y1="230" x2="656" y2="265" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-agr)"/>
+                  <text x="330" y="330" text-anchor="middle" fill="#5a6b7c" font-size="11">Le client consent une fois&nbsp;; l’AISP lit plusieurs banques via leurs API.</text>
+                </svg>
+              </div>
+
+              <div class="key-idea">
+                <p class="label">Idée directrice</p>
+                <p>
+                  L’AISP ne détient pas d’argent et ne modifie rien&nbsp;: il
+                  <em>collecte</em> de la donnée, la <em>normalise</em> et la
+                  <em>consolide</em>. Sa valeur, c’est la vue unique — et la
+                  confiance du client qui a donné son consentement.
+                </p>
+              </div>
+
+              <div class="callout warn">
+                <h3>Ne pas confondre AISP et agrégateur «&nbsp;historique&nbsp;»</h3>
+                <p>
+                  Avant la DSP2, des agrégateurs lisaient déjà plusieurs banques
+                  — mais par <em>screen scraping</em>, avec les identifiants du
+                  client. L’AISP DSP2 fait la même chose <strong>en mieux</strong>&nbsp;:
+                  API officielle, consentement, SCA, révocation, traçabilité. La
+                  finalité est proche&nbsp;; le <em>moyen</em> est radicalement plus
+                  sûr.
+                </p>
+              </div>
+            </section>
+
+            <!-- AIS VS SCRAPING -->
+            <section class="section">
+              <p class="section-label">Positionnement</p>
+              <h2 id="alternative">AIS vs screen scraping</h2>
+              <p class="intro">
+                La comparaison avec le scraping du Jour 1 est le meilleur moyen de
+                mesurer l’apport de la DSP2 côté lecture.
+              </p>
+
+              <figure class="fig-illus">
+                <svg viewBox="0 0 1000 300" role="img" aria-label="Comparaison AIS officiel et screen scraping">
+                  <defs>
+                    <marker id="ah-vs-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#c45c26" />
+                    </marker>
+                    <marker id="ah-vs-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <!-- AVANT -->
+                  <text x="40" y="30" fill="#c45c26" font-family="Syne, sans-serif" font-size="13" font-weight="700">SANS DSP2 — scraping</text>
+                  <rect x="20" y="45" width="455" height="225" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="1.5"/>
+                  <g>
+                    <rect x="45" y="95" width="105" height="55" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                    <text x="97" y="122" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Agrégateur</text>
+                    <text x="97" y="138" text-anchor="middle" fill="#5a6b7c" font-size="9">identifiants client</text>
+                  </g>
+                  <g>
+                    <rect x="320" y="95" width="120" height="55" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                    <text x="380" y="122" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Banque</text>
+                    <text x="380" y="138" text-anchor="middle" fill="#5a6b7c" font-size="9">site web</text>
+                  </g>
+                  <line x1="152" y1="122" x2="316" y2="122" stroke="#c45c26" stroke-width="2.5" class="stream" marker-end="url(#ah-vs-r)"/>
+                  <text x="234" y="112" text-anchor="middle" fill="#c45c26" font-size="9" font-weight="700">se fait passer pour Léa</text>
+                  <rect x="45" y="180" width="200" height="30" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                  <text x="145" y="199" text-anchor="middle" fill="#c45c26" font-size="9">identifiants stockés · pas de révocation</text>
+                  <text x="245" y="245" fill="#5a6b7c" font-size="10">Fragile, opaque, non conforme</text>
+
+                  <!-- APRES -->
+                  <text x="555" y="30" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">AVEC DSP2 — AIS</text>
+                  <rect x="525" y="45" width="455" height="225" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <g>
+                    <rect x="550" y="95" width="105" height="55" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                    <text x="602" y="122" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">AISP</text>
+                    <text x="602" y="138" text-anchor="middle" fill="#5a6b7c" font-size="9">agréé</text>
+                  </g>
+                  <g>
+                    <rect x="825" y="95" width="120" height="55" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                    <text x="885" y="122" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Banque</text>
+                    <text x="885" y="138" text-anchor="middle" fill="#5a6b7c" font-size="9">API AIS dédiée</text>
+                  </g>
+                  <line x1="657" y1="122" x2="821" y2="122" stroke="#0d9f8a" stroke-width="2.5" class="stream" marker-end="url(#ah-vs-g)"/>
+                  <text x="739" y="112" text-anchor="middle" fill="#087a6a" font-size="9" font-weight="700">jeton + consentement</text>
+                  <rect x="550" y="180" width="240" height="30" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <text x="670" y="199" text-anchor="middle" fill="#087a6a" font-size="9">consentement daté · révocable · SCA</text>
+                  <text x="750" y="245" fill="#087a6a" font-size="10">Sûr, tracé, conforme</text>
+                </svg>
+                <figcaption>Figure — le même besoin (voir plusieurs comptes), deux moyens&nbsp;: l’usurpation (avant) ou l’API consentie (après).</figcaption>
+              </figure>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">Screen scraping</th>
+                      <th scope="col">AIS (DSP2)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Accès</th><td>Interface web détournée</td><td>API dédiée officielle</td></tr>
+                    <tr><th scope="row">Identifiants</th><td>Stockés par le tiers</td><td>Jamais transmis au tiers</td></tr>
+                    <tr><th scope="row">SCA</th><td>Contournée</td><td>Obligatoire au consentement</td></tr>
+                    <tr><th scope="row">Révocation</th><td>Changer ses codes</td><td>Un clic, côté banque ou tiers</td></tr>
+                    <tr><th scope="row">Traçabilité</th><td>Nulle</td><td>Journalisée, auditables</td></tr>
+                    <tr class="is-exergue"><th scope="row">Conformité</th><td>Interdit depuis 2019</td><td>Cadre DSP2 + RGPD</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- POURQUOI CA EXISTE -->
+            <section class="section">
+              <p class="section-label">Rationnel</p>
+              <h2>Pourquoi l’AIS existe&nbsp;?</h2>
+              <p>
+                La DSP2 poursuit trois objectifs (Jour 1&nbsp;: concurrence,
+                innovation, protection). L’AIS les incarne côté <em>donnée</em>&nbsp;:
+              </p>
+
+              <div class="objectif-list">
+                <div class="objectif">
+                  <span class="obj-num">01</span>
+                  <h3>Concurrence</h3>
+                  <p class="obj-lea">
+                    «&nbsp;Pourquoi une seule appli pour voir mes comptes, celle
+                    de ma banque&nbsp;?&nbsp;»
+                  </p>
+                  <p>
+                    L’AIS permet à des tiers de proposer de la gestion de compte
+                    consolidée, en concurrence avec l’appli bancaire.
+                  </p>
+                </div>
+                <div class="objectif">
+                  <span class="obj-num">02</span>
+                  <h3>Innovation</h3>
+                  <p class="obj-lea">
+                    «&nbsp;Je veux catégoriser mes dépenses, anticiper mon découvert,
+                    comparer mes offres.&nbsp;»
+                  </p>
+                  <p>
+                    Sur la donnée de compte se construisent budget, scoring de
+                    crédit, onboarding, comparateurs — le <em>data banking</em>.
+                  </p>
+                </div>
+                <div class="objectif">
+                  <span class="obj-num">03</span>
+                  <h3>Protection</h3>
+                  <p class="obj-lea">
+                    «&nbsp;Le tiers ne verra jamais mes codes, et je peux couper
+                    l’accès quand je veux.&nbsp;»
+                  </p>
+                  <p>
+                    Consentement explicite, SCA, durée bornée, révocation&nbsp;:
+                    le client garde le contrôle de sa donnée.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Les limites réelles de l’AIS</h3>
+                <p>
+                  L’AIS dépend de la <strong>disponibilité des API</strong> de
+                  chaque banque&nbsp;: une lecture peut échouer. La
+                  <strong>fraîcheur</strong> des données n’est pas temps réel
+                  (rafraîchissements plafonnés). Et la <strong>qualité des
+                  libellés</strong> varie d’une banque à l’autre&nbsp;: normaliser
+                  est tout un métier. Un agrégateur doit composer avec ces trois
+                  limites.
+                </p>
+              </div>
+
+              <details class="cours-note">
+                <summary>Cours — AIS, CBPII&nbsp;: ne pas confondre les deux «&nbsp;lectures&nbsp;»</summary>
+                <div class="cours-note-body">
+                  <div class="csm-table-wrap" style="margin:0.7rem 0 0">
+                    <table class="csm-table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Service</th>
+                          <th scope="col">Ce qu’il fait</th>
+                          <th scope="col">Donnée exposée</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th scope="row">AIS</th><td>Fournit des informations consolidées sur les comptes</td><td>Soldes, transactions, libellés</td></tr>
+                        <tr class="is-exergue"><th scope="row">CBPII</th><td>Confirme à un tiers si le compte dispose des fonds pour un paiement</td><td>Un simple <em>oui/non</em> sur la provision</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>
+                    Le CBPII ne lit pas l’historique&nbsp;: il répond à une
+                    question «&nbsp;y a-t-il assez d’argent&nbsp;?&nbsp;». L’AIS lit
+                    la donnée dans le détail. Les deux sont des services de
+                    <em>lecture</em>, mais ne livrent pas la même information&nbsp;—
+                    et n’ont pas le même périmètre de consentement.
+                  </p>
+                </div>
+              </details>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Lisons, concrètement</h2>
+                <p>
+                  On sait ce qu’est l’agrégation. La S2 suit le consentement dans
+                  le temps&nbsp;: sa création par SCA, les lectures autorisées,
+                  les rafraîchissements, la durée de 90 jours et la révocation.
+                </p>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Notes formateur — S1</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>
+                    <strong>Partir de l’expérience de Léa</strong>&nbsp;: beaucoup
+                    d’étudiants utilisent une appli de budget. Leur demander comment
+                    elle accède à leurs comptes.
+                  </li>
+                  <li>
+                    <strong>Insister sur «&nbsp;lecture seule&nbsp;»</strong>&nbsp;:
+                    l’AIS ne peut pas déclencher de paiement — c’est le PISP qui le
+                    fait (J3). Éviter la confusion des rôles.
+                  </li>
+                  <li>
+                    <strong>Le mot «&nbsp;consolidé&nbsp;»</strong> est la valeur&nbsp;:
+                    un compte = appli bancaire&nbsp;; plusieurs comptes = service.
+                  </li>
+                  <li>
+                    <strong>Ne pas se tromper AIS / CBPII</strong>&nbsp;: le CBPII
+                    ne lit pas un solde, il répond à une question de provision.
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Points de sortie de S1</h3>
+              <ul>
+                <li>Je définis l’AIS sans confondre avec l’appli de sa banque.</li>
+                <li>J’explique ce que l’agrégation apporte&nbsp;: la vue unique.</li>
+                <li>Je distingue AIS (lecture détaillée) et CBPII (oui/non provision).</li>
+                <li>Je compare AIS et screen scraping point par point.</li>
+                <li>Je connais les limites&nbsp;: disponibilité des API, fraîcheur, libellés.</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2, annexe I, point 8 (service
+              d’information sur les comptes)&nbsp;; art. 4 §16-17&nbsp;; RTS EBA
+              2018/389 (SCA du AISP, accès dit «&nbsp;à quatre facteurs&nbsp;»,
+              exemptions de rafraîchissement)&nbsp;; Berlin Group NextGenPSD2 (AIS).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 4</a> · S1 Principe de l’agrégation
+      </div>
+    </footer>
+    <script src="../js/nav-j4.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

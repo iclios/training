@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S3 — Architecture SI AISP | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s3-architecture">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a class="is-active" href="intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 4 · Séquence 3</span>
+                <span class="tag tag-accent">50 min</span>
+              </div>
+              <p class="day-kicker">La machine qui agrège et sert la donnée</p>
+              <h1>Architecture SI AISP</h1>
+              <p class="lead">
+                Un agrégateur, c’est une usine à donnée&nbsp;: collecter chez
+                plusieurs banques, normaliser, stocker, servir. On pose les
+                composants, puis les contraintes qui décident si le service tient
+                en production.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Léa voit une simple vue de ses deux comptes. Derrière, MonBuddy
+                interroge deux banques, transforme leurs formats différents en un
+                modèle unique, stocke l’historique, et répond à l’écran en
+                quelques dizaines de millisecondes. Cette séquence ouvre
+                <strong>la boîte de l’AISP</strong>.
+              </p>
+            </div>
+
+            <!-- QUATRE COMPOSANTS -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Composants</p>
+              <h2 id="composants">Les quatre briques d’un AISP</h2>
+              <p class="intro">
+                L’agrégateur se décompose en quatre composants. Chacun a une
+                responsabilité propre&nbsp;; les confondre est l’erreur
+                d’architecture la plus fréquente.
+              </p>
+
+              <div class="layer-stack">
+                <article class="layer">
+                  <span class="layer-i">1</span>
+                  <div class="layer-body">
+                    <h3>Collecteurs multi-banques</h3>
+                    <p>
+                      Un <strong>connecteur par banque</strong>&nbsp;: un pour le
+                      format de Banque Est, un pour la néobanque, etc. Il gère
+                      l’authentification, les appels AIS, les retries, les quotas.
+                      C’est l’<em>adaptateur</em> entre chaque ASPSP et l’intérieur.
+                    </p>
+                  </div>
+                </article>
+                <article class="layer">
+                  <span class="layer-i">2</span>
+                  <div class="layer-body">
+                    <h3>Normalisation</h3>
+                    <p>
+                      <strong>Transformer</strong> les données hétérogènes en un
+                      modèle commun&nbsp;: montant, devise, date, contrepartie,
+                      direction. C’est ici que l’on catégorise les libellés et
+                      qu’on lisse les différences entre banques.
+                    </p>
+                  </div>
+                </article>
+                <article class="layer">
+                  <span class="layer-i">3</span>
+                  <div class="layer-body">
+                    <h3>Stockage</h3>
+                    <p>
+                      <strong>Conserver</strong> l’historique normalisé, avec la
+                      durée et les règles RGPD. Permet les lectures rapides, les
+                      tendances, et le service même quand une banque est
+                      momentanément indisponible.
+                    </p>
+                  </div>
+                </article>
+                <article class="layer">
+                  <span class="layer-i">4</span>
+                  <div class="layer-body">
+                    <h3>API exposée</h3>
+                    <p>
+                      Le <strong>point de service</strong> vers le frontend ou les
+                      clients de l’AISP&nbsp;: vue consolidée, soldes, catégories.
+                      C’est ce que consomme l’application de Léa.
+                    </p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Chaîne AISP de bout en bout</h3>
+                  <p>De l’API bancaire à l’écran de Léa</p>
+                </div>
+                <svg viewBox="0 0 1000 340" role="img" aria-label="Architecture SI AISP">
+                  <defs>
+                    <marker id="ah-s3j4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="120" width="150" height="90" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="95" y="152" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Banques</text>
+                    <text x="95" y="172" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">(ASPSP)</text>
+                    <text x="95" y="194" text-anchor="middle" fill="#5a6b7c" font-size="10">API AIS · plusieurs</text>
+                  </g>
+                  <g>
+                    <rect x="200" y="105" width="165" height="120" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                    <text x="282" y="135" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Collecteurs</text>
+                    <text x="282" y="158" text-anchor="middle" fill="#5a6b7c" font-size="10">1 connecteur / banque</text>
+                    <text x="282" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">auth · retry · quotas</text>
+                    <text x="282" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">jetons · consentements</text>
+                  </g>
+                  <g>
+                    <rect x="395" y="105" width="165" height="120" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
+                    <text x="477" y="135" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="12" font-weight="700">Normalisation</text>
+                    <text x="477" y="158" text-anchor="middle" fill="#5a6b7c" font-size="10">modèle commun</text>
+                    <text x="477" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">catégorisation</text>
+                    <text x="477" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">dédup · devise</text>
+                  </g>
+                  <g>
+                    <rect x="590" y="105" width="165" height="120" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="672" y="135" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Stockage</text>
+                    <text x="672" y="158" text-anchor="middle" fill="#5a6b7c" font-size="10">historique normalisé</text>
+                    <text x="672" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">règle RGPD</text>
+                    <text x="672" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">cache · indexation</text>
+                  </g>
+                  <g>
+                    <rect x="785" y="105" width="195" height="120" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="882" y="135" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">API exposée</text>
+                    <text x="882" y="158" text-anchor="middle" fill="#5a6b7c" font-size="10">vue consolidée</text>
+                    <text x="882" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">soldes · catégories</text>
+                    <text x="882" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">frontend · clients</text>
+                  </g>
+
+                  <line x1="170" y1="165" x2="196" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j4)"/>
+                  <line x1="365" y1="165" x2="391" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j4)"/>
+                  <line x1="560" y1="165" x2="586" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j4)"/>
+                  <line x1="755" y1="165" x2="781" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j4)"/>
+
+                  <rect x="200" y="255" width="780" height="55" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="590" y="279" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Gouvernance de la donnée &amp; sécurité</text>
+                  <text x="590" y="298" text-anchor="middle" fill="#5a6b7c" font-size="10">consentement, finalité, durée, chiffrement, journalisation, audits</text>
+                  <line x1="282" y1="225" x2="282" y2="251" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="477" y1="225" x2="477" y2="251" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="672" y1="225" x2="672" y2="251" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="882" y1="225" x2="882" y2="251" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                </svg>
+              </div>
+
+              <div class="callout info">
+                <h3>Où se trouve le consentement&nbsp;?</h3>
+                <p>
+                  Le consentement n’est pas un composant isolé&nbsp;: il
+                  <strong>traverse</strong> la chaîne. Les collecteurs le
+                  matérialisent (jeton), la normalisation le respecte (on ne garde
+                  que ce qu’il couvre), le stockage le porte (durée), l’API exposée
+                  ne sert que ce qu’il autorise. Un AISP qui «&nbsp;oublie&nbsp;» le
+                  consentement en aval est un AISP en infraction.
+                </p>
+              </div>
+            </section>
+
+            <!-- CONTRAINTES -->
+            <section class="section">
+              <p class="section-label">Contraintes</p>
+              <h2 id="contraintes">Les trois tensions de l’AISP</h2>
+              <p class="intro">
+                Une architecture AISP vit sous trois tensions permanentes. Le
+                métier est de les arbitrer, pas de les ignorer.
+              </p>
+
+              <div class="split-3">
+                <div class="panel">
+                  <h3>Volumétrie</h3>
+                  <p>
+                    Des millions de comptes × des dizaines d’opérations/mois ×
+                    plusieurs banques. On ne peut pas tout lire en temps réel&nbsp;:
+                    il faut <strong>batcher</strong>, <strong>cacher</strong> et
+                    <strong>indexer</strong>.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>Fraîcheur</h3>
+                  <p>
+                    La donnée n’est jamais «&nbsp;temps réel&nbsp;»&nbsp;: elle est
+                    aussi fraîche que le dernier rafraîchissement autorisé (S2).
+                    L’interface doit dire <em>quand</em> elle a été rafraîchie.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>Sécurité de la donnée</h3>
+                  <p>
+                    La donnée de compte est sensible&nbsp;:
+                    <strong>chiffrement</strong>, <strong>cloisonnement</strong> par
+                    client, <strong>journalisation</strong> des accès, minimisation.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>La disponibilité des banques fait la qualité de service</h3>
+                <p>
+                  Un AISP ne contrôle pas les API de ses banques. Une banque lente
+                  ou indisponible dégrade le service global. D’où plusieurs
+                  réflexes d’architecture&nbsp;: <strong>circuit breaker</strong> par
+                  banque (isoler la panne d’une source), <strong>cache</strong>
+                  (servir la dernière donnée connue), <strong>file d’attente</strong>
+                  pour rejouer les lectures, et <strong>health-checks</strong> par
+                  connecteur. Sans ça, une banque en panne fait tomber toute la vue
+                  consolidée.
+                </p>
+              </div>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Circuit breaker par banque</strong>
+                    <p>
+                      Si Banque Est échoue 3 fois, on l’isole temporairement&nbsp;: la
+                      néobanque continue à s’afficher.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>Cache avec date de fraîcheur</strong>
+                    <p>
+                      On sert la dernière donnée connue en indiquant son horodatage,
+                      plutôt qu’une erreur.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>File de rejeu idempotente</strong>
+                    <p>
+                      Une lecture en échec est rejouée sans dupliquer les
+                      opérations&nbsp;: la déduplication par identifiant de
+                      transaction évite les doublons.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">4</span>
+                  <div>
+                    <strong>Observabilité</strong>
+                    <p>
+                      Métriques par connecteur (latence, taux d’erreur), alertes,
+                      traces&nbsp;: on sait quelle banque dégrade le service.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- DIMENSIONNEMENT -->
+            <section class="section">
+              <p class="section-label">Dimensionnement</p>
+              <h2 id="dimensionner">Un ordre de grandeur, pas une formule</h2>
+              <p>
+                Une question revient toujours en entretien&nbsp;: «&nbsp;ça tient
+                combien de clients&nbsp;?&nbsp;» On ne donne pas un chiffre magique,
+                on raisonne en tension.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Axe</th>
+                      <th scope="col">Question</th>
+                      <th scope="col">Conséquence d’architecture</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Comptes</th><td>Combien de comptes lus, combien de banques&nbsp;?</td><td>Nombre de connecteurs, volumétrie de stockage</td></tr>
+                    <tr><th scope="row">Fréquence</th><td>Combien de rafraîchissements/jour autorisés&nbsp;?</td><td>Charge API, files, cache</td></tr>
+                    <tr><th scope="row">Historique</th><td>Combien de mois/années conservés&nbsp;?</td><td>Stockage, indexation, purge RGPD</td></tr>
+                    <tr class="is-exergue"><th scope="row">Latence</th><td>Objectif d’affichage de la vue consolidée&nbsp;?</td><td>Cache lecture, pré-agrégation</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>La pré-agrégation, ou le bon compromis latence/coût</h3>
+                <p>
+                  Pour la vue «&nbsp;budget du mois&nbsp;», inutile de recalculer à
+                  chaque clic&nbsp;: on <strong>précalcule</strong> les agrégats
+                  (totaux par catégorie) au rafraîchissement, et on les sert
+                  instantanément. C’est la même logique que le cache du PISP du
+                  Jour 3&nbsp;: ne pas refaire inutilement ce qui n’a pas changé.
+                </p>
+              </div>
+            </section>
+
+            <!-- FLUX INGESTION -->
+            <section class="section">
+              <p class="section-label">Synthèse</p>
+              <h2 id="ingestion">Un flux d’ingestion, plusieurs banques</h2>
+              <p class="intro">
+                Le même scénario Léa&nbsp;: deux banques, deux formats, une donnée
+                normalisée, un écran.
+              </p>
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Flux d’ingestion AISP</h3>
+                  <p>Collecte → normalisation → stockage → exposition</p>
+                </div>
+                <svg viewBox="0 0 1000 380" role="img" aria-label="Flux d’ingestion multi-banques AISP">
+                  <defs>
+                    <marker id="ah-ing" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="30" width="160" height="60" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="100" y="56" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Banque Est</text>
+                    <text x="100" y="74" text-anchor="middle" fill="#5a6b7c" font-size="9">format A</text>
+                  </g>
+                  <g>
+                    <rect x="20" y="150" width="160" height="60" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="100" y="176" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Neobanque</text>
+                    <text x="100" y="194" text-anchor="middle" fill="#5a6b7c" font-size="9">format B</text>
+                  </g>
+                  <g>
+                    <rect x="220" y="30" width="150" height="180" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="295" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Collecteurs</text>
+                    <text x="295" y="122" text-anchor="middle" fill="#5a6b7c" font-size="10">conn A - conn B</text>
+                    <text x="295" y="170" text-anchor="middle" fill="#5a6b7c" font-size="9">jeton + consent.</text>
+                  </g>
+                  <g>
+                    <rect x="410" y="30" width="150" height="180" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="485" y="100" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="12" font-weight="700">Normaliseur</text>
+                    <text x="485" y="122" text-anchor="middle" fill="#5a6b7c" font-size="10">formats A + B</text>
+                    <text x="485" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">modele commun</text>
+                    <text x="485" y="170" text-anchor="middle" fill="#5a6b7c" font-size="9">categories</text>
+                  </g>
+                  <g>
+                    <rect x="600" y="30" width="150" height="180" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="675" y="100" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Stockage</text>
+                    <text x="675" y="122" text-anchor="middle" fill="#5a6b7c" font-size="10">historique</text>
+                    <text x="675" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">comptes - ops</text>
+                    <text x="675" y="170" text-anchor="middle" fill="#5a6b7c" font-size="9">RGPD</text>
+                  </g>
+                  <g>
+                    <rect x="790" y="30" width="190" height="180" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="885" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">API exposee</text>
+                    <text x="885" y="122" text-anchor="middle" fill="#5a6b7c" font-size="10">vue Lea</text>
+                    <text x="885" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">soldes - budget</text>
+                    <text x="885" y="170" text-anchor="middle" fill="#5a6b7c" font-size="9">frontend</text>
+                  </g>
+
+                  <line x1="180" y1="60" x2="216" y2="80" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-ing)"/>
+                  <line x1="180" y1="180" x2="216" y2="160" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-ing)"/>
+                  <line x1="370" y1="120" x2="406" y2="120" stroke="#6b4fa0" stroke-width="2" marker-end="url(#ah-ing)"/>
+                  <line x1="560" y1="120" x2="596" y2="120" stroke="#6b4fa0" stroke-width="2" marker-end="url(#ah-ing)"/>
+                  <line x1="750" y1="120" x2="786" y2="120" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-ing)"/>
+
+                  <rect x="220" y="250" width="760" height="70" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="1.5"/>
+                  <text x="600" y="278" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="12" font-weight="700">Observabilite - circuit breaker - cache - file de rejeu</text>
+                  <text x="600" y="298" text-anchor="middle" fill="#5a6b7c" font-size="10">La panne d une banque n arrete pas la vue consolidee des autres.</text>
+                </svg>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le piege de la base unique</h3>
+                <p>
+                  Melanger collecte, normalisation et exposition dans un seul
+                  service fait un monolithe ingerable : on ne peut plus ajouter
+                  une banque sans tout redeployer, ni isoler une panne. Separer
+                  les quatre composants rend l ensemble extensible : chaque
+                  nouvelle banque est un nouveau connecteur, sans toucher au reste.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Et maintenant, l’atelier</h2>
+                <p>
+                  On sait collecter, normaliser, stocker, servir. En S4, les
+                  groupes conçoivent un <strong>service de data banking</strong>&nbsp;:
+                  quelles données lire, quel consentement, quelle valeur produite,
+                  quel parcours — tout en respectant la minimisation et le RGPD.
+                </p>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Notes formateur — S3</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>
+                    <strong>Les quatre composants</strong>&nbsp;: faire dessiner la
+                    chaîne au tableau. Les étudiants oublient souvent la
+                    normalisation, qui est pourtant le cœur du métier.
+                  </li>
+                  <li>
+                    <strong>Le consentement traverse tout</strong>&nbsp;: insister.
+                    Un AISP qui le met seulement au collecteur et l’oublie au
+                    stockage est en infraction.
+                  </li>
+                  <li>
+                    <strong>La disponibilité des banques</strong>&nbsp;: partir d’une
+                    panne réelle («&nbsp;Banque Est est down&nbsp;») et montrer
+                    circuit breaker + cache.
+                  </li>
+                  <li>
+                    <strong>Ne pas survendre le temps réel</strong>&nbsp;: la donnée
+                    est aussi fraîche que le dernier refresh. L’honnêteté de
+                    l’horodatage fait la confiance.
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Points de sortie de S3</h3>
+              <ul>
+                <li>Je nomme les quatre composants d’un AISP et leur rôle.</li>
+                <li>J’explique pourquoi le consentement traverse toute la chaîne.</li>
+                <li>Je cite les trois tensions&nbsp;: volumétrie, fraîcheur, sécurité.</li>
+                <li>Je sais isoler la panne d’une banque (circuit breaker, cache).</li>
+                <li>Je justifie la séparation des composants (extensibilité).</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Références</strong> — Berlin Group NextGenPSD2 (AIS, ressources,
+              pagination)&nbsp;; RTS EBA 2018/389 (accès, disponibilité, sécurité)&nbsp;;
+              RGPD (UE) 2016/679 (minimisation, conservation, sécurité des données)&nbsp;;
+              guides EBA sur la gestion des risques TIC (DORA en perspective).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 4</a> · S3 Architecture SI AISP
+      </div>
+    </footer>
+    <script src="../js/nav-j4.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

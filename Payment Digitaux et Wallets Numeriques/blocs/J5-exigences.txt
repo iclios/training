@@ -1,2 +1,3 @@
-JOUR 5 — Exigences SI
-Disponibilité · latence · réconciliation · sécurité · auditabilité · interop / scale · panels + schéma.
+JOUR 5 — 5.2b Exigences SI & conformité
+6 axes : Disponibilité & résilience · Latence (p95) · Sécurité & conformité (HSM, vault, PCI) · Auditabilité & traçabilité (payment_id) · Interopérabilité (EMVCo, ISO 20022, EMV QR) · Scalabilité.
+Tableau csm-table : Exigence → Critère mesurable → Impact si défaillance.

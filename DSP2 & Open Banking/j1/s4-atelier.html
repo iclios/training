@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S4 — L’atelier | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s4-atelier">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a class="is-active" href="intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · Séquence 4</span>
+                <span class="tag tag-accent">55 min</span>
+              </div>
+              <p class="day-kicker">Mise en pratique · travaux de groupe</p>
+              <h1>L’atelier</h1>
+              <p class="lead">
+                Banque Est reçoit trois demandes de partenaires. À vous de
+                qualifier chaque demande, de tracer le flux, de choisir
+                l’architecture et de justifier un standard.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Léa a désormais une application qui fonctionne. Mais Banque Est
+                ne reçoit pas qu’une demande&nbsp;: elle en reçoit trois, en même
+                temps. Vous êtes l’équipe Open Banking de Banque Est.
+              </p>
+            </div>
+
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Contexte</p>
+              <h2>Trois partenaires, trois demandes</h2>
+              <p>
+                <em>Variante du cas «&nbsp;Nova Banque&nbsp;» du support de
+                cours&nbsp;: ici, c’est Banque Est qui reçoit les demandes. Même
+                logique, contexte du fil rouge.</em>
+              </p>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Partenaire</th>
+                      <th scope="col">Demande</th>
+                      <th scope="col">À qualifier</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Budgetly</th>
+                      <td>
+                        Agréger les comptes de ses utilisateurs pour un conseil
+                        budgétaire automatisé.
+                      </td>
+                      <td>Statut&nbsp;? Données&nbsp;? SCA&nbsp;?</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">ShopFast</th>
+                      <td>
+                        Proposer à ses clients de payer par virement instantané
+                        depuis leur compte Banque Est.
+                      </td>
+                      <td>Statut&nbsp;? Flux&nbsp;? Risques&nbsp;?</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">TrésoriPro</th>
+                      <td>
+                        Offrir à des PME un tableau de bord consolidé de leurs
+                        comptes Banque Est et d’autres banques.
+                      </td>
+                      <td>Statut&nbsp;? Périmètre&nbsp;? SLA&nbsp;?</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Consigne</p>
+              <h2>Ce qu’il faut produire</h2>
+              <ol class="steps-list">
+                <li>
+                  <strong>Qualifier chaque partenaire</strong> — a-t-il un
+                  agrément&nbsp;? De quel type (ASPSP / AISP / PISP / CBPII)&nbsp;?
+                  Comment Banque Est vérifie-t-elle cet agrément avant le premier
+                  appel&nbsp;?
+                </li>
+                <li>
+                  <strong>Tracer le flux</strong> — quelles requêtes, vers quels
+                  endpoints&nbsp;? Où se situe la SCA&nbsp;? Que se passe-t-il en
+                  cas de révocation en cours de journée&nbsp;?
+                </li>
+                <li>
+                  <strong>Positionner les couches</strong> — pour chaque demande,
+                  dire quelles couches du SI sont mobilisées (Gateway, Consent,
+                  IAM, Core, Monitoring) et lesquelles sont critiques.
+                </li>
+                <li>
+                  <strong>Choisir un standard</strong> — Berlin Group, OBIE ou
+                  propriétaire&nbsp;? Justifier en trois arguments, dont
+                  <em>time-to-market</em>.
+                </li>
+                <li>
+                  <strong>Identifier deux risques</strong> et proposer une
+                  mesure de réduction pour chacun.
+                </li>
+              </ol>
+
+              <figure class="fig-illus">
+                <svg viewBox="0 0 1000 240" role="img" aria-label="Architecture cible attendue, flux animé de bout en bout">
+                  <defs>
+                    <marker id="ah-arch" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
+                    </marker>
+                  </defs>
+                  <!-- FinanceApp -->
+                  <rect x="20" y="90" width="130" height="60" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                  <text x="85" y="118" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="12" font-weight="700">FinanceApp</text>
+                  <text x="85" y="136" text-anchor="middle" fill="#5a6b7c" font-size="9">TPP / PISP-AISP</text>
+
+                  <line x1="150" y1="120" x2="196" y2="120" stroke="#5a6b7c" stroke-width="2.5" class="stream" marker-end="url(#ah-arch)"/>
+                  <text x="173" y="110" text-anchor="middle" fill="#5a6b7c" font-size="8" font-weight="700">mTLS</text>
+
+                  <!-- Gateway -->
+                  <rect x="200" y="90" width="120" height="60" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="260" y="116" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">API Gateway</text>
+                  <text x="260" y="134" text-anchor="middle" fill="#5a6b7c" font-size="9">auth N · throttling</text>
+
+                  <line x1="320" y1="120" x2="356" y2="120" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-arch)"/>
+
+                  <!-- Consent -->
+                  <rect x="360" y="40" width="120" height="52" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="420" y="64" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="11" font-weight="700">Consent Mgmt</text>
+                  <text x="420" y="80" text-anchor="middle" fill="#5a6b7c" font-size="9">AIS · PIS · CBPII</text>
+
+                  <!-- IAM -->
+                  <rect x="360" y="148" width="120" height="52" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="420" y="172" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="11" font-weight="700">IAM / SCA</text>
+                  <text x="420" y="188" text-anchor="middle" fill="#5a6b7c" font-size="9">redirection banque</text>
+
+                  <line x1="360" y1="120" x2="356" y2="120" stroke="#5a6b7c" stroke-width="1.5"/>
+                  <line x1="480" y1="66" x2="516" y2="96" stroke="#5a6b7c" stroke-width="1.8" marker-end="url(#ah-arch)"/>
+                  <line x1="480" y1="174" x2="516" y2="144" stroke="#5a6b7c" stroke-width="1.8" marker-end="url(#ah-arch)"/>
+
+                  <!-- Core -->
+                  <rect x="520" y="90" width="160" height="60" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2.5"/>
+                  <text x="600" y="116" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Core Banking</text>
+                  <text x="600" y="134" text-anchor="middle" fill="#5a6b7c" font-size="9">comptes · soldes · écritures</text>
+
+                  <line x1="680" y1="120" x2="716" y2="120" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-arch)"/>
+
+                  <!-- Monitoring -->
+                  <rect x="720" y="90" width="130" height="60" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="785" y="116" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="11" font-weight="700">Monitoring</text>
+                  <text x="785" y="134" text-anchor="middle" fill="#5a6b7c" font-size="9">logs · audit</text>
+
+                  <!-- Registre / SCA légende -->
+                  <rect x="720" y="175" width="250" height="45" rx="6" fill="#fdf6f2" stroke="#c45c26" stroke-width="1.5"/>
+                  <text x="845" y="195" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">Registre EBA — vérif TPP</text>
+                  <text x="845" y="210" text-anchor="middle" fill="#5a6b7c" font-size="9">contrôle avant premier appel</text>
+                  <line x1="720" y1="197" x2="684" y2="150" stroke="#c45c26" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#ah-arch)"/>
+                </svg>
+                <figcaption>Figure — architecture cible&nbsp;: de FinanceApp au core banking, avec le consentement, la SCA, le monitoring et la vérification du registre.</figcaption>
+              </figure>
+
+              <div class="callout">
+                <h3>Livrable</h3>
+                <p>
+                  Une fiche par partenaire, sur une page, tenue en 20 minutes.
+                  Puis 5 minutes de restitution par binôme et 10 minutes de
+                  synthèse collective. Les trois partenaires peuvent être répartis
+                  entre les binômes pour gagner du temps.
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Évaluation</p>
+              <h2>Grille</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">Points</th>
+                      <th scope="col">Indice d’un bon travail</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Statuts corrects</th>
+                      <td>4</td>
+                      <td>AISP / PISP bien identifiés, ASPSP bien nommé</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Flux complet</th>
+                      <td>4</td>
+                      <td>Redirection + SCA + consentement + jeton</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Couches SI</th>
+                      <td>4</td>
+                      <td>Les cinq couches nommées et mobilisées à bon escient</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Standard</th>
+                      <td>3</td>
+                      <td>Choix argumenté, dont time-to-market</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Risques</th>
+                      <td>5</td>
+                      <td>Risques crédibles et mesure associée</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Corrigé formateur</summary>
+              <div class="notes-body">
+                <ul>
+                  <li>
+                    <strong>Budgetly</strong> = AISP pur (lecture). SCA initiale
+                    puis consultations sans nouvelle SCA (jusqu’à 4/jour) pendant
+                    90 jours. Couches clés&nbsp;: Consent, IAM (validation toutes
+                    les 90 jours), Monitoring. Risque&nbsp;: sur-collecte de
+                    données → périmètre strict + audit d’accès.
+                  </li>
+                  <li>
+                    <strong>ShopFast</strong> = PISP. Un consentement = un
+                    paiement, SCA à chaque paiement (sauf exemption).
+                    Couches&nbsp;: Gateway (mTLS), IAM (SCA), Consent (par
+                    paiement), Core (exécution). Risque&nbsp;: fraude au parcours →
+                    contrôle du bénéficiaire + signature de la requête.
+                  </li>
+                  <li>
+                    <strong>TrésoriPro</strong> = AISP multi-banques. Risque&nbsp;:
+                    indisponibilité des APIs → cache, mode dégradé, affichage de
+                    la fraîcheur des données. SLA négocié et surveillé côté
+                    Monitoring.
+                  </li>
+                  <li>
+                    <strong>Piège fréquent</strong>&nbsp;: appliquer le modèle
+                    «&nbsp;consentement 90 jours&nbsp;» à un PISP. Rappeler&nbsp;:
+                    PIS&nbsp;: un paiement = un consentement.
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Bilan du Jour 1</h3>
+              <ul>
+                <li>Le problème (S1) et la réponse (S2) sont compris.</li>
+                <li>La machine (S3) est reconstituée&nbsp;: cinq couches.</li>
+                <li>Les trois partenaires sont correctement qualifiés.</li>
+                <li>Les standards et leurs raisons sont maîtrisés.</li>
+                <li>Rien du pré-syllabus n’a été laissé de côté.</li>
+              </ul>
+            </div>
+
+            <div class="sources-box">
+              <strong>Pour prolonger</strong> — Rejouer l’atelier avec un cas
+              réel de partenaire de la banque&nbsp;; comparer la documentation
+              publique de deux banques françaises sur leur portail développeur.
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a> · S4 L’atelier
+      </div>
+    </footer>
+    <script src="../js/nav-j1.js"></script>
+    <script src="../js/fiche.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

@@ -1,2 +1,4 @@
-JOUR 5 — Architecture plateforme
-Gateway · wallet manager · tokenization · QR engine · NFC/wallet · liens émetteur/acquéreur · réconciliation & settlement · grand schéma + flux.
+JOUR 5 — 5.2a Architecture plateforme (composants & orchestration)
+5 cœurs : Payment Gateway · Wallet Manager (hors Auth) · TSP · Fraud Engine · Reconciliation & Settlement.
+Schéma 4 niveaux : Canaux → Gateway & Cœur SI → Rails (émetteur/acquéreur/schemes) → Clôture (journal unique).
+Séquence Auth : ① Gateway → ② TSP/QR → ③ Fraud → ④ Issuer AuthZ → ⑤ Écriture journal. Workflows canaux conservés.

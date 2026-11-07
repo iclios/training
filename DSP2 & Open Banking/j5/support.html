@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Support &amp; ressources — Jour 5 | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="support">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a class="is-active" href="intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 5 · Clôture</span>
+                <span class="tag tag-accent">Ressources</span>
+              </div>
+              <p class="day-kicker">Open Finance&nbsp;: textes, standards, check-list</p>
+              <h1>Support &amp; ressources</h1>
+              <p class="lead">
+                Textes sur l’Open Finance, standards réutilisables, et une
+                check-list de soutenance pour le projet final — plus un glossaire
+                des sigles du Jour 5.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Textes</p>
+              <h2>Le socle de l’Open Finance</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Texte / initiative</th>
+                      <th scope="col">Nature</th>
+                      <th scope="col">À retenir</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">DSP2 (UE) 2015/2366</th>
+                      <td>Directive</td>
+                      <td>Socle bancaire&nbsp;: AISP, PISP, CBPII</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">RTS (UE) 2018/389</th>
+                      <td>Règlement</td>
+                      <td>SCA, accès aux comptes, sécurité</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Projet FIDA</th>
+                      <td>Règlement (en cours)</td>
+                      <td>Financial Data Access&nbsp;: extension au-delà des comptes</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">RGPD (UE) 2016/679</th>
+                      <td>Règlement</td>
+                      <td>Consentement, minimisation, conservation, effacement</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="cov-note">
+                <strong>Attention&nbsp;:</strong> «&nbsp;Open Finance&nbsp;» n’a
+                pas de texte unique en vigueur partout. Vérifier produit par
+                produit le cadre applicable (initiatives nationales, FIDA).
+              </p>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Standards techniques</p>
+              <h2>Les briques réutilisables</h2>
+              <ul class="topic-list">
+                <li>
+                  <span>
+                    <strong>Berlin Group — NextGenPSD2</strong>&nbsp;: AIS / PIS /
+                    PIIS&nbsp;; sert de base à de nombreux projets Open Finance.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>STET PSD2 API</strong>&nbsp;: framework français
+                    couvrant les mêmes services d’accès aux comptes.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>OAuth2 + mTLS</strong>&nbsp;: le socle de sécurité,
+                    valable quel que soit le détenteur (banque, assureur…).
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Modèle de consentement</strong>&nbsp;: un consentement
+                    par rôle et par finalité, avec durée et révocation — à
+                    reproduire pour chaque produit.
+                  </span>
+                </li>
+              </ul>
+
+              <div class="callout info">
+                <h3>Check-list de soutenance</h3>
+                <p>
+                  Avant de présenter le projet final, vérifier&nbsp;:
+                  rôle(s) justifié(s)&nbsp;· un consentement par rôle&nbsp;·
+                  SCA chez la banque&nbsp;· aucune donnée lue sans usage&nbsp;·
+                  durée et révocation prévues&nbsp;· gestion de la fraîcheur&nbsp;·
+                  risques et zones grises assumés.
+                </p>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Point de vigilance</th>
+                      <th scope="col">Pourquoi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Un rôle = un consentement</th><td>Cumul AISP+PISP mal géré = confusion client et risque juridique</td></tr>
+                    <tr><th scope="row">CBPII ≠ garantie</th><td>Photo instantanée de disponibilité, pas une solvabilité</td></tr>
+                    <tr><th scope="row">Zone grise Open Finance</th><td>Cadre non uniforme&nbsp;: documenter ce qui s’applique réellement</td></tr>
+                    <tr class="is-exergue"><th scope="row">Sobriété</th><td>Moins de rôles et de données pour la même valeur = maturité</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Glossaire</p>
+              <h2>Les sigles du Jour 5</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Sigle</th>
+                      <th scope="col">Signification</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">ASPSP</th><td>Account Servicing Payment Service Provider — la banque pivot</td></tr>
+                    <tr><th scope="row">AISP</th><td>Account Information Service Provider — lecture de comptes</td></tr>
+                    <tr><th scope="row">PISP</th><td>Payment Initiation Service Provider — initiation de paiement</td></tr>
+                    <tr><th scope="row">CBPII</th><td>Card-Based Payment Instrument Issuer — confirmation de fonds</td></tr>
+                    <tr><th scope="row">Open Finance</th><td>Extension des principes DSP2 au-delà des comptes bancaires</td></tr>
+                    <tr><th scope="row">FIDA</th><td>Financial Data Access — projet de règlement européen</td></tr>
+                    <tr><th scope="row">Open Data</th><td>Partage de données hors finance (énergie, mobilité…)</td></tr>
+                    <tr class="is-exergue"><th scope="row">DA / DGA</th><td>Data Act / Data Governance Act — cadres Open Data, distincts de l’Open Finance</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <details class="trainer-notes">
+              <summary>Usage de cette page</summary>
+              <div class="notes-body">
+                <p>
+                  Fiche de référence à distribuer en fin de Jour 5 et de module.
+                  Elle boucle le parcours&nbsp;: du socle DSP2 aux briques
+                  réutilisables de l’Open Finance, avec une check-list prête pour
+                  la soutenance du projet final.
+                </p>
+              </div>
+            </details>
+
+            <div class="check-end">
+              <h3>Fin du Jour 5 — et du module</h3>
+              <ul>
+                <li>Je sais où lire les textes de l’Open Finance (et leur statut).</li>
+                <li>Je réutilise les standards et le modèle de consentement.</li>
+                <li>Je vérifie ma soutenance avec la check-list des six preuves.</li>
+                <li>Je maîtrise le vocabulaire des quatre rôles et de l’Open Finance.</li>
+              </ul>
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 5</a> · Support &amp; ressources
+      </div>
+    </footer>
+    <script src="../js/nav-j5.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>
