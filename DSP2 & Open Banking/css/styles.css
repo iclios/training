@@ -1573,6 +1573,157 @@ code {
   }
 }
 
+/* —— Carte cliquable : périmètre DSP2 (EEE / hors EEE) —— */
+.map-dsp2 {
+  margin: 0 0 1.75rem;
+  padding: 1.1rem 1rem 0.8rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+.map-dsp2 svg {
+  width: 100%;
+  height: auto;
+  min-width: 620px;
+  display: block;
+}
+
+.map-dsp2 svg text {
+  font-family: var(--font-body);
+  pointer-events: none;
+}
+
+.map-zone {
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.map-zone:focus-visible {
+  outline: none;
+}
+
+.map-zone:hover {
+  filter: drop-shadow(0 4px 10px rgba(12, 27, 42, 0.18));
+}
+
+.map-zone path {
+  transition: fill 0.2s ease, stroke-width 0.2s ease;
+}
+
+.map-zone:hover path,
+.map-zone:focus-visible path {
+  stroke-width: 2.5;
+}
+
+.map-zone.is-active path {
+  stroke-width: 3.5;
+}
+
+.map-zone.is-active {
+  filter: drop-shadow(0 6px 14px rgba(13, 159, 138, 0.35));
+}
+
+.map-pin circle {
+  transition: fill 0.2s ease;
+}
+
+.map-zone:hover .map-pin circle {
+  fill: var(--tpp);
+}
+
+.map-zone.is-active .map-pin circle {
+  fill: var(--ink);
+}
+
+.map-label-soft {
+  font-size: 10px;
+  fill: var(--muted);
+}
+
+.map-hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Accordéon de détail (s'appuie sur .cours-note) */
+.map-accordeon {
+  margin: 1rem 0 1.75rem;
+  display: grid;
+  gap: 0.5rem;
+  max-width: 78ch;
+}
+
+.map-accordeon .cours-note {
+  margin: 0;
+}
+
+.map-accordeon .cours-note summary {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.map-accordeon .map-sum-num {
+  display: inline-grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--issuer);
+  border-radius: 50%;
+}
+
+.map-accordeon .cours-note.is-ok {
+  border-left-color: var(--accent);
+  background: #f3fbf9;
+}
+
+.map-accordeon .cours-note.is-ok summary,
+.map-accordeon .cours-note.is-ok summary::after {
+  color: var(--accent-deep);
+}
+
+.map-accordeon .cours-note.is-ok .map-sum-num {
+  background: var(--accent);
+}
+
+.map-accordeon .cours-note.is-ko {
+  border-left-color: var(--warn);
+  background: var(--warn-soft);
+}
+
+.map-accordeon .cours-note.is-ko summary,
+.map-accordeon .cours-note.is-ko summary::after {
+  color: var(--warn);
+}
+
+.map-accordeon .cours-note.is-ko .map-sum-num {
+  background: var(--warn);
+}
+
+.map-accordeon .cours-note-body ul {
+  margin: 0.6rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.map-accordeon .cours-note-body li + li {
+  margin-top: 0.3rem;
+}
+
+.map-accordeon .cours-note-body strong {
+  color: var(--ink);
+}
+
 /* —— Step sequences —— */
 .seq-steps {
   display: grid;

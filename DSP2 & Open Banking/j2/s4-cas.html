@@ -166,46 +166,6 @@
               </div>
             </section>
 
-            <details class="trainer-notes">
-              <summary>Corrigé formateur</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>
-                    <strong>Schéma</strong> — FinanceApp → [mTLS] → Gateway → API
-                    Management → Service AIS → [vérif consentement] → core. Logs en
-                    parallèle sur toute la chaîne.
-                  </li>
-                  <li>
-                    <strong>Flux</strong> — code d’autorisation (avec redirection),
-                    SCA chez la banque, consentement affiché, code échangé contre
-                    access token (JWT portant le scope AIS), Bearer pour chaque
-                    appel.
-                  </li>
-                  <li>
-                    <strong>Piège à faire dire</strong>&nbsp;: la SCA valide la
-                    personne, le mTLS le TPP, le scope l’autorisation. Confondre les
-                    trois = erreur fréquente.
-                  </li>
-                  <li>
-                    <strong>Exemptions</strong>&nbsp;: ne pas laisser un groupe
-                    appliquer «&nbsp;consentement 90 jours&nbsp;» à un PIS&nbsp;: le
-                    cas ne porte que sur l’AIS, mais la confusion revient vite.
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Bilan du Jour 2</h3>
-              <ul>
-                <li>Les trois types d’API et leurs composants sont maîtrisés.</li>
-                <li>OAuth2, OIDC, mTLS et JWT sont distingués.</li>
-                <li>SCA, exemptions et preuve sont comprises.</li>
-                <li>Je sais relier chaque risque à une mesure.</li>
-                <li>Je sais concevoir l’ouverture sécurisée d’une API à un TPP.</li>
-              </ul>
-            </div>
-
             <div class="sources-box">
               <strong>Pour prolonger</strong> — Comparer la documentation publique
               de l’API d’une banque française (portail développeur)&nbsp;; tracer

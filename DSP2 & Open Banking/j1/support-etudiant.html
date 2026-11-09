@@ -6,6 +6,7 @@
     <title>Support étudiant — Jour 1 | DSP2 &amp; Open Banking</title>
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/support-etudiant.css" />
+    <link rel="stylesheet" href="../css/support-encarts.css" />
   </head>
   <body class="support-doc" data-bloc="support-etudiant">
     <header class="site-bar no-print">
@@ -756,7 +757,7 @@
                     verrouille la relation. Sans API, aucun tiers ne peut
                     construire un service par-dessus.
                   </p>
-                  <details class="cours-note small">
+                  <details open class="cours-note small">
                     <summary>Cours</summary>
                     <div class="cours-note-body">
                       <p>
@@ -777,7 +778,7 @@
                     de la banque. Un marchand ou une plateforme ne peut pas
                     <strong>déclencher</strong> l’ordre à la place du client.
                   </p>
-                  <details class="cours-note small">
+                  <details open class="cours-note small">
                     <summary>Cours</summary>
                     <div class="cours-note-body">
                       <p>
@@ -798,7 +799,7 @@
                     application qui veut lire plusieurs comptes doit
                     <strong>recoder</strong> chaque intégration, une par une.
                   </p>
-                  <details class="cours-note small">
+                  <details open class="cours-note small">
                     <summary>Cours</summary>
                     <div class="cours-note-body">
                       <p>
@@ -819,7 +820,7 @@
                     connaît <em>est</em> le client&nbsp;: aucune délégation
                     révocable, aucune traçabilité.
                   </p>
-                  <details class="cours-note small">
+                  <details open class="cours-note small">
                     <summary>Cours</summary>
                     <div class="cours-note-body">
                       <p>
@@ -1320,11 +1321,11 @@
                   <g>
                     <rect x="350" y="20" width="300" height="160" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
                     <text x="500" y="48" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="800" letter-spacing="0.08em">ANGLE MORT 2</text>
-                    <text x="500" y="76" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Les tiers n’existent pas</text>
-                    <text x="500" y="102" text-anchor="middle" fill="#5a6b7c" font-size="11">La catégorie PSP sert à agréer</text>
-                    <text x="500" y="120" text-anchor="middle" fill="#5a6b7c" font-size="11">celui qui émet ou exécute, pas</text>
-                    <text x="500" y="138" text-anchor="middle" fill="#5a6b7c" font-size="11">celui qui accède pour un tiers.</text>
-                    <text x="500" y="164" text-anchor="middle" fill="#a4572c" font-size="10" font-style="italic">→ ni AISP, ni PISP avant 2015</text>
+                    <text x="500" y="76" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Le tiers pour autrui n’existe pas</text>
+                    <text x="500" y="102" text-anchor="middle" fill="#5a6b7c" font-size="11">La DSP1 agrée l’établissement qui fournit</text>
+                    <text x="500" y="120" text-anchor="middle" fill="#5a6b7c" font-size="11">le service à son client. Elle ne prévoit pas</text>
+                    <text x="500" y="138" text-anchor="middle" fill="#5a6b7c" font-size="11">le tiers qui se place entre le client et sa banque.</text>
+                    <text x="500" y="164" text-anchor="middle" fill="#a4572c" font-size="10" font-style="italic">→ ni AIS, ni PIS avant 2015</text>
                   </g>
                   <g>
                     <rect x="670" y="20" width="300" height="160" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
@@ -1358,7 +1359,7 @@
                       <td>Service AIS</td>
                     </tr>
                     <tr>
-                      <th scope="row">Tiers non prévus</th>
+                      <th scope="row">Le tiers pour autrui non prévu</th>
                       <td>Canal de paiement unique</td>
                       <td>Service PIS</td>
                     </tr>
@@ -1585,7 +1586,7 @@
                 </p>
               </div>
 
-              <details class="cours-note">
+              <details open class="cours-note">
                 <summary>Calendrier — les grandes dates d’application</summary>
                 <div class="cours-note-body">
                   <p>
@@ -3147,7 +3148,7 @@
                 </p>
               </div>
 
-              <details class="cours-note">
+              <details open class="cours-note">
                 <summary>Revenir à l’essentiel du cours — le screen scraping</summary>
                 <div class="cours-note-body">
                   <p>
@@ -3275,7 +3276,7 @@
                     propre canal. Pas d’API pour un tiers&nbsp;: aucun
                     concurrent ne peut construire par-dessus le compte.
                   </p>
-                  <details class="cours-note small">
+                  <details open class="cours-note small">
                     <summary>Cours</summary>
                     <div class="cours-note-body">
                       <p>
@@ -3301,7 +3302,7 @@
                     banque. Aucun tiers agréé ne peut déclencher un virement au
                     nom du client.
                   </p>
-                  <details class="cours-note small">
+                  <details open class="cours-note small">
                     <summary>Cours</summary>
                     <div class="cours-note-body">
                       <p>
@@ -3327,7 +3328,7 @@
                     de banque doit reconstruire ses habitudes et abandonner ses
                     historiques.
                   </p>
-                  <details class="cours-note small">
+                  <details open class="cours-note small">
                     <summary>Cours</summary>
                     <div class="cours-note-body">
                       <p>
@@ -3353,7 +3354,7 @@
                     chaque banque, sans délégation tracée. En cas d’incident,
                     tout le monde se renvoie la responsabilité.
                   </p>
-                  <details class="cours-note small">
+                  <details open class="cours-note small">
                     <summary>Cours</summary>
                     <div class="cours-note-body">
                       <p>
@@ -3589,7 +3590,7 @@
             </section>
 
             <!-- EXERCICE -->
-            <details class="cours-note">
+            <details open class="cours-note">
               <summary>Exercice de séquence — 10 min, en binômes</summary>
               <div class="cours-note-body">
                 <ol>
@@ -3735,7 +3736,7 @@
                 <strong>14 septembre 2019</strong>.
               </p>
 
-              <details class="cours-note">
+              <details open class="cours-note">
                 <summary>Cours — repères chronologiques</summary>
                 <div class="cours-note-body">
                   <div class="csm-table-wrap" style="margin:0.7rem 0 0">
@@ -3905,7 +3906,7 @@
                     Banque Est. Elle ouvre une interface aux tiers, gère les
                     consentements et authentifie Lyam.
                   </p>
-                  <details class="cours-note small">
+                  <details open class="cours-note small">
                     <summary>Cours — obligations &amp; interdits</summary>
                     <div class="cours-note-body">
                       <p>
@@ -3933,7 +3934,7 @@
                     de Lyam. Ici&nbsp;: l’application. Elle est autorisée, mais ne
                     détient jamais l’argent ni les identifiants.
                   </p>
-                  <details class="cours-note small">
+                  <details open class="cours-note small">
                     <summary>Cours — le statut PSP</summary>
                     <div class="cours-note-body">
                       <p>
@@ -3954,7 +3955,7 @@
                     opérations. Ici&nbsp;: c’est le service utilisé par Lyam le
                     samedi matin.
                   </p>
-                  <details class="cours-note small">
+                  <details open class="cours-note small">
                     <summary>Cours — modèle d’affaires &amp; limites</summary>
                     <div class="cours-note-body">
                       <p>
@@ -3978,7 +3979,7 @@
                     client, sans détenir les fonds. Même Lyam, plus tard, quand
                     elle paiera un marchand par virement.
                   </p>
-                  <details class="cours-note small">
+                  <details open class="cours-note small">
                     <summary>Cours — non-détention des fonds</summary>
                     <div class="cours-note-body">
                       <p>
@@ -3997,7 +3998,7 @@
                 </article>
               </div>
 
-              <details class="cours-note">
+              <details open class="cours-note">
                 <summary>Cours — le quatrième service&nbsp;: CBPII</summary>
                 <div class="cours-note-body">
                   <p>
@@ -4702,8 +4703,8 @@
                 <li><strong>Retour</strong> — la réponse sort par la Gateway et s’affiche dans l’application de Lyam.</li>
               </ol>
 
-              <details class="cours-note">
-                <summary>Cours — AIS (lecture) vs PIS (paiement)</summary>
+              <details open class="cours-note">
+                <summary>AIS (lecture) vs PIS (paiement)</summary>
                 <div class="cours-note-body">
                   <div class="csm-table-wrap" style="margin:0.7rem 0 0">
                     <table class="csm-table">
@@ -4725,8 +4726,8 @@
                 </div>
               </details>
 
-              <details class="cours-note">
-                <summary>Cours — le parcours de redirection en 7 étapes</summary>
+              <details open class="cours-note">
+                <summary>Le parcours de redirection en 7 étapes</summary>
                 <div class="cours-note-body">
                   <p>
                     Le cœur technique de la DSP2&nbsp;: le client doit
@@ -4868,8 +4869,8 @@
                 </div>
               </div>
 
-              <details class="cours-note">
-                <summary>Cours — API propriétaires vs API standardisées</summary>
+              <details open class="cours-note">
+                <summary>API propriétaires vs API standardisées</summary>
                 <div class="cours-note-body">
                   <div class="csm-table-wrap" style="margin:0.7rem 0 0">
                     <table class="csm-table">
@@ -4904,8 +4905,8 @@
                 </p>
               </div>
 
-              <details class="cours-note">
-                <summary>Cours — faut-il un standard unique&nbsp;? &amp; comment choisir</summary>
+              <details open class="cours-note">
+                <summary>Faut-il un standard unique&nbsp;?</summary>
                 <div class="cours-note-body">
                   <div class="split-2">
                     <div class="panel">

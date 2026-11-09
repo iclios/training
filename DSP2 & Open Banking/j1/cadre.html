@@ -79,7 +79,7 @@
                 </p>
               </div>
 
-              <details class="cours-note">
+              <details open class="cours-note">
                 <summary>Calendrier — les grandes dates d’application</summary>
                 <div class="cours-note-body">
                   <p>
@@ -129,78 +129,188 @@
                 partie de l’EEE.
               </p>
 
-              <figure class="fig-illus">
-                <svg viewBox="0 0 1000 300" role="img" aria-label="Carte schématique de l'espace économique européen et des zones hors EEE">
-                  <!-- Zone EEE -->
-                  <rect x="40" y="40" width="560" height="180" rx="16" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
-                  <text x="320" y="30" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">ESPACE ÉCONOMIQUE EUROPÉEN (EEE) — DSP2 applicable</text>
-                  <!-- Bloc UE -->
-                  <rect x="70" y="80" width="360" height="120" rx="10" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                  <text x="250" y="110" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Union européenne</text>
-                  <text x="250" y="132" text-anchor="middle" fill="#1a2b3c" font-size="26" font-weight="800">27</text>
-                  <text x="250" y="154" text-anchor="middle" fill="#5a6b7c" font-size="11">États membres</text>
-                  <text x="250" y="176" text-anchor="middle" fill="#5a6b7c" font-size="11">transposition par loi nationale</text>
-                  <!-- Bloc EEE hors UE -->
-                  <rect x="450" y="80" width="125" height="120" rx="10" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                  <text x="512" y="110" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">EEE hors UE</text>
-                  <text x="512" y="134" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Islande</text>
-                  <text x="512" y="152" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Liechtenstein</text>
-                  <text x="512" y="170" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Norvège</text>
-                  <text x="512" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">via accord EEE</text>
-                  <!-- Zone hors EEE -->
-                  <rect x="640" y="40" width="320" height="100" rx="16" fill="#fdf6f2" stroke="#c45c26" stroke-width="2.5" stroke-dasharray="7 5"/>
-                  <text x="800" y="30" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="13" font-weight="700">HORS EEE — DSP2 non applicable</text>
-                  <text x="800" y="72" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="13" font-weight="700">Royaume-Uni</text>
-                  <text x="800" y="94" text-anchor="middle" fill="#5a6b7c" font-size="11">Post-Brexit&nbsp;: régime propre (PSR 2017 + OBIE)</text>
-                  <text x="800" y="116" text-anchor="middle" fill="#5a6b7c" font-size="11">Afrique · Amérique · Asie · Océanie</text>
-                  <!-- outre-mer DOM -->
-                  <rect x="640" y="165" width="320" height="55" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5" stroke-dasharray="5 4"/>
-                  <text x="800" y="187" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Outre-mer français (DOM)</text>
-                  <text x="800" y="206" text-anchor="middle" fill="#5a6b7c" font-size="10">Guadeloupe, Martinique, Guyane, La Réunion, Mayotte = UE → DSP2 oui</text>
-                  <!-- note PTOM -->
-                  <rect x="40" y="240" width="560" height="48" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="5 4"/>
-                  <text x="320" y="262" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700">Pays et territoires d’outre-mer (PTOM)</text>
-                  <text x="320" y="279" text-anchor="middle" fill="#5a6b7c" font-size="10">Polynésie française · Nouvelle-Calédonie · Wallis-et-Futuna → hors UE/EEE, DSP2 non applicable</text>
+              <!-- CARTE CLIQUEABLE + ACCORDÉON -->
+              <div class="map-dsp2">
+                <svg viewBox="0 0 1000 500" role="group" aria-label="Carte de l'Espace économique européen : cliquez sur une zone pour afficher sa règle DSP2">
+                  <!-- Légende -->
+                  <g transform="translate(70, 14)">
+                    <rect x="0" y="0" width="14" height="14" rx="3" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2" />
+                    <text x="20" y="11" class="map-label-soft">DSP2 applicable</text>
+                    <rect x="190" y="0" width="14" height="14" rx="3" fill="#fdf6f2" stroke="#c45c26" stroke-width="2" stroke-dasharray="4 3" />
+                    <text x="210" y="11" class="map-label-soft">DSP2 non applicable</text>
+                  </g>
+
+                  <!-- 1. Union européenne -->
+                  <g class="map-zone" data-zone="ue">
+                    <path d="M70,60 L430,60 L430,255 L70,255 Z" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2" />
+                    <text x="250" y="96" text-anchor="middle" font-size="14" font-weight="700" fill="#087a6a">Union européenne</text>
+                    <text x="250" y="142" text-anchor="middle" font-size="34" font-weight="800" fill="#1a2b3c">27</text>
+                    <text x="250" y="166" text-anchor="middle" class="map-label-soft">États membres</text>
+                    <text x="250" y="186" text-anchor="middle" class="map-label-soft">transposition par loi nationale</text>
+                    <g class="map-pin">
+                      <circle cx="250" cy="220" r="13" fill="#0d9f8a" />
+                      <text x="250" y="224" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">1</text>
+                    </g>
+                  </g>
+
+                  <!-- 2. EEE hors UE -->
+                  <g class="map-zone" data-zone="eee-hors-ue">
+                    <path d="M450,60 L640,60 L640,255 L450,255 Z" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2" />
+                    <text x="545" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="#087a6a">EEE hors UE</text>
+                    <text x="545" y="128" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2b3c">Islande</text>
+                    <text x="545" y="148" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2b3c">Liechtenstein</text>
+                    <text x="545" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2b3c">Norvège</text>
+                    <text x="545" y="190" text-anchor="middle" class="map-label-soft">via accord EEE</text>
+                    <g class="map-pin">
+                      <circle cx="545" cy="220" r="13" fill="#0d9f8a" />
+                      <text x="545" y="224" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">2</text>
+                    </g>
+                  </g>
+
+                  <!-- 3. Royaume-Uni -->
+                  <g class="map-zone" data-zone="royaume-uni">
+                    <path d="M690,60 L950,60 L950,155 L690,155 Z" fill="#fdf6f2" stroke="#c45c26" stroke-width="2" stroke-dasharray="6 4" />
+                    <text x="820" y="92" text-anchor="middle" font-size="13" font-weight="700" fill="#c45c26">Royaume-Uni</text>
+                    <text x="820" y="114" text-anchor="middle" class="map-label-soft">Post-Brexit : régime propre</text>
+                    <text x="820" y="130" text-anchor="middle" class="map-label-soft">(PSR 2017 + OBIE)</text>
+                    <g class="map-pin">
+                      <circle cx="820" cy="188" r="13" fill="#c45c26" />
+                      <text x="820" y="192" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">3</text>
+                    </g>
+                  </g>
+
+                  <!-- 4. Reste du monde -->
+                  <g class="map-zone" data-zone="reste-monde">
+                    <path d="M690,220 L950,220 L950,340 L690,340 Z" fill="#fdf6f2" stroke="#c45c26" stroke-width="2" stroke-dasharray="6 4" />
+                    <text x="820" y="252" text-anchor="middle" font-size="13" font-weight="700" fill="#c45c26">Reste du monde</text>
+                    <text x="820" y="276" text-anchor="middle" class="map-label-soft">Afrique · Amérique</text>
+                    <text x="820" y="292" text-anchor="middle" class="map-label-soft">Asie · Océanie</text>
+                    <g class="map-pin">
+                      <circle cx="820" cy="318" r="13" fill="#c45c26" />
+                      <text x="820" y="322" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">4</text>
+                    </g>
+                  </g>
+
+                  <!-- 5. DOM -->
+                  <g class="map-zone" data-zone="dom">
+                    <path d="M70,285 L360,285 L360,430 L70,430 Z" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2" />
+                    <text x="215" y="315" text-anchor="middle" font-size="13" font-weight="700" fill="#087a6a">Outre-mer français</text>
+                    <text x="215" y="339" text-anchor="middle" class="map-label-soft">DOM : Guadeloupe, Martinique,</text>
+                    <text x="215" y="355" text-anchor="middle" class="map-label-soft">Guyane, La Réunion, Mayotte,</text>
+                    <text x="215" y="371" text-anchor="middle" class="map-label-soft">Saint-Martin = UE → DSP2 oui</text>
+                    <g class="map-pin">
+                      <circle cx="215" cy="404" r="13" fill="#0d9f8a" />
+                      <text x="215" y="408" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">5</text>
+                    </g>
+                  </g>
+
+                  <!-- 6. PTOM -->
+                  <g class="map-zone" data-zone="ptom">
+                    <path d="M410,285 L640,285 L640,430 L410,430 Z" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2" stroke-dasharray="5 4" />
+                    <text x="525" y="315" text-anchor="middle" font-size="13" font-weight="700" fill="#3d5a80">PTOM</text>
+                    <text x="525" y="339" text-anchor="middle" class="map-label-soft">Polynésie française</text>
+                    <text x="525" y="355" text-anchor="middle" class="map-label-soft">Nouvelle-Calédonie</text>
+                    <text x="525" y="371" text-anchor="middle" class="map-label-soft">Wallis-et-Futuna</text>
+                    <g class="map-pin">
+                      <circle cx="525" cy="404" r="13" fill="#3d5a80" />
+                      <text x="525" y="408" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">6</text>
+                    </g>
+                  </g>
                 </svg>
-                <figcaption>Figure — la DSP2 couvre l’EEE&nbsp;: 27 pays de l’UE + Islande, Liechtenstein et Norvège. Hors EEE (Royaume-Uni, Afrique, Amérique, Asie…), elle ne s’applique pas&nbsp;; les DOM français, eux, en relèvent.</figcaption>
-              </figure>
-
-              <div class="callout warn">
-                <h3>Le piège du Royaume-Uni</h3>
-                <p>
-                  Depuis le Brexit, le Royaume-Uni <strong>n’est plus dans
-                  l’EEE</strong>&nbsp;: la DSP2 n’y est pas applicable en tant que
-                  telle. Le pays a conservé un régime voisin (les
-                  <em>Payment Services Regulations 2017</em>) et son propre
-                  standard Open Banking (OBIE). Un TPP britannique qui accède à
-                  une banque de l’EEE relève d’une autre logique.
-                </p>
+                <p class="map-hint">Cliquez sur une zone (1 à 6) pour afficher sa règle DSP2 — le détail s’ouvre sous la carte.</p>
               </div>
 
-              <div class="callout">
-                <h3>Et l’Afrique, l’Asie, l’Amérique&nbsp;?</h3>
-                <p>
-                  <strong>La DSP2 ne s’applique pas en Afrique</strong> — ni en
-                  Asie, ni en Amérique, ni dans les autres régions hors EEE. Elle
-                  est un texte européen&nbsp;: les pays africains ont leurs propres
-                  régulateurs bancaires et de paiement (BCEAO/UMOA en zone
-                  franc CFA, BEAC/CEMAC, Bank Al-Maghrib, banques centrales
-                  nationales…). Chacun peut avoir ou développer son propre régime
-                  d’Open Banking, sans lien avec la DSP2.
-                </p>
-                <p>
-                  <strong>Deux exceptions à garder en tête.</strong> Un opérateur
-                  africain qui fournit des services de paiement <em>dans</em> l’EEE
-                  (filiale européenne, passeport, ou traitement de                   comptes d’EEE) entre dans le périmètre DSP2 pour cette activité.
-                  Et l’<strong>outre-mer français</strong>&nbsp;: les 5 régions
-                  d’outre-mer (Guadeloupe, Martinique, Guyane, La Réunion,
-                  Mayotte) et Saint-Martin font partie de l’UE, donc de
-                  l’EEE&nbsp;: <strong>la DSP2 s’y applique</strong>. En revanche,
-                  les pays et territoires d’outre-mer (Polynésie française,
-                  Nouvelle-Calédonie, Wallis-et-Futuna…) sont hors UE/EEE&nbsp;:
-                  la DSP2 n’y est pas applicable.
-                </p>
+              <div class="map-accordeon">
+                <details class="cours-note is-ok" data-zone-panel="ue">
+                  <summary><span class="map-sum-num">1</span> Union européenne — 27 États membres</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      La DSP2 est une <strong>directive</strong>&nbsp;: chaque État
+                      membre l’a transposée dans sa loi nationale (en France,
+                      ordonnance n° 2017-1252 du 9 août 2017). Elle
+                      <strong>s’applique</strong> dans les 27 pays de l’UE, avec de
+                      légères nuances d’un État à l’autre.
+                    </p>
+                    <ul>
+                      <li>Principe du <strong>passeport</strong>&nbsp;: une autorisation obtenue dans un État vaut dans les 27.</li>
+                      <li>Transposition nationale, puis application depuis le 13 janvier 2018.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details class="cours-note is-ok" data-zone-panel="eee-hors-ue">
+                  <summary><span class="map-sum-num">2</span> EEE hors UE — Islande, Liechtenstein, Norvège</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      Via l’<strong>accord EEE</strong>, ces trois pays appliquent
+                      la DSP2 comme les États membres&nbsp;: la directive
+                      <strong>s’y applique</strong>. Ils complètent le périmètre de
+                      l’Espace économique européen.
+                    </p>
+                    <ul>
+                      <li>Islande, Liechtenstein et Norvège&nbsp;: mêmes règles que l’UE.</li>
+                      <li>Soit <strong>30 États</strong> au total dans l’EEE.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details class="cours-note is-ko" data-zone-panel="royaume-uni">
+                  <summary><span class="map-sum-num">3</span> Royaume-Uni — hors EEE depuis le Brexit</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      Depuis le Brexit, le Royaume-Uni <strong>n’est plus dans
+                      l’EEE</strong>&nbsp;: la DSP2 n’y est
+                      <strong>pas applicable</strong> en tant que telle. Le pays a
+                      conservé un régime voisin (les <em>Payment Services
+                      Regulations 2017</em>) et son propre standard Open Banking
+                      (OBIE).
+                    </p>
+                    <ul>
+                      <li>Un TPP britannique qui accède à une banque de l’EEE relève d’une autre logique.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details class="cours-note is-ko" data-zone-panel="reste-monde">
+                  <summary><span class="map-sum-num">4</span> Reste du monde — Afrique, Amérique, Asie, Océanie</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      La DSP2 <strong>ne s’applique pas</strong> en Afrique, ni en
+                      Asie, ni en Amérique, ni dans les autres régions hors EEE.
+                      Elle est un texte européen&nbsp;: chaque pays a ses propres
+                      régulateurs (BCEAO/UMOA en zone franc CFA, BEAC/CEMAC, Bank
+                      Al-Maghrib…).
+                    </p>
+                    <ul>
+                      <li><strong>Exception</strong>&nbsp;: un opérateur africain qui fournit des services de paiement <em>dans</em> l’EEE entre dans le périmètre DSP2 pour cette activité.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details class="cours-note is-ok" data-zone-panel="dom">
+                  <summary><span class="map-sum-num">5</span> Outre-mer français (DOM) — DSP2 applicable</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      Les 5 régions d’outre-mer (Guadeloupe, Martinique, Guyane, La
+                      Réunion, Mayotte) et Saint-Martin font partie de l’UE, donc
+                      de l’EEE&nbsp;: <strong>la DSP2 s’y applique</strong>.
+                    </p>
+                  </div>
+                </details>
+
+                <details class="cours-note is-ko" data-zone-panel="ptom">
+                  <summary><span class="map-sum-num">6</span> PTOM — DSP2 non applicable</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      Les pays et territoires d’outre-mer (Polynésie française,
+                      Nouvelle-Calédonie, Wallis-et-Futuna…) sont
+                      <strong>hors UE/EEE</strong>&nbsp;: la DSP2
+                      <strong>n’y est pas applicable</strong>.
+                    </p>
+                  </div>
+                </details>
               </div>
+
             </section>
 
             <!-- 3. SERVICES COUVERTS -->
@@ -414,11 +524,12 @@
             <section class="section" style="border-bottom: none">
               <div class="transition-block">
                 <p class="transition-label">Séquence suivante</p>
-                <h2>Le décor est posé — place à l’histoire</h2>
+                <h2>Qui écrit la règle&nbsp;?</h2>
                 <p>
                   On sait ce qu’est la DSP2, où elle s’applique, ce qu’elle couvre
-                  et ce qu’elle impose. La S1 raconte maintenant <strong>pourquoi</strong>
-                  tout cela est devenu nécessaire, à travers le quotidien de Lyam.
+                  et ce qu’elle impose. Reste à savoir <strong>qui</strong> l’a
+                  écrite, qui la précise et qui la fait appliquer&nbsp;: direction
+                  les autorités européennes.
                 </p>
               </div>
             </section>
@@ -442,6 +553,7 @@
     </footer>
     <script src="../js/nav-j1.js"></script>
     <script src="../js/fiche.js"></script>
+    <script src="../js/carte-dsp2.js"></script>
     <script src="../js/present.js"></script>
     <script src="../js/read-aloud.js"></script>
   </body>

@@ -236,11 +236,49 @@
                 </p>
 
                 <p>
-                  Ne pas confondre non plus avec le <strong>PISP</strong> de la
-                  DSP2&nbsp;: le PSP e-commerce fait de l'<em>acquisition
-                  carte</em>, le PISP <em>initie un virement</em> à la place du
-                  client. Deux façons différentes de faire passer un paiement —
-                  détail en S2.
+                  <strong>Une catégorie, trois familles, des acteurs très
+                  différents.</strong> Pour chaque famille du statut PSP, un
+                  exemple d’acteur et la façon dont le paiement circule. Un
+                  même service — faire circuler un paiement — ne passe donc
+                  pas par les mêmes mécanismes selon la famille.
+                </p>
+
+                <div class="csm-table-wrap">
+                  <table class="csm-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Famille</th>
+                        <th scope="col">Exemples d’acteurs</th>
+                        <th scope="col">Comment le paiement circule</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Établissement de crédit</th>
+                        <td>BNP Paribas, Crédit Agricole, Revolut (licence bancaire)</td>
+                        <td>Virement ou carte, depuis le compte qu’elle tient elle-même</td>
+                      </tr>
+                      <tr class="is-exergue">
+                        <th scope="row">Établissement de paiement</th>
+                        <td>Stripe, Adyen, Payplug</td>
+                        <td>Acquisition carte&nbsp;: encaisse pour le marchand, puis reverse sur son compte</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Monnaie électronique</th>
+                        <td>Lydia, Sumeria, cartes prépayées</td>
+                        <td>Le client charge un solde, puis paie depuis ce solde</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <p>
+                  <strong>Ce que ces exemples montrent.</strong> Stripe et Adyen
+                  sont des établissements de paiement&nbsp;: ils encaissent par
+                  carte pour un marchand. Un PISP, lui, initie un
+                  <em>virement</em> depuis le compte du client chez sa banque.
+                  Deux façons différentes de faire passer un paiement, deux
+                  statuts différents au sein du même PSP.
                 </p>
               </div>
             </section>
@@ -311,11 +349,11 @@
                   <g>
                     <rect x="350" y="20" width="300" height="160" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
                     <text x="500" y="48" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="800" letter-spacing="0.08em">ANGLE MORT 2</text>
-                    <text x="500" y="76" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Les tiers n’existent pas</text>
-                    <text x="500" y="102" text-anchor="middle" fill="#5a6b7c" font-size="11">La catégorie PSP sert à agréer</text>
-                    <text x="500" y="120" text-anchor="middle" fill="#5a6b7c" font-size="11">celui qui émet ou exécute, pas</text>
-                    <text x="500" y="138" text-anchor="middle" fill="#5a6b7c" font-size="11">celui qui accède pour un tiers.</text>
-                    <text x="500" y="164" text-anchor="middle" fill="#a4572c" font-size="10" font-style="italic">→ ni AISP, ni PISP avant 2015</text>
+                    <text x="500" y="76" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Le tiers pour autrui n’existe pas</text>
+                    <text x="500" y="102" text-anchor="middle" fill="#5a6b7c" font-size="11">La DSP1 agrée l’établissement qui fournit</text>
+                    <text x="500" y="120" text-anchor="middle" fill="#5a6b7c" font-size="11">le service à son client. Elle ne prévoit pas</text>
+                    <text x="500" y="138" text-anchor="middle" fill="#5a6b7c" font-size="11">le tiers qui se place entre le client et sa banque.</text>
+                    <text x="500" y="164" text-anchor="middle" fill="#a4572c" font-size="10" font-style="italic">→ ni AIS, ni PIS avant 2015</text>
                   </g>
                   <g>
                     <rect x="670" y="20" width="300" height="160" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
@@ -349,7 +387,7 @@
                       <td>Service AIS</td>
                     </tr>
                     <tr>
-                      <th scope="row">Tiers non prévus</th>
+                      <th scope="row">Le tiers pour autrui non prévu</th>
                       <td>Canal de paiement unique</td>
                       <td>Service PIS</td>
                     </tr>
@@ -360,6 +398,95 @@
                     </tr>
                   </tbody>
                 </table>
+              </div>
+
+              <div class="definition-full" style="margin-top: 1.5rem">
+                <p>
+                  <strong>Le paysage européen sous la DSP1, en trois traits.</strong>
+                </p>
+                <ul>
+                  <li>
+                    <strong>Un marché cloisonné.</strong> Les banques
+                    traditionnelles sont seules à détenir les comptes et à
+                    fournir les services de paiement.
+                  </li>
+                  <li>
+                    <strong>Des tiers en zone grise.</strong> Les premiers
+                    agrégateurs de comptes et initiateurs de paiement
+                    existent, mais sans statut&nbsp;: ils opèrent par screen
+                    scraping ou par partage de codes d’accès.
+                  </li>
+                  <li>
+                    <strong>Un cadre qui ne concerne que les paiements.</strong>
+                    La DSP1 n’ouvre pas l’accès aux tiers. Elle pose
+                    un cadre juridique homogène pour régir les paiements
+                    traditionnels — virements, prélèvements, cartes — à
+                    l’échelle européenne.
+                  </li>
+                </ul>
+              </div>
+
+              <h3 style="margin-top: 2rem">Ce que ça donne en pratique</h3>
+              <p class="intro">
+                Trois situations ordinaires de 2009. Aucune n’est illégale, et
+                aucune n’a de cadre.
+              </p>
+
+              <div class="split-3">
+                <div class="panel ko">
+                  <h3>1 · Lire ses comptes</h3>
+                  <p>
+                    Un client a un compte chez trois banques. Il veut une seule
+                    vue d’ensemble. Aucun texte ne prévoit qu’une application
+                    puisse lire les comptes pour lui&nbsp;: la banque n’a
+                    aucune obligation d’ouvrir l’accès, et aucun agrément ne
+                    couvre cette lecture.
+                  </p>
+                  <p>
+                    <strong>Résultat&nbsp;:</strong> l’application demande les
+                    identifiants du client et se connecte à sa place. C’est le
+                    screen scraping.
+                  </p>
+                </div>
+                <div class="panel ko">
+                  <h3>2 · Payer depuis son compte</h3>
+                  <p>
+                    Un site marchand accepte la carte, pas le virement. Or le
+                    client veut payer depuis son compte. Aucun tiers ne peut
+                    déclencher un virement <em>au nom du client</em> depuis son
+                    compte bancaire&nbsp;: ce rôle n’existe pas en 2009.
+                  </p>
+                  <p>
+                    <strong>Résultat&nbsp;:</strong> le client doit quitter le
+                    site, ouvrir son application bancaire, recopier l’IBAN du
+                    bénéficiaire et valider. Une faute de frappe et le
+                    virement part au mauvais destinataire. Beaucoup abandonnent
+                    en cours de route et paient par carte.
+                  </p>
+                </div>
+                <div class="panel ko">
+                  <h3>3 · Sécuriser l’accès</h3>
+                  <p>
+                    Un client partage son mot de passe avec un agrégateur. La
+                    DSP1 n’impose aucune méthode d’authentification&nbsp;: le
+                    mot de passe seul suffit, et le secret partagé devient la
+                    norme.
+                  </p>
+                  <p>
+                    <strong>Résultat&nbsp;:</strong> impossible de révoquer
+                    l’accès d’un tiers sans changer son mot de passe partout.
+                  </p>
+                </div>
+              </div>
+
+              <div class="cours-note-banner">
+                <p>
+                  <strong>Le fil commun de ces trois cas.</strong> Dans chacun,
+                  le client veut faire quelque chose de légitime avec son propre
+                  compte, et le droit ne prévoit pas comment. La DSP2 ne créera
+                  pas de nouveaux usages&nbsp;: elle donnera un cadre à ceux qui
+                  existent déjà.
+                </p>
               </div>
             </section>
 

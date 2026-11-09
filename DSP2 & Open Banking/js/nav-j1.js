@@ -11,7 +11,9 @@ window.OB_BLOCS = [
   { id: "s2-reponse", title: "S2 · La réponse", href: "s2-reponse.html", group: "Parcours narratif" },
   { id: "s3-machine", title: "S3 · La machine", href: "s3-machine.html", group: "Parcours narratif" },
   { id: "s4-atelier", title: "S4 · L’atelier", href: "s4-atelier.html", group: "Parcours narratif" },
-  { id: "support", title: "Support étudiant", href: "support-etudiant.html", group: "Parcours narratif" },
+  // Annexes
+  { id: "annexe", title: "Annexe · Concepts et statuts", href: "annexe.html", group: "Annexes" },
+  { id: "support", title: "Support étudiant", href: "support-etudiant.html", group: "Annexes" },
 ];
 
 (function initObNav() {

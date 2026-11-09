@@ -18,7 +18,7 @@ s = s.replace('href="../css/',  'href="file://%s/css/'  % root)
 s = s.replace('src="../js/',    'src="file://%s/js/'    % root)
 s = s.replace('src="../img/',   'src="file://%s/img/'   % root)
 # feuille A4 en dernier : elle doit gagner la cascade
-s = s.replace('</head>', '<link rel="stylesheet" href="file://%s/css/support-a4.css" />\n</head>' % root)
+s = s.replace('</head>', '<link rel="stylesheet" href="file://%s/css/support-a4.css" />\n  <link rel="stylesheet" href="file://%s/css/support-encarts.css" />\n</head>' % (root, root))
 open(dst, "w", encoding="utf-8").write(s)
 PY
 
