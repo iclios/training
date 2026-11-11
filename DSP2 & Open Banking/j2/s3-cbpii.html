@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>S3 — Workflow CBPII (Confirmation of Funds) | DSP2 &amp; Open Banking</title>
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/socle-components.css" />
   </head>
   <body data-bloc="s3-cbpii">
     <header class="site-bar">
@@ -107,48 +108,146 @@
                   <h3>Flux d’une vérification CBPII</h3>
                   <p>Consentement → SCA initiale → vérifications → révocation</p>
                 </div>
-                <svg viewBox="0 0 1000 220" role="img" aria-label="Flux du parcours CBPII">
+                <svg viewBox="0 0 1000 240" role="img" aria-label="Flux animé du parcours CBPII : les vérifications oui/non circulent en boucle">
                   <defs>
                     <marker id="ah-cbp" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                       <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
                     </marker>
                   </defs>
+                  <!-- Gouttière animée : appels de vérification oui/non qui circulent -->
+                  <line x1="60" y1="205" x2="940" y2="205" stroke="#cfe6e2" stroke-width="2" class="ci-line"/>
+                  <circle cx="60" cy="205" r="6" fill="#0d9f8a" class="ci-travel" style="--dist: 880px; animation-duration: 5s"/>
+                  <circle cx="60" cy="205" r="6" fill="#c45c26" class="ci-travel" style="--dist: 880px; animation-duration: 5s; animation-delay: 1.6s"/>
+                  <text x="60" y="228" fill="#5a6b7c" font-size="10">appels de vérification (montant → oui/non)</text>
+
                   <g>
-                    <rect x="20" y="55" width="205" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
-                    <circle cx="55" cy="88" r="14" fill="#6b4fa0"/>
-                    <text x="55" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1</text>
-                    <text x="122" y="92" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">Consentement</text>
-                    <text x="122" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">compte + finalité</text>
-                    <text x="122" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">usage défini</text>
+                    <rect x="20" y="45" width="205" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <circle cx="55" cy="78" r="14" fill="#6b4fa0"/>
+                    <text x="55" y="83" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1</text>
+                    <text x="122" y="82" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">Consentement</text>
+                    <text x="122" y="110" text-anchor="middle" fill="#5a6b7c" font-size="10">compte + finalité</text>
+                    <text x="122" y="128" text-anchor="middle" fill="#5a6b7c" font-size="10">usage défini</text>
                   </g>
-                  <line x1="230" y1="110" x2="262" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-cbp)"/>
+                  <line x1="230" y1="100" x2="262" y2="100" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-cbp)"/>
                   <g>
-                    <rect x="266" y="55" width="205" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
-                    <circle cx="301" cy="88" r="14" fill="#1e5f8a"/>
-                    <text x="301" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">2</text>
-                    <text x="368" y="92" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">SCA initiale</text>
-                    <text x="368" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">2 facteurs</text>
-                    <text x="368" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">pas à chaque appel</text>
+                    <rect x="266" y="45" width="205" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <circle cx="301" cy="78" r="14" fill="#1e5f8a"/>
+                    <text x="301" y="83" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">2</text>
+                    <text x="368" y="82" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">SCA initiale</text>
+                    <text x="368" y="110" text-anchor="middle" fill="#5a6b7c" font-size="10">2 facteurs</text>
+                    <text x="368" y="128" text-anchor="middle" fill="#5a6b7c" font-size="10">pas à chaque appel</text>
                   </g>
-                  <line x1="476" y1="110" x2="508" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-cbp)"/>
+                  <line x1="476" y1="100" x2="508" y2="100" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-cbp)"/>
                   <g>
-                    <rect x="512" y="55" width="205" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <circle cx="547" cy="88" r="14" fill="#0d9f8a"/>
-                    <text x="547" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">3</text>
-                    <text x="614" y="92" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Vérifications</text>
-                    <text x="614" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">montant → oui/non</text>
-                    <text x="614" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">fréquence bornée</text>
+                    <rect x="512" y="45" width="205" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <circle cx="547" cy="78" r="14" fill="#0d9f8a"/>
+                    <text x="547" y="83" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">3</text>
+                    <text x="614" y="82" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Vérifications</text>
+                    <text x="614" y="110" text-anchor="middle" fill="#5a6b7c" font-size="10">montant → oui/non</text>
+                    <text x="614" y="128" text-anchor="middle" fill="#5a6b7c" font-size="10">fréquence bornée</text>
                   </g>
-                  <line x1="722" y1="110" x2="754" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-cbp)"/>
+                  <line x1="722" y1="100" x2="754" y2="100" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-cbp)"/>
                   <g>
-                    <rect x="758" y="55" width="205" height="110" rx="10" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
-                    <circle cx="793" cy="88" r="14" fill="#3d5a80"/>
-                    <text x="793" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">4</text>
-                    <text x="860" y="92" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="13" font-weight="700">Révocation</text>
-                    <text x="860" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">à tout moment</text>
-                    <text x="860" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">vérification coupée</text>
+                    <rect x="758" y="45" width="205" height="110" rx="10" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                    <circle cx="793" cy="78" r="14" fill="#3d5a80"/>
+                    <text x="793" y="83" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">4</text>
+                    <text x="860" y="82" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="13" font-weight="700">Révocation</text>
+                    <text x="860" y="110" text-anchor="middle" fill="#5a6b7c" font-size="10">à tout moment</text>
+                    <text x="860" y="128" text-anchor="middle" fill="#5a6b7c" font-size="10">vérification coupée</text>
                   </g>
                 </svg>
+
+              <!-- Mini-parcours en 4 cartes au format S1 (image mentale par étape) -->
+              <div class="comp-grid">
+                <article class="comp-card comp-gateway">
+                  <div class="comp-head">
+                    <span class="comp-num">1</span>
+                    <div class="comp-titles">
+                      <h3>Consentement</h3>
+                      <p class="comp-role">Le badge d’accès</p>
+                    </div>
+                  </div>
+                  <div class="comp-block">
+                    <span class="comp-label">Ce qui se passe</span>
+                    <p>
+                      Le CBPII déclare <strong>le compte à vérifier</strong> et
+                      <strong>la finalité du contrôle</strong>. La banque renvoie
+                      un identifiant de consentement.
+                    </p>
+                  </div>
+                  <div class="comp-image">
+                    <span class="comp-label">Image mentale</span>
+                    <p>Un <strong>badge nominatif</strong>&nbsp;: il précise le
+                    compte concerné et la raison du contrôle.</p>
+                  </div>
+                </article>
+
+                <article class="comp-card comp-mgmt">
+                  <div class="comp-head">
+                    <span class="comp-num">2</span>
+                    <div class="comp-titles">
+                      <h3>SCA initiale</h3>
+                      <p class="comp-role">La clé jetable</p>
+                    </div>
+                  </div>
+                  <div class="comp-block">
+                    <span class="comp-label">Ce qui se passe</span>
+                    <p>
+                      Lyam s’authentifie fortement (deux facteurs) et autorise
+                      explicitement le consentement. C’est le <strong>seul moment</strong>
+                      où il prouve son identité.
+                    </p>
+                  </div>
+                  <div class="comp-image">
+                    <span class="comp-label">Image mentale</span>
+                    <p>Une <strong>serrure à deux clés</strong> qu’on tourne une seule fois&nbsp;; ensuite la porte reste entrouverte.</p>
+                  </div>
+                </article>
+
+                <article class="comp-card comp-services">
+                  <div class="comp-head">
+                    <span class="comp-num">3</span>
+                    <div class="comp-titles">
+                      <h3>Vérifications</h3>
+                      <p class="comp-role">Le voyant lumineux</p>
+                    </div>
+                  </div>
+                  <div class="comp-block">
+                    <span class="comp-label">Ce qui se passe</span>
+                    <p>
+                      Pour chaque dépense, le CBPII envoie le montant et reçoit
+                      un booléen. Pas de nouvelle SCA, <strong>jusqu’à 90 jours</strong>
+                      (RTS).
+                    </p>
+                  </div>
+                  <div class="comp-image">
+                    <span class="comp-label">Image mentale</span>
+                    <p>Un <strong>voyant lumineux</strong> qui répond oui/non&nbsp;: «&nbsp;suffisant&nbsp;?&nbsp;»</p>
+                  </div>
+                </article>
+
+                <article class="comp-card comp-logs">
+                  <div class="comp-head">
+                    <span class="comp-num">4</span>
+                    <div class="comp-titles">
+                      <h3>Révocation</h3>
+                      <p class="comp-role">L’interrupteur</p>
+                    </div>
+                  </div>
+                  <div class="comp-block">
+                    <span class="comp-label">Ce qui se passe</span>
+                    <p>
+                      Lyam révoque le consentement <strong>à tout moment</strong>.
+                      Le CBPII perd alors toute possibilité de vérifier les fonds.
+                    </p>
+                  </div>
+                  <div class="comp-image">
+                    <span class="comp-label">Image mentale</span>
+                    <p>Un <strong>interrupteur général</strong>&nbsp;: on coupe, tout s’éteint.</p>
+                  </div>
+                </article>
+              </div>
+
                 <figcaption>
                   Figure — le parcours CBPII&nbsp;: même squelette que l’AIS
                   (consentement, SCA initiale, révocation), mais la boucle répétée
@@ -156,51 +255,24 @@
                 </figcaption>
               </div>
 
-              <div class="mechanism">
-                <div class="mechanism-step">
-                  <span class="n">1</span>
-                  <div>
-                    <strong>Consentement CBPII</strong>
-                    <p>
-                      Le CBPII obtient le droit de vérifier les fonds d’un compte
-                      donné pour un usage défini. Le consentement précise le
-                      compte et la finalité.
-                    </p>
-                  </div>
-                </div>
-                <div class="mechanism-step">
-                  <span class="n">2</span>
-                  <div>
-                    <strong>SCA initiale</strong>
-                    <p>
-                      Comme pour l’AIS, une authentification forte initiale est
-                      requise pour établir le consentement. Le CBPII ne
-                      s’authentifie pas à chaque vérification.
-                    </p>
-                  </div>
-                </div>
-                <div class="mechanism-step">
-                  <span class="n">3</span>
-                  <div>
-                    <strong>Vérification répétée</strong>
-                    <p>
-                      Pour chaque dépense, le CBPII envoie le montant et reçoit un
-                      booléen. La fréquence est bornée par les RTS (pas
-                      d’interrogation abusive du solde par ce biais).
-                    </p>
-                  </div>
-                </div>
-                <div class="mechanism-step">
-                  <span class="n">4</span>
-                  <div>
-                    <strong>Révocation</strong>
-                    <p>
-                      Lyam peut retirer le consentement&nbsp;; le CBPII perd alors
-                      toute possibilité de vérifier les fonds.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <!-- Illustration : vérification oui/non -->
+              <figure class="flow-illus">
+                <svg viewBox="0 0 640 160" role="img" aria-label="CBPII : un montant envoyé, un booléen reçu">
+                  <rect x="40" y="40" width="100" height="60" rx="8" fill="#eefaf7" stroke="#0d9f8a"/>
+                  <text x="90" y="66" text-anchor="middle" fill="#087a6a" font-size="11">42,90 €</text>
+                  <line x1="142" y1="70" x2="220" y2="70" stroke="#0d9f8a" stroke-width="2" class="ci-line"/>
+                  <rect x="224" y="40" width="100" height="60" rx="8" fill="#fff" stroke="#0d9f8a"/>
+                  <text x="274" y="62" text-anchor="middle" fill="#087a6a" font-size="10">CBPII</text>
+                  <text x="274" y="80" text-anchor="middle" fill="#087a6a" font-size="10">(banque)</text>
+                  <line x1="326" y1="70" x2="404" y2="70" stroke="#0d9f8a" stroke-width="2" class="ci-line"/>
+                  <rect x="408" y="40" width="100" height="60" rx="8" fill="#eefaf7" stroke="#0d9f8a"/>
+                  <text x="458" y="66" text-anchor="middle" fill="#087a6a" font-size="11">✔ oui</text>
+                  <circle cx="458" cy="96" r="5" fill="#0d9f8a" class="ci-blink"/>
+                </svg>
+                <figcaption>Un montant envoyé, un booléen reçu — sans aucun autre détail.</figcaption>
+              </figure>
+
+
 
               <div class="csm-table-wrap">
                 <table class="csm-table">
@@ -233,6 +305,18 @@
   "account": { "iban": "FR76…1234" }
 }</pre>
 
+              <!-- Illustration : solde masqué -->
+              <figure class="flow-illus">
+                <svg viewBox="0 0 640 160" role="img" aria-label="CBPII ne renvoie pas le solde">
+                  <rect x="40" y="40" width="160" height="60" rx="8" fill="#fdf1ec" stroke="#c45c26"/>
+                  <text x="120" y="66" text-anchor="middle" fill="#b14a17" font-size="11">solde : 2 500 €</text>
+                  <line x1="202" y1="70" x2="280" y2="70" stroke="#c45c26" stroke-dasharray="4 3"/>
+                  <rect x="284" y="40" width="160" height="60" rx="8" fill="#eefaf7" stroke="#0d9f8a"/>
+                  <text x="364" y="66" text-anchor="middle" fill="#087a6a" font-size="11">✔ oui</text>
+                </svg>
+                <figcaption>Le CBPII ne renvoie jamais le solde — seulement une réponse binaire.</figcaption>
+              </figure>
+
               <div class="callout info">
                 <h3>Un booléen, pas un solde</h3>
                 <p>
@@ -264,6 +348,34 @@
                   </tbody>
                 </table>
               </div>
+
+              <!-- Illustration : déduction interdite -->
+              <figure class="flow-illus">
+                <svg viewBox="0 0 640 210" role="img" aria-label="Interdiction de déduire le solde par plusieurs appels">
+                  <g>
+                    <rect x="20" y="20" width="600" height="170" rx="12" fill="#fdf1ec" stroke="#c45c26" stroke-width="2"/>
+                    <text x="320" y="46" text-anchor="middle" fill="#b14a17" font-family="Syne, sans-serif" font-size="13" font-weight="700">✕ Interrogation abusive</text>
+                    <rect x="50" y="68" width="100" height="46" rx="6" fill="#fff" stroke="#c45c26"/>
+                    <text x="100" y="96" text-anchor="middle" fill="#b14a17" font-size="10">CBPII</text>
+                    <line x1="152" y1="91" x2="196" y2="91" stroke="#c45c26" stroke-width="2" class="ci-line"/>
+                    <rect x="200" y="68" width="100" height="46" rx="6" fill="#fff" stroke="#c45c26"/>
+                    <text x="250" y="96" text-anchor="middle" fill="#b14a17" font-size="10">CBPII</text>
+                    <line x1="302" y1="91" x2="346" y2="91" stroke="#c45c26" stroke-width="2" class="ci-line"/>
+                    <rect x="350" y="68" width="100" height="46" rx="6" fill="#fff" stroke="#c45c26"/>
+                    <text x="400" y="96" text-anchor="middle" fill="#b14a17" font-size="10">CBPII</text>
+                    <line x1="452" y1="91" x2="496" y2="91" stroke="#c45c26" stroke-width="2" class="ci-line"/>
+                    <rect x="500" y="68" width="100" height="46" rx="6" fill="#fff" stroke="#c45c26"/>
+                    <text x="550" y="96" text-anchor="middle" fill="#b14a17" font-size="10">CBPII</text>
+                    <circle cx="100" cy="116" r="5" fill="#c45c26" class="ci-blink"/>
+                    <circle cx="250" cy="116" r="5" fill="#c45c26" class="ci-blink"/>
+                    <circle cx="400" cy="116" r="5" fill="#c45c26" class="ci-blink"/>
+                    <circle cx="550" cy="116" r="5" fill="#c45c26" class="ci-blink"/>
+                    <text x="320" y="150" text-anchor="middle" fill="#b14a17" font-size="10">Multiples appels → solde déduit</text>
+                    <text x="320" y="170" text-anchor="middle" fill="#5a6b7c" font-size="9.5">Interdit par les RTS</text>
+                  </g>
+                </svg>
+                <figcaption>Multiplier les appels pour déduire le solde est interdit — les RTS limitent la fréquence.</figcaption>
+              </figure>
 
               <div class="callout warn">
                 <h3>Le piège&nbsp;: l’interrogation abusive</h3>

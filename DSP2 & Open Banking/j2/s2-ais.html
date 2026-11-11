@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>S2 — Workflow AIS (Account Information) | DSP2 &amp; Open Banking</title>
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/socle-components.css" />
   </head>
   <body data-bloc="s2-ais">
     <header class="site-bar">
@@ -108,48 +109,161 @@
                   <h3>Flux d’une lecture AIS</h3>
                   <p>Consentement → SCA initiale → lectures → révocation</p>
                 </div>
-                <svg viewBox="0 0 1000 220" role="img" aria-label="Flux du parcours AIS">
+                <svg viewBox="0 0 1000 240" role="img" aria-label="Flux animé du parcours AIS : la donnée de lecture circule du TPP vers les comptes et revient">
                   <defs>
                     <marker id="ah-ais" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                       <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
                     </marker>
                   </defs>
+                  <!-- Gouttière de circulation animée (lecture qui circule) -->
+                  <line x1="60" y1="205" x2="940" y2="205" stroke="#cfe6e2" stroke-width="2" class="ci-line"/>
+                  <circle cx="60" cy="205" r="6" fill="#0d9f8a" class="ci-travel" style="--dist: 880px; animation-duration: 5s"/>
+                  <circle cx="60" cy="205" r="6" fill="#6b4fa0" class="ci-travel" style="--dist: 880px; animation-duration: 5s; animation-delay: 1.6s"/>
+                  <text x="60" y="228" fill="#5a6b7c" font-size="10">lecture (requête + jeton)</text>
+
                   <g>
-                    <rect x="20" y="55" width="205" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
-                    <circle cx="55" cy="88" r="14" fill="#6b4fa0"/>
-                    <text x="55" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1</text>
-                    <text x="122" y="92" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">Consentement</text>
-                    <text x="122" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">périmètre + durée</text>
-                    <text x="122" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">renvoie un ID</text>
+                    <rect x="20" y="45" width="205" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <circle cx="55" cy="78" r="14" fill="#6b4fa0"/>
+                    <text x="55" y="83" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1</text>
+                    <text x="122" y="82" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">Consentement</text>
+                    <text x="122" y="110" text-anchor="middle" fill="#5a6b7c" font-size="10">périmètre + durée</text>
+                    <text x="122" y="128" text-anchor="middle" fill="#5a6b7c" font-size="10">renvoie un ID</text>
                   </g>
-                  <line x1="230" y1="110" x2="262" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-ais)"/>
+                  <line x1="230" y1="100" x2="262" y2="100" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-ais)"/>
                   <g>
-                    <rect x="266" y="55" width="205" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
-                    <circle cx="301" cy="88" r="14" fill="#1e5f8a"/>
-                    <text x="301" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">2</text>
-                    <text x="368" y="92" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">SCA initiale</text>
-                    <text x="368" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">2 facteurs</text>
-                    <text x="368" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">une seule fois</text>
+                    <rect x="266" y="45" width="205" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <circle cx="301" cy="78" r="14" fill="#1e5f8a"/>
+                    <text x="301" y="83" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">2</text>
+                    <text x="368" y="82" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">SCA initiale</text>
+                    <text x="368" y="110" text-anchor="middle" fill="#5a6b7c" font-size="10">2 facteurs</text>
+                    <text x="368" y="128" text-anchor="middle" fill="#5a6b7c" font-size="10">une seule fois</text>
                   </g>
-                  <line x1="476" y1="110" x2="508" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-ais)"/>
+                  <line x1="476" y1="100" x2="508" y2="100" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-ais)"/>
                   <g>
-                    <rect x="512" y="55" width="205" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <circle cx="547" cy="88" r="14" fill="#0d9f8a"/>
-                    <text x="547" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">3</text>
-                    <text x="614" y="92" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Lectures répétées</text>
-                    <text x="614" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">jeton d’accès</text>
-                    <text x="614" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">jusqu’à 90 jours</text>
+                    <rect x="512" y="45" width="205" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <circle cx="547" cy="78" r="14" fill="#0d9f8a"/>
+                    <text x="547" y="83" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">3</text>
+                    <text x="614" y="82" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Lectures répétées</text>
+                    <text x="614" y="110" text-anchor="middle" fill="#5a6b7c" font-size="10">jeton d’accès</text>
+                    <text x="614" y="128" text-anchor="middle" fill="#5a6b7c" font-size="10">jusqu’à 90 jours</text>
                   </g>
-                  <line x1="722" y1="110" x2="754" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-ais)"/>
+                  <line x1="722" y1="100" x2="754" y2="100" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-ais)"/>
                   <g>
-                    <rect x="758" y="55" width="205" height="110" rx="10" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
-                    <circle cx="793" cy="88" r="14" fill="#3d5a80"/>
-                    <text x="793" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">4</text>
-                    <text x="860" y="92" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="13" font-weight="700">Révocation</text>
-                    <text x="860" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">à tout moment</text>
-                    <text x="860" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">coupure immédiate</text>
+                    <rect x="758" y="45" width="205" height="110" rx="10" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                    <circle cx="793" cy="78" r="14" fill="#3d5a80"/>
+                    <text x="793" y="83" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">4</text>
+                    <text x="860" y="82" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="13" font-weight="700">Révocation</text>
+                    <text x="860" y="110" text-anchor="middle" fill="#5a6b7c" font-size="10">à tout moment</text>
+                    <text x="860" y="128" text-anchor="middle" fill="#5a6b7c" font-size="10">coupure immédiate</text>
                   </g>
                 </svg>
+
+              <!-- Mini-parcours en 4 cartes au format S1 (image mentale par étape) -->
+              <div class="comp-grid">
+                <article class="comp-card comp-gateway">
+                  <div class="comp-head">
+                    <span class="comp-num">1</span>
+                    <div class="comp-titles">
+                      <h3>Consentement</h3>
+                      <p class="comp-role">Le badge d’accès</p>
+                    </div>
+                  </div>
+                  <div class="comp-block">
+                    <span class="comp-label">Ce qui se passe</span>
+                    <p>
+                      L’AISP déclare <strong>ce qu’il veut lire</strong> (comptes,
+                      transactions, soldes) et <strong>pour combien de temps</strong>.
+                      La banque renvoie un identifiant de consentement.
+                    </p>
+                  </div>
+                  <div class="comp-image">
+                    <span class="comp-label">Image mentale</span>
+                    <p>Un <strong>badge nominatif</strong>&nbsp;: il précise les portes ouvertes et la date d’expiration.</p>
+                  </div>
+                </article>
+
+                <article class="comp-card comp-mgmt">
+                  <div class="comp-head">
+                    <span class="comp-num">2</span>
+                    <div class="comp-titles">
+                      <h3>SCA initiale</h3>
+                      <p class="comp-role">La clé jetable</p>
+                    </div>
+                  </div>
+                  <div class="comp-block">
+                    <span class="comp-label">Ce qui se passe</span>
+                    <p>
+                      Lyam s’authentifie fortement (deux facteurs) et autorise
+                      explicitement le consentement. C’est le <strong>seul moment</strong>
+                      où il prouve son identité.
+                    </p>
+                  </div>
+                  <div class="comp-image">
+                    <span class="comp-label">Image mentale</span>
+                    <p>Une <strong>serrure à deux clés</strong> qu’on tourne une seule fois&nbsp;; ensuite la porte reste entrouverte.</p>
+                  </div>
+                </article>
+
+                <article class="comp-card comp-services">
+                  <div class="comp-head">
+                    <span class="comp-num">3</span>
+                    <div class="comp-titles">
+                      <h3>Lectures répétées</h3>
+                      <p class="comp-role">La fenêtre de lecture</p>
+                    </div>
+                  </div>
+                  <div class="comp-block">
+                    <span class="comp-label">Ce qui se passe</span>
+                    <p>
+                      Avec un jeton d’accès, l’AISP lit comptes et transactions
+                      <strong>sans nouvelle SCA</strong>, tant que le consentement
+                      est valide (<strong>90 jours max</strong> sous RTS).
+                    </p>
+                  </div>
+                  <div class="comp-image">
+                    <span class="comp-label">Image mentale</span>
+                    <p>Une <strong>fenêtre ouverte 90 jours</strong>&nbsp;: on peut regarder dehors autant de fois qu’on veut, sans rouvrir.</p>
+                  </div>
+                </article>
+
+                <article class="comp-card comp-logs">
+                  <div class="comp-head">
+                    <span class="comp-num">4</span>
+                    <div class="comp-titles">
+                      <h3>Révocation</h3>
+                      <p class="comp-role">L’interrupteur</p>
+                    </div>
+                  </div>
+                  <div class="comp-block">
+                    <span class="comp-label">Ce qui se passe</span>
+                    <p>
+                      Lyam révoque le consentement <strong>à tout moment</strong>.
+                      L’accès est coupé immédiatement, quels que soient les jetons
+                      encore en circulation.
+                    </p>
+                  </div>
+                  <div class="comp-image">
+                    <span class="comp-label">Image mentale</span>
+                    <p>Un <strong>interrupteur général</strong>&nbsp;: on coupe, tout s’éteint, aucune copie ne survit.</p>
+                  </div>
+                </article>
+              </div>
+
+                  <figure class="flow-illus">
+                <svg viewBox="0 0 640 110" role="img" aria-label="Durée de validité du consentement AIS : une seule SCA initiale, puis 90 jours de lectures, puis révocation">
+                  <line x1="40" y1="60" x2="600" y2="60" stroke="#dfe6ee" stroke-width="8" stroke-linecap="round"/>
+                  <line x1="40" y1="60" x2="600" y2="60" stroke="#0d9f8a" stroke-width="8" stroke-linecap="round" class="ci-drain"/>
+                  <circle cx="40" cy="60" r="9" fill="#1e5f8a"/>
+                  <text x="40" y="34" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">SCA initiale</text>
+                  <circle cx="600" cy="60" r="9" fill="#c45c26"/>
+                  <text x="600" y="90" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">Révocation</text>
+                  <text x="320" y="34" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">lectures répétées · pas de nouvelle SCA</text>
+                  <text x="320" y="92" text-anchor="middle" fill="#5a6b7c" font-size="10">durée max : 90 jours (RTS)</text>
+                </svg>
+                <figcaption>Une seule authentification forte au départ&nbsp;; ensuite, une fenêtre de lecture qui se referme au plus tard à 90 jours — ou dès que Lyam révoque.</figcaption>
+              </figure>
+              
+
                 <figcaption>
                   Figure — le parcours AIS&nbsp;: une seule authentification forte
                   initiale, puis des lectures répétées tant que le consentement
@@ -157,53 +271,8 @@
                 </figcaption>
               </div>
 
-              <div class="mechanism">
-                <div class="mechanism-step">
-                  <span class="n">1</span>
-                  <div>
-                    <strong>Création du consentement</strong>
-                    <p>
-                      L’AISP déclare au nom de Lyam ce qu’il veut lire
-                      (comptes, transactions, soldes) et pour combien de temps.
-                      La banque renvoie un identifiant de consentement.
-                    </p>
-                  </div>
-                </div>
-                <div class="mechanism-step">
-                  <span class="n">2</span>
-                  <div>
-                    <strong>SCA initiale</strong>
-                    <p>
-                      Lyam s’authentifie fortement (deux facteurs) auprès de sa
-                      banque et autorise explicitement le consentement. C’est le
-                      seul moment où il prouve son identité.
-                    </p>
-                  </div>
-                </div>
-                <div class="mechanism-step">
-                  <span class="n">3</span>
-                  <div>
-                    <strong>Lecture répétée</strong>
-                    <p>
-                      Avec un jeton d’accès, l’AISP lit les comptes et les
-                      transactions. Plus de SCA à chaque lecture&nbsp;: l’accès
-                      reste ouvert jusqu’à expiration du consentement
-                      (<strong>max 90 jours</strong> sous RTS).
-                    </p>
-                  </div>
-                </div>
-                <div class="mechanism-step">
-                  <span class="n">4</span>
-                  <div>
-                    <strong>Révocation</strong>
-                    <p>
-                      Lyam peut révoquer le consentement à tout moment. L’accès
-                      est coupé immédiatement, quelles que soient les jetons en
-                      circulation.
-                    </p>
-                  </div>
-                </div>
-              </div>
+                            <!-- Illustration : durée du consentement (90 jours) -->
+              
 
               <div class="csm-table-wrap">
                 <table class="csm-table">
@@ -296,6 +365,38 @@
                 </table>
               </div>
 
+                            <figure class="flow-illus">
+                <svg viewBox="0 0 640 210" role="img" aria-label="Le bon usage : lire pour le service rendu et jeter ; le mauvais usage : constituer une copie permanente interdite">
+                  <g>
+                    <rect x="20" y="20" width="280" height="170" rx="12" fill="#eefaf7" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="160" y="46" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">✓ Usage conforme</text>
+                    <rect x="50" y="68" width="80" height="46" rx="6" fill="#fff" stroke="#0d9f8a"/>
+                    <text x="90" y="96" text-anchor="middle" fill="#087a6a" font-size="10">lire</text>
+                    <line x1="132" y1="91" x2="176" y2="91" stroke="#0d9f8a" stroke-width="2" class="ci-line"/>
+                    <rect x="178" y="68" width="80" height="46" rx="6" fill="#fff" stroke="#0d9f8a"/>
+                    <text x="218" y="90" text-anchor="middle" fill="#087a6a" font-size="9.5">afficher</text>
+                    <text x="218" y="104" text-anchor="middle" fill="#087a6a" font-size="9.5">le service</text>
+                    <line x1="260" y1="91" x2="284" y2="91" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="160" y="150" text-anchor="middle" fill="#0b7a6a" font-size="10">puis on <tspan font-weight="700">oublie</tspan></text>
+                    <text x="160" y="170" text-anchor="middle" fill="#5a6b7c" font-size="9.5">durée strictement nécessaire</text>
+                  </g>
+                  <g>
+                    <rect x="340" y="20" width="280" height="170" rx="12" fill="#fdf1ec" stroke="#c45c26" stroke-width="2"/>
+                    <text x="480" y="46" text-anchor="middle" fill="#b14a17" font-family="Syne, sans-serif" font-size="13" font-weight="700">✕ Hors cadre</text>
+                    <rect x="370" y="68" width="80" height="46" rx="6" fill="#fff" stroke="#c45c26"/>
+                    <text x="410" y="96" text-anchor="middle" fill="#b14a17" font-size="10">lire</text>
+                    <line x1="452" y1="91" x2="496" y2="91" stroke="#c45c26" stroke-width="2" class="ci-line"/>
+                    <rect x="498" y="60" width="96" height="62" rx="6" fill="#fff" stroke="#c45c26" stroke-dasharray="4 3"/>
+                    <text x="546" y="86" text-anchor="middle" fill="#b14a17" font-size="9.5">copie</text>
+                    <text x="546" y="100" text-anchor="middle" fill="#b14a17" font-size="9.5">permanente</text>
+                    <circle cx="546" cy="116" r="5" fill="#c45c26" class="ci-blink"/>
+                    <text x="480" y="150" text-anchor="middle" fill="#b14a17" font-size="10">«&nbsp;au cas où&nbsp;»</text>
+                    <text x="480" y="170" text-anchor="middle" fill="#5a6b7c" font-size="9.5">RGPD + DSP2 en défaut</text>
+                  </g>
+                </svg>
+                <figcaption>Lire pour rendre le service et oublier ensuite — ou constituer un entrepôt de données permanent&nbsp;: la frontière DSP2/RGPD se joue là.</figcaption>
+              </figure>
+              
               <div class="callout warn">
                 <h3>Le piège&nbsp;: le stockage des données</h3>
                 <p>
