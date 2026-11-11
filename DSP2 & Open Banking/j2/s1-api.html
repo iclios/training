@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>S1 — Architecture API | DSP2 &amp; Open Banking</title>
+    <title>S1 — Architecture API : le socle commun | DSP2 &amp; Open Banking</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body data-bloc="s1-api">
@@ -31,15 +31,16 @@
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 2 · Séquence 1</span>
-                <span class="tag tag-accent">50 min</span>
+                <span class="tag tag-accent">35 min</span>
               </div>
-              <p class="day-kicker">Les briques exposées</p>
-              <h1>Architecture API</h1>
+              <p class="day-kicker">Une infrastructure, trois services</p>
+              <h1>Architecture API — le socle commun</h1>
               <p class="lead">
-                Une API Open Banking n’est pas un seul service&nbsp;: c’est un
-                ensemble de types d’API spécialisés, exposés derrière des
-                composants qui en assurent l’accès, le contrôle et la
-                traçabilité.
+                AIS, PIS, CBPII&nbsp;: trois API aux usages différents, mais
+                bâties sur <strong>la même infrastructure d’exposition</strong>.
+                On commence par ce socle commun — passerelle, gestion, services,
+                journalisation — avant de détailler chaque API dans les
+                séquences suivantes.
               </p>
             </div>
           </section>
@@ -49,20 +50,24 @@
               <span class="fil-rouge-label">Fil rouge</span>
               <p>
                 L’application de Lyam n’utilise pas «&nbsp;une API&nbsp;»&nbsp;:
-                elle appelle une API de <strong>lecture de comptes</strong>.
-                Demain, si Lyam paie un marchand par virement, il utilisera une
-                API d’<strong>initiation de paiement</strong>. Ce ne sont pas les
-                mêmes services.
+                elle appelle une API de <strong>lecture de comptes</strong>
+                (AIS). Demain, si Lyam paie un marchand par virement, ce sera une
+                API d’<strong>initiation de paiement</strong> (PIS). Derrière ces
+                appels différents, la banque expose toujours la <em>même</em>
+                plomberie&nbsp;: c’est ce socle qu’on découvre ici.
               </p>
             </div>
 
-            <!-- 1. TYPES D'API -->
+            <!-- 1. ORIENTATION : TROIS API, UN SOCLE -->
             <section class="section" style="border-top: none; padding-top: 1.5rem">
-              <p class="section-label">Types</p>
-              <h2 id="types">Les trois types d’API</h2>
+              <p class="section-label">Orientation</p>
+              <h2 id="trois-api">Trois API, un même socle</h2>
               <p class="intro">
-                La DSP2 définit trois familles de services qui correspondent à
-                trois types d’API. Chacune a un périmètre strict.
+                La DSP2 définit trois familles de services, chacune exposée par
+                une API dédiée. Leur <em>logique métier</em> diffère&nbsp;; leur
+                <em>infrastructure d’exposition</em> est commune. Cette séquence
+                pose le socle&nbsp;; les deux suivantes détaillent le workflow
+                propre à l’AIS et au CBPII. Le PIS, lui, fait l’objet du Jour 3.
               </p>
 
               <div class="role-grid">
@@ -70,79 +75,31 @@
                   <h3>Account Information API</h3>
                   <p class="role-full">Lecture des comptes · AIS</p>
                   <p class="role-desc">
-                    Expose soldes, opérations et détails de comptes à un AISP.
-                    <strong>Lecture seule</strong>&nbsp;: aucun mouvement de
-                    fonds n’est possible.
+                    Lit soldes, opérations et détails de comptes.
+                    <strong>Lecture seule</strong>, aucun mouvement de fonds.
                   </p>
-                  <details class="cours-note small">
-                    <summary>Cours — périmètre</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        Endpoints typiques&nbsp;: liste des comptes, détail d’un
-                        compte, liste des transactions, solde. Accès conditionné
-                        par un consentement AIS et une SCA initiale.
-                      </p>
-                    </div>
-                  </details>
+                  <p class="role-desc"><a href="s2-ais.html">→ S2 · détail de l’API AIS</a></p>
                 </article>
 
                 <article class="role-card pisp">
                   <h3>Payment Initiation API</h3>
                   <p class="role-full">Initiation de paiement · PIS</p>
                   <p class="role-desc">
-                    Permet à un PISP de <strong>déclencher un virement</strong>
-                    au nom du client, sans jamais détenir les fonds.
+                    <strong>Déclenche un virement</strong> au nom du client, sans
+                    jamais détenir les fonds.
                   </p>
-                  <details class="cours-note small">
-                    <summary>Cours — périmètre</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        Endpoints&nbsp;: création d’une demande de paiement,
-                        statut du paiement. Chaque paiement est authentifié par
-                        une SCA&nbsp;; le montant et le bénéficiaire ne peuvent
-                        plus être modifiés après la SCA.
-                      </p>
-                    </div>
-                  </details>
+                  <p class="role-desc"><a href="../j3/intro.html">→ détaillé au Jour 3</a></p>
                 </article>
 
                 <article class="role-card">
                   <h3>Confirmation of Funds API</h3>
                   <p class="role-full">Vérification de fonds · CBPII</p>
                   <p class="role-desc">
-                    Permet à un CBPII de savoir si des <strong>fonds sont
-                    disponibles</strong> sur un compte, sans exposer les soldes.
+                    Répond «&nbsp;fonds disponibles&nbsp;?&nbsp;» sans exposer de
+                    solde.
                   </p>
-                  <details class="cours-note small">
-                    <summary>Cours — périmètre</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        Réponse binaire&nbsp;: «&nbsp;fonds suffisants&nbsp;» ou
-                        non, pour un montant donné. Aucune donnée de solde ni
-                        d’opération n’est renvoyée.
-                      </p>
-                    </div>
-                  </details>
+                  <p class="role-desc"><a href="s3-cbpii.html">→ S3 · workflow CBPII</a></p>
                 </article>
-              </div>
-
-              <div class="csm-table-wrap">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">API</th>
-                      <th scope="col">Service</th>
-                      <th scope="col">Lit les comptes</th>
-                      <th scope="col">Déplace des fonds</th>
-                      <th scope="col">Expose des soldes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr><th scope="row">Account Information</th><td>AIS</td><td>Oui</td><td>Non</td><td>Oui</td></tr>
-                    <tr><th scope="row">Payment Initiation</th><td>PIS</td><td>Non</td><td>Oui</td><td>Non</td></tr>
-                    <tr class="is-exergue"><th scope="row">Confirmation of Funds</th><td>CBPII</td><td>Non</td><td>Non</td><td>Non</td></tr>
-                  </tbody>
-                </table>
               </div>
 
               <div class="callout info">
@@ -156,14 +113,14 @@
               </div>
             </section>
 
-            <!-- 2. COMPOSANTS -->
+            <!-- 2. COMPOSANTS DU SOCLE -->
             <section class="section">
               <p class="section-label">Composants</p>
               <h2 id="composants">Les composants qui exposent l’API</h2>
               <p class="intro">
-                Derrière chaque type d’API, une même infrastructure. On retrouve
-                ici les couches du Jour 1, vues cette fois du côté de
-                l’exposition.
+                Quelle que soit l’API appelée, l’appel traverse la même chaîne de
+                composants. On retrouve ici les couches du Jour 1, vues cette
+                fois du côté de l’exposition.
               </p>
 
               <div class="diagram">
@@ -254,7 +211,8 @@
                     <p>
                       Implémentent réellement AIS, PIS, CBPII&nbsp;: vérification
                       du consentement, contrôle du périmètre, validation des
-                      règles métier avant d’appeler le core banking.
+                      règles métier avant d’appeler le core banking. C’est ici
+                      que chaque API devient <em>différente</em> (S2 AIS, S3 CBPII).
                     </p>
                   </div>
                 </div>
@@ -287,12 +245,12 @@
             <section class="section" style="border-bottom: none">
               <div class="transition-block">
                 <p class="transition-label">Séquence suivante</p>
-                <h2>Mais qui a le droit d’appeler&nbsp;?</h2>
+                <h2>Maintenant, chaque API en détail</h2>
                 <p>
-                  On a les briques et les composants. Reste la question
-                  centrale&nbsp;: comment prouve-t-on qu’un appel vient bien d’un
-                  TPP agréé, au nom d’un client qui a consenti&nbsp;? C’est tout
-                  l’objet de l’authentification et de l’autorisation (S2).
+                  Le socle est posé. On peut désormais spécialiser&nbsp;: chaque
+                  API a son cœur métier, ses endpoints, ses règles SCA et ses
+                  risques propres. Commençons par la plus utilisée&nbsp;: la
+                  lecture de comptes (S2 · AIS).
                 </p>
               </div>
             </section>
@@ -301,8 +259,9 @@
               <summary>Cours — récapitulatif du bloc</summary>
               <div class="cours-note-body">
                 <ul>
-                  <li><strong>Trois types d’API</strong>&nbsp;: AIS (lecture), PIS (paiement), CBPII (vérification de fonds).</li>
+                  <li><strong>Trois API, un socle</strong>&nbsp;: AIS (lecture), PIS (paiement), CBPII (fonds) partagent la même infrastructure d’exposition.</li>
                   <li><strong>Composants</strong>&nbsp;: Gateway (entrée), API Management (quotas, throttling, versionnement), Services métier, Logs.</li>
+                  <li><strong>Point de divergence</strong>&nbsp;: c’est dans les <em>services métier</em> que chaque API devient spécifique (workflow AIS en S2, CBPII en S3&nbsp;; PIS au Jour 3).</li>
                   <li><strong>Principe</strong>&nbsp;: un seul type par agrément, séparation technique et réglementaire.</li>
                 </ul>
               </div>

@@ -1,10 +1,13 @@
 window.OB_BLOCS = [
   { id: "intro", title: "Intro & objectifs", href: "intro.html", group: "Ouverture" },
   // Parcours Jour 2
-  { id: "s1-api", title: "S1 · Architecture API", href: "s1-api.html", group: "Parcours" },
-  { id: "s2-auth", title: "S2 · Authentification & autorisation", href: "s2-auth.html", group: "Parcours" },
-  { id: "s3-securite", title: "S3 · Sécurité & conformité", href: "s3-securite.html", group: "Parcours" },
-  { id: "s4-cas", title: "S4 · Cas pratique", href: "s4-cas.html", group: "Parcours" },
+  { id: "s1-api", title: "S1 · Architecture API (socle)", href: "s1-api.html", group: "Parcours" },
+  { id: "s2-ais", title: "S2 · Workflow AIS", href: "s2-ais.html", group: "Parcours" },
+  { id: "s3-cbpii", title: "S3 · Workflow CBPII", href: "s3-cbpii.html", group: "Parcours" },
+  { id: "s4-atelier", title: "S4 · Atelier (labo AIS & CBPII)", href: "s4-atelier.html", group: "Parcours" },
+  { id: "s5-auth", title: "S5 · Authentification & autorisation", href: "s5-auth.html", group: "Parcours" },
+  { id: "s6-securite", title: "S6 · Sécurité & conformité", href: "s6-securite.html", group: "Parcours" },
+  { id: "s7-cas", title: "S7 · Cas pratique", href: "s7-cas.html", group: "Parcours" },
   { id: "support", title: "Support étudiant", href: "support-etudiant.html", group: "Parcours narratif" },
 ];
 

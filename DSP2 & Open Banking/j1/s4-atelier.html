@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>S4 — L’atelier | DSP2 &amp; Open Banking</title>
+    <title>S4 — Petit projet à restituer | DSP2 &amp; Open Banking</title>
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/print-enonce.css" media="print" />
   </head>
   <body data-bloc="s4-atelier">
     <header class="site-bar">
@@ -27,40 +28,62 @@
       <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
       <div class="fiche-main">
         <main>
+          <!-- Barre d'export (masquée à l'impression) -->
+          <div class="wrap no-print">
+            <div class="export-bar">
+              <button type="button" class="btn-print" onclick="window.print()">
+                ⤓ Exporter / imprimer en PDF
+              </button>
+            </div>
+          </div>
+
           <section class="day-hero" style="padding-bottom: 1rem">
             <div class="wrap">
-              <div class="fiche-meta">
-                <span class="tag">Jour 1 · Séquence 4</span>
-                <span class="tag tag-accent">55 min</span>
+              <div class="fiche-meta no-print">
+                <span class="tag">Jour 1 · Petit projet</span>
+                <span class="tag tag-accent">À restituer</span>
               </div>
-              <p class="day-kicker">Mise en pratique · travaux de groupe</p>
-              <h1>L’atelier</h1>
+              <p class="day-kicker">Énoncé · travail de groupe</p>
+              <h1>Petit projet&nbsp;: qualifier un accès Open Banking</h1>
               <p class="lead">
-                Banque Est reçoit trois demandes de partenaires. À vous de
-                qualifier chaque demande, de tracer le flux, de choisir
-                l’architecture et de justifier un standard.
+                Banque Est reçoit trois demandes de partenaires. En groupe, vous
+                jouez l’équipe Open Banking de la banque&nbsp;: qualifier chaque
+                partenaire, tracer le flux, choisir une architecture et justifier
+                un standard. Le fruit de votre travail est
+                <strong>restitué</strong> à l’oral en fin de séance.
               </p>
             </div>
           </section>
 
           <div class="wrap">
-            <div class="fil-rouge">
-              <span class="fil-rouge-label">Fil rouge</span>
-              <p>
-                Lyam a désormais une application qui fonctionne. Mais Banque Est
-                ne reçoit pas qu’une demande&nbsp;: elle en reçoit trois, en même
-                temps. Vous êtes l’équipe Open Banking de Banque Est.
-              </p>
-            </div>
-
+            <!-- 1. CONTEXTE -->
             <section class="section" style="border-top: none; padding-top: 1.5rem">
-              <p class="section-label">Contexte</p>
-              <h2>Trois partenaires, trois demandes</h2>
+              <p class="section-label">Le cadre</p>
+              <h2>Le scénario</h2>
               <p>
-                <em>Variante du cas «&nbsp;Nova Banque&nbsp;» du support de
-                cours&nbsp;: ici, c’est Banque Est qui reçoit les demandes. Même
-                logique, contexte du fil rouge.</em>
+                Vous êtes l’équipe Open Banking de <strong>Banque Est</strong>.
+                Trois partenaires frappent à la porte de la banque pour accéder à
+                des comptes. Votre rôle&nbsp;: décider
+                <em>à qui ouvrir, comment, et sous quelles conditions</em> — puis
+                défendre vos choix à l’oral.
               </p>
+              <div class="callout info">
+                <h3>Ce qui change par rapport aux deux ateliers</h3>
+                <p>
+                  Dans l’atelier «&nbsp;Screen scraping&nbsp;», vous étiez
+                  MonBuddy qui <strong>consommait</strong> un site mal fait. Dans
+                  l’atelier «&nbsp;De l’API au consentement&nbsp;», vous étiez
+                  MonBuddy qui <strong>consommait</strong> une API propre. Ici,
+                  changez de camp&nbsp;: vous êtes la <strong>banque</strong> qui
+                  <strong>expose</strong> et qui <strong>arbitre</strong>.
+                </p>
+              </div>
+            </section>
+
+            <!-- 2. LES TROIS DEMANDES -->
+            <section class="section">
+              <p class="section-label">Matériau</p>
+              <h2>Trois partenaires, trois demandes</h2>
               <div class="csm-table-wrap">
                 <table class="csm-table">
                   <thead>
@@ -100,12 +123,17 @@
               </div>
             </section>
 
+            <!-- 3. CE QU'IL FAUT PRODUIRE -->
             <section class="section">
-              <p class="section-label">Consigne</p>
+              <p class="section-label">Livrable</p>
               <h2>Ce qu’il faut produire</h2>
+              <p class="intro">
+                Une fiche par partenaire, tenue en groupe, puis une restitution
+                orale. Pour chaque partenaire, traitez les cinq points suivants.
+              </p>
               <ol class="steps-list">
                 <li>
-                  <strong>Qualifier chaque partenaire</strong> — a-t-il un
+                  <strong>Qualifier le partenaire</strong> — a-t-il un
                   agrément&nbsp;? De quel type (ASPSP / AISP / PISP / CBPII)&nbsp;?
                   Comment Banque Est vérifie-t-elle cet agrément avant le premier
                   appel&nbsp;?
@@ -126,82 +154,27 @@
                   <em>time-to-market</em>.
                 </li>
                 <li>
-                  <strong>Identifier deux risques</strong> et proposer une
-                  mesure de réduction pour chacun.
+                  <strong>Identifier deux risques</strong> et proposer une mesure
+                  de réduction pour chacun.
                 </li>
               </ol>
 
-              <figure class="fig-illus">
-                <svg viewBox="0 0 1000 240" role="img" aria-label="Architecture cible attendue, flux animé de bout en bout">
-                  <defs>
-                    <marker id="ah-arch" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
-                    </marker>
-                  </defs>
-                  <!-- FinanceApp -->
-                  <rect x="20" y="90" width="130" height="60" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
-                  <text x="85" y="118" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="12" font-weight="700">FinanceApp</text>
-                  <text x="85" y="136" text-anchor="middle" fill="#5a6b7c" font-size="9">TPP / PISP-AISP</text>
-
-                  <line x1="150" y1="120" x2="196" y2="120" stroke="#5a6b7c" stroke-width="2.5" class="stream" marker-end="url(#ah-arch)"/>
-                  <text x="173" y="110" text-anchor="middle" fill="#5a6b7c" font-size="8" font-weight="700">mTLS</text>
-
-                  <!-- Gateway -->
-                  <rect x="200" y="90" width="120" height="60" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
-                  <text x="260" y="116" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">API Gateway</text>
-                  <text x="260" y="134" text-anchor="middle" fill="#5a6b7c" font-size="9">auth N · throttling</text>
-
-                  <line x1="320" y1="120" x2="356" y2="120" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-arch)"/>
-
-                  <!-- Consent -->
-                  <rect x="360" y="40" width="120" height="52" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                  <text x="420" y="64" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="11" font-weight="700">Consent Mgmt</text>
-                  <text x="420" y="80" text-anchor="middle" fill="#5a6b7c" font-size="9">AIS · PIS · CBPII</text>
-
-                  <!-- IAM -->
-                  <rect x="360" y="148" width="120" height="52" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
-                  <text x="420" y="172" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="11" font-weight="700">IAM / SCA</text>
-                  <text x="420" y="188" text-anchor="middle" fill="#5a6b7c" font-size="9">redirection banque</text>
-
-                  <line x1="360" y1="120" x2="356" y2="120" stroke="#5a6b7c" stroke-width="1.5"/>
-                  <line x1="480" y1="66" x2="516" y2="96" stroke="#5a6b7c" stroke-width="1.8" marker-end="url(#ah-arch)"/>
-                  <line x1="480" y1="174" x2="516" y2="144" stroke="#5a6b7c" stroke-width="1.8" marker-end="url(#ah-arch)"/>
-
-                  <!-- Core -->
-                  <rect x="520" y="90" width="160" height="60" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2.5"/>
-                  <text x="600" y="116" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Core Banking</text>
-                  <text x="600" y="134" text-anchor="middle" fill="#5a6b7c" font-size="9">comptes · soldes · écritures</text>
-
-                  <line x1="680" y1="120" x2="716" y2="120" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-arch)"/>
-
-                  <!-- Monitoring -->
-                  <rect x="720" y="90" width="130" height="60" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                  <text x="785" y="116" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="11" font-weight="700">Monitoring</text>
-                  <text x="785" y="134" text-anchor="middle" fill="#5a6b7c" font-size="9">logs · audit</text>
-
-                  <!-- Registre / SCA légende -->
-                  <rect x="720" y="175" width="250" height="45" rx="6" fill="#fdf6f2" stroke="#c45c26" stroke-width="1.5"/>
-                  <text x="845" y="195" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">Registre EBA — vérif TPP</text>
-                  <text x="845" y="210" text-anchor="middle" fill="#5a6b7c" font-size="9">contrôle avant premier appel</text>
-                  <line x1="720" y1="197" x2="684" y2="150" stroke="#c45c26" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#ah-arch)"/>
-                </svg>
-                <figcaption>Figure — architecture cible&nbsp;: de FinanceApp au core banking, avec le consentement, la SCA, le monitoring et la vérification du registre.</figcaption>
-              </figure>
-
               <div class="callout">
-                <h3>Livrable</h3>
+                <h3>Format de restitution</h3>
                 <p>
-                  Une fiche par partenaire, sur une page, tenue en 20 minutes.
-                  Puis 5 minutes de restitution par binôme et 10 minutes de
-                  synthèse collective. Les trois partenaires peuvent être répartis
-                  entre les binômes pour gagner du temps.
+                  <strong>20 minutes</strong> de préparation en groupe, puis
+                  <strong>5 minutes de restitution par groupe</strong> et
+                  <strong>10 minutes de synthèse collective</strong>. Les trois
+                  partenaires peuvent être répartis entre les groupes pour gagner
+                  du temps&nbsp;; chaque groupe présente alors le sien.
                 </p>
               </div>
             </section>
 
-            <section class="section">
+            <!-- 4. GRILLE -->
+            <section class="section" style="border-bottom: none">
               <p class="section-label">Évaluation</p>
-              <h2>Grille</h2>
+              <h2>Grille d’évaluation</h2>
               <div class="csm-table-wrap">
                 <table class="csm-table">
                   <thead>
@@ -240,10 +213,20 @@
                   </tbody>
                 </table>
               </div>
+
+              <div class="callout info">
+                <h3>Conseil</h3>
+                <p>
+                  Appuyez-vous sur les deux ateliers&nbsp;: ce que le scraping
+                  rendait impossible (révocation, limitation des comptes,
+                  structure stable) doit transparaître dans vos choix
+                  d’architecture et de standard.
+                </p>
+              </div>
             </section>
 
             <div class="sources-box">
-              <strong>Pour prolonger</strong> — Rejouer l’atelier avec un cas
+              <strong>Pour prolonger</strong> — Rejouer le projet avec un cas
               réel de partenaire de la banque&nbsp;; comparer la documentation
               publique de deux banques françaises sur leur portail développeur.
             </div>
@@ -256,7 +239,7 @@
 
     <footer class="site-foot">
       <div class="wrap">
-        <a href="index.html">Sommaire Jour 1</a> · S4 L’atelier
+        <a href="index.html">Sommaire Jour 1</a> · S4 Petit projet à restituer
       </div>
     </footer>
     <script src="../js/nav-j1.js"></script>

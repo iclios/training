@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Labo — De l’API au consentement | DSP2 &amp; Open Banking</title>
+    <style>
+      :root {
+        --ink: #1a2b3c;
+        --soft: #5a6b7c;
+        --faint: #8a9aaa;
+        --line: #c5d3df;
+        --paper: #f7f9fb;
+        --white: #ffffff;
+        --blue: #1e5f8a;
+        --blue-l: #eef4fa;
+        --teal: #0d9f8a;
+        --teal-l: #e7f6f3;
+        --purple: #6b4fa0;
+        --purple-l: #f1edfa;
+        --warn: #c45c26;
+        --warn-l: #fdf6f2;
+        --danger: #b8322a;
+        --danger-l: #fbeceb;
+        --ok: #087a6a;
+        --radius: 12px;
+        --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        --sans-head: "Syne", "Inter", system-ui, sans-serif;
+        --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: var(--font);
+        color: var(--ink);
+        background: #eef2f6;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .doc {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+      }
+      .doc-top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .doc-brand {
+        font-family: var(--sans-head);
+        font-weight: 800;
+        font-size: 1.5rem;
+        letter-spacing: -0.01em;
+        text-decoration: none;
+        color: var(--ink);
+      }
+      .doc-brand span { color: var(--blue); }
+      .doc-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+      .btn {
+        display: inline-block;
+        appearance: none;
+        border: none;
+        font: inherit;
+        font-weight: 700;
+        font-size: 0.85rem;
+        padding: 0.55rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        color: #fff;
+        background: var(--blue);
+      }
+      .btn:hover { filter: brightness(1.08); }
+      .btn.teal { background: var(--teal); }
+      .btn.ghost {
+        background: transparent;
+        color: var(--blue);
+        border: 1.5px solid var(--line);
+      }
+
+      article {
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 2rem 2.2rem;
+        box-shadow: 0 1px 3px rgba(26, 43, 60, .06);
+      }
+
+      h1 {
+        font-family: var(--sans-head);
+        font-size: 1.9rem;
+        line-height: 1.15;
+        margin: 0 0 0.6rem;
+      }
+      .lead {
+        font-size: 1.02rem;
+        color: var(--soft);
+        margin: 0 0 0.5rem;
+      }
+      h2 {
+        font-family: var(--sans-head);
+        font-size: 1.3rem;
+        margin: 2.2rem 0 0.7rem;
+        padding-top: 1.2rem;
+        border-top: 1px solid var(--line);
+      }
+      h2:first-of-type { border-top: none; padding-top: 0; }
+      h3 {
+        font-family: var(--sans-head);
+        font-size: 1.08rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--ink);
+      }
+      p { margin: 0.6rem 0; color: var(--ink); }
+      ul, ol { margin: 0.6rem 0; padding-left: 1.4rem; }
+      li { margin: 0.3rem 0; }
+      a { color: var(--blue); }
+      code {
+        font-family: var(--mono);
+        font-size: 0.86em;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 0.05em 0.35em;
+      }
+      strong { color: var(--ink); }
+
+      .callout {
+        border-left: 4px solid var(--blue);
+        background: var(--blue-l);
+        border-radius: 0 8px 8px 0;
+        padding: 0.8rem 1rem;
+        margin: 1rem 0;
+        font-size: 0.92rem;
+      }
+      .callout strong { color: var(--blue); }
+      .callout.warn {
+        border-color: var(--warn);
+        background: var(--warn-l);
+      }
+      .callout.warn strong { color: var(--warn); }
+      .callout.teal {
+        border-color: var(--teal);
+        background: var(--teal-l);
+      }
+      .callout.teal strong { color: var(--ok); }
+      .callout.danger {
+        border-color: var(--danger);
+        background: var(--danger-l);
+      }
+      .callout.danger strong { color: var(--danger); }
+
+      .steps {
+        list-style: none;
+        counter-reset: s;
+        padding-left: 0;
+        margin: 0.8rem 0;
+      }
+      .steps > li {
+        position: relative;
+        counter-increment: s;
+        padding-left: 2.1rem;
+        margin: 0.5rem 0;
+      }
+      .steps > li::before {
+        content: counter(s);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        border-radius: 50%;
+        background: var(--blue);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.8rem;
+        font-family: var(--sans-head);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+        background: var(--white);
+      }
+      th, td {
+        text-align: left;
+        padding: 0.55rem 0.7rem;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      thead th {
+        background: var(--paper);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--soft);
+      }
+      tbody th { font-weight: 700; }
+      tbody tr.is-exergue { background: var(--warn-l); }
+
+      .files {
+        background: #0f1d2b;
+        color: #dce8f2;
+        border-radius: 10px;
+        padding: 1rem 1.2rem;
+        font-family: var(--mono);
+        font-size: 0.84rem;
+        line-height: 1.6;
+        overflow-x: auto;
+        white-space: pre;
+        margin: 1rem 0;
+      }
+
+      .json {
+        background: #0f1d2b;
+        color: #dce8f2;
+        border-radius: 10px;
+        padding: 1rem 1.2rem;
+        font-family: var(--mono);
+        font-size: 0.82rem;
+        line-height: 1.5;
+        overflow-x: auto;
+        white-space: pre;
+        margin: 1rem 0;
+      }
+
+      .doc-foot {
+        margin-top: 2.5rem;
+        color: var(--faint);
+        font-size: 0.82rem;
+        text-align: center;
+      }
+
+      /* Impression : version papier propre */
+      @media print {
+        body { background: #fff; }
+        .doc-actions, .doc-brand, .doc-foot { display: none; }
+        article {
+          border: none;
+          box-shadow: none;
+          padding: 0;
+        }
+        .files, .json { background: #f3f6f9; color: #1a2b3c; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="doc">
+      <div class="doc-top">
+        <a class="doc-brand" href="../../index.html">DSP2 <span>&amp; Open Banking</span></a>
+        <div class="doc-actions">
+          <a class="btn teal" href="index.html">▶ Ouvrir le labo</a>
+          <button class="btn ghost" type="button" onclick="window.print()">⤓ Imprimer / PDF</button>
+        </div>
+      </div>
+
+      <article>
+        <h1>Labo — De l’API au consentement</h1>
+        <p class="lead">
+          Labo interactif du <strong>Jour 1</strong> du cours
+          <em>DSP2 &amp; Open Banking</em>, à placer juste après la séquence
+          <strong>S2 · La réponse</strong>. Trois temps de l’accès API&nbsp;:
+          accorder un consentement, récupérer les comptes en JSON, puis révoquer
+          l’accès.
+        </p>
+
+        <h2>Contexte</h2>
+        <p>
+          Lyam a un compte chez <strong>Banque Est</strong>. <strong>MonBuddy</strong>
+          doit lire ses comptes. Dans le labo «&nbsp;Screen scraping&nbsp;», elle
+          devait rejouer le mot de passe de Lyam et lire un tableau HTML&nbsp;:
+          fragile et intrusif. Ici, Banque Est expose une <strong>API conforme
+          DSP2</strong>&nbsp;: plus de mot de passe, un <strong>consentement</strong>,
+          un <strong>jeton</strong>, et une <strong>révocation</strong> possible à
+          tout moment.
+        </p>
+        <ul>
+          <li>
+            <strong>Étape 1 — Consentement</strong> : Lyam autorise MonBuddy,
+            choisit les comptes et la durée&nbsp;; la banque émet un
+            <code>consentId</code> et un <code>access_token</code>.
+          </li>
+          <li>
+            <strong>Étape 2 — Appel API</strong> : MonBuddy appelle
+            <code>GET /accounts</code> avec son jeton&nbsp;; la banque répond du
+            <strong>JSON structuré</strong>, pas du HTML à scraper.
+          </li>
+          <li>
+            <strong>Étape 3 — Révocation</strong> : Lyam révoque&nbsp;; le jeton
+            est invalidé <strong>immédiatement</strong>, le prochain appel reçoit
+            <code>401</code>.
+          </li>
+        </ul>
+
+        <h2>Comment lancer (aucune installation)</h2>
+        <p>
+          Ce labo est <strong>100 % autonome</strong> : pas de serveur, pas de
+          dépendance, pas d’internet requis.
+        </p>
+        <ol class="steps">
+          <li>Téléchargez (ou décompressez) le dossier <code>labo-api/</code>.</li>
+          <li>Double-cliquez sur <strong><code>index.html</code></strong>.</li>
+          <li>Le labo s’ouvre dans votre navigateur (Chrome, Firefox, Edge, Safari).</li>
+        </ol>
+        <div class="callout">
+          <strong>Astuce</strong> — si votre navigateur bloque quelque chose,
+          ouvrez une fenêtre et glissez-déposez <code>index.html</code> dedans.
+          La page fonctionne aussi bien en <code>file://</code> qu’en ligne, car
+          tout est côté client (JS pur).
+        </div>
+
+        <h2>Toutes les manipulations, une par une</h2>
+        <p>
+          Voici <strong>tout ce que vous pouvez faire</strong> dans le labo,
+          classé par onglet. Chaque action indique ce qu’il faut observer.
+        </p>
+
+        <h3>Onglet 1 — Consentement</h3>
+        <p><strong>Action 1.1 — Accorder le consentement</strong></p>
+        <ol class="steps">
+          <li>
+            Sur l’onglet <strong>1 · Consentement</strong> (affiché par défaut),
+            cochez les comptes autorisés (par défaut&nbsp;: «&nbsp;Compte
+            courant&nbsp;» et «&nbsp;Livret A&nbsp;»).
+          </li>
+          <li>Choisissez une durée (par défaut&nbsp;: 90 jours).</li>
+          <li>Cliquez sur <strong>« Accorder le consentement »</strong>.</li>
+        </ol>
+        <p>À observer :</p>
+        <ul>
+          <li>La banque émet un <code>consentId</code> et un <code>access_token</code>.</li>
+          <li>
+            Les <strong>scopes</strong> (comptes autorisés) et l’<strong>expiration</strong>
+            sont affichés — l’accès est limité et daté.
+          </li>
+          <li>
+            <strong>Le mot de passe de Lyam n’apparaît nulle part</strong> : la
+            banque ne l’a jamais partagé.
+          </li>
+        </ul>
+
+        <p><strong>Action 1.2 — Révoquer depuis cet onglet (facultatif)</strong></p>
+        <ul>
+          <li>
+            Cliquez sur <strong>« Révoquer maintenant »</strong> pour invalider
+            le jeton immédiatement.
+          </li>
+        </ul>
+
+        <h3>Onglet 2 — Appel API</h3>
+        <p><strong>Action 2.1 — Appeler /accounts</strong></p>
+        <ol class="steps">
+          <li>Cliquez sur l’onglet <strong>2 · Appel API</strong>.</li>
+          <li>Cliquez sur <strong>« Appeler /accounts »</strong>.</li>
+        </ol>
+        <p>À observer :</p>
+        <ul>
+          <li>
+            La requête <code>GET /v1/accounts</code> s’affiche avec l’en-tête
+            <code>Authorization: Bearer …</code>.
+          </li>
+          <li>
+            La réponse <strong>JSON structurée</strong> apparaît&nbsp;: des champs
+            nommés (<code>accountId</code>, <code>iban</code>, <code>balance</code>…),
+            pas des balises à deviner.
+          </li>
+          <li>
+            Côté MonBuddy, les comptes reçus s’affichent lisiblement.
+          </li>
+        </ul>
+        <div class="callout teal">
+          <strong>Stable par contrat</strong> — l’API est versionnée
+          (<code>/v1</code>). Une refonte du site web ne casse <strong>rien</strong>
+          ici, contrairement au scraping où un changement de classe CSS suffisait
+          à tout casser.
+        </div>
+
+        <h3>Onglet 3 — Révocation</h3>
+        <p><strong>Action 3.1 — Révoquer puis réessayer</strong></p>
+        <ol class="steps">
+          <li>Cliquez sur l’onglet <strong>3 · Révocation</strong>.</li>
+          <li>Cliquez sur <strong>« Révoquer le consentement »</strong>.</li>
+          <li>Cliquez sur <strong>« Réessayer GET /accounts »</strong>.</li>
+        </ol>
+        <p>À observer :</p>
+        <ul>
+          <li>Le statut du consentement passe à <strong>« révoqué »</strong>.</li>
+          <li>
+            La nouvelle tentative d’appel reçoit
+            <strong><code>401 Unauthorized</code></strong>&nbsp;: MonBuddy n’a
+            plus aucun accès.
+          </li>
+          <li>
+            Lyam n’a <strong>pas eu à changer son mot de passe</strong> — c’est
+            toute la différence avec le scraping.
+          </li>
+        </ul>
+        <div class="callout warn">
+          <strong>Le pouvoir qui manquait au scraping</strong> — avec le scraping,
+          MonBuddy avait le mot de passe&nbsp;: changer ce mot de passe ne la
+          bloquait même pas, puisqu’elle l’avait stocké. Ici, la révocation est
+          <strong>immédiate et certaine</strong>&nbsp;: le jeton ne vaut plus rien.
+        </div>
+
+        <h3>Navigation entre les onglets</h3>
+        <ul>
+          <li><strong>Clic</strong> sur un onglet pour basculer.</li>
+          <li>
+            <strong>Flèches ← / →</strong> au clavier pour passer d’un onglet à
+            l’autre (accessibilité).
+          </li>
+        </ul>
+
+        <h2>Exemple de réponse <code>GET /accounts</code></h2>
+        <p>
+          La banque répond du JSON structuré, versionné par le contrat
+          <code>/v1</code>&nbsp;:
+        </p>
+        <div class="json">{
+  "data": [
+    {
+      "accountId": "acc_1000",
+      "type": "Compte courant",
+      "iban": "FR76 3000 4000 0312 3456 7890 143",
+      "currency": "EUR",
+      "balance": "1 842,60 EUR"
+    }
+  ],
+  "_links": { "self": "/v1/accounts" }
+}</div>
+
+        <h2>Récapitulatif des manipulations</h2>
+        <table>
+          <thead>
+            <tr><th>Activité</th><th>Type</th><th>Où</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Accorder le consentement</th><td>Manipulation</td><td>🔧 Labo — onglet 1</td></tr>
+            <tr><th>Recevoir consentId + access_token</th><td>Observation</td><td>🔧 Labo — onglet 1</td></tr>
+            <tr><th>Appel GET /accounts (JSON)</th><td>Manipulation</td><td>🔧 Labo — onglet 2</td></tr>
+            <tr><th>Révoquer le consentement</th><td>Manipulation</td><td>🔧 Labo — onglet 3</td></tr>
+            <tr class="is-exergue"><th>Voir l’appel refusé (401)</th><td>Observation</td><td>🔧 Labo — onglet 3</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Pistes de réflexion (pour l’atelier)</h2>
+        <ol>
+          <li>
+            Pourquoi un <strong>consentement</strong> vaut-il mieux qu’un couple
+            identifiant / mot de passe&nbsp;? (limité, daté, révocable)
+          </li>
+          <li>
+            Pourquoi une <strong>réponse JSON</strong> est-elle plus stable qu’un
+            <strong>tableau HTML</strong> à scraper ?
+          </li>
+          <li>
+            Que se passe-t-il après révocation, et pourquoi Lyam n’a-t-il pas à
+            changer son mot de passe ?
+          </li>
+          <li>
+            Dans le scraping, MonBuddy pouvait-elle «&nbsp;révoquer&nbsp;»
+            l’accès&nbsp;? Que fallait-il faire, et suffisait-il&nbsp;?
+          </li>
+          <li>
+            En quoi ce labo illustre-t-il la réponse apportée par la DSP2
+            (séquence S2) ?
+          </li>
+        </ol>
+
+        <h2>Fichiers</h2>
+        <div class="files">labo-api/
+  index.html       → la page (point d'entrée, double-clic)
+  labo-api.css     → le style
+  labo-api.js      → toute la logique (onglets, consentement, appel, révocation)
+  README.html      → ce document (version lisible en navigateur)</div>
+
+        <h2>Notes techniques</h2>
+        <ul>
+          <li>
+            <strong>Aucune requête réseau</strong> : la « banque », l’API et
+            l’« application » sont simulées dans la même page.
+          </li>
+          <li>
+            <strong>Aucun serveur</strong> : le consentement, le jeton et les
+            réponses <code>GET /accounts</code> sont simulés en JavaScript pur.
+          </li>
+          <li>
+            <strong>Révocation</strong> : une fois le consentement révoqué, tout
+            nouvel appel renvoie <code>401 Unauthorized</code>, illustrant la
+            perte immédiate d’accès.
+          </li>
+          <li>
+            <strong>Données fictives uniquement.</strong> Aucun identifiant réel,
+            aucun compte réel.
+          </li>
+        </ul>
+      </article>
+
+      <p class="doc-foot">
+        Labo du Jour 1 · DSP2 &amp; Open Banking — données fictives, aucun réseau,
+        aucun serveur.
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Labo · Connexion classique vs Screen scraping</title>
+    <link rel="stylesheet" href="labo.css" />
+  </head>
+  <body>
+    <div class="labo-shell">
+      <div class="labo-top">
+        <div class="labo-brand">Labo <span>· Lyam &amp; MonBuddy</span></div>
+        <div class="labo-top-right">
+          <a class="labo-help" href="README.html">📖 Mode d’emploi</a>
+          <span class="tag">Exercice étudiant · Jour 1</span>
+        </div>
+      </div>
+      <p class="labo-sub">
+        Manipulez les deux façons dont une application peut accéder au compte
+        de Lyam chez Banque Est&nbsp;: la
+        <strong>connexion classique</strong> (Lyam lui-même, sur le site de sa
+        banque) et le <strong>screen scraping</strong> (MonBuddy qui se fait
+        passer pour Lyam). Observez le panneau «&nbsp;identifiants&nbsp;» et le
+        journal d’étapes.
+      </p>
+
+      <!-- ============ ONGLETS ============ -->
+      <div class="tabs" role="tablist" aria-label="Scénarios">
+        <button class="tab" id="tab-login" role="tab" aria-selected="true"
+                aria-controls="panel-login">
+          <span class="tab-num">1</span>Connexion classique
+        </button>
+        <button class="tab" id="tab-scraping" role="tab" aria-selected="false"
+                aria-controls="panel-scraping" tabindex="-1">
+          <span class="tab-num">2</span>Screen scraping
+        </button>
+      </div>
+
+      <!-- ============ SCÉNARIO 1 : CONNEXION CLASSIQUE ============ -->
+      <section class="panel" id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+        <div class="scene">
+          <!-- Monde banque -->
+          <div class="world bank">
+            <div class="world-head"><span class="dot"></span><h2>Banque Est · site officiel</h2></div>
+            <div class="world-body">
+              <p class="world-sub">Lyam ouvre lui-même le site de sa banque et se connecte.</p>
+
+              <div class="login-card" id="bank-login-1">
+                <h3>Connexion à votre espace client</h3>
+                <p class="hint">Identifiant&nbsp;: lyam.demo — Mot de passe&nbsp;: soleilmars</p>
+                <div class="field">
+                  <label for="login-id-1">Identifiant</label>
+                  <input id="login-id-1" type="text" autocomplete="off" value="lyam.demo" />
+                </div>
+                <div class="field">
+                  <label for="login-pwd-1">Mot de passe</label>
+                  <input id="login-pwd-1" type="password" autocomplete="off" value="soleilmars" />
+                </div>
+                <button class="btn teal block" id="btn-login-1">Se connecter</button>
+              </div>
+
+              <div class="dashboard" id="dash-1">
+                <div class="dash-top">
+                  <div class="dash-user">Bonjour Lyam<small>Banque Est · compte courant</small></div>
+                  <div class="solde">1 842,60 €</div>
+                </div>
+                <table class="releve">
+                  <thead>
+                    <tr><th>Date</th><th>Libellé</th><th>Montant</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="date">12/03/2017</td><td class="libelle">SNCF PARIS</td><td class="montant debit">−45,00 €</td></tr>
+                    <tr><td class="date">13/03/2017</td><td class="libelle">CARREFOUR</td><td class="montant debit">−82,40 €</td></tr>
+                    <tr><td class="date">15/03/2017</td><td class="libelle">VIREMENT SALAIRE</td><td class="montant credit">+2 300,00 €</td></tr>
+                    <tr><td class="date">16/03/2017</td><td class="libelle">NETFLIX</td><td class="montant debit">−13,99 €</td></tr>
+                  </tbody>
+                </table>
+                <button class="btn ghost" id="btn-logout-1" style="margin-top:0.9rem">Se déconnecter</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Monde app : Lyam -->
+          <div class="world app">
+            <div class="world-head"><span class="dot"></span><h2>Lyam</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                Dans ce scénario, Lyam est seul&nbsp;: il se connecte à sa banque
+                pour consulter ses comptes. Aucun tiers n’intervient, aucun
+                identifiant n’est partagé.
+              </p>
+              <div class="note">
+                <p>
+                  <strong>À observer.</strong> La connexion classique est
+                  <em>directe</em>&nbsp;: Lyam saisit ses codes dans le site de
+                  la banque. Rien ne sort de ce périmètre. C’est sûr — mais
+                  Lyam doit le faire banque par banque, et rien ne permet de
+                  «&nbsp;voir tout au même endroit&nbsp;».
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journal">
+          <div class="journal-head">Journal d’étapes</div>
+          <div class="journal-body" id="journal-1">
+            <div class="line"><span class="t">—</span><span class="msg">En attente… Cliquez sur « Se connecter » côté banque.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCÉNARIO 2 : SCREEN SCRAPING ============ -->
+      <section class="panel" id="panel-scraping" role="tabpanel" aria-labelledby="tab-scraping" hidden>
+        <div class="scene">
+          <!-- Monde banque -->
+          <div class="world bank">
+            <div class="world-head"><span class="dot"></span><h2>Banque Est · page de connexion</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                La même page que dans le scénario 1. Mais cette fois, c’est
+                MonBuddy qui la remplit — sans que Lyam ne fasse quoi que ce
+                soit.
+              </p>
+
+              <div class="login-card" id="bank-login-2">
+                <h3>Connexion à votre espace client</h3>
+                <p class="hint" id="hint-2">Le formulaire est vide.</p>
+                <div class="field">
+                  <label for="login-id-2">Identifiant</label>
+                  <input id="login-id-2" type="text" autocomplete="off" />
+                </div>
+                <div class="field">
+                  <label for="login-pwd-2">Mot de passe</label>
+                  <input id="login-pwd-2" type="password" autocomplete="off" />
+                </div>
+                <button class="btn teal block" id="btn-login-2" disabled>Se connecter</button>
+              </div>
+
+              <div class="dashboard" id="dash-2">
+                <div class="dash-top">
+                  <div class="dash-user">Bonjour Lyam<small>Banque Est · compte courant</small></div>
+                  <div class="solde">1 842,60 €</div>
+                </div>
+                <table class="releve" id="releve-2">
+                  <thead>
+                    <tr><th>Date</th><th>Libellé</th><th>Montant</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="date">12/03/2017</td><td class="libelle">SNCF PARIS</td><td class="montant debit">−45,00 €</td></tr>
+                    <tr><td class="date">13/03/2017</td><td class="libelle">CARREFOUR</td><td class="montant debit">−82,40 €</td></tr>
+                    <tr><td class="date">15/03/2017</td><td class="libelle">VIREMENT SALAIRE</td><td class="montant credit">+2 300,00 €</td></tr>
+                    <tr><td class="date">16/03/2017</td><td class="libelle">NETFLIX</td><td class="montant debit">−13,99 €</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Monde app : MonBuddy -->
+          <div class="world app">
+            <div class="world-head"><span class="dot"></span><h2>MonBuddy · application tierce</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                MonBuddy n’a <strong>aucune API</strong> à disposition. Elle
+                rejoue les identifiants de Lyam sur la page de la banque, puis
+                lit le tableau HTML pour en extraire les opérations.
+              </p>
+
+              <div class="app-actions">
+                <button class="btn purple block" id="btn-scrape">Lancer la « synchro » MonBuddy</button>
+                <button class="btn warn block" id="btn-refonte" disabled>Simuler une refonte du site banque</button>
+                <button class="btn ghost block" id="btn-reset-2">Réinitialiser</button>
+              </div>
+
+              <div class="refonte-banner" id="refonte-banner" hidden>
+                <strong>Refonte appliquée.</strong> La banque a changé son HTML&nbsp;:
+                les classes <code>td.date</code>, <code>td.libelle</code>,
+                <code>td.montant</code> sont devenues
+                <code>td.tx-when</code>, <code>td.tx-what</code>,
+                <code>td.tx-amount</code>. Relancez la synchro pour voir le robot casser.
+              </div>
+
+              <div class="extracted" id="extracted-2">
+                <h4>Données extraites du DOM</h4>
+                <div class="empty">Aucune donnée pour l’instant. Lancez la synchro.</div>
+              </div>
+
+              <div class="leak" id="leak-2" hidden>
+                <h4>⚠ Identifiants stockés par MonBuddy</h4>
+                <div class="leak-row"><span class="leak-key">Identifiant</span><span class="leak-val" id="leak-id">lyam.demo</span></div>
+                <div class="leak-row"><span class="leak-key">Mot de passe</span><span class="leak-val" id="leak-pwd">soleilmars</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journal">
+          <div class="journal-head">Journal d’étapes</div>
+          <div class="journal-body" id="journal-2">
+            <div class="line"><span class="t">—</span><span class="msg">En attente… Cliquez sur « Lancer la synchro MonBuddy ».</span></div>
+          </div>
+        </div>
+
+        <div class="note warn">
+          <p>
+            <strong>Ce que vous venez de voir.</strong> MonBuddy a fait
+            exactement ce qu’un humain aurait fait&nbsp;: remplir le formulaire,
+            ouvrir la session, lire la page. La banque n’a pas pu faire la
+            différence. Et pour se reconnecter demain, MonBuddy <em>garde</em> les
+            identifiants. C’est précisément ce que la DSP2 interdit, au profit
+            d’interfaces dédiées et d’un consentement révocable.
+          </p>
+        </div>
+      </section>
+
+      <p class="labo-foot">
+        Labo pédagogique · DSP2 &amp; Open Banking · Jour 1 — données fictives,
+        aucun réseau, aucun serveur. Ouvrez simplement ce fichier dans un
+        navigateur.
+      </p>
+    </div>
+
+    <script src="labo.js"></script>
+  </body>
+</html>

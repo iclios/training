@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Labo · De l’API au consentement | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="labo-api.css" />
+  </head>
+  <body>
+    <div class="labo-shell">
+      <div class="labo-top">
+        <div class="labo-brand">Labo <span>· API &amp; consentement</span></div>
+        <div class="labo-top-right">
+          <a class="labo-help" href="README.html">📖 Mode d’emploi</a>
+          <span class="tag">Exercice étudiant · Jour 1</span>
+        </div>
+      </div>
+      <p class="labo-sub">
+        Après le scraping (atelier précédent), voici la <strong>réponse DSP2</strong>.
+        Vous allez accorder un <strong>consentement</strong>, récupérer les comptes
+        de Lyam par un <strong>appel API</strong> en JSON, puis <strong>révoquer</strong>
+        l’accès. Observez la différence&nbsp;: ici, aucun mot de passe n’est stocké.
+      </p>
+
+      <!-- ============ ONGLETS ============ -->
+      <div class="tabs" role="tablist" aria-label="Étapes de l’accès API">
+        <button class="tab" id="tab-consent" role="tab" aria-selected="true"
+                aria-controls="panel-consent">
+          <span class="tab-num">1</span>Consentement
+        </button>
+        <button class="tab" id="tab-call" role="tab" aria-selected="false"
+                aria-controls="panel-call" tabindex="-1">
+          <span class="tab-num">2</span>Appel API
+        </button>
+        <button class="tab" id="tab-revoke" role="tab" aria-selected="false"
+                aria-controls="panel-revoke" tabindex="-1">
+          <span class="tab-num">3</span>Révocation
+        </button>
+      </div>
+
+      <!-- ============ ÉTAPE 1 : CONSENTEMENT ============ -->
+      <section class="panel" id="panel-consent" role="tabpanel" aria-labelledby="tab-consent">
+        <div class="scene">
+          <div class="world bank">
+            <div class="world-head"><span class="dot"></span><h2>Banque Est · page de consentement</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                C’est <strong>Lyam</strong> qui est sur le site de sa banque (redirection SCA).
+                Il choisit ce qu’il autorise MonBuddy à voir, et pour combien de temps.
+              </p>
+
+              <div class="consent-card" id="consent-form">
+                <h3>Autoriser MonBuddy à accéder à vos comptes</h3>
+                <p class="hint">Application tierce agréée · AISP</p>
+
+                <fieldset class="acc-scope">
+                  <legend>Comptes autorisés</legend>
+                  <label><input type="checkbox" class="acc-check" value="Compte courant" checked /> Compte courant</label>
+                  <label><input type="checkbox" class="acc-check" value="Livret A" checked /> Livret A</label>
+                  <label><input type="checkbox" class="acc-check" value="Compte-titres" /> Compte-titres</label>
+                </fieldset>
+
+                <div class="field">
+                  <label for="consent-days">Durée du consentement</label>
+                  <select id="consent-days">
+                    <option value="90">90 jours (recommandé)</option>
+                    <option value="180">180 jours</option>
+                    <option value="30">30 jours</option>
+                  </select>
+                </div>
+
+                <button class="btn teal block" id="btn-consent">Accorder le consentement</button>
+              </div>
+
+              <div class="granted" id="granted-1" hidden>
+                <h3>✓ Consentement accordé</h3>
+                <div class="kv"><span class="k">consentId</span><span class="v mono" id="out-consent-id">—</span></div>
+                <div class="kv"><span class="k">access_token</span><span class="v mono" id="out-token">—</span></div>
+                <div class="kv"><span class="k">Scopes</span><span class="v mono" id="out-scopes">—</span></div>
+                <div class="kv"><span class="k">Expiration</span><span class="v mono" id="out-expire">—</span></div>
+                <p class="note-line">
+                  Ce jeton remplace l’identifiant + mot de passe. Il est <strong>limité</strong>
+                  aux comptes choisis, <strong>daté</strong>, et <strong>révocable</strong>.
+                </p>
+                <button class="btn ghost" id="btn-revoke-1">Révoquer maintenant</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="world app">
+            <div class="world-head"><span class="dot"></span><h2>MonBuddy · application tierce</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                MonBuddy n’a <strong>jamais</strong> le mot de passe de Lyam.
+                Elle ne reçoit qu’un jeton, porteur de droits limités.
+              </p>
+              <div class="note">
+                <p>
+                  <strong>À observer.</strong> Comparez avec le labo scraping&nbsp;:
+                  là-bas, MonBuddy stockait le mot de passe «&nbsp;en clair&nbsp;».
+                  Ici, sans mot de passe, une fuite du jeton n’expose que les
+                  comptes autorisés, et pour la durée choisie.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journal">
+          <div class="journal-head">Journal d’étapes</div>
+          <div class="journal-body" id="journal-consent">
+            <div class="line"><span class="t">—</span><span class="msg">En attente… Cochez des comptes puis « Accorder le consentement ».</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ÉTAPE 2 : APPEL API ============ -->
+      <section class="panel" id="panel-call" role="tabpanel" aria-labelledby="tab-call" hidden>
+        <div class="scene">
+          <div class="world bank">
+            <div class="world-head"><span class="dot"></span><h2>Banque Est · API</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                MonBuddy appelle l’endpoint <code>GET /accounts</code> avec son jeton.
+                La banque répond du <strong>JSON structuré</strong>, pas du HTML à scraper.
+              </p>
+
+              <div class="req-line">
+                <span class="verb">GET</span>
+                <span class="url">https://api.banque-est.example/v1/accounts</span>
+              </div>
+              <div class="req-headers mono">
+                Authorization: Bearer <span id="hdr-token">—</span>
+              </div>
+              <button class="btn teal block" id="btn-call">Appeler /accounts</button>
+
+              <pre class="json" id="json-resp"><code>// La réponse JSON apparaîtra ici après l’appel.</code></pre>
+            </div>
+          </div>
+
+          <div class="world app">
+            <div class="world-head"><span class="dot"></span><h2>MonBuddy · données reçues</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                Aucun parsing de balises&nbsp;: MonBuddy lit directement des champs
+                nommés. Une refonte du site web ne casse <strong>rien</strong> ici.
+              </p>
+              <div class="accounts" id="accounts-2">
+                <div class="empty">Aucun compte pour l’instant. Cliquez sur « Appeler /accounts ».</div>
+              </div>
+              <div class="callout-mini">
+                <strong>Stable par contrat.</strong> L’API est versionnée (<code>/v1</code>)&nbsp;:
+                les champs ne changent pas dans ton dos, contrairement aux classes CSS d’une page.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journal">
+          <div class="journal-head">Journal d’étapes</div>
+          <div class="journal-body" id="journal-call">
+            <div class="line"><span class="t">—</span><span class="msg">En attente… Accordez d’abord un consentement (onglet 1).</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ÉTAPE 3 : RÉVOCATION ============ -->
+      <section class="panel" id="panel-revoke" role="tabpanel" aria-labelledby="tab-revoke" hidden>
+        <div class="scene">
+          <div class="world bank">
+            <div class="world-head"><span class="dot"></span><h2>Banque Est · consentement</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                Lyam peut révoquer l’accès à tout moment. Effet&nbsp;: le jeton de
+                MonBuddy est invalidé <strong>immédiatement</strong>.
+              </p>
+
+              <div class="revoke-card" id="revoke-card">
+                <div class="kv"><span class="k">Statut</span><span class="v" id="revoke-status">—</span></div>
+                <div class="kv"><span class="k">consentId</span><span class="v mono" id="revoke-consent-id">—</span></div>
+                <button class="btn warn block" id="btn-revoke">Révoquer le consentement</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="world app">
+            <div class="world-head"><span class="dot"></span><h2>MonBuddy · tentative d’accès</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                Après révocation, MonBuddy réessaie d’appeler l’API avec son ancien
+                jeton. La banque doit refuser.
+              </p>
+              <button class="btn purple block" id="btn-retry">Réessayer GET /accounts</button>
+              <div class="result-box" id="retry-result">
+                <div class="empty">Révoquez le consentement à gauche, puis réessayez.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journal">
+          <div class="journal-head">Journal d’étapes</div>
+          <div class="journal-body" id="journal-revoke">
+            <div class="line"><span class="t">—</span><span class="msg">En attente… Accordez un consentement (onglet 1) puis revenez ici.</span></div>
+          </div>
+        </div>
+
+        <div class="note warn">
+          <p>
+            <strong>Ce que vous venez de voir.</strong> La révocation coupe l’accès tout de
+            suite, sans que Lyam ait à changer son mot de passe. Avec le scraping, il n’y
+            avait <em>aucun</em> bouton « révoquer »&nbsp;: il fallait changer le mot de passe
+            — ce qui ne bloquait même pas MonBuddy, qui l’avait stocké. C’est la limite que
+            la DSP2 corrige.
+          </p>
+        </div>
+      </section>
+
+      <p class="labo-foot">
+        Labo pédagogique · DSP2 &amp; Open Banking · Jour 1 — données fictives,
+        aucun réseau, aucun serveur. Ouvrez simplement ce fichier dans un
+        navigateur.
+      </p>
+    </div>
+
+    <script src="labo-api.js"></script>
+  </body>
+</html>

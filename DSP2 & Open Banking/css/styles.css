@@ -234,6 +234,46 @@ code {
   border-color: var(--accent);
 }
 
+/* —— Bouton de lancement du labo (atelier) —— */
+.btn-lab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.8rem 1.3rem;
+  background: var(--tpp);
+  color: #fff;
+  border: 1px solid var(--tpp);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-lab:hover {
+  background: #4b3480;
+  border-color: #4b3480;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(107, 79, 160, 0.28);
+}
+
+.btn-lab .arrow {
+  font-size: 1.05em;
+}
+
+@media (max-width: 640px) {
+  .labo-launch {
+    grid-template-columns: 1fr !important;
+  }
+
+  .btn-lab {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
 /* —— Sections —— */
 .section {
   padding: 2.5rem 0;
@@ -1417,6 +1457,14 @@ code {
   width: 100%;
   height: auto;
   min-width: 620px;
+}
+
+.diagram figcaption {
+  margin: 0.65rem 0.25rem 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.4;
 }
 
 .diagram svg text {

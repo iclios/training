@@ -8,9 +8,11 @@ window.OB_BLOCS = [
   { id: "directives-monde", title: "L’Open Banking hors d’Europe", href: "directives-monde.html", group: "Cadre réglementaire" },
   // Parcours narratif (principal)
   { id: "s1-probleme", title: "S1 · Le problème", href: "s1-probleme.html", group: "Parcours narratif" },
+  { id: "atelier-scraping", title: "Atelier · Screen scraping", href: "atelier-scraping.html", group: "Parcours narratif" },
   { id: "s2-reponse", title: "S2 · La réponse", href: "s2-reponse.html", group: "Parcours narratif" },
+  { id: "atelier-api", title: "Atelier · De l’API au consentement", href: "atelier-api.html", group: "Parcours narratif" },
   { id: "s3-machine", title: "S3 · La machine", href: "s3-machine.html", group: "Parcours narratif" },
-  { id: "s4-atelier", title: "S4 · L’atelier", href: "s4-atelier.html", group: "Parcours narratif" },
+  { id: "s4-atelier", title: "S4 · Petit projet à restituer", href: "s4-atelier.html", group: "Parcours narratif" },
   // Annexes
   { id: "annexe", title: "Annexe · Concepts et statuts", href: "annexe.html", group: "Annexes" },
   { id: "support", title: "Support étudiant", href: "support-etudiant.html", group: "Annexes" },

@@ -47,7 +47,6 @@
           <a class="bloc-sidebar-item" href="#s1-probleme"><span class="bloc-sidebar-num">07</span><span class="bloc-sidebar-label">S1 · Le problème</span></a>
           <a class="bloc-sidebar-item" href="#s2-reponse"><span class="bloc-sidebar-num">08</span><span class="bloc-sidebar-label">S2 · La réponse</span></a>
           <a class="bloc-sidebar-item" href="#s3-machine"><span class="bloc-sidebar-num">09</span><span class="bloc-sidebar-label">S3 · La machine</span></a>
-          <a class="bloc-sidebar-item" href="#s4-atelier"><span class="bloc-sidebar-num">10</span><span class="bloc-sidebar-label">S4 · L'atelier</span></a>
         </nav>
       </aside>
 
@@ -80,11 +79,11 @@
     </div>
   </section>
   <div class="wrap support-bloc-body">
-<section class="day-hero" style="padding-bottom: 1.5rem">
+
+          <section class="day-hero" style="padding-bottom: 1.5rem">
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 1 · Ouverture</span>
-                <span class="tag tag-accent">4 h</span>
               </div>
               <p class="day-kicker">Accueil</p>
               <h1>Intro &amp; objectifs</h1>
@@ -164,13 +163,26 @@
               </figure>
 
               <div class="key-idea">
-                <p class="label">Pourquoi c’est important ici</p>
-                <p>
-                  Une directive n’est jamais <em>terminée</em>&nbsp;: deux pays
-                  peuvent l’appliquer différemment. Retenez ce mot dès
-                  maintenant, il reviendra chaque fois qu’on parlera de
-                  transposition, d’ACPR ou de sanctions.
-                </p>
+                <p class="label">Une même règle, des applications différentes</p>
+                <ul>
+                  <li>
+                    La DSP2 fixe un résultat, pas les moyens.
+                  </li>
+                  <li>
+                    La France transpose par ordonnance, l’Allemagne par
+                    loi&nbsp;: le texte est le même, l’application varie.
+                  </li>
+                  <li>
+                    C’est pourquoi un même service peut être autorisé ici et
+                    restreint ailleurs — et pourquoi les autorités nationales
+                    ont un rôle décisif.
+                  </li>
+                  <li>
+                    L’<strong>ACPR</strong> — Autorité de contrôle prudentiel et
+                    de résolution — est précisément ce superviseur national en
+                    France.
+                  </li>
+                </ul>
               </div>
 
               <p class="section-label">De quoi parle-t-on&nbsp;?</p>
@@ -416,12 +428,14 @@
               <div class="callout info">
                 <h3>Avant de raconter l’histoire&nbsp;: la fiche d’identité</h3>
                 <p>
-                  La page suivante, <a href="cadre.html"><strong>« Le
-                  cadre »</strong></a>, donne le décor réglementaire sans entrer
-                  dans le récit&nbsp;: où la DSP2 s’applique, ce qu’elle couvre,
-                  quelles obligations elle impose, et ce qu’elle change par
-                  rapport à la DSP1. C’est la référence à garder sous les yeux
-                  pendant tout le module.
+                  Avant le récit, deux pages posent le décor. <a
+                  href="dsp1.html"><strong>« DSP1 · D’où l’on vient »</strong></a>
+                  donne la première directive et ses limites&nbsp;: ce qu’elle a
+                  construit, et ce qu’elle a laissé de côté. La <a
+                  href="cadre.html"><strong>« La DSP2 en fiche »</strong></a> en
+                  dresse ensuite l’identité complète&nbsp;: où elle s’applique,
+                  ce qu’elle couvre et quelles obligations elle impose. C’est la
+                  référence à garder sous les yeux pendant tout le module.
                 </p>
               </div>
             </section>
@@ -555,21 +569,6 @@
             </section>
 
             <section class="section">
-              <p class="section-label">Organisation</p>
-              <h2>Conditions de séance</h2>
-
-              <div class="callout info">
-                <h3>Prérequis utiles</h3>
-                <p>
-                  Notions de SI bancaire (compte, payment order, core banking),
-                  bases HTTP/REST, et connaissance superficielle de la
-                  réglementation européenne des services de paiement. Aucun
-                  accès à un environnement bancaire réel n’est nécessaire.
-                </p>
-              </div>
-            </section>
-
-            <section class="section">
               <p class="section-label">Fil de séance</p>
               <h2>Parcours</h2>
               <nav class="block-map" id="block-map" aria-label="Blocs du jour 1"></nav>
@@ -636,7 +635,6 @@
           </div>
   </div>
 </article>
-
 <article class="support-bloc" id="modele-ferme" data-num="02">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
@@ -646,7 +644,8 @@
     </div>
   </section>
   <div class="wrap support-bloc-body">
-<section class="day-hero" style="padding-bottom: 1rem">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 1 · Cadre réglementaire</span>
@@ -655,11 +654,11 @@
               <p class="day-kicker">Le point de départ</p>
               <h1>Le modèle bancaire fermé</h1>
               <p class="lead">
-                Avant de parler de directive, il faut comprendre ce que la
+                Avant d’entrer dans le récit, il faut comprendre ce que la
                 banque protégeait. Le modèle bancaire traditionnel n’est pas
                 «&nbsp;en retard&nbsp;»&nbsp;: il est <em>fermé par
-                construction</em>. Ce bloc pose cette mécanique, avant que S1 ne
-                la fasse vivre à travers Lyam.
+                construction</em>. Ce bloc pose les bases, avant le parcours
+                narratif.
               </p>
             </div>
           </section>
@@ -673,57 +672,165 @@
                 La banque de détail historique maîtrise toute la chaîne de
                 valeur&nbsp;: elle tient le compte, produit le service, contrôle
                 le canal et possède la relation client. Chaque maillon renforce
-                les autres.
+                les autres — et, dans le même mouvement, <strong>verrouille</strong>
+                le marché. Cliquez sur un maillon du schéma&nbsp;: il révèle à la
+                fois ce qu’il protège et la limite qu’il crée.
               </p>
 
-              <figure class="fig-illus">
-                <svg viewBox="0 0 1000 240" role="img" aria-label="Chaîne de valeur bancaire intégrée : compte, service, canal, client">
+              <div class="map-dsp2">
+                <svg viewBox="0 0 1000 260" role="group" aria-label="Chaîne de valeur bancaire intégrée : cliquez sur un maillon pour voir ce qu’il protège et qu’elle limite il crée">
                   <defs>
                     <marker id="ah-mf1" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
                       <path d="M0,0 L7,3.5 L0,7 Z" fill="#1e5f8a" />
                     </marker>
                   </defs>
-                  <rect x="20" y="30" width="960" height="180" rx="14" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="7 5"/>
-                  <text x="500" y="54" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.1em">PÉRIMÈTRE FERMÉ DE LA BANQUE</text>
 
-                  <g>
-                    <rect x="48" y="76" width="190" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
-                    <text x="143" y="106" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700" letter-spacing="0.08em">1 · LE SOCLE</text>
-                    <text x="143" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Le compte</text>
-                    <text x="143" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">tenue du dépôt</text>
-                    <text x="143" y="166" text-anchor="middle" fill="#5a6b7c" font-size="11">core banking</text>
+                  <rect x="20" y="34" width="960" height="180" rx="14" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="7 5"/>
+                  <text x="500" y="26" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.1em">PÉRIMÈTRE FERMÉ DE LA BANQUE</text>
+
+                  <!-- 1 · COMPTE -->
+                  <g class="map-zone" data-zone="compte">
+                    <rect x="44" y="64" width="196" height="128" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                    <text x="142" y="90" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700" letter-spacing="0.08em">1 · LE SOCLE</text>
+                    <text x="142" y="116" text-anchor="middle" fill="#1a2b3c" font-size="15" font-weight="700">Le compte</text>
+                    <text x="142" y="138" text-anchor="middle" class="map-label-soft">tenue du dépôt</text>
+                    <text x="142" y="154" text-anchor="middle" class="map-label-soft">core banking</text>
+                    <text x="142" y="178" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">verrou 1</text>
+                    <g class="map-pin"><circle cx="222" cy="178" r="12" fill="#0d9f8a"/><text x="222" y="182" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">1</text></g>
                   </g>
-                  <line x1="244" y1="131" x2="272" y2="131" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-mf1)"/>
-                  <g>
-                    <rect x="280" y="76" width="190" height="110" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
-                    <text x="375" y="106" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700" letter-spacing="0.08em">2 · L’OFFRE</text>
-                    <text x="375" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Le service</text>
-                    <text x="375" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">virement, carte, crédit</text>
-                    <text x="375" y="166" text-anchor="middle" fill="#5a6b7c" font-size="11">produit maison</text>
+                  <line x1="244" y1="128" x2="268" y2="128" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-mf1)"/>
+
+                  <!-- 2 · SERVICE -->
+                  <g class="map-zone" data-zone="service">
+                    <rect x="276" y="64" width="196" height="128" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="374" y="90" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700" letter-spacing="0.08em">2 · L’OFFRE</text>
+                    <text x="374" y="116" text-anchor="middle" fill="#1a2b3c" font-size="15" font-weight="700">Le service</text>
+                    <text x="374" y="138" text-anchor="middle" class="map-label-soft">virement, carte, crédit</text>
+                    <text x="374" y="154" text-anchor="middle" class="map-label-soft">produit maison</text>
+                    <text x="374" y="178" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">verrou 2</text>
+                    <g class="map-pin"><circle cx="454" cy="178" r="12" fill="#1e5f8a"/><text x="454" y="182" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">2</text></g>
                   </g>
-                  <line x1="476" y1="131" x2="504" y2="131" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-mf1)"/>
-                  <g>
-                    <rect x="512" y="76" width="190" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
-                    <text x="607" y="106" text-anchor="middle" fill="#4b3480" font-size="10" font-weight="700" letter-spacing="0.08em">3 · L’ACCÈS</text>
-                    <text x="607" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Le canal</text>
-                    <text x="607" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">agence · web · appli</text>
-                    <text x="607" y="166" text-anchor="middle" fill="#5a6b7c" font-size="11">contrôlé à 100 %</text>
+                  <line x1="476" y1="128" x2="500" y2="128" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-mf1)"/>
+
+                  <!-- 3 · CANAL -->
+                  <g class="map-zone" data-zone="canal">
+                    <rect x="508" y="64" width="196" height="128" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
+                    <text x="606" y="90" text-anchor="middle" fill="#4b3480" font-size="10" font-weight="700" letter-spacing="0.08em">3 · L’ACCÈS</text>
+                    <text x="606" y="116" text-anchor="middle" fill="#1a2b3c" font-size="15" font-weight="700">Le canal</text>
+                    <text x="606" y="138" text-anchor="middle" class="map-label-soft">agence · web · appli</text>
+                    <text x="606" y="154" text-anchor="middle" class="map-label-soft">contrôlé à 100 %</text>
+                    <text x="606" y="178" text-anchor="middle" fill="#4b3480" font-size="10" font-weight="700">verrou 3</text>
+                    <g class="map-pin"><circle cx="686" cy="178" r="12" fill="#6b4fa0"/><text x="686" y="182" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">3</text></g>
                   </g>
-                  <line x1="708" y1="131" x2="736" y2="131" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-mf1)"/>
-                  <g>
-                    <rect x="744" y="76" width="208" height="110" rx="10" fill="#fff" stroke="#3d5a80" stroke-width="2.5"/>
-                    <text x="848" y="106" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="700" letter-spacing="0.08em">4 · LA RELATION</text>
-                    <text x="848" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Le client</text>
-                    <text x="848" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">un seul fournisseur</text>
-                    <text x="848" y="166" text-anchor="middle" fill="#5a6b7c" font-size="11">pour tout</text>
+                  <line x1="708" y1="128" x2="732" y2="128" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-mf1)"/>
+
+                  <!-- 4 · CLIENT -->
+                  <g class="map-zone" data-zone="client">
+                    <rect x="740" y="64" width="212" height="128" rx="10" fill="#fff" stroke="#3d5a80" stroke-width="2.5"/>
+                    <text x="846" y="90" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="700" letter-spacing="0.08em">4 · LA RELATION</text>
+                    <text x="846" y="116" text-anchor="middle" fill="#1a2b3c" font-size="15" font-weight="700">Le client</text>
+                    <text x="846" y="138" text-anchor="middle" class="map-label-soft">un seul fournisseur</text>
+                    <text x="846" y="154" text-anchor="middle" class="map-label-soft">pour tout</text>
+                    <text x="846" y="178" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="700">verrou 4</text>
+                    <g class="map-pin"><circle cx="930" cy="178" r="12" fill="#3d5a80"/><text x="930" y="182" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">4</text></g>
                   </g>
                 </svg>
-                <figcaption>
-                  Figure — la chaîne intégrée&nbsp;: chaque maillon appartient à
-                  la banque, donc aucun concurrent ne peut s’insérer entre deux
-                  maillons.
-                </figcaption>
-              </figure>
+                <p class="map-hint">Cliquez sur un maillon (1 à 4) : sa fonction, ce qu’il protège et le verrou qu’il crée.</p>
+              </div>
+
+              <div class="map-accordeon">
+                <details open class="cours-note is-ko" data-zone-panel="compte">
+                  <summary><span class="map-sum-num">1</span> Le compte — la donnée captive</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      <strong>Fonction.</strong> La banque tient le dépôt et le
+                      core banking. C’est <strong>le socle</strong> de toute la
+                      chaîne&nbsp;: sans compte chez elle, rien d’autre n’existe.
+                    </p>
+                    <p>
+                      <strong>Verrou créé — la donnée n’appartient qu’à la
+                      banque.</strong> Le relevé est un actif stratégique&nbsp;:
+                      il alimente le cross-selling et verrouille la relation.
+                      Sans API, aucun tiers ne peut construire un service
+                      par-dessus.
+                    </p>
+                    <ul>
+                      <li><strong>Protège</strong>&nbsp;: cohérence du SI, maîtrise du risque.</li>
+                      <li><strong>Empêche</strong>&nbsp;: gestion de budget consolidée.</li>
+                      <li>Le client est <em>titulaire</em> du compte, mais n’a aucun moyen technique de <em>déléguer</em> la lecture de ses données. Elle existe, mais ne circule que dans le périmètre de la banque.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details open class="cours-note is-ko" data-zone-panel="service">
+                  <summary><span class="map-sum-num">2</span> Le service — le paiement par le canal maison</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      <strong>Fonction.</strong> Virement, carte, crédit&nbsp;: la
+                      banque produit <strong>l’offre</strong> de bout en bout,
+                      en produit maison.
+                    </p>
+                    <p>
+                      <strong>Verrou créé — le paiement passe par le canal
+                      maison.</strong> Un virement ne s’initie que depuis
+                      l’application ou le site de la banque. Un marchand ou une
+                      plateforme ne peut pas <strong>déclencher</strong> l’ordre à
+                      la place du client.
+                    </p>
+                    <ul>
+                      <li><strong>Protège</strong>&nbsp;: sécurité de bout en bout.</li>
+                      <li><strong>Empêche</strong>&nbsp;: paiement initié par un tiers.</li>
+                      <li>Conséquence pratique&nbsp;: un e-commerçant doit soit rendre le virement manuel (saisie par le client), soit passer par la carte. Le virement n’est pas «&nbsp;utilisable comme un paiement&nbsp;».</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details open class="cours-note is-ko" data-zone-panel="canal">
+                  <summary><span class="map-sum-num">3</span> Le canal — l’interopérabilité impossible</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      <strong>Fonction.</strong> Agence, web, application&nbsp;: la
+                      banque contrôle <strong>l’accès</strong> à 100&nbsp;%.
+                      Chaque maillon renforce les autres.
+                    </p>
+                    <p>
+                      <strong>Verrou créé — aucune interopérabilité entre
+                      banques.</strong> Chaque banque a ses formats, ses
+                      interfaces, ses règles. Une application qui veut lire
+                      plusieurs comptes doit <strong>recoder</strong> chaque
+                      intégration, une par une.
+                    </p>
+                    <ul>
+                      <li><strong>Protège</strong>&nbsp;: autonomie d’évolution.</li>
+                      <li><strong>Empêche</strong>&nbsp;: interopérabilité, économie de l’intégration.</li>
+                      <li>Coût du N×M&nbsp;: N applications × M banques = N×M intégrations à maintenir. C’est ce coût qui justifiera la standardisation (OBIE, Berlin Group), traitée en S3.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details open class="cours-note is-ko" data-zone-panel="client">
+                  <summary><span class="map-sum-num">4</span> Le client — la sécurité par le secret</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      <strong>Fonction.</strong> Le client a <strong>un seul
+                      fournisseur pour tout</strong>&nbsp;: il n’a aucune raison
+                      de sortir du périmètre.
+                    </p>
+                    <p>
+                      <strong>Verrou créé — la sécurité repose sur le
+                      secret.</strong> Le seul mécanisme d’authentification est
+                      l’<strong>identifiant + mot de passe</strong>. Celui qui les
+                      connaît <em>est</em> le client&nbsp;: aucune délégation
+                      révocable, aucune traçabilité.
+                    </p>
+                    <ul>
+                      <li><strong>Protège</strong>&nbsp;: simplicité apparente.</li>
+                      <li><strong>Empêche</strong>&nbsp;: délégation révocable, traçabilité.</li>
+                      <li>Un secret partagé est un secret perdu. Prêter ses identifiants, c’est prêter sa signature&nbsp;— sans limite de durée, sans périmètre, sans moyen de reprendre la main.</li>
+                    </ul>
+                  </div>
+                </details>
+              </div>
 
               <div class="key-idea">
                 <p class="label">À retenir</p>
@@ -736,106 +843,7 @@
               </div>
             </section>
 
-            <!-- 2. LES QUATRE LIMITES -->
-            <section class="section">
-              <p class="section-label">Limites</p>
-              <h2>Quatre limites structurelles</h2>
-              <p class="intro">
-                On les présente souvent comme des «&nbsp;manques&nbsp;». Ce sont
-                en réalité des <strong>propriétés</strong> du modèle&nbsp;:
-                cohérentes de son point de vue, coûteuses du point de vue du
-                client.
-              </p>
-
-              <div class="verrou-grid">
-                <article class="verrou-card">
-                  <span class="verrou-num">1</span>
-                  <h3>La donnée n’appartient qu’à la banque</h3>
-                  <p>
-                    Le relevé de compte est un <strong>actif
-                    stratégique</strong>&nbsp;: il alimente le cross-selling et
-                    verrouille la relation. Sans API, aucun tiers ne peut
-                    construire un service par-dessus.
-                  </p>
-                  <details open class="cours-note small">
-                    <summary>Cours</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        Le client est <em>titulaire</em> de son compte, mais il
-                        n’a aucun moyen technique de <em>déléguer</em> la lecture
-                        de ses données à qui il veut. La donnée existe, mais elle
-                        circule seulement dans le périmètre de la banque.
-                      </p>
-                    </div>
-                  </details>
-                </article>
-
-                <article class="verrou-card">
-                  <span class="verrou-num">2</span>
-                  <h3>Le paiement passe par le canal maison</h3>
-                  <p>
-                    Un virement ne s’initie que depuis l’application ou le site
-                    de la banque. Un marchand ou une plateforme ne peut pas
-                    <strong>déclencher</strong> l’ordre à la place du client.
-                  </p>
-                  <details open class="cours-note small">
-                    <summary>Cours</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        Conséquence pratique&nbsp;: un e-commerçant qui veut
-                        accepter du virement doit soit le rendre manuel (saisie
-                        par le client), soit passer par la carte. Le virement
-                        n’est pas «&nbsp;utilisable comme un paiement&nbsp;».
-                      </p>
-                    </div>
-                  </details>
-                </article>
-
-                <article class="verrou-card">
-                  <span class="verrou-num">3</span>
-                  <h3>Aucune interopérabilité entre banques</h3>
-                  <p>
-                    Chaque banque a ses formats, ses interfaces, ses règles. Une
-                    application qui veut lire plusieurs comptes doit
-                    <strong>recoder</strong> chaque intégration, une par une.
-                  </p>
-                  <details open class="cours-note small">
-                    <summary>Cours</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        Coût du N×M&nbsp;: N applications × M banques = N×M
-                        intégrations à maintenir. C’est ce coût qui justifiera la
-                        standardisation (OBIE, Berlin Group), traitée en S3.
-                      </p>
-                    </div>
-                  </details>
-                </article>
-
-                <article class="verrou-card">
-                  <span class="verrou-num">4</span>
-                  <h3>La sécurité repose sur le secret</h3>
-                  <p>
-                    Le seul mécanisme d’authentification est
-                    l’<strong>identifiant + mot de passe</strong>. Celui qui les
-                    connaît <em>est</em> le client&nbsp;: aucune délégation
-                    révocable, aucune traçabilité.
-                  </p>
-                  <details open class="cours-note small">
-                    <summary>Cours</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        Un secret partagé est un secret perdu. Prêter ses
-                        identifiants, c’est prêter sa signature&nbsp;— sans
-                        limite de durée, sans périmètre, sans moyen de reprendre
-                        la main.
-                      </p>
-                    </div>
-                  </details>
-                </article>
-              </div>
-            </section>
-
-            <!-- 3. LE COÛT DU CHAÎNON MANQUANT -->
+            <!-- 2. LE COÛT DU CHAÎNON MANQUANT -->
             <section class="section">
               <p class="section-label">Conséquence</p>
               <h2>Le chaînon manquant, et le détour</h2>
@@ -981,53 +989,12 @@
                 </p>
               </div>
 
-              <details class="trainer-notes">
-                <summary>Notes formateur — Le modèle fermé</summary>
-                <div class="notes-body">
-                  <ul>
-                    <li>
-                      <strong>Ne pas moraliser.</strong> Le modèle fermé n’est pas
-                      «&nbsp;méchant&nbsp;»&nbsp;: il est rationnel. Le dire dès
-                      l’ouverture évite que les étudiants le prennent pour un
-                      procès.
-                    </li>
-                    <li>
-                      <strong>Le schéma du chaînon manquant est le pivot.</strong>
-                      Tant qu’il n’est pas compris, le screen scraping paraît
-                      irresponsable. Une fois compris, il paraît inévitable.
-                    </li>
-                    <li>
-                      <strong>Articulation avec S1.</strong> Ici, on est au niveau
-                      structurel. S1 prend le relais au niveau vécu avec Lyam. Ne
-                      pas anticiper le détail du scénario&nbsp;: le garder pour
-                      l’histoire.
-                    </li>
-                    <li>
-                      <strong>Question de relance.</strong> «&nbsp;Votre banque
-                      vous empêche-t-elle de partir, ou vous rend-elle le départ
-                      coûteux&nbsp;?&nbsp;» — la nuance fait émerger la notion de
-                      coût de sortie.
-                    </li>
-                  </ul>
-                </div>
-              </details>
-
-              <div class="check-end">
-                <h3>Points de sortie</h3>
-                <ul>
-                  <li>Je peux nommer les quatre maillons de la chaîne intégrée.</li>
-                  <li>Je distingue une limite structurelle d’un défaut de maturité.</li>
-                  <li>J’explique pourquoi le screen scraping est un contournement, pas une innovation.</li>
-                  <li>Je sais définir la rente de verrouillage en une phrase.</li>
-                </ul>
-              </div>
             </section>
 
             
           </div>
   </div>
 </article>
-
 <article class="support-bloc" id="dsp1" data-num="03">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
@@ -1037,7 +1004,8 @@
     </div>
   </section>
   <div class="wrap support-bloc-body">
-<section class="day-hero" style="padding-bottom: 1rem">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 1 · Cadre réglementaire</span>
@@ -1102,59 +1070,116 @@
                 <em>Prestataire de Services de Paiement</em> (PSP).
               </p>
 
-              <figure class="fig-illus">
-                <svg viewBox="0 0 1000 235" role="img" aria-label="Le statut PSP regroupe établissements de crédit, établissements de paiement et établissements de monnaie électronique">
+              <div class="map-dsp2">
+                <svg viewBox="0 0 1000 270" role="group" aria-label="Le statut PSP regroupe trois familles : cliquez sur une famille pour voir son exemple et comment le paiement circule">
                   <defs>
                     <marker id="ah-d1-psp" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
                       <path d="M0,0 L7,3.5 L0,7 Z" fill="#1e5f8a" />
                     </marker>
                   </defs>
 
-                  <!-- Avant -->
-                  <text x="150" y="24" text-anchor="middle" fill="#8a9aaa" font-size="10" font-weight="800" letter-spacing="0.1em">AVANT 2007</text>
-                  <rect x="40" y="38" width="220" height="76" rx="10" fill="#f7f9fb" stroke="#8a9aaa" stroke-width="2" stroke-dasharray="6 4"/>
-                  <text x="150" y="68" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Banque</text>
-                  <text x="150" y="90" text-anchor="middle" fill="#8a9aaa" font-size="11">seule habilitée</text>
-                  <text x="150" y="140" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">✕ aucun concurrent</text>
-                  <text x="150" y="158" text-anchor="middle" fill="#a4572c" font-size="10">possible</text>
+                  <!-- Avant 2007 -->
+                  <text x="120" y="30" text-anchor="middle" fill="#8a9aaa" font-size="10" font-weight="800" letter-spacing="0.1em">AVANT 2007</text>
+                  <rect x="26" y="44" width="188" height="130" rx="10" fill="#f7f9fb" stroke="#8a9aaa" stroke-width="2" stroke-dasharray="6 4"/>
+                  <text x="120" y="82" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">Banque</text>
+                  <text x="120" y="104" text-anchor="middle" fill="#8a9aaa" font-size="11">seule habilitée</text>
+                  <text x="120" y="140" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">✕ aucun concurrent</text>
+                  <text x="120" y="158" text-anchor="middle" fill="#a4572c" font-size="10">possible</text>
 
                   <!-- Flèche -->
-                  <line x1="276" y1="76" x2="360" y2="76" stroke="#1e5f8a" stroke-width="3" class="stream" marker-end="url(#ah-d1-psp)"/>
-                  <text x="318" y="62" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">LA DSP1</text>
+                  <line x1="220" y1="110" x2="262" y2="110" stroke="#1e5f8a" stroke-width="3" marker-end="url(#ah-d1-psp)"/>
+                  <text x="241" y="96" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">LA DSP1</text>
 
-                  <!-- PSP conteneur -->
-                  <rect x="374" y="30" width="580" height="176" rx="14" fill="#eff6fb" stroke="#1e5f8a" stroke-width="3"/>
-                  <text x="664" y="56" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="14" font-weight="800">PRESTATAIRE DE SERVICES DE PAIEMENT (PSP)</text>
-                  <text x="664" y="74" text-anchor="middle" fill="#5a6b7c" font-size="10">un statut unique, une licence, un passeport européen</text>
+                  <!-- Conteneur PSP -->
+                  <rect x="270" y="34" width="712" height="214" rx="14" fill="#eff6fb" stroke="#1e5f8a" stroke-width="3"/>
+                  <text x="626" y="62" text-anchor="middle" fill="#1e5f8a" font-size="14" font-weight="800">PRESTATAIRE DE SERVICES DE PAIEMENT (PSP)</text>
+                  <text x="626" y="80" text-anchor="middle" fill="#5a6b7c" font-size="10">un statut large · une licence · un passeport européen — 3 familles agréées</text>
 
-                  <g>
-                    <rect x="396" y="92" width="168" height="92" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="480" y="118" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">DÉJÀ LÀ</text>
-                    <text x="480" y="140" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Établissement</text>
-                    <text x="480" y="157" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">de crédit</text>
-                    <text x="480" y="175" text-anchor="middle" fill="#5a6b7c" font-size="10">la banque</text>
+                  <!-- Famille 1 : crédit -->
+                  <g class="map-zone" data-zone="credit">
+                    <rect x="288" y="94" width="212" height="138" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="394" y="118" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="800" letter-spacing="0.05em">DÉJÀ LÀ</text>
+                    <text x="394" y="146" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Établissement</text>
+                    <text x="394" y="164" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">de crédit</text>
+                    <text x="394" y="188" text-anchor="middle" class="map-label-soft">la banque</text>
+                    <text x="394" y="210" text-anchor="middle" class="map-label-soft">tous les services</text>
+                    <g class="map-pin"><circle cx="470" cy="118" r="11" fill="#0d9f8a"/><text x="470" y="122" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">1</text></g>
                   </g>
-                  <g>
-                    <rect x="580" y="92" width="168" height="92" rx="8" fill="#fff" stroke="#6b4fa0" stroke-width="2"/>
-                    <text x="664" y="118" text-anchor="middle" fill="#4b3480" font-size="10" font-weight="700">CRÉÉ EN 2007</text>
-                    <text x="664" y="140" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Établissement</text>
-                    <text x="664" y="157" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">de paiement</text>
-                    <text x="664" y="175" text-anchor="middle" fill="#5a6b7c" font-size="10">non-banque agréée</text>
+
+                  <!-- Famille 2 : paiement -->
+                  <g class="map-zone" data-zone="paiement">
+                    <rect x="518" y="94" width="212" height="138" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+                    <text x="624" y="118" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="800" letter-spacing="0.05em">CRÉÉ EN 2007</text>
+                    <text x="624" y="146" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Établissement</text>
+                    <text x="624" y="164" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">de paiement</text>
+                    <text x="624" y="188" text-anchor="middle" class="map-label-soft">non-banque agréée</text>
+                    <text x="624" y="210" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">le PSP e-commerce</text>
+                    <g class="map-pin"><circle cx="700" cy="118" r="11" fill="#c45c26"/><text x="700" y="122" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">2</text></g>
                   </g>
-                  <g>
-                    <rect x="764" y="92" width="168" height="92" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="848" y="118" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="700">RÉGIME ASSIMILÉ</text>
-                    <text x="848" y="140" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Monnaie</text>
-                    <text x="848" y="157" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">électronique</text>
-                    <text x="848" y="175" text-anchor="middle" fill="#5a6b7c" font-size="10">wallets, cartes prépayées</text>
+
+                  <!-- Famille 3 : monnaie électronique -->
+                  <g class="map-zone" data-zone="monnaie">
+                    <rect x="748" y="94" width="212" height="138" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="854" y="118" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="800" letter-spacing="0.05em">RÉGIME ASSIMILÉ</text>
+                    <text x="854" y="146" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Monnaie</text>
+                    <text x="854" y="164" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">électronique</text>
+                    <text x="854" y="188" text-anchor="middle" class="map-label-soft">wallets</text>
+                    <text x="854" y="210" text-anchor="middle" class="map-label-soft">cartes prépayées</text>
+                    <g class="map-pin"><circle cx="930" cy="118" r="11" fill="#3d5a80"/><text x="930" y="122" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">3</text></g>
                   </g>
                 </svg>
-                <figcaption>
-                  Figure — la DSP1 ne crée pas les services&nbsp;: elle crée la
-                  <em>catégorie</em> qui les rend possibles. Être PSP, c’est avoir
-                  le droit d’exercer, sans forcément être une banque.
-                </figcaption>
-              </figure>
+                <p class="map-hint">Cliquez sur une famille (1 à 3) : son exemple d’acteur et la façon dont le paiement circule.</p>
+              </div>
+
+              <div class="map-accordeon">
+                <details open class="cours-note is-ok" data-zone-panel="credit">
+                  <summary><span class="map-sum-num">1</span> Établissement de crédit — la banque</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      La famille historique&nbsp;: elle existait <em>avant</em> la
+                      DSP1 et tient elle-même les comptes de ses clients.
+                    </p>
+                    <ul>
+                      <li><strong>Exemples</strong>&nbsp;: BNP Paribas, Crédit Agricole, Revolut (licence bancaire).</li>
+                      <li><strong>Circulation</strong>&nbsp;: virement ou carte, depuis le compte qu’elle tient elle-même.</li>
+                      <li>Peut fournir <strong>tous</strong> les services de paiement — c’est la famille la plus large.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details open class="cours-note is-ok" data-zone-panel="paiement">
+                  <summary><span class="map-sum-num">2</span> Établissement de paiement — le PSP e-commerce</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      La famille <strong>créée</strong> par la DSP1&nbsp;: une
+                      non-banque agréée. C’est ici que se range ce qu’on appelle
+                      couramment le «&nbsp;PSP e-commerce&nbsp;».
+                    </p>
+                    <ul>
+                      <li><strong>Exemples</strong>&nbsp;: Stripe, Adyen, Payplug.</li>
+                      <li><strong>Circulation</strong>&nbsp;: acquisition carte — encaisse pour le marchand, puis reverse sur son compte.</li>
+                      <li><strong>Avant 2007</strong>, ce rôle n’était pas ouvert&nbsp;: il fallait une licence bancaire pour détenir les fonds d’un marchand. La DSP1 a rendu Stripe (2010) et Adyen (2006) possibles.</li>
+                      <li>Un <strong>PISP</strong> (créé par la DSP2) sera aussi un établissement de paiement — mais il initie un <em>virement</em>, pas une acquisition carte.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details open class="cours-note is-ok" data-zone-panel="monnaie">
+                  <summary><span class="map-sum-num">3</span> Établissement de monnaie électronique — les wallets</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      Une famille au <strong>régime assimilé</strong>&nbsp;: elle
+                      émet de la monnaie électronique stockée sur un support
+                      (wallet, carte prépayée).
+                    </p>
+                    <ul>
+                      <li><strong>Exemples</strong>&nbsp;: Lydia, Sumeria, cartes prépayées.</li>
+                      <li><strong>Circulation</strong>&nbsp;: le client charge un solde, puis paie depuis ce solde.</li>
+                      <li>Complète le statut PSP sans être une banque ni un simple prestataire d’acquisition.</li>
+                    </ul>
+                  </div>
+                </details>
+              </div>
 
               <div class="callout info">
                 <h3>Pourquoi c’est décisif</h3>
@@ -1173,68 +1198,11 @@
                   encaisse pour un marchand sur son site. Dans la DSP1, c’est une
                   <strong>catégorie juridique</strong>. Ce n’est pas une
                   opposition&nbsp;: c’est un <strong>rapport d’inclusion</strong>.
-                  Un <em>statut large</em>, un <em>rôle étroit</em>.
+                  Un <em>statut large</em>, un <em>rôle étroit</em>&nbsp;: le PSP
+                  e-commerce n’est pas une catégorie concurrente, c’est un rôle
+                  <em>à l’intérieur</em> de la famille «&nbsp;établissement de
+                  paiement&nbsp;» du schéma ci-dessus.
                 </p>
-
-                <figure class="fig-illus">
-                  <svg viewBox="0 0 860 250" role="img" aria-label="Le statut PSP contient trois familles agréées ; le PSP e-commerce n’est qu’un rôle dans la famille des établissements de paiement">
-                    <defs>
-                      <marker id="ah-psp-inc" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
-                        <path d="M0,0 L7,3.5 L0,7 Z" fill="#c45c26" />
-                      </marker>
-                    </defs>
-
-                    <!-- Conteneur : statut large -->
-                    <rect x="12" y="14" width="520" height="222" rx="12" fill="#eff6fb" stroke="#1e5f8a" stroke-width="3"/>
-                    <text x="272" y="42" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="800">STATUT LARGE</text>
-                    <text x="272" y="62" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="600">PSP au sens DSP1 — être agréé</text>
-
-                    <!-- Famille 1 -->
-                    <rect x="32" y="80" width="146" height="132" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="105" y="104" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="800" letter-spacing="0.05em">CRÉDIT</text>
-                    <text x="105" y="134" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Établissement</text>
-                    <text x="105" y="151" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">de crédit</text>
-                    <line x1="52" y1="166" x2="158" y2="166" stroke="#e3ebf1" stroke-width="1.5"/>
-                    <text x="105" y="186" text-anchor="middle" fill="#5a6b7c" font-size="11">la banque</text>
-                    <text x="105" y="202" text-anchor="middle" fill="#8a9aaa" font-size="10">tous services</text>
-
-                    <!-- Famille 2 : celle du PSP e-commerce -->
-                    <rect x="193" y="80" width="160" height="132" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
-                    <text x="273" y="104" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="800" letter-spacing="0.05em">PAIEMENT</text>
-                    <text x="273" y="134" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Établissement</text>
-                    <text x="273" y="151" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">de paiement</text>
-                    <line x1="213" y1="166" x2="333" y2="166" stroke="#eccbb8" stroke-width="1.5"/>
-                    <text x="273" y="186" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">le PSP e-commerce</text>
-                    <text x="273" y="202" text-anchor="middle" fill="#a4572c" font-size="10">est ici</text>
-
-                    <!-- Famille 3 -->
-                    <rect x="368" y="80" width="146" height="132" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="441" y="104" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="800" letter-spacing="0.05em">MONNAIE ÉLEC.</text>
-                    <text x="441" y="134" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Monnaie</text>
-                    <text x="441" y="151" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">électronique</text>
-                    <line x1="388" y1="166" x2="494" y2="166" stroke="#e3ebf1" stroke-width="1.5"/>
-                    <text x="441" y="186" text-anchor="middle" fill="#5a6b7c" font-size="11">wallets</text>
-                    <text x="441" y="202" text-anchor="middle" fill="#8a9aaa" font-size="10">cartes prépayées</text>
-
-                    <!-- Flèche -->
-                    <line x1="548" y1="125" x2="596" y2="125" stroke="#c45c26" stroke-width="3" marker-end="url(#ah-psp-inc)"/>
-                    <text x="572" y="112" text-anchor="middle" fill="#c45c26" font-size="9" font-weight="700">rôle</text>
-
-                    <!-- Rôle étroit -->
-                    <rect x="608" y="46" width="240" height="158" rx="12" fill="#fff" stroke="#c45c26" stroke-width="3"/>
-                    <text x="728" y="74" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="16" font-weight="800">RÔLE ÉTROIT</text>
-                    <text x="728" y="94" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="600">PSP «&nbsp;e-commerce&nbsp;»</text>
-                    <line x1="628" y1="106" x2="828" y2="106" stroke="#eccbb8" stroke-width="1.5"/>
-                    <text x="728" y="128" text-anchor="middle" fill="#5a6b7c" font-size="11">encaisser pour un</text>
-                    <text x="728" y="144" text-anchor="middle" fill="#5a6b7c" font-size="11">marchand, sur son site</text>
-                    <line x1="628" y1="156" x2="828" y2="156" stroke="#eccbb8" stroke-width="1.5"/>
-                    <text x="728" y="178" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Stripe · Adyen · Payplug</text>
-                  </svg>
-                  <figcaption>
-                    Le PSP e-commerce est un rôle <em>à l’intérieur</em> du statut
-                    PSP, pas une catégorie concurrente.
-                  </figcaption>
-                </figure>
 
                 <p>
                   <strong>Avant la DSP1, ce rôle n'était pas ouvert.</strong> Il
@@ -1246,11 +1214,12 @@
                 </p>
 
                 <p>
-                  Ne pas confondre non plus avec le <strong>PISP</strong> de la
-                  DSP2&nbsp;: le PSP e-commerce fait de l'<em>acquisition
-                  carte</em>, le PISP <em>initie un virement</em> à la place du
-                  client. Deux façons différentes de faire passer un paiement —
-                  détail en S2.
+                  <strong>Ce que les exemples du schéma montrent.</strong> Stripe
+                  et Adyen sont des établissements de paiement&nbsp;: ils
+                  encaissent par carte pour un marchand. Un PISP (créé par la
+                  DSP2), lui, initie un <em>virement</em> depuis le compte du
+                  client chez sa banque. Deux façons différentes de faire passer
+                  un paiement, deux rôles différents au sein du même PSP.
                 </p>
               </div>
             </section>
@@ -1371,6 +1340,95 @@
                   </tbody>
                 </table>
               </div>
+
+              <div class="definition-full" style="margin-top: 1.5rem">
+                <p>
+                  <strong>Le paysage européen sous la DSP1, en trois traits.</strong>
+                </p>
+                <ul>
+                  <li>
+                    <strong>Un marché cloisonné.</strong> Les banques
+                    traditionnelles sont seules à détenir les comptes et à
+                    fournir les services de paiement.
+                  </li>
+                  <li>
+                    <strong>Des tiers en zone grise.</strong> Les premiers
+                    agrégateurs de comptes et initiateurs de paiement
+                    existent, mais sans statut&nbsp;: ils opèrent par screen
+                    scraping ou par partage de codes d’accès.
+                  </li>
+                  <li>
+                    <strong>Un cadre qui ne concerne que les paiements.</strong>
+                    La DSP1 n’ouvre pas l’accès aux tiers. Elle pose
+                    un cadre juridique homogène pour régir les paiements
+                    traditionnels — virements, prélèvements, cartes — à
+                    l’échelle européenne.
+                  </li>
+                </ul>
+              </div>
+
+              <h3 style="margin-top: 2rem">Ce que ça donne en pratique</h3>
+              <p class="intro">
+                Trois situations ordinaires de 2009. Aucune n’est illégale, et
+                aucune n’a de cadre.
+              </p>
+
+              <div class="split-3">
+                <div class="panel ko">
+                  <h3>1 · Lire ses comptes</h3>
+                  <p>
+                    Un client a un compte chez trois banques. Il veut une seule
+                    vue d’ensemble. Aucun texte ne prévoit qu’une application
+                    puisse lire les comptes pour lui&nbsp;: la banque n’a
+                    aucune obligation d’ouvrir l’accès, et aucun agrément ne
+                    couvre cette lecture.
+                  </p>
+                  <p>
+                    <strong>Résultat&nbsp;:</strong> l’application demande les
+                    identifiants du client et se connecte à sa place. C’est le
+                    screen scraping.
+                  </p>
+                </div>
+                <div class="panel ko">
+                  <h3>2 · Payer depuis son compte</h3>
+                  <p>
+                    Un site marchand accepte la carte, pas le virement. Or le
+                    client veut payer depuis son compte. Aucun tiers ne peut
+                    déclencher un virement <em>au nom du client</em> depuis son
+                    compte bancaire&nbsp;: ce rôle n’existe pas en 2009.
+                  </p>
+                  <p>
+                    <strong>Résultat&nbsp;:</strong> le client doit quitter le
+                    site, ouvrir son application bancaire, recopier l’IBAN du
+                    bénéficiaire et valider. Une faute de frappe et le
+                    virement part au mauvais destinataire. Beaucoup abandonnent
+                    en cours de route et paient par carte.
+                  </p>
+                </div>
+                <div class="panel ko">
+                  <h3>3 · Sécuriser l’accès</h3>
+                  <p>
+                    Un client partage son mot de passe avec un agrégateur. La
+                    DSP1 n’impose aucune méthode d’authentification&nbsp;: le
+                    mot de passe seul suffit, et le secret partagé devient la
+                    norme.
+                  </p>
+                  <p>
+                    <strong>Résultat&nbsp;:</strong> impossible de révoquer
+                    l’accès d’un tiers sans changer son mot de passe partout.
+                  </p>
+                </div>
+              </div>
+
+              <div class="cours-note-banner">
+                <p>
+                  <strong>Le fil commun de ces trois cas.</strong> Dans chacun,
+                  le client veut faire quelque chose de légitime avec son propre
+                  compte, et le droit ne prévoit pas comment. La DSP2 ne créera
+                  pas de nouveaux usages&nbsp;: elle donnera un cadre à ceux qui
+                  existent déjà.
+                </p>
+              </div>
             </section>
 
             <!-- 5. LE SCREEN SCRAPING -->
@@ -1477,54 +1535,12 @@
                 </p>
               </div>
 
-              <details class="trainer-notes">
-                <summary>Notes formateur — DSP1</summary>
-                <div class="notes-body">
-                  <ul>
-                    <li>
-                      <strong>Le mot-clé est «&nbsp;vide juridique&nbsp;», pas
-                      «&nbsp;erreur&nbsp;».</strong> La DSP1 n’a pas mal fait&nbsp;:
-                      en 2007, personne ne demandait d’accès tiers. Le problème
-                      naît du décalage entre le texte et les usages.
-                    </li>
-                    <li>
-                      <strong>Le schéma PSP est le pivot.</strong> Faire
-                      comprendre que la DSP2 n’aurait pas pu créer les AISP/PISP
-                      sans la catégorie PSP. C’est une dépendance juridique, pas
-                      une continuité chronologique.
-                    </li>
-                    <li>
-                      <strong>Articulation avec le bloc précédent.</strong> Les
-                      trois angles morts correspondent exactement aux verrous du
-                      modèle fermé&nbsp;: le tableau de correspondance est là pour
-                      ça. Le faire remplir par les étudiants plutôt que le dicter.
-                    </li>
-                    <li>
-                      <strong>Ne pas entrer dans le détail de la SCA.</strong> On
-                      dit seulement que la DSP1 ne l’imposait pas&nbsp;: les
-                      mécanismes relèvent du J2.
-                    </li>
-                  </ul>
-                </div>
-              </details>
-
-              <div class="check-end">
-                <h3>Points de sortie</h3>
-                <ul>
-                  <li>Je connais la référence et la date de la DSP1.</li>
-                  <li>J’explique ce qu’apporte la notion juridique de PSP.</li>
-                  <li>Je cite les trois apports concrets (passeport, SEPA, transparence).</li>
-                  <li>Je nomme les trois angles morts et leur réponse dans la DSP2.</li>
-                  <li>Je sais pourquoi le screen scraping est né du vide juridique.</li>
-                </ul>
-              </div>
             </section>
 
             
           </div>
   </div>
 </article>
-
 <article class="support-bloc" id="cadre" data-num="04">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
@@ -1534,7 +1550,8 @@
     </div>
   </section>
   <div class="wrap support-bloc-body">
-<section class="day-hero" style="padding-bottom: 1rem">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 1 · Le cadre</span>
@@ -1543,7 +1560,7 @@
               <p class="day-kicker">La carte d’identité de la directive</p>
               <h1>Le cadre</h1>
               <p class="lead">
-                Avant de suivre une cliente et de dessiner une architecture,
+                Avant de suivre Lyam et de dessiner une architecture,
                 posons froidement le cadre&nbsp;: qu’est-ce que la DSP2, où
                 s’applique-t-elle, quels services couvre-t-elle, et quelles
                 obligations impose-t-elle&nbsp;?
@@ -1636,78 +1653,188 @@
                 partie de l’EEE.
               </p>
 
-              <figure class="fig-illus">
-                <svg viewBox="0 0 1000 300" role="img" aria-label="Carte schématique de l'espace économique européen et des zones hors EEE">
-                  <!-- Zone EEE -->
-                  <rect x="40" y="40" width="560" height="180" rx="16" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
-                  <text x="320" y="30" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">ESPACE ÉCONOMIQUE EUROPÉEN (EEE) — DSP2 applicable</text>
-                  <!-- Bloc UE -->
-                  <rect x="70" y="80" width="360" height="120" rx="10" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                  <text x="250" y="110" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Union européenne</text>
-                  <text x="250" y="132" text-anchor="middle" fill="#1a2b3c" font-size="26" font-weight="800">27</text>
-                  <text x="250" y="154" text-anchor="middle" fill="#5a6b7c" font-size="11">États membres</text>
-                  <text x="250" y="176" text-anchor="middle" fill="#5a6b7c" font-size="11">transposition par loi nationale</text>
-                  <!-- Bloc EEE hors UE -->
-                  <rect x="450" y="80" width="125" height="120" rx="10" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
-                  <text x="512" y="110" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">EEE hors UE</text>
-                  <text x="512" y="134" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Islande</text>
-                  <text x="512" y="152" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Liechtenstein</text>
-                  <text x="512" y="170" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Norvège</text>
-                  <text x="512" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">via accord EEE</text>
-                  <!-- Zone hors EEE -->
-                  <rect x="640" y="40" width="320" height="100" rx="16" fill="#fdf6f2" stroke="#c45c26" stroke-width="2.5" stroke-dasharray="7 5"/>
-                  <text x="800" y="30" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="13" font-weight="700">HORS EEE — DSP2 non applicable</text>
-                  <text x="800" y="72" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="13" font-weight="700">Royaume-Uni</text>
-                  <text x="800" y="94" text-anchor="middle" fill="#5a6b7c" font-size="11">Post-Brexit&nbsp;: régime propre (PSR 2017 + OBIE)</text>
-                  <text x="800" y="116" text-anchor="middle" fill="#5a6b7c" font-size="11">Afrique · Amérique · Asie · Océanie</text>
-                  <!-- outre-mer DOM -->
-                  <rect x="640" y="165" width="320" height="55" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5" stroke-dasharray="5 4"/>
-                  <text x="800" y="187" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Outre-mer français (DOM)</text>
-                  <text x="800" y="206" text-anchor="middle" fill="#5a6b7c" font-size="10">Guadeloupe, Martinique, Guyane, La Réunion, Mayotte = UE → DSP2 oui</text>
-                  <!-- note PTOM -->
-                  <rect x="40" y="240" width="560" height="48" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="5 4"/>
-                  <text x="320" y="262" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700">Pays et territoires d’outre-mer (PTOM)</text>
-                  <text x="320" y="279" text-anchor="middle" fill="#5a6b7c" font-size="10">Polynésie française · Nouvelle-Calédonie · Wallis-et-Futuna → hors UE/EEE, DSP2 non applicable</text>
+              <!-- CARTE CLIQUEABLE + ACCORDÉON -->
+              <div class="map-dsp2">
+                <svg viewBox="0 0 1000 500" role="group" aria-label="Carte de l'Espace économique européen : cliquez sur une zone pour afficher sa règle DSP2">
+                  <!-- Légende -->
+                  <g transform="translate(70, 14)">
+                    <rect x="0" y="0" width="14" height="14" rx="3" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2" />
+                    <text x="20" y="11" class="map-label-soft">DSP2 applicable</text>
+                    <rect x="190" y="0" width="14" height="14" rx="3" fill="#fdf6f2" stroke="#c45c26" stroke-width="2" stroke-dasharray="4 3" />
+                    <text x="210" y="11" class="map-label-soft">DSP2 non applicable</text>
+                  </g>
+
+                  <!-- 1. Union européenne -->
+                  <g class="map-zone" data-zone="ue">
+                    <path d="M70,60 L430,60 L430,255 L70,255 Z" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2" />
+                    <text x="250" y="96" text-anchor="middle" font-size="14" font-weight="700" fill="#087a6a">Union européenne</text>
+                    <text x="250" y="142" text-anchor="middle" font-size="34" font-weight="800" fill="#1a2b3c">27</text>
+                    <text x="250" y="166" text-anchor="middle" class="map-label-soft">États membres</text>
+                    <text x="250" y="186" text-anchor="middle" class="map-label-soft">transposition par loi nationale</text>
+                    <g class="map-pin">
+                      <circle cx="250" cy="220" r="13" fill="#0d9f8a" />
+                      <text x="250" y="224" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">1</text>
+                    </g>
+                  </g>
+
+                  <!-- 2. EEE hors UE -->
+                  <g class="map-zone" data-zone="eee-hors-ue">
+                    <path d="M450,60 L640,60 L640,255 L450,255 Z" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2" />
+                    <text x="545" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="#087a6a">EEE hors UE</text>
+                    <text x="545" y="128" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2b3c">Islande</text>
+                    <text x="545" y="148" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2b3c">Liechtenstein</text>
+                    <text x="545" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2b3c">Norvège</text>
+                    <text x="545" y="190" text-anchor="middle" class="map-label-soft">via accord EEE</text>
+                    <g class="map-pin">
+                      <circle cx="545" cy="220" r="13" fill="#0d9f8a" />
+                      <text x="545" y="224" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">2</text>
+                    </g>
+                  </g>
+
+                  <!-- 3. Royaume-Uni -->
+                  <g class="map-zone" data-zone="royaume-uni">
+                    <path d="M690,60 L950,60 L950,155 L690,155 Z" fill="#fdf6f2" stroke="#c45c26" stroke-width="2" stroke-dasharray="6 4" />
+                    <text x="820" y="92" text-anchor="middle" font-size="13" font-weight="700" fill="#c45c26">Royaume-Uni</text>
+                    <text x="820" y="114" text-anchor="middle" class="map-label-soft">Post-Brexit : régime propre</text>
+                    <text x="820" y="130" text-anchor="middle" class="map-label-soft">(PSR 2017 + OBIE)</text>
+                    <g class="map-pin">
+                      <circle cx="820" cy="188" r="13" fill="#c45c26" />
+                      <text x="820" y="192" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">3</text>
+                    </g>
+                  </g>
+
+                  <!-- 4. Reste du monde -->
+                  <g class="map-zone" data-zone="reste-monde">
+                    <path d="M690,220 L950,220 L950,340 L690,340 Z" fill="#fdf6f2" stroke="#c45c26" stroke-width="2" stroke-dasharray="6 4" />
+                    <text x="820" y="252" text-anchor="middle" font-size="13" font-weight="700" fill="#c45c26">Reste du monde</text>
+                    <text x="820" y="276" text-anchor="middle" class="map-label-soft">Afrique · Amérique</text>
+                    <text x="820" y="292" text-anchor="middle" class="map-label-soft">Asie · Océanie</text>
+                    <g class="map-pin">
+                      <circle cx="820" cy="318" r="13" fill="#c45c26" />
+                      <text x="820" y="322" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">4</text>
+                    </g>
+                  </g>
+
+                  <!-- 5. DOM -->
+                  <g class="map-zone" data-zone="dom">
+                    <path d="M70,285 L360,285 L360,430 L70,430 Z" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2" />
+                    <text x="215" y="315" text-anchor="middle" font-size="13" font-weight="700" fill="#087a6a">Outre-mer français</text>
+                    <text x="215" y="339" text-anchor="middle" class="map-label-soft">DOM : Guadeloupe, Martinique,</text>
+                    <text x="215" y="355" text-anchor="middle" class="map-label-soft">Guyane, La Réunion, Mayotte,</text>
+                    <text x="215" y="371" text-anchor="middle" class="map-label-soft">Saint-Martin = UE → DSP2 oui</text>
+                    <g class="map-pin">
+                      <circle cx="215" cy="404" r="13" fill="#0d9f8a" />
+                      <text x="215" y="408" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">5</text>
+                    </g>
+                  </g>
+
+                  <!-- 6. PTOM -->
+                  <g class="map-zone" data-zone="ptom">
+                    <path d="M410,285 L640,285 L640,430 L410,430 Z" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2" stroke-dasharray="5 4" />
+                    <text x="525" y="315" text-anchor="middle" font-size="13" font-weight="700" fill="#3d5a80">PTOM</text>
+                    <text x="525" y="339" text-anchor="middle" class="map-label-soft">Polynésie française</text>
+                    <text x="525" y="355" text-anchor="middle" class="map-label-soft">Nouvelle-Calédonie</text>
+                    <text x="525" y="371" text-anchor="middle" class="map-label-soft">Wallis-et-Futuna</text>
+                    <g class="map-pin">
+                      <circle cx="525" cy="404" r="13" fill="#3d5a80" />
+                      <text x="525" y="408" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">6</text>
+                    </g>
+                  </g>
                 </svg>
-                <figcaption>Figure — la DSP2 couvre l’EEE&nbsp;: 27 pays de l’UE + Islande, Liechtenstein et Norvège. Hors EEE (Royaume-Uni, Afrique, Amérique, Asie…), elle ne s’applique pas&nbsp;; les DOM français, eux, en relèvent.</figcaption>
-              </figure>
-
-              <div class="callout warn">
-                <h3>Le piège du Royaume-Uni</h3>
-                <p>
-                  Depuis le Brexit, le Royaume-Uni <strong>n’est plus dans
-                  l’EEE</strong>&nbsp;: la DSP2 n’y est pas applicable en tant que
-                  telle. Le pays a conservé un régime voisin (les
-                  <em>Payment Services Regulations 2017</em>) et son propre
-                  standard Open Banking (OBIE). Un TPP britannique qui accède à
-                  une banque de l’EEE relève d’une autre logique.
-                </p>
+                <p class="map-hint">Cliquez sur une zone (1 à 6) pour afficher sa règle DSP2 — le détail s’ouvre sous la carte.</p>
               </div>
 
-              <div class="callout">
-                <h3>Et l’Afrique, l’Asie, l’Amérique&nbsp;?</h3>
-                <p>
-                  <strong>La DSP2 ne s’applique pas en Afrique</strong> — ni en
-                  Asie, ni en Amérique, ni dans les autres régions hors EEE. Elle
-                  est un texte européen&nbsp;: les pays africains ont leurs propres
-                  régulateurs bancaires et de paiement (BCEAO/UMOA en zone
-                  franc CFA, BEAC/CEMAC, Bank Al-Maghrib, banques centrales
-                  nationales…). Chacun peut avoir ou développer son propre régime
-                  d’Open Banking, sans lien avec la DSP2.
-                </p>
-                <p>
-                  <strong>Deux exceptions à garder en tête.</strong> Un opérateur
-                  africain qui fournit des services de paiement <em>dans</em> l’EEE
-                  (filiale européenne, passeport, ou traitement de                   comptes d’EEE) entre dans le périmètre DSP2 pour cette activité.
-                  Et l’<strong>outre-mer français</strong>&nbsp;: les 5 régions
-                  d’outre-mer (Guadeloupe, Martinique, Guyane, La Réunion,
-                  Mayotte) et Saint-Martin font partie de l’UE, donc de
-                  l’EEE&nbsp;: <strong>la DSP2 s’y applique</strong>. En revanche,
-                  les pays et territoires d’outre-mer (Polynésie française,
-                  Nouvelle-Calédonie, Wallis-et-Futuna…) sont hors UE/EEE&nbsp;:
-                  la DSP2 n’y est pas applicable.
-                </p>
+              <div class="map-accordeon">
+                <details open class="cours-note is-ok" data-zone-panel="ue">
+                  <summary><span class="map-sum-num">1</span> Union européenne — 27 États membres</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      La DSP2 est une <strong>directive</strong>&nbsp;: chaque État
+                      membre l’a transposée dans sa loi nationale (en France,
+                      ordonnance n° 2017-1252 du 9 août 2017). Elle
+                      <strong>s’applique</strong> dans les 27 pays de l’UE, avec de
+                      légères nuances d’un État à l’autre.
+                    </p>
+                    <ul>
+                      <li>Principe du <strong>passeport</strong>&nbsp;: une autorisation obtenue dans un État vaut dans les 27.</li>
+                      <li>Transposition nationale, puis application depuis le 13 janvier 2018.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details open class="cours-note is-ok" data-zone-panel="eee-hors-ue">
+                  <summary><span class="map-sum-num">2</span> EEE hors UE — Islande, Liechtenstein, Norvège</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      Via l’<strong>accord EEE</strong>, ces trois pays appliquent
+                      la DSP2 comme les États membres&nbsp;: la directive
+                      <strong>s’y applique</strong>. Ils complètent le périmètre de
+                      l’Espace économique européen.
+                    </p>
+                    <ul>
+                      <li>Islande, Liechtenstein et Norvège&nbsp;: mêmes règles que l’UE.</li>
+                      <li>Soit <strong>30 États</strong> au total dans l’EEE.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details open class="cours-note is-ko" data-zone-panel="royaume-uni">
+                  <summary><span class="map-sum-num">3</span> Royaume-Uni — hors EEE depuis le Brexit</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      Depuis le Brexit, le Royaume-Uni <strong>n’est plus dans
+                      l’EEE</strong>&nbsp;: la DSP2 n’y est
+                      <strong>pas applicable</strong> en tant que telle. Le pays a
+                      conservé un régime voisin (les <em>Payment Services
+                      Regulations 2017</em>) et son propre standard Open Banking
+                      (OBIE).
+                    </p>
+                    <ul>
+                      <li>Un TPP britannique qui accède à une banque de l’EEE relève d’une autre logique.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details open class="cours-note is-ko" data-zone-panel="reste-monde">
+                  <summary><span class="map-sum-num">4</span> Reste du monde — Afrique, Amérique, Asie, Océanie</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      La DSP2 <strong>ne s’applique pas</strong> en Afrique, ni en
+                      Asie, ni en Amérique, ni dans les autres régions hors EEE.
+                      Elle est un texte européen&nbsp;: chaque pays a ses propres
+                      régulateurs (BCEAO/UMOA en zone franc CFA, BEAC/CEMAC, Bank
+                      Al-Maghrib…).
+                    </p>
+                    <ul>
+                      <li><strong>Exception</strong>&nbsp;: un opérateur africain qui fournit des services de paiement <em>dans</em> l’EEE entre dans le périmètre DSP2 pour cette activité.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details open class="cours-note is-ok" data-zone-panel="dom">
+                  <summary><span class="map-sum-num">5</span> Outre-mer français (DOM) — DSP2 applicable</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      Les 5 régions d’outre-mer (Guadeloupe, Martinique, Guyane, La
+                      Réunion, Mayotte) et Saint-Martin font partie de l’UE, donc
+                      de l’EEE&nbsp;: <strong>la DSP2 s’y applique</strong>.
+                    </p>
+                  </div>
+                </details>
+
+                <details open class="cours-note is-ko" data-zone-panel="ptom">
+                  <summary><span class="map-sum-num">6</span> PTOM — DSP2 non applicable</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      Les pays et territoires d’outre-mer (Polynésie française,
+                      Nouvelle-Calédonie, Wallis-et-Futuna…) sont
+                      <strong>hors UE/EEE</strong>&nbsp;: la DSP2
+                      <strong>n’y est pas applicable</strong>.
+                    </p>
+                  </div>
+                </details>
               </div>
+
             </section>
 
             <!-- 3. SERVICES COUVERTS -->
@@ -1921,52 +2048,15 @@
             <section class="section" style="border-bottom: none">
               <div class="transition-block">
                 <p class="transition-label">Séquence suivante</p>
-                <h2>Le décor est posé — place à l’histoire</h2>
+                <h2>Qui écrit la règle&nbsp;?</h2>
                 <p>
                   On sait ce qu’est la DSP2, où elle s’applique, ce qu’elle couvre
-                  et ce qu’elle impose. La S1 raconte maintenant <strong>pourquoi</strong>
-                  tout cela est devenu nécessaire, à travers le quotidien de Lyam.
+                  et ce qu’elle impose. Reste à savoir <strong>qui</strong> l’a
+                  écrite, qui la précise et qui la fait appliquer&nbsp;: direction
+                  les autorités européennes.
                 </p>
               </div>
             </section>
-
-            <details class="trainer-notes">
-              <summary>Notes formateur — Le cadre</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>
-                    <strong>Page courte et factuelle.</strong> Elle sert de
-                    référence&nbsp;: on peut y revenir pendant tout le module,
-                    notamment le tableau des obligations.
-                  </li>
-                  <li>
-                    <strong>Ne pas déflorer S2.</strong> Ici on nomme AIS/PIS/CBPII
-                    sans expliquer leur mécanique&nbsp;: cela reste en S2.
-                  </li>
-                  <li>
-                    <strong>Le Brexit et l’EEE</strong> sont le point le plus
-                    souvent mal compris&nbsp;: marteler que le Royaume-Uni n’est
-                    plus dans l’EEE.
-                  </li>
-                  <li>
-                    <strong>Faire le lien avec S1</strong>&nbsp;: le clin d’œil
-                    DSP1 introduit naturellement le récit de Lyam (ce que la DSP1 ne
-                    prévoyait pas).
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Points de sortie du cadre</h3>
-              <ul>
-                <li>Je sais ce qu’est la DSP2 (référence, nature, ce qu’elle remplace).</li>
-                <li>Je connais son périmètre géographique (EEE, cas du Royaume-Uni).</li>
-                <li>Je distingue services couverts et hors champ.</li>
-                <li>Je cite les grandes obligations par acteur.</li>
-                <li>Je sais ce que la DSP2 ajoute à la DSP1.</li>
-              </ul>
-            </div>
 
             <div class="sources-box">
               <strong>Références</strong> — Directive (UE) 2015/2366 (DSP2)&nbsp;;
@@ -1978,7 +2068,6 @@
           </div>
   </div>
 </article>
-
 <article class="support-bloc" id="autorites" data-num="05">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
@@ -1988,7 +2077,8 @@
     </div>
   </section>
   <div class="wrap support-bloc-body">
-<section class="day-hero" style="padding-bottom: 1rem">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 1 · Cadre réglementaire</span>
@@ -2018,53 +2108,128 @@
                 agréent au quotidien.
               </p>
 
-              <figure class="fig-illus">
-                <svg viewBox="0 0 1000 215" role="img" aria-label="Trois étages du processus : décision politique, traduction technique, supervision nationale">
+              <div class="map-dsp2">
+                <svg viewBox="0 0 1000 300" role="group" aria-label="Trois étages de la fabrication de la règle, acteurs DSP1 et DSP2 : cliquez sur un étage pour le détail">
                   <defs>
-                    <marker id="ah-au-1" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+                    <marker id="ah-aut" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
                       <path d="M0,0 L7,3.5 L0,7 Z" fill="#3d5a80" />
                     </marker>
                   </defs>
 
-                  <g>
-                    <rect x="30" y="34" width="280" height="130" rx="12" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
-                    <text x="170" y="60" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="800" letter-spacing="0.08em">ÉTAGE 1 · POLITIQUE</text>
-                    <text x="170" y="88" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Commission,</text>
-                    <text x="170" y="106" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Parlement, Conseil</text>
-                    <text x="170" y="132" text-anchor="middle" fill="#5a6b7c" font-size="11">propose · amende · adopte</text>
-                    <text x="170" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">le texte de directive</text>
+                  <!-- ÉTAGE 1 · POLITIQUE -->
+                  <g class="map-zone" data-zone="politique">
+                    <rect x="20" y="30" width="300" height="200" rx="14" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="170" y="62" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="800" letter-spacing="0.08em">ÉTAGE 1 · POLITIQUE</text>
+                    <text x="170" y="96" text-anchor="middle" fill="#1a2b3c" font-size="15" font-weight="700">Commission,</text>
+                    <text x="170" y="117" text-anchor="middle" fill="#1a2b3c" font-size="15" font-weight="700">Parlement, Conseil</text>
+                    <text x="170" y="148" text-anchor="middle" class="map-label-soft">propose · amende · adopte</text>
+                    <text x="170" y="165" text-anchor="middle" class="map-label-soft">le texte de directive</text>
+                    <!-- pilule DSP1/DSP2 -->
+                    <rect x="60" y="186" width="100" height="22" rx="11" fill="#e3edf6"/>
+                    <text x="110" y="201" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">DSP1 · DSP2</text>
+                    <g class="map-pin">
+                      <circle cx="298" cy="212" r="13" fill="#1e5f8a" />
+                      <text x="298" y="216" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">1</text>
+                    </g>
                   </g>
 
-                  <line x1="318" y1="99" x2="348" y2="99" stroke="#3d5a80" stroke-width="2.5" marker-end="url(#ah-au-1)"/>
+                  <line x1="324" y1="130" x2="352" y2="130" stroke="#3d5a80" stroke-width="2.5" marker-end="url(#ah-aut)"/>
 
-                  <g>
-                    <rect x="358" y="34" width="280" height="130" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
-                    <text x="498" y="60" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="800" letter-spacing="0.08em">ÉTAGE 2 · TECHNIQUE</text>
-                    <text x="498" y="88" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">EBA</text>
-                    <text x="498" y="106" text-anchor="middle" fill="#5a6b7c" font-size="11">(Autorité bancaire européenne)</text>
-                    <text x="498" y="132" text-anchor="middle" fill="#5a6b7c" font-size="11">RTS, orientations, registre</text>
-                    <text x="498" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">central des PSP</text>
+                  <!-- ÉTAGE 2 · TECHNIQUE -->
+                  <g class="map-zone" data-zone="technique">
+                    <rect x="356" y="30" width="300" height="200" rx="14" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                    <text x="506" y="62" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="800" letter-spacing="0.08em">ÉTAGE 2 · TECHNIQUE</text>
+                    <text x="506" y="96" text-anchor="middle" fill="#1a2b3c" font-size="15" font-weight="700">EBA</text>
+                    <text x="506" y="117" text-anchor="middle" class="map-label-soft">(Autorité bancaire européenne)</text>
+                    <text x="506" y="148" text-anchor="middle" class="map-label-soft">RTS · orientations</text>
+                    <text x="506" y="165" text-anchor="middle" class="map-label-soft">· registre des PSP</text>
+                    <rect x="396" y="186" width="100" height="22" rx="11" fill="#d3efe9"/>
+                    <text x="446" y="201" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">rôle décisif</text>
+                    <g class="map-pin">
+                      <circle cx="634" cy="212" r="13" fill="#0d9f8a" />
+                      <text x="634" y="216" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">2</text>
+                    </g>
                   </g>
 
-                  <line x1="646" y1="99" x2="676" y2="99" stroke="#3d5a80" stroke-width="2.5" marker-end="url(#ah-au-1)"/>
+                  <line x1="660" y1="130" x2="688" y2="130" stroke="#3d5a80" stroke-width="2.5" marker-end="url(#ah-aut)"/>
 
-                  <g>
-                    <rect x="686" y="34" width="284" height="130" rx="12" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
-                    <text x="828" y="60" text-anchor="middle" fill="#4b3480" font-size="10" font-weight="800" letter-spacing="0.08em">ÉTAGE 3 · SUPERVISION</text>
-                    <text x="828" y="88" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Autorités nationales</text>
-                    <text x="828" y="106" text-anchor="middle" fill="#5a6b7c" font-size="11">(ACPR en France, Bafin,</text>
-                    <text x="828" y="124" text-anchor="middle" fill="#5a6b7c" font-size="11">DNB, FCA…)</text>
-                    <text x="828" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">agrément et contrôles</text>
+                  <!-- ÉTAGE 3 · SUPERVISION -->
+                  <g class="map-zone" data-zone="supervision">
+                    <rect x="692" y="30" width="288" height="200" rx="14" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
+                    <text x="836" y="62" text-anchor="middle" fill="#4b3480" font-size="10" font-weight="800" letter-spacing="0.08em">ÉTAGE 3 · SUPERVISION</text>
+                    <text x="836" y="96" text-anchor="middle" fill="#1a2b3c" font-size="15" font-weight="700">Autorités nationales</text>
+                    <text x="836" y="117" text-anchor="middle" class="map-label-soft">ACPR · Bafin · DNB · FCA</text>
+                    <text x="836" y="148" text-anchor="middle" class="map-label-soft">agrément et contrôles</text>
+                    <text x="836" y="165" text-anchor="middle" class="map-label-soft">+ BCE (prudentiel)</text>
+                    <rect x="732" y="186" width="100" height="22" rx="11" fill="#e6dff5"/>
+                    <text x="782" y="201" text-anchor="middle" fill="#4b3480" font-size="10" font-weight="700">DSP1 · DSP2</text>
+                    <g class="map-pin">
+                      <circle cx="966" cy="212" r="13" fill="#6b4fa0" />
+                      <text x="966" y="216" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">3</text>
+                    </g>
                   </g>
 
-                  <text x="500" y="196" text-anchor="middle" fill="#5a6b7c" font-size="11">La directive fixe le cadre ; la norme technique le rend applicable ; le superviseur l’applique au terrain.</text>
+                  <text x="500" y="276" text-anchor="middle" fill="#5a6b7c" font-size="11">La directive fixe le cadre ; la norme technique le rend applicable ; le superviseur l’applique au terrain.</text>
                 </svg>
-                <figcaption>
-                  Figure — le même texte passe par trois étages&nbsp;:
-                  décision politique, traduction technique, application
-                  territoriale.
-                </figcaption>
-              </figure>
+                <p class="map-hint">Cliquez sur un étage (1 à 3) pour comparer ses acteurs en DSP1 (2007) et DSP2 (2015).</p>
+              </div>
+
+              <div class="map-accordeon">
+                <details open class="cours-note is-ok" data-zone-panel="politique">
+                  <summary><span class="map-sum-num">1</span> Étage 1 · Politique — Commission, Parlement, Conseil</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      C’est l’étage qui <strong>écrit la directive</strong>. La
+                      Commission propose, le Parlement et le Conseil amendent et
+                      adoptent en codécision (trilogue). Le schéma institutionnel
+                      ne change pas entre les deux directives&nbsp;: seuls les
+                      textes et les compromis diffèrent.
+                    </p>
+                    <ul>
+                      <li><strong>Commission</strong> (DG FISMA)&nbsp;: propose la DSP1 en 2005, puis la révision DSP2 en 2013. Adopte ensuite les actes délégués (dont les RTS de l’EBA).</li>
+                      <li><strong>Parlement</strong> (commission ECON) &amp; <strong>Conseil</strong> (ECOFIN)&nbsp;: co-législateurs. Le Parlement pousse la transparence tarifaire et l’ouverture&nbsp;; le Conseil porte les intérêts bancaires nationaux.</li>
+                      <li><strong>En DSP2</strong>, c’est le trilogue de 2015 qui produit la version finale&nbsp;: les trois nouveaux services (AIS/PIS/CBPII) y sont consacrés.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details open class="cours-note is-ok" data-zone-panel="technique">
+                  <summary><span class="map-sum-num">2</span> Étage 2 · Technique — l’EBA (et le CEBS avant elle)</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      C’est l’étage qui <strong>transforme un article en norme
+                      applicable</strong>. Changement majeur entre les deux
+                      directives&nbsp;: en 2007, l’EBA <strong>n’existe pas</strong>
+                      (créée en 2011)&nbsp;; c’est le <strong>CEBS</strong>, simple
+                      comité consultatif, qui conseille les législateurs, sans
+                      pouvoir normatif.
+                    </p>
+                    <ul>
+                      <li><strong>DSP1 (2007)</strong> — CEBS&nbsp;: avis et recommandations non contraignants. Il ne peut pas édicter de normes techniques.</li>
+                      <li><strong>DSP2 (2015)</strong> — EBA&nbsp;: rôle décisif. RTS SCA &amp; CSC (règlement délégué 2018/389), orientations sur les interfaces dédiées, registre central des PSP agréés.</li>
+                      <li>En 2011, l’EBA <strong>absorbe le CEBS</strong> et gagne le pouvoir normatif que son prédécesseur n’avait pas.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details open class="cours-note is-ko" data-zone-panel="supervision">
+                  <summary><span class="map-sum-num">3</span> Étage 3 · Supervision — autorités nationales &amp; BCE</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      C’est l’étage qui <strong>applique au terrain</strong>.
+                      L’<strong>ACPR</strong> (en France), la Bafin, la DNB ou la
+                      FCA agréent les prestataires et les contrôlent&nbsp;; la
+                      <strong>BCE</strong> intervient en arrière-plan sur le
+                      prudentiel et les paiements.
+                    </p>
+                    <ul>
+                      <li><strong>Autorités nationales</strong>&nbsp;: transposition, agrément des TPP, registre national, contrôles et sanctions.</li>
+                      <li><strong>BCE</strong>&nbsp;: avis sur les paiements et les risques&nbsp;; supervision prudentielle des grandes banques (MUS). À ne pas confondre avec l’EBA.</li>
+                      <li>La répartition national/prudentiel ne change pas fondamentalement entre DSP1 et DSP2&nbsp;: c’est l’intensité du contrôle des TPP qui monte.</li>
+                    </ul>
+                  </div>
+                </details>
+              </div>
 
               <div class="key-idea">
                 <p class="label">À retenir</p>
@@ -2077,177 +2242,7 @@
               </div>
             </section>
 
-            <!-- 2. QUI A FAIT DSP1 -->
-            <section class="section">
-              <p class="section-label">DSP1 · 2007</p>
-              <h2>Les acteurs de la première directive</h2>
-              <p class="intro">
-                En 2007, le paysage institutionnel est différent&nbsp;: l’EBA
-                n’existe pas encore. La DSP1 est négociée et adoptée dans le
-                cadre classique du «&nbsp;trilogue&nbsp;» — mais les superviseurs
-                nationaux jouent déjà un rôle moteur dans la conception.
-              </p>
-
-              <figure class="fig-acteurs">
-                <svg class="fig-illus is-compact" viewBox="0 0 1000 130" role="img" aria-label="Acteurs de la DSP1 : Commission, Parlement et Conseil, CEBS consultatif, EBA absente car créée en 2011. Cliquez sur un bloc pour voir son rôle.">
-                  <g data-acteur="commission">
-                    <rect x="20" y="16" width="220" height="96" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
-                    <text x="130" y="40" text-anchor="middle" fill="#1e5f8a" font-size="9" font-weight="800" letter-spacing="0.08em">PROPOSE</text>
-                    <text x="130" y="66" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Commission</text>
-                    <text x="130" y="88" text-anchor="middle" fill="#5a6b7c" font-size="11">proposition 2005</text>
-                    <text x="130" y="105" text-anchor="middle" fill="#5a6b7c" font-size="10">DG FISMA</text>
-                  </g>
-                  <g data-acteur="legislateurs">
-                    <rect x="266" y="16" width="220" height="96" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
-                    <text x="376" y="40" text-anchor="middle" fill="#1e5f8a" font-size="9" font-weight="800" letter-spacing="0.08em">CO-LÉGISLATEURS</text>
-                    <text x="376" y="66" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Parlement &amp; Conseil</text>
-                    <text x="376" y="88" text-anchor="middle" fill="#5a6b7c" font-size="11">codécision</text>
-                    <text x="376" y="105" text-anchor="middle" fill="#5a6b7c" font-size="10">ECON · ECOFIN</text>
-                  </g>
-                  <g data-acteur="cebs">
-                    <rect x="512" y="16" width="220" height="96" rx="10" fill="#f7f9fb" stroke="#8a9aaa" stroke-width="2" stroke-dasharray="7 5"/>
-                    <text x="622" y="40" text-anchor="middle" fill="#8a9aaa" font-size="9" font-weight="800" letter-spacing="0.08em">CONSULTATIF</text>
-                    <text x="622" y="66" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">CEBS</text>
-                    <text x="622" y="88" text-anchor="middle" fill="#5a6b7c" font-size="11">précurseur de l’EBA</text>
-                    <text x="622" y="105" text-anchor="middle" fill="#5a6b7c" font-size="10">avis seulement</text>
-                  </g>
-                  <g data-acteur="eba">
-                    <rect x="758" y="16" width="222" height="96" rx="10" fill="#fff" stroke="#c45c26" stroke-width="2" stroke-dasharray="7 5"/>
-                    <text x="869" y="40" text-anchor="middle" fill="#c45c26" font-size="9" font-weight="800" letter-spacing="0.08em">ABSENTE EN 2007</text>
-                    <text x="869" y="66" text-anchor="middle" fill="#a4572c" font-family="Syne, sans-serif" font-size="14" font-weight="700">EBA</text>
-                    <text x="869" y="88" text-anchor="middle" fill="#8a9aaa" font-size="11">créée en 2011</text>
-                    <text x="869" y="105" text-anchor="middle" fill="#8a9aaa" font-size="10">aucun rôle en DSP1</text>
-                  </g>
-                </svg>
-                <p class="fig-acteurs-hint">Cliquez sur un bloc pour afficher le détail de son rôle.</p>
-
-                <div class="acteur-detail" data-acteur-panel="commission">
-                  <h3>Commission européenne</h3>
-                  <p class="acteur-full">DG FISMA · Marchés financiers</p>
-                  <ul>
-                    <li><strong>Propose</strong> le texte en 2005, après l’échec de l’harmonisation a minima du début des années 2000.</li>
-                    <li><strong>Porte</strong> le projet de «&nbsp;révision unique&nbsp;» des paiements transfrontaliers.</li>
-                    <li><strong>Accompagne</strong> la négociation jusqu’à l’adoption et défend le compromis final.</li>
-                    <li><strong>Joue ensuite</strong> le rôle d’adoptant pour les actes délégués de la DSP2.</li>
-                  </ul>
-                </div>
-
-                <div class="acteur-detail" data-acteur-panel="legislateurs">
-                  <h3>Parlement européen et Conseil des ministres</h3>
-                  <p class="acteur-full">Co-législateurs · procédure de codécision</p>
-                  <ul>
-                    <li><strong>Parlement</strong> (commission ECON) et <strong>Conseil</strong> (ECOFIN) amendent et adoptent le texte à égalité.</li>
-                    <li><strong>Le Parlement</strong> impose les garanties de transparence tarifaire et les délais d’exécution maximaux.</li>
-                    <li><strong>Le Conseil</strong> porte les intérêts bancaires nationaux&nbsp;: compromis prudent, pas de rupture.</li>
-                    <li><strong>Le trilogue</strong> (Commission-Parlement-Conseil) produit la version définitive de 2007.</li>
-                  </ul>
-                </div>
-
-                <div class="acteur-detail" data-acteur-panel="cebs">
-                  <h3>CEBS</h3>
-                  <p class="acteur-full">Comité européen des superviseurs bancaires · précurseur de l’EBA</p>
-                  <ul>
-                    <li><strong>Conseille</strong> les législateurs sur les exigences de fonds propres et le périmètre des services.</li>
-                    <li><strong>Produit</strong> des avis et recommandations non contraignants.</li>
-                    <li><strong>Ne peut pas</strong> édicter de normes techniques&nbsp;: ce pouvoir n’existera qu’avec l’EBA.</li>
-                    <li><strong>Disparaît</strong> en 2011, absorbé par la création de l’Autorité bancaire européenne.</li>
-                  </ul>
-                </div>
-
-                <div class="acteur-detail" data-acteur-panel="eba">
-                  <h3>EBA — l’absente de 2007</h3>
-                  <p class="acteur-full">Autorité bancaire européenne · créée en 2011</p>
-                  <ul>
-                    <li><strong>Aucun rôle</strong> dans la DSP1&nbsp;: l’autorité n’existait pas lors de la négociation.</li>
-                    <li><strong>Créée</strong> en 2011 avec l’ESMA et l’EIOPA, dans l’élan de la réforme de la supervision européenne post-crise.</li>
-                    <li><strong>Hérite</strong> du CEBS et gagne un pouvoir normatif que son prédécesseur n’avait pas.</li>
-                    <li><strong>Deviendra centrale</strong> pour la DSP2&nbsp;: RTS, orientations, registre des PSP agréés.</li>
-                  </ul>
-                </div>
-              </figure>
-
-              <div class="callout info">
-                <h3>Pourquoi l’EBA n’apparaît pas</h3>
-                <p>
-                  L’<strong>EBA</strong> a été créée en <strong>2011</strong>, en
-                  même temps que les deux autres autorités européennes de
-                  supervision. La DSP1 (2007) est donc antérieure à sa création.
-                  Ce sont ses prédécesseurs (CEBS) qui ont conseillé les
-                  législateurs, sans capacité normative.
-                </p>
-              </div>
-            </section>
-
-            <!-- 3. QUI A FAIT DSP2 -->
-            <section class="section">
-              <p class="section-label">DSP2 · 2015</p>
-              <h2>Les acteurs de la seconde directive</h2>
-              <p class="intro">
-                En 2015, l’architecture institutionnelle est en place. L’EBA
-                existe, la Commission s’appuie sur elle, et la Banque centrale
-                européenne intervient en arrière-plan sur les aspects
-                prudentiels. Quatre institutions font la DSP2.
-              </p>
-
-              <figure class="fig-illus">
-                <svg viewBox="0 0 1000 260" role="img" aria-label="Quatre acteurs clés de la DSP2 : Commission, Parlement et Conseil, EBA, BCE">
-                  <g>
-                    <rect x="18" y="24" width="226" height="212" rx="12" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
-                    <text x="131" y="50" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="800" letter-spacing="0.08em">PROPOSE</text>
-                    <text x="131" y="80" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Commission</text>
-                    <text x="131" y="100" text-anchor="middle" fill="#5a6b7c" font-size="11">européenne</text>
-                    <text x="131" y="130" text-anchor="middle" fill="#5a6b7c" font-size="11">Proposition de</text>
-                    <text x="131" y="147" text-anchor="middle" fill="#5a6b7c" font-size="11">révision de 2013</text>
-                    <text x="131" y="180" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">Adoption des RTS</text>
-                    <text x="131" y="197" text-anchor="middle" fill="#5a6b7c" font-size="10">par acte délégué</text>
-                  </g>
-
-                  <g>
-                    <rect x="258" y="24" width="238" height="212" rx="12" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
-                    <text x="377" y="50" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="800" letter-spacing="0.08em">ADOPTE</text>
-                    <text x="377" y="80" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Parlement &amp; Conseil</text>
-                    <text x="377" y="100" text-anchor="middle" fill="#5a6b7c" font-size="11">co-législateurs</text>
-                    <text x="377" y="130" text-anchor="middle" fill="#5a6b7c" font-size="11">Trilogue 2015</text>
-                    <text x="377" y="147" text-anchor="middle" fill="#5a6b7c" font-size="11">version finale</text>
-                    <text x="377" y="180" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">ECON · Conseil ECOFIN</text>
-                    <text x="377" y="197" text-anchor="middle" fill="#5a6b7c" font-size="10">compromis politique</text>
-                  </g>
-
-                  <g>
-                    <rect x="510" y="14" width="238" height="232" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3.5"/>
-                    <rect x="510" y="14" width="238" height="30" rx="12" fill="#0d9f8a"/>
-                    <text x="629" y="34" text-anchor="middle" fill="#fff" font-size="10" font-weight="800" letter-spacing="0.08em">RÔLE DÉCISIF</text>
-                    <text x="629" y="76" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="800">EBA</text>
-                    <text x="629" y="96" text-anchor="middle" fill="#5a6b7c" font-size="11">Paris · depuis 2011</text>
-                    <text x="629" y="126" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">RTS 2018/389</text>
-                    <text x="629" y="143" text-anchor="middle" fill="#5a6b7c" font-size="11">SCA &amp; sécurité</text>
-                    <text x="629" y="168" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Orientations</text>
-                    <text x="629" y="185" text-anchor="middle" fill="#5a6b7c" font-size="11">interfaces dédiées</text>
-                    <text x="629" y="210" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Registre central</text>
-                    <text x="629" y="227" text-anchor="middle" fill="#5a6b7c" font-size="11">des PSP agréés</text>
-                  </g>
-
-                  <g>
-                    <rect x="762" y="24" width="220" height="212" rx="12" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2.5"/>
-                    <text x="872" y="50" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="800" letter-spacing="0.08em">SUPERVISE</text>
-                    <text x="872" y="80" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="14" font-weight="700">BCE</text>
-                    <text x="872" y="100" text-anchor="middle" fill="#5a6b7c" font-size="11">Banque centrale européenne</text>
-                    <text x="872" y="130" text-anchor="middle" fill="#5a6b7c" font-size="11">Avis sur le texte</text>
-                    <text x="872" y="147" text-anchor="middle" fill="#5a6b7c" font-size="11">(paiements &amp; risques)</text>
-                    <text x="872" y="180" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="700">Supervision prudentielle</text>
-                    <text x="872" y="197" text-anchor="middle" fill="#5a6b7c" font-size="10">des banques (MUS)</text>
-                  </g>
-                </svg>
-                <figcaption>
-                  Figure — quatre institutions pour la DSP2.
-                  L’<strong>EBA</strong> occupe le rôle le plus structurant&nbsp;:
-                  c’est elle qui transforme un article de directive en norme
-                  opérationnelle.
-                </figcaption>
-              </figure>
-            </section>
-
-            <!-- 4. LA PLACE DE L'EBA -->
+            <!-- 3. LA PLACE DE L'EBA -->
             <section class="section">
               <p class="section-label">Focus EBA</p>
               <h2>Pourquoi l’EBA est l’autorité centrale</h2>
@@ -2408,63 +2403,21 @@
 
               <div class="transition-block">
                 <p class="transition-label">Séquence suivante</p>
-                <h2>Le parcours narratif</h2>
+                <h2>Et hors d’Europe&nbsp;?</h2>
                 <p>
-                  Le décor réglementaire est posé&nbsp;: ce que la DSP1 n’avait
-                  pas prévu, ce que la DSP2 a ajouté, et qui l’a fait. Reste à
-                  raconter l’histoire — celle de Lyam, et de son application de
-                  budget.
+                  Le cadre européen est clair&nbsp;: ce que la DSP1 n’avait pas
+                  prévu, ce que la DSP2 a ajouté, et qui l’a fait. Mais l’Europe
+                  n’est pas seule à ouvrir les comptes&nbsp;: prenons un peu de
+                  recul pour comparer avec le reste du monde.
                 </p>
               </div>
 
-              <details class="trainer-notes">
-                <summary>Notes formateur — Autorités</summary>
-                <div class="notes-body">
-                  <ul>
-                    <li>
-                      <strong>Ne pas faire de cours d’histoire institutionnelle.</strong>
-                      L’objectif est de distinguer les trois étages et de faire
-                      nommer l’EBA. Rester sur les deux ou trois faits qui
-                      éclairent la suite.
-                    </li>
-                    <li>
-                      <strong>Le point à marteler.</strong> L’EBA ne juge pas,
-                      elle écrit des normes. L’ACPR agrée. Qui sanctionne&nbsp;?
-                      Le superviseur national, pas Bruxelles.
-                    </li>
-                    <li>
-                      <strong>La question qui fait émerger l’enjeu.</strong>
-                      «&nbsp;Pourquoi la DSP2 confie-t-elle la SCA à une
-                      autorité bancaire et non au législateur&nbsp;?&nbsp;» —
-                      parce qu’il faut de la technicité et de la réactivité que
-                      le trilogue ne peut pas produire.
-                    </li>
-                    <li>
-                      <strong>Renvoi à S2.</strong> Ne pas redétailler le
-                      registre EBA ici&nbsp;: la section 6 de S2 le fait. Ici, on
-                      nomme, on situe, on donne le rôle.
-                    </li>
-                  </ul>
-                </div>
-              </details>
-
-              <div class="check-end">
-                <h3>Points de sortie</h3>
-                <ul>
-                  <li>Je distingue les trois étages&nbsp;: politique, technique, supervision.</li>
-                  <li>Je sais que l’EBA n’a pas participé à la DSP1 (créée en 2011).</li>
-                  <li>Je cite les trois productions clés de l’EBA (RTS, orientations, registre).</li>
-                  <li>J’explique la différence entre EBA et BCE.</li>
-                  <li>Je sais qui agrée un PSP en France (ACPR).</li>
-                </ul>
-              </div>
             </section>
 
             
           </div>
   </div>
 </article>
-
 <article class="support-bloc" id="directives-monde" data-num="06">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
@@ -2474,7 +2427,8 @@
     </div>
   </section>
   <div class="wrap support-bloc-body">
-<section class="day-hero" style="padding-bottom: 1rem">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 1 · Cadre réglementaire</span>
@@ -2881,63 +2835,21 @@
 
               <div class="transition-block">
                 <p class="transition-label">Séquence suivante</p>
-                <h2>Le parcours narratif</h2>
+                <h2>Le décor est posé — place à l’histoire</h2>
                 <p>
-                  Le décor est posé, en Europe et ailleurs. Reste à raconter
-                  l’histoire — celle de Lyam, de son application de budget, et du
-                  jour où elle a compris.
+                  On sait ce qu’est la DSP2, où elle s’applique, ce qu’elle couvre
+                  et ce qu’elle impose. La S1 raconte maintenant
+                  <strong>pourquoi</strong> tout cela est devenu nécessaire, à
+                  travers le quotidien de Lyam.
                 </p>
               </div>
 
-              <details class="trainer-notes">
-                <summary>Notes formateur — Open Banking hors d’Europe</summary>
-                <div class="notes-body">
-                  <ul>
-                    <li>
-                      <strong>Objectif limité.</strong> Ce bloc ne vise pas
-                      l’exhaustivité&nbsp;: il sert à casser l’idée que la DSP2
-                      serait l’origine de tout — ce qui est faux. Trois pays
-                      suffisent à montrer la variété des modèles.
-                    </li>
-                    <li>
-                      <strong>Vérifier les dates avant la séance.</strong> Les
-                      chronologies publiées divergent selon qu’on cite la loi,
-                      le décret d’application ou la première obligation
-                      effective.
-                    </li>
-                    <li>
-                      <strong>Question de relance.</strong> «&nbsp;Pourquoi le
-                      Royaume-Uni est-il passé par l’autorité de concurrence et
-                      non par le Parlement&nbsp;?&nbsp;» — parce que la
-                      concurrence était le problème identifié, pas la protection
-                      du consommateur.
-                    </li>
-                    <li>
-                      <strong>Lien avec J5.</strong> Le Brésil et l’Inde
-                      anticipent l’<em>Open Finance</em>&nbsp;: les citer ici
-                      prépare la séquence 1 du Jour 5.
-                    </li>
-                  </ul>
-                </div>
-              </details>
-
-              <div class="check-end">
-                <h3>Points de sortie</h3>
-                <ul>
-                  <li>Je sais que la DSP2 est la première à promulguer, mais la plus lente à appliquer.</li>
-                  <li>Je cite trois pays ayant légiféré après 2015 et leur texte.</li>
-                  <li>Je distingue quatre logiques d’ouverture (loi, concurrence, donnée, infrastructure).</li>
-                  <li>Je sais pourquoi les dates divergent selon la source.</li>
-                  <li>Je sais qu’il existe de l’Open Banking sans aucune loi.</li>
-                </ul>
-              </div>
             </section>
 
             
           </div>
   </div>
 </article>
-
 <article class="support-bloc" id="s1-probleme" data-num="07">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
@@ -2947,7 +2859,8 @@
     </div>
   </section>
   <div class="wrap support-bloc-body">
-<!-- HERO -->
+
+          <!-- HERO -->
           <section class="day-hero" style="padding-bottom: 1rem">
             <div class="wrap">
               <div class="fiche-meta">
@@ -3621,51 +3534,6 @@
               </div>
             </details>
 
-            <details class="trainer-notes">
-              <summary>Notes formateur — S1</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>
-                    <strong>Ouvrir par le récit, pas par la réglementation.</strong>
-                    Tenir Lyam à l’écran 3 à 4 minutes avant d’introduire le mot
-                    «&nbsp;DSP2&nbsp;».
-                  </li>
-                  <li>
-                    <strong>Bascule possible à tout moment.</strong> Les encarts
-                    «&nbsp;Cours&nbsp;» maintiennent la matière académique. Si le
-                    groupe décroche, on repasse en mode frontal via ces encarts.
-                  </li>
-                  <li>
-                    <strong>Piège à anticiper.</strong> Les étudiants vont
-                    d’abord dire «&nbsp;MonBuddy est un escroc&nbsp;». Corriger&nbsp;:
-                    l’application répondait à un besoin réel dans un cadre
-                    absurde.
-                  </li>
-                  <li>
-                    <strong>DSP2 / RGPD.</strong> Ne pas les confondre&nbsp;: la DSP2
-                    dit le canal, le RGPD dit le traitement. Exemple concret&nbsp;:
-                    durée de conservation d’un historique de transactions.
-                  </li>
-                  <li>
-                    <strong>Ne pas anticiper S2.</strong> Résister à la tentation
-                    de parler des TPP ou de la SCA ici. Le problème doit être
-                    posé avant qu’on nomme les solutions.
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Points de sortie de S1</h3>
-              <ul>
-                <li>Je sais expliquer le screen scraping sans jargon.</li>
-                <li>Je peux nommer les quatre verrous et les illustrer par Lyam.</li>
-                <li>Je comprends pourquoi la DSP1 ne suffisait plus.</li>
-                <li>Je distingue ce que la DSP2 apporte et ce que le RGPD ajoute.</li>
-                <li>Je sais formuler la question à laquelle la DSP2 répond.</li>
-              </ul>
-            </div>
-
             <div class="sources-box">
               <strong>Références</strong> — Directive (UE) 2015/2366 (DSP2)&nbsp;;
               DSP1 2007/64/CE&nbsp;; ordonnance n° 2017-1252 du 9 août 2017&nbsp;;
@@ -3677,7 +3545,6 @@
           </div>
   </div>
 </article>
-
 <article class="support-bloc" id="s2-reponse" data-num="08">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
@@ -3687,7 +3554,8 @@
     </div>
   </section>
   <div class="wrap support-bloc-body">
-<section class="day-hero" style="padding-bottom: 1rem">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 1 · Séquence 2</span>
@@ -4045,8 +3913,8 @@
               <p class="section-label">Relations</p>
               <h2 id="relations">Trois relations structurantes</h2>
               <p class="intro">
-                Le syllabus insiste sur trois relations. Dans le scénario de Lyam,
-                elles sont toutes visibles.
+                Trois relations structurent l’échange. Dans le scénario de
+                Lyam, elles sont toutes visibles.
               </p>
 
               <div class="relation-list">
@@ -4301,11 +4169,11 @@
             <!-- 6. AUTORITÉS -->
             <section class="section">
               <p class="section-label">Gouvernance</p>
-              <h2 id="autorites-gouvernance">Qui fait appliquer la DSP2&nbsp;?</h2>
+              <h2 id="autorites">Qui fait appliquer la DSP2&nbsp;?</h2>
               <p>
-                La directive n’est pas appliquée par une seule institution. Le
-                syllabus insiste sur le rôle des autorités européennes, en
-                particulier l’<strong>EBA</strong>.
+                La directive n’est pas appliquée par une seule institution. Les
+                autorités européennes jouent un rôle central, en particulier
+                l’<strong>EBA</strong>.
               </p>
 
               <div class="csm-table-wrap">
@@ -4394,45 +4262,6 @@
               </div>
             </section>
 
-            <details class="trainer-notes">
-              <summary>Notes formateur — S2</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>
-                    <strong>Le scénario avant le vocabulaire.</strong> Faire vivre
-                    les quatre actes de Lyam avant de nommer ASPSP/TPP/AISP/PISP.
-                    Le vocabulaire vient comme une étiquette.
-                  </li>
-                  <li>
-                    <strong>Le piège des rôles.</strong> Beaucoup confondent TPP et
-                    PISP. Rappeler&nbsp;: AISP, PISP, CBPII sont trois
-                    <em>services</em> d’un TPP.
-                  </li>
-                  <li>
-                    <strong>Relations.</strong> Le syllabus insiste sur les trois
-                    relations&nbsp;: les faire verbaliser par les étudiants à partir
-                    du scénario, pas en les dictant.
-                  </li>
-                  <li>
-                    <strong>Ne pas plonger dans la SCA ici.</strong> La protection
-                    est présentée comme un objectif&nbsp;; les mécanismes
-                    (OAuth2, mTLS, redirection) relèvent du J2 et du J3.
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Points de sortie de S2</h3>
-              <ul>
-                <li>Je peux raconter le scénario de Lyam et nommer chaque rôle.</li>
-                <li>Je distingue ASPSP, TPP et les trois services TPP.</li>
-                <li>Je cite les trois relations et les trois objectifs.</li>
-                <li>Je sais ce que signifie «&nbsp;banque plateforme&nbsp;».</li>
-                <li>Je sais à quoi sert le registre EBA.</li>
-              </ul>
-            </div>
-
             <div class="sources-box">
               <strong>Références</strong> — Directive (UE) 2015/2366, art. 4
               (définitions), 66-67 (accès), 97-98 (authentification)&nbsp;;
@@ -4444,7 +4273,6 @@
           </div>
   </div>
 </article>
-
 <article class="support-bloc" id="s3-machine" data-num="09">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
@@ -4454,7 +4282,8 @@
     </div>
   </section>
   <div class="wrap support-bloc-body">
-<section class="day-hero" style="padding-bottom: 1rem">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 1 · Séquence 3</span>
@@ -4492,7 +4321,8 @@
               </p>
 
               <div class="key-idea">
-                <p class="label">La chaîne du syllabus</p>
+
+                <p class="label">La chaîne complète</p>
                 <p>
                   Client → TPP → API Banque → Core Banking. Mais entre « API
                   Banque » et le core, il y a plusieurs couches qui font office
@@ -4504,11 +4334,11 @@
             <!-- 2. LES CINQ COUCHES -->
             <section class="section">
               <p class="section-label">Architecture logique</p>
-              <h2 id="couches">Les cinq couches SI du syllabus</h2>
+              <h2 id="couches">Les cinq couches SI</h2>
               <p class="intro">
-                Le pré-syllabus liste précisément cinq couches. Chacune a un
-                rôle unique, et l’on retrouve leur enchaînement dans le parcours
-                de Lyam.
+                Cinq couches structurent l’architecture. Chacune a un rôle
+                unique, et l’on retrouve leur enchaînement dans le parcours de
+                Lyam.
               </p>
 
               <div class="layer-stack">
@@ -4805,8 +4635,6 @@
               <p class="section-label">Standardisation</p>
               <h2 id="standardisation">Pourquoi standardiser&nbsp;?</h2>
               <p class="intro">
-                La DSP2 impose une interface, pas un format. Or, sans standard,
-                chaque banque inventerait ses champs. Le pré-syllabus retient
                 trois raisons de standardiser.
               </p>
 
@@ -4947,56 +4775,7 @@
             </section>
 
             <!-- 5. TRANSITION -->
-            <section class="section" style="border-bottom: none">
-              <div class="transition-block">
-                <p class="transition-label">Séquence suivante</p>
-                <h2>Et si on le fabriquait&nbsp;?</h2>
-                <p>
-                  On connaît le problème, les acteurs, la machine et les
-                  standards. La S4 fait passer à la pratique&nbsp;: trois
-                  partenaires se présentent à Banque Est. À vous de les
-                  qualifier et de tracer le flux.
-                </p>
-              </div>
-            </section>
-
-            <details class="trainer-notes">
-              <summary>Notes formateur — S3</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>
-                    <strong>Dessiner la chaîne au tableau</strong> avec les
-                    étudiants, couche par couche. À chaque couche, demander
-                    «&nbsp;que se passe-t-il si elle manque&nbsp;?&nbsp;».
-                  </li>
-                  <li>
-                    <strong>Insister sur le Monitoring</strong>, que tout le monde
-                    oublie&nbsp;: sans traçabilité, pas d’audit, pas de gestion de
-                    litige.
-                  </li>
-                  <li>
-                    <strong>Time-to-market</strong>&nbsp;: c’est l’argument business
-                    qui transforme l’Open Banking de «&nbsp;obligation&nbsp;» en
-                    «&nbsp;opportunité&nbsp;».
-                  </li>
-                  <li>
-                    <strong>Ne pas entrer dans OAuth2/mTLS</strong> — c’est le
-                    cœur du J2. Ici on ne fait que nommer les couches.
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Points de sortie de S3</h3>
-              <ul>
-                <li>Je sais nommer les cinq couches du syllabus et leur rôle.</li>
-                <li>Je peux décrire le parcours de la requête de Lyam.</li>
-                <li>Je distingue AIS et PIS.</li>
-                <li>Je peux donner les trois raisons de standardiser.</li>
-                <li>Je connais OBIE et le Berlin Group, et je sais que l’un n’est pas obligatoire en France.</li>
-              </ul>
-            </div>
+            
 
             <div class="sources-box">
               <strong>Références</strong> — RTS EBA 2018/389, art. 30-36
@@ -5011,293 +4790,13 @@
   </div>
 </article>
 
-<article class="support-bloc" id="s4-atelier" data-num="10">
-  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
-    <div class="wrap">
-      <div class="fiche-meta"><span class="tag">Parcours narratif</span></div>
-      <p class="day-kicker">10 · S4 · L'atelier</p>
-      <h1>S4 · L'atelier</h1>
-    </div>
-  </section>
-  <div class="wrap support-bloc-body">
-<section class="day-hero" style="padding-bottom: 1rem">
-            <div class="wrap">
-              <div class="fiche-meta">
-                <span class="tag">Jour 1 · Séquence 4</span>
-                <span class="tag tag-accent">55 min</span>
-              </div>
-              <p class="day-kicker">Mise en pratique · travaux de groupe</p>
-              <h1>L’atelier</h1>
-              <p class="lead">
-                Banque Est reçoit trois demandes de partenaires. À vous de
-                qualifier chaque demande, de tracer le flux, de choisir
-                l’architecture et de justifier un standard.
-              </p>
-            </div>
-          </section>
-
-          <div class="wrap">
-            <div class="fil-rouge">
-              <span class="fil-rouge-label">Fil rouge</span>
-              <p>
-                Lyam a désormais une application qui fonctionne. Mais Banque Est
-                ne reçoit pas qu’une demande&nbsp;: elle en reçoit trois, en même
-                temps. Vous êtes l’équipe Open Banking de Banque Est.
-              </p>
-            </div>
-
-            <section class="section" style="border-top: none; padding-top: 1.5rem">
-              <p class="section-label">Contexte</p>
-              <h2>Trois partenaires, trois demandes</h2>
-              <p>
-                <em>Variante du cas «&nbsp;Nova Banque&nbsp;» du support de
-                cours&nbsp;: ici, c’est Banque Est qui reçoit les demandes. Même
-                logique, contexte du fil rouge.</em>
-              </p>
-              <div class="csm-table-wrap">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Partenaire</th>
-                      <th scope="col">Demande</th>
-                      <th scope="col">À qualifier</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Budgetly</th>
-                      <td>
-                        Agréger les comptes de ses utilisateurs pour un conseil
-                        budgétaire automatisé.
-                      </td>
-                      <td>Statut&nbsp;? Données&nbsp;? SCA&nbsp;?</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">ShopFast</th>
-                      <td>
-                        Proposer à ses clients de payer par virement instantané
-                        depuis leur compte Banque Est.
-                      </td>
-                      <td>Statut&nbsp;? Flux&nbsp;? Risques&nbsp;?</td>
-                    </tr>
-                    <tr class="is-exergue">
-                      <th scope="row">TrésoriPro</th>
-                      <td>
-                        Offrir à des PME un tableau de bord consolidé de leurs
-                        comptes Banque Est et d’autres banques.
-                      </td>
-                      <td>Statut&nbsp;? Périmètre&nbsp;? SLA&nbsp;?</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Consigne</p>
-              <h2>Ce qu’il faut produire</h2>
-              <ol class="steps-list">
-                <li>
-                  <strong>Qualifier chaque partenaire</strong> — a-t-il un
-                  agrément&nbsp;? De quel type (ASPSP / AISP / PISP / CBPII)&nbsp;?
-                  Comment Banque Est vérifie-t-elle cet agrément avant le premier
-                  appel&nbsp;?
-                </li>
-                <li>
-                  <strong>Tracer le flux</strong> — quelles requêtes, vers quels
-                  endpoints&nbsp;? Où se situe la SCA&nbsp;? Que se passe-t-il en
-                  cas de révocation en cours de journée&nbsp;?
-                </li>
-                <li>
-                  <strong>Positionner les couches</strong> — pour chaque demande,
-                  dire quelles couches du SI sont mobilisées (Gateway, Consent,
-                  IAM, Core, Monitoring) et lesquelles sont critiques.
-                </li>
-                <li>
-                  <strong>Choisir un standard</strong> — Berlin Group, OBIE ou
-                  propriétaire&nbsp;? Justifier en trois arguments, dont
-                  <em>time-to-market</em>.
-                </li>
-                <li>
-                  <strong>Identifier deux risques</strong> et proposer une
-                  mesure de réduction pour chacun.
-                </li>
-              </ol>
-
-              <figure class="fig-illus">
-                <svg viewBox="0 0 1000 240" role="img" aria-label="Architecture cible attendue, flux animé de bout en bout">
-                  <defs>
-                    <marker id="ah-arch" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
-                    </marker>
-                  </defs>
-                  <!-- FinanceApp -->
-                  <rect x="20" y="90" width="130" height="60" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
-                  <text x="85" y="118" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="12" font-weight="700">FinanceApp</text>
-                  <text x="85" y="136" text-anchor="middle" fill="#5a6b7c" font-size="9">TPP / PISP-AISP</text>
-
-                  <line x1="150" y1="120" x2="196" y2="120" stroke="#5a6b7c" stroke-width="2.5" class="stream" marker-end="url(#ah-arch)"/>
-                  <text x="173" y="110" text-anchor="middle" fill="#5a6b7c" font-size="8" font-weight="700">mTLS</text>
-
-                  <!-- Gateway -->
-                  <rect x="200" y="90" width="120" height="60" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
-                  <text x="260" y="116" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">API Gateway</text>
-                  <text x="260" y="134" text-anchor="middle" fill="#5a6b7c" font-size="9">auth N · throttling</text>
-
-                  <line x1="320" y1="120" x2="356" y2="120" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-arch)"/>
-
-                  <!-- Consent -->
-                  <rect x="360" y="40" width="120" height="52" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                  <text x="420" y="64" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="11" font-weight="700">Consent Mgmt</text>
-                  <text x="420" y="80" text-anchor="middle" fill="#5a6b7c" font-size="9">AIS · PIS · CBPII</text>
-
-                  <!-- IAM -->
-                  <rect x="360" y="148" width="120" height="52" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
-                  <text x="420" y="172" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="11" font-weight="700">IAM / SCA</text>
-                  <text x="420" y="188" text-anchor="middle" fill="#5a6b7c" font-size="9">redirection banque</text>
-
-                  <line x1="360" y1="120" x2="356" y2="120" stroke="#5a6b7c" stroke-width="1.5"/>
-                  <line x1="480" y1="66" x2="516" y2="96" stroke="#5a6b7c" stroke-width="1.8" marker-end="url(#ah-arch)"/>
-                  <line x1="480" y1="174" x2="516" y2="144" stroke="#5a6b7c" stroke-width="1.8" marker-end="url(#ah-arch)"/>
-
-                  <!-- Core -->
-                  <rect x="520" y="90" width="160" height="60" rx="8" fill="#f7f9fb" stroke="#2f4858" stroke-width="2.5"/>
-                  <text x="600" y="116" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Core Banking</text>
-                  <text x="600" y="134" text-anchor="middle" fill="#5a6b7c" font-size="9">comptes · soldes · écritures</text>
-
-                  <line x1="680" y1="120" x2="716" y2="120" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-arch)"/>
-
-                  <!-- Monitoring -->
-                  <rect x="720" y="90" width="130" height="60" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                  <text x="785" y="116" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="11" font-weight="700">Monitoring</text>
-                  <text x="785" y="134" text-anchor="middle" fill="#5a6b7c" font-size="9">logs · audit</text>
-
-                  <!-- Registre / SCA légende -->
-                  <rect x="720" y="175" width="250" height="45" rx="6" fill="#fdf6f2" stroke="#c45c26" stroke-width="1.5"/>
-                  <text x="845" y="195" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">Registre EBA — vérif TPP</text>
-                  <text x="845" y="210" text-anchor="middle" fill="#5a6b7c" font-size="9">contrôle avant premier appel</text>
-                  <line x1="720" y1="197" x2="684" y2="150" stroke="#c45c26" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#ah-arch)"/>
-                </svg>
-                <figcaption>Figure — architecture cible&nbsp;: de FinanceApp au core banking, avec le consentement, la SCA, le monitoring et la vérification du registre.</figcaption>
-              </figure>
-
-              <div class="callout">
-                <h3>Livrable</h3>
-                <p>
-                  Une fiche par partenaire, sur une page, tenue en 20 minutes.
-                  Puis 5 minutes de restitution par binôme et 10 minutes de
-                  synthèse collective. Les trois partenaires peuvent être répartis
-                  entre les binômes pour gagner du temps.
-                </p>
-              </div>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Évaluation</p>
-              <h2>Grille</h2>
-              <div class="csm-table-wrap">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Critère</th>
-                      <th scope="col">Points</th>
-                      <th scope="col">Indice d’un bon travail</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Statuts corrects</th>
-                      <td>4</td>
-                      <td>AISP / PISP bien identifiés, ASPSP bien nommé</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Flux complet</th>
-                      <td>4</td>
-                      <td>Redirection + SCA + consentement + jeton</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Couches SI</th>
-                      <td>4</td>
-                      <td>Les cinq couches nommées et mobilisées à bon escient</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Standard</th>
-                      <td>3</td>
-                      <td>Choix argumenté, dont time-to-market</td>
-                    </tr>
-                    <tr class="is-exergue">
-                      <th scope="row">Risques</th>
-                      <td>5</td>
-                      <td>Risques crédibles et mesure associée</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            <details class="trainer-notes">
-              <summary>Corrigé formateur</summary>
-              <div class="notes-body">
-                <ul>
-                  <li>
-                    <strong>Budgetly</strong> = AISP pur (lecture). SCA initiale
-                    puis consultations sans nouvelle SCA (jusqu’à 4/jour) pendant
-                    90 jours. Couches clés&nbsp;: Consent, IAM (validation toutes
-                    les 90 jours), Monitoring. Risque&nbsp;: sur-collecte de
-                    données → périmètre strict + audit d’accès.
-                  </li>
-                  <li>
-                    <strong>ShopFast</strong> = PISP. Un consentement = un
-                    paiement, SCA à chaque paiement (sauf exemption).
-                    Couches&nbsp;: Gateway (mTLS), IAM (SCA), Consent (par
-                    paiement), Core (exécution). Risque&nbsp;: fraude au parcours →
-                    contrôle du bénéficiaire + signature de la requête.
-                  </li>
-                  <li>
-                    <strong>TrésoriPro</strong> = AISP multi-banques. Risque&nbsp;:
-                    indisponibilité des APIs → cache, mode dégradé, affichage de
-                    la fraîcheur des données. SLA négocié et surveillé côté
-                    Monitoring.
-                  </li>
-                  <li>
-                    <strong>Piège fréquent</strong>&nbsp;: appliquer le modèle
-                    «&nbsp;consentement 90 jours&nbsp;» à un PISP. Rappeler&nbsp;:
-                    PIS&nbsp;: un paiement = un consentement.
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-            <div class="check-end">
-              <h3>Bilan du Jour 1</h3>
-              <ul>
-                <li>Le problème (S1) et la réponse (S2) sont compris.</li>
-                <li>La machine (S3) est reconstituée&nbsp;: cinq couches.</li>
-                <li>Les trois partenaires sont correctement qualifiés.</li>
-                <li>Les standards et leurs raisons sont maîtrisés.</li>
-                <li>Rien du pré-syllabus n’a été laissé de côté.</li>
-              </ul>
-            </div>
-
-            <div class="sources-box">
-              <strong>Pour prolonger</strong> — Rejouer l’atelier avec un cas
-              réel de partenaire de la banque&nbsp;; comparer la documentation
-              publique de deux banques françaises sur leur portail développeur.
-            </div>
-
-            
-          </div>
-  </div>
-</article>
-
         </main>
       </div>
     </div>
 
     <footer class="site-foot no-print">
       <div class="wrap">
-        <a href="support.html">Page Support</a>
-        · Support étudiant Jour 1
+        <a href="index.html">Sommaire Jour 1</a> · Support étudiant
       </div>
     </footer>
   </body>

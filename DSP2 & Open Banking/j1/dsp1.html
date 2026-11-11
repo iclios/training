@@ -92,59 +92,116 @@
                 <em>Prestataire de Services de Paiement</em> (PSP).
               </p>
 
-              <figure class="fig-illus">
-                <svg viewBox="0 0 1000 235" role="img" aria-label="Le statut PSP regroupe établissements de crédit, établissements de paiement et établissements de monnaie électronique">
+              <div class="map-dsp2">
+                <svg viewBox="0 0 1000 270" role="group" aria-label="Le statut PSP regroupe trois familles : cliquez sur une famille pour voir son exemple et comment le paiement circule">
                   <defs>
                     <marker id="ah-d1-psp" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
                       <path d="M0,0 L7,3.5 L0,7 Z" fill="#1e5f8a" />
                     </marker>
                   </defs>
 
-                  <!-- Avant -->
-                  <text x="150" y="24" text-anchor="middle" fill="#8a9aaa" font-size="10" font-weight="800" letter-spacing="0.1em">AVANT 2007</text>
-                  <rect x="40" y="38" width="220" height="76" rx="10" fill="#f7f9fb" stroke="#8a9aaa" stroke-width="2" stroke-dasharray="6 4"/>
-                  <text x="150" y="68" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="14" font-weight="700">Banque</text>
-                  <text x="150" y="90" text-anchor="middle" fill="#8a9aaa" font-size="11">seule habilitée</text>
-                  <text x="150" y="140" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">✕ aucun concurrent</text>
-                  <text x="150" y="158" text-anchor="middle" fill="#a4572c" font-size="10">possible</text>
+                  <!-- Avant 2007 -->
+                  <text x="120" y="30" text-anchor="middle" fill="#8a9aaa" font-size="10" font-weight="800" letter-spacing="0.1em">AVANT 2007</text>
+                  <rect x="26" y="44" width="188" height="130" rx="10" fill="#f7f9fb" stroke="#8a9aaa" stroke-width="2" stroke-dasharray="6 4"/>
+                  <text x="120" y="82" text-anchor="middle" fill="#5a6b7c" font-size="14" font-weight="700">Banque</text>
+                  <text x="120" y="104" text-anchor="middle" fill="#8a9aaa" font-size="11">seule habilitée</text>
+                  <text x="120" y="140" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">✕ aucun concurrent</text>
+                  <text x="120" y="158" text-anchor="middle" fill="#a4572c" font-size="10">possible</text>
 
                   <!-- Flèche -->
-                  <line x1="276" y1="76" x2="360" y2="76" stroke="#1e5f8a" stroke-width="3" class="stream" marker-end="url(#ah-d1-psp)"/>
-                  <text x="318" y="62" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">LA DSP1</text>
+                  <line x1="220" y1="110" x2="262" y2="110" stroke="#1e5f8a" stroke-width="3" marker-end="url(#ah-d1-psp)"/>
+                  <text x="241" y="96" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">LA DSP1</text>
 
-                  <!-- PSP conteneur -->
-                  <rect x="374" y="30" width="580" height="176" rx="14" fill="#eff6fb" stroke="#1e5f8a" stroke-width="3"/>
-                  <text x="664" y="56" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="14" font-weight="800">PRESTATAIRE DE SERVICES DE PAIEMENT (PSP)</text>
-                  <text x="664" y="74" text-anchor="middle" fill="#5a6b7c" font-size="10">un statut unique, une licence, un passeport européen</text>
+                  <!-- Conteneur PSP -->
+                  <rect x="270" y="34" width="712" height="214" rx="14" fill="#eff6fb" stroke="#1e5f8a" stroke-width="3"/>
+                  <text x="626" y="62" text-anchor="middle" fill="#1e5f8a" font-size="14" font-weight="800">PRESTATAIRE DE SERVICES DE PAIEMENT (PSP)</text>
+                  <text x="626" y="80" text-anchor="middle" fill="#5a6b7c" font-size="10">un statut large · une licence · un passeport européen — 3 familles agréées</text>
 
-                  <g>
-                    <rect x="396" y="92" width="168" height="92" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="480" y="118" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">DÉJÀ LÀ</text>
-                    <text x="480" y="140" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Établissement</text>
-                    <text x="480" y="157" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">de crédit</text>
-                    <text x="480" y="175" text-anchor="middle" fill="#5a6b7c" font-size="10">la banque</text>
+                  <!-- Famille 1 : crédit -->
+                  <g class="map-zone" data-zone="credit">
+                    <rect x="288" y="94" width="212" height="138" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="394" y="118" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="800" letter-spacing="0.05em">DÉJÀ LÀ</text>
+                    <text x="394" y="146" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Établissement</text>
+                    <text x="394" y="164" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">de crédit</text>
+                    <text x="394" y="188" text-anchor="middle" class="map-label-soft">la banque</text>
+                    <text x="394" y="210" text-anchor="middle" class="map-label-soft">tous les services</text>
+                    <g class="map-pin"><circle cx="470" cy="118" r="11" fill="#0d9f8a"/><text x="470" y="122" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">1</text></g>
                   </g>
-                  <g>
-                    <rect x="580" y="92" width="168" height="92" rx="8" fill="#fff" stroke="#6b4fa0" stroke-width="2"/>
-                    <text x="664" y="118" text-anchor="middle" fill="#4b3480" font-size="10" font-weight="700">CRÉÉ EN 2007</text>
-                    <text x="664" y="140" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Établissement</text>
-                    <text x="664" y="157" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">de paiement</text>
-                    <text x="664" y="175" text-anchor="middle" fill="#5a6b7c" font-size="10">non-banque agréée</text>
+
+                  <!-- Famille 2 : paiement -->
+                  <g class="map-zone" data-zone="paiement">
+                    <rect x="518" y="94" width="212" height="138" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
+                    <text x="624" y="118" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="800" letter-spacing="0.05em">CRÉÉ EN 2007</text>
+                    <text x="624" y="146" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Établissement</text>
+                    <text x="624" y="164" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">de paiement</text>
+                    <text x="624" y="188" text-anchor="middle" class="map-label-soft">non-banque agréée</text>
+                    <text x="624" y="210" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">le PSP e-commerce</text>
+                    <g class="map-pin"><circle cx="700" cy="118" r="11" fill="#c45c26"/><text x="700" y="122" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">2</text></g>
                   </g>
-                  <g>
-                    <rect x="764" y="92" width="168" height="92" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="848" y="118" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="700">RÉGIME ASSIMILÉ</text>
-                    <text x="848" y="140" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Monnaie</text>
-                    <text x="848" y="157" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">électronique</text>
-                    <text x="848" y="175" text-anchor="middle" fill="#5a6b7c" font-size="10">wallets, cartes prépayées</text>
+
+                  <!-- Famille 3 : monnaie électronique -->
+                  <g class="map-zone" data-zone="monnaie">
+                    <rect x="748" y="94" width="212" height="138" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="854" y="118" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="800" letter-spacing="0.05em">RÉGIME ASSIMILÉ</text>
+                    <text x="854" y="146" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">Monnaie</text>
+                    <text x="854" y="164" text-anchor="middle" fill="#1a2b3c" font-size="14" font-weight="700">électronique</text>
+                    <text x="854" y="188" text-anchor="middle" class="map-label-soft">wallets</text>
+                    <text x="854" y="210" text-anchor="middle" class="map-label-soft">cartes prépayées</text>
+                    <g class="map-pin"><circle cx="930" cy="118" r="11" fill="#3d5a80"/><text x="930" y="122" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">3</text></g>
                   </g>
                 </svg>
-                <figcaption>
-                  Figure — la DSP1 ne crée pas les services&nbsp;: elle crée la
-                  <em>catégorie</em> qui les rend possibles. Être PSP, c’est avoir
-                  le droit d’exercer, sans forcément être une banque.
-                </figcaption>
-              </figure>
+                <p class="map-hint">Cliquez sur une famille (1 à 3) : son exemple d’acteur et la façon dont le paiement circule.</p>
+              </div>
+
+              <div class="map-accordeon">
+                <details class="cours-note is-ok" data-zone-panel="credit">
+                  <summary><span class="map-sum-num">1</span> Établissement de crédit — la banque</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      La famille historique&nbsp;: elle existait <em>avant</em> la
+                      DSP1 et tient elle-même les comptes de ses clients.
+                    </p>
+                    <ul>
+                      <li><strong>Exemples</strong>&nbsp;: BNP Paribas, Crédit Agricole, Revolut (licence bancaire).</li>
+                      <li><strong>Circulation</strong>&nbsp;: virement ou carte, depuis le compte qu’elle tient elle-même.</li>
+                      <li>Peut fournir <strong>tous</strong> les services de paiement — c’est la famille la plus large.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details class="cours-note is-ok" data-zone-panel="paiement">
+                  <summary><span class="map-sum-num">2</span> Établissement de paiement — le PSP e-commerce</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      La famille <strong>créée</strong> par la DSP1&nbsp;: une
+                      non-banque agréée. C’est ici que se range ce qu’on appelle
+                      couramment le «&nbsp;PSP e-commerce&nbsp;».
+                    </p>
+                    <ul>
+                      <li><strong>Exemples</strong>&nbsp;: Stripe, Adyen, Payplug.</li>
+                      <li><strong>Circulation</strong>&nbsp;: acquisition carte — encaisse pour le marchand, puis reverse sur son compte.</li>
+                      <li><strong>Avant 2007</strong>, ce rôle n’était pas ouvert&nbsp;: il fallait une licence bancaire pour détenir les fonds d’un marchand. La DSP1 a rendu Stripe (2010) et Adyen (2006) possibles.</li>
+                      <li>Un <strong>PISP</strong> (créé par la DSP2) sera aussi un établissement de paiement — mais il initie un <em>virement</em>, pas une acquisition carte.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details class="cours-note is-ok" data-zone-panel="monnaie">
+                  <summary><span class="map-sum-num">3</span> Établissement de monnaie électronique — les wallets</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      Une famille au <strong>régime assimilé</strong>&nbsp;: elle
+                      émet de la monnaie électronique stockée sur un support
+                      (wallet, carte prépayée).
+                    </p>
+                    <ul>
+                      <li><strong>Exemples</strong>&nbsp;: Lydia, Sumeria, cartes prépayées.</li>
+                      <li><strong>Circulation</strong>&nbsp;: le client charge un solde, puis paie depuis ce solde.</li>
+                      <li>Complète le statut PSP sans être une banque ni un simple prestataire d’acquisition.</li>
+                    </ul>
+                  </div>
+                </details>
+              </div>
 
               <div class="callout info">
                 <h3>Pourquoi c’est décisif</h3>
@@ -163,68 +220,11 @@
                   encaisse pour un marchand sur son site. Dans la DSP1, c’est une
                   <strong>catégorie juridique</strong>. Ce n’est pas une
                   opposition&nbsp;: c’est un <strong>rapport d’inclusion</strong>.
-                  Un <em>statut large</em>, un <em>rôle étroit</em>.
+                  Un <em>statut large</em>, un <em>rôle étroit</em>&nbsp;: le PSP
+                  e-commerce n’est pas une catégorie concurrente, c’est un rôle
+                  <em>à l’intérieur</em> de la famille «&nbsp;établissement de
+                  paiement&nbsp;» du schéma ci-dessus.
                 </p>
-
-                <figure class="fig-illus">
-                  <svg viewBox="0 0 860 250" role="img" aria-label="Le statut PSP contient trois familles agréées ; le PSP e-commerce n’est qu’un rôle dans la famille des établissements de paiement">
-                    <defs>
-                      <marker id="ah-psp-inc" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
-                        <path d="M0,0 L7,3.5 L0,7 Z" fill="#c45c26" />
-                      </marker>
-                    </defs>
-
-                    <!-- Conteneur : statut large -->
-                    <rect x="12" y="14" width="520" height="222" rx="12" fill="#eff6fb" stroke="#1e5f8a" stroke-width="3"/>
-                    <text x="272" y="42" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="16" font-weight="800">STATUT LARGE</text>
-                    <text x="272" y="62" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="600">PSP au sens DSP1 — être agréé</text>
-
-                    <!-- Famille 1 -->
-                    <rect x="32" y="80" width="146" height="132" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="105" y="104" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="800" letter-spacing="0.05em">CRÉDIT</text>
-                    <text x="105" y="134" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Établissement</text>
-                    <text x="105" y="151" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">de crédit</text>
-                    <line x1="52" y1="166" x2="158" y2="166" stroke="#e3ebf1" stroke-width="1.5"/>
-                    <text x="105" y="186" text-anchor="middle" fill="#5a6b7c" font-size="11">la banque</text>
-                    <text x="105" y="202" text-anchor="middle" fill="#8a9aaa" font-size="10">tous services</text>
-
-                    <!-- Famille 2 : celle du PSP e-commerce -->
-                    <rect x="193" y="80" width="160" height="132" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="3"/>
-                    <text x="273" y="104" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="800" letter-spacing="0.05em">PAIEMENT</text>
-                    <text x="273" y="134" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Établissement</text>
-                    <text x="273" y="151" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">de paiement</text>
-                    <line x1="213" y1="166" x2="333" y2="166" stroke="#eccbb8" stroke-width="1.5"/>
-                    <text x="273" y="186" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">le PSP e-commerce</text>
-                    <text x="273" y="202" text-anchor="middle" fill="#a4572c" font-size="10">est ici</text>
-
-                    <!-- Famille 3 -->
-                    <rect x="368" y="80" width="146" height="132" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="441" y="104" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="800" letter-spacing="0.05em">MONNAIE ÉLEC.</text>
-                    <text x="441" y="134" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">Monnaie</text>
-                    <text x="441" y="151" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="13" font-weight="700">électronique</text>
-                    <line x1="388" y1="166" x2="494" y2="166" stroke="#e3ebf1" stroke-width="1.5"/>
-                    <text x="441" y="186" text-anchor="middle" fill="#5a6b7c" font-size="11">wallets</text>
-                    <text x="441" y="202" text-anchor="middle" fill="#8a9aaa" font-size="10">cartes prépayées</text>
-
-                    <!-- Flèche -->
-                    <line x1="548" y1="125" x2="596" y2="125" stroke="#c45c26" stroke-width="3" marker-end="url(#ah-psp-inc)"/>
-                    <text x="572" y="112" text-anchor="middle" fill="#c45c26" font-size="9" font-weight="700">rôle</text>
-
-                    <!-- Rôle étroit -->
-                    <rect x="608" y="46" width="240" height="158" rx="12" fill="#fff" stroke="#c45c26" stroke-width="3"/>
-                    <text x="728" y="74" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="16" font-weight="800">RÔLE ÉTROIT</text>
-                    <text x="728" y="94" text-anchor="middle" fill="#c45c26" font-size="12" font-weight="600">PSP «&nbsp;e-commerce&nbsp;»</text>
-                    <line x1="628" y1="106" x2="828" y2="106" stroke="#eccbb8" stroke-width="1.5"/>
-                    <text x="728" y="128" text-anchor="middle" fill="#5a6b7c" font-size="11">encaisser pour un</text>
-                    <text x="728" y="144" text-anchor="middle" fill="#5a6b7c" font-size="11">marchand, sur son site</text>
-                    <line x1="628" y1="156" x2="828" y2="156" stroke="#eccbb8" stroke-width="1.5"/>
-                    <text x="728" y="178" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Stripe · Adyen · Payplug</text>
-                  </svg>
-                  <figcaption>
-                    Le PSP e-commerce est un rôle <em>à l’intérieur</em> du statut
-                    PSP, pas une catégorie concurrente.
-                  </figcaption>
-                </figure>
 
                 <p>
                   <strong>Avant la DSP1, ce rôle n'était pas ouvert.</strong> Il
@@ -236,49 +236,12 @@
                 </p>
 
                 <p>
-                  <strong>Une catégorie, trois familles, des acteurs très
-                  différents.</strong> Pour chaque famille du statut PSP, un
-                  exemple d’acteur et la façon dont le paiement circule. Un
-                  même service — faire circuler un paiement — ne passe donc
-                  pas par les mêmes mécanismes selon la famille.
-                </p>
-
-                <div class="csm-table-wrap">
-                  <table class="csm-table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Famille</th>
-                        <th scope="col">Exemples d’acteurs</th>
-                        <th scope="col">Comment le paiement circule</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">Établissement de crédit</th>
-                        <td>BNP Paribas, Crédit Agricole, Revolut (licence bancaire)</td>
-                        <td>Virement ou carte, depuis le compte qu’elle tient elle-même</td>
-                      </tr>
-                      <tr class="is-exergue">
-                        <th scope="row">Établissement de paiement</th>
-                        <td>Stripe, Adyen, Payplug</td>
-                        <td>Acquisition carte&nbsp;: encaisse pour le marchand, puis reverse sur son compte</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Monnaie électronique</th>
-                        <td>Lydia, Sumeria, cartes prépayées</td>
-                        <td>Le client charge un solde, puis paie depuis ce solde</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <p>
-                  <strong>Ce que ces exemples montrent.</strong> Stripe et Adyen
-                  sont des établissements de paiement&nbsp;: ils encaissent par
-                  carte pour un marchand. Un PISP, lui, initie un
-                  <em>virement</em> depuis le compte du client chez sa banque.
-                  Deux façons différentes de faire passer un paiement, deux
-                  statuts différents au sein du même PSP.
+                  <strong>Ce que les exemples du schéma montrent.</strong> Stripe
+                  et Adyen sont des établissements de paiement&nbsp;: ils
+                  encaissent par carte pour un marchand. Un PISP (créé par la
+                  DSP2), lui, initie un <em>virement</em> depuis le compte du
+                  client chez sa banque. Deux façons différentes de faire passer
+                  un paiement, deux rôles différents au sein du même PSP.
                 </p>
               </div>
             </section>
@@ -610,5 +573,6 @@
     <script src="../js/nav-j1.js"></script>
     <script src="../js/present.js"></script>
     <script src="../js/read-aloud.js"></script>
+    <script src="../js/carte-dsp2.js"></script>
   </body>
 </html>

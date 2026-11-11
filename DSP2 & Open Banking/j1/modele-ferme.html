@@ -54,57 +54,165 @@
                 La banque de détail historique maîtrise toute la chaîne de
                 valeur&nbsp;: elle tient le compte, produit le service, contrôle
                 le canal et possède la relation client. Chaque maillon renforce
-                les autres.
+                les autres — et, dans le même mouvement, <strong>verrouille</strong>
+                le marché. Cliquez sur un maillon du schéma&nbsp;: il révèle à la
+                fois ce qu’il protège et la limite qu’il crée.
               </p>
 
-              <figure class="fig-illus">
-                <svg viewBox="0 0 1000 240" role="img" aria-label="Chaîne de valeur bancaire intégrée : compte, service, canal, client">
+              <div class="map-dsp2">
+                <svg viewBox="0 0 1000 260" role="group" aria-label="Chaîne de valeur bancaire intégrée : cliquez sur un maillon pour voir ce qu’il protège et qu’elle limite il crée">
                   <defs>
                     <marker id="ah-mf1" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
                       <path d="M0,0 L7,3.5 L0,7 Z" fill="#1e5f8a" />
                     </marker>
                   </defs>
-                  <rect x="20" y="30" width="960" height="180" rx="14" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="7 5"/>
-                  <text x="500" y="54" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.1em">PÉRIMÈTRE FERMÉ DE LA BANQUE</text>
 
-                  <g>
-                    <rect x="48" y="76" width="190" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
-                    <text x="143" y="106" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700" letter-spacing="0.08em">1 · LE SOCLE</text>
-                    <text x="143" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Le compte</text>
-                    <text x="143" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">tenue du dépôt</text>
-                    <text x="143" y="166" text-anchor="middle" fill="#5a6b7c" font-size="11">core banking</text>
+                  <rect x="20" y="34" width="960" height="180" rx="14" fill="#f7f9fb" stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="7 5"/>
+                  <text x="500" y="26" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.1em">PÉRIMÈTRE FERMÉ DE LA BANQUE</text>
+
+                  <!-- 1 · COMPTE -->
+                  <g class="map-zone" data-zone="compte">
+                    <rect x="44" y="64" width="196" height="128" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                    <text x="142" y="90" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700" letter-spacing="0.08em">1 · LE SOCLE</text>
+                    <text x="142" y="116" text-anchor="middle" fill="#1a2b3c" font-size="15" font-weight="700">Le compte</text>
+                    <text x="142" y="138" text-anchor="middle" class="map-label-soft">tenue du dépôt</text>
+                    <text x="142" y="154" text-anchor="middle" class="map-label-soft">core banking</text>
+                    <text x="142" y="178" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">verrou 1</text>
+                    <g class="map-pin"><circle cx="222" cy="178" r="12" fill="#0d9f8a"/><text x="222" y="182" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">1</text></g>
                   </g>
-                  <line x1="244" y1="131" x2="272" y2="131" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-mf1)"/>
-                  <g>
-                    <rect x="280" y="76" width="190" height="110" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
-                    <text x="375" y="106" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700" letter-spacing="0.08em">2 · L’OFFRE</text>
-                    <text x="375" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Le service</text>
-                    <text x="375" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">virement, carte, crédit</text>
-                    <text x="375" y="166" text-anchor="middle" fill="#5a6b7c" font-size="11">produit maison</text>
+                  <line x1="244" y1="128" x2="268" y2="128" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-mf1)"/>
+
+                  <!-- 2 · SERVICE -->
+                  <g class="map-zone" data-zone="service">
+                    <rect x="276" y="64" width="196" height="128" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="374" y="90" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700" letter-spacing="0.08em">2 · L’OFFRE</text>
+                    <text x="374" y="116" text-anchor="middle" fill="#1a2b3c" font-size="15" font-weight="700">Le service</text>
+                    <text x="374" y="138" text-anchor="middle" class="map-label-soft">virement, carte, crédit</text>
+                    <text x="374" y="154" text-anchor="middle" class="map-label-soft">produit maison</text>
+                    <text x="374" y="178" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">verrou 2</text>
+                    <g class="map-pin"><circle cx="454" cy="178" r="12" fill="#1e5f8a"/><text x="454" y="182" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">2</text></g>
                   </g>
-                  <line x1="476" y1="131" x2="504" y2="131" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-mf1)"/>
-                  <g>
-                    <rect x="512" y="76" width="190" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
-                    <text x="607" y="106" text-anchor="middle" fill="#4b3480" font-size="10" font-weight="700" letter-spacing="0.08em">3 · L’ACCÈS</text>
-                    <text x="607" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Le canal</text>
-                    <text x="607" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">agence · web · appli</text>
-                    <text x="607" y="166" text-anchor="middle" fill="#5a6b7c" font-size="11">contrôlé à 100 %</text>
+                  <line x1="476" y1="128" x2="500" y2="128" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-mf1)"/>
+
+                  <!-- 3 · CANAL -->
+                  <g class="map-zone" data-zone="canal">
+                    <rect x="508" y="64" width="196" height="128" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
+                    <text x="606" y="90" text-anchor="middle" fill="#4b3480" font-size="10" font-weight="700" letter-spacing="0.08em">3 · L’ACCÈS</text>
+                    <text x="606" y="116" text-anchor="middle" fill="#1a2b3c" font-size="15" font-weight="700">Le canal</text>
+                    <text x="606" y="138" text-anchor="middle" class="map-label-soft">agence · web · appli</text>
+                    <text x="606" y="154" text-anchor="middle" class="map-label-soft">contrôlé à 100 %</text>
+                    <text x="606" y="178" text-anchor="middle" fill="#4b3480" font-size="10" font-weight="700">verrou 3</text>
+                    <g class="map-pin"><circle cx="686" cy="178" r="12" fill="#6b4fa0"/><text x="686" y="182" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">3</text></g>
                   </g>
-                  <line x1="708" y1="131" x2="736" y2="131" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-mf1)"/>
-                  <g>
-                    <rect x="744" y="76" width="208" height="110" rx="10" fill="#fff" stroke="#3d5a80" stroke-width="2.5"/>
-                    <text x="848" y="106" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="700" letter-spacing="0.08em">4 · LA RELATION</text>
-                    <text x="848" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Le client</text>
-                    <text x="848" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">un seul fournisseur</text>
-                    <text x="848" y="166" text-anchor="middle" fill="#5a6b7c" font-size="11">pour tout</text>
+                  <line x1="708" y1="128" x2="732" y2="128" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-mf1)"/>
+
+                  <!-- 4 · CLIENT -->
+                  <g class="map-zone" data-zone="client">
+                    <rect x="740" y="64" width="212" height="128" rx="10" fill="#fff" stroke="#3d5a80" stroke-width="2.5"/>
+                    <text x="846" y="90" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="700" letter-spacing="0.08em">4 · LA RELATION</text>
+                    <text x="846" y="116" text-anchor="middle" fill="#1a2b3c" font-size="15" font-weight="700">Le client</text>
+                    <text x="846" y="138" text-anchor="middle" class="map-label-soft">un seul fournisseur</text>
+                    <text x="846" y="154" text-anchor="middle" class="map-label-soft">pour tout</text>
+                    <text x="846" y="178" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="700">verrou 4</text>
+                    <g class="map-pin"><circle cx="930" cy="178" r="12" fill="#3d5a80"/><text x="930" y="182" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">4</text></g>
                   </g>
                 </svg>
-                <figcaption>
-                  Figure — la chaîne intégrée&nbsp;: chaque maillon appartient à
-                  la banque, donc aucun concurrent ne peut s’insérer entre deux
-                  maillons.
-                </figcaption>
-              </figure>
+                <p class="map-hint">Cliquez sur un maillon (1 à 4) : sa fonction, ce qu’il protège et le verrou qu’il crée.</p>
+              </div>
+
+              <div class="map-accordeon">
+                <details class="cours-note is-ko" data-zone-panel="compte">
+                  <summary><span class="map-sum-num">1</span> Le compte — la donnée captive</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      <strong>Fonction.</strong> La banque tient le dépôt et le
+                      core banking. C’est <strong>le socle</strong> de toute la
+                      chaîne&nbsp;: sans compte chez elle, rien d’autre n’existe.
+                    </p>
+                    <p>
+                      <strong>Verrou créé — la donnée n’appartient qu’à la
+                      banque.</strong> Le relevé est un actif stratégique&nbsp;:
+                      il alimente le cross-selling et verrouille la relation.
+                      Sans API, aucun tiers ne peut construire un service
+                      par-dessus.
+                    </p>
+                    <ul>
+                      <li><strong>Protège</strong>&nbsp;: cohérence du SI, maîtrise du risque.</li>
+                      <li><strong>Empêche</strong>&nbsp;: gestion de budget consolidée.</li>
+                      <li>Le client est <em>titulaire</em> du compte, mais n’a aucun moyen technique de <em>déléguer</em> la lecture de ses données. Elle existe, mais ne circule que dans le périmètre de la banque.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details class="cours-note is-ko" data-zone-panel="service">
+                  <summary><span class="map-sum-num">2</span> Le service — le paiement par le canal maison</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      <strong>Fonction.</strong> Virement, carte, crédit&nbsp;: la
+                      banque produit <strong>l’offre</strong> de bout en bout,
+                      en produit maison.
+                    </p>
+                    <p>
+                      <strong>Verrou créé — le paiement passe par le canal
+                      maison.</strong> Un virement ne s’initie que depuis
+                      l’application ou le site de la banque. Un marchand ou une
+                      plateforme ne peut pas <strong>déclencher</strong> l’ordre à
+                      la place du client.
+                    </p>
+                    <ul>
+                      <li><strong>Protège</strong>&nbsp;: sécurité de bout en bout.</li>
+                      <li><strong>Empêche</strong>&nbsp;: paiement initié par un tiers.</li>
+                      <li>Conséquence pratique&nbsp;: un e-commerçant doit soit rendre le virement manuel (saisie par le client), soit passer par la carte. Le virement n’est pas «&nbsp;utilisable comme un paiement&nbsp;».</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details class="cours-note is-ko" data-zone-panel="canal">
+                  <summary><span class="map-sum-num">3</span> Le canal — l’interopérabilité impossible</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      <strong>Fonction.</strong> Agence, web, application&nbsp;: la
+                      banque contrôle <strong>l’accès</strong> à 100&nbsp;%.
+                      Chaque maillon renforce les autres.
+                    </p>
+                    <p>
+                      <strong>Verrou créé — aucune interopérabilité entre
+                      banques.</strong> Chaque banque a ses formats, ses
+                      interfaces, ses règles. Une application qui veut lire
+                      plusieurs comptes doit <strong>recoder</strong> chaque
+                      intégration, une par une.
+                    </p>
+                    <ul>
+                      <li><strong>Protège</strong>&nbsp;: autonomie d’évolution.</li>
+                      <li><strong>Empêche</strong>&nbsp;: interopérabilité, économie de l’intégration.</li>
+                      <li>Coût du N×M&nbsp;: N applications × M banques = N×M intégrations à maintenir. C’est ce coût qui justifiera la standardisation (OBIE, Berlin Group), traitée en S3.</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details class="cours-note is-ko" data-zone-panel="client">
+                  <summary><span class="map-sum-num">4</span> Le client — la sécurité par le secret</summary>
+                  <div class="cours-note-body">
+                    <p>
+                      <strong>Fonction.</strong> Le client a <strong>un seul
+                      fournisseur pour tout</strong>&nbsp;: il n’a aucune raison
+                      de sortir du périmètre.
+                    </p>
+                    <p>
+                      <strong>Verrou créé — la sécurité repose sur le
+                      secret.</strong> Le seul mécanisme d’authentification est
+                      l’<strong>identifiant + mot de passe</strong>. Celui qui les
+                      connaît <em>est</em> le client&nbsp;: aucune délégation
+                      révocable, aucune traçabilité.
+                    </p>
+                    <ul>
+                      <li><strong>Protège</strong>&nbsp;: simplicité apparente.</li>
+                      <li><strong>Empêche</strong>&nbsp;: délégation révocable, traçabilité.</li>
+                      <li>Un secret partagé est un secret perdu. Prêter ses identifiants, c’est prêter sa signature&nbsp;— sans limite de durée, sans périmètre, sans moyen de reprendre la main.</li>
+                    </ul>
+                  </div>
+                </details>
+              </div>
 
               <div class="key-idea">
                 <p class="label">À retenir</p>
@@ -117,106 +225,7 @@
               </div>
             </section>
 
-            <!-- 2. LES QUATRE LIMITES -->
-            <section class="section">
-              <p class="section-label">Limites</p>
-              <h2>Quatre limites structurelles</h2>
-              <p class="intro">
-                On les présente souvent comme des «&nbsp;manques&nbsp;». Ce sont
-                en réalité des <strong>propriétés</strong> du modèle&nbsp;:
-                cohérentes de son point de vue, coûteuses du point de vue du
-                client.
-              </p>
-
-              <div class="verrou-grid">
-                <article class="verrou-card">
-                  <span class="verrou-num">1</span>
-                  <h3>La donnée n’appartient qu’à la banque</h3>
-                  <p>
-                    Le relevé de compte est un <strong>actif
-                    stratégique</strong>&nbsp;: il alimente le cross-selling et
-                    verrouille la relation. Sans API, aucun tiers ne peut
-                    construire un service par-dessus.
-                  </p>
-                  <details open class="cours-note small">
-                    <summary>Cours</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        Le client est <em>titulaire</em> de son compte, mais il
-                        n’a aucun moyen technique de <em>déléguer</em> la lecture
-                        de ses données à qui il veut. La donnée existe, mais elle
-                        circule seulement dans le périmètre de la banque.
-                      </p>
-                    </div>
-                  </details>
-                </article>
-
-                <article class="verrou-card">
-                  <span class="verrou-num">2</span>
-                  <h3>Le paiement passe par le canal maison</h3>
-                  <p>
-                    Un virement ne s’initie que depuis l’application ou le site
-                    de la banque. Un marchand ou une plateforme ne peut pas
-                    <strong>déclencher</strong> l’ordre à la place du client.
-                  </p>
-                  <details open class="cours-note small">
-                    <summary>Cours</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        Conséquence pratique&nbsp;: un e-commerçant qui veut
-                        accepter du virement doit soit le rendre manuel (saisie
-                        par le client), soit passer par la carte. Le virement
-                        n’est pas «&nbsp;utilisable comme un paiement&nbsp;».
-                      </p>
-                    </div>
-                  </details>
-                </article>
-
-                <article class="verrou-card">
-                  <span class="verrou-num">3</span>
-                  <h3>Aucune interopérabilité entre banques</h3>
-                  <p>
-                    Chaque banque a ses formats, ses interfaces, ses règles. Une
-                    application qui veut lire plusieurs comptes doit
-                    <strong>recoder</strong> chaque intégration, une par une.
-                  </p>
-                  <details open class="cours-note small">
-                    <summary>Cours</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        Coût du N×M&nbsp;: N applications × M banques = N×M
-                        intégrations à maintenir. C’est ce coût qui justifiera la
-                        standardisation (OBIE, Berlin Group), traitée en S3.
-                      </p>
-                    </div>
-                  </details>
-                </article>
-
-                <article class="verrou-card">
-                  <span class="verrou-num">4</span>
-                  <h3>La sécurité repose sur le secret</h3>
-                  <p>
-                    Le seul mécanisme d’authentification est
-                    l’<strong>identifiant + mot de passe</strong>. Celui qui les
-                    connaît <em>est</em> le client&nbsp;: aucune délégation
-                    révocable, aucune traçabilité.
-                  </p>
-                  <details open class="cours-note small">
-                    <summary>Cours</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        Un secret partagé est un secret perdu. Prêter ses
-                        identifiants, c’est prêter sa signature&nbsp;— sans
-                        limite de durée, sans périmètre, sans moyen de reprendre
-                        la main.
-                      </p>
-                    </div>
-                  </details>
-                </article>
-              </div>
-            </section>
-
-            <!-- 3. LE COÛT DU CHAÎNON MANQUANT -->
+            <!-- 2. LE COÛT DU CHAÎNON MANQUANT -->
             <section class="section">
               <p class="section-label">Conséquence</p>
               <h2>Le chaînon manquant, et le détour</h2>
@@ -378,5 +387,6 @@
     <script src="../js/nav-j1.js"></script>
     <script src="../js/present.js"></script>
     <script src="../js/read-aloud.js"></script>
+    <script src="../js/carte-dsp2.js"></script>
   </body>
 </html>

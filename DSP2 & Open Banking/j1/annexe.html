@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Annexe · Jour 1 — Concepts et statuts | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="annexe">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a class="is-active" href="intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · Annexe</span>
+                <span class="tag tag-accent">Référence</span>
+              </div>
+              <p class="day-kicker">Définitions</p>
+              <h1>Annexe · Concepts et statuts</h1>
+              <p class="lead">
+                Les notions employées dans le Jour 1 sans y être définies. À
+                consulter au besoin&nbsp;: chaque entrée donne la définition
+                usuelle, puis ce qu’elle change pour la suite du cours.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <!-- 1. LES TROIS STATUTS -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Statuts</p>
+              <h2>Les trois familles de prestataires</h2>
+              <p class="intro">
+                La DSP1 crée un statut unique, le PSP, qui regroupe trois
+                familles d’établissements. Elles rendent des services
+                différents et ne sont pas soumises aux mêmes obligations.
+              </p>
+
+              <div class="verrou-grid">
+                <div class="verrou-card">
+                  <span class="verrou-num">01</span>
+                  <h3>Établissement de crédit</h3>
+                  <p>
+                    Entreprise agréée pour recevoir des fonds du public,
+                    accorder des crédits et mettre des moyens de paiement à
+                    disposition. C’est la banque au sens strict.
+                  </p>
+                  <p>
+                    Elle tient les comptes de dépôt. Dans la DSP2, elle occupe
+                    le rôle d’<strong>ASPSP</strong>&nbsp;: c’est elle qui
+                    héberge les comptes que les tiers veulent consulter.
+                  </p>
+                </div>
+
+                <div class="verrou-card">
+                  <span class="verrou-num">02</span>
+                  <h3>Établissement de paiement</h3>
+                  <p>
+                    Entreprise agréée pour fournir des services de paiement
+                    sans être une banque&nbsp;: exécuter des virements ou des
+                    prélèvements, émettre des moyens de paiement, acquérir des
+                    opérations.
+                  </p>
+                  <p>
+                    Elle ne peut pas accorder de crédit pour son propre compte.
+                    Sa création par la DSP1 en 2007 casse le monopole bancaire
+                    sur les paiements.
+                  </p>
+                </div>
+
+                <div class="verrou-card">
+                  <span class="verrou-num">03</span>
+                  <h3>Établissement de monnaie électronique</h3>
+                  <p>
+                    Entreprise agréée pour émettre de la monnaie électronique,
+                    c’est-à-dire une valeur monétaire stockée sur un support
+                    (compte, carte) et acceptée par des tiers autres que
+                    l’émetteur.
+                  </p>
+                  <p>
+                    Elle aussi peut fournir des services de paiement, dans les
+                    mêmes conditions que l’établissement de paiement.
+                  </p>
+                </div>
+              </div>
+
+              <div class="definition-full" style="margin-top: 1.5rem">
+                <p>
+                  <strong>Prestataire de services de paiement (PSP).</strong>
+                  Terme générique qui couvre les trois familles précédentes.
+                  Tout PSP est agréé par une autorité de son pays d’origine et
+                  bénéficie du <em>passeport européen</em>&nbsp;: il peut servir
+                  des clients dans toute l’Union sans nouvelle autorisation.
+                </p>
+                <p>
+                  Derrière le mot PSP se cache donc un statut juridique, pas un
+                  métier. Un établissement de crédit, un établissement de
+                  paiement et un établissement de monnaie électronique sont
+                  trois PSP différents, avec des capacités différentes.
+                </p>
+              </div>
+            </section>
+
+            <!-- 3. POUR SON COMPTE / POUR AUTRUI -->
+            <section class="section">
+              <p class="section-label">Distinction</p>
+              <h2>Le PSP à son client, le tiers entre le client et sa banque</h2>
+              <p class="intro">
+                C’est le point qui prête le plus à confusion en sortant de la
+                DSP1&nbsp;: la directive crée bien un statut pour des
+                non-banques, mais ce statut ne couvre pas l’accès aux comptes
+                d’autrui.
+              </p>
+
+              <div class="definition-full">
+                <ul>
+                  <li>
+                    <strong>Le PSP fournit le service à son client</strong> —
+                    La DSP1 agrée l’établissement qui émet un moyen de paiement
+                    ou exécute une opération pour la personne qui a contracté
+                    avec lui. L’établissement de paiement existe depuis 2007 et
+                    rend un service direct.
+                  </li>
+                  <li>
+                    <strong>Le tiers se place entre le client et sa banque</strong>
+                    — Un prestataire accède au compte que le client détient chez
+                    un autre établissement, pour agir à sa place. Ce rôle n’a
+                    aucun statut avant la DSP2&nbsp;: c’est l’angle mort de la
+                    DSP1.
+                  </li>
+                  <li>
+                    <strong>Ce que la DSP2 ajoute</strong> — Deux statuts pour
+                    ce tiers&nbsp;: l’<strong>AISP</strong>, qui lit les
+                    comptes, et le <strong>PISP</strong>, qui initie un
+                    paiement depuis ces comptes. Tous deux sont des PSP, mais
+                    agréés pour un service que la DSP1 ignorait.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="definition-full" style="margin-top: 1rem">
+                <p>
+                  <strong>Conséquence de lecture.</strong> Dire « les tiers
+                  n’existent pas dans la DSP1 » est faux&nbsp;: un établissement
+                  de paiement est un tiers, et il existe en 2007. Ce qui
+                  n’existe pas, c’est le tiers qui accède au compte du client.
+                  La nuance est exactement ce qui distingue la DSP1 de la DSP2.
+                </p>
+              </div>
+            </section>
+
+            <!-- 4. LES ACTEURS DE LA DSP2 -->
+            <section class="section">
+              <p class="section-label">Rôles</p>
+              <h2>Qui fait quoi dans la DSP2</h2>
+              <p class="intro">
+                La DSP2 distribue les rôles selon la position vis-à-vis du
+                compte&nbsp;: celui qui le tient, celui qui y accède pour le
+                client.
+              </p>
+
+              <div class="definition-full">
+                <ul>
+                  <li>
+                    <strong>ASPSP</strong> — <em>Account Servicing Payment
+                    Service Provider</em>. Le prestataire qui tient le compte de
+                    paiement du client. En pratique, la banque. Il doit exposer
+                    une interface (API) aux tiers agréés.
+                  </li>
+                  <li>
+                    <strong>TPP</strong> — <em>Third Party Provider</em>.
+                    Prestataire tiers, agréé, qui accède aux comptes détenus par
+                    un ASPSP, avec l’accord du client. Il se décline en trois
+                    services.
+                  </li>
+                  <li>
+                    <strong>AISP</strong> — <em>Account Information Service
+                    Provider</em>. Le TPP qui <strong>lit</strong> les comptes.
+                    Il agrège les soldes et les opérations pour les restituer au
+                    client.
+                  </li>
+                  <li>
+                    <strong>PISP</strong> — <em>Payment Initiation Service
+                    Provider</em>. Le TPP qui <strong>initie</strong> un
+                    virement à la place du client, sur son compte détenu par
+                    l’ASPSP.
+                  </li>
+                  <li>
+                    <strong>CBPII</strong> — <em>Card-Based Payment Instrument
+                    Issuer</em>. Émetteur de moyens de paiement fondés sur une
+                    carte. Le quatrième service de la DSP2&nbsp;: il vérifie,
+                    pour un commerçant, que le compte du client dispose des
+                    fonds nécessaires avant une transaction.
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- 3. MÉCANISMES ET SIGLES -->
+            <section class="section">
+              <p class="section-label">Mécanismes</p>
+              <h2>Authentification et sécurité</h2>
+
+              <div class="definition-full">
+                <ul>
+                  <li>
+                    <strong>SCA</strong> — <em>Strong Customer
+                    Authentication</em>, authentification forte du client. Elle
+                    combine au moins deux facteurs parmi trois&nbsp;: ce que
+                    l’on sait (mot de passe), ce que l’on possède (téléphone),
+                    ce que l’on est (empreinte). Obligatoire à la connexion et
+                    à l’initiation d’un paiement.
+                  </li>
+                  <li>
+                    <strong>RTS</strong> — <em>Regulatory Technical
+                    Standards</em>. Normes techniques adoptées par la Commission
+                    européenne sur proposition de l’EBA. Elles précisent les
+                    conditions d’application de la SCA et les exemptions
+                    possibles.
+                  </li>
+                  <li>
+                    <strong>API</strong> — <em>Application Programming
+                    Interface</em>. Interface technique permettant à un
+                    logiciel d’appeler les services d’un autre. La DSP2 impose
+                    aux banques d’en mettre une à disposition des TPP agréés.
+                  </li>
+                  <li>
+                    <strong>mTLS</strong> — <em>mutual TLS</em>. Chiffrement
+                    dans lequel <strong>les deux</strong> parties présentent un
+                    certificat. Le TPP prouve son identité à la banque, et
+                    réciproquement.
+                  </li>
+                  <li>
+                    <strong>OAuth2</strong> — Protocole d’autorisation
+                    délégant l’accès à des ressources sans transmettre les
+                    identifiants du client au tiers. Base du consentement en
+                    Open Banking.
+                  </li>
+                  <li>
+                    <strong>OIDC</strong> — <em>OpenID Connect</em>. Couche
+                    d’identité bâtie sur OAuth2, qui ajoute l’authentification
+                    de l’utilisateur et la transmission de son identité.
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- 5. PSP ET SEPA -->
+            <section class="section">
+              <p class="section-label">Application</p>
+              <h2>Ce que le statut PSP change pour le SEPA</h2>
+              <p class="intro">
+                La DSP1 n’a pas créé le SEPA. Mais en créant le statut de PSP,
+                elle a donné un cadre juridique aux acteurs qui font tourner
+                les instruments SEPA. Sans ce statut, le SEPA serait resté un
+                accord entre banques, fermé aux non-banques.
+              </p>
+
+              <div class="definition-full">
+                <ul>
+                  <li>
+                    <strong>Accès aux instruments</strong> — Un PSP, même non
+                    bancaire, peut émettre, recevoir et exécuter des virements
+                    et prélèvements SEPA. Un établissement de paiement peut donc
+                    traiter du SCT ou du SDD sans être une banque.
+                  </li>
+                  <li>
+                    <strong>Accès aux systèmes de paiement</strong> — La DSP1
+                    oblige les systèmes de règlement à admettre les PSP agréés
+                    comme participants, à conditions objectives et
+                    non discriminatoires. C’est ce qui rend effective la
+                    concurrence sur les paiements SEPA.
+                  </li>
+                  <li>
+                    <strong>Passeport européen</strong> — Un PSP agréé dans un
+                    État membre opère dans toute la zone SEPA sans nouvelle
+                    autorisation. Le SEPA unifie la zone de paiement&nbsp;; le
+                    passeport unifie le statut de ceux qui y opèrent.
+                  </li>
+                  <li>
+                    <strong>Transparence et délais</strong> — La DSP1 fixe des
+                    règles communes de frais et de délais qui s’appliquent aux
+                    opérations en euros au sein de la zone. C’est la contrepartie
+                    du marché unique des paiements.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="definition-full" style="margin-top: 1rem">
+                <p>
+                  <strong>Deux chantiers parallèles, une même zone.</strong> Le
+                  SEPA définit <em>où</em> et <em>comment</em> circule l’euro&nbsp;:
+                  des instruments, des formats, une infrastructure. La DSP1
+                  définit <em>qui</em> peut le faire circuler, à quelles
+                  conditions et avec quelles garanties. La DSP2 viendra
+                  ensuite ouvrir l’accès à l’information contenue dans ces
+                  mêmes comptes.
+                </p>
+              </div>
+            </section>
+
+            <!-- 6. INSTITUTIONS -->
+            <section class="section">
+              <p class="section-label">Institutions</p>
+              <h2>Qui régule et qui normalise</h2>
+
+              <div class="definition-full">
+                <ul>
+                  <li>
+                    <strong>EBA</strong> — <em>European Banking Authority</em>.
+                    Autorité bancaire européenne. Elle produit les normes
+                    techniques et les orientations qui rendent la DSP2
+                    applicable, et tient le registre central des PSP agréés.
+                  </li>
+                  <li>
+                    <strong>ACPR</strong> — <em>Autorité de contrôle prudentiel
+                    et de résolution</em>. Autorité française qui agréé et
+                    supervise les banques et les PSP. Adossée à la Banque de
+                    France.
+                  </li>
+                  <li>
+                    <strong>BCE</strong> — <em>Banque centrale européenne</em>.
+                    Conduit la politique monétaire de la zone euro et supervise
+                    les établissements de crédit les plus importants.
+                  </li>
+                  <li>
+                    <strong>OBIE</strong> — <em>Open Banking Implementation
+                    Entity</em>, devenue Open Banking Limited. Organisme
+                    britannique qui a produit le premier standard d’API
+                    d’Open Banking. Hors champ de la DSP2.
+                  </li>
+                  <li>
+                    <strong>Berlin Group</strong> — Groupement d’acteurs
+                    bancaires européens qui publie le standard
+                    <em>NextGenPSD2</em>. C’est le standard de fait en zone
+                    euro, dont en France.
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- 7. TEXTES ET MÉCANIQUE -->
+            <section class="section">
+              <p class="section-label">Textes</p>
+              <h2>Directives, règlements et marché</h2>
+
+              <div class="definition-full">
+                <ul>
+                  <li>
+                    <strong>Directive</strong> — Texte européen qui fixe un
+                    objectif aux États membres, à charge pour eux de le
+                    transposer dans leur droit national. C’est le cas de la
+                    DSP2.
+                  </li>
+                  <li>
+                    <strong>Règlement</strong> — Texte européen directement
+                    applicable dans tous les États membres, sans transposition.
+                    C’est le cas du RGPD et de FIDA.
+                  </li>
+                  <li>
+                    <strong>Transposition</strong> — Opération par laquelle un
+                    État traduit une directive en loi nationale. La DSP2 a été
+                    transposée en France par l’ordonnance du 9 août 2017.
+                  </li>
+                  <li>
+                    <strong>SEPA</strong> — <em>Single Euro Payments Area</em>.
+                    Zone dans laquelle les paiements en euros se font selon les
+                    mêmes règles, sans distinction entre paiements nationaux et
+                    transfrontaliers. Le SEPA n’est pas une création de la
+                    DSP1&nbsp;: c’est une initiative du secteur bancaire, portée
+                    par l’European Payments Council dès 2002, puis rendue
+                    contraignante par le règlement (UE) n° 260/2012.
+                  </li>
+                  <li>
+                    <strong>SCT et SDD</strong> — Les deux instruments du SEPA.
+                    Le <em>SCT</em> (<em>SEPA Credit Transfer</em>) est un
+                    virement&nbsp;; le <em>SDD</em> (<em>SEPA Direct
+                    Debit</em>) est un prélèvement. Ce sont eux que les PSP
+                    manipulent au quotidien.
+                  </li>
+                  <li>
+                    <strong>RGPD</strong> — <em>Règlement général sur la
+                    protection des données</em>. Encadre le traitement des
+                    données personnelles. En Open Banking, il conditionne ce
+                    qu’un TPP peut faire des données qu’il consulte.
+                  </li>
+                  <li>
+                    <strong>FIDA</strong> — <em>Financial Data Access</em>.
+                    Règlement européen en préparation sur l’accès aux données
+                    financières au-delà des comptes de paiement.
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Références</strong> — Directive (UE) 2015/2366 (DSP2)&nbsp;;
+              directive 2007/64/CE (DSP1)&nbsp;; règlement délégué (UE) 2018/389
+              (RTS SCA)&nbsp;; directive 2009/110/CE (monnaie électronique).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a> · Annexe · Concepts et statuts
+      </div>
+    </footer>
+    <script src="../js/nav-j1.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

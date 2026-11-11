@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Atelier · Screen scraping | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="atelier-scraping">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a class="is-active" href="intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · Atelier</span>
+                <span class="tag tag-accent">35 min</span>
+              </div>
+              <p class="day-kicker">Mise en pratique · binômes</p>
+              <h1>Atelier · Screen scraping</h1>
+              <p class="lead">
+                La S1 a raconté le contournement&nbsp;: MonBuddy «&nbsp;se fait
+                passer&nbsp;» pour Lyam. Ici, on le fait pour de vrai&nbsp;: à
+                vous d’extraire des données d’un relevé bancaire en HTML, de
+                casser votre propre robot, puis de chiffrer ce qu’il coûte. La
+                théorie devient concrète en trois manipulations.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Vous êtes l’équipe technique de <strong>MonBuddy</strong>, la
+                petite appli de budget de Lyam. La banque, «&nbsp;Banque
+                Est&nbsp;», n’offre <em>aucune</em> API. Votre seul moyen de
+                récupérer les dépenses de Lyam&nbsp;: lire les pages de son site
+                bancaire, comme le ferait un navigateur.
+              </p>
+            </div>
+
+            <!-- 0. LANCER LE LABO -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <div class="callout reg">
+                <div class="labo-launch" style="display: grid; grid-template-columns: 1fr auto; gap: 1.25rem; align-items: center;">
+                  <div>
+                    <h3>Lancer le labo interactif</h3>
+                    <p>
+                      Cet atelier se fait dans un
+                      <strong>labo web autonome</strong>. Vous allez manipuler
+                      les deux façons d’accéder au compte de Lyam&nbsp;: la
+                      connexion classique et le screen scraping. Aucune
+                      installation, aucun serveur&nbsp;: un simple double-clic
+                      sur la page.
+                    </p>
+                    <p style="margin-top: 0.5rem">
+                      Identifiants de démo&nbsp;:
+                      <code>lyam.demo</code> / <code>soleilmars</code> — à saisir
+                      (ou déjà pré-remplis) dans le scénario 1.
+                    </p>
+                  </div>
+                  <a class="btn-lab" href="labo-scraping/index.html" target="_blank" rel="noopener">
+                    Ouvrir le labo <span class="arrow">↗</span>
+                  </a>
+                </div>
+              </div>
+              <p class="intro" style="margin-bottom: 0">
+                Suivez la fiche ci-dessous <em>en parallèle</em> du labo&nbsp;:
+                chaque étape indique ce qu’il faut observer à l’écran. Le dossier
+                <code>j1/labo/</code> est aussi distribuable tel quel aux
+                étudiants (ouvrable par double-clic).
+              </p>
+            </section>
+
+            <!-- 1. OBJECTIF -->
+            <section class="section" style="border-top: none; padding-top: 1rem">
+              <p class="section-label">Objectif de l’atelier</p>
+              <h2>Prouver par la pratique les trois fragilités du scraping</h2>
+              <p class="intro">
+                Le screen scraping «&nbsp;marche&nbsp;». C’est justement pour
+                cela qu’il a existé pendant des années. L’atelier ne consiste pas
+                à le démontrer — mais à faire toucher du doigt, en trois temps,
+                <strong>pourquoi la DSP2 le remplace</strong>.
+              </p>
+
+              <div class="split-3">
+                <div class="panel tpp">
+                  <h3>Étape 1 · Extraire</h3>
+                  <p>
+                    Lancer la synchro MonBuddy, observer le formulaire rempli, les
+                    identifiants en clair et les opérations lues dans le DOM.
+                  </p>
+                </div>
+                <div class="panel tpp">
+                  <h3>Étape 2 · Casser</h3>
+                  <p>
+                    Simuler la refonte du site, relancer la synchro&nbsp;: zéro
+                    donnée. Comprendre pourquoi le robot ne trouve plus rien.
+                  </p>
+                </div>
+                <div class="panel tpp">
+                  <h3>Étape 3 · Chiffrer</h3>
+                  <p>
+                    Sécurité, juridique, réputation&nbsp;: additionner les risques
+                    pour les trois acteurs.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Outils</h3>
+                <p>
+                  Tout se passe dans le <strong>labo interactif</strong> (bouton
+                  ci-dessus). Le labo fournit un relevé de Lyam, un formulaire de
+                  connexion factice et un panneau «&nbsp;MonBuddy&nbsp;» qui lit
+                  réellement le DOM. Cette fiche sert de <em>guide</em>&nbsp;: on
+                  lit une consigne ici, on l’exécute dans le labo.
+                </p>
+              </div>
+
+              <p class="section-label" style="margin-top: 2rem">Les manipulations du labo</p>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Activité</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Où</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Connexion classique</th>
+                      <td>Manipulation</td>
+                      <td>🔧 Labo — onglet 1</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Synchro MonBuddy (formulaire, session)</th>
+                      <td>Manipulation</td>
+                      <td>🔧 Labo — onglet 2</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Identifiants en clair</th>
+                      <td>Observation</td>
+                      <td>🔧 Labo — onglet 2</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Extraction du DOM (4 opérations)</th>
+                      <td>Observation</td>
+                      <td>🔧 Labo — onglet 2</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Simuler une refonte → casse</th>
+                      <td>Manipulation</td>
+                      <td>🔧 Labo — onglet 2</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- 2. ETAPE 1 : EXTRAIRE -->
+            <section class="section">
+              <p class="section-label">Étape 1 · 10 min · dans le labo</p>
+              <h2>Extraire les opérations du relevé</h2>
+              <p>
+                <strong>Dans le labo, onglet «&nbsp;Screen scraping&nbsp;»</strong>,
+                lancez la synchronisation. MonBuddy remplit le formulaire, ouvre
+                la session, puis lit le tableau HTML du relevé de Lyam. Voici la
+                structure de ce relevé, pour comprendre ce que le robot fait
+                réellement&nbsp;:
+              </p>
+
+              <pre class="code-block" style="overflow-x: auto; background: #f7f9fb; border: 1px solid #c5d3df; border-radius: 8px; padding: 1rem; font-size: 12px; line-height: 1.5;"><code>&lt;table class="releve"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;Date&lt;/th&gt;&lt;th&gt;Libellé&lt;/th&gt;&lt;th&gt;Montant&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr class="op"&gt;
+      &lt;td class="date"&gt;12/03/2017&lt;/td&gt;
+      &lt;td class="libelle"&gt;SNCF PARIS&lt;/td&gt;
+      &lt;td class="montant debit"&gt;-45,00 €&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr class="op"&gt;
+      &lt;td class="date"&gt;13/03/2017&lt;/td&gt;
+      &lt;td class="libelle"&gt;CARREFOUR&lt;/td&gt;
+      &lt;td class="montant debit"&gt;-82,40 €&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr class="op"&gt;
+      &lt;td class="date"&gt;15/03/2017&lt;/td&gt;
+      &lt;td class="libelle"&gt;VIREMENT SALAIRE&lt;/td&gt;
+      &lt;td class="montant credit"&gt;+2 300,00 €&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+              <ol class="steps-list">
+                <li>
+                  <strong>Faites-le dans le labo.</strong> Onglet
+                  «&nbsp;Screen scraping&nbsp;», cliquez sur
+                  «&nbsp;Lancer la synchronisation MonBuddy&nbsp;». Observez&nbsp;:
+                  le formulaire se remplit tout seul, le panneau rouge
+                  «&nbsp;identifiants stockés&nbsp;» apparaît, la session s’ouvre,
+                  puis les opérations sont extraites.
+                </li>
+                <li>
+                  <strong>Repérez la «&nbsp;signature&nbsp;» du robot.</strong>
+                  D’après le HTML ci-dessus, sur quoi un programme s’appuie-t-il
+                  pour attraper chaque montant&nbsp;? (indice&nbsp;: les attributs
+                  <code>class</code>.)
+                </li>
+                <li>
+                  <strong>Vérifiez le résultat.</strong> Dans le labo, combien
+                  d’opérations ont été extraites&nbsp;? Le montant crédit
+                  (▲) est-il distingué du débit (▼)&nbsp;?
+                </li>
+              </ol>
+
+              <div class="callout">
+                <h3>Ce que ça révèle déjà</h3>
+                <p>
+                  Le robot ne «&nbsp;comprend&nbsp;» pas le relevé&nbsp;: il
+                  parie sur <strong>les noms de classes CSS</strong>. Sa
+                  connaissance du compte de Lyam tient à
+                  <code>class="montant debit"</code>. C’est une hypothèse fragile,
+                  pas une donnée structurée.
+                </p>
+              </div>
+            </section>
+
+            <!-- 3. ETAPE 2 : CASSER -->
+            <section class="section">
+              <p class="section-label">Étape 2 · 10 min · dans le labo</p>
+              <h2>Casser le robot&nbsp;: la banque refait son site</h2>
+              <p>
+                <strong>Dans le labo, cliquez sur «&nbsp;Simuler une refonte du
+                site banque&nbsp;», puis relancez la synchronisation.</strong>
+                Vous allez voir MonBuddy rendre <em>zéro opération</em>&nbsp;: le
+                HTML de la page a changé, ses sélecteurs ne trouvent plus rien.
+                L’idée&nbsp;: ce qui vient de marcher repose entièrement sur le
+                balisage, que Banque Est peut changer à tout moment.
+              </p>
+              <p>
+                Voici la même opération, telle que la banque la sert après une
+                refonte — les classes utilisées par le robot ont disparu&nbsp;:
+              </p>
+
+              <pre class="code-block" style="overflow-x: auto; background: #f7f9fb; border: 1px solid #c5d3df; border-radius: 8px; padding: 1rem; font-size: 12px; line-height: 1.5;"><code>&lt;table class="releve"&gt;
+  &lt;tbody&gt;
+    &lt;tr class="tx-row"&gt;
+      &lt;td class="tx-when"&gt;12/03/2017&lt;/td&gt;
+      &lt;td class="tx-what"&gt;SNCF PARIS&lt;/td&gt;
+      &lt;td class="tx-amount neg"&gt;−45,00 €&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+              <ol class="steps-list">
+                <li>
+                  <strong>Reproduisez la casse dans le labo.</strong> Après une
+                  première synchro réussie, cliquez sur «&nbsp;Simuler une
+                  refonte&nbsp;», puis relancez la synchro. Observez le journal&nbsp;:
+                  combien d’opérations extraites&nbsp;?
+                </li>
+                <li>
+                  <strong>Expliquez pourquoi c’est cassé.</strong>
+                  Quelles classes le robot cherchait-il&nbsp;? Quelles classes
+                  trouve-t-il maintenant&nbsp;?
+                </li>
+                <li>
+                  <strong>Imaginez le pire.</strong> Que se passe-t-il si, au lieu
+                  de ne rien trouver, un sélecteur attrape une donnée au mauvais
+                  endroit&nbsp;? Pourquoi une donnée fausse est-elle pire qu’une
+                  donnée absente pour le budget de Lyam&nbsp;?
+                </li>
+              </ol>
+
+              <div class="callout info">
+                <h3>Astuce</h3>
+                <p>
+                  Le labo garde une <strong>sauvegarde du HTML d’origine</strong>&nbsp;:
+                  le bouton «&nbsp;Réinitialiser&nbsp;» restaure tout et permet de
+                  rejouer la casse autant de fois que nécessaire.
+                </p>
+              </div>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Les sélecteurs ne trouvent plus rien</strong>
+                    <p>
+                      Le robot cherche <code>td.montant</code>&nbsp;: la page ne
+                      contient plus que des <code>td.tx-amount</code>. Résultat
+                      immédiat&nbsp;: zéro opération extraite, ou une erreur.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>Ou pire&nbsp;: il extrait du faux</strong>
+                    <p>
+                      Si un champ a été réutilisé ou déplacé, le robot peut lire
+                      une date dans le libellé, ou un montant négatif comme
+                      positif. <strong>Une donnée fausse est plus dangereuse
+                      qu’une donnée absente</strong>&nbsp;: le conseil budgétaire
+                      de MonBuddy devient faux sans alerte.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Il faut tout réécrire</strong>
+                    <p>
+                      Pour chaque banque, à chaque refonte, il faut reparcourir le
+                      HTML, réidentifier les sélecteurs, retester. Multiplié par
+                      des dizaines de banques, c’est un coût récurrent et
+                      imprévisible.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <figure class="fig-illus">
+                <svg viewBox="0 0 1000 220" role="img" aria-label="Comparaison : avant refonte le sélecteur td.montant fonctionne, après refonte il casse, d’où une donnée fausse ou manquante">
+                  <defs>
+                    <marker id="ah-scr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="30" width="300" height="160" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="170" y="58" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="800">AVANT REFONTE</text>
+                    <rect x="48" y="80" width="244" height="70" rx="6" fill="#fff" stroke="#c5d3df"/>
+                    <text x="170" y="104" text-anchor="middle" fill="#5a6b7c" font-size="10" font-family="monospace">&lt;td class="montant debit"&gt;</text>
+                    <text x="170" y="126" text-anchor="middle" fill="#1a2b3c" font-size="11">−45,00 €</text>
+                    <text x="170" y="168" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">✓ sélecteur trouvé</text>
+                  </g>
+                  <line x1="330" y1="110" x2="366" y2="110" stroke="#5a6b7c" stroke-width="2.5" marker-end="url(#ah-scr)"/>
+                  <text x="348" y="100" text-anchor="middle" fill="#5a6b7c" font-size="9" font-weight="700">refonte</text>
+                  <g>
+                    <rect x="376" y="30" width="300" height="160" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="2"/>
+                    <text x="526" y="58" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="800">APRÈS REFONTE</text>
+                    <rect x="404" y="80" width="244" height="70" rx="6" fill="#fff" stroke="#c5d3df"/>
+                    <text x="526" y="104" text-anchor="middle" fill="#5a6b7c" font-size="10" font-family="monospace">&lt;td class="tx-amount neg"&gt;</text>
+                    <text x="526" y="126" text-anchor="middle" fill="#1a2b3c" font-size="11">−45,00 €</text>
+                    <text x="526" y="168" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">✕ sélecteur introuvable</text>
+                  </g>
+                  <line x1="686" y1="110" x2="722" y2="110" stroke="#5a6b7c" stroke-width="2.5" marker-end="url(#ah-scr)"/>
+                  <g>
+                    <rect x="732" y="30" width="248" height="160" rx="12" fill="#fff" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="856" y="58" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="800">RÉSULTAT</text>
+                    <text x="856" y="96" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">donnée absente</text>
+                    <text x="856" y="116" text-anchor="middle" fill="#5a6b7c" font-size="11">ou donnée fausse</text>
+                    <text x="856" y="150" text-anchor="middle" fill="#c45c26" font-size="11" font-weight="700">= conseil budgétaire erroné</text>
+                    <text x="856" y="170" text-anchor="middle" fill="#a4572c" font-size="10">sans aucune alerte</text>
+                  </g>
+                </svg>
+                <figcaption>Figure — la fragilité structurelle du scraping&nbsp;: tout repose sur des noms de classes que la banque peut changer à tout moment.</figcaption>
+              </figure>
+            </section>
+
+            <!-- 4. ETAPE 3 : CHIFFRER -->
+            <section class="section">
+              <p class="section-label">Étape 3 · 10 min</p>
+              <h2>Chiffrer le coût réel du contournement</h2>
+              <p class="intro">
+                Le robot est cassé — mais même réparé, il reste coûteux. En
+                binôme, listez les risques pour les trois acteurs, puis proposez
+                une mesure de réduction pour chacun. Appuyez-vous sur ce que le
+                labo a montré&nbsp;: le panneau rouge affiche les identifiants
+                <em>en clair</em>, conservés par MonBuddy.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Acteur</th>
+                      <th scope="col">Risque lié au scraping</th>
+                      <th scope="col">Gravité</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Lyam (client)</th>
+                      <td>Identifiants stockés&nbsp;: tout le compte tombe en cas de fuite&nbsp;; perte de garantie si fraude (codes communiqués)</td>
+                      <td>Élevée</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Banque Est</th>
+                      <td>Charge serveur d’accès automatisés non identifiés, support client saturé, aucune traçabilité</td>
+                      <td>Moyenne</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">MonBuddy (TPP)</th>
+                      <td>Activité juridiquement précaire, dépendante de chaque refonte, réputation en cas d’incident</td>
+                      <td>Élevée</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le paradoxe à faire émerger</h3>
+                <p>
+                  Plus le service rendu est utile à Lyam, plus le scraping est
+                  dangereux — pour lui comme pour les deux autres acteurs. Ce
+                  n’est pas le besoin qui est en cause, c’est
+                  l’<strong>absence de cadre</strong>. C’est exactement ce que la
+                  DSP2 vient corriger.
+                </p>
+              </div>
+            </section>
+
+            <!-- 5. DEBRIEF -->
+            <section class="section">
+              <p class="section-label">Débrief · 5 min</p>
+              <h2>Ce que la DSP2 change, mécaniquement</h2>
+              <p>
+                Reprenez vos trois étapes. Pour chacune, indiquez ce que la
+                DSP2 corrige — c’est la transition vers S2.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ko">
+                  <h3>Ce que le scraping impose</h3>
+                  <ul>
+                    <li>Un accès <strong>indirect</strong> sous l’identité du client.</li>
+                    <li>Une lecture dépendante du <strong>balisage</strong> de la page.</li>
+                    <li>Des <strong>identifiants stockés</strong>, aucun moyen de révocation fine.</li>
+                    <li>Une <strong>imputabilité floue</strong> en cas d’incident.</li>
+                  </ul>
+                </div>
+                <div class="panel ok">
+                  <h3>Ce que la DSP2 (via API) apporte</h3>
+                  <ul>
+                    <li>Un accès <strong>direct</strong> par interface dédiée.</li>
+                    <li>Des <strong>données structurées</strong> (JSON), stables.</li>
+                    <li>Un <strong>consentement révocable</strong> et un jeton, pas de mot de passe.</li>
+                    <li>Des <strong>responsabilités</strong> cadrées entre acteurs agréés.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="cours-note-banner">
+                <p>
+                  <strong>Le message de l’atelier.</strong> Le scraping n’est pas
+                  «&nbsp;mal fait&nbsp;»&nbsp;: il est structurellement instable
+                  parce qu’il <em>emprunte</em> une interface faite pour les
+                  humains. La DSP2 ne rend pas le service meilleur — elle rend
+                  l’accès <em>prévu pour être emprunté</em>. C’est toute la
+                  différence entre tolérer un contournement et organiser une
+                  délégation.
+                </p>
+              </div>
+            </section>
+
+            <!-- 6. LIVRABLE + GRILLE -->
+            <section class="section" style="border-bottom: none">
+              <p class="section-label">Livrable &amp; évaluation</p>
+              <h2>Ce qu’on attend</h2>
+
+              <div class="callout">
+                <h3>Livrable (une fiche par binôme)</h3>
+                <p>
+                  Ce que vous avez observé dans le labo&nbsp;: la saisie
+                  automatique, les identifiants en clair, les 4 opérations
+                  extraites du DOM, puis la casse après simulation de refonte
+                  (zéro donnée). Ajoutez l’analyse des risques pour les trois
+                  acteurs et le lien avec la réponse API de la DSP2.
+                </p>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">Points</th>
+                      <th scope="col">Indice d’un bon travail</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Extraction correcte</th>
+                      <td>3</td>
+                      <td>Tous les montants attrapés via les bons sélecteurs, crédit distingué du débit</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Diagnostic de la casse</th>
+                      <td>4</td>
+                      <td>Identifie le changement de classes, distingue donnée absente et donnée fausse</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Risques chiffrés</th>
+                      <td>4</td>
+                      <td>Trois acteurs couverts, mesure de réduction crédible par acteur</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Lien avec la DSP2</th>
+                      <td>4</td>
+                      <td>Associe chaque faiblesse à la réponse API (accès direct, consentement, responsabilité)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Pour prolonger</strong> — Directive (UE) 2015/2366, art. 66
+              et 67 (interdiction du screen scraping au profit d’interfaces
+              dédiées)&nbsp;; RTS de l’EBA sur l’accès aux comptes (interface
+              dédiée)&nbsp;; voir la S1 (le mécanisme) et la S2 (la réponse
+              DSP2).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a> · Atelier · Screen scraping
+      </div>
+    </footer>
+    <script src="../js/nav-j1.js"></script>
+    <script src="../js/fiche.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

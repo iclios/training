@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Labo — Connexion classique vs Screen scraping | DSP2 &amp; Open Banking</title>
+    <style>
+      :root {
+        --ink: #1a2b3c;
+        --soft: #5a6b7c;
+        --faint: #8a9aaa;
+        --line: #c5d3df;
+        --paper: #f7f9fb;
+        --white: #ffffff;
+        --blue: #1e5f8a;
+        --blue-l: #eef4fa;
+        --teal: #0d9f8a;
+        --teal-l: #e7f6f3;
+        --purple: #6b4fa0;
+        --purple-l: #f1edfa;
+        --warn: #c45c26;
+        --warn-l: #fdf6f2;
+        --danger: #b8322a;
+        --ok: #087a6a;
+        --radius: 12px;
+        --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        --sans-head: "Syne", "Inter", system-ui, sans-serif;
+        --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: var(--font);
+        color: var(--ink);
+        background: #eef2f6;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .doc {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+      }
+      .doc-top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .doc-brand {
+        font-family: var(--sans-head);
+        font-weight: 800;
+        font-size: 1.5rem;
+        letter-spacing: -0.01em;
+        text-decoration: none;
+        color: var(--ink);
+      }
+      .doc-brand span { color: var(--blue); }
+      .doc-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+      .btn {
+        display: inline-block;
+        appearance: none;
+        border: none;
+        font: inherit;
+        font-weight: 700;
+        font-size: 0.85rem;
+        padding: 0.55rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        color: #fff;
+        background: var(--blue);
+      }
+      .btn:hover { filter: brightness(1.08); }
+      .btn.teal { background: var(--teal); }
+      .btn.ghost {
+        background: transparent;
+        color: var(--blue);
+        border: 1.5px solid var(--line);
+      }
+
+      article {
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 2rem 2.2rem;
+        box-shadow: 0 1px 3px rgba(26, 43, 60, .06);
+      }
+
+      h1 {
+        font-family: var(--sans-head);
+        font-size: 1.9rem;
+        line-height: 1.15;
+        margin: 0 0 0.6rem;
+      }
+      .lead {
+        font-size: 1.02rem;
+        color: var(--soft);
+        margin: 0 0 0.5rem;
+      }
+      h2 {
+        font-family: var(--sans-head);
+        font-size: 1.3rem;
+        margin: 2.2rem 0 0.7rem;
+        padding-top: 1.2rem;
+        border-top: 1px solid var(--line);
+      }
+      h2:first-of-type { border-top: none; padding-top: 0; }
+      h3 {
+        font-family: var(--sans-head);
+        font-size: 1.08rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--ink);
+      }
+      p { margin: 0.6rem 0; color: var(--ink); }
+      ul, ol { margin: 0.6rem 0; padding-left: 1.4rem; }
+      li { margin: 0.3rem 0; }
+      a { color: var(--blue); }
+      code {
+        font-family: var(--mono);
+        font-size: 0.86em;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 0.05em 0.35em;
+      }
+      strong { color: var(--ink); }
+
+      .callout {
+        border-left: 4px solid var(--blue);
+        background: var(--blue-l);
+        border-radius: 0 8px 8px 0;
+        padding: 0.8rem 1rem;
+        margin: 1rem 0;
+        font-size: 0.92rem;
+      }
+      .callout strong { color: var(--blue); }
+      .callout.warn {
+        border-color: var(--warn);
+        background: var(--warn-l);
+      }
+      .callout.warn strong { color: var(--warn); }
+      .callout.teal {
+        border-color: var(--teal);
+        background: var(--teal-l);
+      }
+      .callout.teal strong { color: var(--ok); }
+
+      .steps {
+        list-style: none;
+        counter-reset: s;
+        padding-left: 0;
+        margin: 0.8rem 0;
+      }
+      .steps > li {
+        position: relative;
+        counter-increment: s;
+        padding-left: 2.1rem;
+        margin: 0.5rem 0;
+      }
+      .steps > li::before {
+        content: counter(s);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        border-radius: 50%;
+        background: var(--blue);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.8rem;
+        font-family: var(--sans-head);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+        background: var(--white);
+      }
+      th, td {
+        text-align: left;
+        padding: 0.55rem 0.7rem;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      thead th {
+        background: var(--paper);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--soft);
+      }
+      tbody th { font-weight: 700; }
+      tbody tr.is-exergue { background: var(--warn-l); }
+
+      .files {
+        background: #0f1d2b;
+        color: #dce8f2;
+        border-radius: 10px;
+        padding: 1rem 1.2rem;
+        font-family: var(--mono);
+        font-size: 0.84rem;
+        line-height: 1.6;
+        overflow-x: auto;
+        white-space: pre;
+        margin: 1rem 0;
+      }
+
+      .doc-foot {
+        margin-top: 2.5rem;
+        color: var(--faint);
+        font-size: 0.82rem;
+        text-align: center;
+      }
+
+      /* Impression : version papier propre */
+      @media print {
+        body { background: #fff; }
+        .doc-actions, .doc-brand, .doc-foot { display: none; }
+        article {
+          border: none;
+          box-shadow: none;
+          padding: 0;
+        }
+        .files { background: #f3f6f9; color: #1a2b3c; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="doc">
+      <div class="doc-top">
+        <a class="doc-brand" href="../../index.html">DSP2 <span>&amp; Open Banking</span></a>
+        <div class="doc-actions">
+          <a class="btn teal" href="index.html">▶ Ouvrir le labo</a>
+          <button class="btn ghost" type="button" onclick="window.print()">⤓ Imprimer / PDF</button>
+        </div>
+      </div>
+
+      <article>
+        <h1>Labo — Connexion classique vs Screen scraping</h1>
+        <p class="lead">
+          Labo interactif du <strong>Jour 1</strong> du cours
+          <em>DSP2 &amp; Open Banking</em>. Deux scénarios et une manipulation
+          de plus (simuler une refonte) à faire directement dans le navigateur.
+        </p>
+
+        <h2>Contexte</h2>
+        <p>
+          Lyam a un compte chez <strong>Banque Est</strong>. Il veut utiliser
+          <strong>MonBuddy</strong>, une application de budget qui doit lire ses
+          opérations.
+        </p>
+        <ul>
+          <li>
+            <strong>Scénario 1 — Connexion classique</strong> : Lyam se connecte
+            lui-même au site de sa banque (identifiant + mot de passe).
+          </li>
+          <li>
+            <strong>Scénario 2 — Screen scraping</strong> : MonBuddy n’a aucune
+            API. Elle rejoue les identifiants de Lyam sur la page de la banque,
+            ouvre la session et lit le tableau HTML pour en extraire les
+            opérations — exactement ce que décrit la séquence S1.
+          </li>
+          <li>
+            <strong>Manipulation bonus — Refonte</strong> : la banque change son
+            HTML, et le robot casse. C’est le cœur de l’atelier.
+          </li>
+        </ul>
+
+        <h2>Comment lancer (aucune installation)</h2>
+        <p>
+          Ce labo est <strong>100 % autonome</strong> : pas de serveur, pas de
+          dépendance, pas d’internet requis.
+        </p>
+        <ol class="steps">
+          <li>Téléchargez (ou décompressez) le dossier <code>labo/</code>.</li>
+          <li>Double-cliquez sur <strong><code>index.html</code></strong>.</li>
+          <li>Le labo s’ouvre dans votre navigateur (Chrome, Firefox, Edge, Safari).</li>
+        </ol>
+        <div class="callout">
+          <strong>Astuce</strong> — si votre navigateur bloque quelque chose,
+          ouvrez une fenêtre et glissez-déposez <code>index.html</code> dedans.
+          La page fonctionne aussi bien en <code>file://</code> qu’en ligne, car
+          tout est côté client (JS pur).
+        </div>
+
+        <h3>Identifiants de démonstration</h3>
+        <table>
+          <thead>
+            <tr><th>Champ</th><th>Valeur</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Identifiant</th><td><code>lyam.demo</code></td></tr>
+            <tr><th>Mot de passe</th><td><code>soleilmars</code></td></tr>
+          </tbody>
+        </table>
+
+        <h2>Toutes les manipulations, une par une</h2>
+        <p>
+          Voici <strong>tout ce que vous pouvez faire</strong> dans le labo,
+          classé par onglet. Chaque action indique ce qu’il faut observer.
+        </p>
+
+        <h3>Onglet 1 — Connexion classique</h3>
+        <p><strong>Action 1.1 — Se connecter comme Lyam</strong></p>
+        <ol class="steps">
+          <li>Restez sur l’onglet <strong>1 · Connexion classique</strong> (affiché par défaut).</li>
+          <li>
+            Les champs sont déjà pré-remplis (<code>lyam.demo</code> /
+            <code>soleilmars</code>). Cliquez sur <strong>« Se connecter »</strong>.
+          </li>
+        </ol>
+        <p><strong>À observer :</strong></p>
+        <ul>
+          <li>Le formulaire disparaît, le <strong>tableau de bord</strong> apparaît (solde + relevé).</li>
+          <li>
+            Le <strong>journal d’étapes</strong> indique : authentification
+            réussie, session ouverte au nom de Lyam — la banque sait que c’est lui.
+          </li>
+        </ul>
+
+        <p><strong>Action 1.2 — Se déconnecter</strong></p>
+        <ul>
+          <li>Cliquez sur <strong>« Se déconnecter »</strong> dans le tableau de bord.</li>
+        </ul>
+        <p>
+          À observer : retour au formulaire, le journal note que la session est
+          fermée et que rien n’a été stocké.
+        </p>
+        <div class="callout">
+          <strong>Ce que ça montre</strong> — la connexion classique est
+          <em>directe</em> et sûre — mais Lyam doit la refaire
+          <strong>banque par banque</strong>. Aucun moyen de tout voir au même endroit.
+        </div>
+
+        <h3>Onglet 2 — Screen scraping</h3>
+        <p>Cliquez sur l’onglet <strong>2 · Screen scraping</strong>.</p>
+
+        <p><strong>Action 2.1 — Lancer la synchronisation MonBuddy</strong></p>
+        <ol class="steps">
+          <li>Cliquez sur <strong>« Lancer la "synchro" MonBuddy »</strong>.</li>
+          <li>Regardez les deux colonnes : à gauche la banque, à droite MonBuddy.</li>
+        </ol>
+        <p>À observer, dans l’ordre (et dans le journal) :</p>
+        <ol>
+          <li>
+            MonBuddy <strong>remplit le formulaire</strong> de la banque à la
+            place de Lyam (saisie animée, caractère par caractère).
+          </li>
+          <li>
+            Le panneau rouge <strong>« ⚠ Identifiants stockés par MonBuddy »</strong>
+            apparaît : le mot de passe est gardé <strong>en clair</strong>
+            (<code>soleilmars</code>).
+          </li>
+          <li>MonBuddy <strong>ouvre la session</strong> — la banque ne voit pas la différence.</li>
+          <li>
+            MonBuddy <strong>lit réellement les <code>&lt;td&gt;</code> du tableau
+            HTML</strong> et affiche les <strong>4 opérations</strong> extraites
+            (avec ▲ crédit / ▼ débit).
+          </li>
+        </ol>
+
+        <p><strong>Action 2.2 — Réinitialiser</strong></p>
+        <ul>
+          <li>Cliquez sur <strong>« Réinitialiser »</strong>.</li>
+        </ul>
+        <p>
+          À observer : formulaire vidé, tableau de bord masqué, panneau des
+          identifiants caché, journal remis à zéro. <strong>Tout est prêt à rejouer.</strong>
+        </p>
+
+        <p><strong>Action 2.3 — Simuler une refonte du site banque (LE moment clé)</strong></p>
+        <div class="callout warn">
+          ⚠️ Ce bouton n’est activable <strong>qu’après une synchro réussie</strong>
+          (Action 2.1). C’est voulu : on voit d’abord le robot marcher, ensuite
+          on le casse.
+        </div>
+        <ol class="steps">
+          <li>
+            Après une synchro réussie, cliquez sur
+            <strong>« Simuler une refonte du site banque »</strong> (bouton orange).
+          </li>
+          <li>
+            Un <strong>bandeau d’explication</strong> apparaît : les classes
+            <code>td.date</code> / <code>td.libelle</code> / <code>td.montant</code>
+            deviennent <code>td.tx-when</code> / <code>td.tx-what</code> /
+            <code>td.tx-amount</code>.
+          </li>
+          <li><strong>Relancez la synchro</strong> (même bouton qu’à l’Action 2.1).</li>
+        </ol>
+        <p>À observer :</p>
+        <ul>
+          <li>Le relevé a <strong>changé de structure</strong> (les classes CSS ne sont plus les mêmes).</li>
+          <li>
+            Le robot cherche encore <code>td.date</code> / <code>td.libelle</code> /
+            <code>td.montant</code> : il <strong>ne trouve plus rien</strong>.
+          </li>
+          <li>La zone « Données extraites » affiche <strong>0 opération</strong>.</li>
+          <li>
+            Le journal explique la casse : <em>donnée absente</em> (ou pire,
+            <em>donnée fausse</em>), et le coût de tout réécrire.
+          </li>
+        </ul>
+
+        <p><strong>Action 2.4 — Revenir à l’état d’origine</strong></p>
+        <ul>
+          <li>Cliquez sur <strong>« Réinitialiser »</strong>.</li>
+        </ul>
+        <p>
+          À observer : le HTML d’origine est <strong>restauré</strong> (sauvegarde
+          automatique du <code>tbody</code>). Vous pouvez relancer la synchro,
+          elle remarche, puis rejouer la refonte autant de fois que voulu.
+        </p>
+        <div class="callout">
+          <strong>Ce que ça montre</strong> — le scraping dépend entièrement du
+          <strong>balisage</strong> de la page. Une refonte, un champ déplacé, une
+          classe renommée — et le robot rend des données fausses ou vides,
+          <strong>sans alerte</strong>.
+        </div>
+
+        <h3>Navigation entre les onglets</h3>
+        <ul>
+          <li><strong>Clic</strong> sur un onglet pour basculer.</li>
+          <li>
+            <strong>Flèches ← / →</strong> au clavier pour passer d’un onglet à
+            l’autre (accessibilité).
+          </li>
+        </ul>
+
+        <h2>Récapitulatif des manipulations</h2>
+        <table>
+          <thead>
+            <tr><th>Activité</th><th>Type</th><th>Où</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Connexion classique</th><td>Manipulation</td><td>🔧 Labo — onglet 1</td></tr>
+            <tr><th>Synchro MonBuddy (formulaire, session)</th><td>Manipulation</td><td>🔧 Labo — onglet 2</td></tr>
+            <tr><th>Identifiants en clair</th><td>Observation</td><td>🔧 Labo — onglet 2</td></tr>
+            <tr><th>Extraction du DOM (4 opérations)</th><td>Observation</td><td>🔧 Labo — onglet 2</td></tr>
+            <tr class="is-exergue"><th>Simuler une refonte → casse</th><td>Manipulation</td><td>🔧 Labo — onglet 2</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Pistes de réflexion (pour l’atelier)</h2>
+        <ol>
+          <li>
+            Pourquoi MonBuddy a-t-elle besoin de <strong>stocker</strong> les
+            identifiants ? (voir le panneau rouge)
+          </li>
+          <li>
+            Après l’Action 2.3, <strong>pourquoi</strong> la synchro ne renvoie
+            plus rien ? Quelles classes le robot cherchait-il, quelles classes
+            trouve-t-il maintenant ?
+          </li>
+          <li>
+            Pourquoi une <strong>donnée fausse</strong> est-elle plus dangereuse
+            qu’une <strong>donnée absente</strong> pour le budget de Lyam ?
+          </li>
+          <li>
+            Si le compte de Lyam est vidé, <strong>qui</strong> est responsable :
+            Lyam, MonBuddy, ou la banque ?
+          </li>
+          <li>
+            Que faudrait-il pour que MonBuddy n’ait <strong>plus besoin</strong>
+            des identifiants ? (→ c’est la réponse de la DSP2, vue en S2)
+          </li>
+        </ol>
+
+        <h2>Fichiers</h2>
+        <div class="files">labo/
+  index.html   → la page (point d'entrée, double-clic)
+  labo.css     → le style
+  labo.js      → toute la logique (onglets, synchro, refonte)
+  README.md    → version texte de ce document
+  README.html  → ce document (version lisible en navigateur)</div>
+
+        <h2>Notes techniques</h2>
+        <ul>
+          <li>
+            <strong>Aucune requête réseau</strong> : la « banque » et
+            l’« application » sont simulées dans la même page.
+          </li>
+          <li>
+            <strong>Aucun serveur</strong> : le JS lit réellement le DOM de la
+            page banque (<code>document.querySelectorAll</code>,
+            <code>textContent</code>, <code>classList</code>), ce qui illustre
+            le principe du scraping.
+          </li>
+          <li>
+            <strong>Simulation de refonte</strong> : le script sauvegarde le
+            <code>tbody</code> d’origine, puis le remplace par une structure
+            <code>td.tx-*</code>. Le bouton « Réinitialiser » restaure la
+            sauvegarde. Aucune page n’est rechargée.
+          </li>
+          <li>
+            <strong>Données fictives uniquement.</strong> Aucun identifiant réel,
+            aucun compte réel.
+          </li>
+        </ul>
+      </article>
+
+      <p class="doc-foot">
+        Labo du Jour 1 · DSP2 &amp; Open Banking — données fictives, aucun réseau,
+        aucun serveur.
+      </p>
+    </div>
+  </body>
+</html>

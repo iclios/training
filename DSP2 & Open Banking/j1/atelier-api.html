@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Atelier · De l’API au consentement | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="atelier-api">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a class="is-active" href="intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 1 · Atelier</span>
+                <span class="tag tag-accent">20–30 min</span>
+              </div>
+              <p class="day-kicker">Mise en pratique · binômes</p>
+              <h1>Atelier · De l’API au consentement</h1>
+              <p class="lead">
+                La S2 a montré la réponse&nbsp;: une API, un consentement, un
+                jeton. Ici, on la manipule. Vous allez accorder le consentement
+                de Lyam, récupérer ses comptes par un appel API en JSON, puis
+                révoquer l’accès. Et vous verrez ce que le scraping ne savait
+                pas faire&nbsp;: couper l’accès d’un clic.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Vous êtes toujours l’équipe technique de <strong>MonBuddy</strong>.
+                Mais cette fois, Banque Est a ouvert une API conforme DSP2. Plus
+                besoin de mot de passe&nbsp;: Lyam <em>autorise</em>, MonBuddy
+                reçoit un jeton, et l’accès peut être <em>révoqué</em> à tout
+                moment.
+              </p>
+            </div>
+
+            <!-- 0. LANCER LE LABO -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <div class="callout reg">
+                <div class="labo-launch" style="display: grid; grid-template-columns: 1fr auto; gap: 1.25rem; align-items: center;">
+                  <div>
+                    <h3>Lancer le labo interactif</h3>
+                    <p>
+                      Cet atelier se fait dans un
+                      <strong>labo web autonome</strong>. Vous allez parcourir les
+                      trois temps de l’accès API&nbsp;: le consentement, l’appel,
+                      la révocation. Aucune installation, aucun serveur&nbsp;: un
+                      simple double-clic sur la page.
+                    </p>
+                  </div>
+                  <a class="btn-lab" href="labo-api/index.html" target="_blank" rel="noopener">
+                    Ouvrir le labo <span class="arrow">↗</span>
+                  </a>
+                </div>
+              </div>
+              <p class="intro" style="margin-bottom: 0">
+                Suivez la fiche ci-dessous <em>en parallèle</em> du labo&nbsp;:
+                chaque étape indique ce qu’il faut observer à l’écran. Le dossier
+                <code>j1/labo-api/</code> est aussi distribuable tel quel aux
+                étudiants (ouvrable par double-clic).
+              </p>
+            </section>
+
+            <!-- 1. OBJECTIF -->
+            <section class="section" style="border-top: none; padding-top: 1rem">
+              <p class="section-label">Objectif de l’atelier</p>
+              <h2>Manipuler ce que la DSP2 change concrètement</h2>
+              <p class="intro">
+                Le scraping «&nbsp;marchait&nbsp;» mais ne savait ni limiter ni
+                révoquer l’accès. L’atelier fait toucher du doigt les trois
+                propriétés de la réponse API&nbsp;: un accès
+                <strong>limité</strong>, des données <strong>structurées</strong>,
+                un pouvoir de <strong>révocation</strong>.
+              </p>
+
+              <div class="split-3">
+                <div class="panel tpp">
+                  <h3>Étape 1 · Consentir</h3>
+                  <p>
+                    Lyam autorise MonBuddy&nbsp;: choix des comptes, durée. La
+                    banque émet un <code>consentId</code> et un
+                    <code>access_token</code>.
+                  </p>
+                </div>
+                <div class="panel tpp">
+                  <h3>Étape 2 · Appeler</h3>
+                  <p>
+                    MonBuddy appelle <code>GET /accounts</code> avec le jeton. La
+                    banque répond du <strong>JSON structuré</strong>, pas du HTML.
+                  </p>
+                </div>
+                <div class="panel tpp">
+                  <h3>Étape 3 · Révoquer</h3>
+                  <p>
+                    Lyam révoque. Le jeton est invalidé immédiatement&nbsp;: le
+                    prochain appel de MonBuddy reçoit <code>401</code>.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Outils</h3>
+                <p>
+                  Tout se passe dans le <strong>labo interactif</strong> (bouton
+                  ci-dessus). Le labo simule la page de consentement de la
+                  banque, l’endpoint API et la révocation. Cette fiche sert de
+                  <em>guide</em>&nbsp;: on lit une consigne ici, on l’exécute dans
+                  le labo.
+                </p>
+              </div>
+
+              <p class="section-label" style="margin-top: 2rem">Les manipulations du labo</p>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Activité</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Où</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Accorder le consentement</th>
+                      <td>Manipulation</td>
+                      <td>🔧 Labo — onglet 1</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Recevoir consentId + access_token</th>
+                      <td>Observation</td>
+                      <td>🔧 Labo — onglet 1</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Appel GET /accounts (JSON)</th>
+                      <td>Manipulation</td>
+                      <td>🔧 Labo — onglet 2</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Révoquer le consentement</th>
+                      <td>Manipulation</td>
+                      <td>🔧 Labo — onglet 3</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Voir l’appel refusé (401)</th>
+                      <td>Observation</td>
+                      <td>🔧 Labo — onglet 3</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- 2. ETAPE 1 : CONSENTIR -->
+            <section class="section">
+              <p class="section-label">Étape 1 · consentement</p>
+              <h2>Autoriser l’accès, c’est Lyam qui décide</h2>
+              <p>
+                <strong>Dans le labo, onglet «&nbsp;Consentement&nbsp;»</strong>,
+                cochez les comptes que Lyam autorise, choisissez une durée, puis
+                cliquez sur <strong>« Accorder le consentement »</strong>.
+                Observez ce que la banque renvoie.
+              </p>
+
+              <ol class="steps-list">
+                <li>
+                  <strong>Accordez le consentement.</strong> Cochez «&nbsp;Compte
+                  courant&nbsp;» et «&nbsp;Livret A&nbsp;», gardez 90 jours,
+                  cliquez. Notez le <code>consentId</code> et le
+                  <code>access_token</code> émis.
+                </li>
+                <li>
+                  <strong>Repérez ce qui n’existe PAS.</strong> Aucun mot de passe
+                  n’apparaît. MonBuddy ne reçoit qu’un jeton limité aux comptes
+                  choisis et daté.
+                </li>
+                <li>
+                  <strong>Comparez avec le scraping.</strong> Dans l’atelier
+                  précédent, que MonBuddy stockait-il&nbsp;? Pour combien de
+                  temps&nbsp;? Était-ce limité à certains comptes&nbsp;?
+                </li>
+              </ol>
+
+              <div class="callout">
+                <h3>Ce que ça révèle déjà</h3>
+                <p>
+                  Le consentement n’est pas un formulaire de plus&nbsp;: c’est un
+                  <strong>objet</strong> que la banque émet, horodate et limite.
+                  Il porte les droits, pas l’identité. C’est le contraire d’un mot
+                  de passe, qui donne accès à <em>tout</em>, <em>indéfiniment</em>.
+                </p>
+              </div>
+            </section>
+
+            <!-- 3. ETAPE 2 : APPELER -->
+            <section class="section">
+              <p class="section-label">Étape 2 · appel API</p>
+              <h2>Récupérer les comptes en JSON structuré</h2>
+              <p>
+                <strong>Dans le labo, onglet «&nbsp;Appel API&nbsp;»</strong>,
+                cliquez sur <strong>« Appeler /accounts »</strong>. MonBuddy
+                envoie son jeton en en-tête, la banque répond du JSON.
+              </p>
+
+              <pre class="code-block" style="overflow-x: auto; background: #f7f9fb; border: 1px solid #c5d3df; border-radius: 8px; padding: 1rem; font-size: 12px; line-height: 1.5;"><code>GET /v1/accounts
+Authorization: Bearer at_…  (jeton, PAS le mot de passe)
+
+200 OK
+{
+  "data": [
+    {
+      "accountId": "acc_1000",
+      "type": "Compte courant",
+      "iban": "FR76 3000 4000 0312 3456 7890 143",
+      "currency": "EUR",
+      "balance": "1 842,60 EUR"
+    }
+  ]
+}</code></pre>
+
+              <ol class="steps-list">
+                <li>
+                  <strong>Lancez l’appel.</strong> Observez le JSON renvoyé&nbsp;:
+                  des champs nommés (<code>balance</code>, <code>iban</code>),
+                  pas des balises à deviner.
+                </li>
+                <li>
+                  <strong>Comparez avec l’extraction du scraping.</strong> Le
+                  robot lisait des <code>td.montant</code> fragiles. Ici, le
+                  champ <code>balance</code> est garanti par le contrat
+                  <code>/v1</code>.
+                </li>
+                <li>
+                  <strong>Imaginez une refonte.</strong> Si la banque refait son
+                  site web, l’API <code>/v1</code> ne change pas. L’appel continue
+                  de fonctionner.
+                </li>
+              </ol>
+
+              <div class="callout info">
+                <h3>Stable par contrat</h3>
+                <p>
+                  La version (<code>/v1</code>) est une <strong>promesse</strong>&nbsp;:
+                  les champs ne disparaissent pas dans ton dos. Une refonte
+                  graphique n’est pas une rupture d’API. C’est toute la
+                  différence avec le scraping, où chaque changement de classe CSS
+                  casse le robot.
+                </p>
+              </div>
+            </section>
+
+            <!-- 4. ETAPE 3 : RÉVOQUER -->
+            <section class="section">
+              <p class="section-label">Étape 3 · révocation</p>
+              <h2>Couper l’accès, d’un clic</h2>
+              <p>
+                <strong>Dans le labo, onglet «&nbsp;Révocation&nbsp;»</strong>,
+                cliquez sur <strong>« Révoquer le consentement »</strong>, puis sur
+                <strong>« Réessayer GET /accounts »</strong>. Observez la réponse de
+                la banque.
+              </p>
+
+              <ol class="steps-list">
+                <li>
+                  <strong>Révoquez.</strong> Le statut passe à «&nbsp;révoqué&nbsp;»
+                  et le jeton est invalidé immédiatement.
+                </li>
+                <li>
+                  <strong>Réessayez l’appel.</strong> MonBuddy reçoit
+                  <code>401 Unauthorized</code>&nbsp;: plus aucun accès.
+                </li>
+                <li>
+                  <strong>Comparez avec le scraping.</strong> Dans l’atelier
+                  précédent, Lyam pouvait-il «&nbsp;révoquer&nbsp;» MonBuddy&nbsp;?
+                  Que fallait-il faire&nbsp;— et cela suffisait-il&nbsp;?
+                </li>
+              </ol>
+
+              <div class="callout warn">
+                <h3>Le pouvoir qui manquait au scraping</h3>
+                <p>
+                  Avec le scraping, MonBuddy avait le <strong>mot de passe</strong>.
+                  Changer ce mot de passe ne la bloquait même pas&nbsp;: elle
+                  l’avait stocké. Ici, la révocation est <strong>immédiate et
+                  certaine</strong>&nbsp;: le jeton ne vaut plus rien. C’est ce
+                  pouvoir de reprise de contrôle que la DSP2 garantit.
+                </p>
+              </div>
+            </section>
+
+            <!-- 5. DEBRIEF -->
+            <section class="section">
+              <p class="section-label">Débrief · 5 min</p>
+              <h2>Scraping vs API : ce qui change vraiment</h2>
+              <p>
+                Reprenez les trois étapes et complétez la comparaison. C’est la
+                synthèse de S2, vue par la pratique.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ko">
+                  <h3>Scraping (atelier précédent)</h3>
+                  <ul>
+                    <li>MonBuddy <strong>stocke le mot de passe</strong>.</li>
+                    <li>Accès à <strong>tout le compte</strong>, sans limite.</li>
+                    <li>Lecture de <strong>balises fragiles</strong>.</li>
+                    <li><strong>Aucune révocation</strong> possible.</li>
+                  </ul>
+                </div>
+                <div class="panel ok">
+                  <h3>API + consentement (cet atelier)</h3>
+                  <ul>
+                    <li>MonBuddy reçoit un <strong>jeton</strong>, jamais le mot de passe.</li>
+                    <li>Accès <strong>limité</strong> aux comptes + une durée.</li>
+                    <li>Données <strong>JSON structurées</strong> et versionnées.</li>
+                    <li><strong>Révocation immédiate</strong> du jeton.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="cours-note-banner">
+                <p>
+                  <strong>Le message de l’atelier.</strong> La DSP2 ne rend pas le
+                  service «&nbsp;plus joli&nbsp;»&nbsp;: elle rend l’accès
+                  <em>limité</em>, <em>structuré</em> et <em>révocable</em>. Le
+                  scraping <em>empruntait</em> une interface faite pour les
+                  humains. L’API <em>prête</em> une interface faite pour les
+                  applications — avec un contrat et une poignée de main
+                  consentie.
+                </p>
+              </div>
+            </section>
+
+            <!-- 6. LIVRABLE + GRILLE -->
+            <section class="section" style="border-bottom: none">
+              <p class="section-label">Livrable &amp; évaluation</p>
+              <h2>Ce qu’on attend</h2>
+
+              <div class="callout">
+                <h3>Livrable (une fiche par binôme)</h3>
+                <p>
+                  Ce que vous avez observé dans le labo&nbsp;: le consentement
+                  accordé (comptes, durée, jeton), la réponse JSON structurée de
+                  <code>/accounts</code>, puis la révocation suivie du
+                  <code>401</code>. Ajoutez la comparaison scraping vs API et le
+                  lien avec la réponse de la DSP2.
+                </p>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">Points</th>
+                      <th scope="col">Indice d’un bon travail</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Consentement compris</th>
+                      <td>3</td>
+                      <td>Identifie consentId, jeton, scopes et durée, et l’absence de mot de passe</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Appel API compris</th>
+                      <td>4</td>
+                      <td>Jeton en en-tête, réponse JSON, données nommées et versionnées</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Révocation comprise</th>
+                      <td>4</td>
+                      <td>Jeton invalidé immédiatement, 401, sans changer le mot de passe</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Lien avec la DSP2</th>
+                      <td>4</td>
+                      <td>Associe chaque faiblesse du scraping à la réponse API correspondante</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Pour prolonger</strong> — Directive (UE) 2015/2366 (DSP2)
+              et RTS de l’EBA sur l’accès aux comptes&nbsp;; voir S2 (la réponse)
+              et l’atelier précédent (le scraping) pour reconstituer la
+              comparaison complète.
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 1</a> · Atelier · De l’API au consentement
+      </div>
+    </footer>
+    <script src="../js/nav-j1.js"></script>
+    <script src="../js/fiche.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

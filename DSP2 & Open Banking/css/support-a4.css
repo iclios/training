@@ -74,3 +74,14 @@ body.support-doc {
 }
 
 /* Les toggles / panneaux interactifs sont déjà masqués par @media print */
+
+/* Pas de page blanche finale : le dernier bloc ne force aucun saut après lui */
+.support-doc .support-bloc:last-child {
+  page-break-after: avoid !important;
+  break-after: avoid !important;
+}
+.support-doc main > .support-bloc:last-of-type {
+  page-break-after: avoid !important;
+  break-after: avoid !important;
+}
+

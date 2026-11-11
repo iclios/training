@@ -649,6 +649,20 @@
     padding: 8pt !important;
   }
 
+  /* key-idea : fond blanc en print → repasser le texte en sombre */
+  .support-doc .key-idea,
+  .support-doc .key-idea p,
+  .support-doc .key-idea li,
+  .support-doc .key-idea strong {
+    color: #1a2b3c !important;
+  }
+  .support-doc .key-idea .label {
+    color: #087a6a !important;
+  }
+  .support-doc .key-idea li::before {
+    background: #0d9f8a !important;
+  }
+
   .support-doc .domaines-grid {
     display: grid !important;
     grid-template-columns: repeat(5, 1fr) !important;
