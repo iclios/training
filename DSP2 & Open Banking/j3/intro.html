@@ -31,7 +31,6 @@
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 3 · Ouverture</span>
-                <span class="tag tag-accent">4 h</span>
               </div>
               <p class="day-kicker">Accueil</p>
               <h1>Intro &amp; objectifs</h1>
@@ -61,15 +60,29 @@
             <section class="section" style="border-top: none; padding-top: 0">
               <p class="section-label">Rappel</p>
               <h2>Là où l’on en est</h2>
-              <p>
-                Au Jour 1, on a défini trois rôles de tiers&nbsp;: l’<strong>AISP</strong>
-                (lecture des comptes), le <strong>PISP</strong> (initiation de
-                paiement) et le <strong>CBPII</strong> (confirmation de fonds).
-                Au Jour 2, on a vu comment un de ces tiers s’authentifie
-                (mTLS, OAuth2), obtient une autorisation (consentement) et
-                présente un jeton à chaque appel. On a étudié l’AIS, le cas le
-                plus simple.
-              </p>
+              <ul class="topic-list">
+                <li>
+                  <span>
+                    <strong>Jour 1 — les rôles.</strong> Trois rôles de tiers
+                    définis&nbsp;: l’<strong>AISP</strong> (lecture des comptes), le
+                    <strong>PISP</strong> (initiation de paiement) et le
+                    <strong>CBPII</strong> (confirmation de fonds).
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Jour 2 — l’accès sécurisé.</strong> Comment un tiers
+                    s’authentifie (mTLS, OAuth2), obtient une autorisation
+                    (consentement) et présente un jeton à chaque appel.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Déjà étudié — l’AIS.</strong> Le cas le plus
+                    simple&nbsp;: lire les comptes, sans jamais déplacer d’argent.
+                  </span>
+                </li>
+              </ul>
 
               <div class="callout info">
                 <h3>Pourquoi le PISP est «&nbsp;le plus délicat&nbsp;»</h3>
@@ -80,6 +93,16 @@
                   chaque paiement, l’idempotence devient critique, la
                   réconciliation avec le règlement ne pardonne pas. C’est ce qui
                   rend le PISP un excellent terrain d’architecture.
+                </p>
+              </div>
+
+              <div class="callout info">
+                <h3>Ce qu’il faut avoir retenu des jours 1 et 2</h3>
+                <p>
+                  Les rôles ASPSP / TPP / PISP, la chaîne Gateway → consentement →
+                  IAM → core, le parcours de redirection, et les mécanismes
+                  OAuth2 / mTLS / SCA. Le PISP réutilise tout&nbsp;: on ne
+                  redéfinit plus, on applique à un paiement.
                 </p>
               </div>
             </section>
@@ -175,115 +198,63 @@
             <section class="section">
               <p class="section-label">Objectifs pédagogiques</p>
               <h2>À l’issue du Jour 3, l’étudiant sait…</h2>
-              <ul class="topic-list">
+              <ul class="objectifs-list">
                 <li>
-                  <span>
-                    <strong>Définir</strong> un paiement par initiation&nbsp;: un
-                    transfert compte à compte déclenché par un tiers agréé, au
-                    nom et avec l’authentification du client, sans carte.
+                  <span class="obj-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 3v18M5 8l7-5 7 5M5 8v8l7 5 7-5V8" />
+                    </svg>
                   </span>
+                  <span class="obj-text"><strong>Définir</strong> un paiement par initiation&nbsp;: un transfert compte à compte déclenché par un tiers agréé, au nom et avec l’authentification du client, sans carte.</span>
                 </li>
                 <li>
-                  <span>
-                    <strong>Décrire</strong> le flux PISP complet&nbsp;:
-                    consentement, redirection SCA, initiation, confirmation,
-                    règlement — et nommer les messages échangés à chaque étape.
+                  <span class="obj-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="6" cy="6" r="2.4" /><circle cx="18" cy="6" r="2.4" /><circle cx="6" cy="18" r="2.4" /><circle cx="18" cy="18" r="2.4" /><path d="M8.4 6h7.2M6 8.4v7.2M18 8.4v7.2M8.4 18h7.2" />
+                    </svg>
                   </span>
+                  <span class="obj-text"><strong>Décrire</strong> le flux PISP complet&nbsp;: consentement, redirection SCA, initiation, confirmation, règlement — et nommer les messages échangés à chaque étape.</span>
                 </li>
                 <li>
-                  <span>
-                    <strong>Comparer</strong> PISP, carte bancaire et wallet&nbsp;:
-                    coût, garantie, sécurité, expérience, cas d’usage.
+                  <span class="obj-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+                    </svg>
                   </span>
+                  <span class="obj-text"><strong>Comparer</strong> PISP, carte bancaire et wallet&nbsp;: coût, garantie, sécurité, expérience, cas d’usage.</span>
                 </li>
                 <li>
-                  <span>
-                    <strong>Cartographier</strong> l’architecture SI d’un
-                    PISP&nbsp;: frontend marchand, backend, API bancaire, core
-                    payment engine, et leurs contraintes (disponibilité, latence,
-                    rejets).
+                  <span class="obj-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /><path d="M17.5 14v7M14 17.5h7" />
+                    </svg>
                   </span>
+                  <span class="obj-text"><strong>Cartographier</strong> l’architecture SI d’un PISP&nbsp;: frontend marchand, backend, API bancaire, core payment engine, et leurs contraintes (disponibilité, latence, rejets).</span>
                 </li>
                 <li>
-                  <span>
-                    <strong>Modéliser</strong> un paiement e-commerce en diagramme
-                    de séquence, avec les rôles et les messages exacts.
+                  <span class="obj-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 5h16M4 12h10M4 19h16" />
+                    </svg>
                   </span>
+                  <span class="obj-text"><strong>Modéliser</strong> un paiement e-commerce en diagramme de séquence, avec les rôles et les messages exacts.</span>
                 </li>
                 <li>
-                  <span>
-                    <strong>Identifier</strong> les notions critiques du PISP&nbsp;:
-                    idempotence, statut de paiement, gestion des rejets, anti-fraude,
-                    réconciliation.
+                  <span class="obj-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 3 3 8l9 5 9-5-9-5Z" /><path d="M3 8v8l9 5 9-5V8" />
+                    </svg>
                   </span>
+                  <span class="obj-text"><strong>Identifier</strong> les notions critiques du PISP&nbsp;: idempotence, statut de paiement, gestion des rejets, anti-fraude, réconciliation.</span>
                 </li>
               </ul>
             </section>
 
-            <!-- DÉROULÉ -->
+            <!-- FIL DE SÉANCE -->
             <section class="section">
-              <p class="section-label">Organisation</p>
-              <h2>Déroulé des 4 heures</h2>
-              <div class="csm-table-wrap">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Temps</th>
-                      <th scope="col">Bloc</th>
-                      <th scope="col">Modalité</th>
-                      <th scope="col">Livrable</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">0 h 00 – 0 h 10</th>
-                      <td>Intro &amp; objectifs</td>
-                      <td>Plénière</td>
-                      <td>Vision d’ensemble</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">0 h 10 – 0 h 55</th>
-                      <td>3.1 Principe du paiement initié</td>
-                      <td>Exposé + discussion</td>
-                      <td>Carte des acteurs</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">0 h 55 – 1 h 55</th>
-                      <td>3.2 Flux PISP détaillé</td>
-                      <td>Exposé + schéma animé</td>
-                      <td>Flux en 5 étapes</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1 h 55 – 2 h 05</th>
-                      <td>Pause</td>
-                      <td>—</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2 h 05 – 2 h 55</th>
-                      <td>3.3 Architecture SI PISP</td>
-                      <td>Exposé + schéma</td>
-                      <td>Schéma des composants</td>
-                    </tr>
-                    <tr class="is-exergue">
-                      <th scope="row">2 h 55 – 4 h 00</th>
-                      <td>3.4 Atelier de modélisation</td>
-                      <td>Travaux de groupe</td>
-                      <td>Diagramme de séquence</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="callout info">
-                <h3>Ce qu’il faut avoir retenu des jours 1 et 2</h3>
-                <p>
-                  Les rôles ASPSP / TPP / PISP, la chaîne Gateway → consentement →
-                  IAM → core, le parcours de redirection, et les mécanismes
-                  OAuth2 / mTLS / SCA. Le PISP réutilise tout&nbsp;: on ne
-                  redéfinit plus, on applique à un paiement.
-                </p>
-              </div>
+              <p class="section-label">Fil de séance</p>
+              <h2>Parcours</h2>
+              <nav class="block-map" id="block-map" aria-label="Blocs du jour 3"></nav>
             </section>
 
             <!-- CURSUS -->
@@ -337,7 +308,7 @@
                     <rect x="850" y="36" width="132" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
                     <text x="916" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
                     <text x="916" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="20" font-weight="700">J5</text>
-                    <text x="916" y="128" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">Open Finance</text>
+                    <text x="916" y="128" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">SI &amp; cas d’usage</text>
                     <text x="916" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">synthèse</text>
                   </g>
                 </svg>

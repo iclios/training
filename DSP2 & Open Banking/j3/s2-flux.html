@@ -87,159 +87,210 @@
 
             <!-- ÉTAPE 1 -->
             <section class="section">
-              <p class="section-label">Étape 1</p>
-              <h2 id="consentement">Le consentement client</h2>
-              <p>
-                Le consentement PIS diffère radicalement de l’AIS. En AIS, un
-                consentement couvre une <em>période</em> et plusieurs lectures. En
-                PIS, un consentement couvre <strong>un paiement</strong>&nbsp;: montant,
-                bénéficiaire, devise, motif. Un paiement = un consentement.
-              </p>
+              <article class="etape-card">
+                <header class="etape-head">
+                  <span class="etape-num">1</span>
+                  <div class="etape-titles">
+                    <h3 id="consentement">Le consentement client</h3>
+                    <p class="etape-actor">Qui initie&nbsp;: <strong>le client</strong> (Lyam) + le PISP</p>
+                  </div>
+                  <span class="etape-illus" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" fill="none" stroke="#0d9f8a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="24" cy="18" r="8" fill="#e7f6f3"/>
+                      <path d="M8 52c0-9 7-15 16-15s16 6 16 15"/>
+                      <path d="M46 30l4 4 8-9" stroke="#087a6a" stroke-width="3"/>
+                      <rect x="40" y="44" width="18" height="12" rx="2"/>
+                      <path d="M44 50h10"/>
+                    </svg>
+                  </span>
+                </header>
+                <div class="etape-body">
+                  <p>
+                    Le consentement PIS diffère radicalement de l’AIS. En AIS, un
+                    consentement couvre une <em>période</em> et plusieurs lectures. En
+                    PIS, un consentement couvre <strong>un paiement</strong>&nbsp;: montant,
+                    bénéficiaire, devise, motif. Un paiement = un consentement.
+                  </p>
 
-              <div class="callout info">
-                <h3>Ce que contient un consentement PIS</h3>
-                <ul>
-                  <li><strong>Montant</strong> et devise&nbsp;;</li>
-                  <li><strong>Bénéficiaire</strong> (IBAN ou identifiant, jamais modifiable après la SCA)&nbsp;;</li>
-                  <li><strong>Motif</strong> (référence de commande — essentiel pour le rapprochement)&nbsp;;</li>
-                  <li><strong>Compte débiteur</strong> (choisi ou implicite)&nbsp;;</li>
-                  <li><strong>Validité</strong> courte&nbsp;: le paiement doit être initié vite, sinon on recommence.</li>
-                </ul>
-              </div>
+                  <div class="callout info">
+                    <h3>Ce que contient un consentement PIS</h3>
+                    <ul>
+                      <li><strong>Montant</strong> et devise&nbsp;;</li>
+                      <li><strong>Bénéficiaire</strong> (IBAN ou identifiant, jamais modifiable après la SCA)&nbsp;;</li>
+                      <li><strong>Motif</strong> (référence de commande — essentiel pour le rapprochement)&nbsp;;</li>
+                      <li><strong>Compte débiteur</strong> (choisi ou implicite)&nbsp;;</li>
+                      <li><strong>Validité</strong> courte&nbsp;: le paiement doit être initié vite, sinon on recommence.</li>
+                    </ul>
+                  </div>
 
-              <p>
-                La première étape est aussi celle où le PISP vérifie qu’il a bien
-                un <strong>agrément en cours</strong> et que le client est
-                authentifiable. Ce n’est pas encore un virement&nbsp;: c’est l’acte
-                de vouloir payer.
-              </p>
+                  <p>
+                    La première étape est aussi celle où le PISP vérifie qu’il a bien
+                    un <strong>agrément en cours</strong> et que le client est
+                    authentifiable. Ce n’est pas encore un virement&nbsp;: c’est l’acte
+                    de vouloir payer.
+                  </p>
+                </div>
+              </article>
             </section>
 
             <!-- ÉTAPE 2 -->
             <section class="section">
-              <p class="section-label">Étape 2</p>
-              <h2 id="redirection">La redirection SCA</h2>
-              <p>
-                Point clé&nbsp;: le client est redirigé vers <strong>sa banque</strong>
-                pour s’authentifier fortement. Le PISP ne collecte jamais les
-                secrets du client. Il propose une redirection (ou, si la banque le
-                permet, une authentification embarquée ou découplée). Mais le
-                principe reste&nbsp;: la <strong>SCA est faite par le monde
-                bancaire</strong>.
-              </p>
+              <article class="etape-card">
+                <header class="etape-head">
+                  <span class="etape-num">2</span>
+                  <div class="etape-titles">
+                    <h3 id="redirection">La redirection SCA</h3>
+                    <p class="etape-actor">Qui authentifie&nbsp;: <strong>la banque (ASPSP)</strong></p>
+                  </div>
+                  <span class="etape-illus" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" fill="none" stroke="#1e5f8a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M32 6l20 7v14c0 14-9 24-20 31C21 51 12 41 12 27V13z" fill="#eef4fa"/>
+                      <rect x="24" y="26" width="16" height="13" rx="2" fill="#fff"/>
+                      <path d="M27 26v-4a5 5 0 0 1 10 0v4"/>
+                      <circle cx="32" cy="32" r="1.6"/>
+                    </svg>
+                  </span>
+                </header>
+                <div class="etape-body">
+                  <p>
+                    Point clé&nbsp;: le client est redirigé vers <strong>sa banque</strong>
+                    pour s’authentifier fortement. Le PISP ne collecte jamais les
+                    secrets du client. Il propose une redirection (ou, si la banque le
+                    permet, une authentification embarquée ou découplée). Mais le
+                    principe reste&nbsp;: la <strong>SCA est faite par le monde
+                    bancaire</strong>.
+                  </p>
 
-              <div class="mechanism">
-                <div class="mechanism-step">
-                  <span class="n">A</span>
-                  <div>
-                    <strong>Redirection</strong>
-                    <p>
-                      Le PISP renvoie vers l’ASPSP avec un identifiant de
-                      consentement et un paramètre d’état (protection contre les
-                      attaques cross-site).
-                    </p>
+                  <div class="mechanism">
+                    <div class="mechanism-step">
+                      <span class="n">A</span>
+                      <div>
+                        <strong>Redirection</strong>
+                        <p>
+                          Le PISP renvoie vers l’ASPSP avec un identifiant de
+                          consentement et un paramètre d’état (protection contre les
+                          attaques cross-site).
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mechanism-step">
+                      <span class="n">B</span>
+                      <div>
+                        <strong>Authentification forte</strong>
+                        <p>
+                          Le client réalise la SCA chez sa banque&nbsp;: code,
+                          notification push, biométrie, boîtier. Trois facteurs au choix
+                          (connaissance, possession, inhérence), deux combinés.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mechanism-step">
+                      <span class="n">C</span>
+                      <div>
+                        <strong>Confirmation du consentement PIS</strong>
+                        <p>
+                          La banque affiche le détail du paiement (montant,
+                          bénéficiaire) et demande validation. Le client ne peut pas le
+                          modifier à ce stade.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mechanism-step">
+                      <span class="n">D</span>
+                      <div>
+                        <strong>Retour + code</strong>
+                        <p>
+                          La banque émet un code d’autorisation que le PISP échange pour
+                          obtenir les droits d’initier ce paiement précis.
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="mechanism-step">
-                  <span class="n">B</span>
-                  <div>
-                    <strong>Authentification forte</strong>
-                    <p>
-                      Le client réalise la SCA chez sa banque&nbsp;: code,
-                      notification push, biométrie, boîtier. Trois facteurs au choix
-                      (connaissance, possession, inhérence), deux combinés.
-                    </p>
-                  </div>
-                </div>
-                <div class="mechanism-step">
-                  <span class="n">C</span>
-                  <div>
-                    <strong>Confirmation du consentement PIS</strong>
-                    <p>
-                      La banque affiche le détail du paiement (montant,
-                      bénéficiaire) et demande validation. Le client ne peut pas le
-                      modifier à ce stade.
-                    </p>
-                  </div>
-                </div>
-                <div class="mechanism-step">
-                  <span class="n">D</span>
-                  <div>
-                    <strong>Retour + code</strong>
-                    <p>
-                      La banque émet un code d’autorisation que le PISP échange pour
-                      obtenir les droits d’initier ce paiement précis.
-                    </p>
-                  </div>
-                </div>
-              </div>
 
-              <div class="callout warn">
-                <h3>Penser SCA avant de penser paiement</h3>
-                <p>
-                  Un PISP qui ne sait pas orchestrer la SCA tourne à vide. Le flux
-                  de paiement dépend du mécanisme d’authentification du pays et des
-                  banques (redirection, intégration, découplée). C’est souvent le
-                  travail d’intégration le plus lourd du projet.
-                </p>
-              </div>
-
-              <details class="cours-note">
-                <summary>Cours — les trois modèles de SCA en PISP</summary>
-                <div class="cours-note-body">
-                  <div class="csm-table-wrap" style="margin:0.7rem 0 0">
-                    <table class="csm-table">
-                      <thead>
-                        <tr>
-                          <th scope="col">Modèle</th>
-                          <th scope="col">Où se fait la SCA</th>
-                          <th scope="col">Avantages / limites</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr><th scope="row">Redirection</th><td>Chez l’ASPSP</td><td>Universel&nbsp;; rupture d’expérience (changement d’app)</td></tr>
-                        <tr><th scope="row">Intégration</th><td>Dans l’expérience du PISP</td><td>Fluide&nbsp;; dépend du plugin banque, responsabilité plus lourde</td></tr>
-                        <tr class="is-exergue"><th scope="row">Découplée</th><td>Dans l’app bancaire</td><td>Excellent sur mobile&nbsp;; complexe, pas universel</td></tr>
-                      </tbody>
-                    </table>
+                  <div class="callout warn">
+                    <h3>Penser SCA avant de penser paiement</h3>
+                    <p>
+                      Un PISP qui ne sait pas orchestrer la SCA tourne à vide. Le flux
+                      de paiement dépend du mécanisme d’authentification du pays et des
+                      banques (redirection, intégration, découplée). C’est souvent le
+                      travail d’intégration le plus lourd du projet.
+                    </p>
                   </div>
+
+                  <details class="cours-note">
+                    <summary>Cours — les trois modèles de SCA en PISP</summary>
+                    <div class="cours-note-body">
+                      <div class="csm-table-wrap" style="margin:0.7rem 0 0">
+                        <table class="csm-table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Modèle</th>
+                              <th scope="col">Où se fait la SCA</th>
+                              <th scope="col">Avantages / limites</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr><th scope="row">Redirection</th><td>Chez l’ASPSP</td><td>Universel&nbsp;; rupture d’expérience (changement d’app)</td></tr>
+                            <tr><th scope="row">Intégration</th><td>Dans l’expérience du PISP</td><td>Fluide&nbsp;; dépend du plugin banque, responsabilité plus lourde</td></tr>
+                            <tr class="is-exergue"><th scope="row">Découplée</th><td>Dans l’app bancaire</td><td>Excellent sur mobile&nbsp;; complexe, pas universel</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </details>
                 </div>
-              </details>
+              </article>
             </section>
 
             <!-- ÉTAPE 3 -->
             <section class="section">
-              <p class="section-label">Étape 3</p>
-              <h2 id="initiation">L’initiation du paiement</h2>
-              <p>
-                Le PISP appelle l’API PIS de la banque. C’est là que naît l’ordre
-                de virement. Deux qualités techniques font la différence ici&nbsp;:
-                l’<strong>idempotence</strong> et la <strong>traçabilité</strong>.
-              </p>
-
-              <div class="split-2">
-                <div class="panel ok">
-                  <h3>L’idempotence</h3>
+              <article class="etape-card">
+                <header class="etape-head">
+                  <span class="etape-num">3</span>
+                  <div class="etape-titles">
+                    <h3 id="initiation">L’initiation du paiement</h3>
+                    <p class="etape-actor">Qui initie&nbsp;: <strong>le PISP</strong> (appel à l’API PIS)</p>
+                  </div>
+                  <span class="etape-illus" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" fill="none" stroke="#6b4fa0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="8" y="20" width="48" height="30" rx="4" fill="#f1edfa"/>
+                      <path d="M8 30h48"/>
+                      <circle cx="46" cy="42" r="3" fill="#fff"/>
+                      <path d="M20 42h14M20 36h20" stroke="#4b3480"/>
+                      <path d="M32 6v8M26 10l6-4 6 4"/>
+                    </svg>
+                  </span>
+                </header>
+                <div class="etape-body">
                   <p>
-                    Chaque initiation porte un identifiant unique. Si le PISP
-                    renvoie la requête (timeout, réseau), la banque reconnaît
-                    l’identifiant et <strong>ne crée pas un second virement</strong>.
-                    Sans idempotence, un simple retry débite deux fois Lyam.
+                    Le PISP appelle l’API PIS de la banque. C’est là que naît l’ordre
+                    de virement. Deux qualités techniques font la différence ici&nbsp;:
+                    l’<strong>idempotence</strong> et la <strong>traçabilité</strong>.
                   </p>
-                </div>
-                <div class="panel">
-                  <h3>La référence marchand</h3>
-                  <p>
-                    Le motif du virement contient la référence de commande. C’est
-                    ce qui permet au marchand de rapprocher un virement reçu et une
-                    commande. Sans référence, la trésorerie devient un cauchemar.
-                  </p>
-                </div>
-              </div>
 
-              <figure class="code-block">
-                <figcaption>Exemple — appel d’initiation PIS (illustratif)</figcaption>
-                <pre><code><span class="c">POST /v1/payments/sepa-credit-transfers</span>
+                  <div class="split-2">
+                    <div class="panel ok">
+                      <h3>L’idempotence</h3>
+                      <p>
+                        Chaque initiation porte un identifiant unique. Si le PISP
+                        renvoie la requête (timeout, réseau), la banque reconnaît
+                        l’identifiant et <strong>ne crée pas un second virement</strong>.
+                        Sans idempotence, un simple retry débite deux fois Lyam.
+                      </p>
+                    </div>
+                    <div class="panel">
+                      <h3>La référence marchand</h3>
+                      <p>
+                        Le motif du virement contient la référence de commande. C’est
+                        ce qui permet au marchand de rapprocher un virement reçu et une
+                        commande. Sans référence, la trésorerie devient un cauchemar.
+                      </p>
+                    </div>
+                  </div>
+
+                  <figure class="code-block">
+                    <figcaption>Exemple — appel d’initiation PIS (illustratif)</figcaption>
+                    <pre><code><span class="c">POST /v1/payments/sepa-credit-transfers</span>
 <span class="k">Content-Type</span>: application/json
 <span class="k">Authorization</span>: Bearer eyJhbGciOi...
 <span class="k">X-Request-ID</span>: 8f3a-commande-20458
@@ -253,100 +304,133 @@
 }</code></pre>
               </figure>
 
-              <p>
-                La réponse ne dit pas «&nbsp;payé&nbsp;», elle dit
-                <strong>«&nbsp;reçu&nbsp;»</strong> avec un statut. Le vrai
-                résultat viendra à l’étape suivante.
-              </p>
+                  <p>
+                    La réponse ne dit pas «&nbsp;payé&nbsp;», elle dit
+                    <strong>«&nbsp;reçu&nbsp;»</strong> avec un statut. Le vrai
+                    résultat viendra à l’étape suivante.
+                  </p>
+                </div>
+              </article>
             </section>
 
             <!-- ÉTAPE 4 -->
             <section class="section">
-              <p class="section-label">Étape 4</p>
-              <h2 id="confirmation">La confirmation (le statut)</h2>
-              <p>
-                Le PISP n’a pas de certitude immédiate. Il interroge le
-                <strong>statut du paiement</strong> jusqu’à obtenir un état
-                définitif. C’est la partie que négligent les implémentations
-                naïves&nbsp;: elles traitent la réponse d’initiation comme un
-                paiement réussi.
-              </p>
+              <article class="etape-card">
+                <header class="etape-head">
+                  <span class="etape-num">4</span>
+                  <div class="etape-titles">
+                    <h3 id="confirmation">La confirmation (le statut)</h3>
+                    <p class="etape-actor">Qui confirme&nbsp;: <strong>la banque</strong> → le PISP → le marchand</p>
+                  </div>
+                  <span class="etape-illus" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" fill="none" stroke="#1e5f8a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="32" cy="32" r="24" fill="#eef4fa"/>
+                      <path d="M22 33l7 7 15-16" stroke="#087a6a" stroke-width="3.2"/>
+                    </svg>
+                  </span>
+                </header>
+                <div class="etape-body">
+                  <p>
+                    Le PISP n’a pas de certitude immédiate. Il interroge le
+                    <strong>statut du paiement</strong> jusqu’à obtenir un état
+                    définitif. C’est la partie que négligent les implémentations
+                    naïves&nbsp;: elles traitent la réponse d’initiation comme un
+                    paiement réussi.
+                  </p>
 
-              <div class="csm-table-wrap">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Statut PIS</th>
-                      <th scope="col">Signification</th>
-                      <th scope="col">Ce que fait le marchand</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr><th scope="row">RCVD</th><td>Reçu</td><td>Attend, ne livre pas encore</td></tr>
-                    <tr><th scope="row">PDNG</th><td>En cours d’exécution</td><td>Attente, polling</td></tr>
-                    <tr><th scope="row">ACSC / ACCP</th><td>Accepté / réglé</td><td>Peut livrer la commande</td></tr>
-                    <tr><th scope="row">RJCT</th><td>Rejeté</td><td>Propose un autre moyen de paiement</td></tr>
-                    <tr class="is-exergue"><th scope="row">CANC</th><td>Annulé</td><td>Traite comme un abandon</td></tr>
-                  </tbody>
-                </table>
-              </div>
+                  <div class="csm-table-wrap">
+                    <table class="csm-table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Statut PIS</th>
+                          <th scope="col">Signification</th>
+                          <th scope="col">Ce que fait le marchand</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th scope="row">RCVD</th><td>Reçu</td><td>Attend, ne livre pas encore</td></tr>
+                        <tr><th scope="row">PDNG</th><td>En cours d’exécution</td><td>Attente, polling</td></tr>
+                        <tr><th scope="row">ACSC / ACCP</th><td>Accepté / réglé</td><td>Peut livrer la commande</td></tr>
+                        <tr><th scope="row">RJCT</th><td>Rejeté</td><td>Propose un autre moyen de paiement</td></tr>
+                        <tr class="is-exergue"><th scope="row">CANC</th><td>Annulé</td><td>Traite comme un abandon</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
 
-              <div class="callout info">
-                <h3>Polling et notification</h3>
-                <p>
-                  Le PISP peut interroger le statut (polling) ou — selon les API —
-                  recevoir un événement. Les deux doivent être
-                  <strong>idempotents</strong> et cohérents&nbsp;: un double accusé
-                  ne doit pas générer une double livraison. C’est exactement le type
-                  d’exercice de l’atelier S4.
-                </p>
-              </div>
+                  <div class="callout info">
+                    <h3>Polling et notification</h3>
+                    <p>
+                      Le PISP peut interroger le statut (polling) ou — selon les API —
+                      recevoir un événement. Les deux doivent être
+                      <strong>idempotents</strong> et cohérents&nbsp;: un double accusé
+                      ne doit pas générer une double livraison. C’est exactement le type
+                      d’exercice de l’atelier S4.
+                    </p>
+                  </div>
+                </div>
+              </article>
             </section>
 
             <!-- ÉTAPE 5 -->
             <section class="section">
-              <p class="section-label">Étape 5</p>
-              <h2 id="reglement">Le règlement</h2>
-              <p>
-                Une fois l’ordre exécuté, l’argent circule&nbsp;: du compte de Lyam
-                vers le compte du marchand, par le rail SEPA. Le PISP n’y touche
-                plus. Il a déclenché&nbsp;; la banque et l’infrastructure de
-                paiement exécutent.
-              </p>
+              <article class="etape-card">
+                <header class="etape-head">
+                  <span class="etape-num">5</span>
+                  <div class="etape-titles">
+                    <h3 id="reglement">Le règlement</h3>
+                    <p class="etape-actor">Qui règle&nbsp;: <strong>les banques + SEPA</strong> (le PISP s’efface)</p>
+                  </div>
+                  <span class="etape-illus" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" fill="none" stroke="#3d5a80" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M6 26 32 10l26 16" fill="#f4f8fc"/>
+                      <path d="M12 26v24M26 26v24M38 26v24M52 26v24" stroke="#3d5a80"/>
+                      <path d="M6 50h52M4 56h56"/>
+                    </svg>
+                  </span>
+                </header>
+                <div class="etape-body">
+                  <p>
+                    Une fois l’ordre exécuté, l’argent circule&nbsp;: du compte de Lyam
+                    vers le compte du marchand, par le rail SEPA. Le PISP n’y touche
+                    plus. Il a déclenché&nbsp;; la banque et l’infrastructure de
+                    paiement exécutent.
+                  </p>
 
-              <ol class="steps-list">
-                <li><strong>Exécution</strong> — la banque de Lyam débite son compte et émet le virement.</li>
-                <li><strong>Compensation</strong> — le virement est présenté au système SEPA, puis au bénéficiaire.</li>
-                <li><strong>Règlement</strong> — les banques se règlent entre elles, via les mécanismes de règlement interbancaire.</li>
-                <li><strong>Crédit</strong> — le compte du marchand est crédité&nbsp;; la référence permet le rapprochement de la commande.</li>
-              </ol>
+                  <ol class="steps-list">
+                    <li><strong>Exécution</strong> — la banque de Lyam débite son compte et émet le virement.</li>
+                    <li><strong>Compensation</strong> — le virement est présenté au système SEPA, puis au bénéficiaire.</li>
+                    <li><strong>Règlement</strong> — les banques se règlent entre elles, via les mécanismes de règlement interbancaire.</li>
+                    <li><strong>Crédit</strong> — le compte du marchand est crédité&nbsp;; la référence permet le rapprochement de la commande.</li>
+                  </ol>
 
-              <div class="csm-table-wrap">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Rail</th>
-                      <th scope="col">Délai indicatif</th>
-                      <th scope="col">Implication pour la commande</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr><th scope="row">SCT (virement standard)</th><td>J+1 ouvré</td><td>La commande attend le crédit ou est livrée sous réserve</td></tr>
-                    <tr class="is-exergue"><th scope="row">SCT Instantané</th><td>Quelques secondes</td><td>Livraison quasi immédiate possible, comme une carte</td></tr>
-                  </tbody>
-                </table>
-              </div>
+                  <div class="csm-table-wrap">
+                    <table class="csm-table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Rail</th>
+                          <th scope="col">Délai indicatif</th>
+                          <th scope="col">Implication pour la commande</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th scope="row">SCT (virement standard)</th><td>J+1 ouvré</td><td>La commande attend le crédit ou est livrée sous réserve</td></tr>
+                        <tr class="is-exergue"><th scope="row">SCT Instantané</th><td>Quelques secondes</td><td>Livraison quasi immédiate possible, comme une carte</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
 
-              <div class="callout">
-                <h3>Conséquence pour le marchand</h3>
-                <p>
-                  Le PISP est excellent quand le règlement est instantané&nbsp;: le
-                  marchand sait en quelques secondes s’il peut livrer. Avec un SCT
-                  classique, il doit choisir entre attendre le crédit (friction) ou
-                  livrer sous réserve (risque). La stratégie de livraison dépend du
-                  rail, pas seulement du PISP.
-                </p>
-              </div>
+                  <div class="callout">
+                    <h3>Conséquence pour le marchand</h3>
+                    <p>
+                      Le PISP est excellent quand le règlement est instantané&nbsp;: le
+                      marchand sait en quelques secondes s’il peut livrer. Avec un SCT
+                      classique, il doit choisir entre attendre le crédit (friction) ou
+                      livrer sous réserve (risque). La stratégie de livraison dépend du
+                      rail, pas seulement du PISP.
+                    </p>
+                  </div>
+                </div>
+              </article>
             </section>
 
             <!-- DIAGRAMME DE SÉQUENCE -->
@@ -435,6 +519,7 @@
             <section class="section">
               <p class="section-label">Comparaisons</p>
               <h2 id="comparaison">PISP vs carte vs wallet</h2>
+              <p class="intro">
                 Trois moyens de payer, trois logiques. Il faut
                 explicitement de comparer le PISP à la carte et au wallet&nbsp;:
                 c’est la grille qui permet de choisir le bon canal.

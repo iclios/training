@@ -36,9 +36,10 @@
               <p class="day-kicker">Le SI qui rend le paiement possible</p>
               <h1>Architecture SI PISP</h1>
               <p class="lead">
-                Entre le bouton du marchand et le compte de Lyam, il y a un
-                système d’information entier. On le pose en quatre composants, puis
-                on regarde les contraintes qui décident du succès.
+                Entre le bouton «&nbsp;Payer par virement&nbsp;» et le compte de
+                Lyam, il y a une chaîne de composants. Comprendre qui fait quoi,
+                et sous quelles contraintes, c’est savoir où placer la
+                responsabilité quand un paiement échoue.
               </p>
             </div>
           </section>
@@ -47,143 +48,437 @@
             <div class="fil-rouge">
               <span class="fil-rouge-label">Fil rouge</span>
               <p>
-                Lyam ne voit qu’un bouton et une page de banque. Derrière, le
-                marchand, le PISP et la banque échangent des messages. Cette
-                séquence ouvre <strong>la boîte du PISP</strong>&nbsp;: ce qu’il
-                reçoit, ce qu’il garde, ce qu’il transmet, et ce qu’il ne doit
-                jamais laisser tomber.
+                Lyam clique sur «&nbsp;Payer par virement&nbsp;» chez Atelier
+                Verre &amp; Cie. En une poignée de secondes, une requête traverse
+                quatre composants avant que l’argent ne bouge. Chacun a un rôle,
+                et chacun peut être le maillon qui casse. La S3 ouvre le capot.
               </p>
             </div>
 
-            <!-- LES QUATRE COMPOSANTS -->
+            <!-- VUE D'ENSEMBLE : LES QUATRE COMPOSANTS -->
             <section class="section" style="border-top: none; padding-top: 1.5rem">
-              <p class="section-label">Composants</p>
-              <h2 id="composants">Les quatre composants</h2>
+              <p class="section-label">Vue d’ensemble</p>
+              <h2 id="composants">Les quatre composants d’une chaîne PISP</h2>
               <p class="intro">
-                Un PISP se décompose en quatre briques. Chacune a une
-                responsabilité propre&nbsp;; les confondre est l’erreur d’architecture
-                la plus fréquente.
+                Un paiement initié traverse quatre couches&nbsp;: le
+                <strong>frontend marchand</strong> (ce que voit Lyam), le
+                <strong>backend PISP</strong> (le cerveau qui orchestre), l’<strong>API
+                bancaire</strong> (la porte d’entrée de la banque) et le <strong>core
+                payment engine</strong> (le moteur qui exécute le virement). On
+                suit le trajet de gauche à droite.
               </p>
-
-              <div class="layer-stack">
-                <article class="layer">
-                  <span class="layer-i">1</span>
-                  <div class="layer-body">
-                    <h3>Frontend marchand</h3>
-                    <p>
-                      La <strong>page de paiement</strong> intégrée au site du
-                      marchand&nbsp;: choix du moyen de paiement, bouton
-                      «&nbsp;payer&nbsp;», affichage du statut. Il ne manipule aucun
-                      secret bancaire — il ne fait qu’initier une demande.
-                    </p>
-                  </div>
-                </article>
-                <article class="layer">
-                  <span class="layer-i">2</span>
-                  <div class="layer-body">
-                    <h3>Backend PISP</h3>
-                    <p>
-                      <strong>Le chef d’orchestre</strong>&nbsp;: gère le consentement,
-                      pilote la redirection SCA, appelle l’API bancaire,
-                      interroge les statuts, gère l’idempotence et la
-                      réconciliation. C’est le cœur de la logique de paiement.
-                    </p>
-                  </div>
-                </article>
-                <article class="layer">
-                  <span class="layer-i">3</span>
-                  <div class="layer-body">
-                    <h3>API bancaire</h3>
-                    <p>
-                      Le <strong>point de contact</strong> côté banque&nbsp;:
-                      réception de l’ordre, SCA, exécution, statut. C’est
-                      l’interface exposée par l’ASPSP (cf. S1 du Jour 2).
-                    </p>
-                  </div>
-                </article>
-                <article class="layer">
-                  <span class="layer-i">4</span>
-                  <div class="layer-body">
-                    <h3>Core payment engine</h3>
-                    <p>
-                      Le <strong>moteur de paiement</strong> de la banque&nbsp;:
-                      tenue des ordres, vérification de provision, génération du
-                      virement SEPA, suivi du settlement. Il ne connaît pas le PISP
-                      — seulement l’ordre validé.
-                    </p>
-                  </div>
-                </article>
-              </div>
 
               <div class="diagram">
                 <div class="diagram-header">
-                  <h3>Chaîne PISP de bout en bout</h3>
-                  <p>Du bouton marchand au core payment engine</p>
+                  <h3>Chaîne des composants — du clic au règlement</h3>
+                  <p>Frontend marchand → Backend PISP → API bancaire → Core payment engine</p>
                 </div>
-                <svg viewBox="0 0 1000 340" role="img" aria-label="Architecture SI PISP">
+                <svg viewBox="0 0 1000 260" role="img" aria-label="Chaîne des quatre composants d’une architecture PISP">
                   <defs>
-                    <marker id="ah-s3j3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
+                    <marker id="ah-arch" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+                      <path d="M0,0 L7,3.5 L0,7 Z" fill="#0d9f8a"/>
                     </marker>
                   </defs>
+                  <!-- Frontend -->
                   <g>
-                    <rect x="20" y="120" width="150" height="90" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="95" y="152" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Frontend</text>
-                    <text x="95" y="172" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">marchand</text>
-                    <text x="95" y="194" text-anchor="middle" fill="#5a6b7c" font-size="10">choix · bouton</text>
+                    <rect x="20" y="60" width="210" height="120" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
+                    <text x="125" y="92" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="14" font-weight="700">Frontend marchand</text>
+                    <text x="125" y="116" text-anchor="middle" fill="#5a6b7c" font-size="10.5">bouton, redirection</text>
+                    <text x="125" y="134" text-anchor="middle" fill="#5a6b7c" font-size="10.5">retour de paiement</text>
+                    <text x="125" y="158" text-anchor="middle" fill="#6b4fa0" font-size="10" font-style="italic">ce que voit Lyam</text>
                   </g>
+                  <line x1="234" y1="120" x2="276" y2="120" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-arch)"/>
+                  <text x="255" y="112" text-anchor="middle" fill="#087a6a" font-size="9">HTTPS</text>
+                  <!-- Backend PISP -->
                   <g>
-                    <rect x="205" y="105" width="170" height="120" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
-                    <text x="290" y="135" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Backend PISP</text>
-                    <text x="290" y="158" text-anchor="middle" fill="#5a6b7c" font-size="10">consentement</text>
-                    <text x="290" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">idempotence</text>
-                    <text x="290" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">statut · polling</text>
-                    <text x="290" y="206" text-anchor="middle" fill="#5a6b7c" font-size="10">réconciliation</text>
+                    <rect x="280" y="60" width="210" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="385" y="92" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="14" font-weight="700">Backend PISP</text>
+                    <text x="385" y="116" text-anchor="middle" fill="#5a6b7c" font-size="10.5">orchestration, consentement</text>
+                    <text x="385" y="134" text-anchor="middle" fill="#5a6b7c" font-size="10.5">idempotence, statut</text>
+                    <text x="385" y="158" text-anchor="middle" fill="#087a6a" font-size="10" font-style="italic">le cerveau</text>
                   </g>
+                  <line x1="494" y1="120" x2="536" y2="120" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-arch)"/>
+                  <text x="515" y="112" text-anchor="middle" fill="#087a6a" font-size="9">mTLS</text>
+                  <!-- API bancaire -->
                   <g>
-                    <rect x="410" y="105" width="170" height="120" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
-                    <text x="495" y="135" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">API bancaire</text>
-                    <text x="495" y="158" text-anchor="middle" fill="#5a6b7c" font-size="10">PIS : initiation</text>
-                    <text x="495" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">SCA</text>
-                    <text x="495" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">statut</text>
-                    <text x="495" y="206" text-anchor="middle" fill="#5a6b7c" font-size="10">consentement PIS</text>
+                    <rect x="540" y="60" width="210" height="120" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="645" y="92" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="14" font-weight="700">API bancaire</text>
+                    <text x="645" y="116" text-anchor="middle" fill="#5a6b7c" font-size="10.5">gateway, OAuth2</text>
+                    <text x="645" y="134" text-anchor="middle" fill="#5a6b7c" font-size="10.5">contrôle du consentement</text>
+                    <text x="645" y="158" text-anchor="middle" fill="#1e5f8a" font-size="10" font-style="italic">la porte d’entrée</text>
                   </g>
+                  <line x1="754" y1="120" x2="796" y2="120" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-arch)"/>
+                  <text x="775" y="112" text-anchor="middle" fill="#087a6a" font-size="9">interne</text>
+                  <!-- Core payment engine -->
                   <g>
-                    <rect x="615" y="105" width="180" height="120" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="705" y="135" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Core payment</text>
-                    <text x="705" y="155" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">engine</text>
-                    <text x="705" y="178" text-anchor="middle" fill="#5a6b7c" font-size="10">provision</text>
-                    <text x="705" y="194" text-anchor="middle" fill="#5a6b7c" font-size="10">ordre SEPA</text>
-                    <text x="705" y="210" text-anchor="middle" fill="#5a6b7c" font-size="10">settlement</text>
-                  </g>
-                  <g>
-                    <rect x="830" y="130" width="150" height="70" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
-                    <text x="905" y="160" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="12" font-weight="700">SEPA</text>
-                    <text x="905" y="180" text-anchor="middle" fill="#5a6b7c" font-size="10">SCT / Inst</text>
+                    <rect x="800" y="60" width="182" height="120" rx="10" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2.5"/>
+                    <text x="891" y="92" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="14" font-weight="700">Core payment</text>
+                    <text x="891" y="110" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="14" font-weight="700">engine</text>
+                    <text x="891" y="134" text-anchor="middle" fill="#5a6b7c" font-size="10.5">exécution du virement</text>
+                    <text x="891" y="158" text-anchor="middle" fill="#3d5a80" font-size="10" font-style="italic">le moteur</text>
                   </g>
 
-                  <line x1="170" y1="165" x2="201" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j3)"/>
-                  <line x1="375" y1="165" x2="406" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j3)"/>
-                  <line x1="580" y1="165" x2="611" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j3)"/>
-                  <line x1="795" y1="165" x2="826" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j3)"/>
-
-                  <rect x="205" y="260" width="590" height="55" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
-                  <text x="500" y="284" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Journalisation &amp; rapprochement</text>
-                  <text x="500" y="303" text-anchor="middle" fill="#5a6b7c" font-size="10">ordre, statut, référence commande, horodatage — de bout en bout</text>
-                  <line x1="290" y1="225" x2="290" y2="256" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
-                  <line x1="495" y1="225" x2="495" y2="256" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
-                  <line x1="705" y1="225" x2="705" y2="256" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <!-- retour -->
+                  <path d="M 645 180 L 645 220 L 125 220 L 125 180" fill="none" stroke="#6b4fa0" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#ah-arch)"/>
+                  <text x="385" y="214" text-anchor="middle" fill="#6b4fa0" font-size="10">statut du paiement (RCVD → ACSC) remonté jusqu’au marchand</text>
                 </svg>
+                <figcaption class="diagram-hint">Le PISP est le seul maillon qui voit toute la chaîne&nbsp;: il relaie l’expérience du marchand et appelle l’API de la banque.</figcaption>
+              </div>
+            </section>
+
+            <!-- DÉPLOIEMENT / ZONES DE CONFIANCE -->
+            <section class="section">
+              <p class="section-label">Déploiement</p>
+              <h2 id="deploiement">Qui héberge quoi&nbsp;: trois zones de confiance</h2>
+              <p class="intro">
+                Les quatre composants ne vivent pas au même endroit. Ils se
+                répartissent en <strong>trois domaines de confiance distincts</strong>&nbsp;:
+                le marchand, le PISP et la banque. Chacun contrôle ses propres
+                systèmes&nbsp;; les échanges entre zones passent par des canaux
+                sécurisés (HTTPS côté marchand, mTLS + OAuth2 côté banque).
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Diagramme de déploiement — zones de confiance</h3>
+                  <p>Marchand | PISP | Banque — et le pont d’API entre elles</p>
+                </div>
+                <svg viewBox="0 0 1000 360" role="img" aria-label="Diagramme de déploiement en trois zones de confiance">
+                  <defs>
+                    <marker id="ah-dep" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+                      <path d="M0,0 L7,3.5 L0,7 Z" fill="#1e5f8a"/>
+                    </marker>
+                  </defs>
+
+                  <!-- Zone Marchand -->
+                  <rect x="20" y="40" width="270" height="290" rx="14" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2" stroke-dasharray="7 5"/>
+                  <text x="155" y="68" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">DOMAINE MARCHAND</text>
+                  <rect x="50" y="90" width="210" height="64" rx="8" fill="#fff" stroke="#6b4fa0" stroke-width="1.6"/>
+                  <text x="155" y="118" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Site e-commerce</text>
+                  <text x="155" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">frontend + bouton Payer</text>
+                  <rect x="50" y="176" width="210" height="64" rx="8" fill="#fff" stroke="#6b4fa0" stroke-width="1.6"/>
+                  <text x="155" y="204" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Back-office marchand</text>
+                  <text x="155" y="224" text-anchor="middle" fill="#5a6b7c" font-size="10">réconciliation commandes</text>
+                  <text x="155" y="270" text-anchor="middle" fill="#6b4fa0" font-size="10" font-style="italic">ne voit jamais les identifiants</text>
+
+                  <!-- Pont HTTPS -->
+                  <line x1="290" y1="150" x2="352" y2="150" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-dep)"/>
+                  <text x="321" y="140" text-anchor="middle" fill="#1e5f8a" font-size="9" font-weight="700">HTTPS</text>
+                  <text x="321" y="200" text-anchor="middle" fill="#5a6b7c" font-size="8.5">redirection</text>
+
+                  <!-- Zone PISP -->
+                  <rect x="360" y="40" width="280" height="290" rx="14" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="500" y="68" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">DOMAINE PISP</text>
+                  <rect x="392" y="90" width="216" height="60" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="1.6"/>
+                  <text x="500" y="116" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Backend PISP</text>
+                  <text x="500" y="136" text-anchor="middle" fill="#5a6b7c" font-size="10">orchestration · idempotence</text>
+                  <rect x="392" y="164" width="216" height="52" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="1.6"/>
+                  <text x="500" y="188" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Base d’états paiements</text>
+                  <text x="500" y="205" text-anchor="middle" fill="#5a6b7c" font-size="9.5">statut + clé d’idempotence</text>
+                  <rect x="392" y="230" width="216" height="52" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="1.6"/>
+                  <text x="500" y="254" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">File d’attente / DLQ</text>
+                  <text x="500" y="271" text-anchor="middle" fill="#5a6b7c" font-size="9.5">rejeu asynchrone sûr</text>
+
+                  <!-- Pont mTLS -->
+                  <line x1="640" y1="150" x2="702" y2="150" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-dep)"/>
+                  <text x="671" y="140" text-anchor="middle" fill="#1e5f8a" font-size="9" font-weight="700">mTLS</text>
+                  <text x="671" y="200" text-anchor="middle" fill="#5a6b7c" font-size="8.5">+ OAuth2</text>
+
+                  <!-- Zone Banque -->
+                  <rect x="710" y="40" width="270" height="290" rx="14" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="845" y="68" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">DOMAINE BANQUE</text>
+                  <rect x="740" y="90" width="210" height="56" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.6"/>
+                  <text x="845" y="116" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">API bancaire</text>
+                  <text x="845" y="135" text-anchor="middle" fill="#5a6b7c" font-size="10">gateway · contrôle</text>
+                  <rect x="740" y="160" width="210" height="56" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.6"/>
+                  <text x="845" y="186" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Core payment engine</text>
+                  <text x="845" y="205" text-anchor="middle" fill="#5a6b7c" font-size="10">exécute le virement</text>
+                  <rect x="740" y="230" width="210" height="52" rx="8" fill="#fff" stroke="#3d5a80" stroke-width="1.6"/>
+                  <text x="845" y="254" text-anchor="middle" fill="#1a2b3c" font-size="11" font-weight="700">Rail SEPA</text>
+                  <text x="845" y="271" text-anchor="middle" fill="#5a6b7c" font-size="9.5">SCT / SCT instantané</text>
+
+                  <text x="500" y="350" text-anchor="middle" fill="#5a6b7c" font-size="10.5">Chaque zone a ses propres secrets et périmètres&nbsp;: le marchand ne parle jamais directement à la banque, il passe par le PISP.</text>
+                </svg>
+                <figcaption class="diagram-hint">Marchand et banque ne communiquent jamais directement&nbsp;: le PISP est le carrefour, et chaque frontière (HTTPS, mTLS) est un point de contrôle.</figcaption>
+              </div>
+            </section>
+
+            <!-- FLUX ARCHITECTURAL : LES 5 ÉTAPES SUR LA CHAÎNE -->
+            <section class="section">
+              <p class="section-label">Flux sur l’architecture</p>
+              <h2 id="flux-composants">Le flux, projeté sur les composants</h2>
+              <p class="intro">
+                Le schéma précédent montre <em>qui</em> existe&nbsp;; celui-ci montre
+                <em>comment une requête le traverse</em>. Les quatre composants sont
+                en colonnes, et chaque étape du paiement allume la ou les colonnes
+                concernées, de haut en bas.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Flux à travers l’architecture — de la colonne marchand à la colonne banque</h3>
+                  <p>Chaque ligne = une étape, chaque case = le composant qui agit</p>
+                </div>
+                <svg viewBox="0 0 1000 430" role="img" aria-label="Flux du paiement projeté sur les quatre composants">
+                  <defs>
+                    <marker id="ah-fluxa" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#087a6a"/>
+                    </marker>
+                  </defs>
+
+                  <!-- en-têtes colonnes -->
+                  <g font-family="Figtree, system-ui, sans-serif" font-weight="700" text-anchor="middle">
+                    <rect x="20" y="12" width="200" height="34" rx="6" fill="#f1edfa" stroke="#6b4fa0" stroke-width="1.6"/>
+                    <text x="120" y="34" fill="#4b3480" font-size="11">Frontend marchand</text>
+                    <rect x="270" y="12" width="200" height="34" rx="6" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.6"/>
+                    <text x="370" y="34" fill="#087a6a" font-size="11">Backend PISP</text>
+                    <rect x="520" y="12" width="200" height="34" rx="6" fill="#eef4fa" stroke="#1e5f8a" stroke-width="1.6"/>
+                    <text x="620" y="34" fill="#1e5f8a" font-size="11">API bancaire</text>
+                    <rect x="770" y="12" width="200" height="34" rx="6" fill="#f4f8fc" stroke="#3d5a80" stroke-width="1.6"/>
+                    <text x="870" y="34" fill="#3d5a80" font-size="11">Core engine</text>
+                  </g>
+
+                  <!-- grille de séparation des colonnes -->
+                  <g stroke="#e3ebf1" stroke-width="1">
+                    <line x1="245" y1="50" x2="245" y2="420"/>
+                    <line x1="495" y1="50" x2="495" y2="420"/>
+                    <line x1="745" y1="50" x2="745" y2="420"/>
+                  </g>
+
+                  <!-- Étape 1 : consentement (marchand -> PISP) -->
+                  <text x="14" y="90" fill="#6b4fa0" font-size="10" font-weight="800">1</text>
+                  <rect x="30" y="62" width="180" height="34" rx="6" fill="#ede4fb" stroke="#6b4fa0" stroke-width="1.3"/>
+                  <text x="120" y="83" text-anchor="middle" fill="#4b3480" font-size="9.5">clic + panier</text>
+                  <line x1="212" y1="79" x2="278" y2="79" stroke="#087a6a" stroke-width="2" marker-end="url(#ah-fluxa)"/>
+                  <rect x="280" y="62" width="180" height="34" rx="6" fill="#d6f2eb" stroke="#0d9f8a" stroke-width="1.3"/>
+                  <text x="370" y="83" text-anchor="middle" fill="#087a6a" font-size="9.5">création consentement PIS</text>
+
+                  <!-- Étape 2 : redirection SCA (PISP -> banque) -->
+                  <text x="14" y="150" fill="#6b4fa0" font-size="10" font-weight="800">2</text>
+                  <rect x="280" y="122" width="180" height="34" rx="6" fill="#d6f2eb" stroke="#0d9f8a" stroke-width="1.3"/>
+                  <text x="370" y="143" text-anchor="middle" fill="#087a6a" font-size="9.5">lance la redirection SCA</text>
+                  <line x1="462" y1="139" x2="528" y2="139" stroke="#087a6a" stroke-width="2" marker-end="url(#ah-fluxa)"/>
+                  <rect x="530" y="122" width="180" height="34" rx="6" fill="#dbe8f6" stroke="#1e5f8a" stroke-width="1.3"/>
+                  <text x="620" y="143" text-anchor="middle" fill="#1e5f8a" font-size="9.5">authentifie Lyam</text>
+
+                  <!-- Étape 3 : initiation (PISP -> banque -> core) -->
+                  <text x="14" y="210" fill="#6b4fa0" font-size="10" font-weight="800">3</text>
+                  <rect x="280" y="182" width="180" height="34" rx="6" fill="#d6f2eb" stroke="#0d9f8a" stroke-width="1.3"/>
+                  <text x="370" y="203" text-anchor="middle" fill="#087a6a" font-size="9.5">POST /payments idempotent</text>
+                  <line x1="462" y1="199" x2="528" y2="199" stroke="#087a6a" stroke-width="2" marker-end="url(#ah-fluxa)"/>
+                  <rect x="530" y="182" width="180" height="34" rx="6" fill="#dbe8f6" stroke="#1e5f8a" stroke-width="1.3"/>
+                  <text x="620" y="203" text-anchor="middle" fill="#1e5f8a" font-size="9.5">contrôle consent.</text>
+                  <line x1="712" y1="199" x2="778" y2="199" stroke="#087a6a" stroke-width="2" marker-end="url(#ah-fluxa)"/>
+                  <rect x="780" y="182" width="180" height="34" rx="6" fill="#dbe4f0" stroke="#3d5a80" stroke-width="1.3"/>
+                  <text x="870" y="203" text-anchor="middle" fill="#3d5a80" font-size="9.5">exécute le virement</text>
+
+                  <!-- Étape 4 : confirmation (retour core -> banque -> PISP -> marchand) -->
+                  <text x="14" y="270" fill="#6b4fa0" font-size="10" font-weight="800">4</text>
+                  <rect x="780" y="242" width="180" height="34" rx="6" fill="#dbe4f0" stroke="#3d5a80" stroke-width="1.3"/>
+                  <text x="870" y="263" text-anchor="middle" fill="#3d5a80" font-size="9.5">émet le statut ACSC</text>
+                  <line x1="778" y1="259" x2="712" y2="259" stroke="#6b4fa0" stroke-width="1.8" stroke-dasharray="4 3" marker-end="url(#ah-fluxa)"/>
+                  <line x1="528" y1="259" x2="462" y2="259" stroke="#6b4fa0" stroke-width="1.8" stroke-dasharray="4 3" marker-end="url(#ah-fluxa)"/>
+                  <rect x="280" y="242" width="180" height="34" rx="6" fill="#fbe9e7" stroke="#b0483a" stroke-width="1.3"/>
+                  <text x="370" y="263" text-anchor="middle" fill="#b0483a" font-size="9.5">met à jour le statut</text>
+                  <line x1="278" y1="259" x2="212" y2="259" stroke="#6b4fa0" stroke-width="1.8" stroke-dasharray="4 3" marker-end="url(#ah-fluxa)"/>
+                  <rect x="30" y="242" width="180" height="34" rx="6" fill="#f0e8fb" stroke="#6b4fa0" stroke-width="1.3"/>
+                  <text x="120" y="263" text-anchor="middle" fill="#4b3480" font-size="9.5">affiche « payé »</text>
+
+                  <!-- Étape 5 : règlement (core -> rail) -->
+                  <text x="14" y="330" fill="#6b4fa0" font-size="10" font-weight="800">5</text>
+                  <rect x="780" y="302" width="180" height="34" rx="6" fill="#dbe4f0" stroke="#3d5a80" stroke-width="1.3"/>
+                  <text x="870" y="323" text-anchor="middle" fill="#3d5a80" font-size="9.5">virement SEPA → marchand</text>
+
+                  <text x="500" y="382" text-anchor="middle" fill="#5a6b7c" font-size="10.5">Les étapes 1–3 descendent (aller), l’étape 4 remonte (retour de statut), l’étape 5 sort du SI PISP (rail bancaire).</text>
+                  <text x="500" y="404" text-anchor="middle" fill="#5a6b7c" font-size="10.5">Chaque flèche pleine = appel&nbsp;; flèche pointillée = retour de confirmation.</text>
+                </svg>
+                <figcaption class="diagram-hint">Lire une ligne = une étape&nbsp;; lire une colonne = la charge d’un composant. On voit d’un coup d’œil que le backend PISP travaille à <em>chaque</em> étape.</figcaption>
+              </div>
+            </section>
+
+            <!-- COMPOSANT 1 : FRONTEND MARCHAND -->
+            <section class="section">
+              <p class="section-label">Composant 1</p>
+              <h2 id="frontend">Le frontend marchand</h2>
+              <p>
+                C’est la surface visible&nbsp;: le bouton «&nbsp;Payer par
+                virement&nbsp;» sur le site du marchand. Son rôle est
+                <strong>minimal mais critique</strong>&nbsp;: déclencher, puis
+                rediriger. Il ne doit contenir aucun secret et ne doit jamais
+                manipuler directement l’argent.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Ce qu’il fait</h3>
+                  <ul>
+                    <li>Propose le moyen de paiement et capture l’intention.</li>
+                    <li>Redirige Lyam vers le PISP (ou l’écran de SCA).</li>
+                    <li>Affiche le retour&nbsp;: succès, échec, en attente.</li>
+                    <li>Reste <strong>idempotent</strong>&nbsp;: rafraîchir la page ne doit pas relancer un paiement.</li>
+                  </ul>
+                </div>
+                <div class="panel ko">
+                  <h3>Ce qu’il ne fait jamais</h3>
+                  <ul>
+                    <li>Collecter des identifiants bancaires.</li>
+                    <li>Calculer ou décider du montant final seul.</li>
+                    <li>Considérer «&nbsp;retour à l’écran succès&nbsp;» comme un paiement confirmé.</li>
+                    <li>Stocker des données de paiement sensibles côté navigateur.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le piège du retour de redirection</h3>
+                <p>
+                  À la fin du parcours, Lyam revient sur le site du marchand avec
+                  une URL «&nbsp;de retour&nbsp;». Cette URL <strong>n’est pas une
+                  preuve de paiement</strong>&nbsp;: elle peut être rejouée, ou
+                  ouverte avant que la banque n’ait réellement exécuté. Le marchand
+                  doit confirmer via le <strong>backend</strong>, jamais via le
+                  front.
+                </p>
+              </div>
+            </section>
+
+            <!-- COMPOSANT 2 : BACKEND PISP -->
+            <section class="section">
+              <p class="section-label">Composant 2</p>
+              <h2 id="backend">Le backend PISP</h2>
+              <p>
+                C’est <strong>le cerveau de la chaîne</strong>. Il orchestre le
+                consentement, appelle l’API de la banque, suit le statut et rend
+                le résultat au marchand. C’est ici que se concentrent les
+                garanties techniques non négociables.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Responsabilité</th>
+                      <th scope="col">Pourquoi c’est vital</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Tenue du consentement PIS</th><td>Un paiement = un consentement, valable un court instant</td></tr>
+                    <tr><th scope="row">Appels à l’API PIS</th><td>Créer et suivre le paiement auprès de la banque</td></tr>
+                    <tr><th scope="row">Idempotence de bout en bout</th><td>Un rejeu réseau ne doit pas créer un second virement</td></tr>
+                    <tr><th scope="row">Machine à états du paiement</th><td>RCVD → PDNG → ACSC/RJCT, avec polling ou notifications</td></tr>
+                    <tr class="is-exergue"><th scope="row">Réconciliation</th><td>Rapprocher le virement reçu de la commande via la référence</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="key-idea">
+                <p class="label">Idée directrice</p>
+                <p>
+                  Le backend PISP ne détient jamais l’argent&nbsp;: il détient la
+                  <strong>vérité du statut</strong>. Toute la valeur — et toute la
+                  sécurité — d’un PISP repose sur une machine à états fiable et une
+                  idempotence sans faille.
+                </p>
+              </div>
+            </section>
+
+            <!-- COMPOSANT 3 : API BANCAIRE -->
+            <section class="section">
+              <p class="section-label">Composant 3</p>
+              <h2 id="api-bancaire">L’API bancaire (ASPSP)</h2>
+              <p>
+                C’est la <strong>porte d’entrée de la banque</strong>&nbsp;: le PISP
+                l’appelle via mTLS et OAuth2. Elle contrôle, puis transmet l’ordre
+                au moteur interne. C’est le <strong>point de contrôle réglementaire</strong>
+                de la banque.
+              </p>
+
+              <div class="split-3">
+                <div class="panel">
+                  <h3>Authentifier l’appelant</h3>
+                  <ul>
+                    <li>mTLS + certificat eIDAS.</li>
+                    <li>Le PISP est-il un TPP agréé&nbsp;?</li>
+                    <li>Pas de certificat valide → <strong>rejet immédiat</strong>.</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Valider le consentement</h3>
+                  <ul>
+                    <li>Le consentement PIS existe-t-il&nbsp;?</li>
+                    <li>Bon montant, bon bénéficiaire&nbsp;?</li>
+                    <li>Hors périmètre → <strong>403</strong>.</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Router vers le core</h3>
+                  <ul>
+                    <li>Contrôles passés → transmission.</li>
+                    <li>Vers le <strong>core payment engine</strong>.</li>
+                    <li>Qui exécute le virement.</li>
+                  </ul>
+                </div>
               </div>
 
               <div class="callout info">
-                <h3>Où se trouve le PISP&nbsp;?</h3>
+                <h3>API vs core&nbsp;: ne pas confondre</h3>
                 <p>
-                  Dans cette chaîne, le <strong>backend PISP</strong> est le seul
-                  composant qui dialogue avec l’API bancaire. Le frontend marchand
-                  ne parle qu’au PISP, pas à la banque. Cette séparation est ce qui
-                  permet à un même PISP de servir plusieurs marchands sans qu’ils
-                  voient les détails bancaires.
+                  L’<strong>API</strong> est la façade exposée aux TPP (authentification,
+                  contrôle, formatage). Le <strong>core</strong> est le système interne
+                  qui tient les comptes et exécute. <em>L’API protège et traduit&nbsp;;
+                  le core exécute.</em>
+                </p>
+              </div>
+            </section>
+
+            <!-- COMPOSANT 4 : CORE PAYMENT ENGINE -->
+            <section class="section">
+              <p class="section-label">Composant 4</p>
+              <h2 id="core">Le core payment engine</h2>
+              <p>
+                C’est le <strong>moteur interne de la banque</strong>. Le PISP ne le
+                voit jamais&nbsp;: il ne voit que ce que l’API lui renvoie. Mais
+                c’est là que l’argent bouge réellement.
+              </p>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Débit du compte</strong>
+                    <p>Vérification de provision, puis écriture comptable.</p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>Émission du virement</strong>
+                    <p>Génération de l’ordre SCT / SCT instantané.</p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Présentation au rail</strong>
+                    <p>Envoi au système SEPA (compensation).</p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">4</span>
+                  <div>
+                    <strong>Retour de statut</strong>
+                    <p>ACSC, RJCT… remonté vers l’API, puis le PISP.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le core est l’exécutant, pas le décideur</h3>
+                <p>
+                  Séparer <strong>contrôle</strong> (API) et <strong>exécution</strong>
+                  (core) est une exigence de sécurité&nbsp;: un composant exposé à
+                  l’extérieur ne doit jamais avoir accès directement à l’écriture
+                  comptable.
                 </p>
               </div>
             </section>
@@ -191,169 +486,196 @@
             <!-- CONTRAINTES -->
             <section class="section">
               <p class="section-label">Contraintes</p>
-              <h2 id="contraintes">Disponibilité, latence, gestion des rejets</h2>
+              <h2 id="contraintes">Les trois contraintes non négociables</h2>
               <p class="intro">
-                Point essentiel&nbsp;: un PISP qui «&nbsp;marche sur un
-                PC&nbsp;» ne marche pas. Trois familles de contraintes
-                dimensionnent le système.
+                Une architecture PISP ne se juge pas sur son élégance, mais sur sa
+                capacité à tenir trois promesses quand ça va mal&nbsp;: être
+                <strong>disponible</strong>, être <strong>rapide</strong>, et
+                <strong>gérer les rejets</strong>.
               </p>
 
-              <div class="verrou-grid">
-                <article class="verrou-card" style="border-top-color: var(--accent)">
-                  <span class="verrou-num" style="background: var(--accent)">01</span>
-                  <h3>Disponibilité</h3>
-                  <p class="verrou-lea">
-                    «&nbsp;Le bouton de paiement ne doit jamais renvoyer une page
-                    d’erreur&nbsp;: un paiement raté, c’est un panier abandonné.&nbsp;»
-                  </p>
-                  <p>
-                    Le PISP dépend d’une API bancaire qui peut être indisponible.
-                    Il doit&nbsp;: retry contrôlé, file d’attente, mode dégradé,
-                    alerting sur les taux d’échec, bascule d’opérateur.
-                  </p>
-                </article>
-                <article class="verrou-card" style="border-top-color: var(--issuer)">
-                  <span class="verrou-num" style="background: var(--issuer)">02</span>
-                  <h3>Latence</h3>
-                  <p class="verrou-lea">
-                    «&nbsp;Si l’écran met trente secondes, je ferme l’onglet et
-                    je paie ailleurs.&nbsp;»
-                  </p>
-                  <p>
-                    Les allers-retours (SCA, polling) s’ajoutent. Le PISP doit
-                    masquer la latence (statut optimiste contrôlé, UI de
-                    progression), borner ses timeouts et ne jamais bloquer le
-                    parcours.
-                  </p>
-                </article>
-                <article class="verrou-card" style="border-top-color: var(--warn)">
-                  <span class="verrou-num" style="background: var(--warn)">03</span>
-                  <h3>Gestion des rejets</h3>
-                  <p class="verrou-lea">
-                    «&nbsp;On m’a dit “paiement refusé”. Pourquoi&nbsp;?&nbsp;»
-                  </p>
-                  <p>
-                    Un rejet a une cause&nbsp;: provision insuffisante, IBAN
-                    invalide, SCA échouée, compte fermé. Le PISP doit traduire le
-                    code de rejet en message actionnable et proposer une
-                    alternative.
-                  </p>
-                </article>
+              <div class="split-3">
+                <div class="panel">
+                  <h3>1 · Disponibilité</h3>
+                  <ul>
+                    <li>Le bouton ne mène <strong>jamais</strong> à une page d’erreur.</li>
+                    <li>Indispo = panier perdu → <strong>redondance + failover</strong>.</li>
+                    <li>Repli vers un autre moyen de paiement.</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>2 · Latence</h3>
+                  <ul>
+                    <li>Chaque seconde d’attente = abandons.</li>
+                    <li>Appels core / SEPA <strong>asynchrones</strong>.</li>
+                    <li>Répondre vite, confirmer ensuite (polling / notification).</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>3 · Gestion des rejets</h3>
+                  <ul>
+                    <li>Rejet ≠ erreur technique.</li>
+                    <li>Distinguer <strong>RJCT métier</strong> d’un échec technique.</li>
+                    <li>Toujours proposer une alternative au client.</li>
+                  </ul>
+                </div>
               </div>
 
-              <div class="csm-table-wrap">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Contrainte</th>
-                      <th scope="col">Indicateur</th>
-                      <th scope="col">Levier technique</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr><th scope="row">Disponibilité</th><td>Taux de succès end-to-end &gt; 98 %</td><td>Circuit breaker, retry idempotent, file tampon</td></tr>
-                    <tr><th scope="row">Latence</th><td>p95 &lt; 2 s côté parcours</td><td>Timeouts courts, UI non bloquante, cache des statuts</td></tr>
-                    <tr><th scope="row">Rejets</th><td>Taux de rejet expliqué = 100 %</td><td>Mapping des codes, messages clairs, fallback carte</td></tr>
-                    <tr class="is-exergue"><th scope="row">Réconciliation</th><td>Écart PISP / banque = 0</td><td>Rapprochement par référence + horodatage, alerting</td></tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="callout warn">
-                <h3>Le rejet n’est pas une erreur</h3>
-                <p>
-                  Un <code>RJCT</code> est un résultat <strong>légitime</strong> du
-                  système&nbsp;: la banque a refusé le paiement. Le traiter comme
-                  une exception technique (500, page blanche) est l’un des bugs les
-                  plus coûteux en conversion. C’est exactement ce qui distingue un
-                  PISP mature.
-                </p>
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">→</span>
+                  <div>
+                    <strong>Disponible</strong>
+                    <p>Redondance, failover, file d’attente de secours — sinon bouton mort et ventes perdues.</p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">→</span>
+                  <div>
+                    <strong>Rapide</strong>
+                    <p>Asynchronisme, polling, notifications — sinon abandon au premier délai.</p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">→</span>
+                  <div>
+                    <strong>Rejets maîtrisés</strong>
+                    <p>Machine à états, distinction RJCT/erreur, repli de paiement — sinon client bloqué sans issue.</p>
+                  </div>
+                </div>
               </div>
             </section>
 
-            <!-- NOTIONS COMPLÉMENTAIRES -->
+            <!-- SCHÉMA DES CONTRAINTES -->
             <section class="section">
-              <p class="section-label">Compléments</p>
-              <h2 id="complements">Ce qu’il faut ajouter au cours pour que ça tienne</h2>
+              <p class="section-label">Contraintes en image</p>
+              <h2 id="contraintes-schema">Où la chaîne casse quand une contrainte lâche</h2>
               <p class="intro">
-                On a listé les composants et les contraintes&nbsp;; la
-                pratique impose quelques notions supplémentaires. On les nomme
-                ici pour être complet.
+                Chaque contrainte a un <strong>point de défaillance</strong>
+                privilégié sur la chaîne&nbsp;: c’est là qu’il faut placer la parade.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Points de défaillance par contrainte</h3>
+                  <p>Disponibilité · latence · rejets — chacun frappe un maillon différent</p>
+                </div>
+                <svg viewBox="0 0 1000 300" role="img" aria-label="Schéma des points de défaillance liés aux trois contraintes">
+                  <defs>
+                    <marker id="ah-ctr" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+                      <path d="M0,0 L7,3.5 L0,7 Z" fill="#5a6b7c"/>
+                    </marker>
+                  </defs>
+
+                  <!-- chaîne des composants (bandeau) -->
+                  <g font-family="Figtree, system-ui, sans-serif" font-weight="700" text-anchor="middle">
+                    <rect x="20" y="120" width="200" height="60" rx="9" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="120" y="146" fill="#4b3480" font-size="12">Frontend</text>
+                    <text x="120" y="164" fill="#4b3480" font-size="12">marchand</text>
+
+                    <rect x="270" y="120" width="200" height="60" rx="9" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                    <text x="370" y="146" fill="#087a6a" font-size="12">Backend</text>
+                    <text x="370" y="164" fill="#087a6a" font-size="12">PISP</text>
+
+                    <rect x="520" y="120" width="200" height="60" rx="9" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="620" y="146" fill="#1e5f8a" font-size="12">API</text>
+                    <text x="620" y="164" fill="#1e5f8a" font-size="12">bancaire</text>
+
+                    <rect x="770" y="120" width="200" height="60" rx="9" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="870" y="146" fill="#3d5a80" font-size="12">Core +</text>
+                    <text x="870" y="164" fill="#3d5a80" font-size="12">rail SEPA</text>
+                  </g>
+                  <g stroke="#5a6b7c" stroke-width="2" fill="none">
+                    <line x1="220" y1="150" x2="268" y2="150" marker-end="url(#ah-ctr)"/>
+                    <line x1="470" y1="150" x2="518" y2="150" marker-end="url(#ah-ctr)"/>
+                    <line x1="720" y1="150" x2="768" y2="150" marker-end="url(#ah-ctr)"/>
+                  </g>
+
+                  <!-- Disponibilité : backend -->
+                  <circle cx="370" cy="120" r="15" fill="#b0483a"/>
+                  <text x="370" y="125" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">!</text>
+                  <line x1="370" y1="105" x2="370" y2="58" stroke="#b0483a" stroke-width="2"/>
+                  <rect x="250" y="18" width="240" height="42" rx="6" fill="#fbe9e7" stroke="#b0483a" stroke-width="1.5"/>
+                  <text x="370" y="36" text-anchor="middle" fill="#b0483a" font-size="10" font-weight="800">DISPONIBILITÉ</text>
+                  <text x="370" y="52" text-anchor="middle" fill="#b0483a" font-size="9.5">bouton mort → panier perdu</text>
+
+                  <!-- Latence : API -->
+                  <circle cx="620" cy="180" r="15" fill="#c98a12"/>
+                  <text x="620" y="185" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">!</text>
+                  <line x1="620" y1="195" x2="620" y2="242" stroke="#c98a12" stroke-width="2"/>
+                  <rect x="500" y="242" width="240" height="42" rx="6" fill="#fdf3e0" stroke="#c98a12" stroke-width="1.5"/>
+                  <text x="620" y="260" text-anchor="middle" fill="#a06a0b" font-size="10" font-weight="800">LATENCE</text>
+                  <text x="620" y="276" text-anchor="middle" fill="#a06a0b" font-size="9.5">écran bloqué → abandon</text>
+
+                  <!-- Rejets : core -->
+                  <circle cx="870" cy="120" r="15" fill="#b0483a"/>
+                  <text x="870" y="125" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">!</text>
+                  <line x1="870" y1="105" x2="870" y2="58" stroke="#b0483a" stroke-width="2"/>
+                  <rect x="760" y="18" width="220" height="42" rx="6" fill="#fbe9e7" stroke="#b0483a" stroke-width="1.5"/>
+                  <text x="870" y="36" text-anchor="middle" fill="#b0483a" font-size="10" font-weight="800">REJETS (RJCT)</text>
+                  <text x="870" y="52" text-anchor="middle" fill="#b0483a" font-size="9.5">provision / compte → refus</text>
+
+                  <text x="500" y="296" text-anchor="middle" fill="#5a6b7c" font-size="10.5">Disponibilité et rejets touchent la chaîne d’exécution&nbsp;; la latence se joue au point d’appel externe (API).</text>
+                </svg>
+                <figcaption class="diagram-hint">Repérer le point de défaillance, c’est savoir <em>où</em> mettre la parade&nbsp;: redondance pour la disponibilité, asynchronisme pour la latence, machine à états pour les rejets.</figcaption>
+              </div>
+            </section>
+
+            <!-- GARDE-FOUS : WORKFLOW -->
+            <section class="section">
+              <p class="section-label">Garde-fous</p>
+              <h2 id="garde-fous">Le workflow anti-incident d’un PISP</h2>
+              <p class="intro">
+                Une fois le virement parti, l’ordre des opérations compte. Ces six
+                garde-fous se construisent <strong>ensemble</strong>&nbsp;: les
+                ajouter après coup coûte des semaines — et parfois des doublons en
+                production.
               </p>
 
               <div class="mechanism">
                 <div class="mechanism-step">
-                  <span class="n">i</span>
+                  <span class="n">1</span>
                   <div>
-                    <strong>Idempotence end-to-end</strong>
-                    <p>
-                      Toutes les étapes de retry doivent porter un identifiant
-                      stable&nbsp;— pas seulement l’initiation. Un webhook rejoué,
-                      un polling doublé, un redémarrage du PISP ne doivent jamais
-                      produire un second paiement.
-                    </p>
+                    <strong>Idempotence</strong>
+                    <p>Une clé à l’initiation, stockée côté backend&nbsp;: un rejeu (timeout, retry) ne crée jamais un second virement.</p>
                   </div>
                 </div>
                 <div class="mechanism-step">
-                  <span class="n">ii</span>
+                  <span class="n">2</span>
                   <div>
-                    <strong>Réconciliation des flux</strong>
-                    <p>
-                      Le PISP doit rapprocher&nbsp;: ordres qu’il a émis, statuts
-                      reçus, virements effectivement crédités. Un écart = une
-                      commande livrée à tort, ou un client débité à tort. C’est une
-                      fonction de production, pas une option.
-                    </p>
+                    <strong>Machine à états</strong>
+                    <p>États explicites (RCVD, PDNG, ACSC, RJCT…) et transitions contrôlées&nbsp;; on ne devine jamais un statut.</p>
                   </div>
                 </div>
                 <div class="mechanism-step">
-                  <span class="n">iii</span>
+                  <span class="n">3</span>
                   <div>
-                    <strong>Anti-fraude</strong>
-                    <p>
-                      Vérification des IBAN (contrôle de clé, sanctions, liste
-                      noire), plafonds, détection de comportement anormal. Le PISP
-                      est une cible&nbsp;: un ordre détourné vers un mauvais
-                      bénéficiaire est une fraude classique.
-                    </p>
+                    <strong>Asynchronisme</strong>
+                    <p>Le 202 «&nbsp;reçu&nbsp;» n’est pas le paiement&nbsp;: confirmation par polling ou notification, tous deux idempotents.</p>
                   </div>
                 </div>
                 <div class="mechanism-step">
-                  <span class="n">iv</span>
+                  <span class="n">4</span>
                   <div>
-                    <strong>Sécurité by design</strong>
-                    <p>
-                      mTLS avec la banque, jetons courts, secrets hors code,
-                      chiffrement au repos, journalisation sans données sensibles
-                      (IBAN masqué dans les logs).
-                    </p>
+                    <strong>File de secours (DLQ)</strong>
+                    <p>Si le core ou le rail ne répond pas, les ordres sont mis en file et rejoués — jamais perdus.</p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">5</span>
+                  <div>
+                    <strong>Réconciliation</strong>
+                    <p>Rapprochement virement ↔ commande via la référence, pour détecter les écarts avec la trésorerie réelle.</p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">6</span>
+                  <div>
+                    <strong>Observabilité</strong>
+                    <p>Traçage de bout en bout (corrélation par identifiant) pour reconstituer un parcours et trancher un litige.</p>
                   </div>
                 </div>
               </div>
-
-              <div class="callout info">
-                <h3>Le regard de l’auditeur</h3>
-                <p>
-                  Un auditeur DSP2 pour un PISP demandera trois choses&nbsp;: la
-                  preuve que la SCA a bien eu lieu (traçabilité), la démonstration
-                  de l’idempotence (test de rejeu), et la procédure de
-                  réconciliation. Concevoir sans ces trois preuves, c’est prévoir un
-                  échec d’audit.
-                </p>
-              </div>
-
-              <details class="cours-note">
-                <summary>Cours — disponibilité&nbsp;: que faire quand l’API bancaire tombe&nbsp;?</summary>
-                <div class="cours-note-body">
-                  <ol>
-                    <li><strong>Détecter</strong> — circuit breaker, seuils d’erreur, alertes temps réel.</li>
-                    <li><strong>Informer</strong> — message explicite au client, pas une erreur «&nbsp;inconnue&nbsp;».</li>
-                    <li><strong>Basculer</strong> — proposer un autre moyen (carte) ou une autre banque.</li>
-                    <li><strong>Rejouer</strong> — file d’attente idempotente pour les ordres en attente, une fois le service revenu.</li>
-                    <li><strong>Réconcilier</strong> — vérifier que rien n’a été doublé ni perdu.</li>
-                  </ol>
-                </div>
-              </details>
             </section>
 
             <!-- TRANSITION -->
@@ -362,18 +684,20 @@
                 <p class="transition-label">Séquence suivante</p>
                 <h2>À vous de modéliser</h2>
                 <p>
-                  Le principe, le flux et l’architecture sont posés. La S4 passe
-                  à la pratique&nbsp;: modéliser un paiement e-commerce réel, avec
-                  le diagramme de séquence, les rôles et les messages.
+                  On connaît maintenant les acteurs, le flux et l’architecture.
+                  L’atelier S4 met tout ensemble&nbsp;: produire le diagramme de
+                  séquence d’un paiement e-commerce complet, avec ses messages et
+                  son cas de rejet.
                 </p>
               </div>
             </section>
 
             <div class="sources-box">
-              <strong>Références</strong> — RTS EBA 2018/389 (disponibilité,
-              contingence, limites de performance)&nbsp;; orientations EBA sur les
-              interfaces dédiées&nbsp;; documentation NextGenPSD2 sur les statuts de
-              paiement&nbsp;; OWASP API Security Top 10.
+              <strong>Références</strong> — Berlin Group NextGenPSD2 (services
+              PIS, statuts de paiement)&nbsp;; RTS EBA 2018/389 art. 32-33
+              (disponibilité et performance des interfaces)&nbsp;; schémas SEPA
+              SCT / SCT Inst (EPC)&nbsp;; bonnes pratiques d’idempotence et
+              d’orchestration asynchrone (design de systèmes de paiement).
             </div>
 
             <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>

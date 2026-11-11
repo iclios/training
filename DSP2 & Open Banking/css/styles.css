@@ -2397,6 +2397,173 @@ body.is-presenting .fiche-shell {
   color: var(--accent-deep);
 }
 
+/* Requête / réponse HTTP (cotes à côte) */
+.http-pair {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+}
+@media (min-width: 760px) {
+  .http-pair {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+}
+.http-pane {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.http-pane.is-req {
+  border-left: 3px solid var(--issuer);
+}
+.http-pane.is-resp {
+  border-left: 3px solid var(--accent);
+}
+.http-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.8rem;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.http-head .http-label {
+  margin-left: auto;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.http-verb {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--issuer);
+}
+.http-verb.is-get  { background: var(--accent); }
+.http-verb.is-post { background: var(--tpp); }
+.http-path {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  word-break: break-all;
+}
+.payload-raw {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  background: #fbfdfe;
+  overflow-x: auto;
+  white-space: pre;
+  flex: 1;
+}
+.http-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.1rem;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1rem;
+  background: var(--paper-2);
+  border-radius: var(--radius);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+.http-meta dt {
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+}
+.http-meta dd {
+  margin: 0.05rem 0 0;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+}
+.http-meta > div { display: flex; flex-direction: column; }
+
+/* Carte d'étape PISP (avec acteur + illustration) */
+.etape-card {
+  margin: 0 0 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+}
+.etape-head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.8rem 1rem;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.etape-num {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+.etape-card:nth-of-type(2n) .etape-num { background: var(--issuer); }
+.etape-card:nth-of-type(3n) .etape-num { background: var(--tpp); }
+.etape-titles { min-width: 0; }
+.etape-titles h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+.etape-actor {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.etape-actor strong { color: var(--accent-deep); }
+.etape-illus {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  margin-left: auto;
+}
+.etape-illus svg { width: 100%; height: 100%; display: block; }
+.etape-body { padding: 1rem 1.1rem 1.1rem; }
+.etape-body > p:first-child { margin-top: 0; }
+.etape-body > p:last-child { margin-bottom: 0; }
+
+/* Équivalent anglais dans une définition */
+.def-en {
+  color: var(--muted);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.9em;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
