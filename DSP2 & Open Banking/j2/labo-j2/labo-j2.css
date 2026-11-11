@@ -547,6 +547,40 @@ pre.json code { color: inherit; }
   color: var(--purple);
 }
 
+/* Fil d'étapes « comment lire » (onglet AIS) */
+.mini-steps {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0.7rem 0.8rem;
+  display: grid;
+  gap: 0.45rem;
+  background: var(--paper);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--soft);
+}
+.mini-steps li {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+}
+.mini-steps .sn {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.mini-steps li.is-done .sn { background: var(--teal); }
+.mini-steps strong { color: var(--ink); }
+
 /* Badge booléen (réponse CBPII) */
 .bool-badge {
   display: flex;

@@ -95,6 +95,9 @@
     panels.forEach(function (p) {
       p.hidden = p.id !== tab.getAttribute("aria-controls");
     });
+    if (tab.getAttribute("aria-controls") === "panel-ais" && window.__ais_onShow) {
+      window.__ais_onShow();
+    }
   }
   tabs.forEach(function (tab, i) {
     tab.addEventListener("click", function () { selectTab(tab); });
@@ -185,14 +188,30 @@
     var selectedAccount = null;
     var received = [];
 
+    function markStep(n) {
+      var steps = $("ais-steps");
+      if (!steps) return;
+      Array.prototype.forEach.call(steps.children, function (li) {
+        var s = parseInt(li.getAttribute("data-step"), 10);
+        if (s <= n) li.classList.add("is-done");
+        else li.classList.remove("is-done");
+      });
+    }
+    // Étape 1 : le consentement est accordé dès qu'on entre dans cet onglet
+    if (state.consented && !state.revoked) markStep(1);
+    window.__ais_onShow = function () {
+      markStep(state.consented && !state.revoked ? 1 : 0);
+    };
+
     function renderAccounts() {
       pick.innerHTML = "";
       if (!received.length) {
         pick.innerHTML =
           '<span class="empty" style="color:var(--faint);font-style:italic;">' +
-          "Aucun compte. Cliquez d’abord sur « Appeler /accounts ».</span>";
+          "Aucun compte encore reçu. Faites les étapes 1 puis 2 ci-dessus.</span>";
         return;
       }
+      markStep(2);
       received.forEach(function (acc) {
         var b = document.createElement("button");
         b.type = "button";
@@ -204,6 +223,7 @@
           b.classList.add("is-active");
           selectedAccount = acc.type;
           txFilter.hidden = false;
+          markStep(3);
           loadTx();
         });
         pick.appendChild(b);

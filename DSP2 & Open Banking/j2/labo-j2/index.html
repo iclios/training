@@ -139,16 +139,23 @@
           </div>
 
           <div class="world app">
-            <div class="world-head"><span class="dot"></span><h2>MonBudget · comptes reçus</h2></div>
+            <div class="world-head"><span class="dot"></span><h2>MonBudget · résultat de l’appel</h2></div>
             <div class="world-body">
               <p class="world-sub">
-                Choisissez un compte pour charger ses <strong>transactions</strong>.
-                Vous pouvez filtrer par date de début.
+                C’est la vue <strong>côté AISP</strong>&nbsp;: MonBudget affiche
+                ce que la banque vient de lui renvoyer. Rien n’apparaît tant que
+                l’appel de gauche n’a pas été fait.
               </p>
+
+              <ol class="mini-steps" id="ais-steps">
+                <li data-step="1"><span class="sn">1</span><span>Accordez le consentement (onglet <strong>1 · Consentement AIS</strong>).</span></li>
+                <li data-step="2"><span class="sn">2</span><span>Cliquez sur <strong>« Appeler /accounts »</strong> (à gauche)&nbsp;: la réponse JSON s’affiche à gauche.</span></li>
+                <li data-step="3"><span class="sn">3</span><span>Choisissez un compte ci-dessous pour charger ses <strong>transactions</strong>.</span></li>
+              </ol>
 
               <div class="acc-pick" id="acc-pick">
                 <span class="empty" style="color:var(--faint);font-style:italic;">
-                  Aucun compte. Cliquez d’abord sur « Appeler /accounts ».
+                  Aucun compte encore reçu. Faites les étapes 1 puis 2 ci-dessus.
                 </span>
               </div>
 
