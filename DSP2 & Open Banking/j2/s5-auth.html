@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>S5 — Authentification &amp; autorisation | DSP2 &amp; Open Banking</title>
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/socle-components.css" />
     <link rel="stylesheet" href="../css/auth-flux.css" />
   </head>
   <body data-bloc="s5-auth">
@@ -61,15 +62,142 @@
               <p class="section-label">Mécanismes</p>
               <h2 id="mecanismes">Les quatre mécanismes clés</h2>
 
-              <div class="role-grid">
-                <article class="role-card">
-                  <h3>OAuth2</h3>
-                  <p class="role-full">Authorization Framework</p>
-                  <p class="role-desc">
-                    Cadre d’<strong>autorisation</strong>. Il permet à un TPP
-                    d’obtenir un <strong>jeton d’accès</strong> sans jamais
-                    connaître les identifiants de Lyam.
-                  </p>
+              <p class="intro">
+                Attention au vocabulaire&nbsp;: <strong>authentifier</strong>,
+                c’est prouver <em>qui</em> est quelqu’un&nbsp;; <strong>autoriser</strong>,
+                c’est décider <em>à quoi</em> il a droit. Les quatre mécanismes
+                ci-dessous ne font pas la même chose&nbsp;: deux servent plutôt
+                l’authentification, deux servent plutôt l’autorisation.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Notion</th>
+                      <th scope="col">Question posée</th>
+                      <th scope="col">Réponse attendue</th>
+                      <th scope="col">Mécanismes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Authentification</th><td>Qui es-tu&nbsp;?</td><td>Prouve ton identité</td><td>mTLS, OpenID Connect</td></tr>
+                    <tr class="is-exergue"><th scope="row">Autorisation</th><td>À quoi as-tu droit&nbsp;?</td><td>Voici ton périmètre et tes jetons</td><td>OAuth2 (+ scopes du JWT)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="comp-grid">
+                <!-- 1. mTLS — LA POIGNÉE DE MAIN -->
+                <article class="comp-card comp-services">
+                  <div class="comp-head">
+                    <span class="comp-num">1</span>
+                    <div class="comp-titles">
+                      <h3>mTLS</h3>
+                      <p class="comp-role">Mutual TLS · la poignée de main et le canal sécurisé</p>
+                    </div>
+                  </div>
+
+                  <div class="comp-block">
+                    <span class="comp-label">Le point de départ</span>
+                    <p>
+                      Tout commence par la <strong>poignée de main</strong>&nbsp;:
+                      avant même de parler d’autorisation, le canal doit être
+                      sûr et l’identité technique du TPP prouvée.
+                    </p>
+                  </div>
+
+                  <figure class="flux-card">
+                    <svg viewBox="0 0 420 150" role="img" aria-label="Flux mTLS : le TPP et la banque échangent leurs certificats, vérifiés via le registre EBA">
+                      <defs>
+                        <marker id="ah-mt" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                          <path d="M0,0 L6,3 L0,6 Z" fill="#3d5a80"/>
+                        </marker>
+                      </defs>
+                      <g font-size="10" font-weight="700" text-anchor="middle">
+                        <rect x="14" y="16" width="92" height="26" rx="5" fill="#f1edfa" stroke="#6b4fa0" stroke-width="1.5"/>
+                        <text x="60" y="33" fill="#4b3480">TPP</text>
+                        <rect x="164" y="16" width="92" height="26" rx="5" fill="#eef4fa" stroke="#1e5f8a" stroke-width="1.5"/>
+                        <text x="210" y="33" fill="#1e5f8a">Banque</text>
+                        <rect x="314" y="16" width="92" height="26" rx="5" fill="#f4f8fc" stroke="#3d5a80" stroke-width="1.5"/>
+                        <text x="360" y="33" fill="#3d5a80">Registre EBA</text>
+                      </g>
+                      <line x1="60" y1="42" x2="60" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <line x1="210" y1="42" x2="210" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <line x1="360" y1="42" x2="360" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <line x1="64" y1="58" x2="206" y2="58" stroke="#6b4fa0" stroke-width="1.8" marker-end="url(#ah-mt)"/>
+                      <text x="135" y="52" font-size="9" fill="#6b4fa0" text-anchor="middle">1 · certificat du TPP</text>
+                      <line x1="206" y1="80" x2="64" y2="80" stroke="#1e5f8a" stroke-width="1.8" marker-end="url(#ah-mt)"/>
+                      <text x="135" y="74" font-size="9" fill="#1e5f8a" text-anchor="middle">2 · certificat de la banque</text>
+                      <line x1="210" y1="102" x2="356" y2="102" stroke="#3d5a80" stroke-width="1.8" marker-end="url(#ah-mt)"/>
+                      <text x="285" y="96" font-size="9" fill="#3d5a80" text-anchor="middle">3 · vérif. agrément</text>
+                      <line x1="356" y1="124" x2="214" y2="124" stroke="#0d9f8a" stroke-width="1.8" marker-end="url(#ah-mt)"/>
+                      <text x="285" y="118" font-size="9" fill="#087a6a" text-anchor="middle">4 · TPP agréé ✓ / refus</text>
+                      <rect x="150" y="132" width="122" height="14" rx="7" fill="#3d5a80"/>
+                      <text x="211" y="142" text-anchor="middle" fill="#fff" class="flux-proof">identité technique du TPP</text>
+                    </svg>
+                    <figcaption class="flux-caption">Le canal est établi seulement si les deux certificats sont valides&nbsp;: mTLS prouve que le TPP est le TPP agréé.</figcaption>
+                  </figure>
+
+                  <div class="mecanisme-cours">
+                    <h4><span class="mecanisme-num">1</span>mTLS (Mutual Transport Layer Security) — La poignée de main et le canal sécurisé</h4>
+
+                    <span class="mc-label">Ce que c’est</span>
+                    <ul>
+                      <li>Une extension du protocole TLS (le HTTPS classique).</li>
+                      <li><strong>Les deux parties s’authentifient mutuellement</strong> grâce à des certificats numériques.</li>
+                      <li>Le HTTPS ordinaire n’authentifie que le serveur&nbsp;; mTLS authentifie <em>aussi</em> le client.</li>
+                    </ul>
+
+                    <span class="mc-label">Le problème qu’il résout</span>
+                    <ul>
+                      <li>Sur le web classique, seul le serveur (la banque) prouve son identité au client.</li>
+                      <li>Dans la DSP2, la banque doit <strong>aussi vérifier le TPP</strong> de façon instantanée et cryptographique.</li>
+                      <li>Objectif&nbsp;: n’ouvrir la porte qu’à un client dont l’identité technique est prouvée.</li>
+                    </ul>
+
+                    <span class="mc-label">Comment ça marche en DSP2 — la poignée de main mTLS</span>
+                    <ol>
+                      <li>Le TPP initialise une requête de connexion <strong>HTTPS</strong> vers l’API Gateway de la banque.</li>
+                      <li>La <strong>poignée de main (handshake) mutuelle</strong> s’engage&nbsp;:
+                        <ul>
+                          <li>La banque présente son certificat TLS pour prouver qu’elle est bien l’établissement légitime.</li>
+                          <li>En retour, le TPP présente obligatoirement son <strong>certificat eIDAS (QWAC)</strong> délivré par une autorité de confiance qualifiée.</li>
+                        </ul>
+                      </li>
+                      <li>L’API Gateway de la banque intercepte ce certificat et valide à la volée qu’il est <strong>en cours de validité</strong>, qu’il <strong>n’est pas révoqué</strong>, et qu’il appartient bien à un <strong>TPP officiellement agréé</strong> (par l’ACPR ou une autre autorité européenne).</li>
+                      <li>Si et seulement si cette « poignée de main » cryptographique réussit, le <strong>tunnel sécurisé HTTPS</strong> est établi.</li>
+                    </ol>
+
+                    <p class="mc-retain">
+                      <strong>À retenir&nbsp;:</strong> le mTLS sécurise le
+                      <em>tuyau</em> (la couche transport) entre le TPP et la
+                      banque. Sans certificat eIDAS valide lors de cette poignée
+                      de main, la connexion est immédiatement rejetée.
+                    </p>
+                  </div>
+                </article>
+
+                <!-- 2. OAuth2 — L'AUTORISATION -->
+                <article class="comp-card comp-gateway">
+                  <div class="comp-head">
+                    <span class="comp-num">2</span>
+                    <div class="comp-titles">
+                      <h3>OAuth2</h3>
+                      <p class="comp-role">Authorization Framework · autorisation</p>
+                    </div>
+                  </div>
+
+                  <div class="comp-block">
+                    <span class="comp-label">Ce que c’est</span>
+                    <p>
+                      Cadre d’<strong>autorisation</strong>. Il permet à un TPP
+                      d’obtenir un <strong>jeton d’accès</strong> sans jamais
+                      connaître les identifiants de Lyam. Il ne dit
+                      <em>pas</em> qui est Lyam&nbsp;: il dit <em>à quoi</em> le
+                      TPP a droit.
+                    </p>
+                  </div>
 
                   <figure class="flux-card">
                     <svg viewBox="0 0 420 150" role="img" aria-label="Flux OAuth2 : le TPP obtient un jeton d’accès via la banque">
@@ -107,27 +235,59 @@
                     <figcaption class="flux-caption">Le TPP échange un code contre un jeton&nbsp;: il n’a jamais les identifiants de Lyam.</figcaption>
                   </figure>
 
-                  <details class="cours-note small">
-                    <summary>Cours — à retenir</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        OAuth2 n’authentifie pas&nbsp;: il <em>autorise</em>.
-                        Flux clé en Open Banking&nbsp;: le
-                        <strong>code d’autorisation</strong> avec redirection. Le
-                        TPP reçoit un code, l’échange contre un jeton.
-                      </p>
-                    </div>
-                  </details>
+                  <div class="mecanisme-cours">
+                    <h4><span class="mecanisme-num">2</span>OAuth2 — Le cadre d’autorisation qui délivre les jetons</h4>
+
+                    <span class="mc-label">Ce que c’est</span>
+                    <ul>
+                      <li>Un cadre d’<strong>autorisation</strong>.</li>
+                      <li>Il décrit comment un TPP obtient, avec l’accord de Lyam, un <strong>jeton d’accès</strong> à périmètre limité.</li>
+                      <li>Lyam ne confie <em>jamais</em> ses identifiants bancaires au TPP.</li>
+                    </ul>
+
+                    <span class="mc-label">Le problème qu’il résout</span>
+                    <ul>
+                      <li>Comment donner à un tiers un accès <em>partiel et révocable</em> à ses comptes, sans lui livrer son mot de passe&nbsp;?</li>
+                      <li>OAuth2 sépare «&nbsp;prouver qui je suis&nbsp;» (fait par la banque lors de la SCA) de «&nbsp;ce que le TPP peut faire&nbsp;» (le jeton et ses <em>scopes</em>).</li>
+                    </ul>
+
+                    <span class="mc-label">Comment ça marche en DSP2 — le flux code d’autorisation</span>
+                    <ol>
+                      <li>Le TPP demande l’accès en précisant les <strong>scopes</strong> (quels comptes, quelles opérations).</li>
+                      <li>Lyam réalise la <strong>SCA</strong> chez sa banque et accorde son consentement.</li>
+                      <li>La banque renvoie au TPP un <strong>code d’autorisation</strong> à usage unique.</li>
+                      <li>Le TPP échange ce code (sur le canal mTLS) contre un <strong>access token</strong> — et un <strong>refresh token</strong> pour le renouveler.</li>
+                    </ol>
+
+                    <p class="mc-retain">
+                      <strong>À retenir&nbsp;:</strong> OAuth2 n’authentifie pas
+                      Lyam, il <em>autorise</em> le TPP. Le jeton porte le
+                      périmètre&nbsp;: hors des scopes accordés, l’appel est
+                      refusé (403).
+                    </p>
+                  </div>
                 </article>
 
-                <article class="role-card">
-                  <h3>OpenID Connect</h3>
-                  <p class="role-full">Couche d’identité sur OAuth2</p>
-                  <p class="role-desc">
-                    Ajoute l’<strong>identité</strong> à OAuth2&nbsp;: un
-                    <strong>ID token</strong> (JWT) qui atteste qui est
-                    l’utilisateur authentifié.
-                  </p>
+                <!-- 3. OpenID Connect — L'IDENTITÉ -->
+                <article class="comp-card comp-mgmt">
+                  <div class="comp-head">
+                    <span class="comp-num">3</span>
+                    <div class="comp-titles">
+                      <h3>OpenID Connect</h3>
+                      <p class="comp-role">Couche d’identité sur OAuth2 · authentification</p>
+                    </div>
+                  </div>
+
+                  <div class="comp-block">
+                    <span class="comp-label">Ce que c’est</span>
+                    <p>
+                      Ajoute l’<strong>identité</strong> à OAuth2&nbsp;: un
+                      <strong>ID token</strong> (JWT) qui atteste qui est
+                      l’utilisateur authentifié. C’est ce qui transforme un
+                      simple « droit d’accès » en « accès pour <em>cette</em>
+                      personne ».
+                    </p>
+                  </div>
 
                   <figure class="flux-card">
                     <svg viewBox="0 0 420 150" role="img" aria-label="Flux OpenID Connect : le TPP reçoit un ID token qui prouve l’identité de Lyam">
@@ -160,81 +320,59 @@
                     <figcaption class="flux-caption">OIDC ajoute à OAuth2 un ID token&nbsp;: le TPP sait <em>qui</em> est l’utilisateur, pas seulement ce à quoi il a droit.</figcaption>
                   </figure>
 
-                  <details class="cours-note small">
-                    <summary>Cours — à retenir</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        OIDC répond à «&nbsp;qui est cet utilisateur&nbsp;?&nbsp;»,
-                        là où OAuth2 répond à «&nbsp;à quoi a-t-il droit&nbsp;?&nbsp;».
-                        En Open Banking, l’ID token prouve l’identité de Lyam côté
-                        TPP.
-                      </p>
-                    </div>
-                  </details>
+                  <div class="mecanisme-cours">
+                    <h4><span class="mecanisme-num">3</span>OpenID Connect — L’identité par-dessus OAuth2</h4>
+
+                    <span class="mc-label">Ce que c’est</span>
+                    <ul>
+                      <li>Une couche d’<strong>identité</strong> construite sur OAuth2.</li>
+                      <li>Elle ajoute un <strong>ID token</strong> — un JWT signé — qui atteste <em>qui</em> est l’utilisateur.</li>
+                      <li>Le jeton est vérifiable cryptographiquement&nbsp;: on ne croit pas l’émetteur sur parole.</li>
+                    </ul>
+
+                    <span class="mc-label">Le problème qu’il résout</span>
+                    <ul>
+                      <li>OAuth2 seul autorise un accès mais ne dit pas <em>à qui</em> il appartient.</li>
+                      <li>Pour savoir que c’est bien Lyam (et pas « un utilisateur quelconque »), il faut une preuve d’identité.</li>
+                      <li>C’est précisément le rôle d’OIDC.</li>
+                    </ul>
+
+                    <span class="mc-label">Comment ça marche en DSP2</span>
+                    <ol>
+                      <li>Après la <strong>SCA</strong> chez la banque, celle-ci génère un <strong>ID token</strong> signé contenant l’identité de Lyam.</li>
+                      <li>Le TPP reçoit l’ID token et <strong>vérifie sa signature</strong> avec la clé publique de l’émetteur&nbsp;: « c’est bien Lyam ».</li>
+                      <li>Pendant que <strong>l’access token OAuth2</strong> porte les droits, <strong>l’ID token OIDC</strong> porte l’identité&nbsp;: deux jetons, deux rôles.</li>
+                    </ol>
+
+                    <p class="mc-retain">
+                      <strong>À retenir&nbsp;:</strong> OAuth2 = « à quoi as-tu
+                      droit&nbsp;? ». OIDC = «&nbsp;qui es-tu&nbsp;?&nbsp;». On les
+                      combine&nbsp;: l’un autorise, l’autre authentifie.
+                    </p>
+                  </div>
                 </article>
 
-                <article class="role-card">
-                  <h3>mTLS</h3>
-                  <p class="role-full">Mutual TLS</p>
-                  <p class="role-desc">
-                    <strong>Authentification mutuelle</strong> par certificat.
-                    Le TPP et la banque se présentent chacun un certificat&nbsp;:
-                    chacun prouve son identité à l’autre.
-                  </p>
-
-                  <figure class="flux-card">
-                    <svg viewBox="0 0 420 150" role="img" aria-label="Flux mTLS : le TPP et la banque échangent leurs certificats, vérifiés via le registre EBA">
-                      <defs>
-                        <marker id="ah-mt" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                          <path d="M0,0 L6,3 L0,6 Z" fill="#3d5a80"/>
-                        </marker>
-                      </defs>
-                      <g font-size="10" font-weight="700" text-anchor="middle">
-                        <rect x="14" y="16" width="92" height="26" rx="5" fill="#f1edfa" stroke="#6b4fa0" stroke-width="1.5"/>
-                        <text x="60" y="33" fill="#4b3480">TPP</text>
-                        <rect x="164" y="16" width="92" height="26" rx="5" fill="#eef4fa" stroke="#1e5f8a" stroke-width="1.5"/>
-                        <text x="210" y="33" fill="#1e5f8a">Banque</text>
-                        <rect x="314" y="16" width="92" height="26" rx="5" fill="#f4f8fc" stroke="#3d5a80" stroke-width="1.5"/>
-                        <text x="360" y="33" fill="#3d5a80">Registre EBA</text>
-                      </g>
-                      <line x1="60" y1="42" x2="60" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
-                      <line x1="210" y1="42" x2="210" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
-                      <line x1="360" y1="42" x2="360" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
-                      <line x1="64" y1="58" x2="206" y2="58" stroke="#6b4fa0" stroke-width="1.8" marker-end="url(#ah-mt)"/>
-                      <text x="135" y="52" font-size="9" fill="#6b4fa0" text-anchor="middle">1 · certificat du TPP</text>
-                      <line x1="206" y1="80" x2="64" y2="80" stroke="#1e5f8a" stroke-width="1.8" marker-end="url(#ah-mt)"/>
-                      <text x="135" y="74" font-size="9" fill="#1e5f8a" text-anchor="middle">2 · certificat de la banque</text>
-                      <line x1="210" y1="102" x2="356" y2="102" stroke="#3d5a80" stroke-width="1.8" marker-end="url(#ah-mt)"/>
-                      <text x="285" y="96" font-size="9" fill="#3d5a80" text-anchor="middle">3 · vérif. agrément</text>
-                      <line x1="356" y1="124" x2="214" y2="124" stroke="#0d9f8a" stroke-width="1.8" marker-end="url(#ah-mt)"/>
-                      <text x="285" y="118" font-size="9" fill="#087a6a" text-anchor="middle">4 · TPP agréé ✓ / refus</text>
-                      <rect x="150" y="132" width="122" height="14" rx="7" fill="#3d5a80"/>
-                      <text x="211" y="142" text-anchor="middle" fill="#fff" class="flux-proof">identité technique du TPP</text>
-                    </svg>
-                    <figcaption class="flux-caption">Le canal est établi seulement si les deux certificats sont valides&nbsp;: mTLS prouve que le TPP est le TPP agréé.</figcaption>
-                  </figure>
-
-                  <details class="cours-note small">
-                    <summary>Cours — à retenir</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        mTLS est la preuve que <strong>le TPP est bien le TPP
-                        agréé</strong>, au niveau du canal. Le certificat est lié
-                        à l’agrément (registre EBA)&nbsp;: c’est un contrôle
-                        d’identité technique.
-                      </p>
+                <!-- 4. JWT — LE SUPPORT -->
+                <article class="comp-card comp-logs">
+                  <div class="comp-head">
+                    <span class="comp-num">4</span>
+                    <div class="comp-titles">
+                      <h3>JWT</h3>
+                      <p class="comp-role">JSON Web Token · le support des preuves</p>
                     </div>
-                  </details>
-                </article>
+                  </div>
 
-                <article class="role-card">
-                  <h3>JWT</h3>
-                  <p class="role-full">JSON Web Token</p>
-                  <p class="role-desc">
-                    Format de jeton <strong>signé</strong>. Il transporte des
-                    affirmations (scopes, expiration, émetteur) vérifiables sans
-                    rappeler le serveur à chaque fois.
-                  </p>
+                  <div class="comp-block">
+                    <span class="comp-label">Ce que c’est</span>
+                    <p>
+                      Format de jeton <strong>signé</strong>. Il transporte des
+                      affirmations (scopes, expiration, émetteur) vérifiables sans
+                      rappeler le serveur à chaque fois. C’est le
+                      <em>contenant</em>&nbsp;: selon son contenu, il sert
+                      l’authentification (ID token) ou l’autorisation (access
+                      token avec scopes).
+                    </p>
+                  </div>
 
                   <figure class="flux-card">
                     <svg viewBox="0 0 420 150" role="img" aria-label="Structure d’un JWT : header, payload, signature, vérifié avec la clé publique">
@@ -268,17 +406,36 @@
                     <figcaption class="flux-caption">JWT = <code>header.payload.signature</code>. Le contenu est <em>lisible</em> par tous&nbsp;: la signature garantit seulement qu’il n’a pas été modifié.</figcaption>
                   </figure>
 
-                  <details class="cours-note small">
-                    <summary>Cours — à retenir</summary>
-                    <div class="cours-note-body">
-                      <p>
-                        Un JWT est <em>signé</em>, pas <em>chiffré</em>&nbsp;: on
-                        peut le lire. Il ne doit donc jamais contenir de données
-                        sensibles. Sa signature garantit qu’il n’a pas été
-                        modifié.
-                      </p>
-                    </div>
-                  </details>
+                  <div class="mecanisme-cours">
+                    <h4><span class="mecanisme-num">4</span>JWT — L’enveloppe signée qui transporte la preuve</h4>
+
+                    <span class="mc-label">Ce que c’est</span>
+                    <ul>
+                      <li>Un <strong>JSON Web Token</strong>, une chaîne <code>header.payload.signature</code>.</li>
+                      <li>Un en-tête, une charge utile d’affirmations (scopes, expiration, émetteur) et une <strong>signature</strong> cryptographique.</li>
+                    </ul>
+
+                    <span class="mc-label">Le problème qu’il résout</span>
+                    <ul>
+                      <li>Transporter une preuve (identité ou droit) de façon compacte.</li>
+                      <li>Permettre aux services de lire la preuve <em>sans</em> re-interroger le serveur à chaque appel.</li>
+                      <li>Garantir que la preuve <strong>n’a pas été altérée</strong> en route.</li>
+                    </ul>
+
+                    <span class="mc-label">Comment ça marche en DSP2</span>
+                    <ul>
+                      <li>Le <strong>payload</strong> est encodé mais <em>lisible</em> par tous&nbsp;: on ne doit jamais y mettre de données sensibles.</li>
+                      <li>La <strong>signature</strong> est vérifiée avec la clé publique de l’émetteur&nbsp;: si elle est valide, le jeton est intact.</li>
+                      <li>Le champ <strong>exp</strong> impose une date d’expiration&nbsp;: un jeton périmé est refusé.</li>
+                    </ul>
+
+                    <p class="mc-retain">
+                      <strong>À retenir&nbsp;:</strong> le JWT n’est ni
+                      « authentification » ni « autorisation »&nbsp;: c’est le
+                      <em>support signé</em> qui transporte l’une ou l’autre
+                      preuve (ID token ou access token).
+                    </p>
+                  </div>
                 </article>
               </div>
 
@@ -292,10 +449,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><th scope="row">mTLS</th><td>Le TPP est-il bien celui qu’il prétend&nbsp;?</td><td>Canal</td></tr>
+                    <tr><th scope="row">mTLS</th><td>Le TPP est-il bien celui qu’il prétend&nbsp;?</td><td>Canal — authentification</td></tr>
                     <tr><th scope="row">OAuth2</th><td>À quoi le TPP a-t-il droit&nbsp;?</td><td>Autorisation</td></tr>
-                    <tr><th scope="row">OpenID Connect</th><td>Qui est l’utilisateur authentifié&nbsp;?</td><td>Identité</td></tr>
-                    <tr class="is-exergue"><th scope="row">JWT</th><td>Comment transporter la preuve, signée&nbsp;?</td><td>Jeton</td></tr>
+                    <tr><th scope="row">OpenID Connect</th><td>Qui est l’utilisateur authentifié&nbsp;?</td><td>Identité — authentification</td></tr>
+                    <tr class="is-exergue"><th scope="row">JWT</th><td>Comment transporter la preuve, signée&nbsp;?</td><td>Jeton — support</td></tr>
                   </tbody>
                 </table>
               </div>

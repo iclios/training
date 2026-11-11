@@ -1,11 +1,12 @@
 /* ============================================================
    Mini-schémas de flux — authentification (S5 / Jour 2)
-   Un SVG compact par mécanisme : OAuth2, OIDC, mTLS, JWT.
-   Conçus pour tenir dans une role-card (pas de min-width 620px).
+   Un SVG par mécanisme : OAuth2, OIDC, mTLS, JWT.
+   Affichés en pleine largeur dans une comp-card (style S2/S3).
    ============================================================ */
 
-.role-card .flux-card {
-  margin: 0.9rem 0 0.65rem;
+.role-card .flux-card,
+.comp-card .flux-card {
+  margin: 0.4rem 0 0.65rem;
   border: 1px solid #d5e1ea;
   border-radius: 10px;
   background:
@@ -13,24 +14,39 @@
   overflow: hidden;
 }
 
-.role-card .flux-card svg {
+/* Cadre pleine largeur dans une comp-card */
+.comp-card .flux-card {
+  margin-top: 1rem;
+  padding: 0.6rem;
+  background: #f7fafc;
+}
+
+.role-card .flux-card svg,
+.comp-card .flux-card svg {
   display: block;
   width: 100%;
   height: auto;
 }
 
 /* Texte des SVG */
-.role-card .flux-card svg text {
+.role-card .flux-card svg text,
+.comp-card .flux-card svg text {
   font-family: var(--font-body, "Figtree", system-ui, sans-serif);
 }
 
 /* Légende sous le schéma */
-.role-card .flux-caption {
+.role-card .flux-caption,
+.comp-card .flux-caption {
   margin: 0.55rem 0 0;
   font-size: 0.72rem;
   line-height: 1.4;
   color: var(--muted, #5a6b7c);
   font-style: italic;
+}
+
+.comp-card .flux-caption {
+  font-size: 0.8rem;
+  text-align: center;
 }
 
 /* Pastille « preuve » présente dans chaque schéma */
@@ -41,13 +57,189 @@
 }
 
 /* Flèches animées réutilisées (classe .stream déjà définie dans styles.css) */
-.role-card .flux-card .stream {
+.role-card .flux-card .stream,
+.comp-card .flux-card .stream {
   stroke-dasharray: 3 5;
   animation: stream 1s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .role-card .flux-card .stream {
+  .role-card .flux-card .stream,
+  .comp-card .flux-card .stream {
     animation: none;
   }
 }
+
+/* ============================================================
+   Texte de cours détaillé sous chaque illustration de mécanisme
+   (pleine largeur, structuré : ce que c'est / problème / étapes / à retenir)
+   ============================================================ */
+
+.mecanisme-cours {
+  margin: 1.1rem 0 0.25rem;
+  padding: 1.1rem 1.25rem;
+  background: #fff;
+  border: 1px solid var(--line, #c5d3df);
+  border-left: 4px solid var(--mecanisme, var(--accent, #0d9f8a));
+  border-radius: var(--radius, 4px);
+}
+
+.mecanisme-cours > h4 {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-display, "Syne", sans-serif);
+  font-size: 1.02rem;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--ink, #0c1b2a);
+}
+
+.mecanisme-cours > h4 .mecanisme-num {
+  display: inline-grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--mecanisme, var(--accent, #0d9f8a));
+  border-radius: 50%;
+  vertical-align: -0.3rem;
+}
+
+.mecanisme-cours p {
+  margin: 0 0 0.85rem;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--ink-soft, #243447);
+  max-width: none;
+}
+
+.mecanisme-cours p strong {
+  color: var(--ink, #0c1b2a);
+}
+
+/* Libellé de section (Ce que c'est / Le problème / …) */
+.mecanisme-cours .mc-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--mecanisme, var(--accent-deep, #087a6a));
+  margin: 1rem 0 0.5rem;
+}
+
+.mecanisme-cours > h4 + .mc-label {
+  margin-top: 0;
+}
+
+.mecanisme-cours .mc-label::before {
+  content: "";
+  width: 1.4rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--mecanisme, var(--accent, #0d9f8a));
+  flex: 0 0 auto;
+}
+
+/* Listes à puces / tiret : plus aérées, faciles à parcourir */
+.mecanisme-cours ul,
+.mecanisme-cours ol {
+  margin: 0 0 0.4rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: var(--ink-soft, #243447);
+}
+
+.mecanisme-cours ul > li,
+.mecanisme-cours ol > li {
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+/* Puce « tiret » colorée pour les listes simples */
+.mecanisme-cours ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.15rem;
+  top: 0.62em;
+  width: 0.55rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--mecanisme, var(--accent, #0d9f8a));
+}
+
+/* Puces rondes pour les sous-listes */
+.mecanisme-cours ul ul > li::before {
+  top: 0.6em;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+}
+
+/* Étapes numérotées en pastilles */
+.mecanisme-cours ol {
+  counter-reset: mcstep;
+}
+
+.mecanisme-cours ol > li {
+  counter-increment: mcstep;
+  padding-left: 2.1rem;
+}
+
+.mecanisme-cours ol > li::before {
+  content: counter(mcstep);
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  display: grid;
+  place-items: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  font-family: var(--font-display, "Syne", sans-serif);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--mecanisme, var(--accent, #0d9f8a));
+  border-radius: 50%;
+}
+
+/* Sous-listes imbriquées : décalage plus net */
+.mecanisme-cours li > ul,
+.mecanisme-cours li > ol {
+  margin-top: 0.45rem;
+  padding-left: 0.4rem;
+}
+
+.mecanisme-cours li strong {
+  color: var(--ink, #0c1b2a);
+}
+
+/* Bloc « À retenir » */
+.mecanisme-cours .mc-retain {
+  margin: 1rem 0 0;
+  padding: 0.8rem 0.95rem;
+  background: color-mix(in srgb, var(--mecanisme, #0d9f8a) 10%, #fff);
+  border-radius: 0 var(--radius, 4px) var(--radius, 4px) 0;
+  border-left: 3px solid var(--mecanisme, var(--accent, #0d9f8a));
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: var(--ink, #0c1b2a);
+}
+
+.mecanisme-cours .mc-retain strong {
+  color: var(--ink, #0c1b2a);
+}
+
+/* Couleur d'accent par mécanisme (via --mecanisme posé sur la carte) */
+.comp-card.comp-gateway  .mecanisme-cours { --mecanisme: #1e5f8a; }
+.comp-card.comp-mgmt     .mecanisme-cours { --mecanisme: #6b4fa0; }
+.comp-card.comp-services .mecanisme-cours { --mecanisme: #0d9f8a; }
+.comp-card.comp-logs     .mecanisme-cours { --mecanisme: #3d5a80; }
