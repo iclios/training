@@ -156,3 +156,58 @@
   color: var(--ink);
   font-size: 0.92rem;
 }
+
+/* ============================================================
+   Illustrations de FLUX animé (J2 · S2 AIS / S3 CBPII)
+   Cadre pleine largeur, indépendant des cartes composant.
+   ============================================================ */
+
+.flow-illus {
+  margin: 1.6rem 0;
+  padding: 1.1rem 1.2rem 0.9rem;
+  background: #f7fafc;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.flow-illus svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.flow-illus figcaption {
+  margin-top: 0.7rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Point de données qui traverse une ligne (AIS : lecture qui circule) */
+@keyframes ci-travel {
+  0%   { transform: translateX(0);    opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(var(--dist, 800px)); opacity: 0; }
+}
+/* Barre de durée qui se vide (consentement 90 jours) */
+@keyframes ci-drain {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0.08); }
+}
+/* Apparition / disparition douce en boucle */
+@keyframes ci-fade {
+  0%, 100% { opacity: 0; }
+  40%, 60% { opacity: 1; }
+}
+
+.ci-travel { animation: ci-travel 3.2s ease-in-out infinite; }
+.ci-drain  { transform-origin: left center; animation: ci-drain 6s ease-in-out infinite; }
+.ci-fade   { animation: ci-fade 2.4s ease-in-out infinite; }
+
+/* Accessibilité : couper les animations si l'utilisateur le demande */
+@media (prefers-reduced-motion: reduce) {
+  .ci-line, .ci-pulse, .ci-blink, .ci-slide, .ci-scan,
+  .ci-travel, .ci-drain, .ci-fade {
+    animation: none !important;
+  }
+}
