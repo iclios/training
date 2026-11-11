@@ -70,6 +70,26 @@
                 l’authentification, deux servent plutôt l’autorisation.
               </p>
 
+              <div class="callout info">
+                <h3>Le sigle à connaître&nbsp;: le SCA</h3>
+                <p>
+                  <strong>SCA = Strong Customer Authentication</strong>
+                  (<em>authentification forte du client</em>)&nbsp;: le mécanisme
+                  par lequel <strong>Lyam prouve son identité</strong> auprès de
+                  sa banque, en combinant <strong>au moins deux facteurs</strong>
+                  de catégories différentes (connaissance / possession /
+                  inhérence). Côté technique, il s’appuie souvent sur
+                  <strong>OpenID Connect</strong> pour produire un ID token signé.
+                </p>
+                <p>
+                  <em>Le détail du SCA (facteurs, moments d’application,
+                  exemptions) est traité dans la séquence suivante,
+                  <a href="s6-securite.html">S6 — Sécurité &amp; conformité</a>.
+                  Ici, on retient seulement qu’il alimente la preuve d’identité du
+                  client.</em>
+                </p>
+              </div>
+
               <div class="csm-table-wrap">
                 <table class="csm-table">
                   <thead>
@@ -200,39 +220,48 @@
                   </div>
 
                   <figure class="flux-card">
-                    <svg viewBox="0 0 420 150" role="img" aria-label="Flux OAuth2 : le TPP obtient un jeton d’accès via la banque">
+                    <svg viewBox="0 0 440 172" role="img" aria-label="Flux OAuth2 : le TPP obtient un jeton d’accès émis par la banque, au terme de l’échange du code d’autorisation">
                       <defs>
                         <marker id="ah-oa" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                           <path d="M0,0 L6,3 L0,6 Z" fill="#6b4fa0"/>
                         </marker>
+                        <marker id="ah-oag" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                          <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a"/>
+                        </marker>
                       </defs>
                       <!-- acteurs -->
                       <g font-size="10" font-weight="700" text-anchor="middle">
-                        <rect x="14" y="16" width="92" height="26" rx="5" fill="#f1edfa" stroke="#6b4fa0" stroke-width="1.5"/>
-                        <text x="60" y="33" fill="#4b3480">TPP</text>
-                        <rect x="164" y="16" width="92" height="26" rx="5" fill="#eef4fa" stroke="#1e5f8a" stroke-width="1.5"/>
-                        <text x="210" y="33" fill="#1e5f8a">Banque</text>
-                        <rect x="314" y="16" width="92" height="26" rx="5" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5"/>
-                        <text x="360" y="33" fill="#087a6a">Lyam</text>
+                        <rect x="14" y="16" width="96" height="26" rx="5" fill="#f1edfa" stroke="#6b4fa0" stroke-width="1.5"/>
+                        <text x="62" y="33" fill="#4b3480">TPP</text>
+                        <rect x="172" y="16" width="96" height="26" rx="5" fill="#eef4fa" stroke="#1e5f8a" stroke-width="1.5"/>
+                        <text x="220" y="33" fill="#1e5f8a">Banque</text>
+                        <rect x="330" y="16" width="96" height="26" rx="5" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5"/>
+                        <text x="378" y="33" fill="#087a6a">Lyam</text>
                       </g>
                       <!-- lifelines -->
-                      <line x1="60" y1="42" x2="60" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
-                      <line x1="210" y1="42" x2="210" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
-                      <line x1="360" y1="42" x2="360" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
-                      <!-- flux -->
-                      <line x1="64" y1="58" x2="206" y2="58" stroke="#6b4fa0" stroke-width="1.8" marker-end="url(#ah-oa)"/>
-                      <text x="135" y="52" font-size="9" fill="#6b4fa0" text-anchor="middle">1 · demande d’accès</text>
-                      <line x1="210" y1="80" x2="356" y2="80" stroke="#0d9f8a" stroke-width="1.8" class="stream" marker-end="url(#ah-oa)"/>
-                      <text x="283" y="74" font-size="9" fill="#087a6a" text-anchor="middle">2 · SCA (Lyam sur sa banque)</text>
-                      <line x1="206" y1="102" x2="64" y2="102" stroke="#6b4fa0" stroke-width="1.8" marker-end="url(#ah-oa)"/>
-                      <text x="135" y="96" font-size="9" fill="#6b4fa0" text-anchor="middle">3 · code d’autorisation</text>
-                      <line x1="64" y1="124" x2="206" y2="124" stroke="#6b4fa0" stroke-width="1.8" marker-end="url(#ah-oa)"/>
-                      <text x="135" y="118" font-size="9" fill="#6b4fa0" text-anchor="middle">4 · code → jeton</text>
+                      <line x1="62" y1="42" x2="62" y2="150" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <line x1="220" y1="42" x2="220" y2="150" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <line x1="378" y1="42" x2="378" y2="150" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <!-- 1 : demande -->
+                      <line x1="66" y1="56" x2="216" y2="56" stroke="#6b4fa0" stroke-width="1.8" marker-end="url(#ah-oa)"/>
+                      <text x="141" y="50" font-size="9" fill="#6b4fa0" text-anchor="middle">1 · demande d’accès (scopes)</text>
+                      <!-- 2 : SCA -->
+                      <line x1="220" y1="76" x2="374" y2="76" stroke="#0d9f8a" stroke-width="1.8" class="stream" marker-end="url(#ah-oag)"/>
+                      <text x="299" y="70" font-size="9" fill="#087a6a" text-anchor="middle">2 · SCA (Lyam chez sa banque)</text>
+                      <!-- 3 : code -->
+                      <line x1="216" y1="96" x2="66" y2="96" stroke="#6b4fa0" stroke-width="1.8" marker-end="url(#ah-oa)"/>
+                      <text x="141" y="90" font-size="9" fill="#6b4fa0" text-anchor="middle">3 · code d’autorisation</text>
+                      <!-- 4 : échange -->
+                      <line x1="66" y1="116" x2="216" y2="116" stroke="#6b4fa0" stroke-width="1.8" marker-end="url(#ah-oa)"/>
+                      <text x="141" y="110" font-size="9" fill="#6b4fa0" text-anchor="middle">4 · code + certificat → « je veux un jeton »</text>
+                      <!-- 5 : jeton émis PAR LA BANQUE, retour vers le TPP -->
+                      <line x1="216" y1="136" x2="66" y2="136" stroke="#1e5f8a" stroke-width="2.4" marker-end="url(#ah-oa)"/>
+                      <text x="141" y="130" font-size="9" fill="#1e5f8a" text-anchor="middle">5 · la BANQUE émet le jeton → TPP</text>
                       <!-- proof -->
-                      <rect x="150" y="132" width="122" height="14" rx="7" fill="#6b4fa0"/>
-                      <text x="211" y="142" text-anchor="middle" fill="#fff" class="flux-proof">jeton, pas le mot de passe</text>
+                      <rect x="150" y="152" width="140" height="16" rx="8" fill="#1e5f8a"/>
+                      <text x="220" y="163" text-anchor="middle" fill="#fff" class="flux-proof">jeton signé, pas le mot de passe</text>
                     </svg>
-                    <figcaption class="flux-caption">Le TPP échange un code contre un jeton&nbsp;: il n’a jamais les identifiants de Lyam.</figcaption>
+                    <figcaption class="flux-caption">Le <strong>jeton n’est pas créé par le TPP</strong>&nbsp;: c’est la <strong>banque (ASPSP)</strong> qui le forge et le signe (étape 5), puis le renvoie au TPP en réponse à l’échange du code. Le TPP repart avec un titre d’accès signé, jamais avec les identifiants de Lyam.</figcaption>
                   </figure>
 
                   <div class="mecanisme-cours">
@@ -240,7 +269,8 @@
 
                     <span class="mc-label">Ce que c’est</span>
                     <ul>
-                      <li>Un cadre d’<strong>autorisation</strong>.</li>
+                      <li><strong>OAuth2 = Open Authorization, version 2</strong>&nbsp;: un standard ouvert de <em>délégation d’autorisation</em> (RFC 6749).</li>
+                      <li>Un cadre d’<strong>autorisation</strong>&nbsp;: il dit <em>à quoi</em> un TPP a droit, pas <em>qui</em> est l’utilisateur.</li>
                       <li>Il décrit comment un TPP obtient, avec l’accord de Lyam, un <strong>jeton d’accès</strong> à périmètre limité.</li>
                       <li>Lyam ne confie <em>jamais</em> ses identifiants bancaires au TPP.</li>
                     </ul>
@@ -375,35 +405,49 @@
                   </div>
 
                   <figure class="flux-card">
-                    <svg viewBox="0 0 420 150" role="img" aria-label="Structure d’un JWT : header, payload, signature, vérifié avec la clé publique">
+                    <svg viewBox="0 0 440 190" role="img" aria-label="Structure d’un JWT : trois parties header.payload.signature reliées par des points ; la signature est vérifiée avec la clé publique de l’émetteur">
                       <defs>
                         <marker id="ah-jw" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                          <path d="M0,0 L6,3 L0,6 Z" fill="#2f4858"/>
+                          <path d="M0,0 L6,3 L0,6 Z" fill="#3d5a80"/>
                         </marker>
                       </defs>
-                      <!-- le jeton en 3 segments -->
+                      <!-- titre interne -->
+                      <text x="220" y="13" font-size="9.5" fill="#5a6b7c" text-anchor="middle" font-style="italic">Un seul jeton = trois parties séparées par des points</text>
+                      <!-- les 3 segments -->
                       <g font-size="9" font-weight="700" text-anchor="middle" font-family="monospace">
-                        <rect x="20" y="18" width="118" height="24" rx="4" fill="#eef4fa" stroke="#1e5f8a" stroke-width="1.5"/>
-                        <text x="79" y="34" fill="#1e5f8a">header</text>
-                        <text x="142" y="34" fill="#5a6b7c" font-size="12">.</text>
-                        <rect x="150" y="18" width="118" height="24" rx="4" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5"/>
-                        <text x="209" y="34" fill="#087a6a">payload</text>
-                        <text x="272" y="34" fill="#5a6b7c" font-size="12">.</text>
-                        <rect x="280" y="18" width="118" height="24" rx="4" fill="#f1edfa" stroke="#6b4fa0" stroke-width="1.5"/>
-                        <text x="339" y="34" fill="#4b3480">signature</text>
+                        <rect x="14" y="22" width="120" height="24" rx="4" fill="#eef4fa" stroke="#1e5f8a" stroke-width="1.5"/>
+                        <text x="74" y="38" fill="#1e5f8a">header</text>
+                        <text x="140" y="39" fill="#5a6b7c" font-size="13">.</text>
+                        <rect x="152" y="22" width="136" height="24" rx="4" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5"/>
+                        <text x="220" y="38" fill="#087a6a">payload</text>
+                        <text x="294" y="39" fill="#5a6b7c" font-size="13">.</text>
+                        <rect x="306" y="22" width="120" height="24" rx="4" fill="#f1edfa" stroke="#6b4fa0" stroke-width="1.5"/>
+                        <text x="366" y="38" fill="#4b3480">signature</text>
                       </g>
-                      <!-- contenu de chaque partie -->
-                      <text x="79" y="60" font-size="8" fill="#5a6b7c" text-anchor="middle">algo (RS256)</text>
-                      <text x="209" y="60" font-size="8" fill="#5a6b7c" text-anchor="middle">scopes, exp, iss</text>
-                      <text x="339" y="60" font-size="8" fill="#5a6b7c" text-anchor="middle">HMAC / RSA</text>
+                      <!-- contenu de chaque partie sous le segment -->
+                      <text x="74" y="60" font-size="8" fill="#5a6b7c" text-anchor="middle">algo de signature</text>
+                      <text x="74" y="70" font-size="8" fill="#5a6b7c" text-anchor="middle">(ex. RS256)</text>
+                      <text x="220" y="60" font-size="8" fill="#5a6b7c" text-anchor="middle">« affirmations »</text>
+                      <text x="220" y="70" font-size="8" fill="#5a6b7c" text-anchor="middle">scopes · exp · iss · sub</text>
+                      <text x="366" y="60" font-size="8" fill="#5a6b7c" text-anchor="middle">scellé cryptographique</text>
+                      <text x="366" y="70" font-size="8" fill="#5a6b7c" text-anchor="middle">des 2 parties ci-dessus</text>
+
+                      <!-- qui émet -->
+                      <text x="220" y="90" font-size="9" fill="#2f4858" text-anchor="middle" font-weight="700">Émis et signé par la banque (ASPSP)</text>
+
                       <!-- vérification -->
-                      <line x1="339" y1="70" x2="339" y2="92" stroke="#6b4fa0" stroke-width="1.5" marker-end="url(#ah-jw)"/>
-                      <rect x="250" y="92" width="150" height="22" rx="5" fill="#f4f8fc" stroke="#3d5a80" stroke-width="1.3"/>
-                      <text x="325" y="107" font-size="9" fill="#3d5a80" text-anchor="middle">clé publique de l’émetteur</text>
-                      <text x="210" y="132" font-size="9" fill="#2f4858" text-anchor="middle">signature valide → jeton intact · scopes lus · exp respectée</text>
-                      <rect x="150" y="138" width="120" height="10" rx="5" fill="#6b4fa0" opacity="0"/>
+                      <line x1="366" y1="80" x2="366" y2="104" stroke="#6b4fa0" stroke-width="1.5" marker-end="url(#ah-jw)"/>
+                      <rect x="246" y="104" width="180" height="24" rx="5" fill="#f4f8fc" stroke="#3d5a80" stroke-width="1.3"/>
+                      <text x="336" y="114" font-size="8.5" fill="#3d5a80" text-anchor="middle" font-weight="700">le TPP vérifie la signature</text>
+                      <text x="336" y="124" font-size="8.5" fill="#3d5a80" text-anchor="middle">avec la clé publique de l’émetteur</text>
+
+                      <!-- résultat -->
+                      <text x="220" y="150" font-size="9" fill="#2f4858" text-anchor="middle">Si la signature est valide → le jeton est intact →</text>
+                      <text x="220" y="163" font-size="9" fill="#2f4858" text-anchor="middle">on lit les scopes, on contrôle <tspan font-family="monospace">exp</tspan>, on fait confiance à l’identité</text>
+
+                      <text x="220" y="182" font-size="8.5" fill="#b0483a" text-anchor="middle" font-style="italic">⚠ lisible par tous (non chiffré) : ne jamais y mettre de données sensibles</text>
                     </svg>
-                    <figcaption class="flux-caption">JWT = <code>header.payload.signature</code>. Le contenu est <em>lisible</em> par tous&nbsp;: la signature garantit seulement qu’il n’a pas été modifié.</figcaption>
+                    <figcaption class="flux-caption">JWT = <code>header.payload.signature</code>. <strong>On lit</strong> les affirmations du payload&nbsp;; <strong>on vérifie</strong> la signature avec la clé publique de l’émetteur. Lisible ≠ chiffré&nbsp;: la signature garantit l’intégrité, pas la confidentialité.</figcaption>
                   </figure>
 
                   <div class="mecanisme-cours">
@@ -461,57 +505,78 @@
             <!-- 2. LA SÉPARATION -->
             <section class="section">
               <p class="section-label">Le point clé</p>
-              <h2 id="separation">Trois authentifications, trois autorisations</h2>
+              <h2 id="separation">Trois vérifications distinctes, à ne jamais confondre</h2>
               <p class="intro">
-                Il faut bien séparer trois notions distinctes, que l’on ne doit
-                jamais fusionner.
+                Une requête Open Banking valide repose sur <strong>trois
+                contrôles indépendants</strong>. Ils concernent trois acteurs
+                différents (le TPP, Lyam, l’accès aux données), se font à des
+                endroits différents de la chaîne et reposent sur des mécanismes
+                différents. Fusionner les trois, c’est ouvrir une faille.
               </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Contrôle</th>
+                      <th scope="col">Qui prouve quoi&nbsp;?</th>
+                      <th scope="col">Mécanisme</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">1. Identification du TPP</th><td>L’<strong>application</strong> prouve qu’elle est un TPP agréé (identité technique)</td><td>mTLS + certificat eIDAS (registre EBA)</td></tr>
+                    <tr><th scope="row">2. Identification de Lyam</th><td>Le <strong>client</strong> prouve qui il est auprès de sa banque</td><td>SCA / OpenID Connect</td></tr>
+                    <tr class="is-exergue"><th scope="row">3. Autorisation d’accès</th><td>Le <strong>périmètre</strong> concédé (comptes, opérations, durée) est valide</td><td>OAuth2 + consentement (scopes du JWT)</td></tr>
+                  </tbody>
+                </table>
+              </div>
 
               <div class="split-3">
                 <div class="panel">
-                  <h3>Identification du client</h3>
+                  <h3>1 · Identification du client</h3>
                   <p>
                     <strong>Lyam prouve qui il est</strong> auprès de sa banque
                     (SCA). C’est lui, physiquement et juridiquement, qui est à
-                    l’origine de la demande.
+                    l’origine de la demande. <em>Mécanisme&nbsp;: SCA / OIDC.</em>
                   </p>
                 </div>
                 <div class="panel">
-                  <h3>Identification du TPP</h3>
+                  <h3>2 · Identification du TPP</h3>
                   <p>
                     <strong>L’application prouve qu’elle est un TPP agréé</strong>
                     (certificat, agrément). C’est une identité technique, liée au
-                    registre EBA.
+                    registre EBA. <em>Mécanisme&nbsp;: mTLS.</em>
                   </p>
                 </div>
                 <div class="panel">
-                  <h3>Autorisation d’accès</h3>
+                  <h3>3 · Autorisation d’accès</h3>
                   <p>
                     <strong>Le périmètre</strong> concédé à ce client et à ce
                     TPP&nbsp;: quels comptes, quelles opérations, jusqu’à quand.
                     C’est le consentement, matérialisé en jetons.
+                    <em>Mécanisme&nbsp;: OAuth2.</em>
                   </p>
                 </div>
               </div>
 
               <div class="callout warn">
-                <h3>Ne jamais faire l’impasse sur une des trois</h3>
-                <p>
-                  Un TPP valide qui accède au compte d’un client qui n’a pas
-                  consenti = faille. Un client authentifié dont le TPP n’est pas
-                  agréé = faille. Un consentement large exploité par un TPP
-                  malveillant = faille. Les trois contrôles sont indépendants et
-                  tous nécessaires.
-                </p>
+                <h3>Les trois sont nécessaires — en manquer une = faille</h3>
+                <ul>
+                  <li><strong>TPP agréé mais pas de consentement</strong> → un accès sans accord du client&nbsp;: interdit.</li>
+                  <li><strong>Client authentifié mais TPP non agréé</strong> → un appelant non fiable dans le système&nbsp;: interdit.</li>
+                  <li><strong>Consentement trop large exploité par un TPP malveillant</strong> → abus de périmètre&nbsp;: interdit.</li>
+                </ul>
+                <p>Chaque contrôle se fait <strong>indépendamment</strong>&nbsp;: réussir l’un ne dispense jamais des deux autres.</p>
               </div>
 
               <div class="key-idea">
                 <p class="label">Règle à retenir</p>
                 <p>
-                  <strong>Authentifier le client</strong> ≠ <strong>authentifier
-                  le TPP</strong> ≠ <strong>autoriser l’accès aux données</strong>.
-                  Ces trois vérifications se font à des endroits différents de la
-                  chaîne, avec des mécanismes différents.
+                  <strong>Authentifier le TPP</strong> (mTLS) ≠
+                  <strong>authentifier le client</strong> (SCA/OIDC) ≠
+                  <strong>autoriser l’accès aux données</strong> (OAuth2). Trois
+                  questions, trois moments, trois mécanismes&nbsp;: on ne peut pas
+                  en sauter un.
                 </p>
               </div>
             </section>
@@ -519,18 +584,21 @@
             <!-- 3. LE FLUX OAUTH -->
             <section class="section">
               <p class="section-label">Flux</p>
-              <h2 id="flux-oauth">Le flux OAuth2 en Open Banking</h2>
+              <h2 id="flux-oauth">Le flux OAuth2 en Open Banking, mécanisme par mécanisme</h2>
               <p class="intro">
-                Le parcours de redirection du Jour 1, vu cette fois avec les
-                jetons et les contrôles.
+                Le parcours de redirection du Jour 1, vu cette fois avec
+                <strong>les mécanismes de la S5</strong>&nbsp;: on suit où
+                interviennent <strong>mTLS</strong>, <strong>OAuth2</strong>,
+                <strong>OpenID Connect</strong> et <strong>JWT</strong> à chaque
+                étape.
               </p>
 
-              <div class="diagram">
+              <div class="diagram" style="overflow-x:auto">
                 <div class="diagram-header">
-                  <h3>Code d’autorisation → jeton</h3>
-                  <p>Cliquez pour suivre les étapes</p>
+                  <h3>Code d’autorisation → jeton, avec les mécanismes</h3>
+                  <p>mTLS au canal · OAuth2 pour le jeton · OIDC pour l’identité · JWT comme support</p>
                 </div>
-                <svg viewBox="0 0 1000 470" role="img" aria-label="Flux OAuth2 Open Banking">
+                <svg viewBox="0 0 1040 610" role="img" aria-label="Flux OAuth2 Open Banking annoté avec l’intervention de mTLS, OAuth2, OpenID Connect et JWT">
                   <defs>
                     <marker id="ah-oauth" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                       <path d="M0,0 L6,3 L0,6 Z" fill="#2f4858" />
@@ -539,46 +607,97 @@
                       <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
                     </marker>
                   </defs>
-                  <g font-family="Syne, sans-serif" font-size="12" font-weight="700">
-                    <rect x="70" y="20" width="160" height="40" rx="6" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
-                    <text x="150" y="45" text-anchor="middle" fill="#4b3480">TPP</text>
-                    <rect x="400" y="20" width="200" height="40" rx="6" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
-                    <text x="500" y="45" text-anchor="middle" fill="#1a2b3c">ASPSP (autorisation)</text>
-                    <rect x="770" y="20" width="150" height="40" rx="6" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="845" y="45" text-anchor="middle" fill="#087a6a">Lyam</text>
+
+                  <!-- acteurs -->
+                  <g font-family="Syne, sans-serif" font-size="13" font-weight="700">
+                    <rect x="70" y="24" width="170" height="42" rx="6" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="155" y="50" text-anchor="middle" fill="#4b3480">TPP</text>
+                    <rect x="420" y="24" width="220" height="42" rx="6" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="530" y="50" text-anchor="middle" fill="#1a2b3c">ASPSP / Banque</text>
+                    <rect x="800" y="24" width="170" height="42" rx="6" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="885" y="50" text-anchor="middle" fill="#087a6a">Lyam</text>
                   </g>
-                  <line x1="150" y1="60" x2="150" y2="450" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
-                  <line x1="500" y1="60" x2="500" y2="450" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
-                  <line x1="845" y1="60" x2="845" y2="450" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
+                  <line x1="155" y1="66" x2="155" y2="560" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
+                  <line x1="530" y1="66" x2="530" y2="560" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
+                  <line x1="885" y1="66" x2="885" y2="560" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
 
-                  <line x1="155" y1="95" x2="495" y2="95" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-oauth)"/>
-                  <text x="325" y="88" text-anchor="middle" fill="#2f4858" font-size="11">1 · demande + certificat (mTLS)</text>
+                  <!-- Pastille de mécanisme réutilisable : on la dessine à droite de chaque étape -->
 
-                  <line x1="500" y1="130" x2="840" y2="130" stroke="#0d9f8a" stroke-width="2.5" class="stream" marker-end="url(#ah-oauthg)"/>
-                  <text x="670" y="123" text-anchor="middle" fill="#087a6a" font-size="11">2 · SCA (authentification de Lyam)</text>
+                  <!-- ÉTAPE 1 : mTLS -->
+                  <line x1="160" y1="100" x2="525" y2="100" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-oauth)"/>
+                  <text x="342" y="92" text-anchor="middle" fill="#2f4858" font-size="12">1 · demande d’accès + poignée de main</text>
+                  <rect x="600" y="84" width="120" height="20" rx="10" fill="#0d9f8a"/>
+                  <text x="660" y="98" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">mTLS</text>
+                  <text x="735" y="98" fill="#087a6a" font-size="10.5">le canal est prouvé sûr, le TPP authentifié</text>
 
-                  <line x1="845" y1="165" x2="505" y2="165" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-oauthg)"/>
-                  <text x="670" y="158" text-anchor="middle" fill="#087a6a" font-size="11">3 · consentement accordé</text>
+                  <!-- ÉTAPE 2 : SCA (identité) + OIDC -->
+                  <line x1="530" y1="160" x2="880" y2="160" stroke="#0d9f8a" stroke-width="2.5" class="stream" marker-end="url(#ah-oauthg)"/>
+                  <text x="705" y="152" text-anchor="middle" fill="#087a6a" font-size="12">2 · SCA : Lyam prouve son identité</text>
+                  <rect x="600" y="144" width="115" height="20" rx="10" fill="#1e5f8a"/>
+                  <text x="657" y="158" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">OIDC</text>
+                  <text x="730" y="184" fill="#1e5f8a" font-size="10.5">la banque prépare une preuve d’identité (ID token)</text>
 
-                  <line x1="500" y1="200" x2="155" y2="200" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-oauth)"/>
-                  <text x="325" y="193" text-anchor="middle" fill="#2f4858" font-size="11">4 · code d’autorisation</text>
+                  <!-- ÉTAPE 3 : consentement -->
+                  <line x1="880" y1="220" x2="535" y2="220" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-oauthg)"/>
+                  <text x="705" y="212" text-anchor="middle" fill="#087a6a" font-size="12">3 · consentement accordé</text>
+                  <rect x="600" y="204" width="120" height="20" rx="10" fill="#1e5f8a"/>
+                  <text x="660" y="218" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">OAuth2</text>
+                  <text x="735" y="218" fill="#1e5f8a" font-size="10.5">le périmètre (scopes) est fixé</text>
 
-                  <line x1="155" y1="235" x2="495" y2="235" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-oauth)"/>
-                  <text x="325" y="228" text-anchor="middle" fill="#2f4858" font-size="11">5 · code + certificat → demander un jeton</text>
+                  <!-- ÉTAPE 4 : code -->
+                  <line x1="530" y1="280" x2="160" y2="280" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-oauth)"/>
+                  <text x="342" y="272" text-anchor="middle" fill="#2f4858" font-size="12">4 · code d’autorisation à usage unique</text>
+                  <rect x="600" y="264" width="120" height="20" rx="10" fill="#1e5f8a"/>
+                  <text x="660" y="278" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">OAuth2</text>
+                  <text x="735" y="278" fill="#1e5f8a" font-size="10.5">le code = monnaie d’échange du futur jeton</text>
 
-                  <line x1="500" y1="270" x2="155" y2="270" stroke="#2f4858" stroke-width="2.5" marker-end="url(#ah-oauth)"/>
-                  <text x="325" y="263" text-anchor="middle" fill="#2f4858" font-size="11">6 · access token (JWT) + refresh token</text>
+                  <!-- ÉTAPE 5 : échange code + mTLS -> émission du jeton -->
+                  <line x1="160" y1="340" x2="525" y2="340" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-oauth)"/>
+                  <text x="342" y="332" text-anchor="middle" fill="#2f4858" font-size="12">5 · échange « code + certificat » → jeton</text>
+                  <rect x="600" y="324" width="120" height="20" rx="10" fill="#0d9f8a"/>
+                  <text x="660" y="338" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">mTLS</text>
+                  <text x="735" y="338" fill="#087a6a" font-size="10.5">l’échange passe encore par le canal sécurisé</text>
 
-                  <line x1="155" y1="305" x2="495" y2="305" stroke="#2f4858" stroke-width="2.5" class="stream" marker-end="url(#ah-oauth)"/>
-                  <text x="325" y="298" text-anchor="middle" fill="#2f4858" font-size="11">7 · appel API avec Bearer token</text>
+                  <!-- ÉTAPE 6 : la banque émet access token (JWT) + refresh -->
+                  <line x1="525" y1="400" x2="160" y2="400" stroke="#1e5f8a" stroke-width="2.8" marker-end="url(#ah-oauth)"/>
+                  <text x="342" y="392" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">6 · la BANQUE émet le jeton → TPP</text>
+                  <rect x="600" y="384" width="120" height="20" rx="10" fill="#3d5a80"/>
+                  <text x="660" y="398" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">JWT</text>
+                  <text x="735" y="398" fill="#3d5a80" font-size="10.5">access token (JWT signé) + refresh token</text>
 
-                  <line x1="500" y1="340" x2="155" y2="340" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-oauth)"/>
-                  <text x="325" y="333" text-anchor="middle" fill="#2f4858" font-size="11">8 · données (scopes vérifiés)</text>
+                  <!-- ÉTAPE 7 : appel API avec Bearer token -->
+                  <line x1="160" y1="460" x2="525" y2="460" stroke="#3d5a80" stroke-width="2.5" class="stream" marker-end="url(#ah-oauth)"/>
+                  <text x="342" y="452" text-anchor="middle" fill="#3d5a80" font-size="12">7 · appel API : Bearer &lt;jeton&gt;</text>
+                  <rect x="600" y="444" width="120" height="20" rx="10" fill="#3d5a80"/>
+                  <text x="660" y="458" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">JWT</text>
+                  <text x="735" y="458" fill="#3d5a80" font-size="10.5">la banque vérifie la signature + les scopes + exp</text>
 
-                  <rect x="90" y="375" width="820" height="55" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="1.5"/>
-                  <text x="500" y="398" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">À chaque appel : mTLS (TPP) + Bearer JWT (scopes, expiration) + consentement</text>
-                  <text x="500" y="418" text-anchor="middle" fill="#5a6b7c" font-size="10">Un jeton expiré ou un scope absent = refus en 401/403</text>
+                  <!-- ÉTAPE 8 : données -->
+                  <line x1="525" y1="520" x2="160" y2="520" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-oauth)"/>
+                  <text x="342" y="512" text-anchor="middle" fill="#2f4858" font-size="12">8 · données renvoyées (si tout est valide)</text>
+
+                  <!-- Légende -->
+                  <rect x="70" y="545" width="900" height="52" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="1.2"/>
+                  <text x="90" y="565" fill="#1a2b3c" font-size="11" font-weight="700">À chaque appel, il faut réunir les trois contrôles :</text>
+                  <rect x="90" y="573" width="16" height="12" rx="3" fill="#0d9f8a"/>
+                  <text x="112" y="583" fill="#3d5a80" font-size="10.5">mTLS (canal + TPP)</text>
+                  <rect x="270" y="573" width="16" height="12" rx="3" fill="#1e5f8a"/>
+                  <text x="292" y="583" fill="#3d5a80" font-size="10.5">OAuth2 / OIDC (périmètre + identité)</text>
+                  <rect x="520" y="573" width="16" height="12" rx="3" fill="#3d5a80"/>
+                  <text x="542" y="583" fill="#3d5a80" font-size="10.5">JWT (support signé, exp, scopes)</text>
+                  <text x="770" y="583" fill="#b0483a" font-size="10.5" font-weight="700">jeton expiré / scope absent = 401/403</text>
                 </svg>
+              </div>
+
+              <div class="callout info">
+                <h3>Qui émet le jeton, exactement&nbsp;?</h3>
+                <p>
+                  Le <strong>jeton n’est jamais créé par le TPP</strong>. Au terme
+                  de l’étape 5 (échange du code sur le canal mTLS), c’est la
+                  <strong>banque (ASPSP)</strong> qui le <strong>forge et le
+                  signe</strong>, puis le renvoie au TPP (étape 6). Le TPP ne fait
+                  que le <em>présenter</em> ensuite (Bearer) à chaque appel.
+                </p>
               </div>
 
               <div class="callout info">
@@ -589,6 +708,9 @@
                   <strong>refresh token</strong> sert à en obtenir un nouveau sans
                   redemander la SCA — dans les limites du consentement et des
                   règles d’authentification. Ne jamais confondre leur durée de vie.
+                  L’<strong>ID token</strong> (OIDC) est, lui, une preuve
+                  d’identité&nbsp;: il ne sert pas à appeler l’API, mais à savoir
+                  <em>qui</em> est connecté.
                 </p>
               </div>
             </section>
@@ -596,14 +718,21 @@
             <!-- 4. TRANSITION -->
             <section class="section" style="border-bottom: none">
               <div class="transition-block">
-                <p class="transition-label">Séquence suivante</p>
+                <p class="transition-label">Séquence suivante · S6</p>
                 <h2>Et les obligations réglementaires&nbsp;?</h2>
                 <p>
-                  Les mécanismes techniques sont posés. Mais la DSP2 impose des
-                  exigences précises&nbsp;: SCA, exemptions, non-répudiation,
-                  horodatage. Et l’industrialisation de ces flux expose à des
-                  risques&nbsp;: usurpation, attaques API, fuites. C’est la S6.
+                  Les mécanismes techniques (mTLS, OAuth2, OIDC, JWT) sont posés.
+                  Mais la <strong>DSP2</strong> ne se contente pas de « ça
+                  marche techniquement »&nbsp;: elle impose un cadre précis.
                 </p>
+                <ul>
+                  <li><strong>SCA renforcée</strong>&nbsp;: authentification à plusieurs facteurs, appliquée aux moments clés (connexion, paiement, accès aux données).</li>
+                  <li><strong>Exemptions de SCA</strong>&nbsp;: certains accès à faible risque en sont dispensés — sous conditions strictes.</li>
+                  <li><strong>Non-répudiation</strong>&nbsp;: l’utilisateur ne peut pas nier une opération qu’il a validée (preuves conservées).</li>
+                  <li><strong>Horodatage</strong>&nbsp;: chaque étape (consentement, autorisation, jeton) est datée et traçable.</li>
+                  <li><strong>Résilience &amp; sécurité des API</strong>&nbsp;: l’industrialisation de ces flux expose à l’usurpation, aux attaques d’API et aux fuites de données.</li>
+                </ul>
+                <p>Autrement dit&nbsp;: la S5 explique <em>comment</em> prouver et autoriser&nbsp;; la <strong>S6 (Sécurité &amp; conformité)</strong> explique <em>quelles obligations</em> encadrent ces mécanismes et <em>quels risques</em> ils doivent couvrir.</p>
               </div>
             </section>
 
@@ -621,7 +750,7 @@
 
     <footer class="site-foot">
       <div class="wrap">
-        <a href="index.html">Sommaire Jour 2</a> · S2 Auth &amp; autorisation
+        <a href="intro.html">Sommaire Jour 2</a> · S2 Auth &amp; autorisation
       </div>
     </footer>
     <script src="../js/nav-j2.js"></script>

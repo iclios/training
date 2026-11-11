@@ -96,6 +96,177 @@
               </div>
             </section>
 
+            <!-- 1bis. LES COMBINAISONS DE FACTEURS -->
+            <section class="section">
+              <p class="section-label">Combinaisons</p>
+              <h2 id="combinaisons">Les combinaisons de facteurs possibles</h2>
+              <p class="intro">
+                La SCA exige <strong>deux facteurs de catégories
+                différentes</strong>. Trois catégories existent&nbsp;:
+                <strong>connaissance</strong> (ce que je sais),
+                <strong>possession</strong> (ce que je possède) et
+                <strong>inhérence</strong> (ce que je suis). On peut donc former
+                <strong>trois combinaisons valides</strong> — et toutes les
+                combinaisons «&nbsp;deux fois la même catégorie&nbsp;» sont
+                invalides.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Les trois combinaisons SCA valides</h3>
+                  <p>Il faut 2 facteurs de 2 catégories différentes (jamais 2 fois la même)</p>
+                </div>
+                <svg viewBox="0 0 760 300" role="img" aria-label="Trois combinaisons valides de SCA : connaissance + possession, connaissance + inhérence, possession + inhérence">
+                  <!-- Police commune -->
+                  <g font-family="Figtree, system-ui, sans-serif">
+
+                    <!-- LIGNE 1 : Connaissance + Possession = VALIDE -->
+                    <rect x="20" y="24" width="200" height="56" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="1.6"/>
+                    <text x="120" y="47" text-anchor="middle" font-size="12" font-weight="700" fill="#1e5f8a">Connaissance</text>
+                    <text x="120" y="66" text-anchor="middle" font-size="9.5" fill="#5a6b7c">mot de passe, PIN</text>
+
+                    <text x="248" y="58" text-anchor="middle" font-size="20" font-weight="800" fill="#5a6b7c">+</text>
+
+                    <rect x="268" y="24" width="200" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.6"/>
+                    <text x="368" y="47" text-anchor="middle" font-size="12" font-weight="700" fill="#087a6a">Possession</text>
+                    <text x="368" y="66" text-anchor="middle" font-size="9.5" fill="#5a6b7c">téléphone (SMS), token</text>
+
+                    <text x="496" y="58" text-anchor="middle" font-size="20" font-weight="800" fill="#5a6b7c">=</text>
+
+                    <rect x="516" y="24" width="224" height="56" rx="8" fill="#0d9f8a"/>
+                    <text x="628" y="49" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">✓ SCA valide</text>
+                    <text x="628" y="67" text-anchor="middle" font-size="9.5" fill="#e7fffb">le plus courant</text>
+
+                    <!-- LIGNE 2 : Connaissance + Inhérence = VALIDE -->
+                    <rect x="20" y="122" width="200" height="56" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="1.6"/>
+                    <text x="120" y="145" text-anchor="middle" font-size="12" font-weight="700" fill="#1e5f8a">Connaissance</text>
+                    <text x="120" y="164" text-anchor="middle" font-size="9.5" fill="#5a6b7c">code PIN</text>
+
+                    <text x="248" y="156" text-anchor="middle" font-size="20" font-weight="800" fill="#5a6b7c">+</text>
+
+                    <rect x="268" y="122" width="200" height="56" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="1.6"/>
+                    <text x="368" y="145" text-anchor="middle" font-size="12" font-weight="700" fill="#4b3480">Inhérence</text>
+                    <text x="368" y="164" text-anchor="middle" font-size="9.5" fill="#5a6b7c">empreinte, visage</text>
+
+                    <text x="496" y="156" text-anchor="middle" font-size="20" font-weight="800" fill="#5a6b7c">=</text>
+
+                    <rect x="516" y="122" width="224" height="56" rx="8" fill="#0d9f8a"/>
+                    <text x="628" y="147" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">✓ SCA valide</text>
+                    <text x="628" y="165" text-anchor="middle" font-size="9.5" fill="#e7fffb">smartphone biométrique</text>
+
+                    <!-- LIGNE 3 : Possession + Inhérence = VALIDE -->
+                    <rect x="20" y="220" width="200" height="56" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.6"/>
+                    <text x="120" y="243" text-anchor="middle" font-size="12" font-weight="700" fill="#087a6a">Possession</text>
+                    <text x="120" y="262" text-anchor="middle" font-size="9.5" fill="#5a6b7c">carte, téléphone</text>
+
+                    <text x="248" y="254" text-anchor="middle" font-size="20" font-weight="800" fill="#5a6b7c">+</text>
+
+                    <rect x="268" y="220" width="200" height="56" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="1.6"/>
+                    <text x="368" y="243" text-anchor="middle" font-size="12" font-weight="700" fill="#4b3480">Inhérence</text>
+                    <text x="368" y="262" text-anchor="middle" font-size="9.5" fill="#5a6b7c">empreinte sur l’appareil</text>
+
+                    <text x="496" y="254" text-anchor="middle" font-size="20" font-weight="800" fill="#5a6b7c">=</text>
+
+                    <rect x="516" y="220" width="224" height="56" rx="8" fill="#0d9f8a"/>
+                    <text x="628" y="245" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">✓ SCA valide</text>
+                    <text x="628" y="263" text-anchor="middle" font-size="9.5" fill="#e7fffb">sans rien taper</text>
+                  </g>
+                </svg>
+                <figcaption class="diagram-hint">Trois combinaisons possibles&nbsp;: C+P, C+I, P+I. Une même catégorie répétée (2 mots de passe, 2 SMS…) ne constitue jamais une SCA.</figcaption>
+              </div>
+
+              <div class="callout warn">
+                <h3>Ce qui n’est PAS une SCA</h3>
+                <ul>
+                  <li><strong>Deux mots de passe</strong> (2 × connaissance) → une seule catégorie, donc insuffisant.</li>
+                  <li><strong>Un mot de passe + une question secrète</strong> (2 × connaissance) → insuffisant.</li>
+                  <li><strong>Deux codes SMS envoyés sur le même téléphone</strong> (2 × possession) → un seul appareil compromis suffirait&nbsp;: insuffisant.</li>
+                  <li>Un facteur doit être <strong>indépendant</strong>&nbsp;: la compromission de l’un ne doit pas entraîner celle de l’autre.</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- 1ter. MODES DE SCA CONCRETS -->
+            <section class="section">
+              <p class="section-label">Modes</p>
+              <h2 id="modes-sca">Les différents modes de SCA en pratique</h2>
+              <p class="intro">
+                Une fois la combinaison choisie, plusieurs <strong>modalités
+                concrètes</strong> existent, plus ou moins fluides. Voici les
+                schémas les plus répandus en Open Banking, classés par
+                combinaison de facteurs.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Mode concret</th>
+                      <th scope="col">Combinaison</th>
+                      <th scope="col">Expérience client</th>
+                      <th scope="col">SCA&nbsp;?</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Mot de passe + code SMS</th>
+                      <td>Connaissance + Possession</td>
+                      <td>Saisie mot de passe puis code reçu par SMS</td>
+                      <td><strong style="color:#087a6a">Oui</strong></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Mot de passe + application d’authentification (OTP)</th>
+                      <td>Connaissance + Possession</td>
+                      <td>Mot de passe puis code à usage unique généré par l’app</td>
+                      <td><strong style="color:#087a6a">Oui</strong></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Push + empreinte (biométrie)</th>
+                      <td>Possession + Inhérence</td>
+                      <td>Notification poussée sur l’app, validée par empreinte</td>
+                      <td><strong style="color:#087a6a">Oui</strong></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">PIN + empreinte sur mobile</th>
+                      <td>Connaissance + Inhérence</td>
+                      <td>Code PIN puis reconnaissance du doigt</td>
+                      <td><strong style="color:#087a6a">Oui</strong></td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Carte + code confidentiel au terminal</th>
+                      <td>Possession + Connaissance</td>
+                      <td>Carte insérée puis saisie du code au TPE</td>
+                      <td><strong style="color:#087a6a">Oui</strong></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Deux mots de passe</th>
+                      <td>Connaissance + Connaissance</td>
+                      <td>Deux secrets saisis</td>
+                      <td><strong style="color:#b0483a">Non</strong></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Deux SMS sur le même téléphone</th>
+                      <td>Possession + Possession</td>
+                      <td>Deux codes reçus sur un seul appareil</td>
+                      <td><strong style="color:#b0483a">Non</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Le critère décisif&nbsp;: l’indépendance des facteurs</h3>
+                <p>
+                  Ce qui compte n’est pas le <em>nombre</em> de manipulations, mais
+                  <strong>l’indépendance des canaux</strong>&nbsp;: si un même
+                  appareil ou un même secret peut compromettre les deux facteurs à
+                  la fois, la SCA n’est pas satisfaite. Un push + biométrie sur un
+                  mobile restent solides parce que le déverrouillage biométrique
+                  est local et lié à la personne.
+                </p>
+              </div>
+            </section>
+
             <!-- 2. EXEMPTIONS -->
             <section class="section">
               <p class="section-label">Exemptions</p>
@@ -284,7 +455,7 @@
 
     <footer class="site-foot">
       <div class="wrap">
-        <a href="index.html">Sommaire Jour 2</a> · S3 Sécurité &amp; conformité
+        <a href="intro.html">Sommaire Jour 2</a> · S3 Sécurité &amp; conformité
       </div>
     </footer>
     <script src="../js/nav-j2.js"></script>
