@@ -7,7 +7,6 @@ window.OB_BLOCS = [
   { id: "s4-atelier", title: "S4 · Atelier (labo AIS & CBPII)", href: "s4-atelier.html", group: "Parcours" },
   { id: "s5-auth", title: "S5 · Authentification & autorisation", href: "s5-auth.html", group: "Parcours" },
   { id: "s6-securite", title: "S6 · Sécurité & conformité", href: "s6-securite.html", group: "Parcours" },
-  { id: "s7-cas", title: "S7 · Cas pratique", href: "s7-cas.html", group: "Parcours" },
   { id: "support", title: "Support étudiant", href: "support-etudiant.html", group: "Parcours narratif" },
 ];
 

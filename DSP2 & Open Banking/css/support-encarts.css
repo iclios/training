@@ -1,0 +1,75 @@
+/* ============================================================
+   Encarts « cours » dans le support étudiant — rendu papier.
+   Les <details> sont ouverts et habillés en encadré, jamais pliés.
+   Chargée en dernier : gagne la cascade.
+   ============================================================ */
+
+/* 1. Le contenu est toujours visible, y compris à l'impression */
+.support-doc .cours-note > .cours-note-body,
+.support-doc .cours-note > summary + div {
+  display: block !important;
+}
+
+/* 2. Le bandeau pliable disparaît : il n'a pas de sens sur papier */
+.support-doc .cours-note > summary {
+  display: block !important;
+  list-style: none !important;
+  cursor: default !important;
+  padding: 0 0 0.35rem 0 !important;
+  font-size: 8.4pt !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: #1e5f8a !important;
+}
+
+.support-doc .cours-note > summary::-webkit-details-marker {
+  display: none !important;
+}
+
+/* le « + » / « – » flottant n'a plus lieu d'être */
+.support-doc .cours-note > summary::after {
+  content: "" !important;
+  display: none !important;
+}
+
+/* 3. Habillage papier : encadré sobre, fond clair, filet à gauche */
+.support-doc .cours-note {
+  margin: 0.9rem 0 !important;
+  padding: 0.6rem 0.9rem 0.7rem !important;
+  max-width: none !important;
+  background: #f1f6fb !important;
+  border: 1px solid #dbe7f2 !important;
+  border-left: 3px solid #1e5f8a !important;
+  border-radius: 0 3px 3px 0 !important;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.support-doc .cours-note .cours-note-body {
+  padding: 0 !important;
+  border-top: none !important;
+}
+
+.support-doc .cours-note .cours-note-body p {
+  margin: 0 0 0.45rem 0 !important;
+  font-size: 9.3pt !important;
+  line-height: 1.45 !important;
+  color: #1d2a37 !important;
+}
+
+.support-doc .cours-note .cours-note-body p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.support-doc .cours-note .cours-note-body ul,
+.support-doc .cours-note .cours-note-body ol {
+  margin: 0 0 0.4rem 0 !important;
+  padding-left: 1.1rem !important;
+  font-size: 9.3pt !important;
+}
+
+/* encarts courts : même traitement, sans distinction visuelle */
+.support-doc .cours-note.small {
+  margin: 0.9rem 0 !important;
+}

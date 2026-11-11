@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S3 — Workflow CBPII (Confirmation of Funds) | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s3-cbpii">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a class="is-active" href="intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Séquence 3</span>
+                <span class="tag tag-accent">25 min</span>
+              </div>
+              <p class="day-kicker">Une seule question, une seule réponse</p>
+              <h1>Workflow CBPII — Confirmation of Funds</h1>
+              <p class="lead">
+                La plus discrète des trois API&nbsp;: elle répond à une unique
+                question —&nbsp;«&nbsp;y a-t-il assez de fonds pour ce
+                montant&nbsp;?&nbsp;»&nbsp;— par un simple
+                <strong>oui ou non</strong>, sans jamais révéler de solde ni
+                d’opération.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam a une carte de paiement adossée à un porte-monnaie géré par
+                un émetteur. Avant d’autoriser une dépense, l’émetteur demande à
+                Banque Est&nbsp;: «&nbsp;le compte de Lyam couvre-t-il 42,90&nbsp;€&nbsp;?&nbsp;».
+                Réponse&nbsp;: oui ou non. L’émetteur n’apprend ni le solde, ni
+                les opérations de Lyam.
+              </p>
+            </div>
+
+            <!-- 1. CŒUR MÉTIER -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Cœur métier</p>
+              <h2 id="coeur">Une API volontairement pauvre</h2>
+              <p class="intro">
+                Là où l’AIS expose des données riches, le CBPII expose le minimum
+                nécessaire. C’est un choix de conception protecteur&nbsp;: moins
+                de données exposées, moins de risque.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Ce qu’elle fait</h3>
+                  <ul>
+                    <li>Répond oui/non à «&nbsp;fonds suffisants pour tel montant&nbsp;?&nbsp;»</li>
+                    <li>Se limite au compte et au montant demandés</li>
+                    <li>Sert de contrôle avant une autorisation de paiement</li>
+                  </ul>
+                </div>
+                <div class="panel ko">
+                  <h3>Ce qu’elle ne fait jamais</h3>
+                  <ul>
+                    <li>Renvoyer un solde (même approximatif)</li>
+                    <li>Lister des transactions</li>
+                    <li>Déplacer des fonds</li>
+                    <li>Donner des informations sur d’autres comptes</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="key-idea">
+                <p class="label">Le principe</p>
+                <p>
+                  Le CBPII ne lit pas&nbsp;: il <strong>vérifie</strong>. Une
+                  réponse binaire vaut mieux qu’un solde exposé — c’est la
+                  protection par la pauvreté de la donnée.
+                </p>
+              </div>
+            </section>
+
+            <!-- 2. PARCOURS -->
+            <section class="section">
+              <p class="section-label">Parcours</p>
+              <h2 id="parcours">Le parcours d’une vérification de fonds</h2>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Flux d’une vérification CBPII</h3>
+                  <p>Consentement → SCA initiale → vérifications → révocation</p>
+                </div>
+                <svg viewBox="0 0 1000 220" role="img" aria-label="Flux du parcours CBPII">
+                  <defs>
+                    <marker id="ah-cbp" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="55" width="205" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <circle cx="55" cy="88" r="14" fill="#6b4fa0"/>
+                    <text x="55" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1</text>
+                    <text x="122" y="92" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">Consentement</text>
+                    <text x="122" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">compte + finalité</text>
+                    <text x="122" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">usage défini</text>
+                  </g>
+                  <line x1="230" y1="110" x2="262" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-cbp)"/>
+                  <g>
+                    <rect x="266" y="55" width="205" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <circle cx="301" cy="88" r="14" fill="#1e5f8a"/>
+                    <text x="301" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">2</text>
+                    <text x="368" y="92" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">SCA initiale</text>
+                    <text x="368" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">2 facteurs</text>
+                    <text x="368" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">pas à chaque appel</text>
+                  </g>
+                  <line x1="476" y1="110" x2="508" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-cbp)"/>
+                  <g>
+                    <rect x="512" y="55" width="205" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <circle cx="547" cy="88" r="14" fill="#0d9f8a"/>
+                    <text x="547" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">3</text>
+                    <text x="614" y="92" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Vérifications</text>
+                    <text x="614" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">montant → oui/non</text>
+                    <text x="614" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">fréquence bornée</text>
+                  </g>
+                  <line x1="722" y1="110" x2="754" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-cbp)"/>
+                  <g>
+                    <rect x="758" y="55" width="205" height="110" rx="10" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                    <circle cx="793" cy="88" r="14" fill="#3d5a80"/>
+                    <text x="793" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">4</text>
+                    <text x="860" y="92" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="13" font-weight="700">Révocation</text>
+                    <text x="860" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">à tout moment</text>
+                    <text x="860" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">vérification coupée</text>
+                  </g>
+                </svg>
+                <figcaption>
+                  Figure — le parcours CBPII&nbsp;: même squelette que l’AIS
+                  (consentement, SCA initiale, révocation), mais la boucle répétée
+                  ne renvoie qu’un booléen «&nbsp;fonds suffisants&nbsp;».
+                </figcaption>
+              </div>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Consentement CBPII</strong>
+                    <p>
+                      Le CBPII obtient le droit de vérifier les fonds d’un compte
+                      donné pour un usage défini. Le consentement précise le
+                      compte et la finalité.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>SCA initiale</strong>
+                    <p>
+                      Comme pour l’AIS, une authentification forte initiale est
+                      requise pour établir le consentement. Le CBPII ne
+                      s’authentifie pas à chaque vérification.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Vérification répétée</strong>
+                    <p>
+                      Pour chaque dépense, le CBPII envoie le montant et reçoit un
+                      booléen. La fréquence est bornée par les RTS (pas
+                      d’interrogation abusive du solde par ce biais).
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">4</span>
+                  <div>
+                    <strong>Révocation</strong>
+                    <p>
+                      Lyam peut retirer le consentement&nbsp;; le CBPII perd alors
+                      toute possibilité de vérifier les fonds.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Étape</th>
+                      <th scope="col">Endpoint typique (Berlin Group)</th>
+                      <th scope="col">But</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Consentement</th><td><code>POST /v1/funds-confirmations</code></td><td>Déclarer le compte à vérifier</td></tr>
+                    <tr class="is-exergue"><th scope="row">Vérification</th><td>appel avec montant + compte</td><td>Obtenir «&nbsp;fonds suffisants&nbsp;: oui/non&nbsp;»</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- 3. DONNÉES ET EXEMPLE -->
+            <section class="section">
+              <p class="section-label">Données</p>
+              <h2 id="donnees">À quoi ressemble une réponse CBPII</h2>
+              <p class="intro">
+                La réponse est minimale. Pas de montant de solde, pas de
+                transaction&nbsp;: un seul indicateur booléen.
+              </p>
+
+              <pre class="payload-raw">{
+  "fundsAvailable": true,
+  "account": { "iban": "FR76…1234" }
+}</pre>
+
+              <div class="callout info">
+                <h3>Un booléen, pas un solde</h3>
+                <p>
+                  Pourquoi ne pas simplement renvoyer le solde&nbsp;? Parce que
+                  le solde est une donnée sensible. Le CBPII n’a besoin que de la
+                  réponse à sa question&nbsp;: le minimum exposé est le maximum
+                  protégé.
+                </p>
+              </div>
+            </section>
+
+            <!-- 4. USAGES / RISQUES -->
+            <section class="section">
+              <p class="section-label">Usages</p>
+              <h2 id="usages">Cas d’usage et limites</h2>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Cas d’usage</th>
+                      <th scope="col">Intérêt du CBPII</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Porte-monnaie / carte prépayée</th><td>Vérifier la couverture avant d’autoriser</td></tr>
+                    <tr><th scope="row">Émetteur de carte</th><td>Contrôle de solvabilité sans voir les comptes</td></tr>
+                    <tr class="is-exergue"><th scope="row">Paiement en plusieurs fois</th><td>S’assurer de la capacité de remboursement</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le piège&nbsp;: l’interrogation abusive</h3>
+                <p>
+                  Multiplier les vérifications permet de reconstituer un solde par
+                  déduction. Les RTS limitent donc la fréquence d’interrogation
+                  —&nbsp;c’est le même enjeu de <em>throttling</em> vu en S1, mais
+                  ici pour protéger une donnée déduite, pas un service.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Et si on le manipulait&nbsp;?</h2>
+                <p>
+                  On a vu l’AIS lire et le CBPII vérifier. Le mieux, maintenant,
+                  c’est de le faire soi-même&nbsp;: un atelier guidé, dans un labo
+                  web, pour accorder un consentement, lire des transactions puis
+                  vérifier des fonds sur le même compte de Lyam (S4).
+                </p>
+              </div>
+            </section>
+
+            <details class="cours-note">
+              <summary>Cours — récapitulatif du bloc</summary>
+              <div class="cours-note-body">
+                <ul>
+                  <li><strong>Rôle</strong>&nbsp;: répondre oui/non à «&nbsp;fonds suffisants pour ce montant&nbsp;?&nbsp;».</li>
+                  <li><strong>Minimalisme</strong>&nbsp;: jamais de solde, jamais de transactions.</li>
+                  <li><strong>Parcours</strong>&nbsp;: consentement → SCA initiale → vérifications répétées → révocation.</li>
+                  <li><strong>Risque</strong>&nbsp;: reconstitution du solde par interrogation répétée (bornée par les RTS).</li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2 (art. 65, confirmation de
+              fonds)&nbsp;; RTS EBA 2018/389 (fréquence d’interrogation)&nbsp;;
+              Berlin Group NextGenPSD2 (confirmation of funds).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 2</a> · S3 Workflow CBPII
+      </div>
+    </footer>
+    <script src="../js/nav-j2.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

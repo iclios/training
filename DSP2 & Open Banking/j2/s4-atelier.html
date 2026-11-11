@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S4 — Atelier : lire un compte &amp; vérifier des fonds | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s4-atelier">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a class="is-active" href="intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Séquence 4</span>
+                <span class="tag tag-accent">25–35 min</span>
+              </div>
+              <p class="day-kicker">Mise en pratique · binômes</p>
+              <h1>Atelier · Lire un compte, vérifier des fonds</h1>
+              <p class="lead">
+                On a vu les workflows&nbsp;: l’AIS lit, le CBPII vérifie. Ici, on
+                les manipule sur le <strong>même compte de Lyam</strong>, et on
+                observe la différence de réponse&nbsp;: d’un côté des soldes et
+                des transactions, de l’autre un simple <strong>oui ou non</strong>.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Vous êtes l’équipe technique de <strong>MonBudget</strong> (AISP
+                agréé) — et, le temps d’une vérification, l’émetteur de la carte
+                de Lyam. Il faut d’abord lire ses comptes, puis répondre à une
+                seule question avant d’autoriser une dépense de 42,90&nbsp;€.
+              </p>
+            </div>
+
+            <!-- 0. LANCER LE LABO -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <div class="callout reg">
+                <div class="labo-launch" style="display: grid; grid-template-columns: 1fr auto; gap: 1.25rem; align-items: center;">
+                  <div>
+                    <h3>Lancer le labo interactif</h3>
+                    <p>
+                      Cet atelier se fait dans un <strong>labo web autonome</strong>.
+                      Trois temps&nbsp;: consentement AIS, lecture des comptes et
+                      transactions, puis vérification de fonds (CBPII) avec
+                      <strong>saisie du montant</strong>. Aucune installation,
+                      aucun serveur&nbsp;: un simple double-clic.
+                    </p>
+                  </div>
+                  <a class="btn-lab" href="labo-j2/index.html" target="_blank" rel="noopener">
+                    Ouvrir le labo <span class="arrow">↗</span>
+                  </a>
+                </div>
+              </div>
+              <p class="intro" style="margin-bottom: 0">
+                Suivez la fiche ci-dessous <em>en parallèle</em> du labo&nbsp;:
+                chaque étape indique ce qu’il faut observer à l’écran. Le dossier
+                <code>j2/labo-j2/</code> est aussi distribuable tel quel aux
+                étudiants (ouvrable par double-clic).
+              </p>
+            </section>
+
+            <!-- 1. OBJECTIF -->
+            <section class="section" style="border-top: none; padding-top: 1rem">
+              <p class="section-label">Objectif de l’atelier</p>
+              <h2>Deux workflows, deux niveaux de données</h2>
+              <p class="intro">
+                Le but n’est pas de rejouer la théorie, mais de <strong>voir</strong>
+                que l’AIS et le CBPII répondent à des besoins différents — et que
+                c’est le niveau de données exposées qui les distingue.
+              </p>
+
+              <div class="split-3">
+                <div class="panel tpp">
+                  <h3>Étape 1 · Consentir</h3>
+                  <p>
+                    Lyam autorise MonBudget à lire ses comptes. La banque émet un
+                    <code>consentId</code> et un <code>access_token</code>.
+                  </p>
+                </div>
+                <div class="panel tpp">
+                  <h3>Étape 2 · Lire (AIS)</h3>
+                  <p>
+                    <code>GET /accounts</code> puis les transactions d’un compte.
+                    La banque renvoie des <strong>soldes et opérations</strong>.
+                  </p>
+                </div>
+                <div class="panel tpp">
+                  <h3>Étape 3 · Vérifier (CBPII)</h3>
+                  <p>
+                    On saisit un montant&nbsp;; la banque répond
+                    <strong>oui/non</strong>, sans jamais donner le solde.
+                  </p>
+                </div>
+              </div>
+
+              <p class="section-label" style="margin-top: 2rem">Les manipulations du labo</p>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Activité</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Où</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Accorder le consentement AIS</th>
+                      <td>Manipulation</td>
+                      <td>🔧 Labo — onglet 1</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Appel GET /accounts (JSON)</th>
+                      <td>Manipulation</td>
+                      <td>🔧 Labo — onglet 2</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Charger les transactions + filtre date</th>
+                      <td>Manipulation</td>
+                      <td>🔧 Labo — onglet 2</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Saisir un montant et vérifier (CBPII)</th>
+                      <td>Manipulation</td>
+                      <td>🔧 Labo — onglet 3</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- 2. ETAPE 1 : CONSENTIR -->
+            <section class="section">
+              <p class="section-label">Étape 1 · consentement AIS</p>
+              <h2>Autoriser la lecture, c’est Lyam qui décide</h2>
+              <p>
+                <strong>Dans le labo, onglet «&nbsp;Consentement AIS&nbsp;»</strong>,
+                cochez les comptes, choisissez une durée, cliquez sur
+                <strong>« Accorder le consentement »</strong>.
+              </p>
+
+              <ol class="steps-list">
+                <li>
+                  <strong>Accordez le consentement.</strong> Gardez «&nbsp;Compte
+                  courant&nbsp;» et «&nbsp;Livret A&nbsp;», 90 jours. Notez le
+                  <code>consentId</code> et l’<code>access_token</code> émis.
+                </li>
+                <li>
+                  <strong>Repérez l’absence de mot de passe.</strong> MonBudget ne
+                  reçoit qu’un jeton, limité aux comptes cochés et daté.
+                </li>
+                <li>
+                  <strong>Testez le périmètre.</strong> Le compte-titres n’est pas
+                  coché&nbsp;: retenez qu’une lecture dessus donnerait
+                  <code>403</code> — le consentement borne l’accès.
+                </li>
+              </ol>
+            </section>
+
+            <!-- 3. ETAPE 2 : LIRE -->
+            <section class="section">
+              <p class="section-label">Étape 2 · lecture AIS</p>
+              <h2>Lire les comptes et les transactions</h2>
+              <p>
+                <strong>Dans le labo, onglet «&nbsp;Lecture AIS&nbsp;»</strong>,
+                cliquez sur <strong>« Appeler /accounts »</strong>, choisissez un
+                compte, puis <strong>« Charger »</strong> ses transactions.
+              </p>
+
+              <ol class="steps-list">
+                <li>
+                  <strong>Lisez le JSON.</strong> Des champs nommés
+                  (<code>balance</code>, <code>iban</code>), pas des balises à
+                  deviner. Comparez avec le scraping du Jour 1.
+                </li>
+                <li>
+                  <strong>Chargez les transactions</strong> du compte courant puis
+                  du Livret A. Notez les montants (crédits en vert, débits en
+                  rouge).
+                </li>
+                <li>
+                  <strong>Changez le filtre de date</strong> (« depuis le … ») et
+                  rechargez&nbsp;: la banque renvoie un sous-ensemble. C’est une
+                  <em>lecture paramétrée</em>.
+                </li>
+              </ol>
+
+              <div class="callout info">
+                <h3>Ce que l’AIS expose</h3>
+                <p>
+                  Des données <strong>riches</strong>&nbsp;: soldes, IBAN, détail
+                  des opérations. C’est précisément pourquoi le consentement est
+                  explicite, le périmètre déclaré et la durée bornée (90 jours).
+                </p>
+              </div>
+            </section>
+
+            <!-- 4. ETAPE 3 : VÉRIFIER -->
+            <section class="section">
+              <p class="section-label">Étape 3 · vérification CBPII</p>
+              <h2>Vérifier des fonds sans voir le solde</h2>
+              <p>
+                <strong>Dans le labo, onglet «&nbsp;Vérifier des fonds&nbsp;»</strong>,
+                saisissez un montant puis cliquez sur <strong>« Vérifier »</strong>.
+                Le compte vérifié est le Compte courant.
+              </p>
+
+              <ol class="steps-list">
+                <li>
+                  <strong>Demandez 42,90&nbsp;€.</strong> La réponse est un
+                  booléen&nbsp;: <code>fundsAvailable: true</code>. Aucun solde
+                  n’est transmis.
+                </li>
+                <li>
+                  <strong>Essayez un montant énorme</strong> (par ex.
+                  99999&nbsp;€). La réponse bascule à <code>false</code>. Vous
+                  n’apprenez toujours <em>rien</em> sur le solde réel.
+                </li>
+                <li>
+                  <strong>Comparez avec l’AIS.</strong> Même compte&nbsp;: l’AIS
+                  donnait tout, le CBPII ne donne qu’un oui/non. Moins de données
+                  = moins de risque.
+                </li>
+              </ol>
+
+              <div class="callout warn">
+                <h3>Le piège de l’interrogation répétée</h3>
+                <p>
+                  En multipliant les montants testés, on pourrait <em>déduire</em>
+                  le solde par dichotomie. C’est exactement pourquoi les RTS
+                  limitent la fréquence des vérifications CBPII&nbsp;: un booléen
+                  répété peut, en théorie, laisser fuiter une donnée.
+                </p>
+              </div>
+            </section>
+
+            <!-- 5. DEBRIEF -->
+            <section class="section">
+              <p class="section-label">Débrief · 5 min</p>
+              <h2>AIS vs CBPII : ce qui change vraiment</h2>
+              <p>
+                Reprenez les trois étapes et complétez la comparaison. C’est la
+                synthèse de S2 et S3, vue par la pratique.
+              </p>
+
+              <div class="split-2">
+                <div class="panel aisp">
+                  <h3>AIS (lecture)</h3>
+                  <ul>
+                    <li>Consentement + SCA initiale.</li>
+                    <li>Accès <strong>riche</strong>&nbsp;: soldes, opérations.</li>
+                    <li>Lectures <strong>répétées</strong> jusqu’à 90 jours.</li>
+                    <li>Périmètre <strong>déclaré</strong> (403 sinon).</li>
+                  </ul>
+                </div>
+                <div class="panel ok">
+                  <h3>CBPII (vérification)</h3>
+                  <ul>
+                    <li>Même squelette (consentement, SCA, révocation).</li>
+                    <li>Réponse <strong>minimale</strong>&nbsp;: oui/non.</li>
+                    <li>Interrogation <strong>bornée</strong> par les RTS.</li>
+                    <li>Usage&nbsp;: autoriser un paiement, sans solde.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="cours-note-banner">
+                <p>
+                  <strong>Le message de l’atelier.</strong> AIS et CBPII partagent
+                  le même squelette — consentement, SCA, révocation — mais
+                  n’exposent pas le même niveau de donnée. La DRSP2 protège en
+                  exposant <em>le minimum nécessaire</em>&nbsp;: c’est la
+                  philosophie du CBPII.
+                </p>
+              </div>
+            </section>
+
+            <!-- 6. LIVRABLE -->
+            <section class="section" style="border-bottom: none">
+              <p class="section-label">Livrable &amp; évaluation</p>
+              <h2>Ce qu’on attend</h2>
+
+              <div class="callout">
+                <h3>Livrable (une fiche par binôme)</h3>
+                <p>
+                  Le consentement accordé (comptes, durée, jeton), la réponse JSON
+                  de <code>/accounts</code> et les transactions filtrées, puis la
+                  réponse booléenne du CBPII pour deux montants. Ajoutez un tableau
+                  «&nbsp;AIS vs CBPII&nbsp;» en deux colonnes.
+                </p>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">Points</th>
+                      <th scope="col">Indice d’un bon travail</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Consentement compris</th>
+                      <td>3</td>
+                      <td>Identifie consentId, jeton, scopes et durée</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Lecture AIS</th>
+                      <td>4</td>
+                      <td>JSON structuré, transactions filtrées, périmètre respecté</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Vérification CBPII</th>
+                      <td>4</td>
+                      <td>Booléen correct, aucun solde exposé, sens du montant</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Lien AIS/CBPII</th>
+                      <td>4</td>
+                      <td>Explique pourquoi moins de données = moins de risque</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <details class="cours-note">
+              <summary>Cours — récapitulatif de l’atelier</summary>
+              <div class="cours-note-body">
+                <ul>
+                  <li><strong>AIS</strong>&nbsp;: consentement → SCA → lecture répétée → révocation&nbsp;; données riches.</li>
+                  <li><strong>CBPII</strong>&nbsp;: même squelette, mais booléen uniquement, sans solde.</li>
+                  <li><strong>Périmètre</strong>&nbsp;: un compte non autorisé donne <code>403</code>.</li>
+                  <li><strong>Risque</strong>&nbsp;: l’interrogation CBPII répétée peut laisser déduire le solde — d’où le throttling RTS.</li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2 (art. 65 &amp; 67)&nbsp;; RTS EBA
+              2018/389 (fréquence, interfaces dédiées)&nbsp;; Berlin Group
+              NextGenPSD2 (AIS &amp; confirmation of funds).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 2</a> · S4 Atelier
+      </div>
+    </footer>
+    <script src="../js/nav-j2.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

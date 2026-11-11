@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Support étudiant — Jour 3 | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/support-etudiant.css" />
+    <link rel="stylesheet" href="../css/support-encarts.css" />
+  </head>
+  <body class="support-doc" data-bloc="support-etudiant">
+    <header class="site-bar no-print">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a class="is-active" href="intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="support-print-bar no-print">
+      <div class="wrap support-print-bar-inner">
+        <a href="support.html">← Page Support</a>
+        <button type="button" class="btn-print" onclick="window.print()">
+          Imprimer / Enregistrer en PDF
+        </button>
+      </div>
+    </div>
+
+    <div class="fiche-shell support-shell">
+      <aside class="bloc-sidebar no-print" aria-label="Sommaire du support">
+        <p class="bloc-sidebar-title">Jour 3 · Support</p>
+        <nav class="bloc-sidebar-nav">
+          <a class="bloc-sidebar-item" href="#intro"><span class="bloc-sidebar-num">01</span><span class="bloc-sidebar-label">Introduction & objectifs</span></a>
+          <a class="bloc-sidebar-item" href="#s1-principe"><span class="bloc-sidebar-num">02</span><span class="bloc-sidebar-label">S1 · Principe du paiement initié</span></a>
+          <a class="bloc-sidebar-item" href="#s2-flux"><span class="bloc-sidebar-num">03</span><span class="bloc-sidebar-label">S2 · Flux PISP détaillé</span></a>
+          <a class="bloc-sidebar-item" href="#s3-architecture"><span class="bloc-sidebar-num">04</span><span class="bloc-sidebar-label">S3 · Architecture SI PISP</span></a>
+          <a class="bloc-sidebar-item" href="#s4-atelier"><span class="bloc-sidebar-num">05</span><span class="bloc-sidebar-label">S4 · Atelier de modélisation</span></a>
+        </nav>
+      </aside>
+
+      <div class="fiche-main">
+        <main>
+          <section class="support-title-page">
+            <div class="support-title-inner">
+              <p class="support-title-kicker">Support étudiant</p>
+              <h1>
+                DSP2<br />
+                et Open Banking
+              </h1>
+              <p class="support-title-day">
+                Jour 3&nbsp;: Le paiement initié
+              </p>
+              <div class="support-title-author">
+                <p class="support-title-name">Chrisvene MPANDZOU</p>
+                <p class="support-title-email">chrisvene.mpandzou@a2mtech.com</p>
+                <p class="support-title-promo">M2 SIB&nbsp;·&nbsp;2026 – 2027</p>
+              </div>
+            </div>
+          </section>
+
+<article class="support-bloc" id="intro" data-num="01">
+  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <div class="fiche-meta"><span class="tag">Ouverture</span></div>
+      <p class="day-kicker">01 · Introduction & objectifs</p>
+      <h1>Introduction & objectifs</h1>
+    </div>
+  </section>
+  <div class="wrap support-bloc-body">
+
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Ouverture</span>
+                <span class="tag tag-accent">4 h</span>
+              </div>
+              <p class="day-kicker">Accueil</p>
+              <h1>Intro &amp; objectifs</h1>
+              <p class="lead">
+                Le Jour 1 a posé les fondements, le Jour 2 a démonté l’API et sa
+                sécurité. Le Jour 3 met tout en mouvement&nbsp;: le paiement
+                lui-même, celui qu’un tiers initie au nom du client, sans carte
+                bancaire.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Mardi, 20 h 40. Lyam finalise une commande sur le site d’un
+                marchand. Le bouton ne dit plus «&nbsp;carte bancaire&nbsp;» mais
+                <strong>«&nbsp;Payer par virement&nbsp;»</strong>. Il choisit
+                Banque Est, valide dans son application bancaire, et la commande
+                est payée. <strong>Aucune carte n’a été saisie.</strong> Le Jour 3
+                explique ce qui vient de se passer.
+              </p>
+            </div>
+
+            <!-- RAPPEL -->
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Rappel</p>
+              <h2>Là où l’on en est</h2>
+              <p>
+                Au Jour 1, on a défini trois rôles de tiers&nbsp;: l’<strong>AISP</strong>
+                (lecture des comptes), le <strong>PISP</strong> (initiation de
+                paiement) et le <strong>CBPII</strong> (confirmation de fonds).
+                Au Jour 2, on a vu comment un de ces tiers s’authentifie
+                (mTLS, OAuth2), obtient une autorisation (consentement) et
+                présente un jeton à chaque appel. On a étudié l’AIS, le cas le
+                plus simple.
+              </p>
+
+              <div class="callout info">
+                <h3>Pourquoi le PISP est «&nbsp;le plus délicat&nbsp;»</h3>
+                <p>
+                  L’AIS lit&nbsp;: une erreur affiche un mauvais solde. Le PISP
+                  <strong>écrit</strong>&nbsp;: une erreur déplace de l’argent.
+                  La conséquence change tout&nbsp;— la SCA est obligatoire à
+                  chaque paiement, l’idempotence devient critique, la
+                  réconciliation avec le règlement ne pardonne pas. C’est ce qui
+                  rend le PISP un excellent terrain d’architecture.
+                </p>
+              </div>
+            </section>
+
+            <!-- APERÇU -->
+            <section class="section">
+              <p class="section-label">Aperçu</p>
+              <h2>Le parcours du Jour 3, en une image</h2>
+              <p class="intro">
+                On part du principe économique (pourquoi un tel paiement
+                existe), on suit un flux complet du clic au règlement, on
+                descend dans le SI qui le rend possible, puis on modélise un
+                cas réel en atelier.
+              </p>
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>S1 — Principe du paiement initié</h3>
+                  <p>
+                    Qu’est-ce qu’un paiement initié par un tiers&nbsp;?
+                    Transfert compte à compte, alternative à la carte, acteurs
+                    Client → PISP → Banque → Marchand.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>S2 — Flux PISP détaillé</h3>
+                  <p>
+                    Cinq étapes&nbsp;: consentement, redirection SCA, initiation,
+                    confirmation, règlement. Et les comparaisons
+                    PISP vs carte, PISP vs wallet.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>S3 — Architecture SI PISP</h3>
+                  <p>
+                    Frontend marchand, backend PISP, API bancaire, core payment
+                    engine. Contraintes de disponibilité, latence, gestion des
+                    rejets.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>S4 — Atelier de modélisation</h3>
+                  <p>
+                    Modéliser un paiement e-commerce via PISP&nbsp;: diagramme de
+                    séquence, rôles des acteurs, messages échangés.
+                  </p>
+                </div>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Fil du Jour 3</h3>
+                  <p>Principe → Flux → Architecture → Modélisation</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Chaîne pédagogique du jour 3">
+                  <defs>
+                    <marker id="ah-j3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="50" width="220" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="130" y="80" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">3.1</text>
+                    <text x="130" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Principe</text>
+                    <text x="130" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">initié par un tiers</text>
+                  </g>
+                  <line x1="248" y1="105" x2="278" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j3)"/>
+                  <g>
+                    <rect x="286" y="50" width="220" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="396" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">3.2</text>
+                    <text x="396" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Flux PISP</text>
+                    <text x="396" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">consent · SCA · règlement</text>
+                  </g>
+                  <line x1="514" y1="105" x2="544" y2="105" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-j3)"/>
+                  <g>
+                    <rect x="552" y="50" width="220" height="110" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="662" y="80" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">3.3</text>
+                    <text x="662" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Architecture SI</text>
+                    <text x="662" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">frontend · engine</text>
+                  </g>
+                  <line x1="780" y1="105" x2="810" y2="105" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-j3)"/>
+                  <g>
+                    <rect x="818" y="50" width="166" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="901" y="80" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700" letter-spacing="0.08em">3.4</text>
+                    <text x="901" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Atelier</text>
+                    <text x="901" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">modélisation</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <!-- OBJECTIFS -->
+            <section class="section">
+              <p class="section-label">Objectifs pédagogiques</p>
+              <h2>À l’issue du Jour 3, l’étudiant sait…</h2>
+              <ul class="topic-list">
+                <li>
+                  <span>
+                    <strong>Définir</strong> un paiement par initiation&nbsp;: un
+                    transfert compte à compte déclenché par un tiers agréé, au
+                    nom et avec l’authentification du client, sans carte.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Décrire</strong> le flux PISP complet&nbsp;:
+                    consentement, redirection SCA, initiation, confirmation,
+                    règlement — et nommer les messages échangés à chaque étape.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Comparer</strong> PISP, carte bancaire et wallet&nbsp;:
+                    coût, garantie, sécurité, expérience, cas d’usage.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Cartographier</strong> l’architecture SI d’un
+                    PISP&nbsp;: frontend marchand, backend, API bancaire, core
+                    payment engine, et leurs contraintes (disponibilité, latence,
+                    rejets).
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Modéliser</strong> un paiement e-commerce en diagramme
+                    de séquence, avec les rôles et les messages exacts.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Identifier</strong> les notions critiques du PISP&nbsp;:
+                    idempotence, statut de paiement, gestion des rejets, anti-fraude,
+                    réconciliation.
+                  </span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- DÉROULÉ -->
+            <section class="section">
+              <p class="section-label">Organisation</p>
+              <h2>Déroulé des 4 heures</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Temps</th>
+                      <th scope="col">Bloc</th>
+                      <th scope="col">Modalité</th>
+                      <th scope="col">Livrable</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">0 h 00 – 0 h 10</th>
+                      <td>Intro &amp; objectifs</td>
+                      <td>Plénière</td>
+                      <td>Vision d’ensemble</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">0 h 10 – 0 h 55</th>
+                      <td>3.1 Principe du paiement initié</td>
+                      <td>Exposé + discussion</td>
+                      <td>Carte des acteurs</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">0 h 55 – 1 h 55</th>
+                      <td>3.2 Flux PISP détaillé</td>
+                      <td>Exposé + schéma animé</td>
+                      <td>Flux en 5 étapes</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1 h 55 – 2 h 05</th>
+                      <td>Pause</td>
+                      <td>—</td>
+                      <td>—</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2 h 05 – 2 h 55</th>
+                      <td>3.3 Architecture SI PISP</td>
+                      <td>Exposé + schéma</td>
+                      <td>Schéma des composants</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">2 h 55 – 4 h 00</th>
+                      <td>3.4 Atelier de modélisation</td>
+                      <td>Travaux de groupe</td>
+                      <td>Diagramme de séquence</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Ce qu’il faut avoir retenu des jours 1 et 2</h3>
+                <p>
+                  Les rôles ASPSP / TPP / PISP, la chaîne Gateway → consentement →
+                  IAM → core, le parcours de redirection, et les mécanismes
+                  OAuth2 / mTLS / SCA. Le PISP réutilise tout&nbsp;: on ne
+                  redéfinit plus, on applique à un paiement.
+                </p>
+              </div>
+            </section>
+
+            <!-- CURSUS -->
+            <section class="section">
+              <p class="section-label">Cursus</p>
+              <h2>Trajectoire des 5 jours</h2>
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Programme module</h3>
+                  <p>Fondements → API &amp; sécurité → PISP → AISP → synthèse</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Programme module sur 5 jours">
+                  <defs>
+                    <marker id="ah-prog3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="18" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="104" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="104" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J1</text>
+                    <text x="104" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Fondements</text>
+                    <text x="104" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">DSP2 · acteurs</text>
+                  </g>
+                  <line x1="198" y1="96" x2="218" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog3)"/>
+                  <g>
+                    <rect x="226" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="312" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="312" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J2</text>
+                    <text x="312" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">API &amp; sécurité</text>
+                    <text x="312" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">OAuth2 · SCA</text>
+                  </g>
+                  <line x1="406" y1="96" x2="426" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-prog3)"/>
+                  <g>
+                    <rect x="434" y="36" width="172" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="520" y="68" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.06em">AUJOURD’HUI</text>
+                    <text x="520" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="22" font-weight="700">J3</text>
+                    <text x="520" y="128" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Paiement PISP</text>
+                    <text x="520" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">initiation · flux</text>
+                  </g>
+                  <line x1="614" y1="96" x2="634" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog3)"/>
+                  <g>
+                    <rect x="642" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="728" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="728" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J4</text>
+                    <text x="728" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Agrégation AISP</text>
+                    <text x="728" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">data banking</text>
+                  </g>
+                  <line x1="822" y1="96" x2="842" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog3)"/>
+                  <g>
+                    <rect x="850" y="36" width="132" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="916" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="916" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="20" font-weight="700">J5</text>
+                    <text x="916" y="128" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">Open Finance</text>
+                    <text x="916" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">synthèse</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            
+          </div>
+  </div>
+</article>
+<article class="support-bloc" id="s1-principe" data-num="02">
+  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <div class="fiche-meta"><span class="tag">Parcours narratif</span></div>
+      <p class="day-kicker">02 · S1 · Principe du paiement initié</p>
+      <h1>S1 · Principe du paiement initié</h1>
+    </div>
+  </section>
+  <div class="wrap support-bloc-body">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Séquence 1</span>
+                <span class="tag tag-accent">45 min</span>
+              </div>
+              <p class="day-kicker">Qu’est-ce qu’un paiement initié&nbsp;?</p>
+              <h1>Principe du paiement initié</h1>
+              <p class="lead">
+                Avant de plonger dans les flux et l’architecture, il faut
+                comprendre <em>ce qu’est</em> un paiement initié par un tiers,
+                en quoi il diffère d’un paiement par carte, et pourquoi il
+                existe.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam a trop souvent vu sa carte refusée pour des plafonds atteints
+                ou des authentifications ratées. Pour ce paiement, le marchand lui
+                propose une autre voie&nbsp;: <strong>un virement direct depuis son
+                compte</strong>, validé dans l’application de sa banque. Pas de
+                numéro de carte à saisir.
+              </p>
+            </div>
+
+            <!-- DÉFINITION -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Définition</p>
+              <h2>Le paiement par initiation, mot à mot</h2>
+
+              <div class="definition-full">
+                <strong>Paiement par initiation</strong> (en anglais
+                <em>Payment Initiation</em>)&nbsp;: un paiement dans lequel un
+                <strong>tiers agréé (le PISP)</strong> déclenche, <strong>au nom et
+                pour le compte du client</strong>, un <strong>virement d’un compte
+                de paiement vers un bénéficiaire</strong>, sur ordre du client,
+                avec l’intervention authentifiée de la banque qui tient le compte.
+              </div>
+
+              <p>
+                Trois mots de la définition portent tout le sens&nbsp;:
+              </p>
+
+              <div class="split-3">
+                <div class="panel">
+                  <h3>«&nbsp;Au nom du client&nbsp;»</h3>
+                  <p>
+                    Le PISP <strong>n’agit jamais pour lui-même</strong>&nbsp;: il
+                    exécute la volonté de Lyam. Il ne détient jamais les fonds, ne
+                    décide pas seul, ne peut pas modifier l’ordre une fois validé.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>«&nbsp;Virement&nbsp;»</h3>
+                  <p>
+                    Ce n’est <strong>pas un paiement carte</strong>&nbsp;: les
+                    fonds quittent un compte à vue par un virement (SCT, SCT inst).
+                    On reste dans le monde des <em>virements</em>, pas de la
+                    monétique.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>«&nbsp;Sur ordre du client&nbsp;»</h3>
+                  <p>
+                    L’<strong>authentification forte du client</strong> est la
+                    contrepartie. Le PISP déclenche, la banque authentifie, le
+                    client valide. Sans SCA, pas d’initiation valide.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Le PISP et la carte&nbsp;: deux mondes</h3>
+                <p>
+                  Un paiement carte passe par un <strong>réseau de cartes</strong>
+                  (Visa, Mastercard) avec autorisation, clearing et settlement. Un
+                  paiement PISP passe par un <strong>système de virements</strong>
+                  (SEPA&nbsp;: SCT et SCT instantané). C’est la première distinction
+                  à fixer&nbsp;: le PISP est un canal de paiement de compte à compte,
+                  pas un substitut technique à la carte sur le même rail.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRANSFERT COMPTE À COMPTE -->
+            <section class="section">
+              <p class="section-label">Mécanique</p>
+              <h2>Un virement, trois acteurs additionnels</h2>
+              <p class="intro">
+                Un virement «&nbsp;classique&nbsp;» est déjà un transfert compte à
+                compte. Ce que le PISP ajoute, c’est la capacité de le déclencher
+                <em>depuis le site du marchand</em>, sans que Lyam quitte son
+                parcours d’achat pour aller faire un virement manuel.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Acteur</th>
+                      <th scope="col">Rôle dans un virement manuel</th>
+                      <th scope="col">Rôle avec un PISP</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Client (Lyam)</th><td>Saisit le virement dans son appli bancaire</td><td>Clique «&nbsp;payer&nbsp;» chez le marchand, valide la SCA</td></tr>
+                    <tr><th scope="row">Banque (ASPSP)</th><td>Reçoit l’ordre de Lyam</td><td>Authentifie Lyam, exécute le virement ordonné par le PISP</td></tr>
+                    <tr><th scope="row">Bénéficiaire (marchand)</th><td>Attend un virement sans lien direct</td><td>Reçoit un virement rattaché à une commande</td></tr>
+                    <tr class="is-exergue"><th scope="row">PISP</th><td>N’existe pas</td><td>Déclenche l’ordre au nom de Lyam, sans toucher aux fonds</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="key-idea">
+                <p class="label">Idée directrice</p>
+                <p>
+                  Le PISP ne crée pas d’argent, ne détient pas d’argent, ne
+                  transporte pas d’argent. Il crée un <em>ordre de virement
+                  authentifié</em> que la banque du payeur exécute.
+                </p>
+              </div>
+
+              <div class="callout warn">
+                <h3>Ne pas confondre PISP, PSP et ASPSP</h3>
+                <p>
+                  Le <strong>PISP</strong> est un <em>type</em> de PSP (comme
+                  l’AISP et le CBPII). L’<strong>ASPSP</strong> est la banque qui
+                  tient le compte. Un établissement peut cumuler plusieurs
+                  agréments, mais chaque service qu’il rend relève d’un rôle
+                  précis. Cette clarté est la clé de tous les audits.
+                </p>
+              </div>
+            </section>
+
+            <!-- ACTEURS : CLIENT -> PISP -> BANQUE -> MARCHAND -->
+            <section class="section">
+              <p class="section-label">Acteurs</p>
+              <h2 id="acteurs">Le quadruple&nbsp;: Client → PISP → Banque → Marchand</h2>
+              <p class="intro">
+                On retient une chaîne à quatre&nbsp;: le client, le
+                PISP, la banque et le marchand. Chacun a un intérêt propre — et
+                c’est la divergence ou la convergence de ces intérêts qui
+                structure le modèle.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Chaîne des acteurs d’un paiement initié</h3>
+                  <p>Client → PISP → Banque → Marchand (et le retour)</p>
+                </div>
+                <svg viewBox="0 0 1000 300" role="img" aria-label="Chaîne des acteurs PISP">
+                  <defs>
+                    <marker id="ah-s1j3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                    <marker id="ah-s1j3b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#6b4fa0" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="90" width="200" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
+                    <text x="120" y="126" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="15" font-weight="700">Client</text>
+                    <text x="120" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">Lyam</text>
+                    <text x="120" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">veut payer, vite et sûrement</text>
+                  </g>
+                  <line x1="224" y1="145" x2="270" y2="145" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-s1j3)"/>
+                  <text x="247" y="132" text-anchor="middle" fill="#087a6a" font-size="9">ordre</text>
+                  <g>
+                    <rect x="276" y="90" width="200" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="376" y="126" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">PISP</text>
+                    <text x="376" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">tiers initiateur</text>
+                    <text x="376" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">agrégé, jamais détenteur</text>
+                  </g>
+                  <line x1="480" y1="145" x2="526" y2="145" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-s1j3)"/>
+                  <text x="503" y="132" text-anchor="middle" fill="#087a6a" font-size="9">API PIS</text>
+                  <g>
+                    <rect x="532" y="90" width="200" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="632" y="126" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="15" font-weight="700">Banque</text>
+                    <text x="632" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">ASPSP</text>
+                    <text x="632" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">authentifie · exécute</text>
+                  </g>
+                  <line x1="736" y1="145" x2="782" y2="145" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-s1j3)"/>
+                  <text x="759" y="132" text-anchor="middle" fill="#087a6a" font-size="9">virement</text>
+                  <g>
+                    <rect x="788" y="90" width="192" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="884" y="126" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="15" font-weight="700">Marchand</text>
+                    <text x="884" y="150" text-anchor="middle" fill="#5a6b7c" font-size="11">bénéficiaire</text>
+                    <text x="884" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">livre la commande</text>
+                  </g>
+
+                  <path d="M 376 200 L 376 240 L 884 240 L 884 200" fill="none" stroke="#6b4fa0" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ah-s1j3b)"/>
+                  <text x="620" y="232" text-anchor="middle" fill="#6b4fa0" font-size="10">confirmation du statut de paiement (accusé)</text>
+                  <text x="500" y="278" text-anchor="middle" fill="#5a6b7c" font-size="11">La banque est le seul nœud qui touche réellement l’argent de Lyam.</text>
+                </svg>
+              </div>
+
+              <div class="role-grid">
+                <article class="role-card tpp">
+                  <h3>Le client</h3>
+                  <p class="role-full">Payeur</p>
+                  <p class="role-desc">
+                    Donne un ordre de paiement, réalise la SCA chez sa banque. S’il
+                    ne valide pas, rien ne part. Il garde la main à chaque étape.
+                  </p>
+                </article>
+                <article class="role-card pisp">
+                  <h3>Le PISP</h3>
+                  <p class="role-full">Payment Initiation Service Provider</p>
+                  <p class="role-desc">
+                    Relie marchand et banque, prépare l’ordre, déclenche l’API de
+                    paiement, propose le parcours de SCA. <strong>Jamais
+                    détenteur</strong> des fonds.
+                  </p>
+                </article>
+                <article class="role-card aspsp">
+                  <h3>La banque</h3>
+                  <p class="role-full">ASPSP · tient le compte</p>
+                  <p class="role-desc">
+                    Authentifie le client, vérifie le compte et la provision,
+                    exécute le virement. Elle est responsable de la tenue de
+                    compte.
+                  </p>
+                </article>
+                <article class="role-card">
+                  <h3>Le marchand</h3>
+                  <p class="role-full">Bénéficiaire · commerçant</p>
+                  <p class="role-desc">
+                    Propose le bouton de paiement, reçoit le paiement sur son
+                    compte (directement ou via un compte de collecte), livre la
+                    commande selon le statut.
+                  </p>
+                </article>
+              </div>
+            </section>
+
+            <!-- ALTERNATIVE CARTE -->
+            <section class="section">
+              <p class="section-label">Positionnement</p>
+              <h2 id="alternative">Une alternative à la carte — pas un doublon</h2>
+              <p class="intro">
+                Le paiement initié n’a pas été conçu pour tuer la carte, mais pour
+                couvrir des cas où la carte est coûteuse, refusée ou inadaptée.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Cas d’usage</th>
+                      <th scope="col">Pourquoi le PISP est pertinent</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Plafond carte atteint</th><td>Le compte a de la provision&nbsp;: le virement passe là où la carte bloque</td></tr>
+                    <tr><th scope="row">Client sans carte</th><td>Non bancarisé en carte, mais titulaire d’un compte de paiement</td></tr>
+                    <tr><th scope="row">Panier très élevé</th><td>Pas de limite assimilable au plafond carte</td></tr>
+                    <tr><th scope="row">Marchand à faible marge</th><td>Le virement peut coûter moins cher que la commission carte</td></tr>
+                    <tr class="is-exergue"><th scope="row">Réduction du risque de fraude</th><td>La SCA a lieu chez la banque du payeur, dans son appli habituelle</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>Mais aussi&nbsp;: des limites réelles</h3>
+                <p>
+                  Le paiement initié <strong>n’est pas réversible</strong> comme
+                  un paiement carte contesté&nbsp;: la protection
+                  <em>chargeback</em> n’existe pas nativement. Il exige une SCA à
+                  chaque paiement, ce qui ajoute de la friction. Et il dépend de
+                  la disponibilité de l’API bancaire. Un marchand doit donc
+                  garder plusieurs moyens de paiement&nbsp;: le PISP complète, il
+                  ne remplace pas.
+                </p>
+              </div>
+
+              <details open class="cours-note">
+                <summary>Cours — PISP vs carte&nbsp;: l’écart en profondeur</summary>
+                <div class="cours-note-body">
+                  <div class="csm-table-wrap" style="margin:0.7rem 0 0">
+                    <table class="csm-table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Critère</th>
+                          <th scope="col">Carte</th>
+                          <th scope="col">PISP</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th scope="row">Rail</th><td>Réseau carte (Visa/MC)</td><td>Virements SEPA (SCT / SCT inst)</td></tr>
+                        <tr><th scope="row">Porteur</th><td>Instrument («&nbsp;la carte&nbsp;»)</td><td>Compte de paiement (IBAN)</td></tr>
+                        <tr><th scope="row">Rails de traitement</th><td>Autorisation · clearing · settlement</td><td>Exécution · compensation · règlement SEPA</td></tr>
+                        <tr><th scope="row">Contestation</th><td>Chargeback / impayé</td><td>Recours SEPA, pas de chargeback «&nbsp;à la carte&nbsp;»</td></tr>
+                        <tr><th scope="row">Coût marchand</th><td>Commission interbancaire + réseau</td><td>Souvent plus faible (virement)</td></tr>
+                        <tr class="is-exergue"><th scope="row">Friction</th><td>Faible (enregistrement, tokenisation)</td><td>SCA par paiement&nbsp;: plus de friction</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>
+                    Cette comparaison annonce la question de la comparaison avec le
+                    <strong>wallet</strong> (S2)&nbsp;: le wallet est une
+                    <em>enveloppe</em> qui peut contenir une carte <em>ou</em>
+                    déclencher un paiement de compte. Le PISP est l’un des rails
+                    qu’un wallet peut utiliser.
+                  </p>
+                </div>
+              </details>
+            </section>
+
+            <!-- POURQUOI ÇA EXISTE -->
+            <section class="section">
+              <p class="section-label">Rationnel</p>
+              <h2>Pourquoi la DSP2 a-t-elle créé le PISP&nbsp;?</h2>
+              <p>
+                La DSP2 poursuit trois objectifs (vus au Jour 1&nbsp;: concurrence,
+                innovation, protection). Le PISP les incarne tous les trois&nbsp;:
+              </p>
+
+              <div class="objectif-list">
+                <div class="objectif">
+                  <span class="obj-num">01</span>
+                  <h3>Concurrence</h3>
+                  <p class="obj-lea">
+                    «&nbsp;Pourquoi devrais-je passer par un terminal carte ou
+                    une appli bancaire pour payer un marchand&nbsp;?&nbsp;»
+                  </p>
+                  <p>
+                    Le PISP ouvre un canal de paiement alternatif, en dehors des
+                    réseaux cartes, avec ses propres acteurs et sa propre
+                    concurrence.
+                  </p>
+                </div>
+                <div class="objectif">
+                  <span class="obj-num">02</span>
+                  <h3>Innovation</h3>
+                  <p class="obj-lea">
+                    «&nbsp;Payer en un clic depuis un site, sans saisir de
+                    carte&nbsp;: c’est nouveau&nbsp;?&nbsp;»
+                  </p>
+                  <p>
+                    Le PISP rend le virement utilisable dans un parcours
+                    e-commerce, ce qui ouvre des modèles (paiement par lien,
+                    paiement de facture, collecte).
+                  </p>
+                </div>
+                <div class="objectif">
+                  <span class="obj-num">03</span>
+                  <h3>Protection</h3>
+                  <p class="obj-lea">
+                    «&nbsp;Le marchand ne verra jamais mes identifiants ni ma
+                    carte.&nbsp;»
+                  </p>
+                  <p>
+                    Le client reste authentifié chez sa banque, dans son
+                    environnement habituel&nbsp;: le tiers n’accède jamais aux
+                    secrets d’authentification.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Maintenant, déroulons le flux</h2>
+                <p>
+                  On sait ce qu’est un paiement initié et qui y participe. La S2
+                  suit le paiement dans le temps, du consentement au règlement,
+                  et compare PISP, carte et wallet.
+                </p>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2, annexe I, point 7 (service
+              d’initiation de paiement)&nbsp;; article 4 §15&nbsp;; RTS EBA
+              2018/389 (SCA du PISP)&nbsp;; Berlin Group NextGenPSD2 (structures
+              PIS et consentements de paiement).
+            </div>
+
+            
+          </div>
+  </div>
+</article>
+<article class="support-bloc" id="s2-flux" data-num="03">
+  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <div class="fiche-meta"><span class="tag">Parcours narratif</span></div>
+      <p class="day-kicker">03 · S2 · Flux PISP détaillé</p>
+      <h1>S2 · Flux PISP détaillé</h1>
+    </div>
+  </section>
+  <div class="wrap support-bloc-body">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Séquence 2</span>
+                <span class="tag tag-accent">60 min</span>
+              </div>
+              <p class="day-kicker">Du clic au règlement</p>
+              <h1>Flux PISP détaillé</h1>
+              <p class="lead">
+                Un paiement initié se déroule en cinq temps&nbsp;: consentement,
+                redirection SCA, initiation, confirmation, règlement. On les suit
+                un par un, puis on compare PISP, carte et wallet.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam a cliqué sur «&nbsp;Payer par virement&nbsp;». L’écran va
+                changer plusieurs fois&nbsp;: le site du marchand, puis une page de
+                Banque Est pour s’authentifier, puis un retour. Derrière ces
+                changements d’écran, il y a cinq étapes précises.
+              </p>
+            </div>
+
+            <!-- VUE D'ENSEMBLE -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Vue d’ensemble</p>
+              <h2 id="cinq-etapes">Les cinq étapes du flux PISP</h2>
+              <p class="intro">
+
+                On distingue cinq étapes. Chacune correspond à un
+                acteur qui «&nbsp;tient le stylo&nbsp;» et à un message précis.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Étape</th>
+                      <th scope="col">Acteur principal</th>
+                      <th scope="col">Résultat</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">1</th><td>Consentement client</td><td>PISP + client</td><td>Intention de payer + consentement de paiement</td></tr>
+                    <tr><th scope="row">2</th><td>Redirection SCA</td><td>Banque (ASPSP)</td><td>Client authentifié dans son environnement bancaire</td></tr>
+                    <tr><th scope="row">3</th><td>Initiation du paiement</td><td>PISP</td><td>Ordre de virement déposé, idempotent</td></tr>
+                    <tr><th scope="row">4</th><td>Confirmation</td><td>Banque + PISP</td><td>Statut&nbsp;: accepté, en attente, rejeté</td></tr>
+                    <tr class="is-exergue"><th scope="row">5</th><td>Règlement</td><td>Banques + SEPA</td><td>Fonds transférés, commande livrée</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- ÉTAPE 1 -->
+            <section class="section">
+              <p class="section-label">Étape 1</p>
+              <h2 id="consentement">Le consentement client</h2>
+              <p>
+                Le consentement PIS diffère radicalement de l’AIS. En AIS, un
+                consentement couvre une <em>période</em> et plusieurs lectures. En
+                PIS, un consentement couvre <strong>un paiement</strong>&nbsp;: montant,
+                bénéficiaire, devise, motif. Un paiement = un consentement.
+              </p>
+
+              <div class="callout info">
+                <h3>Ce que contient un consentement PIS</h3>
+                <ul>
+                  <li><strong>Montant</strong> et devise&nbsp;;</li>
+                  <li><strong>Bénéficiaire</strong> (IBAN ou identifiant, jamais modifiable après la SCA)&nbsp;;</li>
+                  <li><strong>Motif</strong> (référence de commande — essentiel pour le rapprochement)&nbsp;;</li>
+                  <li><strong>Compte débiteur</strong> (choisi ou implicite)&nbsp;;</li>
+                  <li><strong>Validité</strong> courte&nbsp;: le paiement doit être initié vite, sinon on recommence.</li>
+                </ul>
+              </div>
+
+              <p>
+                La première étape est aussi celle où le PISP vérifie qu’il a bien
+                un <strong>agrément en cours</strong> et que le client est
+                authentifiable. Ce n’est pas encore un virement&nbsp;: c’est l’acte
+                de vouloir payer.
+              </p>
+            </section>
+
+            <!-- ÉTAPE 2 -->
+            <section class="section">
+              <p class="section-label">Étape 2</p>
+              <h2 id="redirection">La redirection SCA</h2>
+              <p>
+                Point clé&nbsp;: le client est redirigé vers <strong>sa banque</strong>
+                pour s’authentifier fortement. Le PISP ne collecte jamais les
+                secrets du client. Il propose une redirection (ou, si la banque le
+                permet, une authentification embarquée ou découplée). Mais le
+                principe reste&nbsp;: la <strong>SCA est faite par le monde
+                bancaire</strong>.
+              </p>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">A</span>
+                  <div>
+                    <strong>Redirection</strong>
+                    <p>
+                      Le PISP renvoie vers l’ASPSP avec un identifiant de
+                      consentement et un paramètre d’état (protection contre les
+                      attaques cross-site).
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">B</span>
+                  <div>
+                    <strong>Authentification forte</strong>
+                    <p>
+                      Le client réalise la SCA chez sa banque&nbsp;: code,
+                      notification push, biométrie, boîtier. Trois facteurs au choix
+                      (connaissance, possession, inhérence), deux combinés.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">C</span>
+                  <div>
+                    <strong>Confirmation du consentement PIS</strong>
+                    <p>
+                      La banque affiche le détail du paiement (montant,
+                      bénéficiaire) et demande validation. Le client ne peut pas le
+                      modifier à ce stade.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">D</span>
+                  <div>
+                    <strong>Retour + code</strong>
+                    <p>
+                      La banque émet un code d’autorisation que le PISP échange pour
+                      obtenir les droits d’initier ce paiement précis.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Penser SCA avant de penser paiement</h3>
+                <p>
+                  Un PISP qui ne sait pas orchestrer la SCA tourne à vide. Le flux
+                  de paiement dépend du mécanisme d’authentification du pays et des
+                  banques (redirection, intégration, découplée). C’est souvent le
+                  travail d’intégration le plus lourd du projet.
+                </p>
+              </div>
+
+              <details open class="cours-note">
+                <summary>Cours — les trois modèles de SCA en PISP</summary>
+                <div class="cours-note-body">
+                  <div class="csm-table-wrap" style="margin:0.7rem 0 0">
+                    <table class="csm-table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Modèle</th>
+                          <th scope="col">Où se fait la SCA</th>
+                          <th scope="col">Avantages / limites</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th scope="row">Redirection</th><td>Chez l’ASPSP</td><td>Universel&nbsp;; rupture d’expérience (changement d’app)</td></tr>
+                        <tr><th scope="row">Intégration</th><td>Dans l’expérience du PISP</td><td>Fluide&nbsp;; dépend du plugin banque, responsabilité plus lourde</td></tr>
+                        <tr class="is-exergue"><th scope="row">Découplée</th><td>Dans l’app bancaire</td><td>Excellent sur mobile&nbsp;; complexe, pas universel</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+            </section>
+
+            <!-- ÉTAPE 3 -->
+            <section class="section">
+              <p class="section-label">Étape 3</p>
+              <h2 id="initiation">L’initiation du paiement</h2>
+              <p>
+                Le PISP appelle l’API PIS de la banque. C’est là que naît l’ordre
+                de virement. Deux qualités techniques font la différence ici&nbsp;:
+                l’<strong>idempotence</strong> et la <strong>traçabilité</strong>.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>L’idempotence</h3>
+                  <p>
+                    Chaque initiation porte un identifiant unique. Si le PISP
+                    renvoie la requête (timeout, réseau), la banque reconnaît
+                    l’identifiant et <strong>ne crée pas un second virement</strong>.
+                    Sans idempotence, un simple retry débite deux fois Lyam.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>La référence marchand</h3>
+                  <p>
+                    Le motif du virement contient la référence de commande. C’est
+                    ce qui permet au marchand de rapprocher un virement reçu et une
+                    commande. Sans référence, la trésorerie devient un cauchemar.
+                  </p>
+                </div>
+              </div>
+
+              <figure class="code-block">
+                <figcaption>Exemple — appel d’initiation PIS (illustratif)</figcaption>
+                <pre><code><span class="c">POST /v1/payments/sepa-credit-transfers</span>
+<span class="k">Content-Type</span>: application/json
+<span class="k">Authorization</span>: Bearer eyJhbGciOi...
+<span class="k">X-Request-ID</span>: 8f3a-commande-20458
+
+{
+  <span class="s">"debtorAccount"</span>: { <span class="s">"iban"</span>: <span class="s">"FR76...0388"</span> },
+  <span class="s">"instructedAmount"</span>: { <span class="s">"currency"</span>: <span class="s">"EUR"</span>, <span class="s">"amount"</span>: <span class="s">"89.90"</span> },
+  <span class="s">"creditorAccount"</span>: { <span class="s">"iban"</span>: <span class="s">"FR14...6241"</span> },
+  <span class="s">"creditorName"</span>: <span class="s">"Atelier Verre &amp; Cie"</span>,
+  <span class="s">"remittanceInformationUnstructured"</span>: <span class="s">"CMD-20458"</span>
+}</code></pre>
+              </figure>
+
+              <p>
+                La réponse ne dit pas «&nbsp;payé&nbsp;», elle dit
+                <strong>«&nbsp;reçu&nbsp;»</strong> avec un statut. Le vrai
+                résultat viendra à l’étape suivante.
+              </p>
+            </section>
+
+            <!-- ÉTAPE 4 -->
+            <section class="section">
+              <p class="section-label">Étape 4</p>
+              <h2 id="confirmation">La confirmation (le statut)</h2>
+              <p>
+                Le PISP n’a pas de certitude immédiate. Il interroge le
+                <strong>statut du paiement</strong> jusqu’à obtenir un état
+                définitif. C’est la partie que négligent les implémentations
+                naïves&nbsp;: elles traitent la réponse d’initiation comme un
+                paiement réussi.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Statut PIS</th>
+                      <th scope="col">Signification</th>
+                      <th scope="col">Ce que fait le marchand</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">RCVD</th><td>Reçu</td><td>Attend, ne livre pas encore</td></tr>
+                    <tr><th scope="row">PDNG</th><td>En cours d’exécution</td><td>Attente, polling</td></tr>
+                    <tr><th scope="row">ACSC / ACCP</th><td>Accepté / réglé</td><td>Peut livrer la commande</td></tr>
+                    <tr><th scope="row">RJCT</th><td>Rejeté</td><td>Propose un autre moyen de paiement</td></tr>
+                    <tr class="is-exergue"><th scope="row">CANC</th><td>Annulé</td><td>Traite comme un abandon</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Polling et notification</h3>
+                <p>
+                  Le PISP peut interroger le statut (polling) ou — selon les API —
+                  recevoir un événement. Les deux doivent être
+                  <strong>idempotents</strong> et cohérents&nbsp;: un double accusé
+                  ne doit pas générer une double livraison. C’est exactement le type
+                  d’exercice de l’atelier S4.
+                </p>
+              </div>
+            </section>
+
+            <!-- ÉTAPE 5 -->
+            <section class="section">
+              <p class="section-label">Étape 5</p>
+              <h2 id="reglement">Le règlement</h2>
+              <p>
+                Une fois l’ordre exécuté, l’argent circule&nbsp;: du compte de Lyam
+                vers le compte du marchand, par le rail SEPA. Le PISP n’y touche
+                plus. Il a déclenché&nbsp;; la banque et l’infrastructure de
+                paiement exécutent.
+              </p>
+
+              <ol class="steps-list">
+                <li><strong>Exécution</strong> — la banque de Lyam débite son compte et émet le virement.</li>
+                <li><strong>Compensation</strong> — le virement est présenté au système SEPA, puis au bénéficiaire.</li>
+                <li><strong>Règlement</strong> — les banques se règlent entre elles, via les mécanismes de règlement interbancaire.</li>
+                <li><strong>Crédit</strong> — le compte du marchand est crédité&nbsp;; la référence permet le rapprochement de la commande.</li>
+              </ol>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Rail</th>
+                      <th scope="col">Délai indicatif</th>
+                      <th scope="col">Implication pour la commande</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">SCT (virement standard)</th><td>J+1 ouvré</td><td>La commande attend le crédit ou est livrée sous réserve</td></tr>
+                    <tr class="is-exergue"><th scope="row">SCT Instantané</th><td>Quelques secondes</td><td>Livraison quasi immédiate possible, comme une carte</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout">
+                <h3>Conséquence pour le marchand</h3>
+                <p>
+                  Le PISP est excellent quand le règlement est instantané&nbsp;: le
+                  marchand sait en quelques secondes s’il peut livrer. Avec un SCT
+                  classique, il doit choisir entre attendre le crédit (friction) ou
+                  livrer sous réserve (risque). La stratégie de livraison dépend du
+                  rail, pas seulement du PISP.
+                </p>
+              </div>
+            </section>
+
+            <!-- DIAGRAMME DE SÉQUENCE -->
+            <section class="section">
+              <p class="section-label">Synthèse</p>
+              <h2 id="sequence">Le flux complet en un diagramme</h2>
+              <p class="intro">
+                Ce diagramme réunit les cinq étapes et les acteurs principaux.
+                C’est le squelette que l’atelier S4 vous demandera de produire.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Diagramme de séquence — paiement e-commerce PISP</h3>
+                  <p>Client · PISP · Banque (ASPSP) · Marchand</p>
+                </div>
+                <svg viewBox="0 0 1000 560" role="img" aria-label="Diagramme de séquence du paiement PISP">
+                  <defs>
+                    <marker id="ah-seq" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                    <marker id="ah-seqr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 4">
+                    <line x1="130" y1="70" x2="130" y2="530"/>
+                    <line x1="400" y1="70" x2="400" y2="530"/>
+                    <line x1="670" y1="70" x2="670" y2="530"/>
+                    <line x1="900" y1="70" x2="900" y2="530"/>
+                  </g>
+                  <g>
+                    <rect x="60" y="40" width="140" height="34" rx="6" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="130" y="62" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">Client (Lyam)</text>
+                    <rect x="330" y="40" width="140" height="34" rx="6" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="400" y="62" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">PISP</text>
+                    <rect x="600" y="40" width="140" height="34" rx="6" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="670" y="62" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">Banque (ASPSP)</text>
+                    <rect x="830" y="40" width="140" height="34" rx="6" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="900" y="62" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">Marchand</text>
+                  </g>
+                  <line x1="134" y1="105" x2="396" y2="105" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-seq)"/>
+                  <text x="265" y="99" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">1. consentement de paiement</text>
+                  <line x1="896" y1="125" x2="404" y2="125" stroke="#5a6b7c" stroke-width="1.5" stroke-dasharray="3 3"/>
+                  <text x="650" y="119" text-anchor="middle" fill="#5a6b7c" font-size="9">panier + montant + bénéficiaire</text>
+                  <line x1="400" y1="160" x2="666" y2="160" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-seq)"/>
+                  <text x="533" y="154" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">2. redirection vers la banque (SCA)</text>
+                  <line x1="134" y1="195" x2="666" y2="195" stroke="#5a6b7c" stroke-width="1.5" stroke-dasharray="3 3"/>
+                  <text x="398" y="189" text-anchor="middle" fill="#5a6b7c" font-size="9">Lyam s’authentifie chez la banque</text>
+                  <line x1="670" y1="225" x2="404" y2="225" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-seqr)"/>
+                  <text x="537" y="219" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">code d’autorisation + accord PIS</text>
+                  <line x1="400" y1="270" x2="666" y2="270" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-seq)"/>
+                  <text x="533" y="264" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">3. POST /payments (idempotent)</text>
+                  <line x1="670" y1="305" x2="404" y2="305" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-seqr)"/>
+                  <text x="537" y="299" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">202 RCVD (identifiant)</text>
+                  <line x1="400" y1="350" x2="666" y2="350" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-seq)"/>
+                  <text x="533" y="344" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">4. GET /payments/{id}/status</text>
+                  <line x1="670" y1="385" x2="404" y2="385" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-seqr)"/>
+                  <text x="537" y="379" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">ACSC / ACCP</text>
+                  <line x1="400" y1="420" x2="896" y2="420" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-seq)"/>
+                  <text x="648" y="414" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">statut « payé » + référence commande</text>
+                  <line x1="670" y1="470" x2="896" y2="470" stroke="#3d5a80" stroke-width="2" marker-end="url(#ah-seq)"/>
+                  <text x="783" y="464" text-anchor="middle" fill="#3d5a80" font-size="10" font-weight="700">5. virement SEPA (SCT / inst)</text>
+                  <line x1="896" y1="505" x2="134" y2="505" stroke="#5a6b7c" stroke-width="1.5" stroke-dasharray="3 3"/>
+                  <text x="517" y="524" text-anchor="middle" fill="#5a6b7c" font-size="9">le marchand livre la commande à Lyam</text>
+                  <text x="20" y="108" fill="#6b4fa0" font-size="10" font-weight="800">1</text>
+                  <text x="20" y="198" fill="#6b4fa0" font-size="10" font-weight="800">2</text>
+                  <text x="20" y="273" fill="#6b4fa0" font-size="10" font-weight="800">3</text>
+                  <text x="20" y="353" fill="#6b4fa0" font-size="10" font-weight="800">4</text>
+                  <text x="20" y="473" fill="#6b4fa0" font-size="10" font-weight="800">5</text>
+                </svg>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le piège du «&nbsp;fire and forget&nbsp;»</h3>
+                <p>
+                  Beaucoup d’implémentations s’arrêtent après le
+                  <code>202 RCVD</code>. C’est faux&nbsp;: <strong>reçu ≠
+                  payé</strong>. La confirmation (étape 4) et le règlement (étape 5)
+                  sont des étapes distinctes, chacune porteuse d’échec possible.
+                </p>
+              </div>
+            </section>
+
+            <!-- COMPARAISONS -->
+            <section class="section">
+              <p class="section-label">Comparaisons</p>
+              <h2 id="comparaison">PISP vs carte vs wallet</h2>
+                Trois moyens de payer, trois logiques. Il faut
+                explicitement de comparer le PISP à la carte et au wallet&nbsp;:
+                c’est la grille qui permet de choisir le bon canal.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">Carte</th>
+                      <th scope="col">PISP</th>
+                      <th scope="col">Wallet</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Support</th><td>Instrument physique/virtuel</td><td>Compte de paiement (IBAN)</td><td>Application / enveloppe</td></tr>
+                    <tr><th scope="row">Rail</th><td>Réseau carte</td><td>Virements SEPA</td><td>Variable (carte, compte, solde interne)</td></tr>
+                    <tr><th scope="row">Qui tient l’argent</th><td>Émetteur de carte</td><td>Banque du payeur</td><td>Opérateur du wallet</td></tr>
+                    <tr><th scope="row">Contestation</th><td>Chargeback</td><td>Recours SEPA, pas de chargeback</td><td>Selon le rail sous-jacent</td></tr>
+                    <tr><th scope="row">Friction</th><td>Faible</td><td>SCA par paiement</td><td>Faible (jeton enregistré)</td></tr>
+                    <tr class="is-exergue"><th scope="row">Concurrence</th><td>Réseaux cartes</td><td>Hors réseau carte</td><td>Peut contourner la carte</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>PISP vs carte</h3>
+                  <p>
+                    PISP&nbsp;: virement de compte à compte, souvent moins cher
+                    pour le marchand, pas de chargeback, dépend de la SCA. Carte&nbsp;:
+                    rail mature, contestation protégeant le consommateur, couverture
+                    internationale.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>PISP vs wallet</h3>
+                  <p>
+                    Le <strong>wallet</strong> est une enveloppe (identité, moyen
+                    de paiement, fidélité). Il peut déclencher un <em>paiement
+                    PISP</em> si son concepteur l’a prévu. Le PISP est donc un
+                    <em>rail</em> que le wallet peut utiliser — pas un concurrent
+                    direct dans tous les cas.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Le wallet n’est pas un rail</h3>
+                <p>
+                  Attention à la confusion&nbsp;: un wallet mobile ou un wallet
+                  marchand n’est pas un «&nbsp;rail de paiement&nbsp;», c’est une
+                  interface qui s’appuie sur un rail (la carte tokenisée, le compte,
+                  etc.). Le PISP est un rail. Cette distinction est reprise au Jour 4
+                  (AISP) et au Jour 5 (Open Finance &amp; wallets).
+                </p>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Qui construit quoi&nbsp;?</h2>
+                <p>
+                  Le flux est posé. La S3 regarde l’architecture de celui qui le
+                  met en œuvre&nbsp;: le PISP, entre le site marchand et l’API
+                  bancaire. Frontend, backend, core payment engine, et les
+                  contraintes non négociables.
+                </p>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2 art. 97 (SCA), annexe I point
+              7&nbsp;; RTS EBA 2018/389 art. 5, 10-13, 30-33 (SCA et exemption
+              PISP)&nbsp;; Berlin Group NextGenPSD2 («&nbsp;payment initiation
+              service&nbsp;»)&nbsp;; schémas SEPA SCT / SCT Inst (EPC).
+            </div>
+
+            
+          </div>
+  </div>
+</article>
+<article class="support-bloc" id="s3-architecture" data-num="04">
+  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <div class="fiche-meta"><span class="tag">Parcours narratif</span></div>
+      <p class="day-kicker">04 · S3 · Architecture SI PISP</p>
+      <h1>S3 · Architecture SI PISP</h1>
+    </div>
+  </section>
+  <div class="wrap support-bloc-body">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Séquence 3</span>
+                <span class="tag tag-accent">50 min</span>
+              </div>
+              <p class="day-kicker">Le SI qui rend le paiement possible</p>
+              <h1>Architecture SI PISP</h1>
+              <p class="lead">
+                Entre le bouton du marchand et le compte de Lyam, il y a un
+                système d’information entier. On le pose en quatre composants, puis
+                on regarde les contraintes qui décident du succès.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam ne voit qu’un bouton et une page de banque. Derrière, le
+                marchand, le PISP et la banque échangent des messages. Cette
+                séquence ouvre <strong>la boîte du PISP</strong>&nbsp;: ce qu’il
+                reçoit, ce qu’il garde, ce qu’il transmet, et ce qu’il ne doit
+                jamais laisser tomber.
+              </p>
+            </div>
+
+            <!-- LES QUATRE COMPOSANTS -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Composants</p>
+              <h2 id="composants">Les quatre composants</h2>
+              <p class="intro">
+                Un PISP se décompose en quatre briques. Chacune a une
+                responsabilité propre&nbsp;; les confondre est l’erreur d’architecture
+                la plus fréquente.
+              </p>
+
+              <div class="layer-stack">
+                <article class="layer">
+                  <span class="layer-i">1</span>
+                  <div class="layer-body">
+                    <h3>Frontend marchand</h3>
+                    <p>
+                      La <strong>page de paiement</strong> intégrée au site du
+                      marchand&nbsp;: choix du moyen de paiement, bouton
+                      «&nbsp;payer&nbsp;», affichage du statut. Il ne manipule aucun
+                      secret bancaire — il ne fait qu’initier une demande.
+                    </p>
+                  </div>
+                </article>
+                <article class="layer">
+                  <span class="layer-i">2</span>
+                  <div class="layer-body">
+                    <h3>Backend PISP</h3>
+                    <p>
+                      <strong>Le chef d’orchestre</strong>&nbsp;: gère le consentement,
+                      pilote la redirection SCA, appelle l’API bancaire,
+                      interroge les statuts, gère l’idempotence et la
+                      réconciliation. C’est le cœur de la logique de paiement.
+                    </p>
+                  </div>
+                </article>
+                <article class="layer">
+                  <span class="layer-i">3</span>
+                  <div class="layer-body">
+                    <h3>API bancaire</h3>
+                    <p>
+                      Le <strong>point de contact</strong> côté banque&nbsp;:
+                      réception de l’ordre, SCA, exécution, statut. C’est
+                      l’interface exposée par l’ASPSP (cf. S1 du Jour 2).
+                    </p>
+                  </div>
+                </article>
+                <article class="layer">
+                  <span class="layer-i">4</span>
+                  <div class="layer-body">
+                    <h3>Core payment engine</h3>
+                    <p>
+                      Le <strong>moteur de paiement</strong> de la banque&nbsp;:
+                      tenue des ordres, vérification de provision, génération du
+                      virement SEPA, suivi du settlement. Il ne connaît pas le PISP
+                      — seulement l’ordre validé.
+                    </p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Chaîne PISP de bout en bout</h3>
+                  <p>Du bouton marchand au core payment engine</p>
+                </div>
+                <svg viewBox="0 0 1000 340" role="img" aria-label="Architecture SI PISP">
+                  <defs>
+                    <marker id="ah-s3j3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="120" width="150" height="90" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="95" y="152" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Frontend</text>
+                    <text x="95" y="172" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">marchand</text>
+                    <text x="95" y="194" text-anchor="middle" fill="#5a6b7c" font-size="10">choix · bouton</text>
+                  </g>
+                  <g>
+                    <rect x="205" y="105" width="170" height="120" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                    <text x="290" y="135" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Backend PISP</text>
+                    <text x="290" y="158" text-anchor="middle" fill="#5a6b7c" font-size="10">consentement</text>
+                    <text x="290" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">idempotence</text>
+                    <text x="290" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">statut · polling</text>
+                    <text x="290" y="206" text-anchor="middle" fill="#5a6b7c" font-size="10">réconciliation</text>
+                  </g>
+                  <g>
+                    <rect x="410" y="105" width="170" height="120" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="495" y="135" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">API bancaire</text>
+                    <text x="495" y="158" text-anchor="middle" fill="#5a6b7c" font-size="10">PIS : initiation</text>
+                    <text x="495" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">SCA</text>
+                    <text x="495" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">statut</text>
+                    <text x="495" y="206" text-anchor="middle" fill="#5a6b7c" font-size="10">consentement PIS</text>
+                  </g>
+                  <g>
+                    <rect x="615" y="105" width="180" height="120" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="705" y="135" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Core payment</text>
+                    <text x="705" y="155" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">engine</text>
+                    <text x="705" y="178" text-anchor="middle" fill="#5a6b7c" font-size="10">provision</text>
+                    <text x="705" y="194" text-anchor="middle" fill="#5a6b7c" font-size="10">ordre SEPA</text>
+                    <text x="705" y="210" text-anchor="middle" fill="#5a6b7c" font-size="10">settlement</text>
+                  </g>
+                  <g>
+                    <rect x="830" y="130" width="150" height="70" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="905" y="160" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="12" font-weight="700">SEPA</text>
+                    <text x="905" y="180" text-anchor="middle" fill="#5a6b7c" font-size="10">SCT / Inst</text>
+                  </g>
+
+                  <line x1="170" y1="165" x2="201" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j3)"/>
+                  <line x1="375" y1="165" x2="406" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j3)"/>
+                  <line x1="580" y1="165" x2="611" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j3)"/>
+                  <line x1="795" y1="165" x2="826" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j3)"/>
+
+                  <rect x="205" y="260" width="590" height="55" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="500" y="284" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Journalisation &amp; rapprochement</text>
+                  <text x="500" y="303" text-anchor="middle" fill="#5a6b7c" font-size="10">ordre, statut, référence commande, horodatage — de bout en bout</text>
+                  <line x1="290" y1="225" x2="290" y2="256" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="495" y1="225" x2="495" y2="256" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="705" y1="225" x2="705" y2="256" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                </svg>
+              </div>
+
+              <div class="callout info">
+                <h3>Où se trouve le PISP&nbsp;?</h3>
+                <p>
+                  Dans cette chaîne, le <strong>backend PISP</strong> est le seul
+                  composant qui dialogue avec l’API bancaire. Le frontend marchand
+                  ne parle qu’au PISP, pas à la banque. Cette séparation est ce qui
+                  permet à un même PISP de servir plusieurs marchands sans qu’ils
+                  voient les détails bancaires.
+                </p>
+              </div>
+            </section>
+
+            <!-- CONTRAINTES -->
+            <section class="section">
+              <p class="section-label">Contraintes</p>
+              <h2 id="contraintes">Disponibilité, latence, gestion des rejets</h2>
+              <p class="intro">
+                Point essentiel&nbsp;: un PISP qui «&nbsp;marche sur un
+                PC&nbsp;» ne marche pas. Trois familles de contraintes
+                dimensionnent le système.
+              </p>
+
+              <div class="verrou-grid">
+                <article class="verrou-card" style="border-top-color: var(--accent)">
+                  <span class="verrou-num" style="background: var(--accent)">01</span>
+                  <h3>Disponibilité</h3>
+                  <p class="verrou-lea">
+                    «&nbsp;Le bouton de paiement ne doit jamais renvoyer une page
+                    d’erreur&nbsp;: un paiement raté, c’est un panier abandonné.&nbsp;»
+                  </p>
+                  <p>
+                    Le PISP dépend d’une API bancaire qui peut être indisponible.
+                    Il doit&nbsp;: retry contrôlé, file d’attente, mode dégradé,
+                    alerting sur les taux d’échec, bascule d’opérateur.
+                  </p>
+                </article>
+                <article class="verrou-card" style="border-top-color: var(--issuer)">
+                  <span class="verrou-num" style="background: var(--issuer)">02</span>
+                  <h3>Latence</h3>
+                  <p class="verrou-lea">
+                    «&nbsp;Si l’écran met trente secondes, je ferme l’onglet et
+                    je paie ailleurs.&nbsp;»
+                  </p>
+                  <p>
+                    Les allers-retours (SCA, polling) s’ajoutent. Le PISP doit
+                    masquer la latence (statut optimiste contrôlé, UI de
+                    progression), borner ses timeouts et ne jamais bloquer le
+                    parcours.
+                  </p>
+                </article>
+                <article class="verrou-card" style="border-top-color: var(--warn)">
+                  <span class="verrou-num" style="background: var(--warn)">03</span>
+                  <h3>Gestion des rejets</h3>
+                  <p class="verrou-lea">
+                    «&nbsp;On m’a dit “paiement refusé”. Pourquoi&nbsp;?&nbsp;»
+                  </p>
+                  <p>
+                    Un rejet a une cause&nbsp;: provision insuffisante, IBAN
+                    invalide, SCA échouée, compte fermé. Le PISP doit traduire le
+                    code de rejet en message actionnable et proposer une
+                    alternative.
+                  </p>
+                </article>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Contrainte</th>
+                      <th scope="col">Indicateur</th>
+                      <th scope="col">Levier technique</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Disponibilité</th><td>Taux de succès end-to-end &gt; 98 %</td><td>Circuit breaker, retry idempotent, file tampon</td></tr>
+                    <tr><th scope="row">Latence</th><td>p95 &lt; 2 s côté parcours</td><td>Timeouts courts, UI non bloquante, cache des statuts</td></tr>
+                    <tr><th scope="row">Rejets</th><td>Taux de rejet expliqué = 100 %</td><td>Mapping des codes, messages clairs, fallback carte</td></tr>
+                    <tr class="is-exergue"><th scope="row">Réconciliation</th><td>Écart PISP / banque = 0</td><td>Rapprochement par référence + horodatage, alerting</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le rejet n’est pas une erreur</h3>
+                <p>
+                  Un <code>RJCT</code> est un résultat <strong>légitime</strong> du
+                  système&nbsp;: la banque a refusé le paiement. Le traiter comme
+                  une exception technique (500, page blanche) est l’un des bugs les
+                  plus coûteux en conversion. C’est exactement ce qui distingue un
+                  PISP mature.
+                </p>
+              </div>
+            </section>
+
+            <!-- NOTIONS COMPLÉMENTAIRES -->
+            <section class="section">
+              <p class="section-label">Compléments</p>
+              <h2 id="complements">Ce qu’il faut ajouter au cours pour que ça tienne</h2>
+              <p class="intro">
+                On a listé les composants et les contraintes&nbsp;; la
+                pratique impose quelques notions supplémentaires. On les nomme
+                ici pour être complet.
+              </p>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">i</span>
+                  <div>
+                    <strong>Idempotence end-to-end</strong>
+                    <p>
+                      Toutes les étapes de retry doivent porter un identifiant
+                      stable&nbsp;— pas seulement l’initiation. Un webhook rejoué,
+                      un polling doublé, un redémarrage du PISP ne doivent jamais
+                      produire un second paiement.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">ii</span>
+                  <div>
+                    <strong>Réconciliation des flux</strong>
+                    <p>
+                      Le PISP doit rapprocher&nbsp;: ordres qu’il a émis, statuts
+                      reçus, virements effectivement crédités. Un écart = une
+                      commande livrée à tort, ou un client débité à tort. C’est une
+                      fonction de production, pas une option.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">iii</span>
+                  <div>
+                    <strong>Anti-fraude</strong>
+                    <p>
+                      Vérification des IBAN (contrôle de clé, sanctions, liste
+                      noire), plafonds, détection de comportement anormal. Le PISP
+                      est une cible&nbsp;: un ordre détourné vers un mauvais
+                      bénéficiaire est une fraude classique.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">iv</span>
+                  <div>
+                    <strong>Sécurité by design</strong>
+                    <p>
+                      mTLS avec la banque, jetons courts, secrets hors code,
+                      chiffrement au repos, journalisation sans données sensibles
+                      (IBAN masqué dans les logs).
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Le regard de l’auditeur</h3>
+                <p>
+                  Un auditeur DSP2 pour un PISP demandera trois choses&nbsp;: la
+                  preuve que la SCA a bien eu lieu (traçabilité), la démonstration
+                  de l’idempotence (test de rejeu), et la procédure de
+                  réconciliation. Concevoir sans ces trois preuves, c’est prévoir un
+                  échec d’audit.
+                </p>
+              </div>
+
+              <details open class="cours-note">
+                <summary>Cours — disponibilité&nbsp;: que faire quand l’API bancaire tombe&nbsp;?</summary>
+                <div class="cours-note-body">
+                  <ol>
+                    <li><strong>Détecter</strong> — circuit breaker, seuils d’erreur, alertes temps réel.</li>
+                    <li><strong>Informer</strong> — message explicite au client, pas une erreur «&nbsp;inconnue&nbsp;».</li>
+                    <li><strong>Basculer</strong> — proposer un autre moyen (carte) ou une autre banque.</li>
+                    <li><strong>Rejouer</strong> — file d’attente idempotente pour les ordres en attente, une fois le service revenu.</li>
+                    <li><strong>Réconcilier</strong> — vérifier que rien n’a été doublé ni perdu.</li>
+                  </ol>
+                </div>
+              </details>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>À vous de modéliser</h2>
+                <p>
+                  Le principe, le flux et l’architecture sont posés. La S4 passe
+                  à la pratique&nbsp;: modéliser un paiement e-commerce réel, avec
+                  le diagramme de séquence, les rôles et les messages.
+                </p>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Références</strong> — RTS EBA 2018/389 (disponibilité,
+              contingence, limites de performance)&nbsp;; orientations EBA sur les
+              interfaces dédiées&nbsp;; documentation NextGenPSD2 sur les statuts de
+              paiement&nbsp;; OWASP API Security Top 10.
+            </div>
+
+            
+          </div>
+  </div>
+</article>
+<article class="support-bloc" id="s4-atelier" data-num="05">
+  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <div class="fiche-meta"><span class="tag">Atelier</span></div>
+      <p class="day-kicker">05 · S4 · Atelier de modélisation</p>
+      <h1>S4 · Atelier de modélisation</h1>
+    </div>
+  </section>
+  <div class="wrap support-bloc-body">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Séquence 4</span>
+                <span class="tag tag-accent">65 min · atelier</span>
+              </div>
+              <p class="day-kicker">Mise en pratique · travaux de groupe</p>
+              <h1>Atelier de modélisation</h1>
+              <p class="lead">
+                Modéliser un paiement e-commerce via PISP&nbsp;: diagramme de
+                séquence, rôles des acteurs, messages échangés. C’est la synthèse
+                du Jour 3 en un livrable concret.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam finalise sa commande chez <strong>Atelier Verre &amp; Cie</strong>.
+                Le site propose «&nbsp;Payer par virement&nbsp;» via un PISP. Vous
+                êtes l’équipe qui doit modéliser ce paiement de bout en bout&nbsp;:
+                qui parle, dans quel ordre, avec quels messages.
+              </p>
+            </div>
+
+            <!-- ÉNONCÉ -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Énoncé</p>
+              <h2>Le cas</h2>
+              <p>
+                <strong>Atelier Verre &amp; Cie</strong> vend des objets en verre
+                artisanal en ligne. Le marchand utilise le PISP
+                <strong>PayFlow</strong> pour proposer un paiement par virement.
+                Lyam paie une commande de <strong>89,90 €</strong> depuis son compte
+                courant à Banque Est.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Élément</th>
+                      <th scope="col">Valeur</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Marchand</th><td>Atelier Verre &amp; Cie — e-commerce</td></tr>
+                    <tr><th scope="row">PISP</th><td>PayFlow — agrément PISP</td></tr>
+                    <tr><th scope="row">Client</th><td>Lyam — compte courant Banque Est</td></tr>
+                    <tr><th scope="row">Montant</th><td>89,90 € — référence CMD-20458</td></tr>
+                    <tr class="is-exergue"><th scope="row">Rail</th><td>SCT instantané (livraison immédiate)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- CONSIGNE -->
+            <section class="section">
+              <p class="section-label">Consigne</p>
+              <h2>Ce qu’il faut produire</h2>
+              <ol class="steps-list">
+                <li>
+                  <strong>Diagramme de séquence</strong> — du clic de Lyam jusqu’à
+                  la livraison&nbsp;: acteurs en colonnes, messages numérotés,
+                  étapes 1 à 5.
+                </li>
+                <li>
+                  <strong>Rôle des acteurs</strong> — une ligne par acteur sur ce
+                  qu’il décide, transmet et ne fait jamais.
+                </li>
+                <li>
+                  <strong>Messages échangés</strong> — pour chaque flèche&nbsp;: émetteur,
+                  destinataire, contenu (données), et le statut attendu.
+                </li>
+                <li>
+                  <strong>Un cas de rejet</strong> — raconter ce qui se passe si la
+                  provision est insuffisante, et le comportement attendu du marchand
+                  et du PISP.
+                </li>
+              </ol>
+
+              <div class="callout">
+                <h3>Livrable attendu</h3>
+                <p>
+                  Une page par groupe&nbsp;: le diagramme + le tableau des messages
+                  + le cas de rejet. Restitution 5 min par groupe, synthèse 10 min.
+                </p>
+              </div>
+            </section>
+
+            <!-- MODÈLE -->
+            <section class="section">
+              <p class="section-label">Modèle</p>
+              <h2 id="modele">Tableau des messages — à compléter</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">De → Vers</th>
+                      <th scope="col">Message / contenu</th>
+                      <th scope="col">Statut attendu</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">1</th><td>Lyam → PISP (via marchand)</td><td>Choix «&nbsp;Payer par virement&nbsp;», montant, référence CMD-20458</td><td>Consentement PIS créé</td></tr>
+                    <tr><th scope="row">2</th><td>PISP → Banque</td><td>Redirection pour SCA, identifiant de consentement</td><td>SCA en attente</td></tr>
+                    <tr><th scope="row">3</th><td>Lyam → Banque</td><td>Authentification forte + validation du détail (89,90 €, bénéficiaire)</td><td>SCA réussie</td></tr>
+                    <tr><th scope="row">4</th><td>Banque → PISP</td><td>Code d’autorisation + accord sur le consentement PIS</td><td>Code valide</td></tr>
+                    <tr><th scope="row">5</th><td>PISP → Banque</td><td><code>POST /payments</code> idempotent (X-Request-ID)</td><td>202 RCVD + identifiant paiement</td></tr>
+                    <tr><th scope="row">6</th><td>PISP → Banque</td><td><code>GET /payments/{id}/status</code></td><td>ACSC / ACCP</td></tr>
+                    <tr class="is-exergue"><th scope="row">7</th><td>PISP → Marchand</td><td>Statut «&nbsp;payé&nbsp;» + référence</td><td>Livraison déclenchée</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Les questions à se poser en groupe</h3>
+                <ul>
+                  <li>Qui voit le montant à quel moment&nbsp;?</li>
+                  <li>Quelle étape peut produire un double paiement&nbsp;?</li>
+                  <li>Que se passe-t-il si Lyam ferme l’onglet après la SCA&nbsp;?</li>
+                  <li>Que reçoit le marchand en cas de rejet&nbsp;?</li>
+                </ul>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Modèle de diagramme de séquence (à reproduire)</h3>
+                  <p>Client · PISP · Banque · Marchand</p>
+                </div>
+                <svg viewBox="0 0 1000 360" role="img" aria-label="Modèle de diagramme de séquence">
+                  <defs>
+                    <marker id="ah-atj3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <g stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 4">
+                    <line x1="130" y1="60" x2="130" y2="330"/>
+                    <line x1="400" y1="60" x2="400" y2="330"/>
+                    <line x1="670" y1="60" x2="670" y2="330"/>
+                    <line x1="900" y1="60" x2="900" y2="330"/>
+                  </g>
+                  <g>
+                    <rect x="60" y="30" width="140" height="30" rx="6" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="130" y="50" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700">Client</text>
+                    <rect x="330" y="30" width="140" height="30" rx="6" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="400" y="50" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">PISP</text>
+                    <rect x="600" y="30" width="140" height="30" rx="6" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="670" y="50" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Banque</text>
+                    <rect x="830" y="30" width="140" height="30" rx="6" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="900" y="50" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700">Marchand</text>
+                  </g>
+                  <line x1="134" y1="90" x2="396" y2="90" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-atj3)"/>
+                  <text x="265" y="84" text-anchor="middle" fill="#5a6b7c" font-size="9">1 · choix + panier</text>
+                  <line x1="400" y1="130" x2="666" y2="130" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-atj3)"/>
+                  <text x="533" y="124" text-anchor="middle" fill="#5a6b7c" font-size="9">2 · redirection SCA</text>
+                  <line x1="134" y1="170" x2="666" y2="170" stroke="#5a6b7c" stroke-width="1.5" stroke-dasharray="3 3"/>
+                  <text x="400" y="164" text-anchor="middle" fill="#5a6b7c" font-size="9">3 · authentification</text>
+                  <line x1="670" y1="210" x2="404" y2="210" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-atj3)"/>
+                  <text x="537" y="204" text-anchor="middle" fill="#5a6b7c" font-size="9">4 · code + accord</text>
+                  <line x1="400" y1="250" x2="666" y2="250" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-atj3)"/>
+                  <text x="533" y="244" text-anchor="middle" fill="#5a6b7c" font-size="9">5 · POST /payments</text>
+                  <line x1="400" y1="290" x2="666" y2="290" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-atj3)"/>
+                  <text x="533" y="284" text-anchor="middle" fill="#5a6b7c" font-size="9">6 · GET statut → ACSC</text>
+                  <line x1="400" y1="320" x2="896" y2="320" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-atj3)"/>
+                  <text x="648" y="314" text-anchor="middle" fill="#5a6b7c" font-size="9">7 · «&nbsp;payé&nbsp;» → livraison</text>
+                </svg>
+              </div>
+            </section>
+
+            <!-- GRILLE -->
+            <section class="section">
+              <p class="section-label">Évaluation</p>
+              <h2>Grille</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">Points</th>
+                      <th scope="col">Indice d’un bon travail</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Diagramme de séquence</th><td>4</td><td>Les cinq étapes, dans l’ordre, avec les bons acteurs</td></tr>
+                    <tr><th scope="row">Rôles des acteurs</th><td>3</td><td>Chacun sait ce qu’il décide, transmet, ne fait jamais</td></tr>
+                    <tr><th scope="row">Messages échangés</th><td>4</td><td>Contenu + statut cohérents par flèche</td></tr>
+                    <tr><th scope="row">Cas de rejet</th><td>3</td><td>Rejet RJCT distingué d’une erreur technique, alternative proposée</td></tr>
+                    <tr class="is-exergue"><th scope="row">Idempotence</th><td>2</td><td>Référence unique, pas de double débit en cas de rejeu</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Pour prolonger</strong> — Rejouer l’atelier avec un paiement
+              de facture&nbsp;; ajouter un cas de timeout au statut et montrer le
+              rejeu idempotent&nbsp;; comparer le même flux en SCT classique (livraison
+              différée).
+            </div>
+
+            
+          </div>
+  </div>
+</article>
+
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot no-print">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 3</a> · Support étudiant
+      </div>
+    </footer>
+  </body>
+</html>

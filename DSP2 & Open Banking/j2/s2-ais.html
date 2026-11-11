@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S2 — Workflow AIS (Account Information) | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s2-ais">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a class="is-active" href="intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Séquence 2</span>
+                <span class="tag tag-accent">30 min</span>
+              </div>
+              <p class="day-kicker">Lire les comptes, jamais les toucher</p>
+              <h1>Workflow AIS — Account Information</h1>
+              <p class="lead">
+                L’API que Lyam utilise au quotidien&nbsp;: lire ses soldes et ses
+                opérations depuis son application. Sur le socle de S1, elle
+                ajoute un cœur métier précis&nbsp;: <strong>lecture seule</strong>,
+                cadrée par un consentement et une authentification forte
+                initiale.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam ouvre son application de gestion de budget. Elle affiche la
+                liste de ses comptes, le solde de chacun et ses dernières
+                opérations. Pour cela, elle appelle l’API AIS de Banque Est avec
+                le consentement que Lyam a donné une fois — et qui reste valable
+                jusqu’à 90 jours.
+              </p>
+            </div>
+
+            <!-- 1. CŒUR MÉTIER -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Cœur métier</p>
+              <h2 id="coeur">Ce que fait — et ne fait pas — l’API AIS</h2>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Ce qu’elle fait</h3>
+                  <ul>
+                    <li>Lister les comptes (comptes courants, livrets, cartes)</li>
+                    <li>Donner le détail d’un compte (IBAN, titulaire, type)</li>
+                    <li>Lister les transactions d’un compte, filtrables par date</li>
+                    <li>Donner les soldes (comptabilisé, disponible)</li>
+                  </ul>
+                </div>
+                <div class="panel ko">
+                  <h3>Ce qu’elle ne fait jamais</h3>
+                  <ul>
+                    <li>Aucun mouvement de fonds (pas de virement, pas de prélèvement)</li>
+                    <li>Aucune modification du compte</li>
+                    <li>Aucun accès sans consentement AIS actif</li>
+                    <li>Aucun accès aux comptes non couverts par le consentement</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="key-idea">
+                <p class="label">Le principe</p>
+                <p>
+                  L’AISP lit&nbsp;; il ne touche à rien. Le risque de l’AIS n’est
+                  pas la fraude financière, c’est la <strong>confidentialité</strong>
+                  des données de comptes.
+                </p>
+              </div>
+            </section>
+
+            <!-- 2. PARCOURS ET ENDPOINTS -->
+            <section class="section">
+              <p class="section-label">Parcours</p>
+              <h2 id="parcours">Le parcours d’une lecture de comptes</h2>
+              <p class="intro">
+                Une lecture AIS suit toujours la même séquence&nbsp;: consentement,
+                authentification forte initiale, puis lecture répétée tant que le
+                consentement est valide.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Flux d’une lecture AIS</h3>
+                  <p>Consentement → SCA initiale → lectures → révocation</p>
+                </div>
+                <svg viewBox="0 0 1000 220" role="img" aria-label="Flux du parcours AIS">
+                  <defs>
+                    <marker id="ah-ais" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="55" width="205" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <circle cx="55" cy="88" r="14" fill="#6b4fa0"/>
+                    <text x="55" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1</text>
+                    <text x="122" y="92" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">Consentement</text>
+                    <text x="122" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">périmètre + durée</text>
+                    <text x="122" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">renvoie un ID</text>
+                  </g>
+                  <line x1="230" y1="110" x2="262" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-ais)"/>
+                  <g>
+                    <rect x="266" y="55" width="205" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <circle cx="301" cy="88" r="14" fill="#1e5f8a"/>
+                    <text x="301" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">2</text>
+                    <text x="368" y="92" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">SCA initiale</text>
+                    <text x="368" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">2 facteurs</text>
+                    <text x="368" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">une seule fois</text>
+                  </g>
+                  <line x1="476" y1="110" x2="508" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-ais)"/>
+                  <g>
+                    <rect x="512" y="55" width="205" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <circle cx="547" cy="88" r="14" fill="#0d9f8a"/>
+                    <text x="547" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">3</text>
+                    <text x="614" y="92" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Lectures répétées</text>
+                    <text x="614" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">jeton d’accès</text>
+                    <text x="614" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">jusqu’à 90 jours</text>
+                  </g>
+                  <line x1="722" y1="110" x2="754" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-ais)"/>
+                  <g>
+                    <rect x="758" y="55" width="205" height="110" rx="10" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                    <circle cx="793" cy="88" r="14" fill="#3d5a80"/>
+                    <text x="793" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">4</text>
+                    <text x="860" y="92" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="13" font-weight="700">Révocation</text>
+                    <text x="860" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">à tout moment</text>
+                    <text x="860" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">coupure immédiate</text>
+                  </g>
+                </svg>
+                <figcaption>
+                  Figure — le parcours AIS&nbsp;: une seule authentification forte
+                  initiale, puis des lectures répétées tant que le consentement
+                  reste valide (90 jours max).
+                </figcaption>
+              </div>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Création du consentement</strong>
+                    <p>
+                      L’AISP déclare au nom de Lyam ce qu’il veut lire
+                      (comptes, transactions, soldes) et pour combien de temps.
+                      La banque renvoie un identifiant de consentement.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>SCA initiale</strong>
+                    <p>
+                      Lyam s’authentifie fortement (deux facteurs) auprès de sa
+                      banque et autorise explicitement le consentement. C’est le
+                      seul moment où il prouve son identité.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Lecture répétée</strong>
+                    <p>
+                      Avec un jeton d’accès, l’AISP lit les comptes et les
+                      transactions. Plus de SCA à chaque lecture&nbsp;: l’accès
+                      reste ouvert jusqu’à expiration du consentement
+                      (<strong>max 90 jours</strong> sous RTS).
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">4</span>
+                  <div>
+                    <strong>Révocation</strong>
+                    <p>
+                      Lyam peut révoquer le consentement à tout moment. L’accès
+                      est coupé immédiatement, quelles que soient les jetons en
+                      circulation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Étape</th>
+                      <th scope="col">Endpoint typique (Berlin Group)</th>
+                      <th scope="col">But</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Consentement</th><td><code>POST /v1/consents</code></td><td>Déclarer le périmètre et la durée</td></tr>
+                    <tr><th scope="row">Comptes</th><td><code>GET /v1/accounts</code></td><td>Lister les comptes autorisés</td></tr>
+                    <tr><th scope="row">Détail</th><td><code>GET /v1/accounts/{accountId}</code></td><td>IBAN, titulaire, type</td></tr>
+                    <tr><th scope="row">Soldes</th><td><code>GET /v1/accounts/{accountId}/balances</code></td><td>Solde comptabilisé / disponible</td></tr>
+                    <tr class="is-exergue"><th scope="row">Transactions</th><td><code>GET /v1/accounts/{accountId}/transactions</code></td><td>Opérations, filtrables par date</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="cours-note-meta">
+                Les noms exacts varient selon le standard (Berlin Group, STET,
+                OBIE). Ce qui est normalisé par la DSP2, c’est le <em>service</em>
+                rendu, pas l’URL.
+              </p>
+            </section>
+
+            <!-- 3. DONNÉES ET EXEMPLE -->
+            <section class="section">
+              <p class="section-label">Données</p>
+              <h2 id="donnees">À quoi ressemble une réponse AIS</h2>
+              <p class="intro">
+                L’AIS renvoie des données riches — c’est justement ce qui le rend
+                sensible. Exemple simplifié d’une réponse «&nbsp;transactions&nbsp;»&nbsp;:
+              </p>
+
+              <pre class="payload-raw">{
+  "account": { "iban": "FR76…1234" },
+  "transactions": {
+    "booked": [
+      {
+        "transactionId": "TX-2025-0001",
+        "bookingDate": "2025-11-08",
+        "amount": { "currency": "EUR", "amount": "-42.90" },
+        "creditorName": "SNCF",
+        "remittanceInformation": "Billet Paris–Lyon"
+      },
+      {
+        "transactionId": "TX-2025-0002",
+        "bookingDate": "2025-11-07",
+        "amount": { "currency": "EUR", "amount": "2500.00" },
+        "debtorName": "ACME SARL",
+        "remittanceInformation": "Salaire novembre"
+      }
+    ]
+  }
+}</pre>
+
+              <div class="callout info">
+                <h3>Pourquoi c’est sensible</h3>
+                <p>
+                  Une réponse AIS révèle les revenus, les habitudes d’achat, les
+                  bénéficiaires, la santé financière de Lyam. C’est une donnée
+                  personnelle au sens du RGPD&nbsp;: d’où le consentement
+                  explicite, la durée bornée et le droit de révocation à tout
+                  moment.
+                </p>
+              </div>
+            </section>
+
+            <!-- 4. RISQUES / ERREURS -->
+            <section class="section">
+              <p class="section-label">Risques</p>
+              <h2 id="risques">Les erreurs et risques propres à l’AIS</h2>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Code HTTP</th>
+                      <th scope="col">Signification</th>
+                      <th scope="col">Ce que fait l’AISP</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">401</th><td>Jeton absent ou invalide</td><td>Re-authentifier, redemander la SCA si besoin</td></tr>
+                    <tr><th scope="row">403</th><td>Consentement expiré ou révoqué</td><td>Demander un nouveau consentement à Lyam</td></tr>
+                    <tr><th scope="row">429</th><td>Trop de requêtes (throttling)</td><td>Ralentir, respecter les plafonds RTS</td></tr>
+                    <tr class="is-exergue"><th scope="row">503</th><td>Service indisponible</td><td>Réessayer avec backoff, prévenir l’utilisateur</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le piège&nbsp;: le stockage des données</h3>
+                <p>
+                  L’AISP ne doit conserver les données lues que pour la durée
+                  strictement nécessaire au service rendu. Un AISP qui garde une
+                  copie intégrale des transactions «&nbsp;au cas où&nbsp;» sort de
+                  son cadre — et s’expose au RGPD comme à la DSP2.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Et si l’on ne faisait que vérifier&nbsp;?</h2>
+                <p>
+                  L’AIS lit beaucoup. La troisième API, elle, répond à une seule
+                  question —&nbsp;«&nbsp;y a-t-il assez de fonds&nbsp;?&nbsp;»&nbsp;—
+                  sans révéler de solde. C’est un tout autre workflow, minimaliste
+                  par choix (S3 · CBPII).
+                </p>
+              </div>
+            </section>
+
+            <details class="cours-note">
+              <summary>Cours — récapitulatif du bloc</summary>
+              <div class="cours-note-body">
+                <ul>
+                  <li><strong>Rôle</strong>&nbsp;: lecture seule des comptes, soldes et transactions.</li>
+                  <li><strong>Parcours</strong>&nbsp;: consentement → SCA initiale → lecture répétée → révocation.</li>
+                  <li><strong>Durée</strong>&nbsp;: consentement valable jusqu’à 90 jours (RTS), une seule SCA initiale.</li>
+                  <li><strong>Risque</strong>&nbsp;: confidentialité des données (revenus, habitudes), conformité RGPD.</li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="sources-box">
+              <strong>Références</strong> — RTS EBA 2018/389 (art. 10, accès
+              fréquents&nbsp;; validité du consentement)&nbsp;; Berlin Group
+              NextGenPSD2 (AIS)&nbsp;; RGPD (art. 5, 6, 17).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 2</a> · S2 Account Information API
+      </div>
+    </footer>
+    <script src="../js/nav-j2.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

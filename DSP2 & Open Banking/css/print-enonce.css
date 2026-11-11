@@ -1,0 +1,187 @@
+/* ============================================================
+   Feuille d'impression « énoncé » — pages de cours (.fiche-shell)
+   Utilisée pour exporter S4 (petit projet) en PDF via le navigateur
+   ou headless Chrome. Ne s'applique qu'à l'impression (media="print").
+   ============================================================ */
+
+@page {
+  size: A4 portrait;
+  margin: 16mm 15mm 18mm 15mm;
+}
+
+/* Force les couleurs de fond (tableaux, encarts) à l'impression */
+html,
+body {
+  background: #fff !important;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+/* ---- Masquer tout ce qui n'a pas de sens sur papier ---- */
+.site-bar,
+.bloc-sidebar,
+.site-foot,
+.bloc-pager,
+.no-print,
+.export-bar,
+.btn-print,
+.read-bar,
+.present-bar {
+  display: none !important;
+}
+
+/* ---- Remettre la mise en page à plat, pleine largeur ---- */
+.fiche-shell,
+.fiche-main,
+.wrap,
+main {
+  display: block !important;
+  max-width: none !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ---- Typo compacte pour le papier ---- */
+body {
+  font-size: 10pt !important;
+  line-height: 1.45 !important;
+}
+
+.day-hero {
+  padding: 0 0 8pt !important;
+  margin: 0 0 12pt !important;
+  border-bottom: 1.5pt solid #0c1b2a !important;
+}
+
+.day-hero h1 {
+  font-size: 20pt !important;
+  line-height: 1.1 !important;
+  margin: 0 0 6pt !important;
+}
+
+.day-hero .lead {
+  font-size: 10.5pt !important;
+  max-width: none !important;
+}
+
+.day-kicker {
+  font-size: 8pt !important;
+}
+
+/* ---- Sections ---- */
+.section {
+  padding: 9pt 0 !important;
+  border-top: 1px solid #dbe4ec !important;
+}
+
+.section:first-child {
+  border-top: none !important;
+  padding-top: 0 !important;
+}
+
+.section-label {
+  font-size: 7.5pt !important;
+}
+
+.section h2 {
+  font-size: 13pt !important;
+  margin: 2pt 0 6pt !important;
+}
+
+.section p {
+  max-width: none !important;
+}
+
+/* ---- Éviter les coupures malheureuses ---- */
+.section-label,
+.section h2,
+.section .intro {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+.callout,
+.csm-table-wrap,
+table,
+figure,
+.steps-list li {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+h1, h2, h3 {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+p, li {
+  orphans: 3;
+  widows: 3;
+}
+
+/* ---- Tableaux : lisibles en noir et blanc ---- */
+.csm-table {
+  width: 100% !important;
+  font-size: 9pt !important;
+}
+
+.csm-table th,
+.csm-table td {
+  padding: 3pt 4pt !important;
+}
+
+/* ---- Encarts : bordures simples, fonds légers ---- */
+.callout {
+  padding: 6pt 8pt !important;
+  margin: 6pt 0 !important;
+  break-inside: avoid;
+}
+
+/* ---- Listes numérotées : liste native, marqueurs gérés par le moteur PDF ---- */
+.steps-list {
+  margin: 0 0 0 0 !important;
+  padding-left: 1.6rem !important;
+  list-style: decimal !important;
+  counter-reset: none !important;
+}
+
+.steps-list li {
+  position: static !important;
+  display: list-item !important;
+  padding-left: 0.2rem !important;
+  margin-bottom: 4pt !important;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.steps-list li::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* ---- Barre d'export : bouton ---- */
+.export-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.75rem 0 0;
+}
+
+.btn-print {
+  appearance: none;
+  border: none;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  background: #1e5f8a;
+}
+
+.btn-print:hover {
+  filter: brightness(1.08);
+}

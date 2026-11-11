@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>S1 — Architecture API : le socle commun | DSP2 &amp; Open Banking</title>
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/socle-components.css" />
   </head>
   <body data-bloc="s1-api">
     <header class="site-bar">
@@ -180,54 +181,257 @@
                 </svg>
               </div>
 
-              <div class="mechanism">
-                <div class="mechanism-step">
-                  <span class="n">1</span>
-                  <div>
-                    <strong>API Gateway</strong>
+              <p class="intro" style="margin-top: 1.5rem">
+                C’est ici que tout le module s’appuie&nbsp;: prenons le temps de
+                fixer chaque composant, un par un. Pour chacun&nbsp;: <strong>ce
+                que c’est</strong>, <strong>son rôle technique</strong>, et une
+                <strong>image mentale</strong> pour le retenir.
+              </p>
+
+              <div class="comp-grid">
+                <!-- 1 · API GATEWAY -->
+                <article class="comp-card comp-gateway">
+                  <div class="comp-head">
+                    <span class="comp-num">1</span>
+                    <div class="comp-titles">
+                      <h3>API Gateway</h3>
+                      <p class="comp-role">La porte d’entrée · le gardien</p>
+                    </div>
+                  </div>
+
+                  <div class="comp-block">
+                    <span class="comp-label">Ce que c’est</span>
                     <p>
-                      Point d’entrée unique. Termine le chiffrement, vérifie le
-                      certificat du TPP (mTLS), route vers le bon service et
-                      rejette les appels malformés ou abusifs.
+                      Le <strong>premier composant interne</strong> que le TPP
+                      touche en arrivant sur le réseau de la banque. C’est un
+                      serveur logiciel qui sert de <strong>point d’entrée
+                      unique</strong> (un <em>reverse proxy</em>)&nbsp;: aucun
+                      appel n’atteint les services internes sans passer par lui.
                     </p>
                   </div>
-                </div>
-                <div class="mechanism-step">
-                  <span class="n">2</span>
-                  <div>
-                    <strong>API Management</strong>
+
+                  <div class="comp-block">
+                    <span class="comp-label">Son rôle technique</span>
+                    <ul>
+                      <li><strong>Faire respecter le mTLS</strong> — chiffrement et vérification mutuelle des certificats eIDAS du TPP.</li>
+                      <li><strong>Filtrer le trafic</strong> — rejeter les appels malformés ou non conformes avant qu’ils n’atteignent le cœur.</li>
+                      <li><strong>Limiter le débit</strong> (<em>rate limiting</em>) — borner le nombre de requêtes par seconde pour parer aux attaques par déni de service (DDoS).</li>
+                      <li><strong>Router la requête</strong> vers le bon service interne, selon l’endpoint appelé.</li>
+                    </ul>
+                  </div>
+
+                  <figure class="comp-illus">
+                    <svg viewBox="0 0 640 200" role="img" aria-label="Le TPP entre par la gateway : contrôle du certificat mTLS, puis routage vers le bon service">
+                      <rect x="14" y="70" width="90" height="60" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                      <text x="59" y="98" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">TPP</text>
+                      <text x="59" y="116" text-anchor="middle" fill="#5a6b7c" font-size="10">+ cert eIDAS</text>
+
+                      <line x1="106" y1="100" x2="180" y2="100" stroke="#1e5f8a" stroke-width="2.5" class="ci-line"/>
+
+                      <rect x="180" y="46" width="150" height="108" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                      <text x="255" y="70" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">API Gateway</text>
+                      <rect x="205" y="82" width="100" height="52" rx="6" fill="#fff" stroke="#c3d9ea"/>
+                      <text x="255" y="104" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">mTLS ✓</text>
+                      <rect x="212" y="114" width="86" height="4" rx="2" fill="#0d9f8a" class="ci-scan"/>
+                      <text x="255" y="140" text-anchor="middle" fill="#5a6b7c" font-size="9.5">rate limiting · routage</text>
+
+                      <line x1="332" y1="100" x2="420" y2="70" stroke="#0d9f8a" stroke-width="2" class="ci-line"/>
+                      <line x1="332" y1="100" x2="420" y2="130" stroke="#0d9f8a" stroke-width="2" class="ci-line"/>
+                      <rect x="422" y="50" width="120" height="40" rx="7" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.8"/>
+                      <text x="482" y="75" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">service AIS</text>
+                      <rect x="422" y="110" width="120" height="40" rx="7" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.8"/>
+                      <text x="482" y="135" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">service CBPII</text>
+
+                      <circle cx="150" cy="150" r="4" fill="#c45c26" class="ci-blink"/>
+                      <text x="150" y="170" text-anchor="middle" fill="#c45c26" font-size="9">DDoS ✕</text>
+                    </svg>
+                    <figcaption>Le TPP présente son certificat&nbsp;; la gateway vérifie (mTLS), filtre le trafic abusif et route vers le bon service.</figcaption>
+                  </figure>
+
+                  <div class="comp-image">
+                    <span class="comp-label">Image mentale</span>
+                    <p>Le <strong>vigile à l’entrée</strong> de la banque&nbsp;: il contrôle l’identité, refuse les indésirables et indique le bon guichet.</p>
+                  </div>
+                </article>
+
+                <!-- 2 · API MANAGEMENT -->
+                <article class="comp-card comp-mgmt">
+                  <div class="comp-head">
+                    <span class="comp-num">2</span>
+                    <div class="comp-titles">
+                      <h3>API Management</h3>
+                      <p class="comp-role">Le bureau des règles · le régulateur</p>
+                    </div>
+                  </div>
+
+                  <div class="comp-block">
+                    <span class="comp-label">Ce que c’est</span>
                     <p>
-                      Gère le catalogue d’API, les quotas par TPP, le
-                      <em>throttling</em> (limitation de débit) et le
-                      versionnement. C’est l’endroit où l’on décide qui a le droit
-                      d’appeler quoi, à quelle fréquence.
+                      La couche qui <strong>gouverne</strong> l’usage des API&nbsp;:
+                      le catalogue des API exposées et, pour chaque TPP, les
+                      droits et les limites. Là où la Gateway laisse entrer, le
+                      Management décide <em>combien</em> et <em>à quelle
+                      fréquence</em>.
                     </p>
                   </div>
-                </div>
-                <div class="mechanism-step">
-                  <span class="n">3</span>
-                  <div>
-                    <strong>Services API métier</strong>
+
+                  <div class="comp-block">
+                    <span class="comp-label">Son rôle technique</span>
+                    <ul>
+                      <li><strong>Quotas par TPP</strong> — nombre d’appels autorisés sur une période.</li>
+                      <li><strong>Throttling</strong> — limitation de débit pour lisser la charge et protéger la disponibilité.</li>
+                      <li><strong>Versionnement</strong> — gérer plusieurs versions d’une même API sans casser les TPP existants.</li>
+                      <li><strong>Catalogue &amp; politiques</strong> — qui a le droit d’appeler quoi, et sous quelles conditions.</li>
+                    </ul>
+                  </div>
+
+                  <figure class="comp-illus">
+                    <svg viewBox="0 0 640 200" role="img" aria-label="L'API Management mesure le débit par TPP et applique un plafond (throttling)">
+                      <text x="30" y="34" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">Débit par TPP</text>
+
+                      <rect x="30" y="58" width="360" height="28" rx="6" fill="#fff" stroke="#c9bfdf"/>
+                      <rect x="30" y="58" width="260" height="28" rx="6" fill="#6b4fa0" class="ci-pulse"/>
+                      <text x="45" y="77" fill="#fff" font-size="11" font-weight="700">requêtes entrantes</text>
+
+                      <line x1="290" y1="50" x2="290" y2="94" stroke="#c45c26" stroke-width="2.5"/>
+                      <text x="290" y="44" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">plafond</text>
+
+                      <text x="30" y="120" fill="#5a6b7c" font-size="10.5">quota · throttling · versionnement</text>
+
+                      <g transform="translate(430,40)">
+                        <circle cx="60" cy="60" r="52" fill="none" stroke="#e6dcf3" stroke-width="12"/>
+                        <circle cx="60" cy="60" r="52" fill="none" stroke="#6b4fa0" stroke-width="12"
+                          stroke-dasharray="240 327" stroke-linecap="round" transform="rotate(-90 60 60)" class="ci-pulse"/>
+                        <text x="60" y="56" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="20" font-weight="800">80%</text>
+                        <text x="60" y="76" text-anchor="middle" fill="#8a7aa8" font-size="9.5">de la limite</text>
+                      </g>
+                    </svg>
+                    <figcaption>Chaque TPP dispose d’un quota&nbsp;; au-delà du plafond, les appels sont limités (throttling) pour préserver la disponibilité.</figcaption>
+                  </figure>
+
+                  <div class="comp-image">
+                    <span class="comp-label">Image mentale</span>
+                    <p>Le <strong>régulateur de vitesse</strong>&nbsp;: il fixe la limite autorisée et empêche qu’un seul usager sature la route pour tous.</p>
+                  </div>
+                </article>
+
+                <!-- 3 · SERVICES API MÉTIER -->
+                <article class="comp-card comp-services">
+                  <div class="comp-head">
+                    <span class="comp-num">3</span>
+                    <div class="comp-titles">
+                      <h3>Services API métier</h3>
+                      <p class="comp-role">Le cœur du métier · le spécialiste</p>
+                    </div>
+                  </div>
+
+                  <div class="comp-block">
+                    <span class="comp-label">Ce que c’est</span>
                     <p>
-                      Implémentent réellement AIS, PIS, CBPII&nbsp;: vérification
-                      du consentement, contrôle du périmètre, validation des
-                      règles métier avant d’appeler le core banking. C’est ici
-                      que chaque API devient <em>différente</em> (S2 AIS, S3 CBPII).
+                      Les services qui <strong>implémentent réellement</strong>
+                      AIS, PIS et CBPII. C’est la couche où chaque API devient
+                      <em>elle-même</em>&nbsp;: après le contrôle d’entrée, c’est
+                      ici que se joue le comportement propre à chaque service.
                     </p>
                   </div>
-                </div>
-                <div class="mechanism-step">
-                  <span class="n">4</span>
-                  <div>
-                    <strong>Logs &amp; traçabilité</strong>
+
+                  <div class="comp-block">
+                    <span class="comp-label">Son rôle technique</span>
+                    <ul>
+                      <li><strong>Vérifier le consentement</strong> — l’accès demandé est-il couvert&nbsp;?</li>
+                      <li><strong>Contrôler le périmètre</strong> — bons comptes, bonnes opérations, bonne durée.</li>
+                      <li><strong>Valider les règles métier</strong> avant d’appeler le core banking.</li>
+                      <li><strong>Spécialisation</strong> — workflow AIS (S2), CBPII (S3), PIS (Jour 3).</li>
+                    </ul>
+                  </div>
+
+                  <figure class="comp-illus">
+                    <svg viewBox="0 0 640 200" role="img" aria-label="La requête franchit les contrôles consentement et périmètre avant d'atteindre le core banking">
+                      <circle cx="70" cy="100" r="12" fill="#0d9f8a" class="ci-slide"/>
+                      <text x="70" y="140" text-anchor="middle" fill="#5a6b7c" font-size="10">requête</text>
+
+                      <line x1="70" y1="100" x2="560" y2="100" stroke="#cfe6e2" stroke-width="2" class="ci-line"/>
+
+                      <g>
+                        <rect x="150" y="70" width="120" height="60" rx="9" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2"/>
+                        <text x="210" y="96" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">consentement</text>
+                        <text x="210" y="114" text-anchor="middle" fill="#5a6b7c" font-size="9.5">accordé ?</text>
+                        <circle cx="210" cy="70" r="5" fill="#0d9f8a" class="ci-blink"/>
+                      </g>
+                      <g>
+                        <rect x="320" y="70" width="120" height="60" rx="9" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2"/>
+                        <text x="380" y="96" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">périmètre</text>
+                        <text x="380" y="114" text-anchor="middle" fill="#5a6b7c" font-size="9.5">bon compte ?</text>
+                        <circle cx="380" cy="70" r="5" fill="#0d9f8a" class="ci-blink" style="animation-delay:.6s"/>
+                      </g>
+
+                      <rect x="500" y="70" width="110" height="60" rx="9" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                      <text x="555" y="96" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">core</text>
+                      <text x="555" y="114" text-anchor="middle" fill="#087a6a" font-size="9.5">banking</text>
+                    </svg>
+                    <figcaption>Avant tout accès au core, le service métier vérifie le consentement et le périmètre&nbsp;: seuls les bons comptes, pour les bonnes opérations.</figcaption>
+                  </figure>
+
+                  <div class="comp-image">
+                    <span class="comp-label">Image mentale</span>
+                    <p>Le <strong>guichetier spécialiste</strong>&nbsp;: c’est lui qui sait si vous avez le droit d’accéder à ce compte, et qui traite la demande qui vous concerne.</p>
+                  </div>
+                </article>
+
+                <!-- 4 · LOGS & TRAÇABILITÉ -->
+                <article class="comp-card comp-logs">
+                  <div class="comp-head">
+                    <span class="comp-num">4</span>
+                    <div class="comp-titles">
+                      <h3>Logs &amp; traçabilité</h3>
+                      <p class="comp-role">La mémoire de la banque · le greffier</p>
+                    </div>
+                  </div>
+
+                  <div class="comp-block">
+                    <span class="comp-label">Ce que c’est</span>
                     <p>
-                      Chaque appel est journalisé&nbsp;: qui (TPP), quoi
-                      (endpoint), quand (horodatage), résultat (code), et combien
-                      de temps. Indispensable à l’audit, aux litiges et au
+                      La couche qui <strong>journalise chaque appel</strong> de
+                      bout en bout. Elle ne bloque rien&nbsp;: elle <em>garde la
+                      preuve</em>. Indispensable à l’audit, aux litiges et au
                       monitoring.
                     </p>
                   </div>
-                </div>
+
+                  <div class="comp-block">
+                    <span class="comp-label">Son rôle technique</span>
+                    <ul>
+                      <li><strong>Qui</strong> — quel TPP a appelé.</li>
+                      <li><strong>Quoi</strong> — quel endpoint, quelles données demandées.</li>
+                      <li><strong>Quand</strong> — horodatage de l’appel (non-répudiation).</li>
+                      <li><strong>Résultat</strong> — code de retour, latence, incident.</li>
+                    </ul>
+                  </div>
+
+                  <figure class="comp-illus">
+                    <svg viewBox="0 0 640 200" role="img" aria-label="Chaque appel est journalisé avec identifiant, endpoint, horodatage et résultat">
+                      <rect x="20" y="20" width="600" height="160" rx="10" fill="#0e1a26"/>
+                      <circle cx="40" cy="38" r="4" fill="#ff5f57"/><circle cx="54" cy="38" r="4" fill="#febc2e"/><circle cx="68" cy="38" r="4" fill="#28c840"/>
+                      <text x="90" y="42" fill="#7fa8c4" font-size="11" font-family="monospace">traces.log</text>
+
+                      <g font-family="monospace" font-size="11">
+                        <text x="36" y="70" fill="#8fb3cc"><tspan fill="#0d9f8a">[OK]</tspan> TPP-BanqueX  GET /accounts  2026-01-17T09:12:03 120ms</text>
+                        <text x="36" y="94" fill="#8fb3cc"><tspan fill="#0d9f8a">[OK]</tspan> TPP-BanqueX  GET /accounts/42  2026-01-17T09:12:04  88ms</text>
+                        <text x="36" y="118" fill="#8fb3cc"><tspan fill="#c45c26">[KO]</tspan> TPP-Y        GET /payments  2026-01-17T09:12:05 403</text>
+                        <text x="36" y="142" fill="#8fb3cc"><tspan fill="#0d9f8a">[OK]</tspan> TPP-BanqueX  GET /funds     2026-01-17T09:12:06  61ms</text>
+                      </g>
+                      <rect x="36" y="150" width="420" height="14" rx="3" fill="#1c2f42"/>
+                      <rect x="36" y="150" width="120" height="14" rx="3" fill="#0d9f8a" class="ci-pulse"/>
+                      <circle cx="596" cy="150" r="5" fill="#0d9f8a" class="ci-blink"/>
+                    </svg>
+                    <figcaption>Qui (TPP), quoi (endpoint), quand (horodatage), résultat (code + latence)&nbsp;: la mémoire auditable de chaque appel.</figcaption>
+                  </figure>
+
+                  <div class="comp-image">
+                    <span class="comp-label">Image mentale</span>
+                    <p>Le <strong>greffier</strong>&nbsp;: il consigne chaque visite, qui est entré, pour quoi faire et ce qui s’est passé — utile le jour où l’on doit reconstituer les faits.</p>
+                  </div>
+                </article>
               </div>
 
               <div class="callout warn">

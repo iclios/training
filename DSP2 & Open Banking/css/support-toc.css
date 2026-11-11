@@ -1,0 +1,75 @@
+/* ============================================================
+   Page « Sommaire » imprimée du support étudiant.
+   Chargée par le générateur PDF uniquement.
+   ============================================================ */
+
+.support-doc .support-toc {
+  page-break-after: always;
+  break-after: page;
+  page-break-inside: avoid;
+  padding: 0 4mm;
+}
+
+.support-doc .support-toc-title {
+  font-family: "Syne", sans-serif;
+  font-size: 20pt;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0c1b2a;
+  margin: 0 0 0.3rem;
+}
+
+.support-doc .support-toc-sub {
+  font-size: 10pt;
+  color: #5a6b7c;
+  margin: 0 0 1.6rem;
+}
+
+.support-doc .support-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.support-doc .support-toc-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.42rem 0;
+  border-bottom: 1px dotted #d5e1ea;
+  font-size: 10.5pt;
+}
+
+.support-doc .support-toc-num {
+  flex: 0 0 2.2rem;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  color: #087a6a;
+}
+
+.support-doc .support-toc-label {
+  flex: 1 1 auto;
+  color: #1a2b3c;
+}
+
+.support-doc .support-toc-leader {
+  flex: 1 1 auto;
+  border-bottom: 1px dotted #b9c8d4;
+  margin: 0 0.4rem 0.25rem;
+}
+
+.support-doc .support-toc-page {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: #1e5f8a;
+}
+
+.support-doc .support-toc-group {
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a97a3;
+  margin: 1.1rem 0 0.2rem;
+}

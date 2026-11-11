@@ -1,0 +1,53 @@
+/* ============================================================
+   Mini-schémas de flux — authentification (S5 / Jour 2)
+   Un SVG compact par mécanisme : OAuth2, OIDC, mTLS, JWT.
+   Conçus pour tenir dans une role-card (pas de min-width 620px).
+   ============================================================ */
+
+.role-card .flux-card {
+  margin: 0.9rem 0 0.65rem;
+  border: 1px solid #d5e1ea;
+  border-radius: 10px;
+  background:
+    linear-gradient(#fbfdff, #fbfdff) padding-box;
+  overflow: hidden;
+}
+
+.role-card .flux-card svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Texte des SVG */
+.role-card .flux-card svg text {
+  font-family: var(--font-body, "Figtree", system-ui, sans-serif);
+}
+
+/* Légende sous le schéma */
+.role-card .flux-caption {
+  margin: 0.55rem 0 0;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--muted, #5a6b7c);
+  font-style: italic;
+}
+
+/* Pastille « preuve » présente dans chaque schéma */
+.flux-proof {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Flèches animées réutilisées (classe .stream déjà définie dans styles.css) */
+.role-card .flux-card .stream {
+  stroke-dasharray: 3 5;
+  animation: stream 1s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .role-card .flux-card .stream {
+    animation: none;
+  }
+}

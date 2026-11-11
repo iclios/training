@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Support étudiant — Jour 2 | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/support-etudiant.css" />
+    <link rel="stylesheet" href="../css/support-encarts.css" />
+  </head>
+  <body class="support-doc" data-bloc="support-etudiant">
+    <header class="site-bar no-print">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a class="is-active" href="intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="support-print-bar no-print">
+      <div class="wrap support-print-bar-inner">
+        <a href="support.html">← Page Support</a>
+        <button type="button" class="btn-print" onclick="window.print()">
+          Imprimer / Enregistrer en PDF
+        </button>
+      </div>
+    </div>
+
+    <div class="fiche-shell support-shell">
+      <aside class="bloc-sidebar no-print" aria-label="Sommaire du support">
+        <p class="bloc-sidebar-title">Jour 2 · Support</p>
+        <nav class="bloc-sidebar-nav">
+          <a class="bloc-sidebar-item" href="#intro"><span class="bloc-sidebar-num">01</span><span class="bloc-sidebar-label">Introduction & objectifs</span></a>
+          <a class="bloc-sidebar-item" href="#s1-api"><span class="bloc-sidebar-num">02</span><span class="bloc-sidebar-label">S1 · Architecture API</span></a>
+          <a class="bloc-sidebar-item" href="#s2-ais"><span class="bloc-sidebar-num">03</span><span class="bloc-sidebar-label">S2 · Workflow AIS</span></a>
+          <a class="bloc-sidebar-item" href="#s3-cbpii"><span class="bloc-sidebar-num">04</span><span class="bloc-sidebar-label">S3 · Workflow CBPII</span></a>
+          <a class="bloc-sidebar-item" href="#s5-auth"><span class="bloc-sidebar-num">05</span><span class="bloc-sidebar-label">S5 · Authentification & autorisation</span></a>
+          <a class="bloc-sidebar-item" href="#s6-securite"><span class="bloc-sidebar-num">06</span><span class="bloc-sidebar-label">S6 · Sécurité & conformité</span></a>
+          <a class="bloc-sidebar-item" href="#s7-cas"><span class="bloc-sidebar-num">07</span><span class="bloc-sidebar-label">S7 · Cas pratique</span></a>
+        </nav>
+      </aside>
+
+      <div class="fiche-main">
+        <main>
+          <section class="support-title-page">
+            <div class="support-title-inner">
+              <p class="support-title-kicker">Support étudiant</p>
+              <h1>
+                DSP2<br />
+                et Open Banking
+              </h1>
+              <p class="support-title-day">
+                Jour 2&nbsp;: API, authentification et sécurité
+              </p>
+              <div class="support-title-author">
+                <p class="support-title-name">Chrisvene MPANDZOU</p>
+                <p class="support-title-email">chrisvene.mpandzou@a2mtech.com</p>
+                <p class="support-title-promo">M2 SIB&nbsp;·&nbsp;2026 – 2027</p>
+              </div>
+            </div>
+          </section>
+
+<article class="support-bloc" id="intro" data-num="01">
+  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <div class="fiche-meta"><span class="tag">Ouverture</span></div>
+      <p class="day-kicker">01 · Introduction & objectifs</p>
+      <h1>Introduction & objectifs</h1>
+    </div>
+  </section>
+  <div class="wrap support-bloc-body">
+
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Ouverture</span>
+                <span class="tag tag-accent">4 h</span>
+              </div>
+              <p class="day-kicker">Accueil</p>
+              <h1>Intro &amp; objectifs</h1>
+              <p class="lead">
+                Le Jour 1 a posé le pourquoi et le qui. Le Jour 2 passe au
+                comment technique&nbsp;: de quoi est faite une API bancaire, par
+                quels mécanismes un tiers est autorisé, et comment l’ensemble
+                reste sûr et conforme.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Samedi, 9 h 12. L’application de Lyam prépare sa requête. Elle
+                doit <strong>prouver qui elle est</strong> (le TPP), obtenir une
+                <strong>autorisation</strong> (le consentement de Lyam), puis
+                présenter un <strong>jeton</strong> à chaque appel. Le Jour 2
+                ouvre ce capot.
+              </p>
+            </div>
+
+            <!-- RAPPEL DU SIGLE -->
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Rappel</p>
+              <h2>Ce que l’on a fixé au Jour 1</h2>
+              <p>
+                <strong>DSP2</strong> = <strong>Deuxième Directive sur les
+                Services de Paiement</strong> (directive (UE) 2015/2366).
+                <strong>Open Banking</strong> = l’ouverture des données de compte
+                et des paiements à des tiers agréés, avec le consentement du
+                client. La DSP2 est la règle, l’Open Banking la pratique, et
+                l’<strong>API</strong> en est l’outil technique — celui que l’on
+                étudie aujourd’hui.
+              </p>
+
+              <div class="callout info">
+                <h3>Le fil conducteur du Jour 2</h3>
+                <p>
+                  Une API Open Banking protège trois choses en même temps&nbsp;:
+                  l’<strong>identité du tiers</strong>, l’<strong>autorisation
+                  du client</strong> et l’<strong>intégrité de chaque
+                  appel</strong>. Chaque bloc du jour correspond à l’une de ces
+                  protections.
+                </p>
+              </div>
+            </section>
+
+            <!-- APERÇU -->
+            <section class="section">
+              <p class="section-label">Aperçu</p>
+              <h2>Le parcours du Jour 2, en une image</h2>
+              <p class="intro">
+                Quatre séquences, du composant au cas concret. On part de la
+                brique API, on monte jusqu’aux mécanismes d’authentification,
+                puis aux exigences de sécurité, pour finir par une mise en
+                situation complète.
+              </p>
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>S1 — Architecture API</h3>
+                  <p>
+                    Les types d’API (AIS, PIS, CBPII) et les composants qui les
+                    exposent&nbsp;: Gateway, API Management, throttling, logs.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>S2 — Authentification &amp; autorisation</h3>
+                  <p>
+                    OAuth2, OpenID Connect, mTLS, JWT&nbsp;: qui prouve son
+                    identité, et comment l’accès aux données est-il borné&nbsp;?
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>S3 — Sécurité &amp; conformité</h3>
+                  <p>
+                    Exigences DSP2&nbsp;: SCA, exemptions, non-répudiation,
+                    horodatage. Et les risques&nbsp;: usurpation, attaques API,
+                    fuites.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>S4 — Cas pratique</h3>
+                  <p>
+                    Ouvrir une API à un TPP de bout en bout&nbsp;: schéma
+                    d’architecture, flux OAuth, points de contrôle de sécurité.
+                  </p>
+                </div>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Fil du Jour 2</h3>
+                  <p>Architecture → Authentification → Sécurité → Mise en œuvre</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Chaîne pédagogique du jour 2">
+                  <defs>
+                    <marker id="ah-j2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="50" width="220" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="130" y="80" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">2.1</text>
+                    <text x="130" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Architecture API</text>
+                    <text x="130" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">types · composants</text>
+                  </g>
+                  <line x1="248" y1="105" x2="278" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j2)"/>
+                  <g>
+                    <rect x="286" y="50" width="220" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="396" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">2.2</text>
+                    <text x="396" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Auth &amp; autorisation</text>
+                    <text x="396" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">OAuth2 · mTLS · JWT</text>
+                  </g>
+                  <line x1="514" y1="105" x2="544" y2="105" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-j2)"/>
+                  <g>
+                    <rect x="552" y="50" width="220" height="110" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="662" y="80" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">2.3</text>
+                    <text x="662" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Sécurité &amp; conformité</text>
+                    <text x="662" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">SCA · risques</text>
+                  </g>
+                  <line x1="780" y1="105" x2="810" y2="105" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-j2)"/>
+                  <g>
+                    <rect x="818" y="50" width="166" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="901" y="80" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700" letter-spacing="0.08em">2.4</text>
+                    <text x="901" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Cas pratique</text>
+                    <text x="901" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">mise en œuvre</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <!-- OBJECTIFS -->
+            <section class="section">
+              <p class="section-label">Objectifs pédagogiques</p>
+              <h2>À l’issue du Jour 2, l’étudiant sait…</h2>
+              <ul class="topic-list">
+                <li>
+                  <span>
+                    <strong>Distinguer</strong> les trois types d’API Open
+                    Banking — Account Information (AIS), Payment Initiation
+                    (PIS), Confirmation of Funds (CBPII) — et leurs composants
+                    (Gateway, API Management, throttling).
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Expliquer</strong> les mécanismes d’authentification
+                    et d’autorisation&nbsp;: OAuth2, OpenID Connect, mTLS, JWT,
+                    et la séparation entre identité du client, identité du TPP et
+                    autorisation d’accès.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Relier</strong> les exigences DSP2 de sécurité (SCA,
+                    exemptions, non-répudiation, horodatage) aux mécanismes
+                    techniques qui les mettent en œuvre.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Identifier</strong> les risques propres aux API
+                    (usurpation d’identité, attaques API, fuites de données) et
+                    les contre-mesures associées.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Concevoir</strong> l’ouverture sécurisée d’une API
+                    bancaire à un TPP&nbsp;: schéma d’architecture, flux OAuth et
+                    points de contrôle de sécurité.
+                  </span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- DÉROULÉ -->
+            <section class="section">
+              <p class="section-label">Organisation</p>
+              <h2>Déroulé des 4 heures</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Temps</th>
+                      <th scope="col">Bloc</th>
+                      <th scope="col">Modalité</th>
+                      <th scope="col">Livrable</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">0 h 00 – 0 h 10</th>
+                      <td>Intro &amp; objectifs</td>
+                      <td>Plénière</td>
+                      <td>Vision d’ensemble</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">0 h 10 – 1 h 00</th>
+                      <td>2.1 Architecture API</td>
+                      <td>Exposé + schéma</td>
+                      <td>Carte des types d’API</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1 h 00 – 1 h 55</th>
+                      <td>2.2 Authentification &amp; autorisation</td>
+                      <td>Exposé + démonstration</td>
+                      <td>Flux OAuth annoté</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1 h 55 – 2 h 05</th>
+                      <td>Pause</td>
+                      <td>—</td>
+                      <td>—</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2 h 05 – 2 h 55</th>
+                      <td>2.3 Sécurité &amp; conformité</td>
+                      <td>Exposé + discussion</td>
+                      <td>Tableau exigences / risques</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">2 h 55 – 4 h 00</th>
+                      <td>2.4 Cas pratique</td>
+                      <td>Travaux de groupe</td>
+                      <td>Schéma + flux + contrôles</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Ce qu’il faut avoir retenu du Jour 1</h3>
+                <p>
+                  Les rôles ASPSP / TPP, la chaîne Gateway → consentement → IAM →
+                  core banking, et le parcours de redirection. Ces acquis sont
+                  réutilisés en permanence&nbsp;: on ne les redéfinit plus, on les
+                  approfondit.
+                </p>
+              </div>
+            </section>
+
+            
+          </div>
+  </div>
+</article>
+<article class="support-bloc" id="s1-api" data-num="02">
+  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <div class="fiche-meta"><span class="tag">Parcours narratif</span></div>
+      <p class="day-kicker">02 · S1 · Architecture API</p>
+      <h1>S1 · Architecture API</h1>
+    </div>
+  </section>
+  <div class="wrap support-bloc-body">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Séquence 1</span>
+                <span class="tag tag-accent">35 min</span>
+              </div>
+              <p class="day-kicker">Une infrastructure, trois services</p>
+              <h1>Architecture API — le socle commun</h1>
+              <p class="lead">
+                AIS, PIS, CBPII&nbsp;: trois API aux usages différents, mais
+                bâties sur <strong>la même infrastructure d’exposition</strong>.
+                On commence par ce socle commun — passerelle, gestion, services,
+                journalisation — avant de détailler chaque API dans les
+                séquences suivantes.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                L’application de Lyam n’utilise pas «&nbsp;une API&nbsp;»&nbsp;:
+                elle appelle une API de <strong>lecture de comptes</strong>
+                (AIS). Demain, si Lyam paie un marchand par virement, ce sera une
+                API d’<strong>initiation de paiement</strong> (PIS). Derrière ces
+                appels différents, la banque expose toujours la <em>même</em>
+                plomberie&nbsp;: c’est ce socle qu’on découvre ici.
+              </p>
+            </div>
+
+            <!-- 1. ORIENTATION : TROIS API, UN SOCLE -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Orientation</p>
+              <h2 id="trois-api">Trois API, un même socle</h2>
+              <p class="intro">
+                La DSP2 définit trois familles de services, chacune exposée par
+                une API dédiée. Leur <em>logique métier</em> diffère&nbsp;; leur
+                <em>infrastructure d’exposition</em> est commune. Cette séquence
+                pose le socle&nbsp;; les deux suivantes détaillent le workflow
+                propre à l’AIS et au CBPII. Le PIS, lui, fait l’objet du Jour 3.
+              </p>
+
+              <div class="role-grid">
+                <article class="role-card aisp">
+                  <h3>Account Information API</h3>
+                  <p class="role-full">Lecture des comptes · AIS</p>
+                  <p class="role-desc">
+                    Lit soldes, opérations et détails de comptes.
+                    <strong>Lecture seule</strong>, aucun mouvement de fonds.
+                  </p>
+                  <p class="role-desc"><a href="s2-ais.html">→ S2 · détail de l’API AIS</a></p>
+                </article>
+
+                <article class="role-card pisp">
+                  <h3>Payment Initiation API</h3>
+                  <p class="role-full">Initiation de paiement · PIS</p>
+                  <p class="role-desc">
+                    <strong>Déclenche un virement</strong> au nom du client, sans
+                    jamais détenir les fonds.
+                  </p>
+                  <p class="role-desc"><a href="../j3/intro.html">→ détaillé au Jour 3</a></p>
+                </article>
+
+                <article class="role-card">
+                  <h3>Confirmation of Funds API</h3>
+                  <p class="role-full">Vérification de fonds · CBPII</p>
+                  <p class="role-desc">
+                    Répond «&nbsp;fonds disponibles&nbsp;?&nbsp;» sans exposer de
+                    solde.
+                  </p>
+                  <p class="role-desc"><a href="s3-cbpii.html">→ S3 · workflow CBPII</a></p>
+                </article>
+              </div>
+
+              <div class="callout info">
+                <h3>Une API, un usage</h3>
+                <p>
+                  Une banque peut exposer les trois types, mais un TPP n’accède
+                  qu’aux types couverts par son agrément. Un AISP n’obtient
+                  jamais le droit d’appeler l’API de paiement&nbsp;: la
+                  séparation est technique <em>et</em> réglementaire.
+                </p>
+              </div>
+            </section>
+
+            <!-- 2. COMPOSANTS DU SOCLE -->
+            <section class="section">
+              <p class="section-label">Composants</p>
+              <h2 id="composants">Les composants qui exposent l’API</h2>
+              <p class="intro">
+                Quelle que soit l’API appelée, l’appel traverse la même chaîne de
+                composants. On retrouve ici les couches du Jour 1, vues cette
+                fois du côté de l’exposition.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>De l’appel TPP au service métier</h3>
+                  <p>Les composants d’exposition de l’API</p>
+                </div>
+                <svg viewBox="0 0 1000 360" role="img" aria-label="Architecture d'exposition API">
+                  <defs>
+                    <marker id="ah-s1j2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="130" width="150" height="80" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="95" y="165" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">TPP</text>
+                    <text x="95" y="187" text-anchor="middle" fill="#5a6b7c" font-size="11">appel HTTPS</text>
+                  </g>
+                  <g>
+                    <rect x="210" y="110" width="170" height="120" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="295" y="145" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">API Gateway</text>
+                    <text x="295" y="168" text-anchor="middle" fill="#5a6b7c" font-size="10">TLS · mTLS</text>
+                    <text x="295" y="185" text-anchor="middle" fill="#5a6b7c" font-size="10">routage</text>
+                    <text x="295" y="202" text-anchor="middle" fill="#5a6b7c" font-size="10">rejet des abus</text>
+                  </g>
+                  <g>
+                    <rect x="420" y="110" width="170" height="120" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="505" y="145" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">API Management</text>
+                    <text x="505" y="168" text-anchor="middle" fill="#5a6b7c" font-size="10">quotas</text>
+                    <text x="505" y="185" text-anchor="middle" fill="#5a6b7c" font-size="10">throttling</text>
+                    <text x="505" y="202" text-anchor="middle" fill="#5a6b7c" font-size="10">versionnement</text>
+                  </g>
+                  <g>
+                    <rect x="630" y="110" width="170" height="120" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <text x="715" y="145" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Services API</text>
+                    <text x="715" y="168" text-anchor="middle" fill="#5a6b7c" font-size="10">AIS · PIS · CBPII</text>
+                    <text x="715" y="185" text-anchor="middle" fill="#5a6b7c" font-size="10">contrôle consentement</text>
+                    <text x="715" y="202" text-anchor="middle" fill="#5a6b7c" font-size="10">validation métier</text>
+                  </g>
+                  <g>
+                    <rect x="840" y="130" width="140" height="80" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="910" y="165" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Core</text>
+                    <text x="910" y="187" text-anchor="middle" fill="#087a6a" font-size="11">banking</text>
+                  </g>
+
+                  <line x1="170" y1="170" x2="206" y2="170" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s1j2)"/>
+                  <line x1="380" y1="170" x2="416" y2="170" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s1j2)"/>
+                  <line x1="590" y1="170" x2="626" y2="170" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s1j2)"/>
+                  <line x1="800" y1="170" x2="836" y2="170" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s1j2)"/>
+
+                  <rect x="210" y="270" width="590" height="60" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="505" y="295" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Logs &amp; traçabilité</text>
+                  <text x="505" y="315" text-anchor="middle" fill="#5a6b7c" font-size="10">chaque appel : identifiant, TPP, endpoint, latence, résultat</text>
+                  <line x1="295" y1="230" x2="295" y2="266" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="505" y1="230" x2="505" y2="266" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="715" y1="230" x2="715" y2="266" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                </svg>
+              </div>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>API Gateway</strong>
+                    <p>
+                      Point d’entrée unique. Termine le chiffrement, vérifie le
+                      certificat du TPP (mTLS), route vers le bon service et
+                      rejette les appels malformés ou abusifs.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>API Management</strong>
+                    <p>
+                      Gère le catalogue d’API, les quotas par TPP, le
+                      <em>throttling</em> (limitation de débit) et le
+                      versionnement. C’est l’endroit où l’on décide qui a le droit
+                      d’appeler quoi, à quelle fréquence.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Services API métier</strong>
+                    <p>
+                      Implémentent réellement AIS, PIS, CBPII&nbsp;: vérification
+                      du consentement, contrôle du périmètre, validation des
+                      règles métier avant d’appeler le core banking. C’est ici
+                      que chaque API devient <em>différente</em> (S2 AIS, S3 CBPII).
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">4</span>
+                  <div>
+                    <strong>Logs &amp; traçabilité</strong>
+                    <p>
+                      Chaque appel est journalisé&nbsp;: qui (TPP), quoi
+                      (endpoint), quand (horodatage), résultat (code), et combien
+                      de temps. Indispensable à l’audit, aux litiges et au
+                      monitoring.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Throttling&nbsp;: pourquoi c’est une exigence, pas une option</h3>
+                <p>
+                  Les RTS imposent des plafonds de consultation. Sans limitation
+                  de débit, un TPP mal codé peut saturer l’API et faire tomber,
+                  pour tous les autres, l’accès aux comptes. Le throttling protège
+                  la disponibilité du service — donc la qualité pour Lyam.
+                </p>
+              </div>
+            </section>
+
+            <!-- 3. TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Maintenant, chaque API en détail</h2>
+                <p>
+                  Le socle est posé. On peut désormais spécialiser&nbsp;: chaque
+                  API a son cœur métier, ses endpoints, ses règles SCA et ses
+                  risques propres. Commençons par la plus utilisée&nbsp;: la
+                  lecture de comptes (S2 · AIS).
+                </p>
+              </div>
+            </section>
+
+            <details open class="cours-note">
+              <summary>Cours — récapitulatif du bloc</summary>
+              <div class="cours-note-body">
+                <ul>
+                  <li><strong>Trois API, un socle</strong>&nbsp;: AIS (lecture), PIS (paiement), CBPII (fonds) partagent la même infrastructure d’exposition.</li>
+                  <li><strong>Composants</strong>&nbsp;: Gateway (entrée), API Management (quotas, throttling, versionnement), Services métier, Logs.</li>
+                  <li><strong>Point de divergence</strong>&nbsp;: c’est dans les <em>services métier</em> que chaque API devient spécifique (workflow AIS en S2, CBPII en S3&nbsp;; PIS au Jour 3).</li>
+                  <li><strong>Principe</strong>&nbsp;: un seul type par agrément, séparation technique et réglementaire.</li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="sources-box">
+              <strong>Références</strong> — RTS EBA 2018/389 (interfaces dédiées,
+              limites de performance)&nbsp;; orientations EBA sur les interfaces
+              dédiées&nbsp;; Berlin Group NextGenPSD2 (structures AIS/PIS/CBPII).
+            </div>
+
+            
+          </div>
+  </div>
+</article>
+<article class="support-bloc" id="s2-ais" data-num="03">
+  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <div class="fiche-meta"><span class="tag">Parcours narratif</span></div>
+      <p class="day-kicker">03 · S2 · Workflow AIS</p>
+      <h1>S2 · Workflow AIS</h1>
+    </div>
+  </section>
+  <div class="wrap support-bloc-body">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Séquence 2</span>
+                <span class="tag tag-accent">30 min</span>
+              </div>
+              <p class="day-kicker">Lire les comptes, jamais les toucher</p>
+              <h1>Workflow AIS — Account Information</h1>
+              <p class="lead">
+                L’API que Lyam utilise au quotidien&nbsp;: lire ses soldes et ses
+                opérations depuis son application. Sur le socle de S1, elle
+                ajoute un cœur métier précis&nbsp;: <strong>lecture seule</strong>,
+                cadrée par un consentement et une authentification forte
+                initiale.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam ouvre son application de gestion de budget. Elle affiche la
+                liste de ses comptes, le solde de chacun et ses dernières
+                opérations. Pour cela, elle appelle l’API AIS de Banque Est avec
+                le consentement que Lyam a donné une fois — et qui reste valable
+                jusqu’à 90 jours.
+              </p>
+            </div>
+
+            <!-- 1. CŒUR MÉTIER -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Cœur métier</p>
+              <h2 id="coeur">Ce que fait — et ne fait pas — l’API AIS</h2>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Ce qu’elle fait</h3>
+                  <ul>
+                    <li>Lister les comptes (comptes courants, livrets, cartes)</li>
+                    <li>Donner le détail d’un compte (IBAN, titulaire, type)</li>
+                    <li>Lister les transactions d’un compte, filtrables par date</li>
+                    <li>Donner les soldes (comptabilisé, disponible)</li>
+                  </ul>
+                </div>
+                <div class="panel ko">
+                  <h3>Ce qu’elle ne fait jamais</h3>
+                  <ul>
+                    <li>Aucun mouvement de fonds (pas de virement, pas de prélèvement)</li>
+                    <li>Aucune modification du compte</li>
+                    <li>Aucun accès sans consentement AIS actif</li>
+                    <li>Aucun accès aux comptes non couverts par le consentement</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="key-idea">
+                <p class="label">Le principe</p>
+                <p>
+                  L’AISP lit&nbsp;; il ne touche à rien. Le risque de l’AIS n’est
+                  pas la fraude financière, c’est la <strong>confidentialité</strong>
+                  des données de comptes.
+                </p>
+              </div>
+            </section>
+
+            <!-- 2. PARCOURS ET ENDPOINTS -->
+            <section class="section">
+              <p class="section-label">Parcours</p>
+              <h2 id="parcours">Le parcours d’une lecture de comptes</h2>
+              <p class="intro">
+                Une lecture AIS suit toujours la même séquence&nbsp;: consentement,
+                authentification forte initiale, puis lecture répétée tant que le
+                consentement est valide.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Flux d’une lecture AIS</h3>
+                  <p>Consentement → SCA initiale → lectures → révocation</p>
+                </div>
+                <svg viewBox="0 0 1000 220" role="img" aria-label="Flux du parcours AIS">
+                  <defs>
+                    <marker id="ah-ais" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="55" width="205" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <circle cx="55" cy="88" r="14" fill="#6b4fa0"/>
+                    <text x="55" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1</text>
+                    <text x="122" y="92" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">Consentement</text>
+                    <text x="122" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">périmètre + durée</text>
+                    <text x="122" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">renvoie un ID</text>
+                  </g>
+                  <line x1="230" y1="110" x2="262" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-ais)"/>
+                  <g>
+                    <rect x="266" y="55" width="205" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <circle cx="301" cy="88" r="14" fill="#1e5f8a"/>
+                    <text x="301" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">2</text>
+                    <text x="368" y="92" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">SCA initiale</text>
+                    <text x="368" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">2 facteurs</text>
+                    <text x="368" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">une seule fois</text>
+                  </g>
+                  <line x1="476" y1="110" x2="508" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-ais)"/>
+                  <g>
+                    <rect x="512" y="55" width="205" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <circle cx="547" cy="88" r="14" fill="#0d9f8a"/>
+                    <text x="547" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">3</text>
+                    <text x="614" y="92" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Lectures répétées</text>
+                    <text x="614" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">jeton d’accès</text>
+                    <text x="614" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">jusqu’à 90 jours</text>
+                  </g>
+                  <line x1="722" y1="110" x2="754" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-ais)"/>
+                  <g>
+                    <rect x="758" y="55" width="205" height="110" rx="10" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                    <circle cx="793" cy="88" r="14" fill="#3d5a80"/>
+                    <text x="793" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">4</text>
+                    <text x="860" y="92" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="13" font-weight="700">Révocation</text>
+                    <text x="860" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">à tout moment</text>
+                    <text x="860" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">coupure immédiate</text>
+                  </g>
+                </svg>
+                <figcaption>
+                  Figure — le parcours AIS&nbsp;: une seule authentification forte
+                  initiale, puis des lectures répétées tant que le consentement
+                  reste valide (90 jours max).
+                </figcaption>
+              </div>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Création du consentement</strong>
+                    <p>
+                      L’AISP déclare au nom de Lyam ce qu’il veut lire
+                      (comptes, transactions, soldes) et pour combien de temps.
+                      La banque renvoie un identifiant de consentement.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>SCA initiale</strong>
+                    <p>
+                      Lyam s’authentifie fortement (deux facteurs) auprès de sa
+                      banque et autorise explicitement le consentement. C’est le
+                      seul moment où il prouve son identité.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Lecture répétée</strong>
+                    <p>
+                      Avec un jeton d’accès, l’AISP lit les comptes et les
+                      transactions. Plus de SCA à chaque lecture&nbsp;: l’accès
+                      reste ouvert jusqu’à expiration du consentement
+                      (<strong>max 90 jours</strong> sous RTS).
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">4</span>
+                  <div>
+                    <strong>Révocation</strong>
+                    <p>
+                      Lyam peut révoquer le consentement à tout moment. L’accès
+                      est coupé immédiatement, quelles que soient les jetons en
+                      circulation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Étape</th>
+                      <th scope="col">Endpoint typique (Berlin Group)</th>
+                      <th scope="col">But</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Consentement</th><td><code>POST /v1/consents</code></td><td>Déclarer le périmètre et la durée</td></tr>
+                    <tr><th scope="row">Comptes</th><td><code>GET /v1/accounts</code></td><td>Lister les comptes autorisés</td></tr>
+                    <tr><th scope="row">Détail</th><td><code>GET /v1/accounts/{accountId}</code></td><td>IBAN, titulaire, type</td></tr>
+                    <tr><th scope="row">Soldes</th><td><code>GET /v1/accounts/{accountId}/balances</code></td><td>Solde comptabilisé / disponible</td></tr>
+                    <tr class="is-exergue"><th scope="row">Transactions</th><td><code>GET /v1/accounts/{accountId}/transactions</code></td><td>Opérations, filtrables par date</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="cours-note-meta">
+                Les noms exacts varient selon le standard (Berlin Group, STET,
+                OBIE). Ce qui est normalisé par la DSP2, c’est le <em>service</em>
+                rendu, pas l’URL.
+              </p>
+            </section>
+
+            <!-- 3. DONNÉES ET EXEMPLE -->
+            <section class="section">
+              <p class="section-label">Données</p>
+              <h2 id="donnees">À quoi ressemble une réponse AIS</h2>
+              <p class="intro">
+                L’AIS renvoie des données riches — c’est justement ce qui le rend
+                sensible. Exemple simplifié d’une réponse «&nbsp;transactions&nbsp;»&nbsp;:
+              </p>
+
+              <pre class="payload-raw">{
+  "account": { "iban": "FR76…1234" },
+  "transactions": {
+    "booked": [
+      {
+        "transactionId": "TX-2025-0001",
+        "bookingDate": "2025-11-08",
+        "amount": { "currency": "EUR", "amount": "-42.90" },
+        "creditorName": "SNCF",
+        "remittanceInformation": "Billet Paris–Lyon"
+      },
+      {
+        "transactionId": "TX-2025-0002",
+        "bookingDate": "2025-11-07",
+        "amount": { "currency": "EUR", "amount": "2500.00" },
+        "debtorName": "ACME SARL",
+        "remittanceInformation": "Salaire novembre"
+      }
+    ]
+  }
+}</pre>
+
+              <div class="callout info">
+                <h3>Pourquoi c’est sensible</h3>
+                <p>
+                  Une réponse AIS révèle les revenus, les habitudes d’achat, les
+                  bénéficiaires, la santé financière de Lyam. C’est une donnée
+                  personnelle au sens du RGPD&nbsp;: d’où le consentement
+                  explicite, la durée bornée et le droit de révocation à tout
+                  moment.
+                </p>
+              </div>
+            </section>
+
+            <!-- 4. RISQUES / ERREURS -->
+            <section class="section">
+              <p class="section-label">Risques</p>
+              <h2 id="risques">Les erreurs et risques propres à l’AIS</h2>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Code HTTP</th>
+                      <th scope="col">Signification</th>
+                      <th scope="col">Ce que fait l’AISP</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">401</th><td>Jeton absent ou invalide</td><td>Re-authentifier, redemander la SCA si besoin</td></tr>
+                    <tr><th scope="row">403</th><td>Consentement expiré ou révoqué</td><td>Demander un nouveau consentement à Lyam</td></tr>
+                    <tr><th scope="row">429</th><td>Trop de requêtes (throttling)</td><td>Ralentir, respecter les plafonds RTS</td></tr>
+                    <tr class="is-exergue"><th scope="row">503</th><td>Service indisponible</td><td>Réessayer avec backoff, prévenir l’utilisateur</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le piège&nbsp;: le stockage des données</h3>
+                <p>
+                  L’AISP ne doit conserver les données lues que pour la durée
+                  strictement nécessaire au service rendu. Un AISP qui garde une
+                  copie intégrale des transactions «&nbsp;au cas où&nbsp;» sort de
+                  son cadre — et s’expose au RGPD comme à la DSP2.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Et si l’on ne faisait que vérifier&nbsp;?</h2>
+                <p>
+                  L’AIS lit beaucoup. La troisième API, elle, répond à une seule
+                  question —&nbsp;«&nbsp;y a-t-il assez de fonds&nbsp;?&nbsp;»&nbsp;—
+                  sans révéler de solde. C’est un tout autre workflow, minimaliste
+                  par choix (S3 · CBPII).
+                </p>
+              </div>
+            </section>
+
+            <details open class="cours-note">
+              <summary>Cours — récapitulatif du bloc</summary>
+              <div class="cours-note-body">
+                <ul>
+                  <li><strong>Rôle</strong>&nbsp;: lecture seule des comptes, soldes et transactions.</li>
+                  <li><strong>Parcours</strong>&nbsp;: consentement → SCA initiale → lecture répétée → révocation.</li>
+                  <li><strong>Durée</strong>&nbsp;: consentement valable jusqu’à 90 jours (RTS), une seule SCA initiale.</li>
+                  <li><strong>Risque</strong>&nbsp;: confidentialité des données (revenus, habitudes), conformité RGPD.</li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="sources-box">
+              <strong>Références</strong> — RTS EBA 2018/389 (art. 10, accès
+              fréquents&nbsp;; validité du consentement)&nbsp;; Berlin Group
+              NextGenPSD2 (AIS)&nbsp;; RGPD (art. 5, 6, 17).
+            </div>
+
+            
+          </div>
+  </div>
+</article>
+<article class="support-bloc" id="s3-cbpii" data-num="04">
+  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <div class="fiche-meta"><span class="tag">Parcours narratif</span></div>
+      <p class="day-kicker">04 · S3 · Workflow CBPII</p>
+      <h1>S3 · Workflow CBPII</h1>
+    </div>
+  </section>
+  <div class="wrap support-bloc-body">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Séquence 3</span>
+                <span class="tag tag-accent">25 min</span>
+              </div>
+              <p class="day-kicker">Une seule question, une seule réponse</p>
+              <h1>Workflow CBPII — Confirmation of Funds</h1>
+              <p class="lead">
+                La plus discrète des trois API&nbsp;: elle répond à une unique
+                question —&nbsp;«&nbsp;y a-t-il assez de fonds pour ce
+                montant&nbsp;?&nbsp;»&nbsp;— par un simple
+                <strong>oui ou non</strong>, sans jamais révéler de solde ni
+                d’opération.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam a une carte de paiement adossée à un porte-monnaie géré par
+                un émetteur. Avant d’autoriser une dépense, l’émetteur demande à
+                Banque Est&nbsp;: «&nbsp;le compte de Lyam couvre-t-il 42,90&nbsp;€&nbsp;?&nbsp;».
+                Réponse&nbsp;: oui ou non. L’émetteur n’apprend ni le solde, ni
+                les opérations de Lyam.
+              </p>
+            </div>
+
+            <!-- 1. CŒUR MÉTIER -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Cœur métier</p>
+              <h2 id="coeur">Une API volontairement pauvre</h2>
+              <p class="intro">
+                Là où l’AIS expose des données riches, le CBPII expose le minimum
+                nécessaire. C’est un choix de conception protecteur&nbsp;: moins
+                de données exposées, moins de risque.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Ce qu’elle fait</h3>
+                  <ul>
+                    <li>Répond oui/non à «&nbsp;fonds suffisants pour tel montant&nbsp;?&nbsp;»</li>
+                    <li>Se limite au compte et au montant demandés</li>
+                    <li>Sert de contrôle avant une autorisation de paiement</li>
+                  </ul>
+                </div>
+                <div class="panel ko">
+                  <h3>Ce qu’elle ne fait jamais</h3>
+                  <ul>
+                    <li>Renvoyer un solde (même approximatif)</li>
+                    <li>Lister des transactions</li>
+                    <li>Déplacer des fonds</li>
+                    <li>Donner des informations sur d’autres comptes</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="key-idea">
+                <p class="label">Le principe</p>
+                <p>
+                  Le CBPII ne lit pas&nbsp;: il <strong>vérifie</strong>. Une
+                  réponse binaire vaut mieux qu’un solde exposé — c’est la
+                  protection par la pauvreté de la donnée.
+                </p>
+              </div>
+            </section>
+
+            <!-- 2. PARCOURS -->
+            <section class="section">
+              <p class="section-label">Parcours</p>
+              <h2 id="parcours">Le parcours d’une vérification de fonds</h2>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Flux d’une vérification CBPII</h3>
+                  <p>Consentement → SCA initiale → vérifications → révocation</p>
+                </div>
+                <svg viewBox="0 0 1000 220" role="img" aria-label="Flux du parcours CBPII">
+                  <defs>
+                    <marker id="ah-cbp" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="55" width="205" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <circle cx="55" cy="88" r="14" fill="#6b4fa0"/>
+                    <text x="55" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1</text>
+                    <text x="122" y="92" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">Consentement</text>
+                    <text x="122" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">compte + finalité</text>
+                    <text x="122" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">usage défini</text>
+                  </g>
+                  <line x1="230" y1="110" x2="262" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-cbp)"/>
+                  <g>
+                    <rect x="266" y="55" width="205" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2.5"/>
+                    <circle cx="301" cy="88" r="14" fill="#1e5f8a"/>
+                    <text x="301" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">2</text>
+                    <text x="368" y="92" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">SCA initiale</text>
+                    <text x="368" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">2 facteurs</text>
+                    <text x="368" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">pas à chaque appel</text>
+                  </g>
+                  <line x1="476" y1="110" x2="508" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-cbp)"/>
+                  <g>
+                    <rect x="512" y="55" width="205" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <circle cx="547" cy="88" r="14" fill="#0d9f8a"/>
+                    <text x="547" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">3</text>
+                    <text x="614" y="92" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Vérifications</text>
+                    <text x="614" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">montant → oui/non</text>
+                    <text x="614" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">fréquence bornée</text>
+                  </g>
+                  <line x1="722" y1="110" x2="754" y2="110" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-cbp)"/>
+                  <g>
+                    <rect x="758" y="55" width="205" height="110" rx="10" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                    <circle cx="793" cy="88" r="14" fill="#3d5a80"/>
+                    <text x="793" y="93" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">4</text>
+                    <text x="860" y="92" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="13" font-weight="700">Révocation</text>
+                    <text x="860" y="120" text-anchor="middle" fill="#5a6b7c" font-size="10">à tout moment</text>
+                    <text x="860" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">vérification coupée</text>
+                  </g>
+                </svg>
+                <figcaption>
+                  Figure — le parcours CBPII&nbsp;: même squelette que l’AIS
+                  (consentement, SCA initiale, révocation), mais la boucle répétée
+                  ne renvoie qu’un booléen «&nbsp;fonds suffisants&nbsp;».
+                </figcaption>
+              </div>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Consentement CBPII</strong>
+                    <p>
+                      Le CBPII obtient le droit de vérifier les fonds d’un compte
+                      donné pour un usage défini. Le consentement précise le
+                      compte et la finalité.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>SCA initiale</strong>
+                    <p>
+                      Comme pour l’AIS, une authentification forte initiale est
+                      requise pour établir le consentement. Le CBPII ne
+                      s’authentifie pas à chaque vérification.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Vérification répétée</strong>
+                    <p>
+                      Pour chaque dépense, le CBPII envoie le montant et reçoit un
+                      booléen. La fréquence est bornée par les RTS (pas
+                      d’interrogation abusive du solde par ce biais).
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">4</span>
+                  <div>
+                    <strong>Révocation</strong>
+                    <p>
+                      Lyam peut retirer le consentement&nbsp;; le CBPII perd alors
+                      toute possibilité de vérifier les fonds.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Étape</th>
+                      <th scope="col">Endpoint typique (Berlin Group)</th>
+                      <th scope="col">But</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Consentement</th><td><code>POST /v1/funds-confirmations</code></td><td>Déclarer le compte à vérifier</td></tr>
+                    <tr class="is-exergue"><th scope="row">Vérification</th><td>appel avec montant + compte</td><td>Obtenir «&nbsp;fonds suffisants&nbsp;: oui/non&nbsp;»</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- 3. DONNÉES ET EXEMPLE -->
+            <section class="section">
+              <p class="section-label">Données</p>
+              <h2 id="donnees">À quoi ressemble une réponse CBPII</h2>
+              <p class="intro">
+                La réponse est minimale. Pas de montant de solde, pas de
+                transaction&nbsp;: un seul indicateur booléen.
+              </p>
+
+              <pre class="payload-raw">{
+  "fundsAvailable": true,
+  "account": { "iban": "FR76…1234" }
+}</pre>
+
+              <div class="callout info">
+                <h3>Un booléen, pas un solde</h3>
+                <p>
+                  Pourquoi ne pas simplement renvoyer le solde&nbsp;? Parce que
+                  le solde est une donnée sensible. Le CBPII n’a besoin que de la
+                  réponse à sa question&nbsp;: le minimum exposé est le maximum
+                  protégé.
+                </p>
+              </div>
+            </section>
+
+            <!-- 4. USAGES / RISQUES -->
+            <section class="section">
+              <p class="section-label">Usages</p>
+              <h2 id="usages">Cas d’usage et limites</h2>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Cas d’usage</th>
+                      <th scope="col">Intérêt du CBPII</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Porte-monnaie / carte prépayée</th><td>Vérifier la couverture avant d’autoriser</td></tr>
+                    <tr><th scope="row">Émetteur de carte</th><td>Contrôle de solvabilité sans voir les comptes</td></tr>
+                    <tr class="is-exergue"><th scope="row">Paiement en plusieurs fois</th><td>S’assurer de la capacité de remboursement</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le piège&nbsp;: l’interrogation abusive</h3>
+                <p>
+                  Multiplier les vérifications permet de reconstituer un solde par
+                  déduction. Les RTS limitent donc la fréquence d’interrogation
+                  —&nbsp;c’est le même enjeu de <em>throttling</em> vu en S1, mais
+                  ici pour protéger une donnée déduite, pas un service.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            
+
+            <details open class="cours-note">
+              <summary>Cours — récapitulatif du bloc</summary>
+              <div class="cours-note-body">
+                <ul>
+                  <li><strong>Rôle</strong>&nbsp;: répondre oui/non à «&nbsp;fonds suffisants pour ce montant&nbsp;?&nbsp;».</li>
+                  <li><strong>Minimalisme</strong>&nbsp;: jamais de solde, jamais de transactions.</li>
+                  <li><strong>Parcours</strong>&nbsp;: consentement → SCA initiale → vérifications répétées → révocation.</li>
+                  <li><strong>Risque</strong>&nbsp;: reconstitution du solde par interrogation répétée (bornée par les RTS).</li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2 (art. 65, confirmation de
+              fonds)&nbsp;; RTS EBA 2018/389 (fréquence d’interrogation)&nbsp;;
+              Berlin Group NextGenPSD2 (confirmation of funds).
+            </div>
+
+            
+          </div>
+  </div>
+</article>
+<article class="support-bloc" id="s5-auth" data-num="05">
+  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <div class="fiche-meta"><span class="tag">Parcours narratif</span></div>
+      <p class="day-kicker">05 · S5 · Authentification & autorisation</p>
+      <h1>S5 · Authentification & autorisation</h1>
+    </div>
+  </section>
+  <div class="wrap support-bloc-body">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Séquence 5</span>
+                <span class="tag tag-accent">55 min</span>
+              </div>
+              <p class="day-kicker">Qui prouve quoi, et jusqu’où</p>
+              <h1>Authentification &amp; autorisation</h1>
+              <p class="lead">
+                Quatre mécanismes reviennent sans cesse en Open Banking&nbsp;:
+                OAuth2, OpenID Connect, mTLS et JWT. Chacun répond à une
+                question différente. Les confondre, c’est ouvrir une faille.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Quand l’application de Lyam appelle Banque Est, trois choses
+                doivent être vraies&nbsp;: <strong>l’appel vient d’un TPP
+                agréé</strong>, <strong>Lyam s’est authentifiée</strong>, et
+                <strong>l’accès demandé est bien couvert par son
+                consentement</strong>. Un seul mécanisme ne suffit pas.
+              </p>
+            </div>
+
+            <!-- 1. LES QUATRE MÉCANISMES -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Mécanismes</p>
+              <h2 id="mecanismes">Les quatre mécanismes clés</h2>
+
+              <div class="role-grid">
+                <article class="role-card">
+                  <h3>OAuth2</h3>
+                  <p class="role-full">Authorization Framework</p>
+                  <p class="role-desc">
+                    Cadre d’<strong>autorisation</strong>. Il permet à un TPP
+                    d’obtenir un <strong>jeton d’accès</strong> sans jamais
+                    connaître les identifiants de Lyam.
+                  </p>
+
+                  <figure class="flux-card">
+                    <svg viewBox="0 0 420 150" role="img" aria-label="Flux OAuth2 : le TPP obtient un jeton d’accès via la banque">
+                      <defs>
+                        <marker id="ah-oa" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                          <path d="M0,0 L6,3 L0,6 Z" fill="#6b4fa0"/>
+                        </marker>
+                      </defs>
+                      <!-- acteurs -->
+                      <g font-size="10" font-weight="700" text-anchor="middle">
+                        <rect x="14" y="16" width="92" height="26" rx="5" fill="#f1edfa" stroke="#6b4fa0" stroke-width="1.5"/>
+                        <text x="60" y="33" fill="#4b3480">TPP</text>
+                        <rect x="164" y="16" width="92" height="26" rx="5" fill="#eef4fa" stroke="#1e5f8a" stroke-width="1.5"/>
+                        <text x="210" y="33" fill="#1e5f8a">Banque</text>
+                        <rect x="314" y="16" width="92" height="26" rx="5" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5"/>
+                        <text x="360" y="33" fill="#087a6a">Lyam</text>
+                      </g>
+                      <!-- lifelines -->
+                      <line x1="60" y1="42" x2="60" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <line x1="210" y1="42" x2="210" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <line x1="360" y1="42" x2="360" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <!-- flux -->
+                      <line x1="64" y1="58" x2="206" y2="58" stroke="#6b4fa0" stroke-width="1.8" marker-end="url(#ah-oa)"/>
+                      <text x="135" y="52" font-size="9" fill="#6b4fa0" text-anchor="middle">1 · demande d’accès</text>
+                      <line x1="210" y1="80" x2="356" y2="80" stroke="#0d9f8a" stroke-width="1.8" class="stream" marker-end="url(#ah-oa)"/>
+                      <text x="283" y="74" font-size="9" fill="#087a6a" text-anchor="middle">2 · SCA (Lyam sur sa banque)</text>
+                      <line x1="206" y1="102" x2="64" y2="102" stroke="#6b4fa0" stroke-width="1.8" marker-end="url(#ah-oa)"/>
+                      <text x="135" y="96" font-size="9" fill="#6b4fa0" text-anchor="middle">3 · code d’autorisation</text>
+                      <line x1="64" y1="124" x2="206" y2="124" stroke="#6b4fa0" stroke-width="1.8" marker-end="url(#ah-oa)"/>
+                      <text x="135" y="118" font-size="9" fill="#6b4fa0" text-anchor="middle">4 · code → jeton</text>
+                      <!-- proof -->
+                      <rect x="150" y="132" width="122" height="14" rx="7" fill="#6b4fa0"/>
+                      <text x="211" y="142" text-anchor="middle" fill="#fff" class="flux-proof">jeton, pas le mot de passe</text>
+                    </svg>
+                    <figcaption class="flux-caption">Le TPP échange un code contre un jeton&nbsp;: il n’a jamais les identifiants de Lyam.</figcaption>
+                  </figure>
+
+                  <details open class="cours-note small">
+                    <summary>Cours — à retenir</summary>
+                    <div class="cours-note-body">
+                      <p>
+                        OAuth2 n’authentifie pas&nbsp;: il <em>autorise</em>.
+                        Flux clé en Open Banking&nbsp;: le
+                        <strong>code d’autorisation</strong> avec redirection. Le
+                        TPP reçoit un code, l’échange contre un jeton.
+                      </p>
+                    </div>
+                  </details>
+                </article>
+
+                <article class="role-card">
+                  <h3>OpenID Connect</h3>
+                  <p class="role-full">Couche d’identité sur OAuth2</p>
+                  <p class="role-desc">
+                    Ajoute l’<strong>identité</strong> à OAuth2&nbsp;: un
+                    <strong>ID token</strong> (JWT) qui atteste qui est
+                    l’utilisateur authentifié.
+                  </p>
+
+                  <figure class="flux-card">
+                    <svg viewBox="0 0 420 150" role="img" aria-label="Flux OpenID Connect : le TPP reçoit un ID token qui prouve l’identité de Lyam">
+                      <defs>
+                        <marker id="ah-oi" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                          <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a"/>
+                        </marker>
+                      </defs>
+                      <g font-size="10" font-weight="700" text-anchor="middle">
+                        <rect x="14" y="16" width="92" height="26" rx="5" fill="#f1edfa" stroke="#6b4fa0" stroke-width="1.5"/>
+                        <text x="60" y="33" fill="#4b3480">TPP</text>
+                        <rect x="164" y="16" width="92" height="26" rx="5" fill="#eef4fa" stroke="#1e5f8a" stroke-width="1.5"/>
+                        <text x="210" y="33" fill="#1e5f8a">OIDC / Banque</text>
+                        <rect x="314" y="16" width="92" height="26" rx="5" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5"/>
+                        <text x="360" y="33" fill="#087a6a">Lyam</text>
+                      </g>
+                      <line x1="60" y1="42" x2="60" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <line x1="210" y1="42" x2="210" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <line x1="360" y1="42" x2="360" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <line x1="356" y1="58" x2="214" y2="58" stroke="#0d9f8a" stroke-width="1.8" marker-end="url(#ah-oi)"/>
+                      <text x="285" y="52" font-size="9" fill="#087a6a" text-anchor="middle">1 · SCA → identité prouvée</text>
+                      <line x1="206" y1="80" x2="64" y2="80" stroke="#1e5f8a" stroke-width="1.8" marker-end="url(#ah-oi)"/>
+                      <text x="135" y="74" font-size="9" fill="#1e5f8a" text-anchor="middle">2 · ID token (JWT signé)</text>
+                      <line x1="64" y1="102" x2="206" y2="102" stroke="#1e5f8a" stroke-width="1.8" marker-end="url(#ah-oi)"/>
+                      <text x="135" y="96" font-size="9" fill="#1e5f8a" text-anchor="middle">3 · vérif. signature (clé pub)</text>
+                      <text x="135" y="122" font-size="9" fill="#1e5f8a" text-anchor="middle">→ « c’est bien Lyam »</text>
+                      <rect x="150" y="132" width="122" height="14" rx="7" fill="#1e5f8a"/>
+                      <text x="211" y="142" text-anchor="middle" fill="#fff" class="flux-proof">preuve d’identité, signée</text>
+                    </svg>
+                    <figcaption class="flux-caption">OIDC ajoute à OAuth2 un ID token&nbsp;: le TPP sait <em>qui</em> est l’utilisateur, pas seulement ce à quoi il a droit.</figcaption>
+                  </figure>
+
+                  <details open class="cours-note small">
+                    <summary>Cours — à retenir</summary>
+                    <div class="cours-note-body">
+                      <p>
+                        OIDC répond à «&nbsp;qui est cet utilisateur&nbsp;?&nbsp;»,
+                        là où OAuth2 répond à «&nbsp;à quoi a-t-il droit&nbsp;?&nbsp;».
+                        En Open Banking, l’ID token prouve l’identité de Lyam côté
+                        TPP.
+                      </p>
+                    </div>
+                  </details>
+                </article>
+
+                <article class="role-card">
+                  <h3>mTLS</h3>
+                  <p class="role-full">Mutual TLS</p>
+                  <p class="role-desc">
+                    <strong>Authentification mutuelle</strong> par certificat.
+                    Le TPP et la banque se présentent chacun un certificat&nbsp;:
+                    chacun prouve son identité à l’autre.
+                  </p>
+
+                  <figure class="flux-card">
+                    <svg viewBox="0 0 420 150" role="img" aria-label="Flux mTLS : le TPP et la banque échangent leurs certificats, vérifiés via le registre EBA">
+                      <defs>
+                        <marker id="ah-mt" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                          <path d="M0,0 L6,3 L0,6 Z" fill="#3d5a80"/>
+                        </marker>
+                      </defs>
+                      <g font-size="10" font-weight="700" text-anchor="middle">
+                        <rect x="14" y="16" width="92" height="26" rx="5" fill="#f1edfa" stroke="#6b4fa0" stroke-width="1.5"/>
+                        <text x="60" y="33" fill="#4b3480">TPP</text>
+                        <rect x="164" y="16" width="92" height="26" rx="5" fill="#eef4fa" stroke="#1e5f8a" stroke-width="1.5"/>
+                        <text x="210" y="33" fill="#1e5f8a">Banque</text>
+                        <rect x="314" y="16" width="92" height="26" rx="5" fill="#f4f8fc" stroke="#3d5a80" stroke-width="1.5"/>
+                        <text x="360" y="33" fill="#3d5a80">Registre EBA</text>
+                      </g>
+                      <line x1="60" y1="42" x2="60" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <line x1="210" y1="42" x2="210" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <line x1="360" y1="42" x2="360" y2="140" stroke="#c9d6e2" stroke-width="1" stroke-dasharray="3 3"/>
+                      <line x1="64" y1="58" x2="206" y2="58" stroke="#6b4fa0" stroke-width="1.8" marker-end="url(#ah-mt)"/>
+                      <text x="135" y="52" font-size="9" fill="#6b4fa0" text-anchor="middle">1 · certificat du TPP</text>
+                      <line x1="206" y1="80" x2="64" y2="80" stroke="#1e5f8a" stroke-width="1.8" marker-end="url(#ah-mt)"/>
+                      <text x="135" y="74" font-size="9" fill="#1e5f8a" text-anchor="middle">2 · certificat de la banque</text>
+                      <line x1="210" y1="102" x2="356" y2="102" stroke="#3d5a80" stroke-width="1.8" marker-end="url(#ah-mt)"/>
+                      <text x="285" y="96" font-size="9" fill="#3d5a80" text-anchor="middle">3 · vérif. agrément</text>
+                      <line x1="356" y1="124" x2="214" y2="124" stroke="#0d9f8a" stroke-width="1.8" marker-end="url(#ah-mt)"/>
+                      <text x="285" y="118" font-size="9" fill="#087a6a" text-anchor="middle">4 · TPP agréé ✓ / refus</text>
+                      <rect x="150" y="132" width="122" height="14" rx="7" fill="#3d5a80"/>
+                      <text x="211" y="142" text-anchor="middle" fill="#fff" class="flux-proof">identité technique du TPP</text>
+                    </svg>
+                    <figcaption class="flux-caption">Le canal est établi seulement si les deux certificats sont valides&nbsp;: mTLS prouve que le TPP est le TPP agréé.</figcaption>
+                  </figure>
+
+                  <details open class="cours-note small">
+                    <summary>Cours — à retenir</summary>
+                    <div class="cours-note-body">
+                      <p>
+                        mTLS est la preuve que <strong>le TPP est bien le TPP
+                        agréé</strong>, au niveau du canal. Le certificat est lié
+                        à l’agrément (registre EBA)&nbsp;: c’est un contrôle
+                        d’identité technique.
+                      </p>
+                    </div>
+                  </details>
+                </article>
+
+                <article class="role-card">
+                  <h3>JWT</h3>
+                  <p class="role-full">JSON Web Token</p>
+                  <p class="role-desc">
+                    Format de jeton <strong>signé</strong>. Il transporte des
+                    affirmations (scopes, expiration, émetteur) vérifiables sans
+                    rappeler le serveur à chaque fois.
+                  </p>
+
+                  <figure class="flux-card">
+                    <svg viewBox="0 0 420 150" role="img" aria-label="Structure d’un JWT : header, payload, signature, vérifié avec la clé publique">
+                      <defs>
+                        <marker id="ah-jw" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                          <path d="M0,0 L6,3 L0,6 Z" fill="#2f4858"/>
+                        </marker>
+                      </defs>
+                      <!-- le jeton en 3 segments -->
+                      <g font-size="9" font-weight="700" text-anchor="middle" font-family="monospace">
+                        <rect x="20" y="18" width="118" height="24" rx="4" fill="#eef4fa" stroke="#1e5f8a" stroke-width="1.5"/>
+                        <text x="79" y="34" fill="#1e5f8a">header</text>
+                        <text x="142" y="34" fill="#5a6b7c" font-size="12">.</text>
+                        <rect x="150" y="18" width="118" height="24" rx="4" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5"/>
+                        <text x="209" y="34" fill="#087a6a">payload</text>
+                        <text x="272" y="34" fill="#5a6b7c" font-size="12">.</text>
+                        <rect x="280" y="18" width="118" height="24" rx="4" fill="#f1edfa" stroke="#6b4fa0" stroke-width="1.5"/>
+                        <text x="339" y="34" fill="#4b3480">signature</text>
+                      </g>
+                      <!-- contenu de chaque partie -->
+                      <text x="79" y="60" font-size="8" fill="#5a6b7c" text-anchor="middle">algo (RS256)</text>
+                      <text x="209" y="60" font-size="8" fill="#5a6b7c" text-anchor="middle">scopes, exp, iss</text>
+                      <text x="339" y="60" font-size="8" fill="#5a6b7c" text-anchor="middle">HMAC / RSA</text>
+                      <!-- vérification -->
+                      <line x1="339" y1="70" x2="339" y2="92" stroke="#6b4fa0" stroke-width="1.5" marker-end="url(#ah-jw)"/>
+                      <rect x="250" y="92" width="150" height="22" rx="5" fill="#f4f8fc" stroke="#3d5a80" stroke-width="1.3"/>
+                      <text x="325" y="107" font-size="9" fill="#3d5a80" text-anchor="middle">clé publique de l’émetteur</text>
+                      <text x="210" y="132" font-size="9" fill="#2f4858" text-anchor="middle">signature valide → jeton intact · scopes lus · exp respectée</text>
+                      <rect x="150" y="138" width="120" height="10" rx="5" fill="#6b4fa0" opacity="0"/>
+                    </svg>
+                    <figcaption class="flux-caption">JWT = <code>header.payload.signature</code>. Le contenu est <em>lisible</em> par tous&nbsp;: la signature garantit seulement qu’il n’a pas été modifié.</figcaption>
+                  </figure>
+
+                  <details open class="cours-note small">
+                    <summary>Cours — à retenir</summary>
+                    <div class="cours-note-body">
+                      <p>
+                        Un JWT est <em>signé</em>, pas <em>chiffré</em>&nbsp;: on
+                        peut le lire. Il ne doit donc jamais contenir de données
+                        sensibles. Sa signature garantit qu’il n’a pas été
+                        modifié.
+                      </p>
+                    </div>
+                  </details>
+                </article>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Mécanisme</th>
+                      <th scope="col">Répond à la question</th>
+                      <th scope="col">Niveau</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">mTLS</th><td>Le TPP est-il bien celui qu’il prétend&nbsp;?</td><td>Canal</td></tr>
+                    <tr><th scope="row">OAuth2</th><td>À quoi le TPP a-t-il droit&nbsp;?</td><td>Autorisation</td></tr>
+                    <tr><th scope="row">OpenID Connect</th><td>Qui est l’utilisateur authentifié&nbsp;?</td><td>Identité</td></tr>
+                    <tr class="is-exergue"><th scope="row">JWT</th><td>Comment transporter la preuve, signée&nbsp;?</td><td>Jeton</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- 2. LA SÉPARATION -->
+            <section class="section">
+              <p class="section-label">Le point clé</p>
+              <h2 id="separation">Trois authentifications, trois autorisations</h2>
+              <p class="intro">
+                Il faut bien séparer trois notions distinctes, que l’on ne doit
+                jamais fusionner.
+              </p>
+
+              <div class="split-3">
+                <div class="panel">
+                  <h3>Identification du client</h3>
+                  <p>
+                    <strong>Lyam prouve qui il est</strong> auprès de sa banque
+                    (SCA). C’est lui, physiquement et juridiquement, qui est à
+                    l’origine de la demande.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>Identification du TPP</h3>
+                  <p>
+                    <strong>L’application prouve qu’elle est un TPP agréé</strong>
+                    (certificat, agrément). C’est une identité technique, liée au
+                    registre EBA.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>Autorisation d’accès</h3>
+                  <p>
+                    <strong>Le périmètre</strong> concédé à ce client et à ce
+                    TPP&nbsp;: quels comptes, quelles opérations, jusqu’à quand.
+                    C’est le consentement, matérialisé en jetons.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Ne jamais faire l’impasse sur une des trois</h3>
+                <p>
+                  Un TPP valide qui accède au compte d’un client qui n’a pas
+                  consenti = faille. Un client authentifié dont le TPP n’est pas
+                  agréé = faille. Un consentement large exploité par un TPP
+                  malveillant = faille. Les trois contrôles sont indépendants et
+                  tous nécessaires.
+                </p>
+              </div>
+
+              <div class="key-idea">
+                <p class="label">Règle à retenir</p>
+                <p>
+                  <strong>Authentifier le client</strong> ≠ <strong>authentifier
+                  le TPP</strong> ≠ <strong>autoriser l’accès aux données</strong>.
+                  Ces trois vérifications se font à des endroits différents de la
+                  chaîne, avec des mécanismes différents.
+                </p>
+              </div>
+            </section>
+
+            <!-- 3. LE FLUX OAUTH -->
+            <section class="section">
+              <p class="section-label">Flux</p>
+              <h2 id="flux-oauth">Le flux OAuth2 en Open Banking</h2>
+              <p class="intro">
+                Le parcours de redirection du Jour 1, vu cette fois avec les
+                jetons et les contrôles.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Code d’autorisation → jeton</h3>
+                  <p>Cliquez pour suivre les étapes</p>
+                </div>
+                <svg viewBox="0 0 1000 470" role="img" aria-label="Flux OAuth2 Open Banking">
+                  <defs>
+                    <marker id="ah-oauth" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#2f4858" />
+                    </marker>
+                    <marker id="ah-oauthg" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g font-family="Syne, sans-serif" font-size="12" font-weight="700">
+                    <rect x="70" y="20" width="160" height="40" rx="6" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="150" y="45" text-anchor="middle" fill="#4b3480">TPP</text>
+                    <rect x="400" y="20" width="200" height="40" rx="6" fill="#f7f9fb" stroke="#2f4858" stroke-width="2"/>
+                    <text x="500" y="45" text-anchor="middle" fill="#1a2b3c">ASPSP (autorisation)</text>
+                    <rect x="770" y="20" width="150" height="40" rx="6" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="845" y="45" text-anchor="middle" fill="#087a6a">Lyam</text>
+                  </g>
+                  <line x1="150" y1="60" x2="150" y2="450" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
+                  <line x1="500" y1="60" x2="500" y2="450" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
+                  <line x1="845" y1="60" x2="845" y2="450" stroke="#c9d6e2" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+                  <line x1="155" y1="95" x2="495" y2="95" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-oauth)"/>
+                  <text x="325" y="88" text-anchor="middle" fill="#2f4858" font-size="11">1 · demande + certificat (mTLS)</text>
+
+                  <line x1="500" y1="130" x2="840" y2="130" stroke="#0d9f8a" stroke-width="2.5" class="stream" marker-end="url(#ah-oauthg)"/>
+                  <text x="670" y="123" text-anchor="middle" fill="#087a6a" font-size="11">2 · SCA (authentification de Lyam)</text>
+
+                  <line x1="845" y1="165" x2="505" y2="165" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-oauthg)"/>
+                  <text x="670" y="158" text-anchor="middle" fill="#087a6a" font-size="11">3 · consentement accordé</text>
+
+                  <line x1="500" y1="200" x2="155" y2="200" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-oauth)"/>
+                  <text x="325" y="193" text-anchor="middle" fill="#2f4858" font-size="11">4 · code d’autorisation</text>
+
+                  <line x1="155" y1="235" x2="495" y2="235" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-oauth)"/>
+                  <text x="325" y="228" text-anchor="middle" fill="#2f4858" font-size="11">5 · code + certificat → demander un jeton</text>
+
+                  <line x1="500" y1="270" x2="155" y2="270" stroke="#2f4858" stroke-width="2.5" marker-end="url(#ah-oauth)"/>
+                  <text x="325" y="263" text-anchor="middle" fill="#2f4858" font-size="11">6 · access token (JWT) + refresh token</text>
+
+                  <line x1="155" y1="305" x2="495" y2="305" stroke="#2f4858" stroke-width="2.5" class="stream" marker-end="url(#ah-oauth)"/>
+                  <text x="325" y="298" text-anchor="middle" fill="#2f4858" font-size="11">7 · appel API avec Bearer token</text>
+
+                  <line x1="500" y1="340" x2="155" y2="340" stroke="#2f4858" stroke-width="2" marker-end="url(#ah-oauth)"/>
+                  <text x="325" y="333" text-anchor="middle" fill="#2f4858" font-size="11">8 · données (scopes vérifiés)</text>
+
+                  <rect x="90" y="375" width="820" height="55" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="1.5"/>
+                  <text x="500" y="398" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">À chaque appel : mTLS (TPP) + Bearer JWT (scopes, expiration) + consentement</text>
+                  <text x="500" y="418" text-anchor="middle" fill="#5a6b7c" font-size="10">Un jeton expiré ou un scope absent = refus en 401/403</text>
+                </svg>
+              </div>
+
+              <div class="callout info">
+                <h3>Deux jetons, deux rôles</h3>
+                <p>
+                  L’<strong>access token</strong> est court (quelques minutes à
+                  quelques heures) et porte les scopes. Le
+                  <strong>refresh token</strong> sert à en obtenir un nouveau sans
+                  redemander la SCA — dans les limites du consentement et des
+                  règles d’authentification. Ne jamais confondre leur durée de vie.
+                </p>
+              </div>
+            </section>
+
+            <!-- 4. TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Et les obligations réglementaires&nbsp;?</h2>
+                <p>
+                  Les mécanismes techniques sont posés. Mais la DSP2 impose des
+                  exigences précises&nbsp;: SCA, exemptions, non-répudiation,
+                  horodatage. Et l’industrialisation de ces flux expose à des
+                  risques&nbsp;: usurpation, attaques API, fuites. C’est la S6.
+                </p>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Références</strong> — RFC 6749 (OAuth2), RFC 7519 (JWT),
+              OpenID Connect Core&nbsp;; RTS EBA 2018/389, art. 28-30
+              (communication sécurisée, interfaces dédiées).
+            </div>
+
+            
+          </div>
+  </div>
+</article>
+<article class="support-bloc" id="s6-securite" data-num="06">
+  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <div class="fiche-meta"><span class="tag">Parcours narratif</span></div>
+      <p class="day-kicker">06 · S6 · Sécurité & conformité</p>
+      <h1>S6 · Sécurité & conformité</h1>
+    </div>
+  </section>
+  <div class="wrap support-bloc-body">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Séquence 6</span>
+                <span class="tag tag-accent">50 min</span>
+              </div>
+              <p class="day-kicker">Exigences DSP2 et risques API</p>
+              <h1>Sécurité &amp; conformité</h1>
+              <p class="lead">
+                La DSP2 ne dit pas seulement «&nbsp;protégez&nbsp;»&nbsp;: elle
+                impose des mécanismes précis (SCA, exemptions, non-répudiation,
+                horodatage) et laisse aux banques la responsabilité de tenir
+                leurs APIs contre des menaces concrètes.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam s’est authentifiée et l’application a son jeton. Mais que se
+                passe-t-il si quelqu’un usurpe le TPP&nbsp;? Si un appel est
+                rejoué&nbsp;? Si des données fuitent&nbsp;? Cette séquence
+                répond à ces menaces.
+              </p>
+            </div>
+
+            <!-- 1. SCA -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">SCA</p>
+              <h2 id="sca">La Strong Customer Authentication</h2>
+              <div class="definition-full">
+                La <strong>SCA</strong> (authentification forte du client) exige
+                au moins <strong>deux facteurs indépendants</strong> parmi trois
+                catégories&nbsp;: <strong>connaissance</strong> (mot de passe,
+                code), <strong>possession</strong> (téléphone, token),
+                <strong>inhérence</strong> (empreinte, visage). Les deux facteurs
+                doivent être de catégories différentes et leur compromission
+                isolée ne doit pas suffire à contourner l’authentification.
+              </div>
+
+              <div class="split-3">
+                <div class="panel">
+                  <h3>Connaissance</h3>
+                  <p>Quelque chose que Lyam <strong>sait</strong>&nbsp;: mot de passe, code PIN.</p>
+                </div>
+                <div class="panel">
+                  <h3>Possession</h3>
+                  <p>Quelque chose que Lyam <strong>possède</strong>&nbsp;: son téléphone, une carte.</p>
+                </div>
+                <div class="panel">
+                  <h3>Inhérence</h3>
+                  <p>Quelque chose que Lyam <strong>est</strong>&nbsp;: empreinte digitale, reconnaissance faciale.</p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Quand la SCA s’applique</h3>
+                <p>
+                  À l’accès initial aux comptes (AIS), puis lors des
+                  re-authentifications périodiques (au moins tous les 90 jours en
+                  AIS), et <strong>à chaque paiement</strong> initié par un PISP,
+                  sauf exemption applicable. Deux mots de passe ne font pas une
+                  SCA&nbsp;: il faut deux catégories différentes.
+                </p>
+              </div>
+            </section>
+
+            <!-- 2. EXEMPTIONS -->
+            <section class="section">
+              <p class="section-label">Exemptions</p>
+              <h2 id="exemptions">Les exemptions à la SCA</h2>
+              <p class="intro">
+                La SCA systématique serait insupportable pour le client. Les RTS
+                prévoient des exemptions, mais chacune est bornée et surveillée
+                (fraude). La banque doit pouvoir justifier leur usage.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Exemption</th>
+                      <th scope="col">Principe</th>
+                      <th scope="col">Garde-fou</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Faible montant</th>
+                      <td>Paiements de faible valeur sous un plafond</td>
+                      <td>Compteur (nombre / cumul sur une période)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Bénéficiaire de confiance</th>
+                      <td>Paiement vers un bénéficiaire déjà validé</td>
+                      <td>SCA initiale à la création du bénéficiaire</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Transaction récurrente</th>
+                      <td>Paiements récurrents d’un même mandat</td>
+                      <td>Premier paiement authentifié</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Analyse du risque</th>
+                      <td>Décision de l’ASPSP selon son propre scoring</td>
+                      <td>Plafonds et taux de fraude surveillés</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Accès aux soldes AIS</th>
+                      <td>Consultation après la SCA initiale</td>
+                      <td>Jusqu’à 4 consultations/jour, SCA au moins tous les 90 jours</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>Exemption ≠ absence de contrôle</h3>
+                <p>
+                  Une exemption ne supprime pas la vérification&nbsp;: elle
+                  déplace la SCA à un autre moment (création du bénéficiaire,
+                  re-authentification périodique) et s’accompagne d’une
+                  surveillance de la fraude. Abuser d’une exemption entraîne son
+                  retrait.
+                </p>
+              </div>
+            </section>
+
+            <!-- 3. NON-RÉPUDIATION & HORODATAGE -->
+            <section class="section">
+              <p class="section-label">Preuve</p>
+              <h2 id="preuve">Non-répudiation et horodatage</h2>
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Non-répudiation</h3>
+                  <p>
+                    La banque doit pouvoir <strong>prouver qu’un paiement ou un
+                    accès a bien eu lieu</strong> et dans quelles conditions&nbsp;:
+                    qui, quel montant, quel bénéficiaire, à quel moment. Un
+                    client ne doit pas pouvoir nier un paiement qu’il a autorisé,
+                    et le TPP ne doit pas pouvoir contester un appel reçu.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>Horodatage</h3>
+                  <p>
+                    Chaque événement porte une <strong>date et heure de
+                    référence</strong> fiable, conservée et cohérente entre les
+                    acteurs. C’est la base du contrôle&nbsp;: durée de validité
+                    d’un jeton, période de consentement, décompte des exemptions.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Ce que cela impose techniquement</h3>
+                <p>
+                  Journalisation horodatée de chaque appel
+                  (requête/réponse), signature des messages pour garantir leur
+                  intégrité et leur origine (non-répudiation), conservation
+                  conforme aux délais légaux. Sans ces preuves, un litige ne peut
+                  être tranché.
+                </p>
+              </div>
+            </section>
+
+            <!-- 4. RISQUES -->
+            <section class="section">
+              <p class="section-label">Risques</p>
+              <h2 id="risques">Trois familles de risques API</h2>
+
+              <div class="split-3">
+                <div class="panel ko">
+                  <h3>Usurpation d’identité</h3>
+                  <p>
+                    Un attaquant se fait passer pour un TPP agréé ou pour le
+                    client.
+                  </p>
+                  <p><strong>Contre-mesures&nbsp;:</strong> mTLS strict, vérification du registre EBA, contrôle de cohérence certificat/agrément, SCA robuste.</p>
+                </div>
+                <div class="panel ko">
+                  <h3>Attaques API</h3>
+                  <p>
+                    Rejeu de requêtes, injection, déni de service, abus de quota.
+                  </p>
+                  <p><strong>Contre-mesures&nbsp;:</strong> anti-rejeu (nonce, horodatage), validation des entrées, throttling, quotas par TPP, surveillance d’anomalies.</p>
+                </div>
+                <div class="panel ko">
+                  <h3>Fuites de données</h3>
+                  <p>
+                    Exposition de soldes ou d’opérations au-delà du périmètre
+                    consenti, ou interception.
+                  </p>
+                  <p><strong>Contre-mesures&nbsp;:</strong> scopes minimaux, chiffrement en transit, contrôle de périmètre à chaque appel, pas de données sensibles dans les JWT.</p>
+                </div>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Risque</th>
+                      <th scope="col">Point de contrôle</th>
+                      <th scope="col">Mécanisme du Jour 2</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Usurpation</th><td>Entrée de la chaîne</td><td>mTLS + registre EBA</td></tr>
+                    <tr><th scope="row">Attaque API</th><td>Gateway &amp; API Management</td><td>Throttling, anti-rejeu, validation</td></tr>
+                    <tr class="is-exergue"><th scope="row">Fuite de données</th><td>Services métier</td><td>Scopes + contrôle de consentement</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- 5. TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>On met tout ensemble</h2>
+                <p>
+                  Types d’API, composants, mécanismes d’authentification,
+                  exigences et risques&nbsp;: place au cas pratique. Ouvrir une
+                  API à un TPP, de bout en bout, avec le schéma, le flux OAuth et
+                  les points de contrôle.
+                </p>
+              </div>
+            </section>
+
+            <details open class="cours-note">
+              <summary>Cours — récapitulatif du bloc</summary>
+              <div class="cours-note-body">
+                <ul>
+                  <li><strong>SCA</strong>&nbsp;: deux facteurs de catégories différentes (savoir / posséder / être).</li>
+                  <li><strong>Exemptions</strong>&nbsp;: faible montant, bénéficiaire de confiance, récurrent, analyse de risque, AIS après SCA initiale — toutes bornées.</li>
+                  <li><strong>Non-répudiation + horodatage</strong>&nbsp;: la preuve des opérations.</li>
+                  <li><strong>Risques</strong>&nbsp;: usurpation, attaques API, fuites — chacun a son point de contrôle.</li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="sources-box">
+              <strong>Références</strong> — RTS EBA 2018/389, art. 4-18 (SCA et
+              exemptions), art. 29 (limites d’accès AIS)&nbsp;; orientations EBA sur
+              l’authentification forte&nbsp;; DSP2, art. 97-98.
+            </div>
+
+            
+          </div>
+  </div>
+</article>
+<article class="support-bloc" id="s7-cas" data-num="07">
+  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <div class="fiche-meta"><span class="tag">Parcours narratif</span></div>
+      <p class="day-kicker">07 · S7 · Cas pratique</p>
+      <h1>S7 · Cas pratique</h1>
+    </div>
+  </section>
+  <div class="wrap support-bloc-body">
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 2 · Séquence 7</span>
+                <span class="tag tag-accent">65 min · atelier</span>
+              </div>
+              <p class="day-kicker">Mise en pratique · travaux de groupe</p>
+              <h1>Cas pratique</h1>
+              <p class="lead">
+                Banque Est doit ouvrir une API à un TPP de bout en bout. À vous de
+                produire le schéma d’architecture, le flux OAuth et les points de
+                contrôle de sécurité.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                L’application de Lyam («&nbsp;FinanceApp&nbsp;») demande à Banque
+                Est un accès en lecture à ses deux comptes. Vous êtes l’équipe
+                technique de Banque Est&nbsp;: il faut le brancher
+                proprement — et en sécurité.
+              </p>
+            </div>
+
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Énoncé</p>
+              <h2>Le cas</h2>
+              <p>
+                <strong>FinanceApp</strong> est un AISP agréé. Banque Est doit lui
+                ouvrir un accès en lecture aux comptes d’un client qui l’a
+                autorisé, via une API Open Banking, en respectant les
+                exigences du Jour 2.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Élément</th>
+                      <th scope="col">Valeur</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">TPP</th><td>FinanceApp — agrément AISP</td></tr>
+                    <tr><th scope="row">Client</th><td>Lyam — 2 comptes (courant + épargne)</td></tr>
+                    <tr><th scope="row">Service demandé</th><td>Account Information (lecture seule)</td></tr>
+                    <tr><th scope="row">Fréquence</th><td>Jusqu’à 4 consultations/jour</td></tr>
+                    <tr class="is-exergue"><th scope="row">Durée</th><td>Consentement 90 jours, re-SCA aux 90 jours</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Consigne</p>
+              <h2>Ce qu’il faut produire</h2>
+              <ol class="steps-list">
+                <li>
+                  <strong>Schéma d’architecture</strong> — placer les composants
+                  entre FinanceApp et le core bancaire (Gateway, API Management,
+                  services AIS, consentement, logs).
+                </li>
+                <li>
+                  <strong>Flux d’authentification</strong> — décrire les étapes
+                  OAuth2&nbsp;: demande, redirection, SCA de Lyam, consentement,
+                  code, échange contre jeton, appel API.
+                </li>
+                <li>
+                  <strong>Points de contrôle sécurité</strong> — pour chaque
+                  étape, indiquer le contrôle appliqué (mTLS, vérification
+                  registre, scopes, throttling, anti-rejeu) et ce qui est
+                  journalisé.
+                </li>
+                <li>
+                  <strong>Trois risques et une mesure chacun</strong> —
+                  usurpation, attaque API, fuite de données.
+                </li>
+              </ol>
+
+              <div class="callout">
+                <h3>Livrable attendu</h3>
+                <p>
+                  Une page par groupe&nbsp;: schéma + flux + tableau des points
+                  de contrôle + risques/mesures. Restitution 5 min par groupe,
+                  synthèse 10 min.
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Modèle</p>
+              <h2>Points de contrôle — à compléter</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Étape</th>
+                      <th scope="col">Contrôle</th>
+                      <th scope="col">Journalisé</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">1. Demande du TPP</th><td>mTLS + vérification registre EBA</td><td>identité TPP, horodatage</td></tr>
+                    <tr><th scope="row">2. Redirection / SCA</th><td>authentification forte de Lyam</td><td>résultat SCA, horodatage</td></tr>
+                    <tr><th scope="row">3. Consentement</th><td>affichage périmètre + validation</td><td>périmètre, durée, statut</td></tr>
+                    <tr><th scope="row">4. Échange du jeton</th><td>code + certificat → access token</td><td>émission du jeton, expiration</td></tr>
+                    <tr><th scope="row">5. Appels API</th><td>Bearer JWT + scopes + consentement + throttling</td><td>chaque requête : endpoint, résultat, latence</td></tr>
+                    <tr class="is-exergue"><th scope="row">6. Révocation</th><td>propagation immédiate de la coupure</td><td>événement de révocation</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Évaluation</p>
+              <h2>Grille</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">Points</th>
+                      <th scope="col">Indice d’un bon travail</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Schéma complet</th><td>4</td><td>Tous les composants placés au bon endroit</td></tr>
+                    <tr><th scope="row">Flux OAuth</th><td>4</td><td>Code → jeton → appel, sans étape manquante</td></tr>
+                    <tr><th scope="row">Points de contrôle</th><td>4</td><td>Un contrôle par étape, cohérent</td></tr>
+                    <tr><th scope="row">Séparation des identités</th><td>3</td><td>Client ≠ TPP ≠ autorisation</td></tr>
+                    <tr class="is-exergue"><th scope="row">Risques &amp; mesures</th><td>5</td><td>Trois risques crédibles, trois mesures</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Pour prolonger</strong> — Comparer la documentation publique
+              de l’API d’une banque française (portail développeur)&nbsp;; tracer
+              les scopes d’un flux AIS réel&nbsp;; rejouer l’atelier avec un TPP
+              PISP.
+            </div>
+
+            
+          </div>
+  </div>
+</article>
+
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot no-print">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 2</a> · Support étudiant
+      </div>
+    </footer>
+  </body>
+</html>

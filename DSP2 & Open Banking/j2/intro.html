@@ -31,7 +31,6 @@
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 2 · Ouverture</span>
-                <span class="tag tag-accent">4 h</span>
               </div>
               <p class="day-kicker">Accueil</p>
               <h1>Intro &amp; objectifs</h1>
@@ -60,15 +59,21 @@
             <section class="section" style="border-top: none; padding-top: 0">
               <p class="section-label">Rappel</p>
               <h2>Ce que l’on a fixé au Jour 1</h2>
-              <p>
-                <strong>DSP2</strong> = <strong>Deuxième Directive sur les
-                Services de Paiement</strong> (directive (UE) 2015/2366).
-                <strong>Open Banking</strong> = l’ouverture des données de compte
-                et des paiements à des tiers agréés, avec le consentement du
-                client. La DSP2 est la règle, l’Open Banking la pratique, et
-                l’<strong>API</strong> en est l’outil technique — celui que l’on
-                étudie aujourd’hui.
-              </p>
+
+              <div class="definition-full">
+                <strong>DSP2</strong> — <strong>Deuxième Directive sur les
+                Services de Paiement</strong>, directive (UE) 2015/2366. Elle
+                oblige les banques à ouvrir l’accès aux comptes et aux paiements
+                à des tiers agréés, sous consentement du client.
+              </div>
+
+              <div class="definition-full">
+                <strong>Open Banking</strong> — l’ouverture effective des
+                données de compte et des capacités de paiement à des tiers
+                agréés, avec le consentement explicite du client. La DSP2 est la
+                règle, l’Open Banking la pratique, et l’<strong>API</strong> en
+                est l’outil technique — celui que l’on étudie aujourd’hui.
+              </div>
 
               <div class="callout info">
                 <h3>Le fil conducteur du Jour 2</h3>
@@ -116,19 +121,12 @@
                     fuites.
                   </p>
                 </div>
-                <div class="panel ok">
-                  <h3>S4 — Cas pratique</h3>
-                  <p>
-                    Ouvrir une API à un TPP de bout en bout&nbsp;: schéma
-                    d’architecture, flux OAuth, points de contrôle de sécurité.
-                  </p>
-                </div>
               </div>
 
               <div class="diagram">
                 <div class="diagram-header">
                   <h3>Fil du Jour 2</h3>
-                  <p>Architecture → Authentification → Sécurité → Mise en œuvre</p>
+                  <p>Architecture → Authentification → Sécurité</p>
                 </div>
                 <svg viewBox="0 0 1000 200" role="img" aria-label="Chaîne pédagogique du jour 2">
                   <defs>
@@ -137,31 +135,24 @@
                     </marker>
                   </defs>
                   <g>
-                    <rect x="20" y="50" width="220" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="130" y="80" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">2.1</text>
-                    <text x="130" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Architecture API</text>
-                    <text x="130" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">types · composants</text>
+                    <rect x="40" y="50" width="280" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="180" y="80" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">2.1</text>
+                    <text x="180" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Architecture API</text>
+                    <text x="180" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">types · composants</text>
                   </g>
-                  <line x1="248" y1="105" x2="278" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j2)"/>
+                  <line x1="328" y1="105" x2="358" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j2)"/>
                   <g>
-                    <rect x="286" y="50" width="220" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
-                    <text x="396" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">2.2</text>
-                    <text x="396" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Auth &amp; autorisation</text>
-                    <text x="396" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">OAuth2 · mTLS · JWT</text>
+                    <rect x="366" y="50" width="280" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="506" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">2.2</text>
+                    <text x="506" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Auth &amp; autorisation</text>
+                    <text x="506" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">OAuth2 · mTLS · JWT</text>
                   </g>
-                  <line x1="514" y1="105" x2="544" y2="105" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-j2)"/>
+                  <line x1="654" y1="105" x2="684" y2="105" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-j2)"/>
                   <g>
-                    <rect x="552" y="50" width="220" height="110" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="662" y="80" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">2.3</text>
-                    <text x="662" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Sécurité &amp; conformité</text>
-                    <text x="662" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">SCA · risques</text>
-                  </g>
-                  <line x1="780" y1="105" x2="810" y2="105" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-j2)"/>
-                  <g>
-                    <rect x="818" y="50" width="166" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="901" y="80" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700" letter-spacing="0.08em">2.4</text>
-                    <text x="901" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Cas pratique</text>
-                    <text x="901" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">mise en œuvre</text>
+                    <rect x="692" y="50" width="280" height="110" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="832" y="80" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">2.3</text>
+                    <text x="832" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Sécurité &amp; conformité</text>
+                    <text x="832" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">SCA · risques</text>
                   </g>
                 </svg>
               </div>
@@ -171,110 +162,110 @@
             <section class="section">
               <p class="section-label">Objectifs pédagogiques</p>
               <h2>À l’issue du Jour 2, l’étudiant sait…</h2>
-              <ul class="topic-list">
+              <ul class="objectifs-list">
                 <li>
-                  <span>
-                    <strong>Distinguer</strong> les trois types d’API Open
-                    Banking — Account Information (AIS), Payment Initiation
-                    (PIS), Confirmation of Funds (CBPII) — et leurs composants
-                    (Gateway, API Management, throttling).
+                  <span class="obj-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /><path d="M17.5 14v7M14 17.5h7" />
+                    </svg>
                   </span>
+                  <span class="obj-text"><strong>Distinguer</strong> les trois types d’API Open Banking — Account Information (AIS), Payment Initiation (PIS), Confirmation of Funds (CBPII) — et leurs composants (Gateway, API Management, throttling).</span>
                 </li>
                 <li>
-                  <span>
-                    <strong>Expliquer</strong> les mécanismes d’authentification
-                    et d’autorisation&nbsp;: OAuth2, OpenID Connect, mTLS, JWT,
-                    et la séparation entre identité du client, identité du TPP et
-                    autorisation d’accès.
+                  <span class="obj-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="4" y="10" width="16" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /><circle cx="12" cy="15" r="1.4" />
+                    </svg>
                   </span>
+                  <span class="obj-text"><strong>Expliquer</strong> les mécanismes d’authentification et d’autorisation&nbsp;: OAuth2, OpenID Connect, mTLS, JWT, et la séparation entre identité du client, identité du TPP et autorisation d’accès.</span>
                 </li>
                 <li>
-                  <span>
-                    <strong>Relier</strong> les exigences DSP2 de sécurité (SCA,
-                    exemptions, non-répudiation, horodatage) aux mécanismes
-                    techniques qui les mettent en œuvre.
+                  <span class="obj-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 3v18M5 8l7-5 7 5M5 8v8l7 5 7-5V8" />
+                    </svg>
                   </span>
+                  <span class="obj-text"><strong>Relier</strong> les exigences DSP2 de sécurité (SCA, exemptions, non-répudiation, horodatage) aux mécanismes techniques qui les mettent en œuvre.</span>
                 </li>
                 <li>
-                  <span>
-                    <strong>Identifier</strong> les risques propres aux API
-                    (usurpation d’identité, attaques API, fuites de données) et
-                    les contre-mesures associées.
+                  <span class="obj-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 3 3 8l9 5 9-5-9-5Z" /><path d="M3 8v8l9 5 9-5V8" />
+                    </svg>
                   </span>
+                  <span class="obj-text"><strong>Identifier</strong> les risques propres aux API (usurpation d’identité, attaques API, fuites de données) et les contre-mesures associées.</span>
                 </li>
                 <li>
-                  <span>
-                    <strong>Concevoir</strong> l’ouverture sécurisée d’une API
-                    bancaire à un TPP&nbsp;: schéma d’architecture, flux OAuth et
-                    points de contrôle de sécurité.
+                  <span class="obj-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+                    </svg>
                   </span>
+                  <span class="obj-text"><strong>Concevoir</strong> l’ouverture sécurisée d’une API bancaire à un TPP&nbsp;: schéma d’architecture, flux OAuth et points de contrôle de sécurité.</span>
                 </li>
               </ul>
             </section>
 
-            <!-- DÉROULÉ -->
             <section class="section">
-              <p class="section-label">Organisation</p>
-              <h2>Déroulé des 4 heures</h2>
-              <div class="csm-table-wrap">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Temps</th>
-                      <th scope="col">Bloc</th>
-                      <th scope="col">Modalité</th>
-                      <th scope="col">Livrable</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">0 h 00 – 0 h 10</th>
-                      <td>Intro &amp; objectifs</td>
-                      <td>Plénière</td>
-                      <td>Vision d’ensemble</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">0 h 10 – 1 h 00</th>
-                      <td>2.1 Architecture API</td>
-                      <td>Exposé + schéma</td>
-                      <td>Carte des types d’API</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1 h 00 – 1 h 55</th>
-                      <td>2.2 Authentification &amp; autorisation</td>
-                      <td>Exposé + démonstration</td>
-                      <td>Flux OAuth annoté</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1 h 55 – 2 h 05</th>
-                      <td>Pause</td>
-                      <td>—</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2 h 05 – 2 h 55</th>
-                      <td>2.3 Sécurité &amp; conformité</td>
-                      <td>Exposé + discussion</td>
-                      <td>Tableau exigences / risques</td>
-                    </tr>
-                    <tr class="is-exergue">
-                      <th scope="row">2 h 55 – 4 h 00</th>
-                      <td>2.4 Cas pratique</td>
-                      <td>Travaux de groupe</td>
-                      <td>Schéma + flux + contrôles</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <p class="section-label">Fil de séance</p>
+              <h2>Parcours</h2>
+              <nav class="block-map" id="block-map" aria-label="Blocs du jour 2"></nav>
+            </section>
 
-              <div class="callout info">
-                <h3>Ce qu’il faut avoir retenu du Jour 1</h3>
-                <p>
-                  Les rôles ASPSP / TPP, la chaîne Gateway → consentement → IAM →
-                  core banking, et le parcours de redirection. Ces acquis sont
-                  réutilisés en permanence&nbsp;: on ne les redéfinit plus, on les
-                  approfondit.
-                </p>
+            <section class="section">
+              <p class="section-label">Cursus</p>
+              <h2>Trajectoire des 5 jours</h2>
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Programme module</h3>
+                  <p>Fondements → API &amp; sécurité → PISP → AISP → synthèse</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Programme module sur 5 jours">
+                  <defs>
+                    <marker id="ah-prog-j2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="18" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="104" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="104" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J1</text>
+                    <text x="104" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Fondements</text>
+                    <text x="104" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">DSP2 · acteurs</text>
+                  </g>
+                  <line x1="198" y1="96" x2="218" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog-j2)"/>
+                  <g>
+                    <rect x="226" y="36" width="172" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="312" y="68" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.06em">AUJOURD’HUI</text>
+                    <text x="312" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="22" font-weight="700">J2</text>
+                    <text x="312" y="128" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">API &amp; sécurité</text>
+                    <text x="312" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">OAuth2 · SCA</text>
+                  </g>
+                  <line x1="406" y1="96" x2="426" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-prog-j2)"/>
+                  <g>
+                    <rect x="434" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="520" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="520" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J3</text>
+                    <text x="520" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Paiement PISP</text>
+                    <text x="520" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">initiation · flux</text>
+                  </g>
+                  <line x1="614" y1="96" x2="634" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog-j2)"/>
+                  <g>
+                    <rect x="642" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="728" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="728" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J4</text>
+                    <text x="728" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Agrégation AISP</text>
+                    <text x="728" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">data banking</text>
+                  </g>
+                  <line x1="822" y1="96" x2="842" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog-j2)"/>
+                  <g>
+                    <rect x="850" y="36" width="132" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="916" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="916" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="20" font-weight="700">J5</text>
+                    <text x="916" y="128" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">SI &amp; cas d’usage</text>
+                    <text x="916" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">synthèse</text>
+                  </g>
+                </svg>
               </div>
             </section>
 

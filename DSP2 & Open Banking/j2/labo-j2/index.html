@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Labo J2 · Lire un compte &amp; vérifier des fonds | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="labo-j2.css" />
+  </head>
+  <body>
+    <div class="labo-shell">
+      <div class="labo-top">
+        <div class="labo-brand">Labo J2 <span>· AIS &amp; CBPII</span></div>
+        <div class="labo-top-right">
+          <span class="tag">Exercice étudiant · Jour 2</span>
+        </div>
+      </div>
+      <p class="labo-sub">
+        Vous allez manipuler les deux workflows vus en S2 et S3&nbsp;:
+        <strong>lire les comptes de Lyam</strong> (AIS) puis
+        <strong>vérifier des fonds</strong> sans jamais exposer de solde (CBPII).
+        Même compte, deux réponses très différentes — observez bien.
+      </p>
+
+      <!-- ============ ONGLETS ============ -->
+      <div class="tabs" role="tablist" aria-label="Étapes du parcours">
+        <button class="tab" id="tab-consent" role="tab" aria-selected="true"
+                aria-controls="panel-consent">
+          <span class="tab-num">1</span>Consentement AIS
+        </button>
+        <button class="tab" id="tab-ais" role="tab" aria-selected="false"
+                aria-controls="panel-ais" tabindex="-1">
+          <span class="tab-num">2</span>Lecture AIS
+        </button>
+        <button class="tab" id="tab-cbpii" role="tab" aria-selected="false"
+                aria-controls="panel-cbpii" tabindex="-1">
+          <span class="tab-num">3</span>Vérifier des fonds
+        </button>
+      </div>
+
+      <!-- ============ ONGLET 1 : CONSENTEMENT AIS ============ -->
+      <section class="panel" id="panel-consent" role="tabpanel" aria-labelledby="tab-consent">
+        <div class="scene">
+          <div class="world bank">
+            <div class="world-head"><span class="dot"></span><h2>Banque Est · consentement AIS</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                Lyam autorise <strong>MonBudget</strong> (AISP agréé) à lire ses
+                comptes. Il choisit <em>quels comptes</em> et <em>combien de temps</em>.
+              </p>
+
+              <div class="consent-card" id="consent-form">
+                <h3>Autoriser MonBudget à lire vos comptes</h3>
+                <p class="hint">Application tierce agréée · AISP · lecture seule</p>
+
+                <fieldset class="acc-scope">
+                  <legend>Comptes à lire</legend>
+                  <label><input type="checkbox" class="acc-check" value="Compte courant" checked /> Compte courant</label>
+                  <label><input type="checkbox" class="acc-check" value="Livret A" checked /> Livret A</label>
+                  <label><input type="checkbox" class="acc-check" value="Compte-titres" /> Compte-titres</label>
+                </fieldset>
+
+                <div class="field">
+                  <label for="consent-days">Durée du consentement</label>
+                  <select id="consent-days">
+                    <option value="90">90 jours (max RTS)</option>
+                    <option value="180">180 jours</option>
+                    <option value="30">30 jours</option>
+                  </select>
+                </div>
+
+                <button class="btn teal block" id="btn-consent">Accorder le consentement</button>
+              </div>
+
+              <div class="granted" id="granted-1" hidden>
+                <h3>✓ Consentement AIS accordé</h3>
+                <div class="kv"><span class="k">consentId</span><span class="v mono" id="out-consent-id">—</span></div>
+                <div class="kv"><span class="k">access_token</span><span class="v mono" id="out-token">—</span></div>
+                <div class="kv"><span class="k">Comptes</span><span class="v mono" id="out-scopes">—</span></div>
+                <div class="kv"><span class="k">Expiration</span><span class="v mono" id="out-expire">—</span></div>
+                <p class="note-line">
+                  Une seule authentification forte a suffi. L’accès reste ouvert
+                  jusqu’à expiration (90 jours max) — c’est le propre de l’AIS.
+                </p>
+                <button class="btn ghost" id="btn-revoke-1">Révoquer maintenant</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="world app">
+            <div class="world-head"><span class="dot"></span><h2>MonBudget · côté AISP</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                MonBudget ne voit <strong>jamais</strong> le mot de passe de Lyam.
+                Il ne reçoit qu’un jeton, limité aux comptes cochés et à la durée
+                choisie.
+              </p>
+              <div class="note">
+                <p>
+                  <strong>À observer.</strong> Le périmètre est <em>déclaré à
+                  l’avance</em> dans le consentement. Un compte non coché donnera
+                  une erreur 403 si MonBudget tente d’y accéder.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journal">
+          <div class="journal-head">Journal d’étapes</div>
+          <div class="journal-body" id="journal-consent">
+            <div class="line"><span class="t">—</span><span class="msg">En attente… Cochez des comptes puis « Accorder le consentement ».</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ONGLET 2 : LECTURE AIS ============ -->
+      <section class="panel" id="panel-ais" role="tabpanel" aria-labelledby="tab-ais" hidden>
+        <div class="scene">
+          <div class="world bank">
+            <div class="world-head"><span class="dot"></span><h2>Banque Est · API AIS</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                MonBudget appelle <code>GET /v1/accounts</code>, puis lit les
+                transactions d’un compte. La banque renvoie du
+                <strong>JSON structuré</strong>.
+              </p>
+
+              <div class="req-line">
+                <span class="verb">GET</span>
+                <span class="url">https://api.banque-est.example/v1/accounts</span>
+              </div>
+              <div class="req-headers mono">
+                Authorization: Bearer <span id="hdr-token">—</span>
+              </div>
+              <button class="btn teal block" id="btn-call">Appeler /accounts</button>
+
+              <pre class="json" id="json-resp"><code>// La réponse JSON apparaîtra ici après l’appel.</code></pre>
+            </div>
+          </div>
+
+          <div class="world app">
+            <div class="world-head"><span class="dot"></span><h2>MonBudget · comptes reçus</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                Choisissez un compte pour charger ses <strong>transactions</strong>.
+                Vous pouvez filtrer par date de début.
+              </p>
+
+              <div class="acc-pick" id="acc-pick">
+                <span class="empty" style="color:var(--faint);font-style:italic;">
+                  Aucun compte. Cliquez d’abord sur « Appeler /accounts ».
+                </span>
+              </div>
+
+              <div class="amount-row" id="tx-filter" hidden>
+                <div class="field">
+                  <label for="tx-from">Transactions depuis le</label>
+                  <input type="date" id="tx-from" />
+                </div>
+                <button class="btn purple" id="btn-tx">Charger</button>
+              </div>
+
+              <div class="tx-list" id="tx-list" style="margin-top:0.9rem;">
+                <div class="empty" style="padding:0.8rem;color:var(--faint);font-style:italic;">
+                  Sélectionnez un compte pour voir ses transactions.
+                </div>
+              </div>
+
+              <div class="callout-mini">
+                <strong>Lecture seule.</strong> L’AIS expose des données riches&nbsp;:
+                soldes, IBAN, opérations. D’où le consentement explicite et la
+                durée bornée.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journal">
+          <div class="journal-head">Journal d’étapes</div>
+          <div class="journal-body" id="journal-ais">
+            <div class="line"><span class="t">—</span><span class="msg">En attente… Accordez d’abord un consentement (onglet 1).</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ONGLET 3 : VÉRIFICATION CBPII ============ -->
+      <section class="panel" id="panel-cbpii" role="tabpanel" aria-labelledby="tab-cbpii" hidden>
+        <div class="scene">
+          <div class="world bank">
+            <div class="world-head"><span class="dot"></span><h2>Banque Est · API CBPII</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                Ici, on ne lit <strong>rien</strong>. On pose une question&nbsp;:
+                «&nbsp;y a-t-il assez de fonds pour ce montant&nbsp;?&nbsp;». Saisissez
+                un montant.
+              </p>
+
+              <div class="req-line">
+                <span class="verb">POST</span>
+                <span class="url">/v1/funds-confirmations</span>
+              </div>
+              <div class="req-headers mono">
+                Authorization: Bearer <span id="hdr-token-2">—</span>
+              </div>
+
+              <div class="amount-row">
+                <div class="field">
+                  <label for="amount">Montant à vérifier (EUR)</label>
+                  <input type="number" id="amount" min="0" step="0.01" value="42.90" />
+                </div>
+                <button class="btn teal" id="btn-funds">Vérifier</button>
+              </div>
+              <p class="hint-inline">
+                Le compte vérifié est le <strong>Compte courant</strong> (périmètre
+                du consentement CBPII).
+              </p>
+
+              <pre class="json" id="json-cbpii" style="margin-top:0.9rem;"><code>// La réponse booléenne apparaîtra ici.</code></pre>
+            </div>
+          </div>
+
+          <div class="world app">
+            <div class="world-head"><span class="dot"></span><h2>Émetteur de carte · résultat</h2></div>
+            <div class="world-body">
+              <p class="world-sub">
+                L’émetteur n’apprend <strong>que oui ou non</strong>. Aucun solde,
+                aucune transaction ne lui sont transmis.
+              </p>
+              <div class="bool-badge" id="bool-result">
+                <span class="bool-mark">?</span>
+                <span class="bool-text">En attente de vérification</span>
+              </div>
+              <div class="note">
+                <p>
+                  <strong>Comparez avec l’AIS.</strong> Même compte, même banque&nbsp;:
+                  l’AIS donnait le solde et les opérations&nbsp;; le CBPII ne donne
+                  qu’un booléen. Moins de données exposées, moins de risque.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journal">
+          <div class="journal-head">Journal d’étapes</div>
+          <div class="journal-body" id="journal-cbpii">
+            <div class="line"><span class="t">—</span><span class="msg">En attente… Saisissez un montant puis « Vérifier ».</span></div>
+          </div>
+        </div>
+      </section>
+
+      <p class="labo-foot">
+        Labo pédagogique · DSP2 &amp; Open Banking · Jour 2 — données fictives,
+        aucun réseau, aucun serveur. Ouvrez simplement ce fichier dans un
+        navigateur.
+      </p>
+    </div>
+
+    <script src="labo-j2.js"></script>
+  </body>
+</html>
