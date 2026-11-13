@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Couverture du syllabus — Jour 5 | DSP2 &amp; Open Banking</title>
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/j5-styles.css" />
   </head>
   <body data-bloc="syllabus-coverage">
     <header class="site-bar">
@@ -36,7 +37,7 @@
               <p class="day-kicker">Traçabilité</p>
               <h1>Couverture du syllabus</h1>
               <p class="lead">
-                Chaque point du syllabus J5 (5.1 à 5.4) est rattaché à une
+                Chaque point du syllabus J5 (5.1 à 5.3) est rattaché à une
                 séquence. On ajoute aussi les notions complémentaires introduites
                 pour la pratique.
               </p>
@@ -44,9 +45,23 @@
           </section>
 
           <div class="wrap">
+            <div class="j5-concept-grid">
+              <div class="j5-concept-card">
+                <h3>Couverture complète</h3>
+                <p>Tous les points du syllabus sont traités avec des références précises.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>Compléments</h3>
+                <p>Des notions additionnelles enrichissent la compréhension des sujets.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>Validation</h3>
+                <p>Chaque point est validé comme couvert dans les séquences du jour.</p>
+              </div>
+            </div>
             <section class="section" style="border-top: none; padding-top: 0">
               <p class="section-label">Bloc 5.1</p>
-              <h2>De l’Open Banking à l’Open Finance</h2>
+              <h2>Open Banking vs Open Finance</h2>
               <div class="csm-table-wrap">
                 <table class="csm-table">
                   <thead>
@@ -57,24 +72,21 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><th scope="row">Trois piliers communs (consentement, API, tiers)</th><td><a href="s1-openfinance.html#meme-principe">S1 · Fondation</a></td><td class="cov-ok">Couvert</td></tr>
-                    <tr><th scope="row">Extension à d’autres produits</th><td><a href="s1-openfinance.html#meme-principe">S1 · Fondation</a></td><td class="cov-ok">Couvert</td></tr>
-                    <tr><th scope="row">Différences vs DSP2</th><td><a href="s1-openfinance.html#ce-qui-change">S1 · Différences</a></td><td class="cov-ok">Couvert</td></tr>
-                    <tr><th scope="row">Ce qui reste vrai</th><td><a href="s1-openfinance.html#ce-qui-reste">S1 · Invariants</a></td><td class="cov-ok">Couvert</td></tr>
-                    <tr class="is-exergue"><th scope="row">Open Banking / Open Finance / Open Data</th><td><a href="s1-openfinance.html#reperes">S1 · Repères</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Évolution du périmètre (comptes, épargne, crédit, assurance, paiement)</th><td><a href="s1-openbanking-vs-openfinance.html#evolution">S1 · Évolution</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Lien avec wallets / Mobile Money / plateformes</th><td><a href="s1-openbanking-vs-openfinance.html#ecosysteme">S1 · Écosystème</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr class="is-exergue"><th scope="row">Complexité technique accrue</th><td><a href="s1-openbanking-vs-openfinance.html#implications">S1 · Implications</a></td><td class="cov-ok">Couvert</td></tr>
                   </tbody>
                 </table>
               </div>
               <p class="cov-note">
                 <strong>Complément ajouté&nbsp;:</strong> le statut de «&nbsp;mouvement&nbsp;»
-                (pas un texte unique), le projet FIDA, la fragmentation nationale,
-                la distinction avec le Data Act.
+                (pas un texte unique), le projet FIDA, la distinction avec l’Open Data.
               </p>
             </section>
 
             <section class="section">
               <p class="section-label">Bloc 5.2</p>
-              <h2>Concevoir un projet SI ouvert</h2>
+              <h2>Impacts SI pour les banques</h2>
               <div class="csm-table-wrap">
                 <table class="csm-table">
                   <thead>
@@ -85,23 +97,23 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><th scope="row">Démarche en 5 étapes</th><td><a href="s2-projet.html#demarche">S2 · Méthode</a></td><td class="cov-ok">Couvert</td></tr>
-                    <tr><th scope="row">Choix des rôles selon le besoin</th><td><a href="s2-projet.html#deux-cas">S2 · Application</a></td><td class="cov-ok">Couvert</td></tr>
-                    <tr><th scope="row">Livrables du projet</th><td><a href="s2-projet.html#livrables">S2 · Cadre</a></td><td class="cov-ok">Couvert</td></tr>
-                    <tr class="is-exergue"><th scope="row">Flux combiné (PISP + CBPII)</th><td><a href="s2-projet.html#flux-exemple">S2 · Exemple</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Transformation du core banking</th><td><a href="s2-impacts-si-banques.html#core-banking">S2 · Core Banking</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Gouvernance IT, time-to-market, sécurité by design</th><td><a href="s2-impacts-si-banques.html#gouvernance">S2 · Gouvernance</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Banque fournisseur d’API / orchestrateur / plateforme</th><td><a href="s2-impacts-si-banques.html#banque-plateforme">S2 · Plateforme</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr class="is-exergue"><th scope="row">Défis et opportunités</th><td><a href="s2-impacts-si-banques.html#defis">S2 · Stratégie</a></td><td class="cov-ok">Couvert</td></tr>
                   </tbody>
                 </table>
               </div>
               <p class="cov-note">
-                <strong>Complément ajouté&nbsp;:</strong> un rôle = un consentement,
-                CBPII n’est pas une garantie, erreur de «&nbsp;techno avant le
-                besoin&nbsp;».
+                <strong>Complément ajouté&nbsp;:</strong> tableau des exigences
+                (sécurité, disponibilité, performance, traçabilité, conformité),
+                monétisation des APIs.
               </p>
             </section>
 
             <section class="section">
               <p class="section-label">Bloc 5.3</p>
-              <h2>Synthèse des quatre rôles</h2>
+              <h2>Open Finance : état des travaux</h2>
               <div class="csm-table-wrap">
                 <table class="csm-table">
                   <thead>
@@ -112,44 +124,18 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><th scope="row">Les quatre rôles et leur pouvoir</th><td><a href="s3-synthese.html#roles">S3 · Les rôles</a></td><td class="cov-ok">Couvert</td></tr>
-                    <tr><th scope="row">Grille de comparaison</th><td><a href="s3-synthese.html#compare">S3 · Comparaison</a></td><td class="cov-ok">Couvert</td></tr>
-                    <tr><th scope="row">Coopération dans un parcours</th><td><a href="s3-synthese.html#parcours">S3 · Coopération</a></td><td class="cov-ok">Couvert</td></tr>
-                    <tr class="is-exergue"><th scope="row">Qui détient quoi</th><td><a href="s3-synthese.html#detient">S3 · Données</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Ce qui existe / en travaux / projeté</th><td><a href="s3-synthese.html#horizons">S3 · Horizons</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Périmètre visé par l’extension</th><td><a href="s3-synthese.html#perimetre">S3 · Périmètre</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">Projection des travaux (DSP2 → FIDA → « DSP3 »)</th><td><a href="s3-synthese.html#projection">S3 · Projection</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr><th scope="row">FIDA vs « DSP3 » (pas une suite)</th><td><a href="s3-synthese.html#confusion">S3 · Confusion</a></td><td class="cov-ok">Couvert</td></tr>
+                    <tr class="is-exergue"><th scope="row">Pourquoi ça prend du temps</th><td><a href="s3-synthese.html#enjeux">S3 · Enjeux</a></td><td class="cov-ok">Couvert</td></tr>
                   </tbody>
                 </table>
               </div>
               <p class="cov-note">
-                <strong>Complément ajouté&nbsp;:</strong> la banque pivot
-                (source de vérité + SCA), séparation des consentements, CBPII vs
-                garantie.
-              </p>
-            </section>
-
-            <section class="section">
-              <p class="section-label">Bloc 5.4</p>
-              <h2>Atelier projet final</h2>
-              <div class="csm-table-wrap">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Point du syllabus</th>
-                      <th scope="col">Où</th>
-                      <th scope="col">Statut</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr><th scope="row">Rendu d’un projet SI ouvert</th><td><a href="s4-atelier.html#brief">S4 · Brief</a></td><td class="cov-ok">Couvert</td></tr>
-                    <tr><th scope="row">Les six preuves</th><td><a href="s4-atelier.html#preuves">S4 · Grille</a></td><td class="cov-ok">Couvert</td></tr>
-                    <tr><th scope="row">Pistes de projet</th><td><a href="s4-atelier.html#exemples">S4 · Inspiration</a></td><td class="cov-ok">Couvert</td></tr>
-                    <tr class="is-exergue"><th scope="row">Évaluation par le jury</th><td><a href="s4-atelier.html#grille">S4 · Évaluation</a></td><td class="cov-ok">Couvert</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="cov-note">
-                <strong>Complément ajouté&nbsp;:</strong> départage sur la sobriété
-                (moins de rôles / moins de données), piège du scoring alternatif
-                (éthique, finalité).
+                <strong>Complément ajouté&nbsp;:</strong> distinction annonce / projet /
+                droit positif, statut de FIDA, caractère informel de « DSP3 »,
+                réflexe du fondement juridique.
               </p>
             </section>
 

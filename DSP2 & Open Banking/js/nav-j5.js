@@ -1,11 +1,10 @@
 window.OB_BLOCS = [
   { id: "intro", title: "Intro & objectifs", href: "intro.html", group: "Ouverture" },
   // Parcours Jour 5
-  { id: "s1-openfinance", title: "S1 · De l’Open Banking à l’Open Finance", href: "s1-openfinance.html", group: "Parcours" },
-  { id: "s2-projet", title: "S2 · Concevoir un projet SI ouvert", href: "s2-projet.html", group: "Parcours" },
-  { id: "s3-synthese", title: "S3 · Synthèse des quatre rôles", href: "s3-synthese.html", group: "Parcours" },
-  { id: "s4-atelier", title: "S4 · Atelier projet final", href: "s4-atelier.html", group: "Parcours" },
-  { id: "support", title: "Support étudiant", href: "support-etudiant.html", group: "Parcours narratif" },
+  { id: "s1-openbanking-vs-openfinance", title: "S1 · Open Banking vs Open Finance", href: "s1-openbanking-vs-openfinance.html", group: "Parcours" },
+  { id: "s2-impacts-si-banques", title: "S2 · Impacts SI pour les banques", href: "s2-impacts-si-banques.html", group: "Parcours" },
+  { id: "s3-synthese", title: "S3 · Open Finance : état des travaux", href: "s3-synthese.html", group: "Parcours" },
+  { id: "support", title: "Support étudiant", href: "support.html", group: "Parcours narratif" },
 ];
 
 (function initObNav() {
@@ -93,3 +92,4 @@ window.OB_BLOCS = [
     });
   }
 })();
+

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Intro &amp; objectifs — Jour 5 | DSP2 &amp; Open Banking</title>
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/j5-styles.css" />
   </head>
   <body data-bloc="intro">
     <header class="site-bar">
@@ -39,21 +40,37 @@
                 Quatre jours ont construit les briques&nbsp;: les acteurs, la
                 sécurité, le paiement, la lecture de comptes. Le Jour 5 les
                 assemble&nbsp;: on regarde l’<strong>Open Finance</strong> au-delà
-                de la banque, on conçoit un projet SI ouvert de bout en bout, on
-                synthétise les quatre rôles, et on prépare le rendu final.
+                de la banque, on mesure les <strong>impacts SI</strong> pour les
+                banques, et on synthétise les quatre rôles pour clore le module.
               </p>
             </div>
           </section>
 
           <div class="wrap">
+            <div class="j5-concept-grid">
+              <div class="j5-concept-card">
+                <h3>Open Finance</h3>
+                <p>Élargir le regard au-delà de la banque vers d'autres produits financiers.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>Impacts SI</h3>
+                <p>Comprendre ce que l'ouverture change pour les systèmes d'information bancaires.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>État des travaux</h3>
+                <p>Démêler ce qui existe, ce qui est en négociation et ce qui relève de la projection.</p>
+              </div>
+            </div>
+
             <div class="fil-rouge">
               <span class="fil-rouge-label">Fil rouge</span>
               <p>
                 Lyam a utilisé un AISP (MonBuddy), un PISP, et même un CBPII pour
                 vérifier ses fonds sur un site marchand. Maintenant, on prend du
-                recul&nbsp;: ces briques ne servent pas qu’à la banque. On imagine
-                un <strong>projet SI ouvert</strong> qui les mobilise ensemble — et
-                on le défend devant un jury.
+                recul&nbsp;: ces briques ne servent pas qu’à la banque, et elles
+                transforment aussi les systèmes d’information des banques. On
+                élargit le regard, puis on démêle l’état réel des travaux Open
+                Finance — sans refaire le tour des rôles.
               </p>
             </div>
 
@@ -87,38 +104,32 @@
               <p class="section-label">Aperçu</p>
               <h2>Le parcours du Jour 5, en une image</h2>
               <p class="intro">
-                On élargit le regard (Open Finance), on conçoit un projet SI
-                ouvert, on synthétise les quatre rôles, puis on défend un projet
-                final en atelier.
+                On élargit le regard (Open Banking vs Open Finance), on mesure ce
+                que l’ouverture change pour les banques (impacts SI), puis on
+                synthétise les quatre rôles pour clore le module.
               </p>
 
-              <div class="split-2">
+              <div class="split-3">
                 <div class="panel">
-                  <h3>S1 — De l’Open Banking à l’Open Finance</h3>
+                  <h3>S1 — Open Banking vs Open Finance</h3>
                   <p>
-                    Au-delà des comptes&nbsp;: épargne, assurance, crédit. Ce qui
-                    reste, ce qui change, ce qui n’est pas encore réglementé.
-                  </p>
-                </div>
-                <div class="panel">
-                  <h3>S2 — Concevoir un projet SI ouvert</h3>
-                  <p>
-                    Partir d’un besoin, choisir les rôles DSP2 utiles, dessiner les
-                    flux, cadrer le consentement et la gouvernance.
+                    Au-delà des comptes&nbsp;: épargne, assurance, crédit, paiement.
+                    Liens avec wallets, Mobile Money et plateformes de services.
                   </p>
                 </div>
                 <div class="panel ok">
-                  <h3>S3 — Synthèse des quatre rôles</h3>
+                  <h3>S2 — Impacts SI pour les banques</h3>
                   <p>
-                    ASPSP, AISP, PISP, CBPII&nbsp;: qui fait quoi, qui détient
-                    quoi, comment ils s’enchaînent dans un même parcours.
+                    Core banking, gouvernance IT, time-to-market, sécurité by
+                    design. La banque&nbsp;: fournisseur d’API, orchestrateur,
+                    plateforme.
                   </p>
                 </div>
-                <div class="panel ok">
-                  <h3>S4 — Atelier projet final</h3>
+                <div class="panel">
+                  <h3>S3 — Open Finance : état des travaux</h3>
                   <p>
-                    Rendu de fin de module&nbsp;: un projet SI ouvert présenté et
-                    défendu, mêlant lecture, paiement et confirmation de fonds.
+                    Déjà là (DSP2), en travaux (FIDA), projeté (« DSP3 »)&nbsp;:
+                    trier les sujets par maturité, pas par promesse.
                   </p>
                 </div>
               </div>
@@ -126,7 +137,7 @@
               <div class="diagram">
                 <div class="diagram-header">
                   <h3>Fil du Jour 5</h3>
-                  <p>Open Finance → Projet → Synthèse → Rendu final</p>
+                  <p>Open Finance → Impacts SI → Synthèse</p>
                 </div>
                 <svg viewBox="0 0 1000 200" role="img" aria-label="Chaîne pédagogique du jour 5">
                   <defs>
@@ -135,31 +146,24 @@
                     </marker>
                   </defs>
                   <g>
-                    <rect x="20" y="50" width="220" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
-                    <text x="130" y="80" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">5.1</text>
-                    <text x="130" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Open Finance</text>
-                    <text x="130" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">au-delà de la banque</text>
+                    <rect x="40" y="50" width="270" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="175" y="80" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">5.1</text>
+                    <text x="175" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Open Banking vs Open Finance</text>
+                    <text x="175" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">au-delà de la banque</text>
                   </g>
-                  <line x1="248" y1="105" x2="278" y2="105" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-j5)"/>
+                  <line x1="318" y1="105" x2="352" y2="105" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-j5)"/>
                   <g>
-                    <rect x="286" y="50" width="220" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="396" y="80" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">5.2</text>
-                    <text x="396" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Projet SI ouvert</text>
-                    <text x="396" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">besoin → flux</text>
+                    <rect x="360" y="50" width="270" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="495" y="80" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">5.2</text>
+                    <text x="495" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Impacts SI banques</text>
+                    <text x="495" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">core · gouvernance · plateforme</text>
                   </g>
-                  <line x1="514" y1="105" x2="544" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j5)"/>
+                  <line x1="638" y1="105" x2="672" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j5)"/>
                   <g>
-                    <rect x="552" y="50" width="220" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
-                    <text x="662" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">5.3</text>
-                    <text x="662" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Synthèse 4 rôles</text>
-                    <text x="662" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">qui fait quoi</text>
-                  </g>
-                  <line x1="780" y1="105" x2="810" y2="105" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-j5)"/>
-                  <g>
-                    <rect x="818" y="50" width="166" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="901" y="80" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700" letter-spacing="0.08em">5.4</text>
-                    <text x="901" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Projet final</text>
-                    <text x="901" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">rendu &amp; jury</text>
+                    <rect x="680" y="50" width="280" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="820" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">5.3</text>
+                    <text x="820" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">État des travaux</text>
+                    <text x="820" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">DSP2 · FIDA · DSP3</text>
                   </g>
                 </svg>
               </div>
@@ -172,34 +176,36 @@
               <ul class="topic-list">
                 <li>
                   <span>
-                    <strong>Situer</strong> la DSP2 dans le mouvement plus large de
-                    l’Open Finance&nbsp;: ce qui se généralise, ce qui reste propre
-                    à la banque.
+                    <strong>Distinguer</strong> Open Banking et Open Finance&nbsp;:
+                    ce qui se généralise (épargne, assurance, crédit, paiement), ce
+                    qui reste propre à la banque, et le rôle des wallets, du Mobile
+                    Money et des plateformes de services.
                   </span>
                 </li>
                 <li>
                   <span>
-                    <strong>Concevoir</strong> un projet SI ouvert&nbsp;: partir
-                    d’un besoin, choisir les rôles pertinents, cartographier les
-                    flux et le consentement.
+                    <strong>Analyser</strong> les impacts SI pour les banques&nbsp;:
+                    transformation du core banking, gouvernance IT, time-to-market,
+                    sécurité by design.
                   </span>
                 </li>
                 <li>
                   <span>
-                    <strong>Synthétiser</strong> les quatre rôles de tiers et
-                    expliquer comment ils coopèrent dans un même parcours client.
+                    <strong>Expliquer</strong> le nouveau rôle de la banque&nbsp;:
+                    fournisseur d’API, orchestrateur et plateforme.
                   </span>
                 </li>
                 <li>
                   <span>
-                    <strong>Argumenter</strong> des choix d’architecture et de
-                    conformité devant un jury, en mobilisant les cinq jours.
+                    <strong>Distinguer</strong> les trois horizons de l’Open
+                    Finance&nbsp;: ce qui est en vigueur (DSP2), ce qui est en
+                    travaux (FIDA) et ce qui relève de la projection (« DSP3 »).
                   </span>
                 </li>
                 <li>
                   <span>
-                    <strong>Défendre</strong> un projet de fin de module cohérent,
-                    réaliste et conforme (DSP2 + RGPD).
+                    <strong>Relier</strong> l’ensemble aux acquis des quatre jours
+                    précédents, sans refaire le tour des rôles déjà vus.
                   </span>
                 </li>
               </ul>
@@ -221,11 +227,10 @@
                   </thead>
                   <tbody>
                     <tr><th scope="row">0 h 00 – 0 h 10</th><td>Intro &amp; objectifs</td><td>Plénière</td><td>Vision d’ensemble</td></tr>
-                    <tr><th scope="row">0 h 10 – 0 h 45</th><td>5.1 Open Finance</td><td>Exposé + discussion</td><td>Carte «&nbsp;au-delà de la banque&nbsp;»</td></tr>
-                    <tr><th scope="row">0 h 45 – 1 h 30</th><td>5.2 Projet SI ouvert</td><td>Exposé + esquisse</td><td>Flux d’un projet</td></tr>
-                    <tr><th scope="row">1 h 30 – 1 h 40</th><td>Pause</td><td>—</td><td>—</td></tr>
-                    <tr><th scope="row">1 h 40 – 2 h 15</th><td>5.3 Synthèse 4 rôles</td><td>Exposé + tableau</td><td>Grille des rôles</td></tr>
-                    <tr class="is-exergue"><th scope="row">2 h 15 – 3 h 30</th><td>5.4 Atelier projet final</td><td>Présentation + jury</td><td>Projet défendu</td></tr>
+                    <tr><th scope="row">0 h 10 – 0 h 55</th><td>5.1 Open Banking vs Open Finance</td><td>Exposé + discussion</td><td>Carte «&nbsp;au-delà de la banque&nbsp;»</td></tr>
+                    <tr><th scope="row">0 h 55 – 1 h 50</th><td>5.2 Impacts SI pour les banques</td><td>Exposé + schéma</td><td>Schéma de transformation</td></tr>
+                    <tr><th scope="row">1 h 50 – 2 h 00</th><td>Pause</td><td>—</td><td>—</td></tr>
+                    <tr class="is-exergue"><th scope="row">2 h 00 – 3 h 30</th><td>5.3 Open Finance : état des travaux</td><td>Exposé + projection</td><td>Feuille de route indicative</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -234,9 +239,12 @@
                 <h3>Le Jour 5 est une clôture, pas un nouveau chapitre</h3>
                 <p>
                   Aucun nouveau concept réglementaire majeur. L’objectif est
-                  d’<strong>assembler</strong> ce que l’on sait déjà&nbsp;: chaque
-                  séquence réutilise explicitement un ou plusieurs jours
-                  précédents. C’est le moment de consolider avant le rendu.
+                  d’<strong>élargir</strong> (Open Banking vs Open Finance), de
+                  <strong>mesurer</strong> les impacts SI pour les banques, puis
+                  de <strong>situer l’état réel des travaux</strong> (DSP2, FIDA,
+                  « DSP3 »). Chaque séquence réutilise explicitement un ou plusieurs
+                  jours précédents&nbsp;: c’est le moment de prendre du recul sur
+                  l’ensemble du module.
                 </p>
               </div>
             </section>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S4 — Sécurité &amp; gouvernance des données | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s4-securite">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a class="is-active" href="intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 4 · Séquence 4</span>
+              </div>
+              <p class="day-kicker">Ce que l’on a le droit de faire de la donnée</p>
+              <h1>Sécurité &amp; gouvernance des données</h1>
+              <p class="lead">
+                Lire les comptes de quelqu’un, c’est entrer dans son intimité
+                financière. Un AISP ne tient pas parce qu’il sait se connecter
+                aux banques&nbsp;: il tient parce qu’il sait <strong>borner</strong>
+                ce qu’il lit, <strong>limiter</strong> ce qu’il garde et
+                <strong>prouver</strong> ce qu’il a fait.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam a donné son accord à MonBuddy pour lire ses deux comptes.
+                Trois mois plus tard, il se demande&nbsp;: qui a accédé à quoi,
+                pendant combien de temps, et que reste-t-il de ses données chez
+                MonBuddy&nbsp;? Cette séquence n’ajoute pas de technique&nbsp;:
+                elle pose les règles qui rendent les trois précédentes
+                acceptables.
+              </p>
+            </div>
+
+            <!-- PRINCIPE -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Principe</p>
+              <h2 id="asymetrie">Une asymétrie de départ défavorable</h2>
+              <p class="intro">
+                Dans un paiement, la donnée circule et disparaît. Dans
+                l’agrégation, elle <strong>reste</strong>. C’est cette
+                persistance qui crée l’essentiel du risque&nbsp;: une copie de
+                l’historique bancaire d’une personne vaut cher, pour elle comme
+                pour un attaquant.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Objet</th>
+                      <th scope="col">PISP (Jour 3)</th>
+                      <th scope="col">AISP (Jour 4)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Ce qui circule</th><td>Un ordre de virement</td><td>Tout l’historique de comptes</td></tr>
+                    <tr><th scope="row">Ce qui est stocké</th><td>Peu, et peu longtemps</td><td>Beaucoup, et durablement</td></tr>
+                    <tr><th scope="row">Valeur pour un attaquant</th><td>Faible (un ordre)</td><td>Élevée (patrimoine, habitudes, salaire)</td></tr>
+                    <tr class="is-exergue"><th scope="row">Droit du client</th><td>Executor un virement</td><td>Savoir et reprendre</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>La donnée est un actif, pas un sous-produit</h3>
+                <p>
+                  Un AISP qui traite ses copies de comptes comme un simple cache
+                  technique se trompe de nature. Ce sont des
+                  <strong>données personnelles financières</strong>&nbsp;: elles
+                  relèvent du RGPD en plus de la DSP2, avec les obligations de
+                  sécurité de l’article 32 (chiffrement, minimisation,
+                  journalisation).
+                </p>
+              </div>
+            </section>
+
+            <!-- CONSENTEMENT -->
+            <section class="section">
+              <p class="section-label">Enjeu 1</p>
+              <h2 id="consentement">Le consentement n’est pas une case à cocher</h2>
+              <p class="intro">
+                En DSP2, le consentement AIS est un objet technique&nbsp;: il a
+                un identifiant, une durée, une liste de comptes, des droits
+                précis. Le respecter, ce n’est pas «&nbsp;avoir un écran de
+                consentement&nbsp;»&nbsp;: c’est faire correspondre chaque appel
+                d’API à un droit effectivement accordé.
+              </p>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">A</span>
+                  <div>
+                    <strong>Finalité limitée</strong>
+                    <p>
+                      Un consentement donné pour un budget ne couvre pas la
+                      revente de données à un assureur. Chaque usage non prévu
+                      exige un nouveau consentement explicite.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">B</span>
+                  <div>
+                    <strong>Portée vérifiée à chaque appel</strong>
+                    <p>
+                      Le <em>consent store</em> doit être interrogé avant toute
+                      lecture&nbsp;: ce compte est-il dans le périmètre&nbsp;? ce
+                      droit est-il encore valide&nbsp;? L’absence de vérification
+                      est la faille la plus fréquente.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">C</span>
+                  <div>
+                    <strong>Durée bornée et renouvelée par le client</strong>
+                    <p>
+                      L’AIS impose une validité limitée (90 jours en pratique).
+                      Le renouvellement doit être une action du client, jamais un
+                      prolongement silencieux décidé par l’AISP.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">D</span>
+                  <div>
+                    <strong>Révocation immédiatement effective</strong>
+                    <p>
+                      Quand le client retire son consentement, les lectures
+                      suivantes doivent échouer — et les copies déjà stockées
+                      doivent suivre la politique de conservation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout ko">
+                <h3>L’anti-motif à connaître</h3>
+                <p>
+                  Le consentement «&nbsp;captif&nbsp;»&nbsp;: un écran qui
+                  conditionne l’accès au service à l’acceptation d’usages
+                  annexes. Techniquement valide, juridiquement contestable — et
+                  très souvent relevé par les autorités de contrôle.
+                </p>
+              </div>
+            </section>
+
+            <!-- CONSERVATION -->
+            <section class="section">
+              <p class="section-label">Enjeu 2</p>
+              <h2 id="conservation">Durée de conservation&nbsp;: la question qu’on oublie</h2>
+              <p class="intro">
+                Combien de temps garder un historique bancaire agrégé&nbsp;? Il
+                n’existe pas de réponse unique&nbsp;: la durée découle de la
+                finalité. Ce qui est certain, c’est qu’une durée non justifiée
+                est un manquement — et qu’une durée infinie est indéfendable.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Type de donnée</th>
+                      <th scope="col">Besoin métier typique</th>
+                      <th scope="col">Question de gouvernance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Copie brute des transactions</th>
+                      <td>Rafraîchissement, reprise après incident</td>
+                      <td>Peut-on la supprimer dès la normalisation&nbsp;?</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Données normalisées</th>
+                      <td>Affichage du budget, catégorisation</td>
+                      <td>Quelle profondeur d’historique est utile&nbsp;?</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Données dérivées (scores, agrégats)</th>
+                      <td>Scoring, conseil</td>
+                      <td>Sont-elles encore rattachables à une personne&nbsp;?</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Journaux d’accès</th>
+                      <td>Audit, sécurité</td>
+                      <td>Durée imposée par la loi, souvent supérieure aux données</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Le réflexe utile&nbsp;: justifier, pas maximiser</h3>
+                <p>
+                  La bonne question n’est pas «&nbsp;combien de temps
+                  <em>peut-on</em> garder&nbsp;?&nbsp;» mais «&nbsp;de quoi
+                  <em>a-t-on besoin</em>, et que se passe-t-il si on garde moins
+                  longtemps&nbsp;?&nbsp;». Une politique de conservation se
+                  documente, se versionne et s’applique automatiquement.
+                </p>
+              </div>
+            </section>
+
+            <!-- AUDITABILITE -->
+            <section class="section">
+              <p class="section-label">Enjeu 3</p>
+              <h2 id="audit">Auditabilité&nbsp;: pouvoir prouver, pas seulement affirmer</h2>
+              <p class="intro">
+                «&nbsp;Nous respectons le consentement&nbsp;» ne vaut rien sans
+                preuve. L’auditabilité, c’est la capacité à reconstituer
+                <strong>qui</strong> a lu <strong>quoi</strong>, à
+                <strong>quel moment</strong>, <strong>sous quel consentement</strong>
+                — et à le démontrer à un tiers qui n’a pas confiance.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Chaîne de traçabilité d’une lecture de compte</h3>
+                  <p>Chaque accès laisse une trace reliée au consentement qui l’autorise</p>
+                </div>
+                <svg viewBox="0 0 1000 320" role="img" aria-label="Chaîne de traçabilité reliant un consentement, une lecture et une preuve d’audit">
+                  <defs>
+                    <marker id="ah-j4a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                    <marker id="ah-j4b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <rect x="20" y="40" width="200" height="70" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                  <text x="120" y="68" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">Consentement</text>
+                  <text x="120" y="88" text-anchor="middle" fill="#5a6b7c" font-size="10">id · portée · droits</text>
+                  <text x="120" y="103" text-anchor="middle" fill="#5a6b7c" font-size="9">date de début et de fin</text>
+
+                  <rect x="20" y="190" width="200" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="120" y="218" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Client (Lyam)</text>
+                  <text x="120" y="238" text-anchor="middle" fill="#5a6b7c" font-size="10">accord explicite</text>
+                  <text x="120" y="253" text-anchor="middle" fill="#5a6b7c" font-size="9">révocable à tout moment</text>
+
+                  <rect x="300" y="105" width="200" height="90" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="400" y="133" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">Journal d’accès</text>
+                  <text x="400" y="153" text-anchor="middle" fill="#5a6b7c" font-size="10">qui · quel compte</text>
+                  <text x="400" y="169" text-anchor="middle" fill="#5a6b7c" font-size="10">quand · quel appel</text>
+                  <text x="400" y="185" text-anchor="middle" fill="#5a6b7c" font-size="10">sous quel consentement</text>
+
+                  <line x1="222" y1="105" x2="296" y2="130" stroke="#6b4fa0" stroke-width="2" marker-end="url(#ah-j4a)"/>
+                  <line x1="222" y1="215" x2="296" y2="175" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-j4b)"/>
+
+                  <rect x="580" y="105" width="190" height="90" rx="8" fill="#f7faf8" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="675" y="133" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Contrôle</text>
+                  <text x="675" y="153" text-anchor="middle" fill="#5a6b7c" font-size="10">lecture hors portée ?</text>
+                  <text x="675" y="169" text-anchor="middle" fill="#5a6b7c" font-size="10">après révocation ?</text>
+                  <text x="675" y="185" text-anchor="middle" fill="#5a6b7c" font-size="10">consentement expiré ?</text>
+
+                  <line x1="502" y1="150" x2="576" y2="150" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-j4a)"/>
+
+                  <rect x="800" y="105" width="180" height="90" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="890" y="133" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">Preuve</text>
+                  <text x="890" y="153" text-anchor="middle" fill="#5a6b7c" font-size="10">export horodaté</text>
+                  <text x="890" y="169" text-anchor="middle" fill="#5a6b7c" font-size="10">immuable</text>
+                  <text x="890" y="185" text-anchor="middle" fill="#5a6b7c" font-size="10">présentable à un auditeur</text>
+                  <line x1="772" y1="150" x2="796" y2="150" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-j4b)"/>
+
+                  <text x="20" y="300" fill="#5a6b7c" font-size="10">Sans journal relié au consentement, aucune des trois preuves n’est opposable : on affirme, on ne démontre pas.</text>
+                </svg>
+              </div>
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>Ce qu’il faut journaliser</h3>
+                  <p>
+                    Identifiant du consentement, comptes lus, horodatage,
+                    résultat (succès, refus, erreur), identité de l’appelant.
+                    Pas les données elles-mêmes&nbsp;: le journal dit
+                    <em>qui a lu</em>, pas <em>ce qui a été lu</em>.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>Ce qui rend un journal inutile</h3>
+                  <p>
+                    Un journal réinscriptible, non horodaté de façon fiable, ou
+                    qui ne relie pas la lecture au consentement. Un audit doit
+                    pouvoir répondre en minutes, pas en semaines.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- RESPONSABILITE -->
+            <section class="section">
+              <p class="section-label">Enjeu 4</p>
+              <h2 id="responsabilite">Responsabilité légale&nbsp;: qui répond de quoi&nbsp;?</h2>
+              <p class="intro">
+                Quand un incident survient, la question n’est pas seulement
+                «&nbsp;quel est le bug&nbsp;?&nbsp;» mais «&nbsp;qui porte la
+                responsabilité&nbsp;?&nbsp;». En Open Banking, elle se partage
+                entre la banque, le TPP et le client — et cette répartition est
+                écrite dans les textes.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Acteur</th>
+                      <th scope="col">Ce dont il répond</th>
+                      <th scope="col">Ce qu’il ne peut pas invoquer</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Banque (ASPSP)</th>
+                      <td>Disponibilité et performance de ses interfaces</td>
+                      <td>«&nbsp;L’API était lente&nbsp;» pour ne pas corriger</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">TPP (AISP)</th>
+                      <td>Usage conforme du consentement, sécurité des données</td>
+                      <td>La faute de la banque pour justifier une fuite</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Client</th>
+                      <td>Confidentialité de ses identifiants de SCA</td>
+                      <td>Le fait qu’un TPP agréé ait mal utilisé ses droits</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Autorité</th>
+                      <td>Contrôle, sanction, retrait d’agrément</td>
+                      <td>—</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le piège de la sous-traitance</h3>
+                <p>
+                  Un AISP qui délègue son stockage à un prestataire cloud reste
+                  <strong>responsable</strong> du traitement vis-à-vis du client.
+                  Le contrat avec le sous-traitant protège juridiquement, il ne
+                  transfère pas la responsabilité.
+                </p>
+              </div>
+            </section>
+
+            <!-- SYNTHESE -->
+            <section class="section">
+              <p class="section-label">Synthèse</p>
+              <h2 id="synthese">Quatre enjeux, un même principe</h2>
+              <p class="intro">
+                Consentement, conservation, auditabilité, responsabilité&nbsp;:
+                les quatre ne sont pas des chapitres séparés. Chacun rend le
+                suivant possible, et l’absence d’un seul suffit à ruiner les
+                trois autres.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Enjeu</th>
+                      <th scope="col">Question posée</th>
+                      <th scope="col">Réponse minimale attendue</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Respect du consentement</th><td>Ai-je le droit de lire ça&nbsp;?</td><td>Vérification à chaque appel</td></tr>
+                    <tr><th scope="row">Durée de conservation</th><td>Combien de temps puis-je garder&nbsp;?</td><td>Durée justifiée par la finalité</td></tr>
+                    <tr><th scope="row">Auditabilité</th><td>Puis-je le prouver&nbsp;?</td><td>Journal horodaté relié au consentement</td></tr>
+                    <tr class="is-exergue"><th scope="row">Responsabilité</th><td>Qui répond si ça casse&nbsp;?</td><td>Rôles écrits et testés</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout reg">
+                <h3>Références</h3>
+                <p>
+                  DSP2 art. 66-67 (accès et consentement AISP)&nbsp;; RTS EBA
+                  2018/389 art. 5 (accès récurrent), 10-13 (sécurité) et 36
+                  (disponibilité)&nbsp;; RGPD art. 5 (minimisation, limitation de
+                  conservation), 6 (base légale), 17 (effacement), 28
+                  (sous-traitance) et 32 (sécurité du traitement)&nbsp;; lignes
+                  directrices EBA sur la SCA.
+                </p>
+              </div>
+            </section>
+
+            <!-- CLOTURE -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Clôture du Jour 4</p>
+                <h2>Agréger, c’est assumer</h2>
+                <p>
+                  Le Jour 4 a posé trois compétences&nbsp;: comprendre ce qu’est
+                  l’AIS, décrire son flux, et construire l’architecture qui le
+                  rend fiable. La Sécurité ajoute le cadre qui rend ces trois
+                  acceptables&nbsp;: un AISP qui lit les comptes de Lyam n’est
+                  pas seulement un bon ingénieur, c’est un
+                  <strong>gardien de données personnelles</strong>. C’est cet
+                  équilibre — service réel, droits réels — qui fait de l’Open
+                  Banking une infrastructure de confiance.
+                </p>
+              </div>
+            </section>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 4</a> · S4 Sécurité &amp; gouvernance
+      </div>
+    </footer>
+    <script src="../js/nav-j4.js"></script>
+    <script src="../js/fiche.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

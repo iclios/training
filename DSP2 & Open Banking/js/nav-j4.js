@@ -4,8 +4,8 @@ window.OB_BLOCS = [
   { id: "s1-principe", title: "S1 · Principe de l’agrégation", href: "s1-principe.html", group: "Parcours" },
   { id: "s2-flux", title: "S2 · Flux AIS & consentement", href: "s2-flux.html", group: "Parcours" },
   { id: "s3-architecture", title: "S3 · Architecture SI AISP", href: "s3-architecture.html", group: "Parcours" },
-  { id: "s4-atelier", title: "S4 · Atelier data banking", href: "s4-atelier.html", group: "Parcours" },
-  { id: "support", title: "Support étudiant", href: "support-etudiant.html", group: "Parcours narratif" },
+  { id: "s4-securite", title: "S4 · Sécurité & gouvernance", href: "s4-securite.html", group: "Parcours" },
+  { id: "support", title: "Support étudiant", href: "support.html", group: "Parcours narratif" },
 ];
 
 (function initObNav() {
@@ -93,3 +93,4 @@ window.OB_BLOCS = [
     });
   }
 })();
+

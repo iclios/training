@@ -1,0 +1,348 @@
+{
+  "format": "quizzawa.subject.v1",
+  "title": "Contrôle des connaissances — DSP2 & Open Banking (Jour 1 & Jour 2)",
+  "description": "Contrôle de 15 questions à choix unique, niveau facile à moyen, portant sur le Jour 1 (fondements DSP2, acteurs, architecture, standardisation) et le Jour 2 (API AIS/PIS/CBPII, OAuth2, OpenID Connect, mTLS, JWT, SCA).",
+  "module": "DSP2 & Open Banking",
+  "questions": [
+    {
+      "type": "statement",
+      "points": 0,
+      "text": "Partie 1 — Jour 1 : le problème, les acteurs et l’architecture"
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que désigne le « screen scraping » dans le contexte de l’Open Banking ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Une API dédiée fournie officiellement aux tiers agréés"
+        },
+        {
+          "id": "b",
+          "label": "Un protocole d’authentification forte entre deux banques"
+        },
+        {
+          "id": "c",
+          "label": "Automatiser l’interface web d’une banque pour en extraire les données"
+        }
+      ],
+      "answer": {
+        "correct_id": "c"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quels sont les trois nouveaux services de paiement introduits par la DSP2 ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "OAuth2, mTLS et JWT"
+        },
+        {
+          "id": "b",
+          "label": "ASPSP, TPP et RGPD"
+        },
+        {
+          "id": "c",
+          "label": "AISP, PISP et CBPII"
+        }
+      ],
+      "answer": {
+        "correct_id": "c"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quelle est la différence essentielle entre un ASPSP et un TPP ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "L’ASPSP tient le compte du client, le TPP y accède avec son consentement"
+        },
+        {
+          "id": "b",
+          "label": "L’ASPSP lit les comptes, le TPP tient le compte du client"
+        },
+        {
+          "id": "c",
+          "label": "Ce sont deux noms pour désigner le même acteur"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel est l’objectif principal de la DSP2 ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Ouvrir l’accès aux comptes et aux paiements à des tiers agréés, sous consentement du client"
+        },
+        {
+          "id": "b",
+          "label": "Supprimer les banques traditionnelles"
+        },
+        {
+          "id": "c",
+          "label": "Imposer un standard technique unique dans toute l’Europe"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel est le rôle de l’API Gateway dans l’architecture Open Banking ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Stocker la preuve du consentement de l’utilisateur"
+        },
+        {
+          "id": "b",
+          "label": "Servir de point d’entrée unique : authentifier, filtrer et router les appels"
+        },
+        {
+          "id": "c",
+          "label": "Tenir le compte du client et écrire les opérations"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel standard Open Banking est largement adopté dans la zone euro, dont la France ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Berlin Group (NextGenPSD2)"
+        },
+        {
+          "id": "b",
+          "label": "OBIE (Open Banking Limited), standard britannique"
+        },
+        {
+          "id": "c",
+          "label": "ISO 8583"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "statement",
+      "points": 0,
+      "text": "Partie 2 — Jour 2 : API, authentification et sécurité"
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quelle API permet à une application de consulter les soldes et les transactions d’un compte ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "PIS — Payment Initiation Service"
+        },
+        {
+          "id": "b",
+          "label": "AIS — Account Information Service"
+        },
+        {
+          "id": "c",
+          "label": "CBPII — Confirmation of Funds"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que peut faire une API d’initiation de paiement (PIS) ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Lire l’historique complet des transactions et les soldes du compte"
+        },
+        {
+          "id": "b",
+          "label": "Modifier un virement déjà validé par la SCA du client"
+        },
+        {
+          "id": "c",
+          "label": "Déclencher un virement au nom du client, sans jamais détenir les fonds"
+        }
+      ],
+      "answer": {
+        "correct_id": "c"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quelle réponse caractérise le mieux l’API de confirmation de fonds (CBPII) ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Une liste détaillée des transactions du compte"
+        },
+        {
+          "id": "b",
+          "label": "Un simple oui/non indiquant si les fonds sont suffisants"
+        },
+        {
+          "id": "c",
+          "label": "Le solde exact du compte et son IBAN"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "À quelle question principale répond OAuth2 ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "À quoi un TPP a-t-il droit, et sous quel périmètre ?"
+        },
+        {
+          "id": "b",
+          "label": "Qui est précisément l’utilisateur connecté ?"
+        },
+        {
+          "id": "c",
+          "label": "Le certificat du TPP est-il techniquement valide ?"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel mécanisme permet au TPP et à la banque de prouver mutuellement leur identité technique via des certificats ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "OAuth2"
+        },
+        {
+          "id": "b",
+          "label": "Le screen scraping"
+        },
+        {
+          "id": "c",
+          "label": "Le mTLS (Mutual TLS)"
+        }
+      ],
+      "answer": {
+        "correct_id": "c"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quelle affirmation sur OpenID Connect (OIDC) est correcte ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Il remplace complètement OAuth2"
+        },
+        {
+          "id": "b",
+          "label": "Il ajoute une couche d’identité à OAuth2, notamment via un ID token signé"
+        },
+        {
+          "id": "c",
+          "label": "Il sert uniquement à chiffrer les données échangées"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que contient un JWT et comment est-il structuré ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Uniquement le mot de passe de l’utilisateur chiffré"
+        },
+        {
+          "id": "b",
+          "label": "Un certificat eIDAS obligatoire"
+        },
+        {
+          "id": "c",
+          "label": "header.payload.signature : un jeton signé, où la signature garantit l’intégrité"
+        }
+      ],
+      "answer": {
+        "correct_id": "c"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que signifie SCA (Strong Customer Authentication) ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Une authentification fondée sur au moins deux facteurs de catégories différentes"
+        },
+        {
+          "id": "b",
+          "label": "Un système de cache des données de compte"
+        },
+        {
+          "id": "c",
+          "label": "Un standard de format d’URL pour les APIs bancaires"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Parmi ces combinaisons, laquelle NE constitue PAS une authentification forte (SCA) valide ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Mot de passe + code reçu par SMS"
+        },
+        {
+          "id": "b",
+          "label": "Deux mots de passe différents saisis à la suite"
+        },
+        {
+          "id": "c",
+          "label": "Notification push validée par empreinte digitale"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    }
+  ]
+}

@@ -6,6 +6,7 @@
     <title>Support étudiant — Jour 5 | DSP2 &amp; Open Banking</title>
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/support-etudiant.css" />
+    <link rel="stylesheet" href="../css/support-encarts.css" />
   </head>
   <body class="support-doc" data-bloc="support-etudiant">
     <header class="site-bar no-print">
@@ -19,7 +20,7 @@
           <a href="../j2/intro.html">J2</a>
           <a href="../j3/intro.html">J3</a>
           <a href="../j4/intro.html">J4</a>
-          <a class="is-active" href="../j5/intro.html">J5</a>
+          <a class="is-active" href="intro.html">J5</a>
         </nav>
       </div>
     </header>
@@ -37,11 +38,10 @@
       <aside class="bloc-sidebar no-print" aria-label="Sommaire du support">
         <p class="bloc-sidebar-title">Jour 5 · Support</p>
         <nav class="bloc-sidebar-nav">
-          <a class="bloc-sidebar-item" href="#intro"><span class="bloc-sidebar-num">01</span><span class="bloc-sidebar-label">Introduction &amp; objectifs</span></a>
-          <a class="bloc-sidebar-item" href="#s1-openfinance"><span class="bloc-sidebar-num">02</span><span class="bloc-sidebar-label">De l’Open Banking à l’Open Finance</span></a>
-          <a class="bloc-sidebar-item" href="#s2-projet"><span class="bloc-sidebar-num">03</span><span class="bloc-sidebar-label">Concevoir un projet SI ouvert</span></a>
-          <a class="bloc-sidebar-item" href="#s3-synthese"><span class="bloc-sidebar-num">04</span><span class="bloc-sidebar-label">Synthèse des quatre rôles</span></a>
-          <a class="bloc-sidebar-item" href="#s4-atelier"><span class="bloc-sidebar-num">05</span><span class="bloc-sidebar-label">Atelier projet final</span></a>
+          <a class="bloc-sidebar-item" href="#intro"><span class="bloc-sidebar-num">01</span><span class="bloc-sidebar-label">Introduction & objectifs</span></a>
+          <a class="bloc-sidebar-item" href="#s1-openbanking-vs-openfinance"><span class="bloc-sidebar-num">02</span><span class="bloc-sidebar-label">S1 · Open Banking vs Open Finance</span></a>
+          <a class="bloc-sidebar-item" href="#s2-impacts-si-banques"><span class="bloc-sidebar-num">03</span><span class="bloc-sidebar-label">S2 · Impacts SI pour les banques</span></a>
+          <a class="bloc-sidebar-item" href="#s3-synthese"><span class="bloc-sidebar-num">04</span><span class="bloc-sidebar-label">S3 · Open Finance : état des travaux</span></a>
         </nav>
       </aside>
 
@@ -55,7 +55,7 @@
                 et Open Banking
               </h1>
               <p class="support-title-day">
-                Jour 5 : Open Finance et projet SI
+                Jour 5&nbsp;: Open Finance et impacts SI
               </p>
               <div class="support-title-author">
                 <p class="support-title-name">Chrisvene MPANDZOU</p>
@@ -69,68 +69,1205 @@
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
       <div class="fiche-meta"><span class="tag">Ouverture</span></div>
-      <p class="day-kicker">01 · Introduction &amp; objectifs</p>
-      <h1>Introduction &amp; objectifs</h1>
+      <p class="day-kicker">01 · Introduction & objectifs</p>
+      <h1>Introduction & objectifs</h1>
     </div>
   </section>
   <div class="wrap support-bloc-body">
-    <!-- Contenu à rédiger depuis j5/intro.html -->
+
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 5 · Ouverture</span>
+                <span class="tag tag-accent">3 h 30</span>
+              </div>
+              <p class="day-kicker">Accueil</p>
+              <h1>Intro &amp; objectifs</h1>
+              <p class="lead">
+                Quatre jours ont construit les briques&nbsp;: les acteurs, la
+                sécurité, le paiement, la lecture de comptes. Le Jour 5 les
+                assemble&nbsp;: on regarde l’<strong>Open Finance</strong> au-delà
+                de la banque, on mesure les <strong>impacts SI</strong> pour les
+                banques, et on synthétise les quatre rôles pour clore le module.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="j5-concept-grid">
+              <div class="j5-concept-card">
+                <h3>Open Finance</h3>
+                <p>Élargir le regard au-delà de la banque vers d'autres produits financiers.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>Impacts SI</h3>
+                <p>Comprendre ce que l'ouverture change pour les systèmes d'information bancaires.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>État des travaux</h3>
+                <p>Démêler ce qui existe, ce qui est en négociation et ce qui relève de la projection.</p>
+              </div>
+            </div>
+
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam a utilisé un AISP (MonBuddy), un PISP, et même un CBPII pour
+                vérifier ses fonds sur un site marchand. Maintenant, on prend du
+                recul&nbsp;: ces briques ne servent pas qu’à la banque, et elles
+                transforment aussi les systèmes d’information des banques. On
+                élargit le regard, puis on démêle l’état réel des travaux Open
+                Finance — sans refaire le tour des rôles.
+              </p>
+            </div>
+
+            <!-- RAPPEL -->
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Rappel</p>
+              <h2>Là où l’on en est</h2>
+              <p>
+                Jour 1&nbsp;: fondements et quatre rôles (ASPSP, AISP, PISP,
+                CBPII). Jour 2&nbsp;: API, OAuth2, mTLS, SCA. Jour 3&nbsp;: le
+                paiement initié par un tiers. Jour 4&nbsp;: l’agrégation AISP et le
+                data banking. Le Jour 5 <strong>ne rajoute pas un rôle</strong>&nbsp;:
+                il fait dialoguer les rôles et projette au-delà de la banque.
+              </p>
+
+              <div class="callout info">
+                <h3>Qu’est-ce que l’Open Finance&nbsp;?</h3>
+                <p>
+                  C’est l’extension du mouvement de la DSP2 au-delà des comptes
+                  bancaires&nbsp;: épargne, assurance, crédit, immobilier, énergie.
+                  Même philosophie — <em>consentement, API, tiers agréé</em> — mais
+                  un périmètre élargi et une réglementation encore en construction.
+                  La DSP2 en est le laboratoire&nbsp;; l’Open Finance en est la
+                  généralisation.
+                </p>
+              </div>
+            </section>
+
+            <!-- APERÇU -->
+            <section class="section">
+              <p class="section-label">Aperçu</p>
+              <h2>Le parcours du Jour 5, en une image</h2>
+              <p class="intro">
+                On élargit le regard (Open Banking vs Open Finance), on mesure ce
+                que l’ouverture change pour les banques (impacts SI), puis on
+                synthétise les quatre rôles pour clore le module.
+              </p>
+
+              <div class="split-3">
+                <div class="panel">
+                  <h3>S1 — Open Banking vs Open Finance</h3>
+                  <p>
+                    Au-delà des comptes&nbsp;: épargne, assurance, crédit, paiement.
+                    Liens avec wallets, Mobile Money et plateformes de services.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>S2 — Impacts SI pour les banques</h3>
+                  <p>
+                    Core banking, gouvernance IT, time-to-market, sécurité by
+                    design. La banque&nbsp;: fournisseur d’API, orchestrateur,
+                    plateforme.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>S3 — Open Finance : état des travaux</h3>
+                  <p>
+                    Déjà là (DSP2), en travaux (FIDA), projeté (« DSP3 »)&nbsp;:
+                    trier les sujets par maturité, pas par promesse.
+                  </p>
+                </div>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Fil du Jour 5</h3>
+                  <p>Open Finance → Impacts SI → Synthèse</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Chaîne pédagogique du jour 5">
+                  <defs>
+                    <marker id="ah-j5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="40" y="50" width="270" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="175" y="80" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">5.1</text>
+                    <text x="175" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Open Banking vs Open Finance</text>
+                    <text x="175" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">au-delà de la banque</text>
+                  </g>
+                  <line x1="318" y1="105" x2="352" y2="105" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-j5)"/>
+                  <g>
+                    <rect x="360" y="50" width="270" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="495" y="80" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">5.2</text>
+                    <text x="495" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Impacts SI banques</text>
+                    <text x="495" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">core · gouvernance · plateforme</text>
+                  </g>
+                  <line x1="638" y1="105" x2="672" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j5)"/>
+                  <g>
+                    <rect x="680" y="50" width="280" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="820" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">5.3</text>
+                    <text x="820" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">État des travaux</text>
+                    <text x="820" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">DSP2 · FIDA · DSP3</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <!-- OBJECTIFS -->
+            <section class="section">
+              <p class="section-label">Objectifs pédagogiques</p>
+              <h2>À l’issue du Jour 5, l’étudiant sait…</h2>
+              <ul class="topic-list">
+                <li>
+                  <span>
+                    <strong>Distinguer</strong> Open Banking et Open Finance&nbsp;:
+                    ce qui se généralise (épargne, assurance, crédit, paiement), ce
+                    qui reste propre à la banque, et le rôle des wallets, du Mobile
+                    Money et des plateformes de services.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Analyser</strong> les impacts SI pour les banques&nbsp;:
+                    transformation du core banking, gouvernance IT, time-to-market,
+                    sécurité by design.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Expliquer</strong> le nouveau rôle de la banque&nbsp;:
+                    fournisseur d’API, orchestrateur et plateforme.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Distinguer</strong> les trois horizons de l’Open
+                    Finance&nbsp;: ce qui est en vigueur (DSP2), ce qui est en
+                    travaux (FIDA) et ce qui relève de la projection (« DSP3 »).
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Relier</strong> l’ensemble aux acquis des quatre jours
+                    précédents, sans refaire le tour des rôles déjà vus.
+                  </span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- DÉROULÉ -->
+            <section class="section">
+              <p class="section-label">Organisation</p>
+              <h2>Déroulé des 3 h 30</h2>
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Temps</th>
+                      <th scope="col">Bloc</th>
+                      <th scope="col">Modalité</th>
+                      <th scope="col">Livrable</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">0 h 00 – 0 h 10</th><td>Intro &amp; objectifs</td><td>Plénière</td><td>Vision d’ensemble</td></tr>
+                    <tr><th scope="row">0 h 10 – 0 h 55</th><td>5.1 Open Banking vs Open Finance</td><td>Exposé + discussion</td><td>Carte «&nbsp;au-delà de la banque&nbsp;»</td></tr>
+                    <tr><th scope="row">0 h 55 – 1 h 50</th><td>5.2 Impacts SI pour les banques</td><td>Exposé + schéma</td><td>Schéma de transformation</td></tr>
+                    <tr><th scope="row">1 h 50 – 2 h 00</th><td>Pause</td><td>—</td><td>—</td></tr>
+                    <tr class="is-exergue"><th scope="row">2 h 00 – 3 h 30</th><td>5.3 Open Finance : état des travaux</td><td>Exposé + projection</td><td>Feuille de route indicative</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Le Jour 5 est une clôture, pas un nouveau chapitre</h3>
+                <p>
+                  Aucun nouveau concept réglementaire majeur. L’objectif est
+                  d’<strong>élargir</strong> (Open Banking vs Open Finance), de
+                  <strong>mesurer</strong> les impacts SI pour les banques, puis
+                  de <strong>situer l’état réel des travaux</strong> (DSP2, FIDA,
+                  « DSP3 »). Chaque séquence réutilise explicitement un ou plusieurs
+                  jours précédents&nbsp;: c’est le moment de prendre du recul sur
+                  l’ensemble du module.
+                </p>
+              </div>
+            </section>
+
+            <!-- CURSUS -->
+            <section class="section">
+              <p class="section-label">Cursus</p>
+              <h2>Trajectoire des 5 jours</h2>
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Programme module</h3>
+                  <p>Fondements → API &amp; sécurité → PISP → AISP → synthèse</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Programme module sur 5 jours">
+                  <defs>
+                    <marker id="ah-prog5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="18" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="104" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="104" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J1</text>
+                    <text x="104" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Fondements</text>
+                    <text x="104" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">DSP2 · acteurs</text>
+                  </g>
+                  <line x1="198" y1="96" x2="218" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog5)"/>
+                  <g>
+                    <rect x="226" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="312" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="312" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J2</text>
+                    <text x="312" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">API &amp; sécurité</text>
+                    <text x="312" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">OAuth2 · SCA</text>
+                  </g>
+                  <line x1="406" y1="96" x2="426" y2="96" stroke="#c5d3df" stroke-width="2.5" marker-end="url(#ah-prog5)"/>
+                  <g>
+                    <rect x="434" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="520" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="520" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J3</text>
+                    <text x="520" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Paiement PISP</text>
+                    <text x="520" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">initiation · flux</text>
+                  </g>
+                  <line x1="614" y1="96" x2="634" y2="96" stroke="#c5d3df" stroke-width="2.5" marker-end="url(#ah-prog5)"/>
+                  <g>
+                    <rect x="642" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="728" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="728" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J4</text>
+                    <text x="728" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Agrégation AISP</text>
+                    <text x="728" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">data banking</text>
+                  </g>
+                  <line x1="822" y1="96" x2="842" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-prog5)"/>
+                  <g>
+                    <rect x="850" y="36" width="132" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="916" y="68" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.06em">AUJOURD’HUI</text>
+                    <text x="916" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="20" font-weight="700">J5</text>
+                    <text x="916" y="128" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Open Finance</text>
+                    <text x="916" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">synthèse</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            
+          </div>
   </div>
 </article>
-
-
-<article class="support-bloc" id="s1-openfinance" data-num="02">
+<article class="support-bloc" id="s1-openbanking-vs-openfinance" data-num="02">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
       <div class="fiche-meta"><span class="tag">Parcours</span></div>
-      <p class="day-kicker">02 · De l’Open Banking à l’Open Finance</p>
-      <h1>De l’Open Banking à l’Open Finance</h1>
+      <p class="day-kicker">02 · S1 · Open Banking vs Open Finance</p>
+      <h1>S1 · Open Banking vs Open Finance</h1>
     </div>
   </section>
   <div class="wrap support-bloc-body">
-    <!-- Contenu à rédiger depuis j5/s1-openfinance.html -->
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 5 · Séquence 1</span>
+                <span class="tag tag-accent">35 min</span>
+              </div>
+              <p class="day-kicker">Élargissement du périmètre</p>
+              <h1>Open Banking vs Open Finance</h1>
+              <p class="lead">
+                L'Open Banking, socle réglementaire de la DSP2, s'étend à l'Open Finance
+                qui englobe l'ensemble des services financiers. Cette extension transforme
+                l'écosystème avec de nouveaux acteurs et de nouvelles opportunités.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="j5-concept-grid">
+              <div class="j5-concept-card">
+                <h3>Open Banking</h3>
+                <p>Accès réglementé aux comptes bancaires via API sécurisées. Socle de la DSP2.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>Open Finance</h3>
+                <p>Extension du modèle aux autres produits financiers : épargne, assurance, crédit.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>Écosystème élargi</h3>
+                <p>Wallets, Mobile Money, plateformes de services intègrent le mouvement.</p>
+              </div>
+            </div>
+
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam a utilisé l'Open Banking pour agrégéger ses comptes bancaires.
+                Demain, il utilisera l'Open Finance pour accéder à son assurance-vie,
+                son prêt immobilier et ses services de paiement mobile. L'écosystème
+                s'élargit vers des services plus variés et intégrés.
+              </p>
+            </div>
+
+            <!-- ÉVOLUTION DU PÉRIMÈTRE -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Évolution</p>
+              <h2 id="evolution">De l'Open Banking à l'Open Finance</h2>
+              <p class="intro">
+                L'extension du modèle de l'Open Banking vers l'Open Finance transforme
+                progressivement l'écosystème financier.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Open Banking (socle)</h3>
+                  <ul>
+                    <li>Comptes de paiement</li>
+                    <li>Transactions bancaires</li>
+                    <li>Initiation de paiement (PISP)</li>
+                    <li>Agrégation de comptes (AISP)</li>
+                    <li>Confirmation de fonds (CBPII)</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Open Finance (extension)</h3>
+                  <ul>
+                    <li>Épargne et investissement</li>
+                    <li>Assurance vie et dommage</li>
+                    <li>Crédit immobilier et consommation</li>
+                    <li>Paiement et transfert d'argent</li>
+                    <li>Services financiers divers</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>La montée en puissance de l'écosystème</h3>
+                <p>
+                  Chaque extension du périmètre apporte de nouvelles opportunités
+                  de services et de valeur pour les clients, tout en complexifiant
+                  les architectures et les exigences de conformité.
+                </p>
+              </div>
+            </section>
+
+            <!-- NOUVEAUX ACTEURS ET SERVICES -->
+            <section class="section">
+              <p class="section-label">Écosystème élargi</p>
+              <h2 id="ecosysteme">Intégration des nouveaux services</h2>
+              <p>
+                L'Open Finance ne se limite pas aux services bancaires traditionnels.
+                Il intègre de nouveaux acteurs et services qui transforment l'expérience client.
+              </p>
+
+              <div class="j5-concept-grid">
+                <div class="j5-concept-card">
+                  <h3>Wallets et portefeuilles digitaux</h3>
+                  <p>
+                    Stockage et gestion des moyens de paiement numériques.
+                    Interface entre les services financiers et les utilisateurs.
+                  </p>
+                </div>
+                <div class="j5-concept-card">
+                  <h3>Mobile Money</h3>
+                  <p>
+                    Services de transfert d'argent via téléphone mobile.
+                    Spécialisation dans les pays émergents.
+                  </p>
+                </div>
+                <div class="j5-concept-card">
+                  <h3>Plateformes de services</h3>
+                  <p>
+                    Aggregation de services financiers variés.
+                    Offre complète et personnalisée.
+                  </p>
+                </div>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>L'écosystème élargi de l'Open Finance</h3>
+                  <p>Intégration des nouveaux acteurs et services</p>
+                </div>
+                <svg viewBox="0 0 1000 300" role="img" aria-label="Écosystème élargi de l'Open Finance">
+                  <defs>
+                    <marker id="ah-eco" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <!-- Core Banking -->
+                  <rect x="50" y="100" width="180" height="100" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="140" y="140" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Core Banking</text>
+                  <text x="140" y="160" text-anchor="middle" fill="#5a6b7c" font-size="11">Banques traditionnelles</text>
+                  
+                  <!-- APIs -->
+                  <rect x="280" y="100" width="180" height="100" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="370" y="140" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">APIs Ouvertes</text>
+                  <text x="370" y="160" text-anchor="middle" fill="#5a6b7c" font-size="11">Connectivité</text>
+                  
+                  <!-- TPs -->
+                  <rect x="510" y="50" width="180" height="80" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                  <text x="600" y="85" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="12" font-weight="700">TPs Agrégateurs</text>
+                  <text x="600" y="100" text-anchor="middle" fill="#5a6b7c" font-size="10">AISP, PISP, CBPII</text>
+                  
+                  <!-- Wallets -->
+                  <rect x="510" y="170" width="180" height="80" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="600" y="205" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Wallets & Mobile Money</text>
+                  <text x="600" y="220" text-anchor="middle" fill="#5a6b7c" font-size="10">Portefeuilles digitaux</text>
+                  
+                  <!-- Plateformes -->
+                  <rect x="740" y="100" width="200" height="100" rx="10" fill="#fef5e7" stroke="#c45c26" stroke-width="2"/>
+                  <text x="840" y="140" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="13" font-weight="700">Plateformes de Services</text>
+                  <text x="840" y="160" text-anchor="middle" fill="#5a6b7c" font-size="11">Offre intégrée</text>
+                  
+                  <!-- Connexions -->
+                  <line x1="230" y1="150" x2="276" y2="150" stroke="#5a6b7c" stroke-width="1.5" marker-end="url(#ah-eco)"/>
+                  <line x1="460" y1="150" x2="506" y2="150" stroke="#5a6b7c" stroke-width="1.5" marker-end="url(#ah-eco)"/>
+                  <line x1="600" y1="130" x2="600" y2="166" stroke="#5a6b7c" stroke-width="1.5" marker-end="url(#ah-eco)"/>
+                  <line x1="690" y1="150" x2="736" y2="150" stroke="#5a6b7c" stroke-width="1.5" marker-end="url(#ah-eco)"/>
+                </svg>
+              </div>
+            </section>
+
+            <!-- IMPLICATIONS TECHNIQUES -->
+            <section class="section">
+              <p class="section-label">Implications</p>
+              <h2 id="implications">Complexité technique accrue</h2>
+              <p>
+                L'élargissement du périmètre implique une complexité technique
+                croissante et de nouveaux défis.
+              </p>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Hétérogénéité des sources</strong>
+                    <p>
+                      Banques, assureurs, plateformes de paiement, opérateurs mobiles
+                      avec des formats et des niveaux de maturité différents.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>Multiplication des API</strong>
+                    <p>
+                      Standards variés (Berlin Group, STET, UK Open Banking, propriétaires),
+                      authentification et autorisation complexes.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Gestion de la conformité</strong>
+                    <p>
+                      DSP2, RGPD, réglementations sectorielles spécifiques,
+                      exigences de sécurité renforcées.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le défi de l'intégration</h3>
+                <p>
+                  Passer d'un écosystème relativement homogène (banques) à un
+                  écosystème hétérogène (services financiers divers) multiplie
+                  les points de défaillance potentiels et la complexité de gestion.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Impacts SI pour les banques</h2>
+                <p>
+                  L'extension vers l'Open Finance transforme en profondeur les
+                  systèmes d'information des banques. En S2, nous explorerons
+                  ces transformations et leur implications stratégiques.
+                </p>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2 (UE) 2015/2366&nbsp;; RTS EBA
+              2018/389&nbsp;; projet de règlement FIDA (Financial Data Access)&nbsp;;
+              RGPD (UE) 2016/679&nbsp;; Data Act et Data Governance Act.
+            </div>
+
+            
+          </div>
   </div>
 </article>
-
-
-<article class="support-bloc" id="s2-projet" data-num="03">
+<article class="support-bloc" id="s2-impacts-si-banques" data-num="03">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
       <div class="fiche-meta"><span class="tag">Parcours</span></div>
-      <p class="day-kicker">03 · Concevoir un projet SI ouvert</p>
-      <h1>Concevoir un projet SI ouvert</h1>
+      <p class="day-kicker">03 · S2 · Impacts SI pour les banques</p>
+      <h1>S2 · Impacts SI pour les banques</h1>
     </div>
   </section>
   <div class="wrap support-bloc-body">
-    <!-- Contenu à rédiger depuis j5/s2-projet.html -->
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 5 · Séquence 2</span>
+                <span class="tag tag-accent">45 min</span>
+              </div>
+              <p class="day-kicker">Transformation des systèmes</p>
+              <h1>Impacts SI pour les banques</h1>
+              <p class="lead">
+                L’Open Finance transforme en profondeur les systèmes d’information
+                des banques&nbsp;: core banking, gouvernance IT, time-to-market et
+                sécurité by design. La banque change de rôle&nbsp;: elle devient
+                fournisseur d’API, orchestrateur et plateforme.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="j5-concept-grid">
+              <div class="j5-concept-card">
+                <h3>Transformation du core</h3>
+                <p>Modernisation des systèmes centraux pour l’ouverture des données.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>Gouvernance IT</h3>
+                <p>Nouvelles exigences de sécurité, conformité et traçabilité.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>Nouveau rôle</h3>
+                <p>La banque devient fournisseur d’API, orchestrateur et plateforme.</p>
+              </div>
+            </div>
+
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                La banque de Lyam doit transformer ses systèmes pour ouvrir non
+                seulement les comptes bancaires, mais aussi les contrats d’assurance,
+                les prêts et les services de paiement. Cette transformation affecte
+                toute l’architecture informatique et les modes de fonctionnement.
+              </p>
+            </div>
+
+            <!-- TRANSFORMATION CORE BANKING -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Core Banking</p>
+              <h2 id="core-banking">Modernisation des systèmes centraux</h2>
+              <p class="intro">
+                Le cœur de métier bancaire doit s’adapter aux exigences de
+                l’ouverture des données et de l’interopérabilité.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Avant l’Open Finance</h3>
+                  <ul>
+                    <li>Systèmes monolithiques fermés</li>
+                    <li>Interfaces propriétaires</li>
+                    <li>Accès internes uniquement</li>
+                    <li>Batch processing dominant</li>
+                    <li>Sécurité périmétrique</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Avec l’Open Finance</h3>
+                  <ul>
+                    <li>APIs RESTful standardisées</li>
+                    <li>Exposition contrôlée aux tiers</li>
+                    <li>Accès en temps réel</li>
+                    <li>Streaming et events</li>
+                    <li>Sécurité intégrée et contextuelle</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Une mutation d’architecture, pas une simple couche</h3>
+                <p>
+                  Ouvrir les données ne se résume pas à poser une passerelle API
+                  devant le SI existant&nbsp;: le core banking doit exposer des
+                  capacités (comptes, paiements, produits) pensées pour être
+                  consommées par des tiers, en temps réel et de façon contrôlée.
+                </p>
+              </div>
+            </section>
+
+            <!-- GOUVERNANCE IT -->
+            <section class="section">
+              <p class="section-label">Gouvernance</p>
+              <h2 id="gouvernance">Nouvelles exigences de gouvernance</h2>
+              <p>
+                L’ouverture des données impose une gouvernance IT renforcée et plus
+                fine, à la fois sur la sécurité, les données et le rythme de livraison.
+              </p>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Sécurité by design</strong>
+                    <p>
+                      Intégration de la sécurité dès la conception des services,
+                      chiffrement bout-en-bout, monitoring en temps réel.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>Gouvernance des données</strong>
+                    <p>
+                      Catalogue des données, traçabilité des accès, minimisation,
+                      effacement RGPD, consentement granulaire.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Time-to-market</strong>
+                    <p>
+                      Déploiement continu, tests automatisés, versioning des APIs,
+                      cycles de release accélérés pour répondre aux partenaires.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Domaine</th>
+                      <th scope="col">Exigence traditionnelle</th>
+                      <th scope="col">Exigence Open Finance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Sécurité</th><td>Périmétrique</td><td>Intégrée &amp; contextuelle</td></tr>
+                    <tr><th scope="row">Disponibilité</th><td>99,9 %</td><td>99,99 % (SLA stricts)</td></tr>
+                    <tr><th scope="row">Performance</th><td>Secondes</td><td>Millisecondes</td></tr>
+                    <tr><th scope="row">Traçabilité</th><td>Journalière</td><td>Temps réel</td></tr>
+                    <tr class="is-exergue"><th scope="row">Conformité</th><td>Annuelle</td><td>Continue &amp; auditable</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- LA BANQUE COMME PLATEFORME -->
+            <section class="section">
+              <p class="section-label">Nouveau rôle</p>
+              <h2 id="banque-plateforme">La banque comme plateforme</h2>
+              <p>
+                L’Open Finance transforme la banque d’institution financière en
+                plateforme d’écosystème numérique. Trois figures coexistent.
+              </p>
+
+              <div class="j5-role-comparison">
+                <div class="j5-role-card aspsp">
+                  <div class="j5-role-name aspsp">Fournisseur d’API</div>
+                  <p class="j5-role-description">
+                    Exposition sécurisée des données et services via des interfaces
+                    standardisées aux partenaires et développeurs.
+                  </p>
+                </div>
+                <div class="j5-role-card pisp">
+                  <div class="j5-role-name pisp">Orchestrateur</div>
+                  <p class="j5-role-description">
+                    Coordination des services internes et externes pour offrir
+                    des expériences client intégrées et personnalisées.
+                  </p>
+                </div>
+                <div class="j5-role-card cbpii">
+                  <div class="j5-role-name cbpii">Plateforme</div>
+                  <p class="j5-role-description">
+                    Création d’un marché de services financiers où s’interconnectent
+                    banques, fintechs, assureurs et autres acteurs.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>La triple mutation de la banque</h3>
+                <p>
+                  <strong>Fournisseur d’API</strong>&nbsp;: la banque expose ses
+                  capacités techniques. <strong>Orchestrateur</strong>&nbsp;: elle
+                  coordonne les services de différents acteurs.
+                  <strong>Plateforme</strong>&nbsp;: elle devient un lieu d’échanges
+                  et de services.
+                </p>
+              </div>
+            </section>
+
+            <!-- DÉFIS ET OPPORTUNITÉS -->
+            <section class="section">
+              <p class="section-label">Stratégie</p>
+              <h2 id="defis">Équilibre entre défis et opportunités</h2>
+              <p>
+                La transformation vers l’Open Finance présente à la fois des défis
+                majeurs et des opportunités stratégiques.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ko">
+                  <h3>Défis techniques</h3>
+                  <ul>
+                    <li>Modernisation des legacy systems</li>
+                    <li>Sécurité renforcée et surveillance</li>
+                    <li>Interopérabilité des standards</li>
+                    <li>Gestion de la volumétrie croissante</li>
+                    <li>Conformité continue et audit</li>
+                  </ul>
+                </div>
+                <div class="panel ok">
+                  <h3>Opportunités stratégiques</h3>
+                  <ul>
+                    <li>Nouveaux canaux de distribution</li>
+                    <li>Personnalisation avancée des services</li>
+                    <li>Partenariats innovants</li>
+                    <li>Monétisation des APIs</li>
+                    <li>Leadership sur l’innovation</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>La clé du succès</h3>
+                <p>
+                  La réussite de la transformation dépend de la capacité à convertir
+                  les défis techniques en avantages concurrentiels, tout en
+                  maintenant la confiance et la sécurité des clients.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Intégration dans le projet SI ouvert</h2>
+                <p>
+                  Les impacts sur les systèmes d’information doivent être intégrés
+                  dans la conception des projets SI ouverts. En S3, on part d’un
+                  besoin, on choisit les rôles DSP2 utiles, on dessine les flux et
+                  on cadre le consentement et la gouvernance.
+                </p>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2 (UE) 2015/2366&nbsp;; RTS EBA
+              2018/389&nbsp;; projet de règlement FIDA (Financial Data Access)&nbsp;;
+              RGPD (UE) 2016/679&nbsp;; architecture des systèmes d’information bancaires.
+            </div>
+
+            
+          </div>
   </div>
 </article>
-
-
 <article class="support-bloc" id="s3-synthese" data-num="04">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
       <div class="fiche-meta"><span class="tag">Parcours</span></div>
-      <p class="day-kicker">04 · Synthèse des quatre rôles</p>
-      <h1>Synthèse des quatre rôles</h1>
+      <p class="day-kicker">04 · S3 · Open Finance : état des travaux</p>
+      <h1>S3 · Open Finance : état des travaux</h1>
     </div>
   </section>
   <div class="wrap support-bloc-body">
-    <!-- Contenu à rédiger depuis j5/s3-synthese.html -->
-  </div>
-</article>
 
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 5 · Séquence 3</span>
+                <span class="tag tag-accent">35 min</span>
+              </div>
+              <p class="day-kicker">Un chantier ouvert, pas un acquis</p>
+              <h1>Open Finance : état des travaux</h1>
+              <p class="lead">
+                L’Open Finance n’est pas une directive en vigueur&nbsp;: c’est un
+                chantier réglementaire et technique en cours. Une partie est déjà
+                là (DSP2), une autre est en travaux (FIDA), le reste relève de
+                projections — dont une future directive, parfois appelée «&nbsp;DSP3&nbsp;».
+                Cette séquence fait le point&nbsp;: ce qui existe, ce qui se construit,
+                ce qui se projette.
+              </p>
+            </div>
+          </section>
 
-<article class="support-bloc" id="s4-atelier" data-num="05">
-  <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
-    <div class="wrap">
-      <div class="fiche-meta"><span class="tag">Parcours</span></div>
-      <p class="day-kicker">05 · Atelier projet final</p>
-      <h1>Atelier projet final</h1>
-    </div>
-  </section>
-  <div class="wrap support-bloc-body">
-    <!-- Contenu à rédiger depuis j5/s4-atelier.html -->
+          <div class="wrap">
+            <div class="j5-concept-grid">
+              <div class="j5-concept-card">
+                <h3>Déjà là</h3>
+                <p>DSP2 : l’ouverture des comptes de paiement, en production depuis 2019.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>En travaux</h3>
+                <p>FIDA : l’extension aux autres produits financiers, encore en négociation.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>Projeté</h3>
+                <p>Une future directive (« DSP3 ») et ses prolongements : un horizon, pas un texte.</p>
+              </div>
+            </div>
+
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                On arrête ici de réexpliquer les rôles&nbsp;: vous les avez
+                manipulés toute la semaine. On prend de la hauteur sur le
+                <strong>calendrier</strong> et l’<strong>ambition</strong> du
+                chantier Open Finance → ce qui est effectif, ce qui se négocie,
+                et ce qui n’existe pas encore.
+              </p>
+            </div>
+
+            <!-- ÉTAT DES LIEUX -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Trois horizons</p>
+              <h2 id="horizons">Déjà là · en travaux · projeté</h2>
+              <p class="intro">
+                Une façon simple de se repérer&nbsp;: trier les sujets selon leur
+                <strong>degré de maturité</strong>, pas selon leur promesse.
+              </p>
+
+              <div class="layer-stack">
+                <article class="layer">
+                  <span class="layer-i">1</span>
+                  <div class="layer-body">
+                    <h3>Déjà là — DSP2</h3>
+                    <p>
+                      Directive en vigueur, transposée, appliquée. Ouverture des
+                      comptes de paiement, rôles AISP / PISP / CBPII, API
+                      standardisées, SCA. C’est le socle <em>réel</em>, celui sur
+                      lequel on a travaillé toute la semaine.
+                    </p>
+                  </div>
+                </article>
+                <article class="layer">
+                  <span class="layer-i">2</span>
+                  <div class="layer-body">
+                    <h3>En travaux — FIDA</h3>
+                    <p>
+                      Le règlement sur l’accès aux données financières (FIDA,
+                      <em>Financial Data Access</em>) vise à étendre le modèle
+                      au-delà des comptes de paiement&nbsp;: épargne, crédit,
+                      assurance, retraite, investissement. Statut&nbsp;:
+                      <strong>en cours d’élaboration / négociation</strong>, pas
+                      encore applicable. C’est le texte dont on parle le plus
+                      aujourd’hui.
+                    </p>
+                  </div>
+                </article>
+                <article class="layer">
+                  <span class="layer-i">3</span>
+                  <div class="layer-body">
+                    <h3>Projeté — « DSP3 » et prolongements</h3>
+                    <p>
+                      Parler de «&nbsp;DSP3&nbsp;» relève aujourd’hui de la
+                      <strong>projection</strong>&nbsp;: une hypothèse de
+                      prochaine directive / révision, dont le périmètre et le
+                      calendrier ne sont pas fixés. On la mentionne comme horizon
+                      d’évolution, jamais comme un texte existant.
+                    </p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="callout warn">
+                <h3>Ne pas confondre annonce, projet et droit positif</h3>
+                <p>
+                  Une consultation, un projet de règlement ou une déclaration
+                  politique <strong>ne sont pas</strong> une obligation. Tant
+                  qu’un texte n’est pas adopté puis transposé, il n’engage rien.
+                  Un projet «&nbsp;Open Finance&nbsp;» doit savoir sur quel
+                  <em>état du droit</em> il s’appuie — pas sur une intention.
+                </p>
+              </div>
+            </section>
+
+            <!-- CE QUE PORTE L'OPEN FINANCE -->
+            <section class="section">
+              <p class="section-label">Périmètre visé</p>
+              <h2 id="perimetre">Ce que l’extension cherche à ouvrir</h2>
+              <p>
+                Au-delà des comptes bancaires, l’ambition couvre l’ensemble des
+                données financières du client. Voici la cible, telle qu’elle se
+                dessine dans les travaux en cours.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Domaine de données</th>
+                      <th scope="col">Aujourd’hui</th>
+                      <th scope="col">Visé par l’extension</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Comptes de paiement</th><td>Ouverts (DSP2)</td><td>Stabilisé</td></tr>
+                    <tr><th scope="row">Épargne &amp; investissement</th><td>Hors périmètre</td><td>À ouvrir</td></tr>
+                    <tr><th scope="row">Crédit</th><td>Hors périmètre</td><td>À ouvrir</td></tr>
+                    <tr><th scope="row">Assurance</th><td>Hors périmètre</td><td>À ouvrir</td></tr>
+                    <tr class="is-exergue"><th scope="row">Retraite</th><td>Hors périmètre</td><td>À discuter</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Même logique, difficulté accrue</h3>
+                <p>
+                  Le principe reste identique&nbsp;: consentement du client, API
+                  officielle, tiers autorisé, encadrement de la réutilisation des
+                  données. Ce qui change&nbsp;: des sources bien plus nombreuses
+                  et hétérogènes (assureurs, courtiers, gestionnaires d’épargne),
+                  et des mécanismes d’<em>indemnisation</em> et de partage des
+                  données qui n’existent pas en DSP2.
+                </p>
+              </div>
+            </section>
+
+            <!-- PROJECTION DES TRAVAUX -->
+            <section class="section">
+              <p class="section-label">Projection</p>
+              <h2 id="projection">À quoi ressemble le chantier</h2>
+              <p class="intro">
+                Sans prétendre au calendrier officiel (qui bouge), on peut
+                représenter les <strong>grandes étapes</strong> d’un chantier de
+                ce type — de l’existant vers l’horizon.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Feuille de route indicative</h3>
+                  <p>Existant → en travaux → à venir</p>
+                </div>
+                <svg viewBox="0 0 1000 240" role="img" aria-label="Feuille de route indicative de l'Open Finance">
+                  <defs>
+                    <marker id="ah-route" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="70" width="260" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="150" y="100" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.06em">EN VIGUEUR</text>
+                    <text x="150" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">DSP2</text>
+                    <text x="150" y="152" text-anchor="middle" fill="#5a6b7c" font-size="11">comptes de paiement</text>
+                    <text x="150" y="168" text-anchor="middle" fill="#5a6b7c" font-size="11">AISP · PISP · CBPII</text>
+                  </g>
+                  <line x1="288" y1="125" x2="328" y2="125" stroke="#5a6b7c" stroke-width="2.5" marker-end="url(#ah-route)"/>
+                  <g>
+                    <rect x="336" y="70" width="300" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3" stroke-dasharray="7 5"/>
+                    <text x="486" y="100" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.06em">EN TRAVAUX</text>
+                    <text x="486" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">FIDA</text>
+                    <text x="486" y="152" text-anchor="middle" fill="#5a6b7c" font-size="11">épargne · crédit · assurance</text>
+                    <text x="486" y="168" text-anchor="middle" fill="#5a6b7c" font-size="11">négociation en cours</text>
+                  </g>
+                  <line x1="644" y1="125" x2="684" y2="125" stroke="#5a6b7c" stroke-width="2.5" marker-end="url(#ah-route)"/>
+                  <g>
+                    <rect x="692" y="70" width="288" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="3" stroke-dasharray="3 5"/>
+                    <text x="836" y="100" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.06em">PROJETÉ</text>
+                    <text x="836" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">« DSP3 » / révision</text>
+                    <text x="836" y="152" text-anchor="middle" fill="#5a6b7c" font-size="11">horizon, emploi informel</text>
+                    <text x="836" y="168" text-anchor="middle" fill="#5a6b7c" font-size="11">périmètre non fixé</text>
+                  </g>
+                  <text x="500" y="215" text-anchor="middle" fill="#8a9aaa" font-size="11">Représentation indicative — les calendriers et les périmètres officiels ne sont pas figés.</text>
+                </svg>
+              </div>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Stabiliser l’existant</strong>
+                    <p>
+                      Consolidation de la DSP2, qualité des API, performance et
+                      supervision. Un socle solide conditionne la suite.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>Étendre avec un cadre commun</strong>
+                    <p>
+                      FIDA cherche à poser des <em>schémas de partage de données</em>
+                      et des contreparties (indemnisation) harmonisés, plutôt
+                      qu’une simple transposition de la logique bancaire.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Préparer l’horizon</strong>
+                    <p>
+                      Une éventuelle «&nbsp;DSP3&nbsp;» / révision s’inscrirait dans
+                      la continuité&nbsp;: convergence, sécurité, articulation avec
+                      FIDA. À suivre, sans présumer du texte.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- FIDA VS DSP3 -->
+            <section class="section">
+              <p class="section-label">Ne pas confondre</p>
+              <h2 id="confusion">FIDA vs « DSP3 » : ce n’est pas une suite</h2>
+              <p class="intro">
+                Réflexe fréquent&nbsp;: «&nbsp;FIDA aujourd’hui, DSP3 demain,
+                donc DSP3 succède à FIDA&nbsp;». Faux. Ce sont deux instruments
+                différents, sur deux périmètres différents. «&nbsp;DSP3&nbsp;»
+                serait au mieux le successeur de la <strong>DSP2</strong>, pas de
+                FIDA.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Deux lignées distinctes</h3>
+                  <p>Paiement (directive) vs données (règlement)</p>
+                </div>
+                <svg viewBox="0 0 1000 240" role="img" aria-label="FIDA et DSP3 ne sont pas une suite">
+                  <defs>
+                    <marker id="ah-fid" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
+                    </marker>
+                  </defs>
+
+                  <!-- Ligne paiement -->
+                  <text x="30" y="52" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">PAIEMENT · directive</text>
+                  <rect x="30" y="66" width="190" height="66" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="125" y="94" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">DSP2</text>
+                  <text x="125" y="112" text-anchor="middle" fill="#5a6b7c" font-size="10">en vigueur</text>
+                  <line x1="224" y1="99" x2="272" y2="99" stroke="#5a6b7c" stroke-width="2.5" marker-end="url(#ah-fid)"/>
+                  <rect x="276" y="66" width="210" height="66" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="3" stroke-dasharray="3 5"/>
+                  <text x="381" y="94" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">« DSP3 » ?</text>
+                  <text x="381" y="112" text-anchor="middle" fill="#5a6b7c" font-size="10">révision possible · hypothèse</text>
+
+                  <!-- Ligne données -->
+                  <text x="30" y="172" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">DONNÉES · règlement</text>
+                  <rect x="276" y="156" width="210" height="66" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3" stroke-dasharray="7 5"/>
+                  <text x="381" y="184" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">FIDA</text>
+                  <text x="381" y="202" text-anchor="middle" fill="#5a6b7c" font-size="10">règlement · en travaux</text>
+
+                  <!-- Séparateur / pas de lien -->
+                  <line x1="540" y1="20" x2="540" y2="220" stroke="#e2e8ee" stroke-width="2"/>
+                  <text x="770" y="96" text-anchor="middle" fill="#5a6b7c" font-size="12">DSP2 peut évoluer — révision éventuelle</text>
+                  <text x="770" y="116" text-anchor="middle" fill="#5a6b7c" font-size="12">appelée « DSP3 ».</text>
+                  <text x="770" y="186" text-anchor="middle" fill="#5a6b7c" font-size="12">FIDA est autonome : un règlement</text>
+                  <text x="770" y="206" text-anchor="middle" fill="#5a6b7c" font-size="12">sur les données, pas une « DSP ».</text>
+                </svg>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">FIDA</th>
+                      <th scope="col">« DSP3 »</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Instrument</th><td>Règlement</td><td>Directive (hypothétique)</td></tr>
+                    <tr><th scope="row">Périmètre</th><td>Données financières</td><td>Services de paiement</td></tr>
+                    <tr><th scope="row">Statut</th><td>En négociation</td><td>Nom informel / projection</td></tr>
+                    <tr class="is-exergue"><th scope="row">Successeur de…</th><td>Texte autonome</td><td>DSP2 (pas FIDA)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>La formule juste</h3>
+                <p>
+                  «&nbsp;DSP3&nbsp;» = successeur <em>éventuel</em> de la
+                  <strong>DSP2</strong>. FIDA = un règlement <strong>parallèle</strong>
+                  sur les données. L’un ne découle pas de l’autre&nbsp;: les
+                  instruments, les périmètres et les calendriers sont distincts.
+                </p>
+              </div>
+            </section>
+
+            <!-- POURQUOI C'EST DIFFICILE -->
+            <section class="section">
+              <p class="section-label">Enjeux</p>
+              <h2 id="enjeux">Pourquoi l’Open Finance prend du temps</h2>
+              <p>
+                L’extension ne bute pas sur un manque d’ambition, mais sur des
+                questions structurelles que la DSP2 n’avait pas à trancher.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ko">
+                  <h3>Freins de fond</h3>
+                  <ul>
+                    <li>Hétérogénéité des secteurs (assurance, épargne, crédit)</li>
+                    <li>Modèle économique du partage de données (indemnisation)</li>
+                    <li>Absence de standards API communs hors banque</li>
+                    <li>Articulation avec le RGPD et le Data Act</li>
+                    <li>Coût et gouvernance de la conformité</li>
+                  </ul>
+                </div>
+                <div class="panel ok">
+                  <h3>Ce qui pousse</h3>
+                  <ul>
+                    <li>Demande de services financiers intégrés</li>
+                    <li>Concurrence des acteurs non bancaires</li>
+                    <li>Volonté d’un marché unique des données</li>
+                    <li>Expérience client «&nbsp;tout-en-un&nbsp;»</li>
+                    <li>Précédent DSP2 jugé globalement positif</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Le réflexe à garder</h3>
+                <p>
+                  Face à un projet «&nbsp;Open Finance&nbsp;», posez la question
+                  du <strong>fondement juridique</strong>&nbsp;: quel texte
+                  autorise l’accès, aujourd’hui&nbsp;? S’il n’existe pas encore,
+                  c’est une projection — et un projet ne se construit pas sur une
+                  projection non adoptée.
+                </p>
+              </div>
+            </section>
+
+            <!-- CLOTURE -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Clôture du Jour 5</p>
+                <h2>Un socle réel, un chantier ouvert</h2>
+                <p>
+                  La DSP2 est là&nbsp;; FIDA est en travaux&nbsp;; « DSP3 » reste
+                  un horizon. Savoir <strong>distinguer ces trois niveaux</strong>
+                  est la compétence clé pour lire l’actualité de l’Open Finance
+                  sans se laisser emporter par les annonces. C’est aussi ce qui
+                  permet de concevoir des projets honnêtes&nbsp;: utiles sur
+                  l’existant, prudents sur le futur.
+                </p>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2 (UE) 2015/2366&nbsp;; RTS EBA
+              2018/389&nbsp;; projet de règlement FIDA (Financial Data Access,
+              en cours d’élaboration)&nbsp;; RGPD (UE) 2016/679&nbsp;; Data Act et
+              Data Governance Act. Les calendriers et périmètres prospectifs ne
+              sont pas figés et ne valent pas obligation juridique.
+            </div>
+
+            
+          </div>
   </div>
 </article>
 
@@ -140,8 +1277,7 @@
 
     <footer class="site-foot no-print">
       <div class="wrap">
-        <a href="support.html">Page Support</a>
-        · Support étudiant Jour 5
+        <a href="index.html">Sommaire Jour 5</a> · Support étudiant
       </div>
     </footer>
   </body>

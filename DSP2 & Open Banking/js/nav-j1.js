@@ -15,7 +15,7 @@ window.OB_BLOCS = [
   { id: "s4-atelier", title: "S4 · Petit projet à restituer", href: "s4-atelier.html", group: "Parcours narratif" },
   // Annexes
   { id: "annexe", title: "Annexe · Concepts et statuts", href: "annexe.html", group: "Annexes" },
-  { id: "support", title: "Support étudiant", href: "support-etudiant.html", group: "Annexes" },
+  { id: "support", title: "Support étudiant", href: "support.html", group: "Annexes" },
 ];
 
 (function initObNav() {

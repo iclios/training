@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>S3 — Synthèse des quatre rôles | DSP2 &amp; Open Banking</title>
+    <title>S3 — Open Finance : état des travaux | DSP2 &amp; Open Banking</title>
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/j5-styles.css" />
   </head>
   <body data-bloc="s3-synthese">
     <header class="site-bar">
@@ -33,256 +34,380 @@
                 <span class="tag">Jour 5 · Séquence 3</span>
                 <span class="tag tag-accent">35 min</span>
               </div>
-              <p class="day-kicker">Qui fait quoi, qui détient quoi</p>
-              <h1>Synthèse des quatre rôles</h1>
+              <p class="day-kicker">Un chantier ouvert, pas un acquis</p>
+              <h1>Open Finance : état des travaux</h1>
               <p class="lead">
-                ASPSP, AISP, PISP, CBPII&nbsp;: quatre rôles, un même socle de
-                sécurité. Cette synthèse fixe une fois pour toutes ce qui les
-                distingue et comment ils coopèrent dans un parcours client.
+                L’Open Finance n’est pas une directive en vigueur&nbsp;: c’est un
+                chantier réglementaire et technique en cours. Une partie est déjà
+                là (DSP2), une autre est en travaux (FIDA), le reste relève de
+                projections — dont une future directive, parfois appelée «&nbsp;DSP3&nbsp;».
+                Cette séquence fait le point&nbsp;: ce qui existe, ce qui se construit,
+                ce qui se projette.
               </p>
             </div>
           </section>
 
           <div class="wrap">
+            <div class="j5-concept-grid">
+              <div class="j5-concept-card">
+                <h3>Déjà là</h3>
+                <p>DSP2 : l’ouverture des comptes de paiement, en production depuis 2019.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>En travaux</h3>
+                <p>FIDA : l’extension aux autres produits financiers, encore en négociation.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>Projeté</h3>
+                <p>Une future directive (« DSP3 ») et ses prolongements : un horizon, pas un texte.</p>
+              </div>
+            </div>
+
             <div class="fil-rouge">
               <span class="fil-rouge-label">Fil rouge</span>
               <p>
-                Dans un même parcours, Lyam peut&nbsp;: connecter ses comptes
-                (AISP), payer chez un marchand (PISP), et faire vérifier ses fonds
-                par un site (CBPII). Trois rôles tiers, un acteur pivot&nbsp;: la
-                banque (ASPSP), qui détient le compte et réalise toujours la SCA.
+                On arrête ici de réexpliquer les rôles&nbsp;: vous les avez
+                manipulés toute la semaine. On prend de la hauteur sur le
+                <strong>calendrier</strong> et l’<strong>ambition</strong> du
+                chantier Open Finance → ce qui est effectif, ce qui se négocie,
+                et ce qui n’existe pas encore.
               </p>
             </div>
 
-            <!-- LES QUATRE ROLES -->
+            <!-- ÉTAT DES LIEUX -->
             <section class="section" style="border-top: none; padding-top: 1.5rem">
-              <p class="section-label">Les rôles</p>
-              <h2 id="roles">Quatre rôles en un coup d’œil</h2>
+              <p class="section-label">Trois horizons</p>
+              <h2 id="horizons">Déjà là · en travaux · projeté</h2>
               <p class="intro">
-                Le socle est identique&nbsp;: consentement, SCA chez la banque,
-                API officielle. Ce qui change, c’est le <strong>pouvoir</strong>
-                du tiers.
+                Une façon simple de se repérer&nbsp;: trier les sujets selon leur
+                <strong>degré de maturité</strong>, pas selon leur promesse.
+              </p>
+
+              <div class="layer-stack">
+                <article class="layer">
+                  <span class="layer-i">1</span>
+                  <div class="layer-body">
+                    <h3>Déjà là — DSP2</h3>
+                    <p>
+                      Directive en vigueur, transposée, appliquée. Ouverture des
+                      comptes de paiement, rôles AISP / PISP / CBPII, API
+                      standardisées, SCA. C’est le socle <em>réel</em>, celui sur
+                      lequel on a travaillé toute la semaine.
+                    </p>
+                  </div>
+                </article>
+                <article class="layer">
+                  <span class="layer-i">2</span>
+                  <div class="layer-body">
+                    <h3>En travaux — FIDA</h3>
+                    <p>
+                      Le règlement sur l’accès aux données financières (FIDA,
+                      <em>Financial Data Access</em>) vise à étendre le modèle
+                      au-delà des comptes de paiement&nbsp;: épargne, crédit,
+                      assurance, retraite, investissement. Statut&nbsp;:
+                      <strong>en cours d’élaboration / négociation</strong>, pas
+                      encore applicable. C’est le texte dont on parle le plus
+                      aujourd’hui.
+                    </p>
+                  </div>
+                </article>
+                <article class="layer">
+                  <span class="layer-i">3</span>
+                  <div class="layer-body">
+                    <h3>Projeté — « DSP3 » et prolongements</h3>
+                    <p>
+                      Parler de «&nbsp;DSP3&nbsp;» relève aujourd’hui de la
+                      <strong>projection</strong>&nbsp;: une hypothèse de
+                      prochaine directive / révision, dont le périmètre et le
+                      calendrier ne sont pas fixés. On la mentionne comme horizon
+                      d’évolution, jamais comme un texte existant.
+                    </p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="callout warn">
+                <h3>Ne pas confondre annonce, projet et droit positif</h3>
+                <p>
+                  Une consultation, un projet de règlement ou une déclaration
+                  politique <strong>ne sont pas</strong> une obligation. Tant
+                  qu’un texte n’est pas adopté puis transposé, il n’engage rien.
+                  Un projet «&nbsp;Open Finance&nbsp;» doit savoir sur quel
+                  <em>état du droit</em> il s’appuie — pas sur une intention.
+                </p>
+              </div>
+            </section>
+
+            <!-- CE QUE PORTE L'OPEN FINANCE -->
+            <section class="section">
+              <p class="section-label">Périmètre visé</p>
+              <h2 id="perimetre">Ce que l’extension cherche à ouvrir</h2>
+              <p>
+                Au-delà des comptes bancaires, l’ambition couvre l’ensemble des
+                données financières du client. Voici la cible, telle qu’elle se
+                dessine dans les travaux en cours.
               </p>
 
               <div class="csm-table-wrap">
                 <table class="csm-table">
                   <thead>
                     <tr>
-                      <th scope="col">Rôle</th>
-                      <th scope="col">Signification</th>
-                      <th scope="col">Pouvoir</th>
-                      <th scope="col">Impact d’erreur</th>
+                      <th scope="col">Domaine de données</th>
+                      <th scope="col">Aujourd’hui</th>
+                      <th scope="col">Visé par l’extension</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><th scope="row">ASPSP</th><td>Banque&nbsp;: détient le compte</td><td>Expose l’API, réalise la SCA</td><td>Refuse l’accès</td></tr>
-                    <tr><th scope="row">AISP</th><td>Information sur les comptes</td><td>Lit les comptes</td><td>Mauvais affichage</td></tr>
-                    <tr><th scope="row">PISP</th><td>Initiation de paiement</td><td>Initie un virement</td><td>Argent déplacé</td></tr>
-                    <tr class="is-exergue"><th scope="row">CBPII</th><td>Confirmation de disponibilité de fonds</td><td>Vérifie les fonds</td><td>Garantie mal interprétée</td></tr>
+                    <tr><th scope="row">Comptes de paiement</th><td>Ouverts (DSP2)</td><td>Stabilisé</td></tr>
+                    <tr><th scope="row">Épargne &amp; investissement</th><td>Hors périmètre</td><td>À ouvrir</td></tr>
+                    <tr><th scope="row">Crédit</th><td>Hors périmètre</td><td>À ouvrir</td></tr>
+                    <tr><th scope="row">Assurance</th><td>Hors périmètre</td><td>À ouvrir</td></tr>
+                    <tr class="is-exergue"><th scope="row">Retraite</th><td>Hors périmètre</td><td>À discuter</td></tr>
                   </tbody>
                 </table>
               </div>
 
               <div class="callout info">
-                <h3>Un seul ASPSP, trois rôles tiers</h3>
+                <h3>Même logique, difficulté accrue</h3>
                 <p>
-                  La banque (ASPSP) est l’<strong>acteur pivot</strong>&nbsp;: elle
-                  détient le compte, expose l’API et réalise toujours la SCA. Les
-                  trois autres rôles — AISP, PISP, CBPII — sont des
-                  <strong>tiers</strong> qui accèdent via consentement. Un même
-                  établissement peut porter plusieurs rôles, mais chacun garde son
-                  périmètre.
+                  Le principe reste identique&nbsp;: consentement du client, API
+                  officielle, tiers autorisé, encadrement de la réutilisation des
+                  données. Ce qui change&nbsp;: des sources bien plus nombreuses
+                  et hétérogènes (assureurs, courtiers, gestionnaires d’épargne),
+                  et des mécanismes d’<em>indemnisation</em> et de partage des
+                  données qui n’existent pas en DSP2.
                 </p>
               </div>
             </section>
 
-            <!-- TABLEAU COMPARE -->
+            <!-- PROJECTION DES TRAVAUX -->
             <section class="section">
-              <p class="section-label">Comparaison</p>
-              <h2 id="compare">La grille de comparaison</h2>
-              <p>
-                La question à se poser face à un projet&nbsp;: «&nbsp;qu’est-ce que
-                le tiers peut <em>faire</em> avec ce consentement&nbsp;?&nbsp;»
+              <p class="section-label">Projection</p>
+              <h2 id="projection">À quoi ressemble le chantier</h2>
+              <p class="intro">
+                Sans prétendre au calendrier officiel (qui bouge), on peut
+                représenter les <strong>grandes étapes</strong> d’un chantier de
+                ce type — de l’existant vers l’horizon.
               </p>
-
-              <div class="csm-table-wrap">
-                <table class="csm-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Critère</th>
-                      <th scope="col">AISP</th>
-                      <th scope="col">PISP</th>
-                      <th scope="col">CBPII</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr><th scope="row">Action</th><td>Lire</td><td>Écrire</td><td>Vérifier</td></tr>
-                    <tr><th scope="row">Mouvement d’argent</th><td>Non</td><td>Oui</td><td>Non</td></tr>
-                    <tr><th scope="row">Durée du consentement</th><td>Jusqu’à 90 j</td><td>Par paiement</td><td>Par demande</td></tr>
-                    <tr><th scope="row">SCA</th><td>Au consentement</td><td>À chaque paiement</td><td>À la demande</td></tr>
-                    <tr class="is-exergue"><th scope="row">Idempotence</th><td>Utile</td><td>Critique</td><td>Utile</td></tr>
-                  </tbody>
-                </table>
-              </div>
 
               <div class="diagram">
                 <div class="diagram-header">
-                  <h3>Les quatre rôles autour du compte</h3>
-                  <p>La banque au centre, les tiers en périphérie</p>
+                  <h3>Feuille de route indicative</h3>
+                  <p>Existant → en travaux → à venir</p>
                 </div>
-                <svg viewBox="0 0 1000 360" role="img" aria-label="Les quatre rôles DSP2 autour du compte">
+                <svg viewBox="0 0 1000 240" role="img" aria-label="Feuille de route indicative de l'Open Finance">
                   <defs>
-                    <marker id="ah-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                    <marker id="ah-route" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                       <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
                     </marker>
                   </defs>
-                  <circle cx="500" cy="180" r="80" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
-                  <text x="500" y="172" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="14" font-weight="700">ASPSP</text>
-                  <text x="500" y="194" text-anchor="middle" fill="#5a6b7c" font-size="11">Banque · compte</text>
-                  <text x="500" y="212" text-anchor="middle" fill="#5a6b7c" font-size="11">API · SCA</text>
-
                   <g>
-                    <rect x="60" y="60" width="180" height="70" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
-                    <text x="150" y="90" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">AISP</text>
-                    <text x="150" y="112" text-anchor="middle" fill="#5a6b7c" font-size="10">lit les comptes</text>
+                    <rect x="20" y="70" width="260" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="150" y="100" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.06em">EN VIGUEUR</text>
+                    <text x="150" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">DSP2</text>
+                    <text x="150" y="152" text-anchor="middle" fill="#5a6b7c" font-size="11">comptes de paiement</text>
+                    <text x="150" y="168" text-anchor="middle" fill="#5a6b7c" font-size="11">AISP · PISP · CBPII</text>
                   </g>
+                  <line x1="288" y1="125" x2="328" y2="125" stroke="#5a6b7c" stroke-width="2.5" marker-end="url(#ah-route)"/>
                   <g>
-                    <rect x="60" y="230" width="180" height="70" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
-                    <text x="150" y="260" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">PISP</text>
-                    <text x="150" y="282" text-anchor="middle" fill="#5a6b7c" font-size="10">initie le virement</text>
+                    <rect x="336" y="70" width="300" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3" stroke-dasharray="7 5"/>
+                    <text x="486" y="100" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.06em">EN TRAVAUX</text>
+                    <text x="486" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">FIDA</text>
+                    <text x="486" y="152" text-anchor="middle" fill="#5a6b7c" font-size="11">épargne · crédit · assurance</text>
+                    <text x="486" y="168" text-anchor="middle" fill="#5a6b7c" font-size="11">négociation en cours</text>
                   </g>
+                  <line x1="644" y1="125" x2="684" y2="125" stroke="#5a6b7c" stroke-width="2.5" marker-end="url(#ah-route)"/>
                   <g>
-                    <rect x="760" y="60" width="180" height="70" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="850" y="90" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="13" font-weight="700">CBPII</text>
-                    <text x="850" y="112" text-anchor="middle" fill="#5a6b7c" font-size="10">vérifie les fonds</text>
+                    <rect x="692" y="70" width="288" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="3" stroke-dasharray="3 5"/>
+                    <text x="836" y="100" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.06em">PROJETÉ</text>
+                    <text x="836" y="128" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">« DSP3 » / révision</text>
+                    <text x="836" y="152" text-anchor="middle" fill="#5a6b7c" font-size="11">horizon, emploi informel</text>
+                    <text x="836" y="168" text-anchor="middle" fill="#5a6b7c" font-size="11">périmètre non fixé</text>
                   </g>
-                  <g>
-                    <rect x="760" y="230" width="180" height="70" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
-                    <text x="850" y="260" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="13" font-weight="700">Client</text>
-                    <text x="850" y="282" text-anchor="middle" fill="#5a6b7c" font-size="10">consent · SCA</text>
-                  </g>
-
-                  <line x1="240" y1="100" x2="430" y2="150" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-r)"/>
-                  <line x1="240" y1="265" x2="430" y2="215" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-r)"/>
-                  <line x1="760" y1="100" x2="575" y2="150" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-r)"/>
-                  <line x1="760" y1="265" x2="575" y2="215" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-r)"/>
+                  <text x="500" y="215" text-anchor="middle" fill="#8a9aaa" font-size="11">Représentation indicative — les calendriers et les périmètres officiels ne sont pas figés.</text>
                 </svg>
               </div>
-            </section>
-
-            <!-- PARCOURS COMMUN -->
-            <section class="section">
-              <p class="section-label">Coopération</p>
-              <h2 id="parcours">Un parcours, plusieurs rôles</h2>
-              <p>
-                Les rôles ne vivent pas isolés. Dans un même parcours, ils
-                s’enchaînent, chacun avec son consentement et sa SCA.
-              </p>
 
               <div class="mechanism">
                 <div class="mechanism-step">
                   <span class="n">1</span>
                   <div>
-                    <strong>AISP — Lyam branche ses comptes</strong>
+                    <strong>Stabiliser l’existant</strong>
                     <p>
-                      Consentement récurrent, lecture des soldes et opérations.
-                      Une SCA initiale, puis rafraîchissements encadrés.
+                      Consolidation de la DSP2, qualité des API, performance et
+                      supervision. Un socle solide conditionne la suite.
                     </p>
                   </div>
                 </div>
                 <div class="mechanism-step">
                   <span class="n">2</span>
                   <div>
-                    <strong>PISP — Lyam paie un marchand</strong>
+                    <strong>Étendre avec un cadre commun</strong>
                     <p>
-                      Un nouveau consentement, une SCA pour ce paiement. Le PISP
-                      initie le virement&nbsp;: l’argent bouge.
+                      FIDA cherche à poser des <em>schémas de partage de données</em>
+                      et des contreparties (indemnisation) harmonisés, plutôt
+                      qu’une simple transposition de la logique bancaire.
                     </p>
                   </div>
                 </div>
                 <div class="mechanism-step">
                   <span class="n">3</span>
                   <div>
-                    <strong>CBPII — un site vérifie les fonds</strong>
+                    <strong>Préparer l’horizon</strong>
                     <p>
-                      Un consentement de confirmation, une SCA. La banque répond
-                      oui/non sur la disponibilité, à un instant donné.
-                    </p>
-                  </div>
-                </div>
-                <div class="mechanism-step">
-                  <span class="n">4</span>
-                  <div>
-                    <strong>ASPSP — la banque, toujours pivot</strong>
-                    <p>
-                      Détient le compte, réalise chaque SCA, tient la preuve.
-                      Aucun tiers ne voit les identifiants.
+                      Une éventuelle «&nbsp;DSP3&nbsp;» / révision s’inscrirait dans
+                      la continuité&nbsp;: convergence, sécurité, articulation avec
+                      FIDA. À suivre, sans présumer du texte.
                     </p>
                   </div>
                 </div>
               </div>
+            </section>
 
-              <div class="callout warn">
-                <h3>Ne pas cumuler les pouvoirs dans un même consentement</h3>
+            <!-- FIDA VS DSP3 -->
+            <section class="section">
+              <p class="section-label">Ne pas confondre</p>
+              <h2 id="confusion">FIDA vs « DSP3 » : ce n’est pas une suite</h2>
+              <p class="intro">
+                Réflexe fréquent&nbsp;: «&nbsp;FIDA aujourd’hui, DSP3 demain,
+                donc DSP3 succède à FIDA&nbsp;». Faux. Ce sont deux instruments
+                différents, sur deux périmètres différents. «&nbsp;DSP3&nbsp;»
+                serait au mieux le successeur de la <strong>DSP2</strong>, pas de
+                FIDA.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Deux lignées distinctes</h3>
+                  <p>Paiement (directive) vs données (règlement)</p>
+                </div>
+                <svg viewBox="0 0 1000 240" role="img" aria-label="FIDA et DSP3 ne sont pas une suite">
+                  <defs>
+                    <marker id="ah-fid" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
+                    </marker>
+                  </defs>
+
+                  <!-- Ligne paiement -->
+                  <text x="30" y="52" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">PAIEMENT · directive</text>
+                  <rect x="30" y="66" width="190" height="66" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                  <text x="125" y="94" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">DSP2</text>
+                  <text x="125" y="112" text-anchor="middle" fill="#5a6b7c" font-size="10">en vigueur</text>
+                  <line x1="224" y1="99" x2="272" y2="99" stroke="#5a6b7c" stroke-width="2.5" marker-end="url(#ah-fid)"/>
+                  <rect x="276" y="66" width="210" height="66" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="3" stroke-dasharray="3 5"/>
+                  <text x="381" y="94" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">« DSP3 » ?</text>
+                  <text x="381" y="112" text-anchor="middle" fill="#5a6b7c" font-size="10">révision possible · hypothèse</text>
+
+                  <!-- Ligne données -->
+                  <text x="30" y="172" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">DONNÉES · règlement</text>
+                  <rect x="276" y="156" width="210" height="66" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3" stroke-dasharray="7 5"/>
+                  <text x="381" y="184" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">FIDA</text>
+                  <text x="381" y="202" text-anchor="middle" fill="#5a6b7c" font-size="10">règlement · en travaux</text>
+
+                  <!-- Séparateur / pas de lien -->
+                  <line x1="540" y1="20" x2="540" y2="220" stroke="#e2e8ee" stroke-width="2"/>
+                  <text x="770" y="96" text-anchor="middle" fill="#5a6b7c" font-size="12">DSP2 peut évoluer — révision éventuelle</text>
+                  <text x="770" y="116" text-anchor="middle" fill="#5a6b7c" font-size="12">appelée « DSP3 ».</text>
+                  <text x="770" y="186" text-anchor="middle" fill="#5a6b7c" font-size="12">FIDA est autonome : un règlement</text>
+                  <text x="770" y="206" text-anchor="middle" fill="#5a6b7c" font-size="12">sur les données, pas une « DSP ».</text>
+                </svg>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">FIDA</th>
+                      <th scope="col">« DSP3 »</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Instrument</th><td>Règlement</td><td>Directive (hypothétique)</td></tr>
+                    <tr><th scope="row">Périmètre</th><td>Données financières</td><td>Services de paiement</td></tr>
+                    <tr><th scope="row">Statut</th><td>En négociation</td><td>Nom informel / projection</td></tr>
+                    <tr class="is-exergue"><th scope="row">Successeur de…</th><td>Texte autonome</td><td>DSP2 (pas FIDA)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>La formule juste</h3>
                 <p>
-                  Un tiers qui porterait AISP + PISP lirait <em>et</em> écrirait.
-                  Ce n’est pas interdit, mais chaque opération doit relever d’un
-                  consentement et d’un jeton distincts. Un consentement AIS ne doit
-                  <strong>jamais</strong> pouvoir initier un paiement&nbsp;: c’est la
-                  séparation qui protège le client.
+                  «&nbsp;DSP3&nbsp;» = successeur <em>éventuel</em> de la
+                  <strong>DSP2</strong>. FIDA = un règlement <strong>parallèle</strong>
+                  sur les données. L’un ne découle pas de l’autre&nbsp;: les
+                  instruments, les périmètres et les calendriers sont distincts.
                 </p>
               </div>
             </section>
 
-            <!-- QUI DETIENT QUOI -->
+            <!-- POURQUOI C'EST DIFFICILE -->
             <section class="section">
-              <p class="section-label">Données</p>
-              <h2 id="detient">Qui détient quoi</h2>
-              <div class="split-3">
-                <div class="panel">
-                  <h3>La banque</h3>
-                  <p>
-                    Détient le compte, l’argent et les données sources. Expose
-                    l’API, réalise la SCA, conserve la preuve d’authentification.
-                    C’est la <strong>source de vérité</strong>.
-                  </p>
+              <p class="section-label">Enjeux</p>
+              <h2 id="enjeux">Pourquoi l’Open Finance prend du temps</h2>
+              <p>
+                L’extension ne bute pas sur un manque d’ambition, mais sur des
+                questions structurelles que la DSP2 n’avait pas à trancher.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ko">
+                  <h3>Freins de fond</h3>
+                  <ul>
+                    <li>Hétérogénéité des secteurs (assurance, épargne, crédit)</li>
+                    <li>Modèle économique du partage de données (indemnisation)</li>
+                    <li>Absence de standards API communs hors banque</li>
+                    <li>Articulation avec le RGPD et le Data Act</li>
+                    <li>Coût et gouvernance de la conformité</li>
+                  </ul>
                 </div>
                 <div class="panel ok">
-                  <h3>Le tiers</h3>
-                  <p>
-                    Détient ce que le consentement lui donne le droit de lire ou
-                    initier. Ne détient <strong>jamais</strong> les identifiants.
-                    Doit minimiser et conserver selon le RGPD.
-                  </p>
+                  <h3>Ce qui pousse</h3>
+                  <ul>
+                    <li>Demande de services financiers intégrés</li>
+                    <li>Concurrence des acteurs non bancaires</li>
+                    <li>Volonté d’un marché unique des données</li>
+                    <li>Expérience client «&nbsp;tout-en-un&nbsp;»</li>
+                    <li>Précédent DSP2 jugé globalement positif</li>
+                  </ul>
                 </div>
-                <div class="panel">
-                  <h3>Le client</h3>
-                  <p>
-                    Propriétaire de ses données et de son argent. Donne et révoque
-                    chaque consentement. Garde le contrôle&nbsp;: c’est lui, au
-                    centre.
-                  </p>
-                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Le réflexe à garder</h3>
+                <p>
+                  Face à un projet «&nbsp;Open Finance&nbsp;», posez la question
+                  du <strong>fondement juridique</strong>&nbsp;: quel texte
+                  autorise l’accès, aujourd’hui&nbsp;? S’il n’existe pas encore,
+                  c’est une projection — et un projet ne se construit pas sur une
+                  projection non adoptée.
+                </p>
               </div>
             </section>
 
-            <!-- TRANSITION -->
+            <!-- CLOTURE -->
             <section class="section" style="border-bottom: none">
               <div class="transition-block">
-                <p class="transition-label">Séquence suivante</p>
-                <h2>Place au projet final</h2>
+                <p class="transition-label">Clôture du Jour 5</p>
+                <h2>Un socle réel, un chantier ouvert</h2>
                 <p>
-                  Les quatre rôles sont posés, les flux compris. En S4, place au
-                  <strong>projet final</strong>&nbsp;: un projet SI ouvert complet,
-                  présenté et défendu devant la promo et le formateur.
+                  La DSP2 est là&nbsp;; FIDA est en travaux&nbsp;; « DSP3 » reste
+                  un horizon. Savoir <strong>distinguer ces trois niveaux</strong>
+                  est la compétence clé pour lire l’actualité de l’Open Finance
+                  sans se laisser emporter par les annonces. C’est aussi ce qui
+                  permet de concevoir des projets honnêtes&nbsp;: utiles sur
+                  l’existant, prudents sur le futur.
                 </p>
               </div>
             </section>
 
             <div class="sources-box">
-              <strong>Références</strong> — DSP2 (UE) 2015/2366 (rôles)&nbsp;; RTS EBA
-              2018/389 (SCA, accès)&nbsp;; Berlin Group NextGenPSD2 (AIS, PISP,
-              CBPII)&nbsp;; RGPD (UE) 2016/679 (minimisation, conservation).
+              <strong>Références</strong> — DSP2 (UE) 2015/2366&nbsp;; RTS EBA
+              2018/389&nbsp;; projet de règlement FIDA (Financial Data Access,
+              en cours d’élaboration)&nbsp;; RGPD (UE) 2016/679&nbsp;; Data Act et
+              Data Governance Act. Les calendriers et périmètres prospectifs ne
+              sont pas figés et ne valent pas obligation juridique.
             </div>
 
             <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
@@ -293,7 +418,7 @@
 
     <footer class="site-foot">
       <div class="wrap">
-        <a href="index.html">Sommaire Jour 5</a> · S3 Synthèse des quatre rôles
+        <a href="index.html">Sommaire Jour 5</a> · S3 Open Finance : état des travaux
       </div>
     </footer>
     <script src="../js/nav-j5.js"></script>

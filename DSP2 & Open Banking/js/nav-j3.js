@@ -4,8 +4,8 @@ window.OB_BLOCS = [
   { id: "s1-principe", title: "S1 · Principe du paiement initié", href: "s1-principe.html", group: "Parcours" },
   { id: "s2-flux", title: "S2 · Flux PISP détaillé", href: "s2-flux.html", group: "Parcours" },
   { id: "s3-architecture", title: "S3 · Architecture SI PISP", href: "s3-architecture.html", group: "Parcours" },
-  { id: "s4-atelier", title: "S4 · Atelier de modélisation", href: "s4-atelier.html", group: "Parcours" },
-  { id: "support", title: "Support étudiant", href: "support-etudiant.html", group: "Parcours narratif" },
+  { id: "s4-applications", title: "S4 · Combiner les API", href: "s4-applications.html", group: "Parcours" },
+  { id: "support", title: "Support étudiant", href: "support.html", group: "Parcours narratif" },
 ];
 
 (function initObNav() {

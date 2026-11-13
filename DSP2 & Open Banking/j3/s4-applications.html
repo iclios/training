@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S4 — Combiner les API | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-bloc="s4-applications">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a class="is-active" href="intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a href="../j5/intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 3 · Séquence 4</span>
+              </div>
+              <p class="day-kicker">Trois API, beaucoup de produits</p>
+              <h1>Combiner les API</h1>
+              <p class="lead">
+                AIS, PIS et CBPII ne sont pas trois produits concurrents&nbsp;:
+                ce sont trois briques. Les TPP qui comptent ne s’en tiennent pas
+                à l’usage strict d’une API — ils les associent pour fabriquer des
+                services qu’aucune des trois ne rend seule.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam a payé son vase par virement PISP. C’était un paiement
+                complet, mais un paiement <em>seul</em>. Le vrai terrain de jeu
+                commence quand un service veut <strong>savoir</strong>,
+                <strong>payer</strong> et <strong>garantir</strong> au même
+                moment. Cette séquence sort du fil PISP pour regarder ce que les
+                TPP construisent avec les trois API.
+              </p>
+            </div>
+
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Principe</p>
+              <h2 id="briques">Des briques, pas des produits</h2>
+              <p class="intro">
+                Chaque API de la DSP2 répond à une question précise. Prise
+                seule, elle ne suffit jamais à faire un service commercial. À
+                l’intersection, il y a de la valeur.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">API</th>
+                      <th scope="col">Question à laquelle elle répond</th>
+                      <th scope="col">Ce qu’elle ne fait pas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">AIS — information sur les comptes</th>
+                      <td>«&nbsp;Que contient le compte du client&nbsp;?&nbsp;»</td>
+                      <td>Ne déplace pas d’argent, n’engage aucune promesse</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">PIS — initiation de paiement</th>
+                      <td>«&nbsp;Peut-on déclencher un virement&nbsp;?&nbsp;»</td>
+                      <td>Ne vérifie pas le solde avant, ne garantit pas le succès</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">CBPII — confirmation de fonds</th>
+                      <td>«&nbsp;Y a-t-il la provision, maintenant&nbsp;?&nbsp;»</td>
+                      <td>Ne réserve pas les fonds, ne paie rien</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>La nuance qui change tout</h3>
+                <p>
+                  Le CBPII ne <strong>réserve</strong> rien&nbsp;: il répond
+                  «&nbsp;oui, le solde couvre&nbsp;» à un instant donné. Entre
+                  cette réponse et le virement effectif, le solde peut changer.
+                  Toute architecture qui empile CBPII puis PIS doit assumer ce
+                  décalage — c’est le cœur du risque, et l’essentiel du travail
+                  d’ingénierie.
+                </p>
+              </div>
+
+              <div class="callout warn">
+                <h3>Un TPP n’est pas un canal, c’est un assembleur</h3>
+                <p>
+                  Un TPP agréé peut avoir plusieurs casquettes&nbsp;: AISP, PISP,
+                  CBPII. Son produit n’est pas «&nbsp;l’API bancaire
+                  exposée&nbsp;» — c’est l’orchestration de plusieurs appels
+                  bancaires, enrichis de données propres (scoring, catalogue,
+                  comptabilité, garantie) qu’il ajoute par-dessus.
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Motif 1</p>
+              <h2 id="clic">«&nbsp;Payer en un clic&nbsp;» — savoir avant de payer</h2>
+              <p class="intro">
+                Le paiement par virement impose au client de choisir sa banque
+                puis de s’authentifier, sans savoir si le compte couvre la
+                dépense. La combinaison <strong>AIS → CBPII → PIS</strong>
+                supprime cette incertitude&nbsp;: on observe, on confirme la
+                provision, puis on initie.
+              </p>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>AIS — lire le compte</strong>
+                    <p>
+                      Le TPP récupère les comptes et le solde disponible du
+                      client, avec un consentement AIS. Il peut afficher
+                      «&nbsp;Compte courant — Banque Est&nbsp;: 340,20 €&nbsp;».
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>CBPII — confirmer la provision</strong>
+                    <p>
+                      Pour le montant exact du panier, le TPP demande au compte
+                      s’il couvre la dépense. La réponse est un oui/non, valable
+                      à l’instant <em>t</em>.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>PIS — initier le virement</strong>
+                    <p>
+                      Le TPP déclenche le virement du compte vers le marchand,
+                      avec le montant et la référence de commande convenus.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">4</span>
+                  <div>
+                    <strong>Réconciliation</strong>
+                    <p>
+                      Le TPP suit le statut PIS et rapproche le virement reçu de
+                      la commande, via la référence. C’est ce qui ferme la
+                      boucle côté marchand.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Chaîne d’appels — « Payer en un clic »</h3>
+                  <p>Client · TPP (AISP + PISP + CBPII) · Banque</p>
+                </div>
+                <svg viewBox="0 0 1000 300" role="img" aria-label="Chaîne AIS, CBPII puis PIS pour un paiement en un clic">
+                  <defs>
+                    <marker id="ah-a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                    <marker id="ah-a2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#6b4fa0" />
+                    </marker>
+                    <marker id="ah-a3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <rect x="20" y="40" width="150" height="46" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                  <text x="95" y="60" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">Client</text>
+                  <text x="95" y="76" text-anchor="middle" fill="#5a6b7c" font-size="10">choisit « payer »</text>
+
+                  <rect x="230" y="30" width="200" height="66" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="330" y="52" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">TPP</text>
+                  <text x="330" y="70" text-anchor="middle" fill="#1a2b3c" font-size="10">AISP · PISP · CBPII</text>
+                  <text x="330" y="85" text-anchor="middle" fill="#5a6b7c" font-size="9">orchestrateur</text>
+
+                  <rect x="500" y="30" width="180" height="66" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="590" y="58" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">Banque (ASPSP)</text>
+                  <text x="590" y="76" text-anchor="middle" fill="#5a6b7c" font-size="10">API AIS · PIS · CBPII</text>
+
+                  <rect x="740" y="40" width="150" height="46" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="815" y="60" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">Marchand</text>
+                  <text x="815" y="76" text-anchor="middle" fill="#5a6b7c" font-size="10">commande</text>
+
+                  <line x1="172" y1="63" x2="226" y2="63" stroke="#6b4fa0" stroke-width="2" marker-end="url(#ah-a2)"/>
+                  <line x1="432" y1="48" x2="496" y2="48" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-a1)"/>
+                  <text x="464" y="40" text-anchor="middle" fill="#1e5f8a" font-size="9" font-weight="700">AIS</text>
+                  <line x1="496" y1="63" x2="432" y2="63" stroke="#1e5f8a" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ah-a1)"/>
+                  <text x="464" y="78" text-anchor="middle" fill="#5a6b7c" font-size="9">solde</text>
+                  <line x1="432" y1="90" x2="496" y2="90" stroke="#6b4fa0" stroke-width="2" marker-end="url(#ah-a2)"/>
+                  <text x="464" y="106" text-anchor="middle" fill="#6b4fa0" font-size="9" font-weight="700">CBPII</text>
+
+                  <rect x="230" y="150" width="200" height="60" rx="8" fill="#f7faf8" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="330" y="176" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Décision</text>
+                  <text x="330" y="194" text-anchor="middle" fill="#5a6b7c" font-size="9">solde + provision OK ?</text>
+
+                  <rect x="500" y="150" width="180" height="60" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="590" y="176" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">PIS — virement</text>
+                  <text x="590" y="194" text-anchor="middle" fill="#5a6b7c" font-size="9">statut suivi</text>
+
+                  <line x1="330" y1="100" x2="330" y2="146" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-a3)"/>
+                  <line x1="432" y1="180" x2="496" y2="180" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-a3)"/>
+                  <text x="464" y="172" text-anchor="middle" fill="#0d9f8a" font-size="9" font-weight="700">PIS</text>
+                  <line x1="682" y1="180" x2="812" y2="108" stroke="#3d5a80" stroke-width="2" marker-end="url(#ah-a3)"/>
+                  <text x="762" y="150" text-anchor="middle" fill="#3d5a80" font-size="9" font-weight="700">règlement</text>
+
+                  <text x="20" y="265" fill="#5a6b7c" font-size="10">Le CBPII confirme à l’instant t — le solde peut bouger avant l’exécution du PIS.</text>
+                </svg>
+              </div>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Ce que ça apporte</h3>
+                  <p>
+                    Le client voit immédiatement s’il peut payer, et le marchand
+                    réduit les virements rejetés faute de provision. L’expérience
+                    se rapproche de la carte, sans changer de rail.
+                  </p>
+                </div>
+                <div class="panel ko">
+                  <h3>Ce que ça risque</h3>
+                  <p>
+                    La confirmation CBPII n’est pas une réservation. Entre la
+                    réponse et l’exécution, un autre débit peut passer. Le TPP
+                    doit donc gérer un échec tardif, pas le cacher au client.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Motif 2</p>
+              <h2 id="agregation">«&nbsp;Compte enrichi&nbsp;» — agréger pour vendre un autre produit</h2>
+              <p class="intro">
+                Le cas le plus courant chez les AISP&nbsp;: réunir plusieurs
+                comptes bancaires dans une seule vue, puis transformer cette
+                donnée en service — budget, comptabilité, scoring, conseil. Le
+                PIS vient souvent en complément, pour agir sur les comptes
+                agrégés.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Architecture — agrégation multi-banques</h3>
+                  <p>Une application, plusieurs ASPSP, un consentement par banque</p>
+                </div>
+                <svg viewBox="0 0 1000 320" role="img" aria-label="Agrégation de plusieurs banques par un AISP">
+                  <defs>
+                    <marker id="ah-b1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                    <marker id="ah-b2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <rect x="30" y="120" width="150" height="70" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                  <text x="105" y="150" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">Utilisateur</text>
+                  <text x="105" y="168" text-anchor="middle" fill="#5a6b7c" font-size="10">une seule appli</text>
+
+                  <rect x="250" y="100" width="190" height="110" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="345" y="128" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">AISP</text>
+                  <text x="345" y="148" text-anchor="middle" fill="#1a2b3c" font-size="10">normalise les données</text>
+                  <text x="345" y="166" text-anchor="middle" fill="#1a2b3c" font-size="10">catégorise les opérations</text>
+                  <text x="345" y="184" text-anchor="middle" fill="#1a2b3c" font-size="10">calcule le budget</text>
+                  <text x="345" y="202" text-anchor="middle" fill="#5a6b7c" font-size="9">valeur ajoutée propre</text>
+
+                  <line x1="182" y1="155" x2="246" y2="155" stroke="#6b4fa0" stroke-width="2" marker-end="url(#ah-b2)"/>
+
+                  <rect x="520" y="30" width="180" height="50" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="610" y="52" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Banque A</text>
+                  <text x="610" y="68" text-anchor="middle" fill="#5a6b7c" font-size="9">compte courant</text>
+
+                  <rect x="520" y="105" width="180" height="50" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="610" y="127" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Banque B</text>
+                  <text x="610" y="143" text-anchor="middle" fill="#5a6b7c" font-size="9">compte joint</text>
+
+                  <rect x="520" y="180" width="180" height="50" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="610" y="202" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Banque C</text>
+                  <text x="610" y="218" text-anchor="middle" fill="#5a6b7c" font-size="9">livret</text>
+
+                  <line x1="442" y1="120" x2="516" y2="60" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-b1)"/>
+                  <line x1="442" y1="155" x2="516" y2="132" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-b1)"/>
+                  <line x1="442" y1="190" x2="516" y2="204" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-b1)"/>
+                  <text x="478" y="112" text-anchor="middle" fill="#1e5f8a" font-size="9" font-weight="700">AIS</text>
+
+                  <rect x="760" y="100" width="200" height="110" rx="8" fill="#f7faf8" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="860" y="128" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Produit vendu</text>
+                  <text x="860" y="150" text-anchor="middle" fill="#5a6b7c" font-size="10">gestion de budget</text>
+                  <text x="860" y="168" text-anchor="middle" fill="#5a6b7c" font-size="10">comptabilité</text>
+                  <text x="860" y="186" text-anchor="middle" fill="#5a6b7c" font-size="10">conseil / scoring</text>
+                  <line x1="702" y1="155" x2="756" y2="155" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-b2)"/>
+
+                  <text x="30" y="290" fill="#5a6b7c" font-size="10">Un consentement AIS par banque · durée limitée · renouvellement à la main du client.</text>
+                </svg>
+              </div>
+
+              <div class="callout info">
+                <h3>Le vrai métier n’est pas l’API</h3>
+                <p>
+                  Récupérer des soldes ne vaut rien&nbsp;: des milliers
+                  d’applications savent le faire. Ce qui fait le produit, c’est
+                  la <strong>normalisation</strong> entre banques, la
+                  <strong>catégorisation</strong> des libellés et la
+                  <strong>restitution</strong> dans une décision utile. L’API est
+                  le carburant&nbsp;; le produit, c’est le moteur.
+                </p>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Usage</th>
+                      <th scope="col">API mobilisée</th>
+                      <th scope="col">Valeur ajoutée par le TPP</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Agrégateur de comptes</th><td>AIS</td><td>Normalisation multi-banques, catégorisation</td></tr>
+                    <tr><th scope="row">Outil de gestion / compta</th><td>AIS + PIS</td><td>Rapprochement, écritures, virements fournisseurs</td></tr>
+                    <tr><th scope="row">Conseil financier</th><td>AIS</td><td>Analyse de dépenses, recommandations</td></tr>
+                    <tr class="is-exergue"><th scope="row">Vérification de revenus</th><td>AIS</td><td>Scoring, preuve de ressources pour un tiers</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Motif 3</p>
+              <h2 id="instantane">«&nbsp;Vérification instantanée&nbsp;» — décider sans payer</h2>
+              <p class="intro">
+                Beaucoup de services ne veulent pas encaisser&nbsp;: ils veulent
+                <strong>savoir</strong> avant de s’engager. Prêt, paiement
+                échelonné, prise en charge par un tiers&nbsp;: le CBPII suffit,
+                combiné à l’AIS, sans jamais déclencher de virement.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Architecture — vérification de capacité, sans mouvement de fonds</h3>
+                  <p>AIS (observation) + CBPII (instant) · aucun PIS</p>
+                </div>
+                <svg viewBox="0 0 1000 280" role="img" aria-label="Vérification instantanée avec AIS et CBPII, sans PIS">
+                  <defs>
+                    <marker id="ah-c1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                    <marker id="ah-c2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#6b4fa0" />
+                    </marker>
+                  </defs>
+
+                  <rect x="20" y="100" width="150" height="60" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                  <text x="95" y="126" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">Demandeur</text>
+                  <text x="95" y="144" text-anchor="middle" fill="#5a6b7c" font-size="10">prêt · échelonnement</text>
+
+                  <rect x="230" y="85" width="190" height="90" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="325" y="112" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">TPP</text>
+                  <text x="325" y="132" text-anchor="middle" fill="#1a2b3c" font-size="10">AISP + CBPII</text>
+                  <text x="325" y="152" text-anchor="middle" fill="#5a6b7c" font-size="9">évalue, décide, ne paie pas</text>
+
+                  <line x1="172" y1="130" x2="226" y2="130" stroke="#6b4fa0" stroke-width="2" marker-end="url(#ah-c2)"/>
+
+                  <rect x="510" y="40" width="190" height="60" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="605" y="66" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">AIS — historique</text>
+                  <text x="605" y="84" text-anchor="middle" fill="#5a6b7c" font-size="9">régularité, revenus</text>
+
+                  <rect x="510" y="160" width="190" height="60" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="605" y="186" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">CBPII — instant</text>
+                  <text x="605" y="204" text-anchor="middle" fill="#5a6b7c" font-size="9">provision aujourd’hui</text>
+
+                  <line x1="422" y1="115" x2="506" y2="75" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-c1)"/>
+                  <line x1="422" y1="145" x2="506" y2="185" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-c1)"/>
+
+                  <rect x="760" y="85" width="200" height="90" rx="8" fill="#f7faf8" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="860" y="112" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Décision</text>
+                  <text x="860" y="134" text-anchor="middle" fill="#5a6b7c" font-size="10">octroi · refus</text>
+                  <text x="860" y="152" text-anchor="middle" fill="#5a6b7c" font-size="10">plafond · échéancier</text>
+                  <line x1="702" y1="130" x2="756" y2="130" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-c2)"/>
+
+                  <text x="20" y="250" fill="#5a6b7c" font-size="10">Aucun ordre de virement — le TPP observe et confirme, puis le règlement se fait par un autre moyen.</text>
+                </svg>
+              </div>
+
+              <div class="callout warn">
+                <h3>Attention à la nature du CBPII</h3>
+                <p>
+                  Le CBPII a été conçu pour le <em>bénéficiaire d’un paiement</em>
+                  (typiquement une entreprise qui veut savoir si un virement va
+                  passer). Le détourner vers du crédit à la consommation pose des
+                  questions de cadre&nbsp;: ce n’est pas parce que l’appel est
+                  techniquement possible que l’usage est dans le périmètre de
+                  l’agrément.
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Motif 4</p>
+              <h2 id="detournement">«&nbsp;API détournée&nbsp;» — quand le consentement sert d’autre chose</h2>
+              <p class="intro">
+                Le cas le plus intéressant pédagogiquement&nbsp;: le TPP utilise
+                l’AIS comme <strong>preuve</strong> — pas pour afficher un solde,
+                mais pour attester d’un fait à un tiers. Le consentement AIS
+                devient un instrument de vérification d’identité financière.
+              </p>
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>Vérification de compte</h3>
+                  <p>
+                    Le demandeur (assureur, plateforme, bailleur) veut s’assurer
+                    que l’IBAN déclaré appartient bien à la personne. Le TPP
+                    confirme que le compte existe chez cette banque, sans
+                    transmettre les opérations.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>Preuve de revenus</h3>
+                  <p>
+                    Le TPP lit les virements entrants récurrents et en déduit un
+                    revenu régulier. Le client choisit de partager ou non cette
+                    synthèse. L’AIS remplace ici la liasse de fiches de paie.
+                  </p>
+                </div>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Architecture — le consentement comme preuve</h3>
+                  <p>Le client autorise, le TPP atteste, le tiers décide</p>
+                </div>
+                <svg viewBox="0 0 1000 260" role="img" aria-label="Consentement AIS utilisé comme preuve auprès d’un tiers">
+                  <defs>
+                    <marker id="ah-d1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                    <marker id="ah-d2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <rect x="20" y="95" width="150" height="60" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                  <text x="95" y="121" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">Client</text>
+                  <text x="95" y="139" text-anchor="middle" fill="#5a6b7c" font-size="10">donne son accord</text>
+
+                  <rect x="230" y="80" width="190" height="90" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="325" y="108" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">TPP · AISP</text>
+                  <text x="325" y="128" text-anchor="middle" fill="#1a2b3c" font-size="10">lit, résume, atteste</text>
+                  <text x="325" y="148" text-anchor="middle" fill="#5a6b7c" font-size="9">ne transmet pas le détail</text>
+
+                  <line x1="172" y1="125" x2="226" y2="125" stroke="#6b4fa0" stroke-width="2" marker-end="url(#ah-d1)"/>
+
+                  <rect x="500" y="40" width="190" height="55" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="595" y="64" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Banque</text>
+                  <text x="595" y="82" text-anchor="middle" fill="#5a6b7c" font-size="9">API AIS</text>
+
+                  <rect x="500" y="155" width="190" height="55" rx="8" fill="#f7faf8" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="595" y="179" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700">Tiers demandeur</text>
+                  <text x="595" y="197" text-anchor="middle" fill="#5a6b7c" font-size="9">assureur · bailleur</text>
+
+                  <line x1="422" y1="108" x2="496" y2="72" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-d1)"/>
+                  <line x1="422" y1="145" x2="496" y2="180" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-d2)"/>
+                  <text x="458" y="150" text-anchor="middle" fill="#0d9f8a" font-size="9" font-weight="700">preuve</text>
+
+                  <rect x="760" y="80" width="200" height="90" rx="8" fill="#f4f8fc" stroke="#6b4fa0" stroke-width="2"/>
+                  <text x="860" y="112" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700">Décision du tiers</text>
+                  <text x="860" y="136" text-anchor="middle" fill="#5a6b7c" font-size="10">accepte / refuse</text>
+                  <text x="860" y="154" text-anchor="middle" fill="#5a6b7c" font-size="10">sans voir les opérations</text>
+                  <line x1="692" y1="182" x2="856" y2="172" stroke="#6b4fa0" stroke-width="2" marker-end="url(#ah-d1)"/>
+
+                  <text x="20" y="240" fill="#5a6b7c" font-size="10">Le tiers ne parle jamais à la banque — il fait confiance à l’attestation du TPP.</text>
+                </svg>
+              </div>
+
+              <div class="callout info">
+                <h3>La ligne rouge</h3>
+                <p>
+                  Ce détournement est légitime tant que le consentement reste
+                  explicite, limité dans le temps et proportionné à l’usage&nbsp;:
+                  lire les revenus pour un prêt, oui&nbsp;; lire tout
+                  l’historique pour un service qui n’en a pas besoin, non. Le
+                  RGPD et la DSP2 se rejoignent ici sur la
+                  <strong>minimisation</strong>.
+                </p>
+              </div>
+            </section>
+
+            <section class="section">
+              <p class="section-label">Synthèse</p>
+              <h2 id="synthese">Quatre motifs, une même logique</h2>
+              <p class="intro">
+                Ces quatre motifs ne sont pas des recettes à réciter&nbsp;: ce sont
+                des <em>formes</em> d’assemblage. Un produit réel en combine
+                souvent deux, et en ajoute un troisième qu’on n’avait pas
+                anticipé.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Motif</th>
+                      <th scope="col">API combinées</th>
+                      <th scope="col">Le TPP apporte</th>
+                      <th scope="col">Risque principal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Payer en un clic</th>
+                      <td>AIS + CBPII + PIS</td>
+                      <td>Orchestration, assurance de provision</td>
+                      <td>Provision non réservée</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Compte enrichi</th>
+                      <td>AIS (+ PIS)</td>
+                      <td>Normalisation, catégorisation, analyse</td>
+                      <td>Renouvellement des consentements</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Vérification instantanée</th>
+                      <td>AIS + CBPII</td>
+                      <td>Scoring, décision de crédit</td>
+                      <td>Périmètre de l’agrément</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">API détournée</th>
+                      <td>AIS (comme preuve)</td>
+                      <td>Attestation, synthèse</td>
+                      <td>Minimisation des données</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout reg">
+                <h3>Repères factuels</h3>
+                <p>
+                  Les produits évoqués ici le sont par <strong>catégorie
+                  d’acteur</strong> (agrégateur, échelonnement de paiement, outil
+                  de gestion) et non par marque. Tous ne s’appuient pas
+                  exclusivement sur la DSP2&nbsp;: certains combinent API
+                  bancaires, accords bilatéraux et données propres. Ce qui est
+                  transférable, c’est le
+                  <strong>motif d’architecture</strong>, pas la fiche produit.
+                </p>
+              </div>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Une API ne fait jamais un produit</strong>
+                    <p>
+                      Elle répond à une question. Le produit naît de la
+                      deuxième question, et de la façon de les enchaîner.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>La valeur est dans l’enrichissement</strong>
+                    <p>
+                      Normaliser, catégoriser, scorer, attester&nbsp;: c’est là
+                      que se crée la différence entre deux TPP sur la même API.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>L’agrément borne l’imagination</strong>
+                    <p>
+                      Techniquement possible n’égale pas autorisé. Chaque motif
+                      doit tenir dans le périmètre de l’agrément et du RGPD.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Clôture du Jour 3</p>
+                <h2>Trois API, et pourtant beaucoup de produits</h2>
+                <p>
+                  Le paiement initié était le fil rouge de la journée&nbsp;: AIS,
+                  PIS et CBPII sont en réalité trois briques que les TPP
+                  combinent pour fabriquer des services qu’aucune ne rend seule.
+                  Comprendre ces combinaisons, c’est comprendre pourquoi l’Open
+                  Banking est une <em>infrastructure</em>, pas une
+                  fonctionnalité. Le Jour 4 change de question&nbsp;: et si l’on
+                  appliquait cette logique à la <strong>donnée</strong>
+                  elle-même&nbsp;?
+                </p>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2 art. 65-67 (AIS, PIS, CBPII)&nbsp;;
+              RTS EBA 2018/389 art. 5, 10-13 et 36&nbsp;; Berlin Group
+              NextGenPSD2 (services AIS, PIS, PIIS)&nbsp;; lignes directrices EBA
+              sur la SCA&nbsp;; RGPD art. 5 (minimisation) et art. 6 (base
+              légitime).
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 3</a> · S4 Combiner les API
+      </div>
+    </footer>
+    <script src="../js/nav-j3.js"></script>
+    <script src="../js/fiche.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

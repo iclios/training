@@ -31,7 +31,6 @@
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 4 · Séquence 3</span>
-                <span class="tag tag-accent">50 min</span>
               </div>
               <p class="day-kicker">La machine qui agrège et sert la donnée</p>
               <h1>Architecture SI AISP</h1>
@@ -407,16 +406,194 @@
               </div>
             </section>
 
+
+            <!-- DATA OWNERSHIP -->
+            <section class="section">
+              <p class="section-label">Notions</p>
+              <h2 id="ownership">À qui appartient la donnée&nbsp;?</h2>
+              <p class="intro">
+                L’AISP lit, copie et transforme. La question «&nbsp;à qui est la
+                donnée&nbsp;?&nbsp;» n’a pas de réponse binaire&nbsp;: elle se
+                décompose en trois droits distincts, souvent confondus.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Droit</th>
+                      <th scope="col">Qui le détient</th>
+                      <th scope="col">Ce que ça implique concrètement</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Propriété de la donnée</th>
+                      <td>Le client</td>
+                      <td>Ses opérations lui appartiennent, pas à la banque ni à l’AISP</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Garde de l’original</th>
+                      <td>La banque (ASPSP)</td>
+                      <td>Elle est la source de vérité, et doit la fournir sur demande du client</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Droit d’usage</th>
+                      <td>L’AISP, pour la finalité consentie</td>
+                      <td>Limité dans le temps, dans la portée et dans l’usage</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Droit de reprise</th>
+                      <td>Le client, à tout moment</td>
+                      <td>Export de ses données dans un format exploitable</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>La conséquence pour un AISP</h3>
+                <p>
+                  Un AISP n’est pas <em>propriétaire</em> des données qu’il
+                  agrège&nbsp;: il en est le <strong>dépositaire temporaire</strong>,
+                  avec un mandat précis. Toute réutilisation hors de ce mandat
+                  — enrichissement, revente, profilage non consenti — est une
+                  faute, même si elle est techniquement triviale.
+                </p>
+              </div>
+            </section>
+
+            <!-- PORTABILITE -->
+            <section class="section">
+              <p class="section-label">Notions</p>
+              <h2 id="portabilite">Portabilité&nbsp;: le droit de partir</h2>
+              <p class="intro">
+                La portabilité est la traduction opérationnelle du droit de
+                reprise. Un client qui change d’appli doit pouvoir emporter son
+                historique — sans que l’AISP sortant n’invente de blocage
+                technique.
+              </p>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Export dans un format structuré</strong>
+                    <p>
+                      Machine-lisible et documenté (CSV à schéma défini, JSON,
+                      ISO 20022 si possible). Un capture d’écran n’est pas un
+                      export.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>Complétude et intégrité</strong>
+                    <p>
+                      L’export doit couvrir tout l’historique conservé, pas un
+                      échantillon. Une synthèse partielle vide le droit de son
+                      sens.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Délai et gratuité</strong>
+                    <p>
+                      Le RGPD impose une réponse dans un délai d’un mois. Un
+                      export payant ou retardé est un frein dissuasif, pas un
+                      service.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">4</span>
+                  <div>
+                    <strong>Sortie propre</strong>
+                    <p>
+                      Après export, l’AISP reste soumis à sa politique de
+                      conservation pour les copies&nbsp;: la portabilité ne
+                      l’autorise pas à tout effacer de manière anticipée s’il a
+                      une obligation légale de conserver.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le piège du «&nbsp;lock-in&nbsp;» déguisé</h3>
+                <p>
+                  Un export au format maison, non documenté, qui ne réimporte
+                  nulle part&nbsp;: techniquement un export, en pratique un
+                  rempart. C’est le contournement le plus courant du droit de
+                  portabilité.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRACABILITE -->
+            <section class="section">
+              <p class="section-label">Notions</p>
+              <h2 id="tracabilite">Traçabilité&nbsp;: savoir qui a lu quoi</h2>
+              <p class="intro">
+                La traçabilité n’est pas un luxe d’auditeur&nbsp;: c’est
+                l’instrument qui permet de <em>détecter</em> une lecture
+                anormale, et &#8212; en cas de réclamation &#8212; de
+                <strong>répondre</strong> au client sur ce qui a été consulté.
+              </p>
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>Ce qu’elle couvre</h3>
+                  <p>
+                    Chaque appel d’API est relié à un consentement, un compte,
+                    un horodatage et un appelant. On peut reconstituer un
+                    historique complet d’accès, pas seulement d’erreurs.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>Ce qu’elle ne couvre pas</h3>
+                  <p>
+                    La trace ne dit pas pourquoi une donnée a été lue, ni si
+                    l’usage était légitime. Elle documente l’accès, elle ne
+                    qualifie pas l’intention&nbsp;: la gouvernance reste humaine.
+                  </p>
+                </div>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Événement</th>
+                      <th scope="col">Pourquoi le tracer</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Création / renouvellement de consentement</th><td>Prouver que le client a autorisé, et jusqu’à quand</td></tr>
+                    <tr><th scope="row">Lecture de comptes (succès)</th><td>Démontrer que l’accès respectait le périmètre</td></tr>
+                    <tr><th scope="row">Lecture refusée (401/403)</th><td>Révéler une tentative hors droits — signal d’alerte</td></tr>
+                    <tr><th scope="row">Révocation</th><td>Établir la date à partir de laquelle plus rien ne devait être lu</td></tr>
+                    <tr class="is-exergue"><th scope="row">Expiration automatique</th><td>Prouver que l’arrêt n’était pas une décision opportuniste</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
             <!-- TRANSITION -->
             <section class="section" style="border-bottom: none">
               <div class="transition-block">
                 <p class="transition-label">Séquence suivante</p>
-                <h2>Et maintenant, l’atelier</h2>
+                <h2>Mais qui garde la donnée&nbsp;?</h2>
                 <p>
-                  On sait collecter, normaliser, stocker, servir. En S4, les
-                  groupes conçoivent un <strong>service de data banking</strong>&nbsp;:
-                  quelles données lire, quel consentement, quelle valeur produite,
-                  quel parcours — tout en respectant la minimisation et le RGPD.
+                  On sait collecter, normaliser, stocker, servir — et même
+                  dire à qui appartient ce que l’on stocke. Reste la question
+                  qui commande toutes les autres : pendant combien de temps,
+                  sous quelles conditions, avec quelle preuve. C’est l’objet de
+                  la S4 — parce qu’un bon AISP n’est pas seulement celui qui
+                  lit bien, c’est celui qui sait aussi s’arrêter de lire.
                 </p>
               </div>
             </section>

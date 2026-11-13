@@ -114,8 +114,7 @@
               <p class="intro">
                 On part du principe économique (pourquoi un tel paiement
                 existe), on suit un flux complet du clic au règlement, on
-                descend dans le SI qui le rend possible, puis on modélise un
-                cas réel en atelier.
+                descend dans le SI qui le rend possible.
               </p>
 
               <div class="split-2">
@@ -143,11 +142,12 @@
                     rejets.
                   </p>
                 </div>
-                <div class="panel ok">
-                  <h3>S4 — Atelier de modélisation</h3>
+                <div class="panel tpp">
+                  <h3>S4 — Combiner les API</h3>
                   <p>
-                    Modéliser un paiement e-commerce via PISP&nbsp;: diagramme de
-                    séquence, rôles des acteurs, messages échangés.
+                    AIS + PIS + CBPII ne sont pas trois produits mais trois
+                    briques. Quatre motifs d’assemblage, avec les schémas
+                    d’appels qui les rendent concrets.
                   </p>
                 </div>
               </div>
@@ -155,7 +155,7 @@
               <div class="diagram">
                 <div class="diagram-header">
                   <h3>Fil du Jour 3</h3>
-                  <p>Principe → Flux → Architecture → Modélisation</p>
+                  <p>Principe → Flux → Architecture → Combinaisons</p>
                 </div>
                 <svg viewBox="0 0 1000 200" role="img" aria-label="Chaîne pédagogique du jour 3">
                   <defs>
@@ -164,31 +164,31 @@
                     </marker>
                   </defs>
                   <g>
-                    <rect x="20" y="50" width="220" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
-                    <text x="130" y="80" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">3.1</text>
-                    <text x="130" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Principe</text>
-                    <text x="130" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">initié par un tiers</text>
+                    <rect x="20" y="50" width="200" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="120" y="80" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">3.1</text>
+                    <text x="120" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Principe</text>
+                    <text x="120" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">initié par un tiers</text>
                   </g>
-                  <line x1="248" y1="105" x2="278" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j3)"/>
+                  <line x1="228" y1="105" x2="258" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j3)"/>
                   <g>
-                    <rect x="286" y="50" width="220" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
-                    <text x="396" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">3.2</text>
-                    <text x="396" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Flux PISP</text>
-                    <text x="396" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">consent · SCA · règlement</text>
+                    <rect x="266" y="50" width="200" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="366" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">3.2</text>
+                    <text x="366" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Flux PISP</text>
+                    <text x="366" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">consent · SCA · règlement</text>
                   </g>
-                  <line x1="514" y1="105" x2="544" y2="105" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-j3)"/>
+                  <line x1="474" y1="105" x2="504" y2="105" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-j3)"/>
                   <g>
-                    <rect x="552" y="50" width="220" height="110" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2"/>
-                    <text x="662" y="80" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">3.3</text>
-                    <text x="662" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Architecture SI</text>
-                    <text x="662" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">frontend · engine</text>
+                    <rect x="512" y="50" width="200" height="110" rx="10" fill="#f4f8fc" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="612" y="80" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">3.3</text>
+                    <text x="612" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Architecture SI</text>
+                    <text x="612" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">frontend · engine</text>
                   </g>
-                  <line x1="780" y1="105" x2="810" y2="105" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-j3)"/>
+                  <line x1="720" y1="105" x2="750" y2="105" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-j3)"/>
                   <g>
-                    <rect x="818" y="50" width="166" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
-                    <text x="901" y="80" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700" letter-spacing="0.08em">3.4</text>
-                    <text x="901" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Atelier</text>
-                    <text x="901" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">modélisation</text>
+                    <rect x="758" y="50" width="222" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="869" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">3.4</text>
+                    <text x="869" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Combinaisons</text>
+                    <text x="869" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">AIS + PIS + CBPII</text>
                   </g>
                 </svg>
               </div>
@@ -237,7 +237,7 @@
                       <path d="M4 5h16M4 12h10M4 19h16" />
                     </svg>
                   </span>
-                  <span class="obj-text"><strong>Modéliser</strong> un paiement e-commerce en diagramme de séquence, avec les rôles et les messages exacts.</span>
+                  <span class="obj-text"><strong>Combiner</strong> AIS, PIS et CBPII pour concevoir un cas d’usage réel&nbsp;: quel appel avant quel autre, et quel risque assumer à chaque maillon.</span>
                 </li>
                 <li>
                   <span class="obj-ico" aria-hidden="true">

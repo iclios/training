@@ -31,7 +31,6 @@
             <div class="wrap">
               <div class="fiche-meta">
                 <span class="tag">Jour 4 · Séquence 2</span>
-                <span class="tag tag-accent">60 min</span>
               </div>
               <p class="day-kicker">Du consentement à la revue des comptes</p>
               <h1>Flux AIS &amp; consentement</h1>
@@ -456,6 +455,122 @@ Authorization: Bearer eyJhbGciOi...</code></pre>
                   <strong>jamais</strong> d’initier un paiement — la séparation est
                   au cœur de la sécurité du modèle.
                 </p>
+              </div>
+            </section>
+
+
+            <!-- TROIS PROBLEMES TECHNIQUES -->
+            <section class="section">
+              <p class="section-label">Réalité terrain</p>
+              <h2 id="problemes">Les trois problèmes que l’on découvre en production</h2>
+              <p class="intro">
+                Sur le papier, le flux AIS tient en cinq étapes. En production,
+                un agrégateur affronte trois difficultés qui ne figurent dans
+                aucun schéma&nbsp;: garder la donnée <strong>fraîche</strong>,
+                la rendre <strong>comparable</strong>, et survivre à des API
+                bancaires qui ne répondent pas toujours.
+              </p>
+
+              <div class="callout warn">
+                <h3>Problème 1 — Synchronisation&nbsp;: quelle est la fraîcheur de ce que j’affiche&nbsp;?</h3>
+                <p>
+                  Une API AIS ne «&nbsp;pousse&nbsp;» pas les transactions. Le
+                  TPP doit décider quand relire&nbsp;: trop souvent, la banque
+                  limite&nbsp;; trop rarement, l’utilisateur voit un solde faux.
+                  Il y a deux stratégies et un piège.
+                </p>
+                <ul>
+                  <li>
+                    <strong>Polling</strong> — le TPP interroge à intervalles
+                    fixes. Simple, mais coûteux et soumis aux quotas de la
+                    banque (souvent 4 lectures par jour et par compte).
+                  </li>
+                  <li>
+                    <strong>Webhooks</strong> (quand la banque en propose) — la
+                    banque notifie la disponibilité de nouvelles données. Plus
+                    réactif, mais peu généralisé et jamais garanti.
+                  </li>
+                  <li>
+                    <strong>Le piège</strong> — afficher un solde sans dire sa
+                    date. Un utilisateur qui voit «&nbsp;340,20&nbsp;€&nbsp;» à
+                    midi alors que la dernière lecture date de la veille prend
+                    une décision sur une donnée périmée.
+                  </li>
+                </ul>
+                <p>
+                  La pratique&nbsp;: horodater chaque lecture, exposer la date
+                  à l’utilisateur, et définir une règle de fraîcheur par type de
+                  donnée — un solde tolère quelques heures, une opération
+                  récente non.
+                </p>
+              </div>
+
+              <div class="callout warn">
+                <h3>Problème 2 — Qualité des données&nbsp;: deux banques, deux vérités</h3>
+                <p>
+                  Rien ne garantit l’homogénéité entre établissements. Le même
+                  virement peut arriver avec un libellé différent, une date
+                  différente (opération vs valeur) et un format de montant
+                  différent.
+                </p>
+                <ul>
+                  <li>
+                    <strong>Libellés SEPA sales</strong> — un libellé ressemble
+                    rarement à «&nbsp;Loyer&nbsp;». Il ressemble à
+                    <code>VIR SEPA 4471 LEROY IMMO REF</code>. Catégoriser
+                    suppose un moteur de règles.
+                  </li>
+                  <li>
+                    <strong>Dates multiples</strong> — date d’opération, date de
+                    valeur, date de comptabilisation&nbsp;: un même mouvement
+                    peut apparaître trois fois si l’on ne choisit pas une
+                    référence unique.
+                  </li>
+                  <li>
+                    <strong>Doublons et chevauchements</strong> — entre deux
+                    lectures, une opération peut être renvoyée deux fois&nbsp;:
+                    sans identifiant stable côté banque, la déduplication
+                    devient heuristique.
+                  </li>
+                  <li>
+                    <strong>Devises et arrondis</strong> — un compte en devise
+                    étrangère impose un taux et une date de conversion&nbsp;;
+                    agréger naïvement des montants de devises différentes est
+                    faux.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="callout warn">
+                <h3>Problème 3 — Disponibilité de l’API&nbsp;: la banque n’est pas à vous</h3>
+                <p>
+                  Les interface ASPSP tombent, rament, ou renvoient des erreurs
+                  transitoires. Le TPP ne contrôle ni leur disponibilité ni leur
+                  latence — il ne peut que s’y adapter proprement.
+                </p>
+                <ul>
+                  <li>
+                    <strong>Codes de limitation</strong> — <code>429</code> et
+                    <code>Retry-After</code>&nbsp;: rejouer immédiatement aggrave
+                    la situation. Il faut un backoff exponentiel avec jitter.
+                  </li>
+                  <li>
+                    <strong>Disjoncteur (circuit breaker)</strong> — après N
+                    échecs consécutifs sur une banque, on cesse de l’appeler
+                    quelques minutes plutôt que d’empiler les timeouts.
+                  </li>
+                  <li>
+                    <strong>Dégradation</strong> — afficher les dernières données
+                    connues avec leur date, plutôt qu’une erreur. Un service qui
+                    dit «&nbsp;voici l’état d’il y a 3 h&nbsp;» reste utile.
+                  </li>
+                  <li>
+                    <strong>Cohérence multi-banques</strong> — si la Banque A
+                    répond et la Banque B non, faut-il afficher une vue
+                    partielle&nbsp;? Oui, à condition de le dire
+                    <em>banque par banque</em>.
+                  </li>
+                </ul>
               </div>
             </section>
 

@@ -6,6 +6,7 @@
     <title>Support étudiant — Jour 4 | DSP2 &amp; Open Banking</title>
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/support-etudiant.css" />
+    <link rel="stylesheet" href="../css/support-encarts.css" />
   </head>
   <body class="support-doc" data-bloc="support-etudiant">
     <header class="site-bar no-print">
@@ -18,7 +19,7 @@
           <a href="../j1/intro.html">J1</a>
           <a href="../j2/intro.html">J2</a>
           <a href="../j3/intro.html">J3</a>
-          <a class="is-active" href="../j4/intro.html">J4</a>
+          <a class="is-active" href="intro.html">J4</a>
           <a href="../j5/intro.html">J5</a>
         </nav>
       </div>
@@ -37,11 +38,11 @@
       <aside class="bloc-sidebar no-print" aria-label="Sommaire du support">
         <p class="bloc-sidebar-title">Jour 4 · Support</p>
         <nav class="bloc-sidebar-nav">
-          <a class="bloc-sidebar-item" href="#intro"><span class="bloc-sidebar-num">01</span><span class="bloc-sidebar-label">Introduction &amp; objectifs</span></a>
-          <a class="bloc-sidebar-item" href="#s1-principe"><span class="bloc-sidebar-num">02</span><span class="bloc-sidebar-label">Principe de l’agrégation</span></a>
-          <a class="bloc-sidebar-item" href="#s2-flux"><span class="bloc-sidebar-num">03</span><span class="bloc-sidebar-label">Flux AIS &amp; consentement</span></a>
-          <a class="bloc-sidebar-item" href="#s3-architecture"><span class="bloc-sidebar-num">04</span><span class="bloc-sidebar-label">Architecture SI AISP</span></a>
-          <a class="bloc-sidebar-item" href="#s4-atelier"><span class="bloc-sidebar-num">05</span><span class="bloc-sidebar-label">Atelier data banking</span></a>
+          <a class="bloc-sidebar-item" href="#intro"><span class="bloc-sidebar-num">01</span><span class="bloc-sidebar-label">Introduction & objectifs</span></a>
+          <a class="bloc-sidebar-item" href="#s1-principe"><span class="bloc-sidebar-num">02</span><span class="bloc-sidebar-label">S1 · Principe de l’agrégation</span></a>
+          <a class="bloc-sidebar-item" href="#s2-flux"><span class="bloc-sidebar-num">03</span><span class="bloc-sidebar-label">S2 · Flux AIS & consentement</span></a>
+          <a class="bloc-sidebar-item" href="#s3-architecture"><span class="bloc-sidebar-num">04</span><span class="bloc-sidebar-label">S3 · Architecture SI AISP</span></a>
+          <a class="bloc-sidebar-item" href="#s4-securite"><span class="bloc-sidebar-num">05</span><span class="bloc-sidebar-label">S4 · Sécurité & gouvernance</span></a>
         </nav>
       </aside>
 
@@ -55,7 +56,7 @@
                 et Open Banking
               </h1>
               <p class="support-title-day">
-                Jour 4 : L’agrégation de comptes
+                Jour 4&nbsp;: L’agrégation de comptes
               </p>
               <div class="support-title-author">
                 <p class="support-title-name">Chrisvene MPANDZOU</p>
@@ -69,68 +70,2233 @@
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
       <div class="fiche-meta"><span class="tag">Ouverture</span></div>
-      <p class="day-kicker">01 · Introduction &amp; objectifs</p>
-      <h1>Introduction &amp; objectifs</h1>
+      <p class="day-kicker">01 · Introduction & objectifs</p>
+      <h1>Introduction & objectifs</h1>
     </div>
   </section>
   <div class="wrap support-bloc-body">
-    <!-- Contenu à rédiger depuis j4/intro.html -->
+
+          <section class="day-hero" style="padding-bottom: 1.5rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 4 · Ouverture</span>
+              </div>
+              <p class="day-kicker">Accueil</p>
+              <h1>Intro &amp; objectifs</h1>
+              <p class="lead">
+                Le Jour 3 a fait <em>écrire</em> de l’argent (le PISP). Le Jour 4
+                fait <em>lire</em> l’argent&nbsp;: le tiers agrège les comptes du
+                client, avec son consentement, pour en tirer un service — du
+                récapitulatif de budget au scoring de crédit.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam a deux comptes&nbsp;: Banque Est et une néobanque. Il
+                installe <strong>MonBuddy</strong>, l’application de gestion de
+                budget. Cette fois, plus d’identifiants à saisir&nbsp;: il
+                choisit ses banques, donne un consentement daté, et voit tous ses
+                soldes au même endroit. Ce que la DSP2 a rendu possible, contre
+                le <em>screen scraping</em> du Jour 1.
+              </p>
+            </div>
+
+            <!-- RAPPEL -->
+            <section class="section" style="border-top: none; padding-top: 0">
+              <p class="section-label">Rappel</p>
+              <h2>Là où l’on en est</h2>
+              <p>
+                Au Jour 1, on a posé les trois rôles de tiers&nbsp;: <strong>AISP</strong>
+                (lecture), <strong>PISP</strong> (initiation), <strong>CBPII</strong>
+                (confirmation de fonds). Au Jour 2, on a vu l’authentification
+                (mTLS, OAuth2) et le consentement. Au Jour 3, on a fait un
+                paiement (PISP). On attaque maintenant le rôle <em>le plus utilisé</em>
+                et le plus sous-estimé&nbsp;: la lecture de comptes.
+              </p>
+
+              <div class="callout info">
+                <h3>Pourquoi l’AIS est «&nbsp;la porte d’entrée&nbsp;»</h3>
+                <p>
+                  L’AIS ne déplace pas d’argent&nbsp;: une erreur lit simplement un
+                  mauvais solde. Mais c’est <strong>le service le plus répandu</strong>
+                  (budget, agrégation, scoring, onboarding, KYC) et le plus exposé
+                  à la donnée personnelle. C’est donc le terrain idéal pour parler de
+                  consentement, de minimisation et de gouvernance de la donnée&nbsp;—
+                  le <em>data banking</em>.
+                </p>
+              </div>
+            </section>
+
+            <!-- APERÇU -->
+            <section class="section">
+              <p class="section-label">Aperçu</p>
+              <h2>Le parcours du Jour 4, en une image</h2>
+              <p class="intro">
+                On part du principe de l’agrégation (lire plusieurs banques),
+                on suit le consentement AIS et son cycle de vie, on descend dans
+                l’architecture d’un agrégateur, puis on conçoit un service de
+                data banking en atelier.
+              </p>
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>S1 — Principe de l’agrégation</h3>
+                  <p>
+                    Qu’est-ce qu’un AISP&nbsp;? Lire un compte, agréger plusieurs
+                    banques, le tiers détenteur de données. AIS vs scraping.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>S2 — Flux AIS &amp; consentement</h3>
+                  <p>
+                    Création du consentement, SCA initiale, lecture des soldes et
+                    transactions, raffraîchissements, durée (90&nbsp;jours),
+                    révocation.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>S3 — Architecture SI AISP</h3>
+                  <p>
+                    Collecteurs multi-banques, normalisation, stockage, API
+                    exposée. Contraintes&nbsp;: volumétrie, fraîcheur, sécurité de
+                    la donnée.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>S4 — Atelier data banking</h3>
+                  <p>
+                    Concevoir un service fondé sur la donnée de compte&nbsp;:
+                    parcours, consentement, données lues, valeur produite.
+                  </p>
+                </div>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Fil du Jour 4</h3>
+                  <p>Principe → Consentement → Architecture → Data banking</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Chaîne pédagogique du jour 4">
+                  <defs>
+                    <marker id="ah-j4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="50" width="220" height="110" rx="10" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="130" y="80" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700" letter-spacing="0.08em">4.1</text>
+                    <text x="130" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Agrégation</text>
+                    <text x="130" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">lire plusieurs banques</text>
+                  </g>
+                  <line x1="248" y1="105" x2="278" y2="105" stroke="#1e5f8a" stroke-width="2.5" marker-end="url(#ah-j4)"/>
+                  <g>
+                    <rect x="286" y="50" width="220" height="110" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="396" y="80" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.08em">4.2</text>
+                    <text x="396" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Consentement</text>
+                    <text x="396" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">SCA · 90 jours · révocable</text>
+                  </g>
+                  <line x1="514" y1="105" x2="544" y2="105" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-j4)"/>
+                  <g>
+                    <rect x="552" y="50" width="220" height="110" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="662" y="80" text-anchor="middle" fill="#4b3480" font-size="11" font-weight="700" letter-spacing="0.08em">4.3</text>
+                    <text x="662" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Architecture AISP</text>
+                    <text x="662" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">collecte · normalisation</text>
+                  </g>
+                  <line x1="780" y1="105" x2="810" y2="105" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-j4)"/>
+                  <g>
+                    <rect x="818" y="50" width="166" height="110" rx="10" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="901" y="80" text-anchor="middle" fill="#3d5a80" font-size="11" font-weight="700" letter-spacing="0.08em">4.4</text>
+                    <text x="901" y="110" text-anchor="middle" fill="#1a2b3c" font-family="Syne, sans-serif" font-size="15" font-weight="700">Data banking</text>
+                    <text x="901" y="134" text-anchor="middle" fill="#5a6b7c" font-size="12">service &amp; valeur</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <!-- OBJECTIFS -->
+            <section class="section">
+              <p class="section-label">Objectifs pédagogiques</p>
+              <h2>À l’issue du Jour 4, l’étudiant sait…</h2>
+              <ul class="topic-list">
+                <li>
+                  <span>
+                    <strong>Définir</strong> un service d’information sur les
+                    comptes (AIS)&nbsp;: la lecture de comptes du client par un
+                    tiers agréé, avec son consentement, sans les identifiants.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Expliquer</strong> l’agrégation multi-banques&nbsp;:
+                    pourquoi un tiers collecte plusieurs ASPSP et ce qu’il doit
+                    normaliser.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Décrire</strong> le cycle de vie d’un consentement
+                    AIS&nbsp;: création, SCA, lecture, fréquence, durée (90 jours),
+                    révocation.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Cartographier</strong> l’architecture SI d’un
+                    AISP&nbsp;: collecteurs, normalisation, stockage, API exposée,
+                    et leurs contraintes (volumétrie, fraîcheur, sécurité).
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Distinguer</strong> donnée brute et donnée enrichie&nbsp;:
+                    catégorisation, scoring, restituer de la valeur au client.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Concevoir</strong> un service de data banking dans le
+                    respect du consentement, de la minimisation et du RGPD.
+                  </span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- CURSUS -->
+            <section class="section">
+              <p class="section-label">Cursus</p>
+              <h2>Trajectoire des 5 jours</h2>
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Programme module</h3>
+                  <p>Fondements → API &amp; sécurité → PISP → AISP → synthèse</p>
+                </div>
+                <svg viewBox="0 0 1000 200" role="img" aria-label="Programme module sur 5 jours">
+                  <defs>
+                    <marker id="ah-prog4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="18" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="104" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="104" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J1</text>
+                    <text x="104" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Fondements</text>
+                    <text x="104" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">DSP2 · acteurs</text>
+                  </g>
+                  <line x1="198" y1="96" x2="218" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog4)"/>
+                  <g>
+                    <rect x="226" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="312" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="312" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J2</text>
+                    <text x="312" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">API &amp; sécurité</text>
+                    <text x="312" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">OAuth2 · SCA</text>
+                  </g>
+                  <line x1="406" y1="96" x2="426" y2="96" stroke="#c5d3df" stroke-width="2.5" marker-end="url(#ah-prog4)"/>
+                  <g>
+                    <rect x="434" y="36" width="172" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="520" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">FAIT</text>
+                    <text x="520" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="22" font-weight="700">J3</text>
+                    <text x="520" y="128" text-anchor="middle" fill="#5a6b7c" font-size="13" font-weight="700">Paiement PISP</text>
+                    <text x="520" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">initiation · flux</text>
+                  </g>
+                  <line x1="614" y1="96" x2="634" y2="96" stroke="#0d9f8a" stroke-width="2.5" marker-end="url(#ah-prog4)"/>
+                  <g>
+                    <rect x="642" y="36" width="172" height="120" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="728" y="68" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700" letter-spacing="0.06em">AUJOURD’HUI</text>
+                    <text x="728" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="22" font-weight="700">J4</text>
+                    <text x="728" y="128" text-anchor="middle" fill="#1a2b3c" font-size="13" font-weight="700">Agrégation AISP</text>
+                    <text x="728" y="148" text-anchor="middle" fill="#5a6b7c" font-size="11">data banking</text>
+                  </g>
+                  <line x1="822" y1="96" x2="842" y2="96" stroke="#c5d3df" stroke-width="2" marker-end="url(#ah-prog4)"/>
+                  <g>
+                    <rect x="850" y="36" width="132" height="120" rx="10" fill="#f7f9fb" stroke="#c5d3df" stroke-width="2" stroke-dasharray="6 4"/>
+                    <text x="916" y="72" text-anchor="middle" fill="#8a9aaa" font-size="11" font-weight="700" letter-spacing="0.06em">ENSUITE</text>
+                    <text x="916" y="100" text-anchor="middle" fill="#5a6b7c" font-family="Syne, sans-serif" font-size="20" font-weight="700">J5</text>
+                    <text x="916" y="128" text-anchor="middle" fill="#5a6b7c" font-size="12" font-weight="700">Open Finance</text>
+                    <text x="916" y="148" text-anchor="middle" fill="#8a9aaa" font-size="11">synthèse</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            
+          </div>
   </div>
 </article>
-
-
 <article class="support-bloc" id="s1-principe" data-num="02">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
       <div class="fiche-meta"><span class="tag">Parcours</span></div>
-      <p class="day-kicker">02 · Principe de l’agrégation</p>
-      <h1>Principe de l’agrégation</h1>
+      <p class="day-kicker">02 · S1 · Principe de l’agrégation</p>
+      <h1>S1 · Principe de l’agrégation</h1>
     </div>
   </section>
   <div class="wrap support-bloc-body">
-    <!-- Contenu à rédiger depuis j4/s1-principe.html -->
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 4 · Séquence 1</span>
+              </div>
+              <p class="day-kicker">Qu’est-ce qu’un tiers agrégateur&nbsp;?</p>
+              <h1>Principe de l’agrégation</h1>
+              <p class="lead">
+                Lire les comptes du client, chez plusieurs banques, avec son
+                consentement. On définit le rôle AISP, on montre ce que
+                «&nbsp;agréger&nbsp;» ajoute à une simple lecture, et en quoi cela
+                change tout par rapport au <em>screen scraping</em>.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam ouvre <strong>MonBuddy</strong>. L’application lui demande
+                <em>quelles banques</em> elle veut connecter. Elle coche Banque Est
+                et sa néobanque. Elle s’authentifie chez chacune, valide un
+                consentement, et revient sur MonBuddy&nbsp;: ses deux soldes
+                s’affichent. <strong>Aucun identifiant n’a été transmis à
+                MonBuddy.</strong>
+              </p>
+            </div>
+
+            <!-- DÉFINITION -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Définition</p>
+              <h2>L’AIS, mot à mot</h2>
+
+              <div class="definition-full">
+                <strong>Service d’information sur les comptes</strong> (en anglais
+                <em>Account Information Service</em>, AIS)&nbsp;: service en ligne
+                consistant à fournir des <strong>informations consolidées</strong>
+                sur un ou plusieurs comptes de paiement du client, détenus chez
+                différents établissements, <strong>avec le consentement explicite
+                du client</strong> et via les <strong>interfaces dédiées</strong>
+                des banques.
+              </div>
+
+              <p>
+                Trois mots portent le sens&nbsp;:
+              </p>
+
+              <div class="split-3">
+                <div class="panel">
+                  <h3>«&nbsp;Informations&nbsp;»</h3>
+                  <p>
+                    L’AIS <strong>lit</strong> seulement&nbsp;: soldes, opérations,
+                    libellés. Il ne déclenche <strong>aucun paiement</strong>. C’est
+                    la différence de nature avec le PISP du Jour 3.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>«&nbsp;Consolidées&nbsp;»</h3>
+                  <p>
+                    La valeur vient de l’<strong>agrégation</strong>&nbsp;: réunir
+                    plusieurs banques en une vue. Un seul compte, c’est une appli
+                    bancaire&nbsp;; plusieurs, c’est un service.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>«&nbsp;Consentement&nbsp;»</h3>
+                  <p>
+                    Le client <strong>autorise explicitement</strong>, pour une
+                    durée bornée, une liste de comptes et de données. Révocable à
+                    tout moment.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>AIS ≠ consultation d’un compte isolé</h3>
+                <p>
+                  La lecture d’un compte par l’appli de <em>sa propre</em> banque
+                  n’est pas un service AIS&nbsp;: c’est l’ASPSP lui-même. L’AIS
+                  commence quand un <strong>tiers</strong> lit les comptes du
+                  client, chez <strong>une ou plusieurs banques</strong>, sur
+                  autorisation. C’est cette délégation encadrée que la DSP2 a
+                  créée.
+                </p>
+              </div>
+            </section>
+
+            <!-- AGRÉGATION MULTI-BANQUES -->
+            <section class="section">
+              <p class="section-label">Mécanique</p>
+              <h2 id="agregation">Agréger&nbsp;: lire plusieurs banques en une vue</h2>
+              <p class="intro">
+                Agréger, c’est interroger plusieurs banques et présenter un
+                résultat unique. Le tiers devient un <strong>point de collecte</strong>&nbsp;:
+                une seule application, plusieurs sources.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Agrégation multi-banques</h3>
+                  <p>Un AISP, plusieurs ASPSP, une vue consolidée</p>
+                </div>
+                <svg viewBox="0 0 1000 380" role="img" aria-label="Schéma d’agrégation multi-banques">
+                  <defs>
+                    <marker id="ah-agr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                    <marker id="ah-agrb" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#6b4fa0" />
+                    </marker>
+                  </defs>
+                  <!-- Client -->
+                  <g>
+                    <rect x="40" y="150" width="150" height="80" rx="10" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
+                    <text x="115" y="186" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="14" font-weight="700">Lyam</text>
+                    <text x="115" y="206" text-anchor="middle" fill="#5a6b7c" font-size="11">le client</text>
+                  </g>
+                  <line x1="194" y1="190" x2="290" y2="190" stroke="#6b4fa0" stroke-width="2.5" marker-end="url(#ah-agrb)"/>
+                  <text x="242" y="180" text-anchor="middle" fill="#6b4fa0" font-size="9">consentement</text>
+                  <!-- AISP -->
+                  <g>
+                    <rect x="296" y="120" width="180" height="140" rx="10" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="386" y="158" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="15" font-weight="700">AISP</text>
+                    <text x="386" y="180" text-anchor="middle" fill="#5a6b7c" font-size="11">MonBuddy</text>
+                    <text x="386" y="204" text-anchor="middle" fill="#5a6b7c" font-size="10">collecte</text>
+                    <text x="386" y="220" text-anchor="middle" fill="#5a6b7c" font-size="10">normalise</text>
+                    <text x="386" y="236" text-anchor="middle" fill="#5a6b7c" font-size="10">consolide</text>
+                  </g>
+                  <!-- 3 banks -->
+                  <g>
+                    <rect x="660" y="40" width="300" height="70" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="810" y="72" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Banque Est (ASPSP)</text>
+                    <text x="810" y="92" text-anchor="middle" fill="#5a6b7c" font-size="10">compte courant · API AIS</text>
+                  </g>
+                  <g>
+                    <rect x="660" y="140" width="300" height="70" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="810" y="172" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Néobanque (ASPSP)</text>
+                    <text x="810" y="192" text-anchor="middle" fill="#5a6b7c" font-size="10">compte · API AIS</text>
+                  </g>
+                  <g>
+                    <rect x="660" y="240" width="300" height="70" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="810" y="272" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="13" font-weight="700">Banque Sud (ASPSP)</text>
+                    <text x="810" y="292" text-anchor="middle" fill="#5a6b7c" font-size="10">compte épargne · API AIS</text>
+                  </g>
+                  <line x1="480" y1="150" x2="656" y2="85" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-agr)"/>
+                  <line x1="480" y1="190" x2="656" y2="175" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-agr)"/>
+                  <line x1="480" y1="230" x2="656" y2="265" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-agr)"/>
+                  <text x="330" y="330" text-anchor="middle" fill="#5a6b7c" font-size="11">Le client consent une fois&nbsp;; l’AISP lit plusieurs banques via leurs API.</text>
+                </svg>
+              </div>
+
+              <div class="key-idea">
+                <p class="label">Idée directrice</p>
+                <p>
+                  L’AISP ne détient pas d’argent et ne modifie rien&nbsp;: il
+                  <em>collecte</em> de la donnée, la <em>normalise</em> et la
+                  <em>consolide</em>. Sa valeur, c’est la vue unique — et la
+                  confiance du client qui a donné son consentement.
+                </p>
+              </div>
+
+              <div class="callout warn">
+                <h3>Ne pas confondre AISP et agrégateur «&nbsp;historique&nbsp;»</h3>
+                <p>
+                  Avant la DSP2, des agrégateurs lisaient déjà plusieurs banques
+                  — mais par <em>screen scraping</em>, avec les identifiants du
+                  client. L’AISP DSP2 fait la même chose <strong>en mieux</strong>&nbsp;:
+                  API officielle, consentement, SCA, révocation, traçabilité. La
+                  finalité est proche&nbsp;; le <em>moyen</em> est radicalement plus
+                  sûr.
+                </p>
+              </div>
+            </section>
+
+            <!-- AIS VS SCRAPING -->
+            <section class="section">
+              <p class="section-label">Positionnement</p>
+              <h2 id="alternative">AIS vs screen scraping</h2>
+              <p class="intro">
+                La comparaison avec le scraping du Jour 1 est le meilleur moyen de
+                mesurer l’apport de la DSP2 côté lecture.
+              </p>
+
+              <figure class="fig-illus">
+                <svg viewBox="0 0 1000 300" role="img" aria-label="Comparaison AIS officiel et screen scraping">
+                  <defs>
+                    <marker id="ah-vs-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#c45c26" />
+                    </marker>
+                    <marker id="ah-vs-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <!-- AVANT -->
+                  <text x="40" y="30" fill="#c45c26" font-family="Syne, sans-serif" font-size="13" font-weight="700">SANS DSP2 — scraping</text>
+                  <rect x="20" y="45" width="455" height="225" rx="12" fill="#fdf6f2" stroke="#c45c26" stroke-width="1.5"/>
+                  <g>
+                    <rect x="45" y="95" width="105" height="55" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                    <text x="97" y="122" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Agrégateur</text>
+                    <text x="97" y="138" text-anchor="middle" fill="#5a6b7c" font-size="9">identifiants client</text>
+                  </g>
+                  <g>
+                    <rect x="320" y="95" width="120" height="55" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                    <text x="380" y="122" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Banque</text>
+                    <text x="380" y="138" text-anchor="middle" fill="#5a6b7c" font-size="9">site web</text>
+                  </g>
+                  <line x1="152" y1="122" x2="316" y2="122" stroke="#c45c26" stroke-width="2.5" class="stream" marker-end="url(#ah-vs-r)"/>
+                  <text x="234" y="112" text-anchor="middle" fill="#c45c26" font-size="9" font-weight="700">se fait passer pour Lyam</text>
+                  <rect x="45" y="180" width="200" height="30" rx="6" fill="#fff" stroke="#c45c26" stroke-width="1.5"/>
+                  <text x="145" y="199" text-anchor="middle" fill="#c45c26" font-size="9">identifiants stockés · pas de révocation</text>
+                  <text x="245" y="245" fill="#5a6b7c" font-size="10">Fragile, opaque, non conforme</text>
+
+                  <!-- APRES -->
+                  <text x="555" y="30" fill="#087a6a" font-family="Syne, sans-serif" font-size="13" font-weight="700">AVEC DSP2 — AIS</text>
+                  <rect x="525" y="45" width="455" height="225" rx="12" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <g>
+                    <rect x="550" y="95" width="105" height="55" rx="8" fill="#fff" stroke="#1e5f8a" stroke-width="1.5"/>
+                    <text x="602" y="122" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">AISP</text>
+                    <text x="602" y="138" text-anchor="middle" fill="#5a6b7c" font-size="9">agréé</text>
+                  </g>
+                  <g>
+                    <rect x="825" y="95" width="120" height="55" rx="8" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                    <text x="885" y="122" text-anchor="middle" fill="#087a6a" font-size="11" font-weight="700">Banque</text>
+                    <text x="885" y="138" text-anchor="middle" fill="#5a6b7c" font-size="9">API AIS dédiée</text>
+                  </g>
+                  <line x1="657" y1="122" x2="821" y2="122" stroke="#0d9f8a" stroke-width="2.5" class="stream" marker-end="url(#ah-vs-g)"/>
+                  <text x="739" y="112" text-anchor="middle" fill="#087a6a" font-size="9" font-weight="700">jeton + consentement</text>
+                  <rect x="550" y="180" width="240" height="30" rx="6" fill="#fff" stroke="#0d9f8a" stroke-width="1.5"/>
+                  <text x="670" y="199" text-anchor="middle" fill="#087a6a" font-size="9">consentement daté · révocable · SCA</text>
+                  <text x="750" y="245" fill="#087a6a" font-size="10">Sûr, tracé, conforme</text>
+                </svg>
+                <figcaption>Figure — le même besoin (voir plusieurs comptes), deux moyens&nbsp;: l’usurpation (avant) ou l’API consentie (après).</figcaption>
+              </figure>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">Screen scraping</th>
+                      <th scope="col">AIS (DSP2)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Accès</th><td>Interface web détournée</td><td>API dédiée officielle</td></tr>
+                    <tr><th scope="row">Identifiants</th><td>Stockés par le tiers</td><td>Jamais transmis au tiers</td></tr>
+                    <tr><th scope="row">SCA</th><td>Contournée</td><td>Obligatoire au consentement</td></tr>
+                    <tr><th scope="row">Révocation</th><td>Changer ses codes</td><td>Un clic, côté banque ou tiers</td></tr>
+                    <tr><th scope="row">Traçabilité</th><td>Nulle</td><td>Journalisée, auditables</td></tr>
+                    <tr class="is-exergue"><th scope="row">Conformité</th><td>Interdit depuis 2019</td><td>Cadre DSP2 + RGPD</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- POURQUOI CA EXISTE -->
+            <section class="section">
+              <p class="section-label">Rationnel</p>
+              <h2>Pourquoi l’AIS existe&nbsp;?</h2>
+              <p>
+                La DSP2 poursuit trois objectifs (Jour 1&nbsp;: concurrence,
+                innovation, protection). L’AIS les incarne côté <em>donnée</em>&nbsp;:
+              </p>
+
+              <div class="objectif-list">
+                <div class="objectif">
+                  <span class="obj-num">01</span>
+                  <h3>Concurrence</h3>
+                  <p class="obj-lea">
+                    «&nbsp;Pourquoi une seule appli pour voir mes comptes, celle
+                    de ma banque&nbsp;?&nbsp;»
+                  </p>
+                  <p>
+                    L’AIS permet à des tiers de proposer de la gestion de compte
+                    consolidée, en concurrence avec l’appli bancaire.
+                  </p>
+                </div>
+                <div class="objectif">
+                  <span class="obj-num">02</span>
+                  <h3>Innovation</h3>
+                  <p class="obj-lea">
+                    «&nbsp;Je veux catégoriser mes dépenses, anticiper mon découvert,
+                    comparer mes offres.&nbsp;»
+                  </p>
+                  <p>
+                    Sur la donnée de compte se construisent budget, scoring de
+                    crédit, onboarding, comparateurs — le <em>data banking</em>.
+                  </p>
+                </div>
+                <div class="objectif">
+                  <span class="obj-num">03</span>
+                  <h3>Protection</h3>
+                  <p class="obj-lea">
+                    «&nbsp;Le tiers ne verra jamais mes codes, et je peux couper
+                    l’accès quand je veux.&nbsp;»
+                  </p>
+                  <p>
+                    Consentement explicite, SCA, durée bornée, révocation&nbsp;:
+                    le client garde le contrôle de sa donnée.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Les limites réelles de l’AIS</h3>
+                <p>
+                  L’AIS dépend de la <strong>disponibilité des API</strong> de
+                  chaque banque&nbsp;: une lecture peut échouer. La
+                  <strong>fraîcheur</strong> des données n’est pas temps réel
+                  (rafraîchissements plafonnés). Et la <strong>qualité des
+                  libellés</strong> varie d’une banque à l’autre&nbsp;: normaliser
+                  est tout un métier. Un agrégateur doit composer avec ces trois
+                  limites.
+                </p>
+              </div>
+
+              <details open class="cours-note">
+                <summary>Cours — AIS, CBPII&nbsp;: ne pas confondre les deux «&nbsp;lectures&nbsp;»</summary>
+                <div class="cours-note-body">
+                  <div class="csm-table-wrap" style="margin:0.7rem 0 0">
+                    <table class="csm-table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Service</th>
+                          <th scope="col">Ce qu’il fait</th>
+                          <th scope="col">Donnée exposée</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th scope="row">AIS</th><td>Fournit des informations consolidées sur les comptes</td><td>Soldes, transactions, libellés</td></tr>
+                        <tr class="is-exergue"><th scope="row">CBPII</th><td>Confirme à un tiers si le compte dispose des fonds pour un paiement</td><td>Un simple <em>oui/non</em> sur la provision</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>
+                    Le CBPII ne lit pas l’historique&nbsp;: il répond à une
+                    question «&nbsp;y a-t-il assez d’argent&nbsp;?&nbsp;». L’AIS lit
+                    la donnée dans le détail. Les deux sont des services de
+                    <em>lecture</em>, mais ne livrent pas la même information&nbsp;—
+                    et n’ont pas le même périmètre de consentement.
+                  </p>
+                </div>
+              </details>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Lisons, concrètement</h2>
+                <p>
+                  On sait ce qu’est l’agrégation. La S2 suit le consentement dans
+                  le temps&nbsp;: sa création par SCA, les lectures autorisées,
+                  les rafraîchissements, la durée de 90 jours et la révocation.
+                </p>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2, annexe I, point 8 (service
+              d’information sur les comptes)&nbsp;; art. 4 §16-17&nbsp;; RTS EBA
+              2018/389 (SCA du AISP, accès dit «&nbsp;à quatre facteurs&nbsp;»,
+              exemptions de rafraîchissement)&nbsp;; Berlin Group NextGenPSD2 (AIS).
+            </div>
+
+            
+          </div>
   </div>
 </article>
-
-
 <article class="support-bloc" id="s2-flux" data-num="03">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
       <div class="fiche-meta"><span class="tag">Parcours</span></div>
-      <p class="day-kicker">03 · Flux AIS &amp; consentement</p>
-      <h1>Flux AIS &amp; consentement</h1>
+      <p class="day-kicker">03 · S2 · Flux AIS & consentement</p>
+      <h1>S2 · Flux AIS & consentement</h1>
     </div>
   </section>
   <div class="wrap support-bloc-body">
-    <!-- Contenu à rédiger depuis j4/s2-flux.html -->
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 4 · Séquence 2</span>
+              </div>
+              <p class="day-kicker">Du consentement à la revue des comptes</p>
+              <h1>Flux AIS &amp; consentement</h1>
+              <p class="lead">
+                Un consentement AIS a un cycle de vie&nbsp;: on le crée par SCA, on
+                lit les comptes qu’il couvre, on rafraîchit selon des règles, et on
+                peut le révoquer. On suit ce cycle du début à la fin.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam a connecté Banque Est et sa néobanque. Il a validé deux
+                authentifications fortes. Pendant 90 jours, MonBuddy pourra lire ses
+                soldes et opérations — puis il faudra reconfirmer. Et si Lyam
+                retire son consentement, l’accès s’arrête net.
+              </p>
+            </div>
+
+            <!-- VUE D'ENSEMBLE -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Vue d’ensemble</p>
+              <h2 id="cinq-etapes">Le cycle de vie en quatre temps</h2>
+              <p class="intro">
+                L’AIS a un rythme&nbsp;: une fois mis en place, il vit et meurt.
+                Quatre moments structurent ce cycle.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Étape</th>
+                      <th scope="col">Acteur principal</th>
+                      <th scope="col">Résultat</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">1</th><td>Création du consentement</td><td>AISP + client</td><td>Contrat de lecture&nbsp;: comptes, données, durée</td></tr>
+                    <tr><th scope="row">2</th><td>SCA &amp; autorisation</td><td>Banque (ASPSP)</td><td>Jeton d’accès accordé à l’AISP</td></tr>
+                    <tr><th scope="row">3</th><td>Lecture des comptes</td><td>AISP</td><td>Soldes et transactions récupérés</td></tr>
+                    <tr class="is-exergue"><th scope="row">4</th><td>Rafraîchissement &amp; révocation</td><td>AISP / client</td><td>Donnée à jour, ou accès coupé</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Cycle de vie du consentement AIS</h3>
+                  <p>Création → SCA → lecture → rafraîchissement → révocation</p>
+                </div>
+                <svg viewBox="0 0 1000 220" role="img" aria-label="Chronologie du consentement AIS">
+                  <defs>
+                    <marker id="ah-cv" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <line x1="60" y1="80" x2="940" y2="80" stroke="#c5d3df" stroke-width="3" marker-end="url(#ah-cv)"/>
+                  <g>
+                    <circle cx="150" cy="80" r="16" fill="#eef4fa" stroke="#1e5f8a" stroke-width="3"/>
+                    <text x="150" y="85" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="800">1</text>
+                    <text x="150" y="130" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Création</text>
+                    <text x="150" y="148" text-anchor="middle" fill="#5a6b7c" font-size="10">comptes + données</text>
+                    <text x="150" y="163" text-anchor="middle" fill="#5a6b7c" font-size="10">durée choisie</text>
+                  </g>
+                  <g>
+                    <circle cx="380" cy="80" r="16" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="380" y="85" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">2</text>
+                    <text x="380" y="130" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">SCA</text>
+                    <text x="380" y="148" text-anchor="middle" fill="#5a6b7c" font-size="10">authentification</text>
+                    <text x="380" y="163" text-anchor="middle" fill="#5a6b7c" font-size="10">forte chez la banque</text>
+                  </g>
+                  <g>
+                    <circle cx="610" cy="80" r="16" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="3"/>
+                    <text x="610" y="85" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="800">3</text>
+                    <text x="610" y="130" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Lecture</text>
+                    <text x="610" y="148" text-anchor="middle" fill="#5a6b7c" font-size="10">soldes, opérations</text>
+                    <text x="610" y="163" text-anchor="middle" fill="#5a6b7c" font-size="10">autorisés</text>
+                  </g>
+                  <g>
+                    <circle cx="840" cy="80" r="16" fill="#f1edfa" stroke="#6b4fa0" stroke-width="3"/>
+                    <text x="840" y="85" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="800">4</text>
+                    <text x="840" y="130" text-anchor="middle" fill="#1a2b3c" font-size="12" font-weight="700">Maintien / fin</text>
+                    <text x="840" y="148" text-anchor="middle" fill="#5a6b7c" font-size="10">refresh jusqu’à 90 j</text>
+                    <text x="840" y="163" text-anchor="middle" fill="#5a6b7c" font-size="10">puis révocation</text>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <!-- ÉTAPE 1 -->
+            <section class="section">
+              <p class="section-label">Étape 1</p>
+              <h2 id="creation">Le consentement&nbsp;: un contrat de lecture</h2>
+              <p>
+                Le consentement AIS n’est pas un «&nbsp;ok&nbsp;» vague&nbsp;: c’est
+                une autorisation <strong>délimitée</strong>. Il dit
+                <em>quels comptes</em>, <em>quelles données</em>, <em>pendant
+                combien de temps</em>, et <em>pour quelle finalité</em>.
+              </p>
+
+              <div class="callout info">
+                <h3>Ce que précise un consentement AIS</h3>
+                <ul>
+                  <li><strong>Comptes</strong> couverts (un, plusieurs ou «&nbsp;tous&nbsp;»)&nbsp;;</li>
+                  <li><strong>Données</strong>&nbsp;: soldes, opérations, bénéficiaires, etc.&nbsp;;</li>
+                  <li><strong>Fréquence</strong> d’accès (rafraîchissements autorisés)&nbsp;;</li>
+                  <li><strong>Durée</strong> (typiquement jusqu’à 90&nbsp;jours, reconductible par re-SCA)&nbsp;;</li>
+                  <li><strong>Finalité</strong> au sens RGPD, et révocabilité à tout moment.</li>
+                </ul>
+              </div>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Sélection des comptes</strong>
+                    <p>
+                      MonBuddy propose à Lyam de choisir ses banques. Chaque banque
+                      sera interrogée séparément.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>Consentement explicite</strong>
+                    <p>
+                      Lyam valide une liste de données et une durée. Ce n’est pas
+                      une case pré-cochée&nbsp;: c’est un acte positif, lisible.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Information RGPD</strong>
+                    <p>
+                      Finalité, minimisation, durée de conservation côté AISP. Le
+                      consentement DSP2 doit aussi tenir debout face au RGPD
+                      (Jour 1).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ÉTAPE 2 -->
+            <section class="section">
+              <p class="section-label">Étape 2</p>
+              <h2 id="sca">La SCA&nbsp;: l’autorisation chez la banque</h2>
+              <p>
+                Comme pour le PISP, c’est la <strong>banque (ASPSP)</strong> qui
+                authentifie fortement le client et délivre l’accès. L’AISP ne
+                collecte jamais les secrets&nbsp;: il obtient un <strong>jeton</strong>
+                lié au consentement.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Ce que fait la banque</h3>
+                  <ul>
+                    <li>Affiche le consentement (comptes, données, durée)&nbsp;;</li>
+                    <li>Réalise la SCA (code, push, biométrie)&nbsp;;</li>
+                    <li>Émet un jeton d’accès à durée courte, renouvelable&nbsp;;</li>
+                    <li>Conserve la preuve de la SCA pour l’audit.</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Ce que fait l’AISP</h3>
+                  <ul>
+                    <li>Redirige vers la banque (redirection SCA)&nbsp;;</li>
+                    <li>Stocke le jeton, jamais les identifiants&nbsp;;</li>
+                    <li>Utilise le jeton pour lire les comptes&nbsp;;</li>
+                    <li>Le renouvelle selon les règles de la banque.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le jeton n’est pas un chèque en blanc</h3>
+                <p>
+                  Le jeton AIS n’autorise que la <strong>lecture</strong> des
+                  comptes couverts par <em>ce</em> consentement. Il ne permet pas
+                  d’initier un paiement (ça, c’est le PISP), et il expire. Un jeton
+                  volé sans le consentement associé ne sert à rien&nbsp;— c’est
+                  tout l’intérêt du modèle.
+                </p>
+              </div>
+            </section>
+
+            <!-- ÉTAPE 3 -->
+            <section class="section">
+              <p class="section-label">Étape 3</p>
+              <h2 id="lecture">La lecture des comptes</h2>
+              <p>
+                L’AISP appelle les endpoints AIS&nbsp;: liste des comptes, soldes,
+                transactions. Chaque appel est authentifié par le jeton. On lit
+                <em>uniquement</em> ce que le consentement couvre.
+              </p>
+
+              <figure class="code-block">
+                <figcaption>Exemple — lecture des comptes et transactions (illustratif)</figcaption>
+                <pre><code>GET /v1/accounts
+Authorization: Bearer eyJhbGciOi...
+Consent-ID: 7d2a-consentement-8823
+
+GET /v1/accounts/{account-id}/balances
+Authorization: Bearer eyJhbGciOi...
+
+GET /v1/accounts/{account-id}/transactions?dateFrom=2025-01-01
+Authorization: Bearer eyJhbGciOi...</code></pre>
+              </figure>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Ressource AIS</th>
+                      <th scope="col">Contenu</th>
+                      <th scope="col">Usage type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Comptes</th><td>IBAN masqué, type, titulaire</td><td>Afficher les comptes agrégés</td></tr>
+                    <tr><th scope="row">Soldes</th><td>Solde comptable, disponible</td><td>Vue consolidée</td></tr>
+                    <tr><th scope="row">Transactions</th><td>Date, montant, libellé, contrepartie</td><td>Budget, catégorisation, scoring</td></tr>
+                    <tr class="is-exergue"><th scope="row">Bénéficiaires</th><td>Liste des bénéficiaires enregistrés</td><td>Pré-remplissage, anti-fraude</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>La qualité des libellés</h3>
+                <p>
+                  Un libellé «&nbsp;CB CARREFOUR 12/03&nbsp;» chez une banque peut être
+                  «&nbsp;PAIEMENT CARTE&nbsp;» chez une autre. <strong>Normaliser</strong>
+                  et <strong>catégoriser</strong> sont l’essentiel du travail d’un
+                  agrégateur&nbsp;: sans ça, la donnée consolidée est inutilisable.
+                </p>
+              </div>
+            </section>
+
+            <!-- ÉTAPE 4 -->
+            <section class="section">
+              <p class="section-label">Étape 4</p>
+              <h2 id="refresh">Rafraîchissement et révocation</h2>
+              <p>
+                Le consentement vit&nbsp;: il faut rafraîchir la donnée, sans
+                marteler l’API de la banque, et pouvoir l’arrêter.
+              </p>
+
+              <div class="verrou-grid">
+                <article class="verrou-card" style="border-top-color: var(--issuer)">
+                  <span class="verrou-num" style="background: var(--issuer)">01</span>
+                  <h3>Rafraîchissement</h3>
+                  <p class="verrou-lea">
+                    «&nbsp;Mon solde doit être à jour&nbsp;: je ne peux pas lire
+                    l’ancien.&nbsp;»
+                  </p>
+                  <p>
+                    Les RTS encadrent la fréquence&nbsp;: par exemple, pas de
+                    rafraîchissement automatique plus d’une fois par jour sans
+                    nouvelle SCA. L’AISP doit respecter ces règles.
+                  </p>
+                </article>
+                <article class="verrou-card" style="border-top-color: var(--tpp)">
+                  <span class="verrou-num" style="background: var(--tpp)">02</span>
+                  <h3>Durée</h3>
+                  <p class="verrou-lea">
+                    «&nbsp;Mon consentement va durer combien de temps&nbsp;?&nbsp;»
+                  </p>
+                  <p>
+                    Jusqu’à 90 jours&nbsp;: au-delà, l’AISP doit obtenir une
+                    nouvelle SCA (re-consentement). C’est un garde-fou qui oblige à
+                    revoir la délégation.
+                  </p>
+                </article>
+                <article class="verrou-card" style="border-top-color: var(--warn)">
+                  <span class="verrou-num" style="background: var(--warn)">03</span>
+                  <h3>Révocation</h3>
+                  <p class="verrou-lea">
+                    «&nbsp;Je ne veux plus que MonBuddy lise mes comptes, tout de
+                    suite.&nbsp;»
+                  </p>
+                  <p>
+                    Le client peut révoquer côté banque ou côté AISP. Le jeton
+                    devient invalide&nbsp;: plus aucune lecture n’est possible, sans
+                    changer ses identifiants.
+                  </p>
+                </article>
+              </div>
+
+              <div class="callout warn">
+                <h3>La révocation n’efface pas tout</h3>
+                <p>
+                  Couper l’accès stoppe les <em>lectures futures</em>. Mais les
+                  données déjà collectées&nbsp;? Le RGPD impose des durées de
+                  conservation et un droit à l’effacement. Révoquer côté DSP2 ne
+                  supprime pas magiquement l’historique stocké côté AISP&nbsp;: ce
+                  sont deux mécanismes distincts, à expliquer clairement au client.
+                </p>
+              </div>
+            </section>
+
+            <!-- DIAGRAMME -->
+            <section class="section">
+              <p class="section-label">Synthèse</p>
+              <h2 id="sequence">Le flux complet en un diagramme</h2>
+              <p class="intro">
+                Création, SCA, lecture, rafraîchissement et révocation&nbsp;:
+                les acteurs et les messages qui font vivre un consentement AIS.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Diagramme de séquence — consentement AIS</h3>
+                  <p>Client · AISP · Banque (ASPSP)</p>
+                </div>
+                <svg viewBox="0 0 1000 520" role="img" aria-label="Diagramme de séquence du consentement AIS">
+                  <defs>
+                    <marker id="ah-seq4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                    <marker id="ah-seq4g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+                  <g stroke="#c5d3df" stroke-width="1.5" stroke-dasharray="4 4">
+                    <line x1="180" y1="70" x2="180" y2="500"/>
+                    <line x1="500" y1="70" x2="500" y2="500"/>
+                    <line x1="820" y1="70" x2="820" y2="500"/>
+                  </g>
+                  <g>
+                    <rect x="100" y="40" width="160" height="34" rx="6" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="180" y="62" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">Client (Lyam)</text>
+                    <rect x="420" y="40" width="160" height="34" rx="6" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="500" y="62" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">AISP (MonBuddy)</text>
+                    <rect x="740" y="40" width="160" height="34" rx="6" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="820" y="62" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">Banque (ASPSP)</text>
+                  </g>
+                  <line x1="184" y1="100" x2="496" y2="100" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-seq4)"/>
+                  <text x="340" y="94" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">1. choix comptes + consentement</text>
+                  <line x1="500" y1="135" x2="816" y2="135" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-seq4)"/>
+                  <text x="658" y="129" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">2. redirection vers la banque (SCA)</text>
+                  <line x1="184" y1="170" x2="816" y2="170" stroke="#5a6b7c" stroke-width="1.5" stroke-dasharray="3 3"/>
+                  <text x="500" y="164" text-anchor="middle" fill="#5a6b7c" font-size="9">3. Lyam s’authentifie fortement chez la banque</text>
+                  <line x1="820" y1="205" x2="504" y2="205" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-seq4g)"/>
+                  <text x="662" y="199" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">4. jeton d’accès + consentement validé</text>
+                  <line x1="500" y1="245" x2="816" y2="245" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-seq4)"/>
+                  <text x="658" y="239" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">5. GET /accounts · /balances · /transactions</text>
+                  <line x1="820" y1="280" x2="504" y2="280" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-seq4g)"/>
+                  <text x="662" y="274" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">données de compte (JSON)</text>
+                  <line x1="184" y1="320" x2="496" y2="320" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-seq4)"/>
+                  <text x="340" y="314" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">6. vue consolidée affichée à Lyam</text>
+                  <line x1="500" y1="365" x2="816" y2="365" stroke="#1e5f8a" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ah-seq4)"/>
+                  <text x="658" y="359" text-anchor="middle" fill="#1e5f8a" font-size="10" font-weight="700">7. rafraîchissement (règles RTS)</text>
+                  <line x1="820" y1="400" x2="504" y2="400" stroke="#0d9f8a" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ah-seq4g)"/>
+                  <text x="662" y="394" text-anchor="middle" fill="#087a6a" font-size="10" font-weight="700">données à jour (jusqu’à 90 j)</text>
+                  <line x1="184" y1="450" x2="504" y2="450" stroke="#c45c26" stroke-width="2" marker-end="url(#ah-seq4)"/>
+                  <text x="340" y="444" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">8. révocation du consentement</text>
+                  <line x1="500" y1="485" x2="816" y2="485" stroke="#c45c26" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ah-seq4)"/>
+                  <text x="658" y="479" text-anchor="middle" fill="#c45c26" font-size="10" font-weight="700">accès coupé · jeton invalidé</text>
+                  <text x="20" y="103" fill="#6b4fa0" font-size="10" font-weight="800">1</text>
+                  <text x="20" y="173" fill="#6b4fa0" font-size="10" font-weight="800">2-3</text>
+                  <text x="20" y="248" fill="#6b4fa0" font-size="10" font-weight="800">4-5</text>
+                  <text x="20" y="368" fill="#6b4fa0" font-size="10" font-weight="800">6-7</text>
+                  <text x="20" y="453" fill="#6b4fa0" font-size="10" font-weight="800">8</text>
+                </svg>
+              </div>
+
+              <div class="callout warn">
+                <h3>Rafraîchir n’est pas interroger</h3>
+                <p>
+                  Une implémentation naïve appelle l’API de la banque à chaque
+                  affichage d’écran. C’est coûteux, lent, et interdit par les RTS
+                  au-delà des seuils. Un AISP mature <strong>met en cache</strong>,
+                  rafraîchit selon les règles, et sert la donnée stockée le reste du
+                  temps.
+                </p>
+              </div>
+            </section>
+
+            <!-- COMPARAISON PISP -->
+            <section class="section">
+              <p class="section-label">Comparaison</p>
+              <h2 id="comparaison">AIS vs PISP&nbsp;: même socle, deux pouvoirs</h2>
+              <p class="intro">
+                L’AIS et le PISP partagent la sécurité du Jour 2 mais ne donnent pas
+                le même pouvoir. Cette grille fixe la distinction.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Critère</th>
+                      <th scope="col">AIS</th>
+                      <th scope="col">PISP</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Action</th><td>Lit</td><td>Écrit (initie un virement)</td></tr>
+                    <tr><th scope="row">Consentement</th><td>Récurrent, jusqu’à 90 j</td><td>Un paiement = un consentement</td></tr>
+                    <tr><th scope="row">SCA</th><td>Au consentement, puis refresh encadré</td><td>À chaque paiement</td></tr>
+                    <tr><th scope="row">Impact d’erreur</th><td>Mauvais affichage</td><td>Argent déplacé</td></tr>
+                    <tr class="is-exergue"><th scope="row">Idempotence</th><td>Utile (lectures doublées)</td><td>Critique (double débit)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Un même tiers peut-il être les deux&nbsp;?</h3>
+                <p>
+                  Oui&nbsp;: un établissement peut détenir les deux agréments. Mais
+                  chaque opération relève d’un rôle, d’un consentement et d’un
+                  jeton distincts. Un consentement AIS ne permet
+                  <strong>jamais</strong> d’initier un paiement — la séparation est
+                  au cœur de la sécurité du modèle.
+                </p>
+              </div>
+            </section>
+
+
+            <!-- TROIS PROBLEMES TECHNIQUES -->
+            <section class="section">
+              <p class="section-label">Réalité terrain</p>
+              <h2 id="problemes">Les trois problèmes que l’on découvre en production</h2>
+              <p class="intro">
+                Sur le papier, le flux AIS tient en cinq étapes. En production,
+                un agrégateur affronte trois difficultés qui ne figurent dans
+                aucun schéma&nbsp;: garder la donnée <strong>fraîche</strong>,
+                la rendre <strong>comparable</strong>, et survivre à des API
+                bancaires qui ne répondent pas toujours.
+              </p>
+
+              <div class="callout warn">
+                <h3>Problème 1 — Synchronisation&nbsp;: quelle est la fraîcheur de ce que j’affiche&nbsp;?</h3>
+                <p>
+                  Une API AIS ne «&nbsp;pousse&nbsp;» pas les transactions. Le
+                  TPP doit décider quand relire&nbsp;: trop souvent, la banque
+                  limite&nbsp;; trop rarement, l’utilisateur voit un solde faux.
+                  Il y a deux stratégies et un piège.
+                </p>
+                <ul>
+                  <li>
+                    <strong>Polling</strong> — le TPP interroge à intervalles
+                    fixes. Simple, mais coûteux et soumis aux quotas de la
+                    banque (souvent 4 lectures par jour et par compte).
+                  </li>
+                  <li>
+                    <strong>Webhooks</strong> (quand la banque en propose) — la
+                    banque notifie la disponibilité de nouvelles données. Plus
+                    réactif, mais peu généralisé et jamais garanti.
+                  </li>
+                  <li>
+                    <strong>Le piège</strong> — afficher un solde sans dire sa
+                    date. Un utilisateur qui voit «&nbsp;340,20&nbsp;€&nbsp;» à
+                    midi alors que la dernière lecture date de la veille prend
+                    une décision sur une donnée périmée.
+                  </li>
+                </ul>
+                <p>
+                  La pratique&nbsp;: horodater chaque lecture, exposer la date
+                  à l’utilisateur, et définir une règle de fraîcheur par type de
+                  donnée — un solde tolère quelques heures, une opération
+                  récente non.
+                </p>
+              </div>
+
+              <div class="callout warn">
+                <h3>Problème 2 — Qualité des données&nbsp;: deux banques, deux vérités</h3>
+                <p>
+                  Rien ne garantit l’homogénéité entre établissements. Le même
+                  virement peut arriver avec un libellé différent, une date
+                  différente (opération vs valeur) et un format de montant
+                  différent.
+                </p>
+                <ul>
+                  <li>
+                    <strong>Libellés SEPA sales</strong> — un libellé ressemble
+                    rarement à «&nbsp;Loyer&nbsp;». Il ressemble à
+                    <code>VIR SEPA 4471 LEROY IMMO REF</code>. Catégoriser
+                    suppose un moteur de règles.
+                  </li>
+                  <li>
+                    <strong>Dates multiples</strong> — date d’opération, date de
+                    valeur, date de comptabilisation&nbsp;: un même mouvement
+                    peut apparaître trois fois si l’on ne choisit pas une
+                    référence unique.
+                  </li>
+                  <li>
+                    <strong>Doublons et chevauchements</strong> — entre deux
+                    lectures, une opération peut être renvoyée deux fois&nbsp;:
+                    sans identifiant stable côté banque, la déduplication
+                    devient heuristique.
+                  </li>
+                  <li>
+                    <strong>Devises et arrondis</strong> — un compte en devise
+                    étrangère impose un taux et une date de conversion&nbsp;;
+                    agréger naïvement des montants de devises différentes est
+                    faux.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="callout warn">
+                <h3>Problème 3 — Disponibilité de l’API&nbsp;: la banque n’est pas à vous</h3>
+                <p>
+                  Les interface ASPSP tombent, rament, ou renvoient des erreurs
+                  transitoires. Le TPP ne contrôle ni leur disponibilité ni leur
+                  latence — il ne peut que s’y adapter proprement.
+                </p>
+                <ul>
+                  <li>
+                    <strong>Codes de limitation</strong> — <code>429</code> et
+                    <code>Retry-After</code>&nbsp;: rejouer immédiatement aggrave
+                    la situation. Il faut un backoff exponentiel avec jitter.
+                  </li>
+                  <li>
+                    <strong>Disjoncteur (circuit breaker)</strong> — après N
+                    échecs consécutifs sur une banque, on cesse de l’appeler
+                    quelques minutes plutôt que d’empiler les timeouts.
+                  </li>
+                  <li>
+                    <strong>Dégradation</strong> — afficher les dernières données
+                    connues avec leur date, plutôt qu’une erreur. Un service qui
+                    dit «&nbsp;voici l’état d’il y a 3 h&nbsp;» reste utile.
+                  </li>
+                  <li>
+                    <strong>Cohérence multi-banques</strong> — si la Banque A
+                    répond et la Banque B non, faut-il afficher une vue
+                    partielle&nbsp;? Oui, à condition de le dire
+                    <em>banque par banque</em>.
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Comment on industrialise tout ça&nbsp;?</h2>
+                <p>
+                  Le consentement et la lecture sont posés. La S3 ouvre la boîte
+                  de l’AISP&nbsp;: collecteurs multi-banques, normalisation,
+                  stockage, API exposée, et les contraintes de volumétrie, de
+                  fraîcheur et de sécurité de la donnée.
+                </p>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2 art. 97 (SCA)&nbsp;; RTS EBA
+              2018/389 art. 10-13, 28-33 (accès AISP, fréquence de rafraîchissement,
+              révocation)&nbsp;; Berlin Group NextGenPSD2 (AIS, consentements,
+              jetons)&nbsp;; RGPD (UE) 2016/679 (durée de conservation, effacement).
+            </div>
+
+            
+          </div>
   </div>
 </article>
-
-
 <article class="support-bloc" id="s3-architecture" data-num="04">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
       <div class="fiche-meta"><span class="tag">Parcours</span></div>
-      <p class="day-kicker">04 · Architecture SI AISP</p>
-      <h1>Architecture SI AISP</h1>
+      <p class="day-kicker">04 · S3 · Architecture SI AISP</p>
+      <h1>S3 · Architecture SI AISP</h1>
     </div>
   </section>
   <div class="wrap support-bloc-body">
-    <!-- Contenu à rédiger depuis j4/s3-architecture.html -->
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 4 · Séquence 3</span>
+              </div>
+              <p class="day-kicker">La machine qui agrège et sert la donnée</p>
+              <h1>Architecture SI AISP</h1>
+              <p class="lead">
+                Un agrégateur, c’est une usine à donnée&nbsp;: collecter chez
+                plusieurs banques, normaliser, stocker, servir. On pose les
+                composants, puis les contraintes qui décident si le service tient
+                en production.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam voit une simple vue de ses deux comptes. Derrière, MonBuddy
+                interroge deux banques, transforme leurs formats différents en un
+                modèle unique, stocke l’historique, et répond à l’écran en
+                quelques dizaines de millisecondes. Cette séquence ouvre
+                <strong>la boîte de l’AISP</strong>.
+              </p>
+            </div>
+
+            <!-- QUATRE COMPOSANTS -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Composants</p>
+              <h2 id="composants">Les quatre briques d’un AISP</h2>
+              <p class="intro">
+                L’agrégateur se décompose en quatre composants. Chacun a une
+                responsabilité propre&nbsp;; les confondre est l’erreur
+                d’architecture la plus fréquente.
+              </p>
+
+              <div class="layer-stack">
+                <article class="layer">
+                  <span class="layer-i">1</span>
+                  <div class="layer-body">
+                    <h3>Collecteurs multi-banques</h3>
+                    <p>
+                      Un <strong>connecteur par banque</strong>&nbsp;: un pour le
+                      format de Banque Est, un pour la néobanque, etc. Il gère
+                      l’authentification, les appels AIS, les retries, les quotas.
+                      C’est l’<em>adaptateur</em> entre chaque ASPSP et l’intérieur.
+                    </p>
+                  </div>
+                </article>
+                <article class="layer">
+                  <span class="layer-i">2</span>
+                  <div class="layer-body">
+                    <h3>Normalisation</h3>
+                    <p>
+                      <strong>Transformer</strong> les données hétérogènes en un
+                      modèle commun&nbsp;: montant, devise, date, contrepartie,
+                      direction. C’est ici que l’on catégorise les libellés et
+                      qu’on lisse les différences entre banques.
+                    </p>
+                  </div>
+                </article>
+                <article class="layer">
+                  <span class="layer-i">3</span>
+                  <div class="layer-body">
+                    <h3>Stockage</h3>
+                    <p>
+                      <strong>Conserver</strong> l’historique normalisé, avec la
+                      durée et les règles RGPD. Permet les lectures rapides, les
+                      tendances, et le service même quand une banque est
+                      momentanément indisponible.
+                    </p>
+                  </div>
+                </article>
+                <article class="layer">
+                  <span class="layer-i">4</span>
+                  <div class="layer-body">
+                    <h3>API exposée</h3>
+                    <p>
+                      Le <strong>point de service</strong> vers le frontend ou les
+                      clients de l’AISP&nbsp;: vue consolidée, soldes, catégories.
+                      C’est ce que consomme l’application de Lyam.
+                    </p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Chaîne AISP de bout en bout</h3>
+                  <p>De l’API bancaire à l’écran de Lyam</p>
+                </div>
+                <svg viewBox="0 0 1000 340" role="img" aria-label="Architecture SI AISP">
+                  <defs>
+                    <marker id="ah-s3j4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#5a6b7c" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="120" width="150" height="90" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="95" y="152" text-anchor="middle" fill="#1e5f8a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Banques</text>
+                    <text x="95" y="172" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">(ASPSP)</text>
+                    <text x="95" y="194" text-anchor="middle" fill="#5a6b7c" font-size="10">API AIS · plusieurs</text>
+                  </g>
+                  <g>
+                    <rect x="200" y="105" width="165" height="120" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                    <text x="282" y="135" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Collecteurs</text>
+                    <text x="282" y="158" text-anchor="middle" fill="#5a6b7c" font-size="10">1 connecteur / banque</text>
+                    <text x="282" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">auth · retry · quotas</text>
+                    <text x="282" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">jetons · consentements</text>
+                  </g>
+                  <g>
+                    <rect x="395" y="105" width="165" height="120" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2.5"/>
+                    <text x="477" y="135" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="12" font-weight="700">Normalisation</text>
+                    <text x="477" y="158" text-anchor="middle" fill="#5a6b7c" font-size="10">modèle commun</text>
+                    <text x="477" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">catégorisation</text>
+                    <text x="477" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">dédup · devise</text>
+                  </g>
+                  <g>
+                    <rect x="590" y="105" width="165" height="120" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="672" y="135" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Stockage</text>
+                    <text x="672" y="158" text-anchor="middle" fill="#5a6b7c" font-size="10">historique normalisé</text>
+                    <text x="672" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">règle RGPD</text>
+                    <text x="672" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">cache · indexation</text>
+                  </g>
+                  <g>
+                    <rect x="785" y="105" width="195" height="120" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="882" y="135" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">API exposée</text>
+                    <text x="882" y="158" text-anchor="middle" fill="#5a6b7c" font-size="10">vue consolidée</text>
+                    <text x="882" y="174" text-anchor="middle" fill="#5a6b7c" font-size="10">soldes · catégories</text>
+                    <text x="882" y="190" text-anchor="middle" fill="#5a6b7c" font-size="10">frontend · clients</text>
+                  </g>
+
+                  <line x1="170" y1="165" x2="196" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j4)"/>
+                  <line x1="365" y1="165" x2="391" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j4)"/>
+                  <line x1="560" y1="165" x2="586" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j4)"/>
+                  <line x1="755" y1="165" x2="781" y2="165" stroke="#5a6b7c" stroke-width="2" marker-end="url(#ah-s3j4)"/>
+
+                  <rect x="200" y="255" width="780" height="55" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="590" y="279" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Gouvernance de la donnée &amp; sécurité</text>
+                  <text x="590" y="298" text-anchor="middle" fill="#5a6b7c" font-size="10">consentement, finalité, durée, chiffrement, journalisation, audits</text>
+                  <line x1="282" y1="225" x2="282" y2="251" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="477" y1="225" x2="477" y2="251" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="672" y1="225" x2="672" y2="251" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line x1="882" y1="225" x2="882" y2="251" stroke="#3d5a80" stroke-width="1.5" stroke-dasharray="4 3"/>
+                </svg>
+              </div>
+
+              <div class="callout info">
+                <h3>Où se trouve le consentement&nbsp;?</h3>
+                <p>
+                  Le consentement n’est pas un composant isolé&nbsp;: il
+                  <strong>traverse</strong> la chaîne. Les collecteurs le
+                  matérialisent (jeton), la normalisation le respecte (on ne garde
+                  que ce qu’il couvre), le stockage le porte (durée), l’API exposée
+                  ne sert que ce qu’il autorise. Un AISP qui «&nbsp;oublie&nbsp;» le
+                  consentement en aval est un AISP en infraction.
+                </p>
+              </div>
+            </section>
+
+            <!-- CONTRAINTES -->
+            <section class="section">
+              <p class="section-label">Contraintes</p>
+              <h2 id="contraintes">Les trois tensions de l’AISP</h2>
+              <p class="intro">
+                Une architecture AISP vit sous trois tensions permanentes. Le
+                métier est de les arbitrer, pas de les ignorer.
+              </p>
+
+              <div class="split-3">
+                <div class="panel">
+                  <h3>Volumétrie</h3>
+                  <p>
+                    Des millions de comptes × des dizaines d’opérations/mois ×
+                    plusieurs banques. On ne peut pas tout lire en temps réel&nbsp;:
+                    il faut <strong>batcher</strong>, <strong>cacher</strong> et
+                    <strong>indexer</strong>.
+                  </p>
+                </div>
+                <div class="panel ok">
+                  <h3>Fraîcheur</h3>
+                  <p>
+                    La donnée n’est jamais «&nbsp;temps réel&nbsp;»&nbsp;: elle est
+                    aussi fraîche que le dernier rafraîchissement autorisé (S2).
+                    L’interface doit dire <em>quand</em> elle a été rafraîchie.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>Sécurité de la donnée</h3>
+                  <p>
+                    La donnée de compte est sensible&nbsp;:
+                    <strong>chiffrement</strong>, <strong>cloisonnement</strong> par
+                    client, <strong>journalisation</strong> des accès, minimisation.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>La disponibilité des banques fait la qualité de service</h3>
+                <p>
+                  Un AISP ne contrôle pas les API de ses banques. Une banque lente
+                  ou indisponible dégrade le service global. D’où plusieurs
+                  réflexes d’architecture&nbsp;: <strong>circuit breaker</strong> par
+                  banque (isoler la panne d’une source), <strong>cache</strong>
+                  (servir la dernière donnée connue), <strong>file d’attente</strong>
+                  pour rejouer les lectures, et <strong>health-checks</strong> par
+                  connecteur. Sans ça, une banque en panne fait tomber toute la vue
+                  consolidée.
+                </p>
+              </div>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Circuit breaker par banque</strong>
+                    <p>
+                      Si Banque Est échoue 3 fois, on l’isole temporairement&nbsp;: la
+                      néobanque continue à s’afficher.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>Cache avec date de fraîcheur</strong>
+                    <p>
+                      On sert la dernière donnée connue en indiquant son horodatage,
+                      plutôt qu’une erreur.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>File de rejeu idempotente</strong>
+                    <p>
+                      Une lecture en échec est rejouée sans dupliquer les
+                      opérations&nbsp;: la déduplication par identifiant de
+                      transaction évite les doublons.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">4</span>
+                  <div>
+                    <strong>Observabilité</strong>
+                    <p>
+                      Métriques par connecteur (latence, taux d’erreur), alertes,
+                      traces&nbsp;: on sait quelle banque dégrade le service.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- DIMENSIONNEMENT -->
+            <section class="section">
+              <p class="section-label">Dimensionnement</p>
+              <h2 id="dimensionner">Un ordre de grandeur, pas une formule</h2>
+              <p>
+                Une question revient toujours en entretien&nbsp;: «&nbsp;ça tient
+                combien de clients&nbsp;?&nbsp;» On ne donne pas un chiffre magique,
+                on raisonne en tension.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Axe</th>
+                      <th scope="col">Question</th>
+                      <th scope="col">Conséquence d’architecture</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Comptes</th><td>Combien de comptes lus, combien de banques&nbsp;?</td><td>Nombre de connecteurs, volumétrie de stockage</td></tr>
+                    <tr><th scope="row">Fréquence</th><td>Combien de rafraîchissements/jour autorisés&nbsp;?</td><td>Charge API, files, cache</td></tr>
+                    <tr><th scope="row">Historique</th><td>Combien de mois/années conservés&nbsp;?</td><td>Stockage, indexation, purge RGPD</td></tr>
+                    <tr class="is-exergue"><th scope="row">Latence</th><td>Objectif d’affichage de la vue consolidée&nbsp;?</td><td>Cache lecture, pré-agrégation</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>La pré-agrégation, ou le bon compromis latence/coût</h3>
+                <p>
+                  Pour la vue «&nbsp;budget du mois&nbsp;», inutile de recalculer à
+                  chaque clic&nbsp;: on <strong>précalcule</strong> les agrégats
+                  (totaux par catégorie) au rafraîchissement, et on les sert
+                  instantanément. C’est la même logique que le cache du PISP du
+                  Jour 3&nbsp;: ne pas refaire inutilement ce qui n’a pas changé.
+                </p>
+              </div>
+            </section>
+
+            <!-- FLUX INGESTION -->
+            <section class="section">
+              <p class="section-label">Synthèse</p>
+              <h2 id="ingestion">Un flux d’ingestion, plusieurs banques</h2>
+              <p class="intro">
+                Le même scénario Lyam&nbsp;: deux banques, deux formats, une donnée
+                normalisée, un écran.
+              </p>
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Flux d’ingestion AISP</h3>
+                  <p>Collecte → normalisation → stockage → exposition</p>
+                </div>
+                <svg viewBox="0 0 1000 380" role="img" aria-label="Flux d’ingestion multi-banques AISP">
+                  <defs>
+                    <marker id="ah-ing" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                  </defs>
+                  <g>
+                    <rect x="20" y="30" width="160" height="60" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="100" y="56" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Banque Est</text>
+                    <text x="100" y="74" text-anchor="middle" fill="#5a6b7c" font-size="9">format A</text>
+                  </g>
+                  <g>
+                    <rect x="20" y="150" width="160" height="60" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                    <text x="100" y="176" text-anchor="middle" fill="#1e5f8a" font-size="11" font-weight="700">Neobanque</text>
+                    <text x="100" y="194" text-anchor="middle" fill="#5a6b7c" font-size="9">format B</text>
+                  </g>
+                  <g>
+                    <rect x="220" y="30" width="150" height="180" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="295" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">Collecteurs</text>
+                    <text x="295" y="122" text-anchor="middle" fill="#5a6b7c" font-size="10">conn A - conn B</text>
+                    <text x="295" y="170" text-anchor="middle" fill="#5a6b7c" font-size="9">jeton + consent.</text>
+                  </g>
+                  <g>
+                    <rect x="410" y="30" width="150" height="180" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                    <text x="485" y="100" text-anchor="middle" fill="#4b3480" font-family="Syne, sans-serif" font-size="12" font-weight="700">Normaliseur</text>
+                    <text x="485" y="122" text-anchor="middle" fill="#5a6b7c" font-size="10">formats A + B</text>
+                    <text x="485" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">modele commun</text>
+                    <text x="485" y="170" text-anchor="middle" fill="#5a6b7c" font-size="9">categories</text>
+                  </g>
+                  <g>
+                    <rect x="600" y="30" width="150" height="180" rx="8" fill="#f7f9fb" stroke="#3d5a80" stroke-width="2"/>
+                    <text x="675" y="100" text-anchor="middle" fill="#3d5a80" font-family="Syne, sans-serif" font-size="12" font-weight="700">Stockage</text>
+                    <text x="675" y="122" text-anchor="middle" fill="#5a6b7c" font-size="10">historique</text>
+                    <text x="675" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">comptes - ops</text>
+                    <text x="675" y="170" text-anchor="middle" fill="#5a6b7c" font-size="9">RGPD</text>
+                  </g>
+                  <g>
+                    <rect x="790" y="30" width="190" height="180" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2"/>
+                    <text x="885" y="100" text-anchor="middle" fill="#087a6a" font-family="Syne, sans-serif" font-size="12" font-weight="700">API exposee</text>
+                    <text x="885" y="122" text-anchor="middle" fill="#5a6b7c" font-size="10">vue Lyam</text>
+                    <text x="885" y="138" text-anchor="middle" fill="#5a6b7c" font-size="10">soldes - budget</text>
+                    <text x="885" y="170" text-anchor="middle" fill="#5a6b7c" font-size="9">frontend</text>
+                  </g>
+
+                  <line x1="180" y1="60" x2="216" y2="80" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-ing)"/>
+                  <line x1="180" y1="180" x2="216" y2="160" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-ing)"/>
+                  <line x1="370" y1="120" x2="406" y2="120" stroke="#6b4fa0" stroke-width="2" marker-end="url(#ah-ing)"/>
+                  <line x1="560" y1="120" x2="596" y2="120" stroke="#6b4fa0" stroke-width="2" marker-end="url(#ah-ing)"/>
+                  <line x1="750" y1="120" x2="786" y2="120" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-ing)"/>
+
+                  <rect x="220" y="250" width="760" height="70" rx="8" fill="#fdf6f2" stroke="#c45c26" stroke-width="1.5"/>
+                  <text x="600" y="278" text-anchor="middle" fill="#c45c26" font-family="Syne, sans-serif" font-size="12" font-weight="700">Observabilite - circuit breaker - cache - file de rejeu</text>
+                  <text x="600" y="298" text-anchor="middle" fill="#5a6b7c" font-size="10">La panne d une banque n arrete pas la vue consolidee des autres.</text>
+                </svg>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le piege de la base unique</h3>
+                <p>
+                  Melanger collecte, normalisation et exposition dans un seul
+                  service fait un monolithe ingerable : on ne peut plus ajouter
+                  une banque sans tout redeployer, ni isoler une panne. Separer
+                  les quatre composants rend l ensemble extensible : chaque
+                  nouvelle banque est un nouveau connecteur, sans toucher au reste.
+                </p>
+              </div>
+            </section>
+
+
+            <!-- DATA OWNERSHIP -->
+            <section class="section">
+              <p class="section-label">Notions</p>
+              <h2 id="ownership">À qui appartient la donnée&nbsp;?</h2>
+              <p class="intro">
+                L’AISP lit, copie et transforme. La question «&nbsp;à qui est la
+                donnée&nbsp;?&nbsp;» n’a pas de réponse binaire&nbsp;: elle se
+                décompose en trois droits distincts, souvent confondus.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Droit</th>
+                      <th scope="col">Qui le détient</th>
+                      <th scope="col">Ce que ça implique concrètement</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Propriété de la donnée</th>
+                      <td>Le client</td>
+                      <td>Ses opérations lui appartiennent, pas à la banque ni à l’AISP</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Garde de l’original</th>
+                      <td>La banque (ASPSP)</td>
+                      <td>Elle est la source de vérité, et doit la fournir sur demande du client</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Droit d’usage</th>
+                      <td>L’AISP, pour la finalité consentie</td>
+                      <td>Limité dans le temps, dans la portée et dans l’usage</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Droit de reprise</th>
+                      <td>Le client, à tout moment</td>
+                      <td>Export de ses données dans un format exploitable</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>La conséquence pour un AISP</h3>
+                <p>
+                  Un AISP n’est pas <em>propriétaire</em> des données qu’il
+                  agrège&nbsp;: il en est le <strong>dépositaire temporaire</strong>,
+                  avec un mandat précis. Toute réutilisation hors de ce mandat
+                  — enrichissement, revente, profilage non consenti — est une
+                  faute, même si elle est techniquement triviale.
+                </p>
+              </div>
+            </section>
+
+            <!-- PORTABILITE -->
+            <section class="section">
+              <p class="section-label">Notions</p>
+              <h2 id="portabilite">Portabilité&nbsp;: le droit de partir</h2>
+              <p class="intro">
+                La portabilité est la traduction opérationnelle du droit de
+                reprise. Un client qui change d’appli doit pouvoir emporter son
+                historique — sans que l’AISP sortant n’invente de blocage
+                technique.
+              </p>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Export dans un format structuré</strong>
+                    <p>
+                      Machine-lisible et documenté (CSV à schéma défini, JSON,
+                      ISO 20022 si possible). Un capture d’écran n’est pas un
+                      export.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>Complétude et intégrité</strong>
+                    <p>
+                      L’export doit couvrir tout l’historique conservé, pas un
+                      échantillon. Une synthèse partielle vide le droit de son
+                      sens.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Délai et gratuité</strong>
+                    <p>
+                      Le RGPD impose une réponse dans un délai d’un mois. Un
+                      export payant ou retardé est un frein dissuasif, pas un
+                      service.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">4</span>
+                  <div>
+                    <strong>Sortie propre</strong>
+                    <p>
+                      Après export, l’AISP reste soumis à sa politique de
+                      conservation pour les copies&nbsp;: la portabilité ne
+                      l’autorise pas à tout effacer de manière anticipée s’il a
+                      une obligation légale de conserver.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le piège du «&nbsp;lock-in&nbsp;» déguisé</h3>
+                <p>
+                  Un export au format maison, non documenté, qui ne réimporte
+                  nulle part&nbsp;: techniquement un export, en pratique un
+                  rempart. C’est le contournement le plus courant du droit de
+                  portabilité.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRACABILITE -->
+            <section class="section">
+              <p class="section-label">Notions</p>
+              <h2 id="tracabilite">Traçabilité&nbsp;: savoir qui a lu quoi</h2>
+              <p class="intro">
+                La traçabilité n’est pas un luxe d’auditeur&nbsp;: c’est
+                l’instrument qui permet de <em>détecter</em> une lecture
+                anormale, et &#8212; en cas de réclamation &#8212; de
+                <strong>répondre</strong> au client sur ce qui a été consulté.
+              </p>
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>Ce qu’elle couvre</h3>
+                  <p>
+                    Chaque appel d’API est relié à un consentement, un compte,
+                    un horodatage et un appelant. On peut reconstituer un
+                    historique complet d’accès, pas seulement d’erreurs.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>Ce qu’elle ne couvre pas</h3>
+                  <p>
+                    La trace ne dit pas pourquoi une donnée a été lue, ni si
+                    l’usage était légitime. Elle documente l’accès, elle ne
+                    qualifie pas l’intention&nbsp;: la gouvernance reste humaine.
+                  </p>
+                </div>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Événement</th>
+                      <th scope="col">Pourquoi le tracer</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Création / renouvellement de consentement</th><td>Prouver que le client a autorisé, et jusqu’à quand</td></tr>
+                    <tr><th scope="row">Lecture de comptes (succès)</th><td>Démontrer que l’accès respectait le périmètre</td></tr>
+                    <tr><th scope="row">Lecture refusée (401/403)</th><td>Révéler une tentative hors droits — signal d’alerte</td></tr>
+                    <tr><th scope="row">Révocation</th><td>Établir la date à partir de laquelle plus rien ne devait être lu</td></tr>
+                    <tr class="is-exergue"><th scope="row">Expiration automatique</th><td>Prouver que l’arrêt n’était pas une décision opportuniste</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Mais qui garde la donnée&nbsp;?</h2>
+                <p>
+                  On sait collecter, normaliser, stocker, servir — et même
+                  dire à qui appartient ce que l’on stocke. Reste la question
+                  qui commande toutes les autres : pendant combien de temps,
+                  sous quelles conditions, avec quelle preuve. C’est l’objet de
+                  la S4 — parce qu’un bon AISP n’est pas seulement celui qui
+                  lit bien, c’est celui qui sait aussi s’arrêter de lire.
+                </p>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Références</strong> — Berlin Group NextGenPSD2 (AIS, ressources,
+              pagination)&nbsp;; RTS EBA 2018/389 (accès, disponibilité, sécurité)&nbsp;;
+              RGPD (UE) 2016/679 (minimisation, conservation, sécurité des données)&nbsp;;
+              guides EBA sur la gestion des risques TIC (DORA en perspective).
+            </div>
+
+            
+          </div>
   </div>
 </article>
-
-
-<article class="support-bloc" id="s4-atelier" data-num="05">
+<article class="support-bloc" id="s4-securite" data-num="05">
   <section class="day-hero support-bloc-hero" style="padding-bottom:1.5rem">
     <div class="wrap">
-      <div class="fiche-meta"><span class="tag">Parcours</span></div>
-      <p class="day-kicker">05 · Atelier data banking</p>
-      <h1>Atelier data banking</h1>
+      <div class="fiche-meta"><span class="tag">Sécurité</span></div>
+      <p class="day-kicker">05 · S4 · Sécurité & gouvernance</p>
+      <h1>S4 · Sécurité & gouvernance</h1>
     </div>
   </section>
   <div class="wrap support-bloc-body">
-    <!-- Contenu à rédiger depuis j4/s4-atelier.html -->
+
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 4 · Séquence 4</span>
+              </div>
+              <p class="day-kicker">Ce que l’on a le droit de faire de la donnée</p>
+              <h1>Sécurité &amp; gouvernance des données</h1>
+              <p class="lead">
+                Lire les comptes de quelqu’un, c’est entrer dans son intimité
+                financière. Un AISP ne tient pas parce qu’il sait se connecter
+                aux banques&nbsp;: il tient parce qu’il sait <strong>borner</strong>
+                ce qu’il lit, <strong>limiter</strong> ce qu’il garde et
+                <strong>prouver</strong> ce qu’il a fait.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                Lyam a donné son accord à MonBuddy pour lire ses deux comptes.
+                Trois mois plus tard, il se demande&nbsp;: qui a accédé à quoi,
+                pendant combien de temps, et que reste-t-il de ses données chez
+                MonBuddy&nbsp;? Cette séquence n’ajoute pas de technique&nbsp;:
+                elle pose les règles qui rendent les trois précédentes
+                acceptables.
+              </p>
+            </div>
+
+            <!-- PRINCIPE -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Principe</p>
+              <h2 id="asymetrie">Une asymétrie de départ défavorable</h2>
+              <p class="intro">
+                Dans un paiement, la donnée circule et disparaît. Dans
+                l’agrégation, elle <strong>reste</strong>. C’est cette
+                persistance qui crée l’essentiel du risque&nbsp;: une copie de
+                l’historique bancaire d’une personne vaut cher, pour elle comme
+                pour un attaquant.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Objet</th>
+                      <th scope="col">PISP (Jour 3)</th>
+                      <th scope="col">AISP (Jour 4)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Ce qui circule</th><td>Un ordre de virement</td><td>Tout l’historique de comptes</td></tr>
+                    <tr><th scope="row">Ce qui est stocké</th><td>Peu, et peu longtemps</td><td>Beaucoup, et durablement</td></tr>
+                    <tr><th scope="row">Valeur pour un attaquant</th><td>Faible (un ordre)</td><td>Élevée (patrimoine, habitudes, salaire)</td></tr>
+                    <tr class="is-exergue"><th scope="row">Droit du client</th><td>Executor un virement</td><td>Savoir et reprendre</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>La donnée est un actif, pas un sous-produit</h3>
+                <p>
+                  Un AISP qui traite ses copies de comptes comme un simple cache
+                  technique se trompe de nature. Ce sont des
+                  <strong>données personnelles financières</strong>&nbsp;: elles
+                  relèvent du RGPD en plus de la DSP2, avec les obligations de
+                  sécurité de l’article 32 (chiffrement, minimisation,
+                  journalisation).
+                </p>
+              </div>
+            </section>
+
+            <!-- CONSENTEMENT -->
+            <section class="section">
+              <p class="section-label">Enjeu 1</p>
+              <h2 id="consentement">Le consentement n’est pas une case à cocher</h2>
+              <p class="intro">
+                En DSP2, le consentement AIS est un objet technique&nbsp;: il a
+                un identifiant, une durée, une liste de comptes, des droits
+                précis. Le respecter, ce n’est pas «&nbsp;avoir un écran de
+                consentement&nbsp;»&nbsp;: c’est faire correspondre chaque appel
+                d’API à un droit effectivement accordé.
+              </p>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">A</span>
+                  <div>
+                    <strong>Finalité limitée</strong>
+                    <p>
+                      Un consentement donné pour un budget ne couvre pas la
+                      revente de données à un assureur. Chaque usage non prévu
+                      exige un nouveau consentement explicite.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">B</span>
+                  <div>
+                    <strong>Portée vérifiée à chaque appel</strong>
+                    <p>
+                      Le <em>consent store</em> doit être interrogé avant toute
+                      lecture&nbsp;: ce compte est-il dans le périmètre&nbsp;? ce
+                      droit est-il encore valide&nbsp;? L’absence de vérification
+                      est la faille la plus fréquente.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">C</span>
+                  <div>
+                    <strong>Durée bornée et renouvelée par le client</strong>
+                    <p>
+                      L’AIS impose une validité limitée (90 jours en pratique).
+                      Le renouvellement doit être une action du client, jamais un
+                      prolongement silencieux décidé par l’AISP.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">D</span>
+                  <div>
+                    <strong>Révocation immédiatement effective</strong>
+                    <p>
+                      Quand le client retire son consentement, les lectures
+                      suivantes doivent échouer — et les copies déjà stockées
+                      doivent suivre la politique de conservation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout ko">
+                <h3>L’anti-motif à connaître</h3>
+                <p>
+                  Le consentement «&nbsp;captif&nbsp;»&nbsp;: un écran qui
+                  conditionne l’accès au service à l’acceptation d’usages
+                  annexes. Techniquement valide, juridiquement contestable — et
+                  très souvent relevé par les autorités de contrôle.
+                </p>
+              </div>
+            </section>
+
+            <!-- CONSERVATION -->
+            <section class="section">
+              <p class="section-label">Enjeu 2</p>
+              <h2 id="conservation">Durée de conservation&nbsp;: la question qu’on oublie</h2>
+              <p class="intro">
+                Combien de temps garder un historique bancaire agrégé&nbsp;? Il
+                n’existe pas de réponse unique&nbsp;: la durée découle de la
+                finalité. Ce qui est certain, c’est qu’une durée non justifiée
+                est un manquement — et qu’une durée infinie est indéfendable.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Type de donnée</th>
+                      <th scope="col">Besoin métier typique</th>
+                      <th scope="col">Question de gouvernance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Copie brute des transactions</th>
+                      <td>Rafraîchissement, reprise après incident</td>
+                      <td>Peut-on la supprimer dès la normalisation&nbsp;?</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Données normalisées</th>
+                      <td>Affichage du budget, catégorisation</td>
+                      <td>Quelle profondeur d’historique est utile&nbsp;?</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Données dérivées (scores, agrégats)</th>
+                      <td>Scoring, conseil</td>
+                      <td>Sont-elles encore rattachables à une personne&nbsp;?</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Journaux d’accès</th>
+                      <td>Audit, sécurité</td>
+                      <td>Durée imposée par la loi, souvent supérieure aux données</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout info">
+                <h3>Le réflexe utile&nbsp;: justifier, pas maximiser</h3>
+                <p>
+                  La bonne question n’est pas «&nbsp;combien de temps
+                  <em>peut-on</em> garder&nbsp;?&nbsp;» mais «&nbsp;de quoi
+                  <em>a-t-on besoin</em>, et que se passe-t-il si on garde moins
+                  longtemps&nbsp;?&nbsp;». Une politique de conservation se
+                  documente, se versionne et s’applique automatiquement.
+                </p>
+              </div>
+            </section>
+
+            <!-- AUDITABILITE -->
+            <section class="section">
+              <p class="section-label">Enjeu 3</p>
+              <h2 id="audit">Auditabilité&nbsp;: pouvoir prouver, pas seulement affirmer</h2>
+              <p class="intro">
+                «&nbsp;Nous respectons le consentement&nbsp;» ne vaut rien sans
+                preuve. L’auditabilité, c’est la capacité à reconstituer
+                <strong>qui</strong> a lu <strong>quoi</strong>, à
+                <strong>quel moment</strong>, <strong>sous quel consentement</strong>
+                — et à le démontrer à un tiers qui n’a pas confiance.
+              </p>
+
+              <div class="diagram">
+                <div class="diagram-header">
+                  <h3>Chaîne de traçabilité d’une lecture de compte</h3>
+                  <p>Chaque accès laisse une trace reliée au consentement qui l’autorise</p>
+                </div>
+                <svg viewBox="0 0 1000 320" role="img" aria-label="Chaîne de traçabilité reliant un consentement, une lecture et une preuve d’audit">
+                  <defs>
+                    <marker id="ah-j4a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#1e5f8a" />
+                    </marker>
+                    <marker id="ah-j4b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="#0d9f8a" />
+                    </marker>
+                  </defs>
+
+                  <rect x="20" y="40" width="200" height="70" rx="8" fill="#f1edfa" stroke="#6b4fa0" stroke-width="2"/>
+                  <text x="120" y="68" text-anchor="middle" fill="#4b3480" font-size="12" font-weight="700">Consentement</text>
+                  <text x="120" y="88" text-anchor="middle" fill="#5a6b7c" font-size="10">id · portée · droits</text>
+                  <text x="120" y="103" text-anchor="middle" fill="#5a6b7c" font-size="9">date de début et de fin</text>
+
+                  <rect x="20" y="190" width="200" height="70" rx="8" fill="#e7f6f3" stroke="#0d9f8a" stroke-width="2.5"/>
+                  <text x="120" y="218" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Client (Lyam)</text>
+                  <text x="120" y="238" text-anchor="middle" fill="#5a6b7c" font-size="10">accord explicite</text>
+                  <text x="120" y="253" text-anchor="middle" fill="#5a6b7c" font-size="9">révocable à tout moment</text>
+
+                  <rect x="300" y="105" width="200" height="90" rx="8" fill="#eef4fa" stroke="#1e5f8a" stroke-width="2"/>
+                  <text x="400" y="133" text-anchor="middle" fill="#1e5f8a" font-size="12" font-weight="700">Journal d’accès</text>
+                  <text x="400" y="153" text-anchor="middle" fill="#5a6b7c" font-size="10">qui · quel compte</text>
+                  <text x="400" y="169" text-anchor="middle" fill="#5a6b7c" font-size="10">quand · quel appel</text>
+                  <text x="400" y="185" text-anchor="middle" fill="#5a6b7c" font-size="10">sous quel consentement</text>
+
+                  <line x1="222" y1="105" x2="296" y2="130" stroke="#6b4fa0" stroke-width="2" marker-end="url(#ah-j4a)"/>
+                  <line x1="222" y1="215" x2="296" y2="175" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-j4b)"/>
+
+                  <rect x="580" y="105" width="190" height="90" rx="8" fill="#f7faf8" stroke="#0d9f8a" stroke-width="2"/>
+                  <text x="675" y="133" text-anchor="middle" fill="#087a6a" font-size="12" font-weight="700">Contrôle</text>
+                  <text x="675" y="153" text-anchor="middle" fill="#5a6b7c" font-size="10">lecture hors portée ?</text>
+                  <text x="675" y="169" text-anchor="middle" fill="#5a6b7c" font-size="10">après révocation ?</text>
+                  <text x="675" y="185" text-anchor="middle" fill="#5a6b7c" font-size="10">consentement expiré ?</text>
+
+                  <line x1="502" y1="150" x2="576" y2="150" stroke="#1e5f8a" stroke-width="2" marker-end="url(#ah-j4a)"/>
+
+                  <rect x="800" y="105" width="180" height="90" rx="8" fill="#f4f8fc" stroke="#3d5a80" stroke-width="2"/>
+                  <text x="890" y="133" text-anchor="middle" fill="#3d5a80" font-size="12" font-weight="700">Preuve</text>
+                  <text x="890" y="153" text-anchor="middle" fill="#5a6b7c" font-size="10">export horodaté</text>
+                  <text x="890" y="169" text-anchor="middle" fill="#5a6b7c" font-size="10">immuable</text>
+                  <text x="890" y="185" text-anchor="middle" fill="#5a6b7c" font-size="10">présentable à un auditeur</text>
+                  <line x1="772" y1="150" x2="796" y2="150" stroke="#0d9f8a" stroke-width="2" marker-end="url(#ah-j4b)"/>
+
+                  <text x="20" y="300" fill="#5a6b7c" font-size="10">Sans journal relié au consentement, aucune des trois preuves n’est opposable : on affirme, on ne démontre pas.</text>
+                </svg>
+              </div>
+
+              <div class="split-2">
+                <div class="panel">
+                  <h3>Ce qu’il faut journaliser</h3>
+                  <p>
+                    Identifiant du consentement, comptes lus, horodatage,
+                    résultat (succès, refus, erreur), identité de l’appelant.
+                    Pas les données elles-mêmes&nbsp;: le journal dit
+                    <em>qui a lu</em>, pas <em>ce qui a été lu</em>.
+                  </p>
+                </div>
+                <div class="panel">
+                  <h3>Ce qui rend un journal inutile</h3>
+                  <p>
+                    Un journal réinscriptible, non horodaté de façon fiable, ou
+                    qui ne relie pas la lecture au consentement. Un audit doit
+                    pouvoir répondre en minutes, pas en semaines.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- RESPONSABILITE -->
+            <section class="section">
+              <p class="section-label">Enjeu 4</p>
+              <h2 id="responsabilite">Responsabilité légale&nbsp;: qui répond de quoi&nbsp;?</h2>
+              <p class="intro">
+                Quand un incident survient, la question n’est pas seulement
+                «&nbsp;quel est le bug&nbsp;?&nbsp;» mais «&nbsp;qui porte la
+                responsabilité&nbsp;?&nbsp;». En Open Banking, elle se partage
+                entre la banque, le TPP et le client — et cette répartition est
+                écrite dans les textes.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Acteur</th>
+                      <th scope="col">Ce dont il répond</th>
+                      <th scope="col">Ce qu’il ne peut pas invoquer</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Banque (ASPSP)</th>
+                      <td>Disponibilité et performance de ses interfaces</td>
+                      <td>«&nbsp;L’API était lente&nbsp;» pour ne pas corriger</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">TPP (AISP)</th>
+                      <td>Usage conforme du consentement, sécurité des données</td>
+                      <td>La faute de la banque pour justifier une fuite</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Client</th>
+                      <td>Confidentialité de ses identifiants de SCA</td>
+                      <td>Le fait qu’un TPP agréé ait mal utilisé ses droits</td>
+                    </tr>
+                    <tr class="is-exergue">
+                      <th scope="row">Autorité</th>
+                      <td>Contrôle, sanction, retrait d’agrément</td>
+                      <td>—</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout warn">
+                <h3>Le piège de la sous-traitance</h3>
+                <p>
+                  Un AISP qui délègue son stockage à un prestataire cloud reste
+                  <strong>responsable</strong> du traitement vis-à-vis du client.
+                  Le contrat avec le sous-traitant protège juridiquement, il ne
+                  transfère pas la responsabilité.
+                </p>
+              </div>
+            </section>
+
+            <!-- SYNTHESE -->
+            <section class="section">
+              <p class="section-label">Synthèse</p>
+              <h2 id="synthese">Quatre enjeux, un même principe</h2>
+              <p class="intro">
+                Consentement, conservation, auditabilité, responsabilité&nbsp;:
+                les quatre ne sont pas des chapitres séparés. Chacun rend le
+                suivant possible, et l’absence d’un seul suffit à ruiner les
+                trois autres.
+              </p>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Enjeu</th>
+                      <th scope="col">Question posée</th>
+                      <th scope="col">Réponse minimale attendue</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Respect du consentement</th><td>Ai-je le droit de lire ça&nbsp;?</td><td>Vérification à chaque appel</td></tr>
+                    <tr><th scope="row">Durée de conservation</th><td>Combien de temps puis-je garder&nbsp;?</td><td>Durée justifiée par la finalité</td></tr>
+                    <tr><th scope="row">Auditabilité</th><td>Puis-je le prouver&nbsp;?</td><td>Journal horodaté relié au consentement</td></tr>
+                    <tr class="is-exergue"><th scope="row">Responsabilité</th><td>Qui répond si ça casse&nbsp;?</td><td>Rôles écrits et testés</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout reg">
+                <h3>Références</h3>
+                <p>
+                  DSP2 art. 66-67 (accès et consentement AISP)&nbsp;; RTS EBA
+                  2018/389 art. 5 (accès récurrent), 10-13 (sécurité) et 36
+                  (disponibilité)&nbsp;; RGPD art. 5 (minimisation, limitation de
+                  conservation), 6 (base légale), 17 (effacement), 28
+                  (sous-traitance) et 32 (sécurité du traitement)&nbsp;; lignes
+                  directrices EBA sur la SCA.
+                </p>
+              </div>
+            </section>
+
+            <!-- CLOTURE -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Clôture du Jour 4</p>
+                <h2>Agréger, c’est assumer</h2>
+                <p>
+                  Le Jour 4 a posé trois compétences&nbsp;: comprendre ce qu’est
+                  l’AIS, décrire son flux, et construire l’architecture qui le
+                  rend fiable. La Sécurité ajoute le cadre qui rend ces trois
+                  acceptables&nbsp;: un AISP qui lit les comptes de Lyam n’est
+                  pas seulement un bon ingénieur, c’est un
+                  <strong>gardien de données personnelles</strong>. C’est cet
+                  équilibre — service réel, droits réels — qui fait de l’Open
+                  Banking une infrastructure de confiance.
+                </p>
+              </div>
+            </section>
+
+            
+          </div>
   </div>
 </article>
 
@@ -140,8 +2306,7 @@
 
     <footer class="site-foot no-print">
       <div class="wrap">
-        <a href="support.html">Page Support</a>
-        · Support étudiant Jour 4
+        <a href="index.html">Sommaire Jour 4</a> · Support étudiant
       </div>
     </footer>
   </body>

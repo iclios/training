@@ -1,0 +1,1118 @@
+{
+  "format": "quizzawa.subject.v1",
+  "title": "Examen EMV — Cartes, APDU et traitement des transactions",
+  "description": "Examen combiné importé depuis sample/Quiz.xlsx (Feuil1 + Feuil2) — 50 questions à choix unique.",
+  "module": "Paiements & Switch",
+  "questions": [
+    {
+      "type": "statement",
+      "points": 0,
+      "text": "Partie 1 — Fondamentaux des cartes bancaires, EMV et APDU"
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que signifie le sigle EMV ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Electronic Money Verification"
+        },
+        {
+          "id": "b",
+          "label": "Europay, Mastercard, Visa"
+        },
+        {
+          "id": "c",
+          "label": "European Magnetic Verification"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel est l’un des principaux objectifs d’EMV ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Définir une norme radio unique"
+        },
+        {
+          "id": "b",
+          "label": "Assurer l’interopérabilité entre cartes et terminaux"
+        },
+        {
+          "id": "c",
+          "label": "Remplacer les réseaux de paiement"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel acteur délivre la carte et décide généralement d’autoriser ou de refuser une transaction en ligne ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "L’acquéreur"
+        },
+        {
+          "id": "b",
+          "label": "Le réseau de paiement"
+        },
+        {
+          "id": "c",
+          "label": "L’émetteur"
+        }
+      ],
+      "answer": {
+        "correct_id": "c"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel est le chemin habituel d’une demande d’autorisation ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Terminal → émetteur directement"
+        },
+        {
+          "id": "b",
+          "label": "Terminal → acquéreur → réseau → émetteur"
+        },
+        {
+          "id": "c",
+          "label": "Carte → réseau → commerçant"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Une transaction EMV est-elle automatiquement autorisée dès que la carte produit un cryptogramme ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Oui, toujours"
+        },
+        {
+          "id": "b",
+          "label": "Non, la décision dépend notamment de l’émetteur ou des règles hors ligne"
+        },
+        {
+          "id": "c",
+          "label": "Oui, si le paiement est sans contact"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quelle norme est principalement associée aux cartes à puce avec contacts ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "ISO 7816"
+        },
+        {
+          "id": "b",
+          "label": "ISO 14443"
+        },
+        {
+          "id": "c",
+          "label": "ISO 15693"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quels champs constituent l’en-tête obligatoire d’une commande APDU ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "CLA, INS, P1, P2"
+        },
+        {
+          "id": "b",
+          "label": "Lc, données, Le, SW1"
+        },
+        {
+          "id": "c",
+          "label": "ATR, T=0, T=1, Le"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quels octets terminent généralement une réponse APDU ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "CLA et INS"
+        },
+        {
+          "id": "b",
+          "label": "SW1 et SW2"
+        },
+        {
+          "id": "c",
+          "label": "P1 et P2"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que signifie généralement le statut APDU 9000 ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Commande exécutée avec succès"
+        },
+        {
+          "id": "b",
+          "label": "Application introuvable"
+        },
+        {
+          "id": "c",
+          "label": "Délai d’attente dépassé"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "À quelle fréquence fonctionne généralement la communication ISO 14443 ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "125 kHz"
+        },
+        {
+          "id": "b",
+          "label": "13,56 MHz"
+        },
+        {
+          "id": "c",
+          "label": "2,4 GHz"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que décrit principalement ISO 14443 ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "La communication sans contact entre cartes de proximité et lecteurs"
+        },
+        {
+          "id": "b",
+          "label": "Le routage des paiements entre banques"
+        },
+        {
+          "id": "c",
+          "label": "Le format des tickets de paiement"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "À quoi sert généralement le PPSE dans un paiement sans contact ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "À vérifier le code PIN"
+        },
+        {
+          "id": "b",
+          "label": "À découvrir les applications de paiement disponibles"
+        },
+        {
+          "id": "c",
+          "label": "À transmettre la demande d’autorisation à la banque"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Dans une commande APDU, que représente généralement un Le final égal à 00 en format court ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Une longueur maximale de réponse, et non une réponse de longueur nulle"
+        },
+        {
+          "id": "b",
+          "label": "L’absence de données dans la commande"
+        },
+        {
+          "id": "c",
+          "label": "Un refus de la carte"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que signifie le cryptogramme ARQC ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "La carte refuse la transaction"
+        },
+        {
+          "id": "b",
+          "label": "La carte demande un traitement en ligne"
+        },
+        {
+          "id": "c",
+          "label": "La transaction est réglée entre les banques"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que signifie généralement TC ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Une transaction approuvée par la carte, si les règles le permettent"
+        },
+        {
+          "id": "b",
+          "label": "Une demande d’autorisation en ligne"
+        },
+        {
+          "id": "c",
+          "label": "Une erreur de transmission"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que signifie généralement AAC ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "La transaction est refusée par la carte"
+        },
+        {
+          "id": "b",
+          "label": "La transaction est approuvée hors ligne"
+        },
+        {
+          "id": "c",
+          "label": "Le terminal demande une nouvelle carte"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Le cryptogramme EMV contient-il le code PIN du porteur ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Oui"
+        },
+        {
+          "id": "b",
+          "label": "Non"
+        },
+        {
+          "id": "c",
+          "label": "Seulement en sans-contact"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que désigne CVM dans une transaction EMV ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "La méthode de vérification du porteur"
+        },
+        {
+          "id": "b",
+          "label": "Le réseau de paiement"
+        },
+        {
+          "id": "c",
+          "label": "Le montant maximal autorisé"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quelle différence décrit correctement un timeout et un statut SW1 SW2 ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Un timeout signifie qu’aucune réponse APDU complète n’a été reçue ; un statut est renvoyé par la carte"
+        },
+        {
+          "id": "b",
+          "label": "Ce sont deux noms pour le même résultat"
+        },
+        {
+          "id": "c",
+          "label": "Un timeout indique toujours que la carte a refusé la commande"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quelle affirmation sur le sans-contact est correcte ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Il n’utilise jamais de cryptogramme"
+        },
+        {
+          "id": "b",
+          "label": "Il peut demander un PIN ou une insertion de carte selon les règles applicables"
+        },
+        {
+          "id": "c",
+          "label": "Il ne peut jamais être traité en ligne"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "statement",
+      "points": 0,
+      "text": "Partie 2 — Traitement EMV, kernels, authentification et cryptogrammes"
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel est le rôle principal du kernel EMV dans un terminal ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Gérer les échanges avec la carte et appliquer les règles EMV"
+        },
+        {
+          "id": "b",
+          "label": "Tenir le compte bancaire du porteur"
+        },
+        {
+          "id": "c",
+          "label": "Acheminer directement les fonds entre les banques"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Le kernel EMV décide-t-il seul de l’autorisation bancaire ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Oui, toujours"
+        },
+        {
+          "id": "b",
+          "label": "Non, il fournit des informations à l’application de paiement du terminal"
+        },
+        {
+          "id": "c",
+          "label": "Oui, mais uniquement pour les paiements sans contact"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "À quoi sert la commande GET PROCESSING OPTIONS (GPO) ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "À lancer le traitement de l’application après sa sélection"
+        },
+        {
+          "id": "b",
+          "label": "À transmettre le PIN à l’émetteur"
+        },
+        {
+          "id": "c",
+          "label": "À demander le règlement de la transaction"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "À quelle étape le terminal lit-il les enregistrements de la carte ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Read Application Data"
+        },
+        {
+          "id": "b",
+          "label": "Terminal Action Analysis"
+        },
+        {
+          "id": "c",
+          "label": "Completion"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que vérifie principalement l’étape Processing Restrictions ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Si l’application peut être utilisée pour cette transaction"
+        },
+        {
+          "id": "b",
+          "label": "Si le commerçant a reçu les fonds"
+        },
+        {
+          "id": "c",
+          "label": "Si le PIN est correct auprès de l’émetteur"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel tag EMV correspond à la date d’expiration de l’application ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "5F24"
+        },
+        {
+          "id": "b",
+          "label": "9F02"
+        },
+        {
+          "id": "c",
+          "label": "9F36"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que signifie généralement le TVR ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Les résultats des vérifications effectuées par le terminal"
+        },
+        {
+          "id": "b",
+          "label": "La réponse définitive de l’émetteur"
+        },
+        {
+          "id": "c",
+          "label": "Le compteur de transactions de la carte"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel est le rôle du Terminal Risk Management (TRM) ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Évaluer le risque et déterminer si un traitement en ligne peut être nécessaire"
+        },
+        {
+          "id": "b",
+          "label": "Chiffrer le PIN pour la carte"
+        },
+        {
+          "id": "c",
+          "label": "Effectuer le règlement interbancaire"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Lequel de ces contrôles peut faire partie du TRM ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Vérification du plafond hors ligne"
+        },
+        {
+          "id": "b",
+          "label": "Vérification de la signature RSA de l’émetteur"
+        },
+        {
+          "id": "c",
+          "label": "Mise à jour obligatoire du système d’exploitation"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que comparent les règles d’action lors de la Terminal Action Analysis ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Le TVR avec les TAC et les IAC"
+        },
+        {
+          "id": "b",
+          "label": "L’ATR avec le code PIN"
+        },
+        {
+          "id": "c",
+          "label": "L’AFL avec le champ ISO 8583 DE4"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Où sont configurés les TAC ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Dans le terminal"
+        },
+        {
+          "id": "b",
+          "label": "Dans le réseau radio"
+        },
+        {
+          "id": "c",
+          "label": "Dans le code PIN"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Lors du premier GENERATE AC, qui prend sa propre décision sur la transaction ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "La carte"
+        },
+        {
+          "id": "b",
+          "label": "Le commerçant"
+        },
+        {
+          "id": "c",
+          "label": "Le réseau de paiement"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel mécanisme vérifie principalement des données fixes de la carte ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "SDA"
+        },
+        {
+          "id": "b",
+          "label": "DDA"
+        },
+        {
+          "id": "c",
+          "label": "CDA"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel mécanisme ajoute une preuve dynamique de la puce, notamment à partir d’un défi du terminal ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "SDA"
+        },
+        {
+          "id": "b",
+          "label": "DDA"
+        },
+        {
+          "id": "c",
+          "label": "TVR"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Qu’est-ce qui distingue généralement la CDA de la DDA ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "La CDA lie l’authentification dynamique au cryptogramme de transaction"
+        },
+        {
+          "id": "b",
+          "label": "La CDA vérifie le PIN auprès de l’émetteur"
+        },
+        {
+          "id": "c",
+          "label": "La CDA remplace toutes les vérifications de risque"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quelle limite concerne les mécanismes DDA et CDA ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Ils ne bloquent pas, à eux seuls, les attaques par relais"
+        },
+        {
+          "id": "b",
+          "label": "Ils ne fonctionnent qu’avec les cartes magnétiques"
+        },
+        {
+          "id": "c",
+          "label": "Ils vérifient automatiquement l’identité du porteur"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que signifie un ARQC ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "La carte demande une autorisation en ligne"
+        },
+        {
+          "id": "b",
+          "label": "La carte confirme un paiement réglé"
+        },
+        {
+          "id": "c",
+          "label": "La carte refuse la transaction"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que signifie généralement un AAC ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "La carte refuse la transaction"
+        },
+        {
+          "id": "b",
+          "label": "La carte demande une autorisation en ligne"
+        },
+        {
+          "id": "c",
+          "label": "La carte approuve définitivement hors ligne"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que signifie généralement un TC ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "La carte approuve la transaction hors ligne, si les règles le permettent"
+        },
+        {
+          "id": "b",
+          "label": "La carte demande une autorisation en ligne"
+        },
+        {
+          "id": "c",
+          "label": "Le terminal a rencontré un timeout"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Un ARQC indique-t-il que le paiement est approuvé ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Oui, c’est une approbation définitive"
+        },
+        {
+          "id": "b",
+          "label": "Non, c’est une demande d’autorisation"
+        },
+        {
+          "id": "c",
+          "label": "Oui, mais seulement si le TVR est nul"
+        }
+      ],
+      "answer": {
+        "correct_id": "b"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Après une réponse de l’émetteur, que peut renvoyer la carte lors de la finalisation ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Un TC ou un AAC"
+        },
+        {
+          "id": "b",
+          "label": "Un ATR ou un AFL"
+        },
+        {
+          "id": "c",
+          "label": "Un TAC ou un IAC"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "À quoi sert généralement l’Issuer Authentication Data, tag 91 ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "À transmettre à la carte des données d’authentification de l’émetteur"
+        },
+        {
+          "id": "b",
+          "label": "À identifier le terminal"
+        },
+        {
+          "id": "c",
+          "label": "À indiquer le montant de la transaction"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Avec un PIN en ligne, où le PIN est-il vérifié ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Par l’émetteur, après transmission d’un bloc PIN chiffré"
+        },
+        {
+          "id": "b",
+          "label": "Par le terminal, sans communication avec l’émetteur"
+        },
+        {
+          "id": "c",
+          "label": "Par le réseau radio sans contact"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Avec un PIN hors ligne, où la vérification est-elle effectuée ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Par la puce de la carte"
+        },
+        {
+          "id": "b",
+          "label": "Par l’acquéreur"
+        },
+        {
+          "id": "c",
+          "label": "Par le commerçant"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Que signifie offline plaintext PIN dans ce contexte ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Le PIN est transmis à la puce sans chiffrement cryptographique de cette commande"
+        },
+        {
+          "id": "b",
+          "label": "Le PIN est affiché en clair sur l’écran du terminal"
+        },
+        {
+          "id": "c",
+          "label": "Le PIN est envoyé en clair sur le réseau bancaire"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel tag correspond à l’Application Interchange Profile (AIP) ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "82"
+        },
+        {
+          "id": "b",
+          "label": "94"
+        },
+        {
+          "id": "c",
+          "label": "9F26"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "À quoi sert l’AFL ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "À indiquer au terminal quels enregistrements lire sur la carte"
+        },
+        {
+          "id": "b",
+          "label": "À contenir le cryptogramme de transaction"
+        },
+        {
+          "id": "c",
+          "label": "À donner la réponse de l’émetteur"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Quel tag contient généralement l’Application Cryptogram (AC) ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "9F26"
+        },
+        {
+          "id": "b",
+          "label": "9F27"
+        },
+        {
+          "id": "c",
+          "label": "9F36"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Dans le champ EMV, quel tag indique le type de cryptogramme, comme ARQC, TC ou AAC ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "9F27"
+        },
+        {
+          "id": "b",
+          "label": "9F37"
+        },
+        {
+          "id": "c",
+          "label": "5F2A"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    },
+    {
+      "type": "qcu",
+      "prompt": "Dans un message ISO 8583, à quoi correspond généralement le DE55 ?",
+      "points": 1,
+      "choices": [
+        {
+          "id": "a",
+          "label": "Aux données EMV encodées, souvent sous forme TLV"
+        },
+        {
+          "id": "b",
+          "label": "Au PIN chiffré uniquement"
+        },
+        {
+          "id": "c",
+          "label": "À la réponse finale de l’émetteur uniquement"
+        }
+      ],
+      "answer": {
+        "correct_id": "a"
+      }
+    }
+  ]
+}

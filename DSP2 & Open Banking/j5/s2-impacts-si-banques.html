@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S2 — Impacts SI pour les banques | DSP2 &amp; Open Banking</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/j5-styles.css" />
+  </head>
+  <body data-bloc="s2-impacts-si-banques">
+    <header class="site-bar">
+      <div class="wrap site-bar-inner">
+        <a class="brand-mark" href="../index.html"
+          >DSP2 <span>&amp; Open Banking</span></a
+        >
+        <nav class="day-nav" aria-label="Jours du cours">
+          <a class="day-nav-home" href="../index.html" title="Index principal">Accueil</a>
+          <a href="../j1/intro.html">J1</a>
+          <a href="../j2/intro.html">J2</a>
+          <a href="../j3/intro.html">J3</a>
+          <a href="../j4/intro.html">J4</a>
+          <a class="is-active" href="intro.html">J5</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="fiche-shell">
+      <aside id="bloc-sidebar" class="bloc-sidebar" aria-label="Navigation des blocs"></aside>
+      <div class="fiche-main">
+        <main>
+          <section class="day-hero" style="padding-bottom: 1rem">
+            <div class="wrap">
+              <div class="fiche-meta">
+                <span class="tag">Jour 5 · Séquence 2</span>
+                <span class="tag tag-accent">45 min</span>
+              </div>
+              <p class="day-kicker">Transformation des systèmes</p>
+              <h1>Impacts SI pour les banques</h1>
+              <p class="lead">
+                L’Open Finance transforme en profondeur les systèmes d’information
+                des banques&nbsp;: core banking, gouvernance IT, time-to-market et
+                sécurité by design. La banque change de rôle&nbsp;: elle devient
+                fournisseur d’API, orchestrateur et plateforme.
+              </p>
+            </div>
+          </section>
+
+          <div class="wrap">
+            <div class="j5-concept-grid">
+              <div class="j5-concept-card">
+                <h3>Transformation du core</h3>
+                <p>Modernisation des systèmes centraux pour l’ouverture des données.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>Gouvernance IT</h3>
+                <p>Nouvelles exigences de sécurité, conformité et traçabilité.</p>
+              </div>
+              <div class="j5-concept-card">
+                <h3>Nouveau rôle</h3>
+                <p>La banque devient fournisseur d’API, orchestrateur et plateforme.</p>
+              </div>
+            </div>
+
+            <div class="fil-rouge">
+              <span class="fil-rouge-label">Fil rouge</span>
+              <p>
+                La banque de Lyam doit transformer ses systèmes pour ouvrir non
+                seulement les comptes bancaires, mais aussi les contrats d’assurance,
+                les prêts et les services de paiement. Cette transformation affecte
+                toute l’architecture informatique et les modes de fonctionnement.
+              </p>
+            </div>
+
+            <!-- TRANSFORMATION CORE BANKING -->
+            <section class="section" style="border-top: none; padding-top: 1.5rem">
+              <p class="section-label">Core Banking</p>
+              <h2 id="core-banking">Modernisation des systèmes centraux</h2>
+              <p class="intro">
+                Le cœur de métier bancaire doit s’adapter aux exigences de
+                l’ouverture des données et de l’interopérabilité.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ok">
+                  <h3>Avant l’Open Finance</h3>
+                  <ul>
+                    <li>Systèmes monolithiques fermés</li>
+                    <li>Interfaces propriétaires</li>
+                    <li>Accès internes uniquement</li>
+                    <li>Batch processing dominant</li>
+                    <li>Sécurité périmétrique</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <h3>Avec l’Open Finance</h3>
+                  <ul>
+                    <li>APIs RESTful standardisées</li>
+                    <li>Exposition contrôlée aux tiers</li>
+                    <li>Accès en temps réel</li>
+                    <li>Streaming et events</li>
+                    <li>Sécurité intégrée et contextuelle</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>Une mutation d’architecture, pas une simple couche</h3>
+                <p>
+                  Ouvrir les données ne se résume pas à poser une passerelle API
+                  devant le SI existant&nbsp;: le core banking doit exposer des
+                  capacités (comptes, paiements, produits) pensées pour être
+                  consommées par des tiers, en temps réel et de façon contrôlée.
+                </p>
+              </div>
+            </section>
+
+            <!-- GOUVERNANCE IT -->
+            <section class="section">
+              <p class="section-label">Gouvernance</p>
+              <h2 id="gouvernance">Nouvelles exigences de gouvernance</h2>
+              <p>
+                L’ouverture des données impose une gouvernance IT renforcée et plus
+                fine, à la fois sur la sécurité, les données et le rythme de livraison.
+              </p>
+
+              <div class="mechanism">
+                <div class="mechanism-step">
+                  <span class="n">1</span>
+                  <div>
+                    <strong>Sécurité by design</strong>
+                    <p>
+                      Intégration de la sécurité dès la conception des services,
+                      chiffrement bout-en-bout, monitoring en temps réel.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">2</span>
+                  <div>
+                    <strong>Gouvernance des données</strong>
+                    <p>
+                      Catalogue des données, traçabilité des accès, minimisation,
+                      effacement RGPD, consentement granulaire.
+                    </p>
+                  </div>
+                </div>
+                <div class="mechanism-step">
+                  <span class="n">3</span>
+                  <div>
+                    <strong>Time-to-market</strong>
+                    <p>
+                      Déploiement continu, tests automatisés, versioning des APIs,
+                      cycles de release accélérés pour répondre aux partenaires.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="csm-table-wrap">
+                <table class="csm-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Domaine</th>
+                      <th scope="col">Exigence traditionnelle</th>
+                      <th scope="col">Exigence Open Finance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Sécurité</th><td>Périmétrique</td><td>Intégrée &amp; contextuelle</td></tr>
+                    <tr><th scope="row">Disponibilité</th><td>99,9 %</td><td>99,99 % (SLA stricts)</td></tr>
+                    <tr><th scope="row">Performance</th><td>Secondes</td><td>Millisecondes</td></tr>
+                    <tr><th scope="row">Traçabilité</th><td>Journalière</td><td>Temps réel</td></tr>
+                    <tr class="is-exergue"><th scope="row">Conformité</th><td>Annuelle</td><td>Continue &amp; auditable</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- LA BANQUE COMME PLATEFORME -->
+            <section class="section">
+              <p class="section-label">Nouveau rôle</p>
+              <h2 id="banque-plateforme">La banque comme plateforme</h2>
+              <p>
+                L’Open Finance transforme la banque d’institution financière en
+                plateforme d’écosystème numérique. Trois figures coexistent.
+              </p>
+
+              <div class="j5-role-comparison">
+                <div class="j5-role-card aspsp">
+                  <div class="j5-role-name aspsp">Fournisseur d’API</div>
+                  <p class="j5-role-description">
+                    Exposition sécurisée des données et services via des interfaces
+                    standardisées aux partenaires et développeurs.
+                  </p>
+                </div>
+                <div class="j5-role-card pisp">
+                  <div class="j5-role-name pisp">Orchestrateur</div>
+                  <p class="j5-role-description">
+                    Coordination des services internes et externes pour offrir
+                    des expériences client intégrées et personnalisées.
+                  </p>
+                </div>
+                <div class="j5-role-card cbpii">
+                  <div class="j5-role-name cbpii">Plateforme</div>
+                  <p class="j5-role-description">
+                    Création d’un marché de services financiers où s’interconnectent
+                    banques, fintechs, assureurs et autres acteurs.
+                  </p>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>La triple mutation de la banque</h3>
+                <p>
+                  <strong>Fournisseur d’API</strong>&nbsp;: la banque expose ses
+                  capacités techniques. <strong>Orchestrateur</strong>&nbsp;: elle
+                  coordonne les services de différents acteurs.
+                  <strong>Plateforme</strong>&nbsp;: elle devient un lieu d’échanges
+                  et de services.
+                </p>
+              </div>
+            </section>
+
+            <!-- DÉFIS ET OPPORTUNITÉS -->
+            <section class="section">
+              <p class="section-label">Stratégie</p>
+              <h2 id="defis">Équilibre entre défis et opportunités</h2>
+              <p>
+                La transformation vers l’Open Finance présente à la fois des défis
+                majeurs et des opportunités stratégiques.
+              </p>
+
+              <div class="split-2">
+                <div class="panel ko">
+                  <h3>Défis techniques</h3>
+                  <ul>
+                    <li>Modernisation des legacy systems</li>
+                    <li>Sécurité renforcée et surveillance</li>
+                    <li>Interopérabilité des standards</li>
+                    <li>Gestion de la volumétrie croissante</li>
+                    <li>Conformité continue et audit</li>
+                  </ul>
+                </div>
+                <div class="panel ok">
+                  <h3>Opportunités stratégiques</h3>
+                  <ul>
+                    <li>Nouveaux canaux de distribution</li>
+                    <li>Personnalisation avancée des services</li>
+                    <li>Partenariats innovants</li>
+                    <li>Monétisation des APIs</li>
+                    <li>Leadership sur l’innovation</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="callout info">
+                <h3>La clé du succès</h3>
+                <p>
+                  La réussite de la transformation dépend de la capacité à convertir
+                  les défis techniques en avantages concurrentiels, tout en
+                  maintenant la confiance et la sécurité des clients.
+                </p>
+              </div>
+            </section>
+
+            <!-- TRANSITION -->
+            <section class="section" style="border-bottom: none">
+              <div class="transition-block">
+                <p class="transition-label">Séquence suivante</p>
+                <h2>Intégration dans le projet SI ouvert</h2>
+                <p>
+                  Les impacts sur les systèmes d’information doivent être intégrés
+                  dans la conception des projets SI ouverts. En S3, on part d’un
+                  besoin, on choisit les rôles DSP2 utiles, on dessine les flux et
+                  on cadre le consentement et la gouvernance.
+                </p>
+              </div>
+            </section>
+
+            <div class="sources-box">
+              <strong>Références</strong> — DSP2 (UE) 2015/2366&nbsp;; RTS EBA
+              2018/389&nbsp;; projet de règlement FIDA (Financial Data Access)&nbsp;;
+              RGPD (UE) 2016/679&nbsp;; architecture des systèmes d’information bancaires.
+            </div>
+
+            <nav class="bloc-pager" aria-label="Navigation précédent suivant"></nav>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <a href="index.html">Sommaire Jour 5</a> · S2 Impacts SI pour les banques
+      </div>
+    </footer>
+    <script src="../js/nav-j5.js"></script>
+    <script src="../js/present.js"></script>
+    <script src="../js/read-aloud.js"></script>
+  </body>
+</html>

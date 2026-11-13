@@ -23,7 +23,6 @@ BLOCS = [
     ("s3-cbpii",     "04", "Parcours narratif",      "S3 · Workflow CBPII"),
     ("s5-auth",      "05", "Parcours narratif",      "S5 · Authentification & autorisation"),
     ("s6-securite",  "06", "Parcours narratif",      "S6 · Sécurité & conformité"),
-    ("s7-cas",       "07", "Parcours narratif",      "S7 · Cas pratique"),
     # s4-atelier (labo interactif) exclu volontairement : pas de contenu papier.
 ]
 
@@ -119,15 +118,6 @@ def build():
       </div>
     </header>
 
-    <div class="support-print-bar no-print">
-      <div class="wrap support-print-bar-inner">
-        <a href="support.html">← Page Support</a>
-        <button type="button" class="btn-print" onclick="window.print()">
-          Imprimer / Enregistrer en PDF
-        </button>
-      </div>
-    </div>
-
     <div class="fiche-shell support-shell">
       <aside class="bloc-sidebar no-print" aria-label="Sommaire du support">
         <p class="bloc-sidebar-title">Jour 2 · Support</p>
@@ -168,7 +158,7 @@ def build():
 
     <footer class="site-foot no-print">
       <div class="wrap">
-        <a href="index.html">Sommaire Jour 2</a> · Support étudiant
+        <a href="intro.html">Sommaire Jour 2</a> · Support étudiant
       </div>
     </footer>
   </body>

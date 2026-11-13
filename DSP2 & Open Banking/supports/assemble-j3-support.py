@@ -23,7 +23,7 @@ BLOCS = [
     ("s1-principe",    "02", "Parcours narratif", "S1 · Principe du paiement initié"),
     ("s2-flux",        "03", "Parcours narratif", "S2 · Flux PISP détaillé"),
     ("s3-architecture","04", "Parcours narratif", "S3 · Architecture SI PISP"),
-    ("s4-atelier",     "05", "Atelier",           "S4 · Atelier de modélisation"),
+    ("s4-applications","05", "Applications",      "S4 · Applications et cas concrets"),
 ]
 
 TITLE_DAY = "Jour 3 : Le paiement initié"
